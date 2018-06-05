@@ -1,0 +1,32 @@
+### Headers settings
+company: MyEtherWallet, Inc.
+
+### Xcode project settings
+project_name: MyEtherWallet-iOS
+xcodeproj_path: MyEtherWallet-iOS.xcodeproj
+
+### Code generation settings section
+# The main project target name
+project_target: MyEtherWallet-iOS
+
+# The file path for new modules
+project_file_path: MyEtherWallet-iOS/Classes/PresentationLayer
+
+# The Xcode group path to new modules
+project_group_path: MyEtherWallet-iOS/Classes/PresentationLayer
+
+### Tests generation settings section
+# The tests target name
+test_target: MyEtherWallet-iOSTests
+
+# The file path for new tests
+test_file_path: MyEtherWallet-iOSTests
+
+### Dependencies settings section
+podfile_path: Podfile
+
+### Templates
+templates:
+- {name: rviper_controller}
+- {name: mvvm_controller}
+- {name: swifty_viper}

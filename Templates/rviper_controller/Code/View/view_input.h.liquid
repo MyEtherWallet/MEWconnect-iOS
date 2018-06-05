@@ -1,0 +1,9 @@
+{% include 'header' %}
+
+@import Foundation;
+
+@protocol {{ prefix }}{{ module_info.name }}ViewInput <NSObject>
+
+- (void) setupInitialState;
+
+@end

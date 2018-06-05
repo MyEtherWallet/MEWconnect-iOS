@@ -1,0 +1,10 @@
+{% include 'header' %}
+
+@import Foundation;
+@import ViperMcFlurry;
+
+@protocol {{ prefix }}{{ module_info.name }}ModuleInput <RamblerViperModuleInput>
+
+- (void) configureModule;
+
+@end

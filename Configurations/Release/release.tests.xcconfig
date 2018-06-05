@@ -1,0 +1,2 @@
+#include "../common.xcconfig"
+#include "../../Pods/Target Support Files/Pods-MyEtherWallet-iOSTests/Pods-MyEtherWallet-iOSTests.release.xcconfig"

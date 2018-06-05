@@ -1,0 +1,22 @@
+{% include 'header' %}
+
+#import "{{ prefix }}{{ module_info.name }}ViewController.h"
+
+#import "{{ prefix }}{{ module_info.name }}ViewOutput.h"
+
+@implementation {{ prefix }}{{ module_info.name }}ViewController
+
+#pragma mark - LifeCycle
+
+- (void)viewDidLoad {
+	[super viewDidLoad];
+
+	[self.output didTriggerViewReadyEvent];
+}
+
+#pragma mark - {{ prefix }}{{ module_info.name }}ViewInput
+
+- (void) setupInitialState {
+}
+
+@end

@@ -6,13 +6,9 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
-@import CocoaLumberjack;
-
 #import "ResponseValidationOperation.h"
 
 #import "ResponseValidator.h"
-
-static const int ddLogLevel = DDLogLevelVerbose;
 
 @interface ResponseValidationOperation ()
 @property (nonatomic, strong) id<ResponseValidator> responseValidator;

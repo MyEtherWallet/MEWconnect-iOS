@@ -12,7 +12,7 @@
 
 #import "NewWalletInteractorOutput.h"
 
-#import "MEWCrypto.h"
+#import "MEWWallet.h"
 #import "TokensService.h"
 
 #import "UIImage+MEWBackground.h"
@@ -29,7 +29,7 @@
 - (void) createNewWalletWithPassword:(NSString *)password words:(NSArray<NSString *> *)words {
   @weakify(self);
   [self.tokensService clearTokens];
-  [self.cryptoService createWalletWithPassword:password words:words completion:^(BOOL success, NSString *address) {
+  [self.walletService createWalletWithPassword:password words:words completion:^(BOOL success, NSString *address) {
     @strongify(self);
     CGSize fullSize = [UIImage fullSize];
     CGSize cardSize = [UIImage cardSize];

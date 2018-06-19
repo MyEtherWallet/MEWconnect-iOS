@@ -12,14 +12,14 @@
 
 #import "BackupWordsInteractorOutput.h"
 
-#import "MEWCrypto.h"
+#import "MEWWallet.h"
 
 @implementation BackupWordsInteractor
 
 #pragma mark - BackupWordsInteractorInput
 
 - (NSArray <NSString *> *)recoveryMnemonicsWords {
-  return [self.cryptoService recoveryMnemonicsWords];
+  return [self.walletService recoveryMnemonicsWords];
 }
 
 - (void) subscribeToEvents {

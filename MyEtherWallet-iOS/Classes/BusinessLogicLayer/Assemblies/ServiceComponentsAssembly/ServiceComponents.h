@@ -9,14 +9,16 @@
 @import Foundation;
 
 @protocol MEWConnectFacade;
-@protocol MEWCrypto;
+@protocol MEWcrypto;
+@protocol MEWWallet;
 @protocol CameraService;
 @protocol CameraServiceDelegate;
 @protocol TokensService;
 
 @protocol ServiceComponents <NSObject>
 - (id <MEWConnectFacade>) MEWConnectFacade;
-- (id <MEWCrypto>) MEWCrypto;
+- (id <MEWWallet>) MEWWallet;
+- (id <MEWcrypto>) MEWcrypto;
 - (id <CameraService>) cameraServiceWithDelegate:(id <CameraServiceDelegate>)delegate;
 - (id <TokensService>) tokensService;
 @end

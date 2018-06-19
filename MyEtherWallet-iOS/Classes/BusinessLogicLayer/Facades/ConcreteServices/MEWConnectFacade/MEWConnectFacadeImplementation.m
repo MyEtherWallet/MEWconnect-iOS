@@ -12,7 +12,7 @@
 
 #import "MEWConnectFacadeConstants.h"
 
-#import "MEWCrypto.h"
+#import "MEWWallet.h"
 #import "MEWConnectService.h"
 #import "MEWConnectServiceDelegate.h"
 
@@ -47,7 +47,7 @@
 - (void) MEWConnect:(id <MEWConnectService>)mewConnect didReceiveMessage:(MEWConnectCommand *)message {
   switch (message.type) {
     case MEWConnectCommandTypeGetAddress: {
-      NSString *address = [self.cryptoService obtainPublicAddress];
+      NSString *address = [self.walletService obtainPublicAddress];
       MEWConnectResponse *response = [MEWConnectResponse responseForCommand:message data:address];
       [self.connectService sendMessage:response];
       break;

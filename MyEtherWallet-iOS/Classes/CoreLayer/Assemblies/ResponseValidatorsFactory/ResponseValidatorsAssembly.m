@@ -20,19 +20,19 @@
     [matcher caseEqual:@(ResponseValidationDisabledType)
                    use:nil];
     [matcher caseEqual:@(ResponseValidationSingleType)
-                   use:[self myBoxSingleResponseValidator]];
+                   use:[self singleResponseValidator]];
     [matcher caseEqual:@(ResponseValidationManyType)
-                   use:[self myBoxManyResponseValidator]];
+                   use:[self manyResponseValidator]];
   }];
 }
 
 #pragma mark - Concrete definitions
 
-- (id<ResponseValidator>)myBoxSingleResponseValidator {
+- (id<ResponseValidator>)singleResponseValidator {
   return [TyphoonDefinition withClass:[SingleResponseValidator class]];
 }
 
-- (id<ResponseValidator>)myBoxManyResponseValidator {
+- (id<ResponseValidator>)manyResponseValidator {
   return [TyphoonDefinition withClass:[ManyResponseValidator class]];
 }
 

@@ -73,8 +73,8 @@
                                             [initializer injectParameterWith:[self.applicationHelperAssembly navigationControllerFactory]];
                                             [initializer injectParameterWith:[self.systemInfrastructureAssembly mainWindow]];
                                           }];
-                          [definition injectProperty:@selector(cryptoService)
-                                                with:[self.serviceComponents MEWCrypto]];
+                          [definition injectProperty:@selector(walletService)
+                                                with:[self.serviceComponents MEWWallet]];
                           [definition injectProperty:@selector(passwordStoryboard)
                                                 with:[self.storyboardAssembly splashPasswordStoryboard]];
                         }];

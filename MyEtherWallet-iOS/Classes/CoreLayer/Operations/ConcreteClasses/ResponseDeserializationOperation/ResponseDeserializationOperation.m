@@ -7,15 +7,12 @@
 //
 
 @import libextobjc.EXTScope;
-@import CocoaLumberjack;
 
 #import "ResponseDeserializationOperation.h"
 
 #import "ResponseDeserializer.h"
 
 #import "ServerResponseModel.h"
-
-static const int ddLogLevel = DDLogLevelVerbose;
 
 @interface ResponseDeserializationOperation ()
 @property (nonatomic, strong) id<ResponseDeserializer> responseDeserializer;

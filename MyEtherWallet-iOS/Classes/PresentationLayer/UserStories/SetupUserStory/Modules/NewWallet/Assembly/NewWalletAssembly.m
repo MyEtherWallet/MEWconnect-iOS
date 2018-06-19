@@ -34,8 +34,8 @@
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(output)
                                                 with:[self presenterNewWallet]];
-                          [definition injectProperty:@selector(cryptoService)
-                                                with:[self.serviceComponents MEWCrypto]];
+                          [definition injectProperty:@selector(walletService)
+                                                with:[self.serviceComponents MEWWallet]];
                           [definition injectProperty:@selector(tokensService)
                                                 with:[self.serviceComponents tokensService]];
                         }];

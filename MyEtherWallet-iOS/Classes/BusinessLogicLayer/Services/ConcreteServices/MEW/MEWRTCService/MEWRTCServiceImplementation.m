@@ -8,9 +8,6 @@
 
 @import WebRTC;
 @import libextobjc.EXTScope;
-@import CocoaLumberjack;
-
-static const int ddLogLevel = DDLogLevelVerbose;
 
 #import "MEWRTCConstants.h"
 

@@ -12,7 +12,7 @@
 
 @protocol HomeInteractorOutput;
 @protocol MEWConnectFacade;
-@protocol MEWCrypto;
+@protocol MEWWallet;
 @protocol TokensService;
 @protocol CacheTracker;
 @protocol Ponsomizer;
@@ -20,7 +20,7 @@
 @interface HomeInteractor : NSObject <HomeInteractorInput, CacheTrackerDelegate>
 @property (nonatomic, weak) id<HomeInteractorOutput> output;
 @property (nonatomic, strong) id <MEWConnectFacade> connectFacade;
-@property (nonatomic, strong) id <MEWCrypto> cryptoService;
+@property (nonatomic, strong) id <MEWWallet> walletService;
 @property (nonatomic, strong) id <TokensService> tokensService;
 @property (nonatomic, strong) id <CacheTracker> cacheTracker;
 @property (nonatomic, strong) id <Ponsomizer> ponsomizer;

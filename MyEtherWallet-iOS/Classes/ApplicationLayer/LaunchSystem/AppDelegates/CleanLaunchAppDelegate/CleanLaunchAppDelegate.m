@@ -12,8 +12,6 @@
 #import "ApplicationConfigurator.h"
 #import "ThirdPartiesConfigurator.h"
 
-#import "NSString+HexNSDecimalNumber.h"
-
 @implementation CleanLaunchAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {

@@ -7,13 +7,10 @@
 //
 
 @import libextobjc.EXTScope;
-@import CocoaLumberjack;
 
 #import "ResponseConverterOperation.h"
 
 #import "ResponseConverter.h"
-
-static const int ddLogLevel = DDLogLevelVerbose;
 
 @interface ResponseConverterOperation ()
 @property (nonatomic, strong) id<ResponseConverter> responseConverter;

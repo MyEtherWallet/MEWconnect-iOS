@@ -48,8 +48,8 @@
                                                 with:[self presenterHome]];
                           [definition injectProperty:@selector(connectFacade)
                                                 with:[self.serviceComponents MEWConnectFacade]];
-                          [definition injectProperty:@selector(cryptoService)
-                                                with:[self.serviceComponents MEWCrypto]];
+                          [definition injectProperty:@selector(walletService)
+                                                with:[self.serviceComponents MEWWallet]];
                           [definition injectProperty:@selector(tokensService)
                                                 with:[self.serviceComponents tokensService]];
                           [definition injectProperty:@selector(cacheTracker)

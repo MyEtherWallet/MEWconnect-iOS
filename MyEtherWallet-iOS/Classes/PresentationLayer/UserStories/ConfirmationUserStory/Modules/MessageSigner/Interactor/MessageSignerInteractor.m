@@ -15,7 +15,7 @@
 #import "MEWConnectCommand.h"
 #import "MEWConnectResponse.h"
 
-#import "MEWCrypto.h"
+#import "MEWWallet.h"
 
 @interface MessageSignerInteractor ()
 @property (nonatomic, strong) MEWConnectCommand *message;
@@ -36,7 +36,7 @@
 - (void) signMessage {
   @weakify(self);
   //TODO: Password
-  [self.cryptoService signMessage:self.message.data
+  [self.walletService signMessage:self.message.data
                          password:@""
                        completion:^(id data) {
                          @strongify(self);

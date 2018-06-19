@@ -14,7 +14,8 @@
 
 #import "MEWConnectServiceImplementation.h"
 #import "MEWRTCServiceImplementation.h"
-#import "MEWCryptoImplementation.h"
+#import "MEWcryptoImplementation.h"
+#import "MEWWalletImplementation.h"
 #import "MEWConnectFacadeImplementation.h"
 
 #import "TokensServiceImplementation.h"
@@ -32,7 +33,7 @@
                         configuration:^(TyphoonDefinition *definition) {
                           definition.scope = TyphoonScopeSingleton;
                           [definition injectProperty:@selector(connectService) with:[self MEWConnectService]];
-                          [definition injectProperty:@selector(cryptoService) with:[self MEWCrypto]];
+                          [definition injectProperty:@selector(walletService) with:[self MEWWallet]];
                         }];
 }
 
@@ -45,6 +46,8 @@
                                           }];
                           [definition injectProperty:@selector(rtcService)
                                                 with:[self MEWRTCService]];
+                          [definition injectProperty:@selector(MEWcrypto)
+                                                with:[self MEWcrypto]];
                           [definition injectProperty:@selector(delegate) with:[self MEWConnectFacade]];
                         }];
 }
@@ -59,8 +62,12 @@
                         }];
 }
 
-- (id<MEWCrypto>)MEWCrypto {
-  return [TyphoonDefinition withClass:[MEWCryptoImplementation class]];
+- (id<MEWWallet>)MEWWallet {
+  return [TyphoonDefinition withClass:[MEWWalletImplementation class]];
+}
+
+- (id<MEWcrypto>) MEWcrypto {
+  return [TyphoonDefinition withClass:[MEWcryptoImplementation class]];
 }
 
 #pragma mark - Ethereum

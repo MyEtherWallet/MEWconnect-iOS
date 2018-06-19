@@ -8,9 +8,9 @@
 
 @import UIKit;
 
-@protocol MEWCrypto;
+@protocol MEWWallet;
 
 @interface BottomBackgroundedModalPresentationController : UIPresentationController
-@property (nonatomic, strong) id <MEWCrypto> cryptoService;
+@property (nonatomic, strong) id <MEWWallet> walletService;
 @property (nonatomic) CGFloat cornerRadius;
 @end

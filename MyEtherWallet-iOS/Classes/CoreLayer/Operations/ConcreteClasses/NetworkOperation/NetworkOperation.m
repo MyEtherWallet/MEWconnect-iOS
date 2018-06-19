@@ -7,14 +7,11 @@
 //
 
 @import libextobjc.EXTScope;
-@import CocoaLumberjack;
 
 #import "NetworkOperation.h"
 
 #import "NetworkClient.h"
 #import "ServerResponseModel.h"
-
-static const int ddLogLevel = DDLogFlagVerbose;
 
 @interface NetworkOperation ()
 @property (nonatomic, strong) id<NetworkClient> networkClient;

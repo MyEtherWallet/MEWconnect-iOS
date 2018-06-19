@@ -10,7 +10,7 @@
 
 #import "RestoreWalletInteractorOutput.h"
 
-#import "MEWCrypto.h"
+#import "MEWWallet.h"
 
 #import "ApplicationConstants.h"
 #import "NSCharacterSet+WNS.h"
@@ -43,7 +43,7 @@
 
 - (void) tryRestore {
   if (_words) {
-    NSArray *allwords = [self.cryptoService obtainBIP32Words];
+    NSArray *allwords = [self.walletService obtainBIP32Words];
     NSSet *allWordsSet = [NSSet setWithArray:allwords];
     NSSet *mnemonicsWordsSet = [NSSet setWithArray:_words];
     if ([mnemonicsWordsSet isSubsetOfSet:allWordsSet]) {

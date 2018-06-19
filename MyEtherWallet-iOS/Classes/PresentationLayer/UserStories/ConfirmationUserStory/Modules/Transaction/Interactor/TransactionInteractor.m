@@ -9,7 +9,7 @@
 @import libextobjc.EXTScope;
 
 #import "MEWConnectFacade.h"
-#import "MEWCrypto.h"
+#import "MEWWallet.h"
 
 #import "TransactionInteractor.h"
 
@@ -38,7 +38,7 @@
 
 - (void)signTransactionWithPassword:(NSString *)password {
   @weakify(self);
-  [self.cryptoService signTransaction:self.transaction
+  [self.walletService signTransaction:self.transaction
                              password:password
                            completion:^(id data) {
                              @strongify(self);

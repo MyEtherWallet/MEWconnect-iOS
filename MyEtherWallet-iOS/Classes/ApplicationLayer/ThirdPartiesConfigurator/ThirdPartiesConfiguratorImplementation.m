@@ -7,13 +7,14 @@
 //
 
 #import "ThirdPartiesConfiguratorImplementation.h"
-@import CocoaLumberjack;
 
 @implementation ThirdPartiesConfiguratorImplementation
 
 - (void)configurate {
   [DDLog addLogger:[DDTTYLogger sharedInstance]];
+#if !DEBUG
   [DDLog addLogger:[DDASLLogger sharedInstance]];
+#endif
 }
 
 @end

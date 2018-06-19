@@ -12,7 +12,7 @@
 
 #import "StartInteractorOutput.h"
 
-#import "MEWCrypto.h"
+#import "MEWWallet.h"
 
 #import "MEWConnectService.h"
 #import "MEWConnectServiceDelegate.h"

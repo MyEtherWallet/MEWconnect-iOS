@@ -14,7 +14,7 @@
 
 #import "MEWConnectFacade.h"
 #import "MEWConnectFacadeConstants.h"
-#import "MEWCrypto.h"
+#import "MEWWallet.h"
 #import "MEWConnectCommand.h"
 #import "Ponsomizer.h"
 
@@ -73,7 +73,7 @@
 }
 
 - (BOOL) obtainBackupStatus {
-  return [self.cryptoService isBackedUp];
+  return [self.walletService isBackedUp];
 }
 
 - (void)subscribe {

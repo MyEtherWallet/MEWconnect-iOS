@@ -11,6 +11,7 @@
 @import RamblerTyphoonUtils.AssemblyCollector;
 
 @class FetchedResultsControllerAssembly;
+@class PonsomizerAssembly;
 
 @interface HomeAssembly : ModuleAssemblyBase <RamblerInitialAssembly>
 @property (nonatomic, strong) FetchedResultsControllerAssembly *cacheTrackerAssembly;

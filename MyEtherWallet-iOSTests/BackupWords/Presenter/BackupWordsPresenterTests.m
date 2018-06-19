@@ -65,7 +65,7 @@
     [self.presenter didTriggerViewReadyEvent];
 
     // then
-    OCMVerify([self.mockView setupInitialState]);
+    OCMVerify([self.mockView setupInitialStateWithWords:@[]]);
 }
 
 #pragma mark - BackupWordsInteractorOutput tests

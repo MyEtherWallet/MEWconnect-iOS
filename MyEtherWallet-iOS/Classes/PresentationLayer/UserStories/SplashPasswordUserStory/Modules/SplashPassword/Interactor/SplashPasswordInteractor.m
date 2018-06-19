@@ -8,7 +8,7 @@
 
 #import "SplashPasswordInteractor.h"
 
-#import "MEWCrypto.h"
+#import "MEWWallet.h"
 
 #import "SplashPasswordInteractorOutput.h"
 
@@ -17,7 +17,7 @@
 #pragma mark - SplashPasswordInteractorInput
 
 - (void)checkPassword:(NSString *)password {
-  NSString *address = [self.cryptoService validatePassword:password];
+  NSString *address = [self.walletService validatePassword:password];
   if (address) {
     [self.output correctPassword:password];
   } else {

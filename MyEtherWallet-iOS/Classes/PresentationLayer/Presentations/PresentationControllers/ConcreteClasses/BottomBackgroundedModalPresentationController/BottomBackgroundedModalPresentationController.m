@@ -8,7 +8,7 @@
 
 #import "BottomBackgroundedModalPresentationController.h"
 
-#import "MEWCrypto.h"
+#import "MEWWallet.h"
 
 #import "UIImage+MEWBackground.h"
 
@@ -23,7 +23,7 @@
   if (!_mewBackground) {
     _mewBackground = [[UIImageView alloc] init];
     _mewBackground.translatesAutoresizingMaskIntoConstraints = NO;
-    NSString *address = [self.cryptoService obtainPublicAddress];
+    NSString *address = [self.walletService obtainPublicAddress];
     _mewBackground.image = [UIImage cachedBackgroundWithSeed:address
                                                         size:[UIImage fullSize]
                                                         logo:NO];

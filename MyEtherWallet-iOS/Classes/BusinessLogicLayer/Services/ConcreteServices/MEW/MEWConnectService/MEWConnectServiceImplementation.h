@@ -9,12 +9,14 @@
 #import "MEWConnectService.h"
 #import "MEWConnectServiceDelegate.h"
 
+@protocol MEWcrypto;
 @protocol MEWRTCService;
 @protocol ResponseMapper;
 
 @interface MEWConnectServiceImplementation : NSObject <MEWConnectService>
 @property (nonatomic, weak) id <MEWConnectServiceDelegate> delegate;
 @property (nonatomic, strong) id <MEWRTCService> rtcService;
+@property (nonatomic, strong) id <MEWcrypto> MEWcrypto;
 @property (nonatomic, strong) id <ResponseMapper> messageMapper;
 - (instancetype) initWithMapper:(id <ResponseMapper>)mapper;
 @end

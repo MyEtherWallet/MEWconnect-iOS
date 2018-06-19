@@ -65,7 +65,7 @@
     [self.presenter didTriggerViewReadyEvent];
 
     // then
-    OCMVerify([self.mockView setupInitialState]);
+    OCMVerify([self.mockView setupInitialStateWithNumberOfTokens:0]);
 }
 
 #pragma mark - HomeInteractorOutput tests

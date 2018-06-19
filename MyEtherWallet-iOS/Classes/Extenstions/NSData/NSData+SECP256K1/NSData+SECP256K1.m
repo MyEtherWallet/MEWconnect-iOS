@@ -30,10 +30,12 @@
   }
   
   secp256k1_context_destroy(context);
-  
   siga[64] = recId + 27;
   
-  NSMutableData *data = [NSMutableData dataWithBytes:siga length:65];
+  NSMutableData *data = [[NSMutableData alloc] init];
+  
+  [data appendBytes:&siga[64] length:sizeof(unsigned char)];
+  [data appendBytes:siga length:sizeof(unsigned char) * 64];
   free(siga);
   return data;
 }

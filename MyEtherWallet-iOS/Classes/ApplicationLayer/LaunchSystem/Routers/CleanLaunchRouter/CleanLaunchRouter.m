@@ -12,7 +12,7 @@
 #import "CleanLaunchRouter.h"
 #import "NavigationControllerFactory.h"
 
-#import "MEWCrypto.h"
+#import "MEWWallet.h"
 
 #import "SplashPasswordModuleInput.h"
 
@@ -40,7 +40,7 @@ static NSString *const kSplashPasswordViewControllerIdentifier  = @"SplashPasswo
 #pragma mark - Public
 
 - (void)openInitialScreen {
-  NSString *address = [self.cryptoService obtainPublicAddress];
+  NSString *address = [self.walletService obtainPublicAddress];
   UINavigationController *navigationController = [self.navigationControllerFactory obtainPreconfiguredAuthorizedNavigationControllerWithAddress:address];
   self.window.rootViewController = navigationController;
   [self.window makeKeyAndVisible];

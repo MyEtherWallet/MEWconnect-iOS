@@ -6,13 +6,9 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
-@import CocoaLumberjack;
-
 #import "UIImage+MEWBackground.h"
 #import "MyEtherWallet_iOS-Swift.h"
 #import "CardView.h"
-
-static const int ddLogLevel = DDLogLevelVerbose;
 
 static CGFloat kMEWBackgroundEtherLogoXOffset = 16.0;
 static CGFloat kMEWBackgroundEtherLogoYOffset = 16.0;

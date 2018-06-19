@@ -53,7 +53,7 @@
                             [initializer injectParameterWith:presented];
                             [initializer injectParameterWith:presenting];
                           }];
-                          [definition injectProperty:@selector(cryptoService) with:[self.serviceComponents MEWCrypto]];
+                          [definition injectProperty:@selector(walletService) with:[self.serviceComponents MEWWallet]];
                           [definition injectProperty:@selector(cornerRadius)
                                                 with:cornerRadius];
                         }];

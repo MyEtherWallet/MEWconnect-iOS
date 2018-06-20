@@ -11,6 +11,6 @@
 
 @protocol BackupWordsModuleInput <RamblerViperModuleInput>
 
-- (void) configureModule;
+- (void) configureModuleWithMnemonics:(NSArray <NSString *> *)mnemonics;
 
 @end

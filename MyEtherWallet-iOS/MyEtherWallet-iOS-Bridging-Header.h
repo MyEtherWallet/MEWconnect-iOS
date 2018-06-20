@@ -5,3 +5,4 @@
 #import "MEWConnectTransaction.h"
 #import "UIColor+Application.h"
 #import "UIColor+Hex.h"
+#import "MEWcrypto.h"

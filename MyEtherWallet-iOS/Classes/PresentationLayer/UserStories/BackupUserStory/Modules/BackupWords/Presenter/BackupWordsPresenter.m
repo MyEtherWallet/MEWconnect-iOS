@@ -16,7 +16,8 @@
 
 #pragma mark - BackupWordsModuleInput
 
-- (void) configureModule {
+- (void) configureModuleWithMnemonics:(NSArray<NSString *> *)mnemonics {
+  [self.interactor configurateWithMnemonics:mnemonics];
 }
 
 #pragma mark - BackupWordsViewOutput
@@ -26,8 +27,9 @@
   [self.view setupInitialStateWithWords:mnemonics];
 }
 
-- (void)nextAction {
-  [self.router openConfirmation];
+- (void) nextAction {
+  NSArray *mnemonics = [self.interactor recoveryMnemonicsWords];
+  [self.router openConfirmationWithMnemonics:mnemonics];
 }
 
 - (void) didTriggerViewWillAppearEvent {

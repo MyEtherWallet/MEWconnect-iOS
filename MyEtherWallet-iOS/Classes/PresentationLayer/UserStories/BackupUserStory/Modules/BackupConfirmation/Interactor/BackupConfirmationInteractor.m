@@ -16,18 +16,22 @@
 
 @interface BackupConfirmationInteractor ()
 @property (nonatomic, strong) BackupConfirmationQuiz *quiz;
+@property (nonatomic, strong) NSArray <NSString *> *mnemonics;
 @end
 
 @implementation BackupConfirmationInteractor
 
 #pragma mark - BackupConfirmationInteractorInput
 
+- (void) configurateWithMnemonics:(NSArray <NSString *> *)mnemonics {
+  _mnemonics = mnemonics;
+}
+
 - (BackupConfirmationQuiz *) obtainRecoveryQuiz {
   if (!_quiz) {
     NSArray *allWords = [self.walletService obtainBIP32Words];
-    NSArray *mnemonics = [self.walletService recoveryMnemonicsWords];
     _quiz = [[BackupConfirmationQuiz alloc] initWithWords:allWords
-                                             correctWords:mnemonics
+                                             correctWords:self.mnemonics
                                                  quizSize:4
                                              questionSize:3];
   }

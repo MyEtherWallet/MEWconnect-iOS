@@ -6,6 +6,8 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
+#import "MEWWallet.h"
+
 #import "BackupStartInteractor.h"
 
 #import "BackupStartInteractorOutput.h"
@@ -13,5 +15,10 @@
 @implementation BackupStartInteractor
 
 #pragma mark - BackupStartInteractorInput
+
+- (void) passwordDidEntered:(NSString *)password {
+  NSArray *mnemonics = [self.walletService recoveryMnemonicsWordsWithPassword:password];
+  [self.output mnemonicsDidReceived:mnemonics];
+}
 
 @end

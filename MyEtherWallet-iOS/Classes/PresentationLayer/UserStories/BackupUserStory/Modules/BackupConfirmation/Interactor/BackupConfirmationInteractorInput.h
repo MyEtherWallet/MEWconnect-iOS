@@ -11,6 +11,7 @@
 @class BackupConfirmationQuiz;
 
 @protocol BackupConfirmationInteractorInput <NSObject>
+- (void) configurateWithMnemonics:(NSArray <NSString *> *)mnemonics;
 - (BackupConfirmationQuiz *) obtainRecoveryQuiz;
 - (void) checkVector:(NSArray <NSString *> *)vector;
 - (void) walletBackedUp;

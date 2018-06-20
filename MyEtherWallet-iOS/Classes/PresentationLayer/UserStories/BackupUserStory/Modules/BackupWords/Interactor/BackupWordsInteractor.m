@@ -14,12 +14,20 @@
 
 #import "MEWWallet.h"
 
+@interface BackupWordsInteractor ()
+@property (nonatomic, strong) NSArray <NSString *> *mnemonics;
+@end
+
 @implementation BackupWordsInteractor
 
 #pragma mark - BackupWordsInteractorInput
 
+- (void)configurateWithMnemonics:(NSArray<NSString *> *)mnemonics {
+  _mnemonics = mnemonics;
+}
+
 - (NSArray <NSString *> *)recoveryMnemonicsWords {
-  return [self.walletService recoveryMnemonicsWords];
+  return _mnemonics;
 }
 
 - (void) subscribeToEvents {

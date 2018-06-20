@@ -9,5 +9,5 @@
 @import Foundation;
 
 @protocol BackupStartInteractorInput <NSObject>
-
+- (void) passwordDidEntered:(NSString *)password;
 @end

@@ -128,7 +128,7 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
 #pragma mark - Private
 
 - (NSDictionary *) _socketConfig {
-  NSData *toSignHashData = [Web3Wrapper hashWithData:[self.privateKey dataUsingEncoding:NSUTF8StringEncoding]];
+  NSData *toSignHashData = [self.MEWcrypto hashPersonalMessage:[self.privateKey dataUsingEncoding:NSUTF8StringEncoding]];
   NSData *privateKeyData = [self.privateKey parseHexData];
   NSData *signedData = [toSignHashData signWithPrivateKeyData:privateKeyData];
   NSString *signedMessage = [signedData hexadecimalString];
@@ -252,7 +252,7 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
   
   NSString *toSign = [data firstObject][kMEWConnectSocketToSign];
   if (toSign) {
-    NSData *toSignHashData = [Web3Wrapper hashWithData:[self.privateKey dataUsingEncoding:NSUTF8StringEncoding]];
+    NSData *toSignHashData = [self.MEWcrypto hashPersonalMessage:[self.privateKey dataUsingEncoding:NSUTF8StringEncoding]];
     NSData *privateKeyData = [self.privateKey parseHexData];
     NSData *signedData = [toSignHashData signWithPrivateKeyData:privateKeyData];
     NSString *signedMessage = [signedData hexadecimalString];

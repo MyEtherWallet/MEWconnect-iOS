@@ -18,9 +18,9 @@ static NSString *const kBackupWordsToBackupConfirmationSegueIdentifier = @"Backu
 
 #pragma mark - BackupWordsRouterInput
 
-- (void) openConfirmation {
+- (void) openConfirmationWithMnemonics:(NSArray<NSString *> *)mnemonics {
   [[self.transitionHandler openModuleUsingSegue:kBackupWordsToBackupConfirmationSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<BackupConfirmationModuleInput> moduleInput) {
-    [moduleInput configureModule];
+    [moduleInput configureModuleWithMnemonics:mnemonics];
     return nil;
   }];
 }

@@ -42,6 +42,14 @@
   [self.view updateWithConnectionStatus:connected animated:NO];
   TokenPlainObject *ethereum = [self.interactor obtainEthereum];
   [self.view updateEthereumBalance:ethereum];
+  
+  //TODO: Remove in future
+  NSInteger chainID = [[NSUserDefaults standardUserDefaults] integerForKey:@"chainID"];
+  if (chainID == 3) {
+    [self.view updateTitle:NSLocalizedString(@"MEW Connect: Ropsten", @"Home screen. Title")];
+  } else {
+    [self.view updateTitle:NSLocalizedString(@"MEW Connect", @"Home screen. Title")];
+  }
 }
 
 - (void) didTriggerViewWillAppear {
@@ -74,6 +82,24 @@
 
 - (void) searchTermDidChanged:(NSString *)searchTerm {
   [self.interactor searchTokensWithTerm:searchTerm];
+}
+
+- (void)mainnetSelectedAction {
+  [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"chainID"];
+  [[NSUserDefaults standardUserDefaults] synchronize];
+  [self reloadData];
+  [self.view updateTitle:NSLocalizedString(@"MEW Connect", @"Home screen. Title")];
+}
+
+- (void)ropstenSelectedAction {
+  [[NSUserDefaults standardUserDefaults] setInteger:3 forKey:@"chainID"];
+  [[NSUserDefaults standardUserDefaults] synchronize];
+  [self reloadData];
+  [self.view updateTitle:NSLocalizedString(@"MEW Connect: Ropsten", @"Home screen. Title")];
+}
+
+- (void) reloadData {
+  [self.interactor reloadData];
 }
 
 #pragma mark - HomeInteractorOutput

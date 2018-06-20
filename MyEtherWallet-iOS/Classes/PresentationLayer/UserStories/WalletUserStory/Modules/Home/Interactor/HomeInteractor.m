@@ -46,16 +46,21 @@
   [self.cacheTracker setupWithCacheRequest:request];
   CacheTransactionBatch *initialBatch = [self.cacheTracker obtainTransactionBatchFromCurrentCache];
   [self.output didProcessCacheTransaction:initialBatch];
-  
+}
+
+- (void)reloadData {
+  if (!self.address) {
+    return;
+  }
   @weakify(self);
-  [self.tokensService updateTokenBalancesForAddress:address
+  [self.tokensService updateTokenBalancesForAddress:self.address
                                      withCompletion:^(NSError *error) {
                                        if (!error) {
                                          @strongify(self);
                                          [self.output didUpdateTokens];
                                        }
                                      }];
-  [self.tokensService updateEthereumBalanceForAddress:address
+  [self.tokensService updateEthereumBalanceForAddress:self.address
                                        withCompletion:^(NSError *error) {
                                          if (!error) {
                                            @strongify(self);

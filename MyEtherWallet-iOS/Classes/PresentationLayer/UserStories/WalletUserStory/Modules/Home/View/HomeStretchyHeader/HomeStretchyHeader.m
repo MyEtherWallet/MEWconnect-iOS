@@ -125,6 +125,10 @@ static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset       = 8.0;
   }
 }
 
+- (void) updateTitle:(NSString *)title {
+  self.titleLabel.text = title;
+}
+
 #pragma mark - Private
 
 - (void) _commonInit {
@@ -171,7 +175,6 @@ static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset       = 8.0;
   UILabel *titleLabel = [[UILabel alloc] init];
   {
     titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    titleLabel.text = NSLocalizedString(@"MEW Connect", @"Home screen. Title");
     titleLabel.textColor = [UIColor darkTextColor];
     titleLabel.font = [UIFont systemFontOfSize:17.0 weight:UIFontWeightBold];
     [self.contentView addSubview:titleLabel];

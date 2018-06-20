@@ -121,7 +121,9 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
     balance = [NSDecimalNumber zero];
   }
   
-  NSNumberFormatter *ethereumFormatter = [NSNumberFormatter ethereumFormatter];
+  //TODO: Refactor in future
+  NSNumberFormatter *ethereumFormatter = [NSNumberFormatter ethereumFormatterWithChainID:[[NSUserDefaults standardUserDefaults] integerForKey:@"chainID"]];
+  
   ethereumFormatter.maximumSignificantDigits = 8;
   NSString *balanceText = [ethereumFormatter stringFromNumber:balance];
   NSDictionary *balanceAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor],
@@ -327,7 +329,7 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
   if (_ethBalance && _ethToUsdPrice) {
     NSDecimalNumber *usd = [_ethBalance decimalNumberByMultiplyingBy:_ethToUsdPrice];
     NSNumberFormatter *usdFormatter = [NSNumberFormatter usdFormatter];
-    NSNumberFormatter *ethFormatter = [NSNumberFormatter ethereumFormatter];
+    NSNumberFormatter *ethFormatter = [NSNumberFormatter ethereumFormatterWithChainID:[[NSUserDefaults standardUserDefaults] integerForKey:@"chainID"]];
     NSString *usdBalance = [usdFormatter stringFromNumber:usd];
     NSString *ethUsdPrice = [usdFormatter stringFromNumber:_ethToUsdPrice];
     NSString *finalString = [NSString stringWithFormat:@"%@ USD @ %@/%@", usdBalance, ethUsdPrice, ethFormatter.currencySymbol];

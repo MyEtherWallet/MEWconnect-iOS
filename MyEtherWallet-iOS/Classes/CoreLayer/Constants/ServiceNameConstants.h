@@ -10,5 +10,6 @@
 #define ServiceNameConstants_h
 
 static NSString *const kServiceNameETH  =   @"eth";
+static NSString *const kServiceNameROP  =   @"rop";
 
 #endif /* ServiceNameConstants_h */

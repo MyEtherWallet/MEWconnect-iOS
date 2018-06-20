@@ -50,9 +50,14 @@
 - (CompoundOperationBase *) ethereumBalanceWithBody:(TokensBody *)body {
   CompoundOperationBuilderConfig *config = [[CompoundOperationBuilderConfig alloc] init];
   
-  config.requestConfigurationType = RequestConfigurationRestType;
+  config.requestConfigurationType = RequestConfigurationMyEtherAPIType;
   config.requestMethod = kHTTPMethodPOST;
-  config.serviceName = kServiceNameETH;
+  NSInteger chainID = [[NSUserDefaults standardUserDefaults] integerForKey:@"chainID"];
+  if (chainID == 3) {
+    config.serviceName = kServiceNameROP;
+  } else {
+    config.serviceName = kServiceNameETH;
+  }
   
   //  config.requestSigningType = RequestSigningDisabledType;
   
@@ -78,7 +83,7 @@
 - (CompoundOperationBase *) contractBalancesWithBody:(TokensBody *)body {
   CompoundOperationBuilderConfig *config = [[CompoundOperationBuilderConfig alloc] init];
   
-  config.requestConfigurationType = RequestConfigurationRestType;
+  config.requestConfigurationType = RequestConfigurationMyEtherAPIType;
   config.requestMethod = kHTTPMethodPOST;
   config.serviceName = kServiceNameETH;
   

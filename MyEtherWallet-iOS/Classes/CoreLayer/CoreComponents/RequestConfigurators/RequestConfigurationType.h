@@ -10,8 +10,8 @@
 #define RequestConfigurationType_h
 
 typedef NS_ENUM(NSUInteger, RequestConfigurationType) {
-  RequestConfigurationDisabledType  = 0,
-  RequestConfigurationRestType      = 1,
+  RequestConfigurationDisabledType      = 0,
+  RequestConfigurationMyEtherAPIType    = 1,
 };
 
 #endif /* RequestConfigurationType_h */

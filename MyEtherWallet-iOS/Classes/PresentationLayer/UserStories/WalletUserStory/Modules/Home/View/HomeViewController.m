@@ -6,6 +6,8 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
+@import libextobjc.EXTScope;
+
 #import "HomeViewController.h"
 
 #import "HomeViewOutput.h"
@@ -40,6 +42,7 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
 @implementation HomeViewController {
   CGFloat _keyboardHeight;
   BOOL _connected;
+  NSTimer *_testnetTimer;
 }
 
 #pragma mark - LifeCycle
@@ -108,6 +111,11 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
   
   self.headerView.cardView.delegate = self;
   self.headerView.searchBar.delegate = self;
+  
+  //TODO: Remove in future
+  [self.headerView.infoButton addTarget:self action:@selector(infoAction:) forControlEvents:UIControlEventTouchDown];
+  [self.headerView.infoButton addTarget:self action:@selector(infoActionUp:) forControlEvents:UIControlEventTouchUpInside];
+  [self.headerView.infoButton addTarget:self action:@selector(infoActionUp:) forControlEvents:UIControlEventTouchUpOutside];
   
   [self.dataDisplayManager configureDataDisplayManagerWithAnimator:self.tableViewAnimator];
   self.tableView.dataSource = [self.dataDisplayManager dataSourceForTableView:self.tableView];
@@ -222,14 +230,42 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
   }
 }
 
+- (void)updateTitle:(NSString *)title {
+  [self.headerView updateTitle:title];
+}
+
 #pragma mark - IBActions
 
 - (IBAction) connectAction:(id)sender {
   [self.output connectAction];
 }
 
-- (IBAction)disconnectAction:(id)sender {
+- (IBAction) disconnectAction:(id)sender {
   [self.output disconnectAction];
+}
+
+- (IBAction) infoAction:(id)sender {
+  @weakify(self);
+  _testnetTimer = [NSTimer timerWithTimeInterval:10.0
+                                         repeats:NO
+                                           block:^(NSTimer * _Nonnull timer) {
+                                             @strongify(self);
+                                             UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Network?", @"Open Easter Egg :)") message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+                                             [alert addAction:[UIAlertAction actionWithTitle:@"Mainnet" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                                               [self.output mainnetSelectedAction];
+                                             }]];
+                                             [alert addAction:[UIAlertAction actionWithTitle:@"Ropsten" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                                               [self.output ropstenSelectedAction];
+                                             }]];
+                                             [alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+                                             [self presentViewController:alert animated:YES completion:nil];
+                                           }];
+  [[NSRunLoop mainRunLoop] addTimer:_testnetTimer forMode:NSRunLoopCommonModes];
+}
+
+- (IBAction) infoActionUp:(id)sender {
+  [_testnetTimer invalidate];
+  _testnetTimer = nil;
 }
 
 - (IBAction)unwindToHome:(UIStoryboardSegue *)sender {}

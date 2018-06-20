@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface NSNumberFormatter (Ethereum)
-+ (instancetype)ethereumFormatter;
++ (instancetype)ethereumFormatterWithChainID:(NSInteger)chainID;
 + (instancetype)ethereumFormatterWithCurrencySymbol:(NSString *)currencySymbol;
 @end

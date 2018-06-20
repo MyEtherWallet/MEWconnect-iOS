@@ -20,4 +20,5 @@
 - (void) updateWithTokensCount:(NSUInteger)tokensCount;
 - (void) updateWithConnectionStatus:(BOOL)connected animated:(BOOL)animated;
 - (void) updateEthereumBalance:(TokenPlainObject *)ethereum;
+- (void) updateTitle:(NSString *)title;
 @end

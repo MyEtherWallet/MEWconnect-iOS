@@ -15,6 +15,7 @@
 - (void) configurateWithAddress:(NSString *)address;
 - (NSString *) obtainAddress;
 - (NSUInteger) obtainNumberOfTokens;
+- (void) reloadData;
 - (BOOL) obtainBackupStatus;
 - (void) subscribe;
 - (void) unsubscribe;

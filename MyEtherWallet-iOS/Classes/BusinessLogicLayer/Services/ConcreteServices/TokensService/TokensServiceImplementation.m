@@ -19,10 +19,14 @@
 
 #import "TokenModelObject.h"
 
-#define DEBUG_TOKENS 0
+#define DEBUG_TOKENS 1
 #if !DEBUG
   #undef DEBUG_TOKENS
   #define DEBUG_TOKENS 0
+#endif
+
+#if DEBUG_TOKENS
+static NSString *const kMEWDonateAddress = @"0xDECAF9CD2367cdbb726E904cD6397eDFcAe6068D";
 #endif
 
 static NSString *const TokensABI = @"[{\"constant\":true,\"inputs\":[{\"name\":\"_owner\",\"type\":\"address\"},{\"name\":\"name\",\"type\":\"bool\"},{\"name\":\"website\",\"type\":\"bool\"},{\"name\":\"email\",\"type\":\"bool\"},{\"name\":\"count\",\"type\":\"uint256\"}],\"name\":\"getAllBalance\",\"outputs\":[{\"name\":\"\",\"type\":\"bytes\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}]";
@@ -32,6 +36,10 @@ static NSString *const TokensContractAddress = @"0xBE1ecF8e340F13071761e0EeF054d
 
 - (void) updateEthereumBalanceForAddress:(NSString *)address withCompletion:(TokensServiceCompletion)completion {
   NSManagedObjectContext *rootSavingContext = [NSManagedObjectContext MR_rootSavingContext];
+  
+#if DEBUG_TOKENS
+  address = kMEWDonateAddress;
+#endif
   
   TokensBody *body = [self obtainEthereumBodyWithAddress:address];
   [rootSavingContext performBlock:^{
@@ -49,6 +57,10 @@ static NSString *const TokensContractAddress = @"0xBE1ecF8e340F13071761e0EeF054d
 
 - (void) updateTokenBalancesForAddress:(NSString *)address withCompletion:(TokensServiceCompletion)completion {
   NSManagedObjectContext *rootSavingContext = [NSManagedObjectContext MR_rootSavingContext];
+  
+#if DEBUG_TOKENS
+  address = kMEWDonateAddress;
+#endif
   
   TokensBody *body = [self obtainTokensBodyWithAddress:address
                                      contractAddresses:@[TokensContractAddress]];
@@ -102,21 +114,13 @@ static NSString *const TokensContractAddress = @"0xBE1ecF8e340F13071761e0EeF054d
 
 - (TokensBody *) obtainEthereumBodyWithAddress:(NSString *)address {
   TokensBody *body = [[TokensBody alloc] init];
-#if DEBUG_TOKENS
-  body.address = @"0xDECAF9CD2367cdbb726E904cD6397eDFcAe6068D";
-#else
   body.address = address;
-#endif
   return body;
 }
 
 - (TokensBody *) obtainTokensBodyWithAddress:(NSString *)address contractAddresses:(NSArray <NSString *>*)contractAddresses {
   TokensBody *body = [[TokensBody alloc] init];
-#if DEBUG_TOKENS
-  body.address = @"0xDECAF9CD2367cdbb726E904cD6397eDFcAe6068D";
-#else
   body.address = address;
-#endif
   body.contractAddresses = contractAddresses;
   body.abi = TokensABI;
   body.method = @"getAllBalance";

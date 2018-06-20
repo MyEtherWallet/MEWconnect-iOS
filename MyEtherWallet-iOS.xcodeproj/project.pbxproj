@@ -183,7 +183,6 @@
 		56A4EAD320B9A25A0042A358 /* BottomBackgroundedModalPresentationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A4EAD220B9A25A0042A358 /* BottomBackgroundedModalPresentationController.m */; };
 		56AC943A208F770A00E5BC2C /* MEWRTCServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56AC9439208F770A00E5BC2C /* MEWRTCServiceImplementation.m */; };
 		56AC943D208F771600E5BC2C /* MEWConnectServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56AC943C208F771600E5BC2C /* MEWConnectServiceImplementation.m */; };
-		56AC9444208F811E00E5BC2C /* Web3SwiftWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AC9443208F811E00E5BC2C /* Web3SwiftWrapper.swift */; };
 		56AC9449208FA77900E5BC2C /* MEWConnectConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 56AC9448208FA77900E5BC2C /* MEWConnectConstants.m */; };
 		56AC944E208FAB1000E5BC2C /* NSString+HexData.m in Sources */ = {isa = PBXBuildFile; fileRef = 56AC944D208FAB1000E5BC2C /* NSString+HexData.m */; };
 		56AC9453208FABDF00E5BC2C /* NSData+SECP256K1.m in Sources */ = {isa = PBXBuildFile; fileRef = 56AC9452208FABDF00E5BC2C /* NSData+SECP256K1.m */; };
@@ -213,7 +212,6 @@
 		56FB38F720B092C3007776C8 /* MEWConnectFacadeImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB38F620B092C3007776C8 /* MEWConnectFacadeImplementation.m */; };
 		56FB38FC20B09E6F007776C8 /* MEWConnectFacadeConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB38FB20B09E6F007776C8 /* MEWConnectFacadeConstants.m */; };
 		56FB390120B0B589007776C8 /* CameraServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB390020B0B589007776C8 /* CameraServiceImplementation.m */; };
-		56FB390F20B19B86007776C8 /* erc20.json in Resources */ = {isa = PBXBuildFile; fileRef = 56FB390E20B19B86007776C8 /* erc20.json */; };
 		56FB391720B1A0B7007776C8 /* TokensServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB391620B1A0B7007776C8 /* TokensServiceImplementation.m */; };
 		56FB391D20B1A228007776C8 /* OperationSchedulerImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB391C20B1A228007776C8 /* OperationSchedulerImplementation.m */; };
 		56FB392220B1A2BD007776C8 /* CompoundOperationBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB392120B1A2BD007776C8 /* CompoundOperationBase.m */; };
@@ -707,7 +705,6 @@
 		56AC943F208F773300E5BC2C /* MEWConnectService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MEWConnectService.h; sourceTree = "<group>"; };
 		56AC9440208F774C00E5BC2C /* MEWConnectServiceDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MEWConnectServiceDelegate.h; sourceTree = "<group>"; };
 		56AC9441208F775700E5BC2C /* MEWRTCServiceDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MEWRTCServiceDelegate.h; sourceTree = "<group>"; };
-		56AC9443208F811E00E5BC2C /* Web3SwiftWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Web3SwiftWrapper.swift; sourceTree = "<group>"; };
 		56AC9447208FA77900E5BC2C /* MEWConnectConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MEWConnectConstants.h; sourceTree = "<group>"; };
 		56AC9448208FA77900E5BC2C /* MEWConnectConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MEWConnectConstants.m; sourceTree = "<group>"; };
 		56AC944C208FAB1000E5BC2C /* NSString+HexData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+HexData.h"; sourceTree = "<group>"; };
@@ -772,7 +769,6 @@
 		56FB390020B0B589007776C8 /* CameraServiceImplementation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraServiceImplementation.m; sourceTree = "<group>"; };
 		56FB390220B0B595007776C8 /* CameraService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraService.h; sourceTree = "<group>"; };
 		56FB390320B0C0F8007776C8 /* CameraServiceDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraServiceDelegate.h; sourceTree = "<group>"; };
-		56FB390E20B19B86007776C8 /* erc20.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = erc20.json; sourceTree = "<group>"; };
 		56FB391520B1A0B7007776C8 /* TokensServiceImplementation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TokensServiceImplementation.h; sourceTree = "<group>"; };
 		56FB391620B1A0B7007776C8 /* TokensServiceImplementation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TokensServiceImplementation.m; sourceTree = "<group>"; };
 		56FB391820B1A116007776C8 /* TokensService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TokensService.h; sourceTree = "<group>"; };
@@ -3184,14 +3180,6 @@
 			path = MEWRTCService;
 			sourceTree = "<group>";
 		};
-		56AC9442208F810B00E5BC2C /* Web3SwiftWrapper */ = {
-			isa = PBXGroup;
-			children = (
-				56AC9443208F811E00E5BC2C /* Web3SwiftWrapper.swift */,
-			);
-			path = Web3SwiftWrapper;
-			sourceTree = "<group>";
-		};
 		56AC9445208FA75200E5BC2C /* Constants */ = {
 			isa = PBXGroup;
 			children = (
@@ -3469,7 +3457,6 @@
 			children = (
 				56AE727B20D706420047D51F /* MEWcrypto */,
 				5699984A2095361100D45153 /* MEWWalletService */,
-				56AC9442208F810B00E5BC2C /* Web3SwiftWrapper */,
 				56AC9437208F76EF00E5BC2C /* MEWRTCService */,
 				56AC9436208F76E700E5BC2C /* MEWConnectService */,
 			);
@@ -3500,7 +3487,6 @@
 			isa = PBXGroup;
 			children = (
 				560D772B20B4D3CF009A3D6D /* Localization */,
-				56FB390E20B19B86007776C8 /* erc20.json */,
 				56FE2B7920817F1100DB39D5 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -6231,7 +6217,6 @@
 				56C878B620BC199300343ADC /* HomeEmptyTableViewCell.xib in Resources */,
 				56999848209517EB00D45153 /* Confirmation.storyboard in Resources */,
 				56A4EAA920B8BC440042A358 /* SplashPassword.storyboard in Resources */,
-				56FB390F20B19B86007776C8 /* erc20.json in Resources */,
 				56FE2B7A20817F1100DB39D5 /* Assets.xcassets in Resources */,
 				56FE2B7820817F1100DB39D5 /* Main.storyboard in Resources */,
 			);
@@ -6525,7 +6510,6 @@
 				72A2267B34B867AC64D35523 /* StartAssembly.m in Sources */,
 				56FB38F720B092C3007776C8 /* MEWConnectFacadeImplementation.m in Sources */,
 				560D76FE20B48498009A3D6D /* CacheRequest.m in Sources */,
-				56AC9444208F811E00E5BC2C /* Web3SwiftWrapper.swift in Sources */,
 				EFF1B135C57BD1034056F8DE /* StartViewController.m in Sources */,
 				5668E4EA2083DA190070A402 /* CleanLaunchAppDelegate.m in Sources */,
 				5643879720A492240017790F /* UIColor+RandSeed.swift in Sources */,

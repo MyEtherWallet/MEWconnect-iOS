@@ -60,7 +60,7 @@
 }
 
 - (void) updateWithTransaction:(MEWConnectTransaction *)transaction {
-  NSNumberFormatter *formatter = [NSNumberFormatter ethereumFormatter];
+  NSNumberFormatter *formatter = [NSNumberFormatter ethereumFormatterWithChainID:[transaction.chainId integerValue]];
   NSDecimalNumber *decimalNumber = [transaction decimalValue];
   NSString *amount = [formatter stringFromNumber:decimalNumber];
   

@@ -18,12 +18,12 @@ static NSString *const kNodeURLPath    = @"https://api.myetherapi.com";
 
 - (id<RequestConfigurator>)requestConfiguratorWithType:(NSNumber *)type {
   return [TyphoonDefinition withOption:type matcher:^(TyphoonOptionMatcher *matcher) {
-    [matcher caseEqual:@(RequestConfigurationRestType)
-                   use:[self restRequestConfigurator]];
+    [matcher caseEqual:@(RequestConfigurationMyEtherAPIType)
+                   use:[self myEtherAPIRequestConfigurator]];
   }];
 }
 
-- (id<RequestConfigurator>)restRequestConfigurator {
+- (id<RequestConfigurator>) myEtherAPIRequestConfigurator {
   return [TyphoonDefinition withClass:[RESTRequestConfigurator class] configuration:^(TyphoonDefinition *definition) {
     [definition useInitializer:@selector(initWithBaseURL:apiPath:) parameters:^(TyphoonMethod *initializer) {
       [initializer injectParameterWith:[NSURL URLWithString:kNodeURLPath]];

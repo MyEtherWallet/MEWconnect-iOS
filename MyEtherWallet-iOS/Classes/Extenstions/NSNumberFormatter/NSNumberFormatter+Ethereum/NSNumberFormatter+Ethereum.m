@@ -12,8 +12,12 @@ static NSNumberFormatter *ethereumFormatter = nil;
 
 @implementation NSNumberFormatter (Ethereum)
 
-+ (instancetype)ethereumFormatter {
-  return [self ethereumFormatterWithCurrencySymbol:@"ETH"];
++ (instancetype)ethereumFormatterWithChainID:(NSInteger)chainID {
+  if (chainID == 3) {
+    return [self ethereumFormatterWithCurrencySymbol:@"ROPSTEN ETH"];
+  } else {
+    return [self ethereumFormatterWithCurrencySymbol:@"ETH"];
+  }
 }
 
 + (instancetype)ethereumFormatterWithCurrencySymbol:(NSString *)currencySymbol {

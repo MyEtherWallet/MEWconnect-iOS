@@ -28,6 +28,7 @@ typedef NS_ENUM(NSInteger, HomeStretchyHeaderSearchBarStyle) {
 @property (nonatomic) HomeStretchyHeaderSearchBarStyle searchBarStyle;
 - (void) refreshContentIfNeeded;
 - (void) updateHeightIfNeeded;
+- (void) updateTitle:(NSString *)title;
 - (UIStatusBarStyle) preferredStatusBarStyle;
 - (instancetype)initWithFrame:(CGRect)frame delegate:(id <HomeStretchyHeaderDelegate>)delegate;
 @end

@@ -19,7 +19,7 @@ typedef void(^MEWWalletDataCompletionBlock)(id data);
 - (void) signMessage:(NSString *)message password:(NSString *)password completion:(MEWWalletDataCompletionBlock)completion;
 - (void) signTransaction:(MEWConnectTransaction *)transaction password:(NSString *)password completion:(MEWWalletDataCompletionBlock)completion;
 - (NSString *) obtainPublicAddress;
-- (NSArray <NSString *> *) recoveryMnemonicsWords;
+- (NSArray <NSString *> *) recoveryMnemonicsWordsWithPassword:(NSString *)password;
 - (NSArray <NSString *> *) obtainBIP32Words;
 - (void) backedUp;
 - (BOOL) isBackedUp;

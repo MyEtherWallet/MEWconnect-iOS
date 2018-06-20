@@ -9,5 +9,5 @@
 @import Foundation;
 
 @protocol BackupWordsRouterInput <NSObject>
-- (void) openConfirmation;
+- (void) openConfirmationWithMnemonics:(NSArray <NSString *> *)mnemonics;
 @end

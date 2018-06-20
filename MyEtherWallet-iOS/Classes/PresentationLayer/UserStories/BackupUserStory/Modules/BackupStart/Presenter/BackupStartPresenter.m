@@ -12,6 +12,11 @@
 #import "BackupStartInteractorInput.h"
 #import "BackupStartRouterInput.h"
 
+#import "SplashPasswordModuleOutput.h"
+
+@interface BackupStartPresenter () <SplashPasswordModuleOutput>
+@end
+
 @implementation BackupStartPresenter
 
 #pragma mark - BackupStartModuleInput
@@ -26,9 +31,19 @@
 }
 
 - (void) startAction {
-  [self.router openWords];
+  [self.router openSplashPasswordWithOutput:self];
 }
 
 #pragma mark - BackupStartInteractorOutput
+
+- (void)mnemonicsDidReceived:(NSArray<NSString *> *)mnemonics {
+  [self.router openWordsWithMnemonics:mnemonics];
+}
+
+#pragma mark - SplashPasswordModuleOutput
+
+- (void) passwordDidEntered:(NSString *)password {
+  [self.interactor passwordDidEntered:password];
+}
 
 @end

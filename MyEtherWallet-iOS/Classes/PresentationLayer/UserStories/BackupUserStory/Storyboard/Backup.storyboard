@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="24K-H9-RgB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="24K-H9-RgB">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -148,6 +148,7 @@ Get pen and paper before you start.</string>
                         <outlet property="descriptionLabel" destination="Tls-xM-R26" id="CtX-r6-TLE"/>
                         <outlet property="titleLabel" destination="1bU-yg-ZEA" id="OwS-X5-hvR"/>
                         <segue destination="bF5-dI-x6Z" kind="show" identifier="BackupStartToBackupWordsSegueIdentifier" id="88J-Vv-GLy"/>
+                        <segue destination="DzF-Ox-9bm" kind="presentation" identifier="BackupStartToSplashPasswordSegueIdentifier" id="lHP-KY-UH9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z1U-S6-aPr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -503,6 +504,14 @@ Stay safe out there!</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JtV-f3-sWX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1738" y="-182"/>
+        </scene>
+        <!--SplashPassword-->
+        <scene sceneID="SyG-Yc-VQ9">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SplashPassword" id="DzF-Ox-9bm" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZEg-bY-ngK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-125" y="251"/>
         </scene>
     </scenes>
     <resources>

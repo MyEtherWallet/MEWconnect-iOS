@@ -8,6 +8,8 @@
 
 #import "MEWWallet.h"
 
-@interface MEWWalletImplementation : NSObject <MEWWallet>
+@class Web3Wrapper;
 
+@interface MEWWalletImplementation : NSObject <MEWWallet>
+@property (nonatomic, strong) Web3Wrapper *wrapper;
 @end

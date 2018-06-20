@@ -9,9 +9,11 @@
 #import "BackupStartInteractorInput.h"
 
 @protocol BackupStartInteractorOutput;
+@protocol MEWWallet;
 
 @interface BackupStartInteractor : NSObject <BackupStartInteractorInput>
 
 @property (nonatomic, weak) id<BackupStartInteractorOutput> output;
+@property (nonatomic, strong) id <MEWWallet> walletService;
 
 @end

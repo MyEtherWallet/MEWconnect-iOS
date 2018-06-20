@@ -9,6 +9,7 @@
 @import Foundation;
 
 @protocol BackupWordsInteractorInput <NSObject>
+- (void) configurateWithMnemonics:(NSArray <NSString *> *)mnemonics;
 - (NSArray <NSString *> *) recoveryMnemonicsWords;
 - (void) subscribeToEvents;
 - (void) unsubscribeFromEvents;

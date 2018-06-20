@@ -8,6 +8,8 @@
 
 @import WebRTC;
 
+#import "MyEtherWallet_iOS-Swift.h"
+
 #import "ResponseMappersFactory.h"
 #import "ServiceComponentsAssembly.h"
 #import "OperationFactoriesAssembly.h"
@@ -63,7 +65,19 @@
 }
 
 - (id<MEWWallet>)MEWWallet {
-  return [TyphoonDefinition withClass:[MEWWalletImplementation class]];
+  return [TyphoonDefinition withClass:[MEWWalletImplementation class]
+                        configuration:^(TyphoonDefinition *definition) {
+                          [definition injectProperty:@selector(wrapper)
+                                                with:[self web3Wrapper]];
+                        }];
+}
+
+- (Web3Wrapper *) web3Wrapper {
+  return [TyphoonDefinition withClass:[Web3Wrapper class]
+                        configuration:^(TyphoonDefinition *definition) {
+                          [definition injectProperty:@selector(MEWcrypto)
+                                                with:[self MEWcrypto]];
+                        }];
 }
 
 - (id<MEWcrypto>) MEWcrypto {

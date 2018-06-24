@@ -22,8 +22,8 @@
 #pragma mark - QRScannerViewOutput
 
 - (void) didTriggerViewReadyEvent {
-  AVCaptureSession *session = [self.interactor obtainCaptureSession];
-  [self.view setupInitialStateWithCaptureSession:session];
+  [self.interactor checkAccess];
+  [self.view setupInitialState];
 }
 
 - (void) didTriggerViewWillAppear {
@@ -34,14 +34,19 @@
   [self.interactor startReading];
 }
 
-- (void)didTriggerViewDidDisappear {
+- (void) didTriggerViewDidDisappear {
   [self.interactor unsubscribe];
   [self.interactor stopReading];
 }
 
 - (void) closeAction {
   [self.interactor disconnectIfNeeded];
+  [self.interactor cancelAutocloseIfNeeded];
   [self.router close];
+}
+
+- (void) settingsAction {
+  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString] options:@{} completionHandler:nil];
 }
 
 #pragma mark - QRScannerInteractorOutput
@@ -60,6 +65,21 @@
 
 - (void)readingStarted {
   [self.view animateVideoPreview];
+}
+
+- (void) closeScanner {
+  [self.router close];
+}
+
+- (void) accessGranted {
+  [self.view hideAccessWarning];
+  
+  AVCaptureSession *session = [self.interactor obtainCaptureSession];
+  [self.view updateWithCaptureSession:session];
+}
+
+- (void) accessNotGranted {
+  [self.view showAccessWarning];
 }
 
 @end

@@ -13,4 +13,7 @@
 - (void) mewConnectDidConnected;
 - (void) mewConnectInProgress;
 - (void) mewConnectDidFail;
+- (void) closeScanner;
+- (void) accessGranted;
+- (void) accessNotGranted;
 @end

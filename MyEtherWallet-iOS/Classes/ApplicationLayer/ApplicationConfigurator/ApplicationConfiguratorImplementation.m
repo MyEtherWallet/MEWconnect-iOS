@@ -19,7 +19,7 @@
 
 #import "PasswordTextField.h"
 #import "BordlessNavigationBar.h"
-#import "BackupConfirmationSegmenteControl.h"
+#import "BackupConfirmationSegmentedControl.h"
 
 #import "ApplicationConfiguratorImplementation.h"
 
@@ -70,32 +70,32 @@
     UIImage *separatorSelected = [[UIImage imageWithColor:[UIColor colorWithRGB:0x1A54C5] size:CGSizeMake(1.0, 3.0) cornerRadius:0.0] resizableImageWithCapInsets:UIEdgeInsetsMake(1.0, 0.0, 1.0, 0.0)];
     UIImage *separatorHighlighted = [[UIImage imageWithColor:[[UIColor colorWithRGB:0x1A54C5] colorWithAlphaComponent:0.5] size:CGSizeMake(1.0, 3.0) cornerRadius:0.0] resizableImageWithCapInsets:UIEdgeInsetsMake(1.0, 0.0, 1.0, 0.0)];
     
-    [[BackupConfirmationSegmenteControl appearance] setBackgroundImage:backgroundNormal forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    [[BackupConfirmationSegmenteControl appearance] setBackgroundImage:backgroundSelected forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
-    [[BackupConfirmationSegmenteControl appearance] setBackgroundImage:backgroundHighlighted forState:UIControlStateNormal|UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
-    [[BackupConfirmationSegmenteControl appearance] setBackgroundImage:backgroundHighlighted forState:UIControlStateSelected|UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+    [[BackupConfirmationSegmentedControl appearance] setBackgroundImage:backgroundNormal forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [[BackupConfirmationSegmentedControl appearance] setBackgroundImage:backgroundSelected forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+    [[BackupConfirmationSegmentedControl appearance] setBackgroundImage:backgroundHighlighted forState:UIControlStateNormal|UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+    [[BackupConfirmationSegmentedControl appearance] setBackgroundImage:backgroundHighlighted forState:UIControlStateSelected|UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
     
-    [[BackupConfirmationSegmenteControl appearance] setDividerImage:separatorNormal forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [[BackupConfirmationSegmentedControl appearance] setDividerImage:separatorNormal forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     
-    [[BackupConfirmationSegmenteControl appearance] setDividerImage:separatorSelected forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
-    [[BackupConfirmationSegmenteControl appearance] setDividerImage:separatorSelected forLeftSegmentState:UIControlStateSelected rightSegmentState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [[BackupConfirmationSegmentedControl appearance] setDividerImage:separatorSelected forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+    [[BackupConfirmationSegmentedControl appearance] setDividerImage:separatorSelected forLeftSegmentState:UIControlStateSelected rightSegmentState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     
-    [[BackupConfirmationSegmenteControl appearance] setDividerImage:separatorHighlighted forLeftSegmentState:UIControlStateNormal|UIControlStateHighlighted rightSegmentState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
-    [[BackupConfirmationSegmenteControl appearance] setDividerImage:separatorHighlighted forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateSelected|UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
-    [[BackupConfirmationSegmenteControl appearance] setDividerImage:separatorHighlighted forLeftSegmentState:UIControlStateSelected|UIControlStateHighlighted rightSegmentState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    [[BackupConfirmationSegmenteControl appearance] setDividerImage:separatorHighlighted forLeftSegmentState:UIControlStateSelected rightSegmentState:UIControlStateNormal|UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+    [[BackupConfirmationSegmentedControl appearance] setDividerImage:separatorHighlighted forLeftSegmentState:UIControlStateNormal|UIControlStateHighlighted rightSegmentState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+    [[BackupConfirmationSegmentedControl appearance] setDividerImage:separatorHighlighted forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateSelected|UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+    [[BackupConfirmationSegmentedControl appearance] setDividerImage:separatorHighlighted forLeftSegmentState:UIControlStateSelected|UIControlStateHighlighted rightSegmentState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [[BackupConfirmationSegmentedControl appearance] setDividerImage:separatorHighlighted forLeftSegmentState:UIControlStateSelected rightSegmentState:UIControlStateNormal|UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
     
     NSDictionary *normalAttributes = @{NSForegroundColorAttributeName: [UIColor blackColor],
                                        NSFontAttributeName: [UIFont systemFontOfSize:17.0 weight:UIFontWeightMedium]};
     NSDictionary *selectedAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor],
                                          NSFontAttributeName: [UIFont systemFontOfSize:17.0 weight:UIFontWeightMedium]};
-    [[BackupConfirmationSegmenteControl appearance] setTitleTextAttributes:normalAttributes forState:UIControlStateNormal];
-    [[BackupConfirmationSegmenteControl appearance] setTitleTextAttributes:normalAttributes forState:UIControlStateNormal|UIControlStateHighlighted];
-    [[BackupConfirmationSegmenteControl appearance] setTitleTextAttributes:selectedAttributes forState:UIControlStateSelected];
-    [[BackupConfirmationSegmenteControl appearance] setTitleTextAttributes:selectedAttributes forState:UIControlStateSelected|UIControlStateHighlighted];
+    [[BackupConfirmationSegmentedControl appearance] setTitleTextAttributes:normalAttributes forState:UIControlStateNormal];
+    [[BackupConfirmationSegmentedControl appearance] setTitleTextAttributes:normalAttributes forState:UIControlStateNormal|UIControlStateHighlighted];
+    [[BackupConfirmationSegmentedControl appearance] setTitleTextAttributes:selectedAttributes forState:UIControlStateSelected];
+    [[BackupConfirmationSegmentedControl appearance] setTitleTextAttributes:selectedAttributes forState:UIControlStateSelected|UIControlStateHighlighted];
     
-    [[BackupConfirmationSegmenteControl appearance] setContentPositionAdjustment:UIOffsetMake(-6.0, 0.0) forSegmentType:UISegmentedControlSegmentLeft barMetrics:UIBarMetricsDefault];
-    [[BackupConfirmationSegmenteControl appearance] setContentPositionAdjustment:UIOffsetMake(6.0, 0.0) forSegmentType:UISegmentedControlSegmentRight barMetrics:UIBarMetricsDefault];
+    [[BackupConfirmationSegmentedControl appearance] setContentPositionAdjustment:UIOffsetMake(-6.0, 0.0) forSegmentType:UISegmentedControlSegmentLeft barMetrics:UIBarMetricsDefault];
+    [[BackupConfirmationSegmentedControl appearance] setContentPositionAdjustment:UIOffsetMake(6.0, 0.0) forSegmentType:UISegmentedControlSegmentRight barMetrics:UIBarMetricsDefault];
   }
 }
 

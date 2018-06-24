@@ -122,7 +122,7 @@
 		560D772A20B4C8D1009A3D6D /* CellFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D772920B4C8D1009A3D6D /* CellFactory.m */; };
 		560D772D20B4D3E0009A3D6D /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 560D772C20B4D3E0009A3D6D /* Localizable.stringsdict */; };
 		560D773220B4F0C1009A3D6D /* Backup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 560D773120B4F0C1009A3D6D /* Backup.storyboard */; };
-		560D773620B58C93009A3D6D /* BackupConfirmationSegmenteControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D773520B58C93009A3D6D /* BackupConfirmationSegmenteControl.m */; };
+		560D773620B58C93009A3D6D /* BackupConfirmationSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D773520B58C93009A3D6D /* BackupConfirmationSegmentedControl.m */; };
 		560D773A20B5A258009A3D6D /* BackupConfirmationQuiz.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D773920B5A258009A3D6D /* BackupConfirmationQuiz.m */; };
 		561840B820CC8CE1004BEB7E /* MEWcryptoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 561840B720CC8CE1004BEB7E /* MEWcryptoTests.m */; };
 		561840C620CD2AD5004BEB7E /* RamblerTyphoonUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 561840C520CD2AD5004BEB7E /* RamblerTyphoonUtils.framework */; };
@@ -595,8 +595,8 @@
 		560D772920B4C8D1009A3D6D /* CellFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellFactory.m; sourceTree = "<group>"; };
 		560D772C20B4D3E0009A3D6D /* Localizable.stringsdict */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; path = Localizable.stringsdict; sourceTree = "<group>"; };
 		560D773120B4F0C1009A3D6D /* Backup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Backup.storyboard; sourceTree = "<group>"; };
-		560D773420B58C93009A3D6D /* BackupConfirmationSegmenteControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BackupConfirmationSegmenteControl.h; sourceTree = "<group>"; };
-		560D773520B58C93009A3D6D /* BackupConfirmationSegmenteControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BackupConfirmationSegmenteControl.m; sourceTree = "<group>"; };
+		560D773420B58C93009A3D6D /* BackupConfirmationSegmentedControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BackupConfirmationSegmentedControl.h; sourceTree = "<group>"; };
+		560D773520B58C93009A3D6D /* BackupConfirmationSegmentedControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BackupConfirmationSegmentedControl.m; sourceTree = "<group>"; };
 		560D773820B5A258009A3D6D /* BackupConfirmationQuiz.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BackupConfirmationQuiz.h; sourceTree = "<group>"; };
 		560D773920B5A258009A3D6D /* BackupConfirmationQuiz.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BackupConfirmationQuiz.m; sourceTree = "<group>"; };
 		561840B720CC8CE1004BEB7E /* MEWcryptoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MEWcryptoTests.m; path = MEWcrypto/MEWcryptoTests.m; sourceTree = "<group>"; };
@@ -2336,8 +2336,8 @@
 		560D773320B58C82009A3D6D /* BackupConfirmationSegmenteControl */ = {
 			isa = PBXGroup;
 			children = (
-				560D773420B58C93009A3D6D /* BackupConfirmationSegmenteControl.h */,
-				560D773520B58C93009A3D6D /* BackupConfirmationSegmenteControl.m */,
+				560D773420B58C93009A3D6D /* BackupConfirmationSegmentedControl.h */,
+				560D773520B58C93009A3D6D /* BackupConfirmationSegmentedControl.m */,
 			);
 			path = BackupConfirmationSegmenteControl;
 			sourceTree = "<group>";
@@ -6638,7 +6638,7 @@
 				56FB398620B226C9007776C8 /* ServerResponseModel.m in Sources */,
 				560D772520B49927009A3D6D /* HomeTableViewAnimator.m in Sources */,
 				560D771320B49535009A3D6D /* HomeTableViewCell.m in Sources */,
-				560D773620B58C93009A3D6D /* BackupConfirmationSegmenteControl.m in Sources */,
+				560D773620B58C93009A3D6D /* BackupConfirmationSegmentedControl.m in Sources */,
 				563DF39620990E6600F740FF /* TypingAnimationLabel.m in Sources */,
 				560D76FB20B48490009A3D6D /* CacheTransaction.m in Sources */,
 				B9B3DACD03B86B5A8AFC950C /* DeclinedTransactionInteractor.m in Sources */,

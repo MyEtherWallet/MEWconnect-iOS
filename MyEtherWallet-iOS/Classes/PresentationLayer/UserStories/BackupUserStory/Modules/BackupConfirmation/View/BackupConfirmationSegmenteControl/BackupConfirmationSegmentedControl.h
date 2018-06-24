@@ -1,5 +1,5 @@
 //
-//  BackupConfirmationSegmenteControl.h
+//  BackupConfirmationSegmentedControl.h
 //  MyEtherWallet-iOS
 //
 //  Created by Mikhail Nikanorov on 23/05/2018.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BackupConfirmationSegmenteControl : UISegmentedControl
+@interface BackupConfirmationSegmentedControl : UISegmentedControl
 
 @end

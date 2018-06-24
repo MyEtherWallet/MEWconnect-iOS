@@ -16,7 +16,7 @@ static NSTimeInterval kConfirmPasswordViewControllerAnimationDuration   = 0.2;
 static CGFloat        kConfirmPasswordViewControllerIncorrectVOffset    = 42.0;
 static CGFloat        kConfirmPasswordViewControllerCorrectVOffset      = 24.0;
 
-@interface ConfirmPasswordViewController ()
+@interface ConfirmPasswordViewController () <UITextFieldDelegate>
 //Info
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) IBOutlet UILabel *noPasswordDescriptionLabel;
@@ -160,7 +160,14 @@ static CGFloat        kConfirmPasswordViewControllerCorrectVOffset      = 24.0;
 }
 
 - (IBAction) nextAction:(UIBarButtonItem *)sender {
-  [self.output nextAction];
+  [self.output nextActionWithPassword:self.passwordTextField.text];
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+  [self.output nextActionWithPassword:self.passwordTextField.text];
+  return NO;
 }
 
 @end

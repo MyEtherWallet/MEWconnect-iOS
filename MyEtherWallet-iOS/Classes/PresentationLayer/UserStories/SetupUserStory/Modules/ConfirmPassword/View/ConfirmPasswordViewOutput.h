@@ -11,5 +11,5 @@
 @protocol ConfirmPasswordViewOutput <NSObject>
 - (void) didTriggerViewReadyEvent;
 - (void) passwordDidChanged:(NSString *)password;
-- (void) nextAction;
+- (void) nextActionWithPassword:(NSString *)password;
 @end

@@ -501,6 +501,7 @@ password again</string>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" keyboardAppearance="light" returnKeyType="next" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="password"/>
                                 <connections>
                                     <action selector="passwordDidChanged:" destination="YPA-SR-O3L" eventType="editingChanged" id="edf-hi-aDO"/>
+                                    <outlet property="delegate" destination="YPA-SR-O3L" id="dwD-MX-uOA"/>
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Since you’re going to be your own bank, we won’t be able to help if you loose your password." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FOg-1a-ba0">

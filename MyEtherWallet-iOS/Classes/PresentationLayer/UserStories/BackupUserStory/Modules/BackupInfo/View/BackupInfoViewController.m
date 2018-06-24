@@ -58,6 +58,13 @@
       }
       [attributedInfoText appendAttributedString:[[NSAttributedString alloc] initWithString:part attributes:attributes]];
     }
+    { //Unless
+      NSRange range = [attributedInfoText.string rangeOfString:NSLocalizedString(@"unless", @"Back up your wallet screen. Unless. Medium style")];
+      if (range.location != NSNotFound) {
+        UIFont *font = [UIFont systemFontOfSize:self.descriptionLabel.font.pointSize weight:UIFontWeightMedium];
+        [attributedInfoText addAttribute:NSFontAttributeName value:font range:range];
+      }
+    }
     
     self.descriptionLabel.attributedText = attributedInfoText;
   }

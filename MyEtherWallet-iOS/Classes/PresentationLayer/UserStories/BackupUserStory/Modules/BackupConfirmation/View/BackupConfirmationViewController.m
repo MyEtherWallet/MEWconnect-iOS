@@ -10,14 +10,14 @@
 
 #import "BackupConfirmationViewOutput.h"
 
-#import "BackupConfirmationSegmenteControl.h"
+#import "BackupConfirmationSegmentedControl.h"
 
 #import "BackupConfirmationQuiz.h"
 
 @interface BackupConfirmationViewController ()
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) IBOutletCollection(UILabel) NSArray *questionTitleLabels;
-@property (nonatomic, strong) IBOutletCollection(BackupConfirmationSegmenteControl) NSArray *questionSegmentedControls;
+@property (nonatomic, strong) IBOutletCollection(BackupConfirmationSegmentedControl) NSArray *questionSegmentedControls;
 @property (nonatomic, weak) IBOutlet UILabel *bewareLabel;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *finishButton;
 @end
@@ -68,7 +68,7 @@
     }
     NSArray *segmentedControls = [self.questionSegmentedControls sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(tag)) ascending:YES]]];
     NSInteger question = 0;
-    for (BackupConfirmationSegmenteControl *segmentedControl in segmentedControls) {
+    for (BackupConfirmationSegmentedControl *segmentedControl in segmentedControls) {
       for (NSInteger wordIdx = 0; wordIdx < quiz.questionSize; ++wordIdx) {
         NSInteger idx = question * quiz.questionSize + wordIdx;
         if (idx >= [quiz.questionWords count]) {
@@ -87,10 +87,10 @@
 
 #pragma mark - IBActions
 
-- (IBAction)answerSelected:(id)sender {
+- (IBAction)answerSelected:(UISegmentedControl *)sender {
   NSArray *segmentedControls = [self.questionSegmentedControls sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(tag)) ascending:YES]]];
   NSMutableArray *checkVector = [[NSMutableArray alloc] init];
-  for (BackupConfirmationSegmenteControl *segmentedControl in segmentedControls) {
+  for (BackupConfirmationSegmentedControl *segmentedControl in segmentedControls) {
     NSInteger idx = [segmentedControl selectedSegmentIndex];
     if (idx < 0) {
       return;

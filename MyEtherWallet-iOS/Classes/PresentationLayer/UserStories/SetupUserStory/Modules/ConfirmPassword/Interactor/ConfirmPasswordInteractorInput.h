@@ -11,5 +11,5 @@
 @protocol ConfirmPasswordInteractorInput <NSObject>
 - (void) configurateWithPassword:(NSString *)password words:(NSArray <NSString *> *)words;
 - (void) complareConfirmationPassword:(NSString *)password;
-- (void) confirmPassword;
+- (void) confirmPasswordWithPassword:(NSString *)password;
 @end

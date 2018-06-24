@@ -105,10 +105,12 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
   NSAttributedString *ellipsis = [[NSAttributedString alloc] initWithString:@"⋯" attributes:ellipsesAttributes];
   
   NSAttributedString *attributedSeedString = [[NSAttributedString alloc] initWithString:seed attributes:attributes];
-  [self.seedLabel setNeedsLayout];
-  [self.seedLabel layoutIfNeeded];
-  CGSize maxSize = self.seedLabel.frame.size;
-  maxSize.height = CGFLOAT_MAX;
+  CGSize maxSize = CGSizeMake(0.0, CGFLOAT_MAX);
+  UIImage *shareIcon = [UIImage imageNamed:@"card_share_icon"];
+  maxSize.width = [self intrinsicContentSize].width;
+  maxSize.width -= kCardViewDefaultOffset; //left offset
+  maxSize.width -= shareIcon.size.width + 16.0; //share icon
+  maxSize.width -= kCardViewDefaultOffset;//right offset
   attributedSeedString = [attributedSeedString truncatedAttributedStringWithCustomEllipsis:ellipsis maxSize:maxSize truncationPosition:6];
   
   self.seedLabel.attributedText = attributedSeedString;
@@ -398,13 +400,13 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
       NSDictionary *attributes = @{NSForegroundColorAttributeName: [UIColor whiteColor],
                                    NSFontAttributeName: [UIFont systemFontOfSize:12.0 weight:UIFontWeightSemibold],
                                    NSKernAttributeName: @0.0};
-      NSString *title = NSLocalizedString(@"Not backed up", @"Card view: backup warning");
+      NSString *title = NSLocalizedString(@"Action required: not backed up", @"Card view: backup warning");
       backupWarningLabel.attributedText = [[NSAttributedString alloc] initWithString:title attributes:attributes];
     }
     UILabel *backupWarningDesciption = [[UILabel alloc] init];
     { //Backup warning description
       backupWarningDesciption.translatesAutoresizingMaskIntoConstraints = NO;
-      backupWarningDesciption.alpha = 0.5;
+      backupWarningDesciption.alpha = 0.8;
       backupWarningDesciption.numberOfLines = 2;
       [backupWarningView addSubview:backupWarningDesciption];
       [backupWarningView addConstraint:[NSLayoutConstraint constraintWithItem:backupWarningImageView attribute:NSLayoutAttributeLeft

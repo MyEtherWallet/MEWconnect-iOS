@@ -9,9 +9,9 @@
 #import "ForgotPasswordInteractorInput.h"
 
 @protocol ForgotPasswordInteractorOutput;
+@protocol MEWwallet;
 
 @interface ForgotPasswordInteractor : NSObject <ForgotPasswordInteractorInput>
-
 @property (nonatomic, weak) id<ForgotPasswordInteractorOutput> output;
-
+@property (nonatomic, strong) id <MEWwallet> walletService;
 @end

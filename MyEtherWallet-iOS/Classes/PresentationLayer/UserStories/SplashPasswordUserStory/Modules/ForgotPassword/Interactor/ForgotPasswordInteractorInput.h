@@ -9,5 +9,5 @@
 @import Foundation;
 
 @protocol ForgotPasswordInteractorInput <NSObject>
-
+- (void) resetWallet;
 @end

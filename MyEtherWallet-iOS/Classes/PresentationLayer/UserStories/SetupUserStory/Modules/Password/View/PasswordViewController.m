@@ -209,4 +209,11 @@ static CGFloat        kPasswordViewControllerWOCrackMeterVOffset  = 24.0;
   [self.output nextAction];
 }
 
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+  [self.output nextAction];
+  return NO;
+}
+
 @end

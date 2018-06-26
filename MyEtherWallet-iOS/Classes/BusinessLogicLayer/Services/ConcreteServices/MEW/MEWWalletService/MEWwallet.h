@@ -1,5 +1,5 @@
 //
-//  MEWWallet.h
+//  MEWwallet.h
 //  MyEtherWallet-iOS
 //
 //  Created by Mikhail Nikanorov on 29/04/2018.
@@ -13,7 +13,7 @@
 typedef void(^MEWWalletCompletionBlock)(BOOL success, NSString *address);
 typedef void(^MEWWalletDataCompletionBlock)(id data);
 
-@protocol MEWWallet <NSObject>
+@protocol MEWwallet <NSObject>
 - (void) createWalletWithPassword:(NSString *)password words:(NSArray <NSString *> *)words completion:(MEWWalletCompletionBlock)completion;
 - (NSString *) validatePassword:(NSString *)password;
 - (void) signMessage:(NSString *)message password:(NSString *)password completion:(MEWWalletDataCompletionBlock)completion;
@@ -23,4 +23,5 @@ typedef void(^MEWWalletDataCompletionBlock)(id data);
 - (NSArray <NSString *> *) obtainBIP32Words;
 - (void) backedUp;
 - (BOOL) isBackedUp;
+- (void) resetWallet;
 @end

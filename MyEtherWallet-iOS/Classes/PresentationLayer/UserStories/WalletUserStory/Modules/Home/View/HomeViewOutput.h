@@ -18,4 +18,5 @@
 - (void) searchTermDidChanged:(NSString *)searchTerm;
 - (void) mainnetSelectedAction;
 - (void) ropstenSelectedAction;
+- (void) infoAction;
 @end

@@ -10,14 +10,14 @@
 
 @protocol MEWConnectFacade;
 @protocol MEWcrypto;
-@protocol MEWWallet;
+@protocol MEWwallet;
 @protocol CameraService;
 @protocol CameraServiceDelegate;
 @protocol TokensService;
 
 @protocol ServiceComponents <NSObject>
 - (id <MEWConnectFacade>) MEWConnectFacade;
-- (id <MEWWallet>) MEWWallet;
+- (id <MEWwallet>) MEWWallet;
 - (id <MEWcrypto>) MEWcrypto;
 - (id <CameraService>) cameraServiceWithDelegate:(id <CameraServiceDelegate>)delegate;
 - (id <TokensService>) tokensService;

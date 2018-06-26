@@ -10,9 +10,9 @@
 
 @protocol MessageSignerInteractorOutput;
 
-@protocol MEWWallet;
+@protocol MEWwallet;
 
 @interface MessageSignerInteractor : NSObject <MessageSignerInteractorInput>
 @property (nonatomic, weak) id<MessageSignerInteractorOutput> output;
-@property (nonatomic, strong) id <MEWWallet> walletService;
+@property (nonatomic, strong) id <MEWwallet> walletService;
 @end

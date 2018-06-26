@@ -12,7 +12,7 @@
 
 #import "BackupWordsInteractorOutput.h"
 
-#import "MEWWallet.h"
+#import "MEWwallet.h"
 
 @interface BackupWordsInteractor ()
 @property (nonatomic, strong) NSArray <NSString *> *mnemonics;

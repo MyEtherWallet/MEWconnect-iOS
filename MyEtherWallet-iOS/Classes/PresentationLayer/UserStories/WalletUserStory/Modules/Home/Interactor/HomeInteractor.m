@@ -14,7 +14,7 @@
 
 #import "MEWConnectFacade.h"
 #import "MEWConnectFacadeConstants.h"
-#import "MEWWallet.h"
+#import "MEWwallet.h"
 #import "MEWConnectCommand.h"
 #import "Ponsomizer.h"
 

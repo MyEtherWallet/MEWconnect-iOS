@@ -10,6 +10,8 @@
 
 #import "SplashPasswordViewOutput.h"
 
+#import "ApplicationConstants.h"
+
 @interface SplashPasswordViewController () <UITextFieldDelegate>
 @property (nonatomic, weak) IBOutlet UITextField *passwordTextField;
 @end
@@ -79,7 +81,7 @@
   CGRect bounds = self.view.window.bounds;
   CGSize size = bounds.size;
   size.height -= CGRectGetHeight(statusBarFrame);
-  size.height -= 55.0;
+  size.height -= kCustomRepresentationTopBigOffset;
   if (!CGSizeEqualToSize(self.preferredContentSize, size)) {
     self.preferredContentSize = size;
   }

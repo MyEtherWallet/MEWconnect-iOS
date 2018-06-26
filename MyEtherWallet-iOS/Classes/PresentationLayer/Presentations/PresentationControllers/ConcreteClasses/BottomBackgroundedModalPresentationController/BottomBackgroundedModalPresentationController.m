@@ -8,7 +8,7 @@
 
 #import "BottomBackgroundedModalPresentationController.h"
 
-#import "MEWWallet.h"
+#import "MEWwallet.h"
 
 #import "UIImage+MEWBackground.h"
 

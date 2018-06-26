@@ -105,7 +105,7 @@
   if ([self shouldMigrateCoreData]) {
     [self migrateStore];
   } else {
-    NSURL *directory = [self.fileManager containerURLForSecurityApplicationGroupIdentifier:AppGroupIdentifier];
+    NSURL *directory = [self.fileManager containerURLForSecurityApplicationGroupIdentifier:kAppGroupIdentifier];
     NSURL *storeURL = [directory URLByAppendingPathComponent:kCoreDataName];
     [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreAtURL:storeURL];
   }
@@ -122,7 +122,7 @@
   // grab the current store
   NSPersistentStore *currentStore = coordinator.persistentStores.lastObject;
   // create a new URL
-  NSURL *directory = [self.fileManager containerURLForSecurityApplicationGroupIdentifier:AppGroupIdentifier];
+  NSURL *directory = [self.fileManager containerURLForSecurityApplicationGroupIdentifier:kAppGroupIdentifier];
   NSURL *newStoreURL = [directory URLByAppendingPathComponent:kCoreDataName];
   
   NSDictionary *storeOptions = @{NSPersistentStoreFileProtectionKey: NSFileProtectionComplete};

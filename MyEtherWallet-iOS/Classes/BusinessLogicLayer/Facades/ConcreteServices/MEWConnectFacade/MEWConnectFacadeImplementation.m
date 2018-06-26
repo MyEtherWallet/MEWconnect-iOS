@@ -12,7 +12,7 @@
 
 #import "MEWConnectFacadeConstants.h"
 
-#import "MEWWallet.h"
+#import "MEWwallet.h"
 #import "MEWConnectService.h"
 #import "MEWConnectServiceDelegate.h"
 

@@ -9,7 +9,7 @@
 @import libextobjc.EXTScope;
 
 #import "MEWConnectFacade.h"
-#import "MEWWallet.h"
+#import "MEWwallet.h"
 
 #import "TransactionInteractor.h"
 

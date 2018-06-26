@@ -102,6 +102,10 @@
   [self.interactor reloadData];
 }
 
+- (void)infoAction {
+  [self.router openInfo];
+}
+
 #pragma mark - HomeInteractorOutput
 
 - (void) openMessageSignerWithMessage:(MEWConnectCommand *)command {

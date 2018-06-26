@@ -26,6 +26,7 @@
 {
   CGRect frame = [super imageRectForContentRect:contentRect];
   frame.origin.x = CGRectGetMaxX(contentRect) - CGRectGetWidth(frame) -  self.imageEdgeInsets.right + self.imageEdgeInsets.left;
+  frame.origin.y += self.imageEdgeInsets.top;
   return frame;
 }
 

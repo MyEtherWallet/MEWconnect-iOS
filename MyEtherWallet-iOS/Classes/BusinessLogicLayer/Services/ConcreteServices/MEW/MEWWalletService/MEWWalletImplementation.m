@@ -71,4 +71,8 @@
   return [self.wrapper isBackedUp];
 }
 
+- (void) resetWallet {
+  [self.wrapper resetWallet];
+}
+
 @end

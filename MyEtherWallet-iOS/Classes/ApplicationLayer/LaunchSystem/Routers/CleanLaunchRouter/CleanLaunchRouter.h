@@ -9,10 +9,10 @@
 @import Foundation;
 
 @protocol NavigationControllerFactory;
-@protocol MEWWallet;
+@protocol MEWwallet;
 
 @interface CleanLaunchRouter : NSObject
-@property (nonatomic, strong) id <MEWWallet> walletService;
+@property (nonatomic, strong) id <MEWwallet> walletService;
 @property (nonatomic, strong) UIStoryboard *passwordStoryboard;
 - (instancetype)initWithNavigationControllerFactory:(id<NavigationControllerFactory>)navigationControllerFactory
                                              window:(UIWindow *)window;

@@ -10,8 +10,14 @@
 
 #import "ForgotPasswordInteractorOutput.h"
 
+#import "MEWwallet.h"
+
 @implementation ForgotPasswordInteractor
 
 #pragma mark - ForgotPasswordInteractorInput
+
+- (void)resetWallet {
+  [self.walletService resetWallet];
+}
 
 @end

@@ -9,12 +9,12 @@
 #import "NewWalletInteractorInput.h"
 
 @protocol NewWalletInteractorOutput;
-@protocol MEWWallet;
+@protocol MEWwallet;
 @protocol TokensService;
 
 @interface NewWalletInteractor : NSObject <NewWalletInteractorInput>
 
 @property (nonatomic, weak) id<NewWalletInteractorOutput> output;
-@property (nonatomic, strong) id <MEWWallet> walletService;
+@property (nonatomic, strong) id <MEWwallet> walletService;
 @property (nonatomic, strong) id <TokensService> tokensService;
 @end

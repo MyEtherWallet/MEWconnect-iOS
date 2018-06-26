@@ -15,4 +15,5 @@
 - (void) openMessageSignerWithMessage:(MEWConnectCommand *)command;
 - (void) openTransactionSignerWithMessage:(MEWConnectCommand *)command;
 - (void) openBackup;
+- (void) openInfo;
 @end

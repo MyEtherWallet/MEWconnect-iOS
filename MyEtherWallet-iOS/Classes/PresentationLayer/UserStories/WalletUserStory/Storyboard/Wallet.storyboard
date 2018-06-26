@@ -116,6 +116,7 @@
                         <segue destination="aal-Ks-Rc6" kind="presentation" identifier="HomeToTransactionSegueIdentifier" id="cKL-Va-XtS"/>
                         <segue destination="TZ6-JA-fY1" kind="presentation" identifier="HomeToMessageSignerSegueIdentifier" id="aQG-NF-Fnb"/>
                         <segue destination="Et8-6R-zGr" kind="presentation" identifier="HomeToBackupInfoSegueIdentifier" id="gma-Fq-rkZ"/>
+                        <segue destination="T20-gx-fZR" kind="presentation" identifier="HomeToInfoSegueIdentifier" id="7nn-hV-fTP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dKq-6Q-B9q" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -378,7 +379,7 @@ with MyEtherWallet</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="muh-85-vYU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1102" y="-519"/>
+            <point key="canvasLocation" x="1102" y="-875"/>
         </scene>
         <!--MessageSignerViewController-->
         <scene sceneID="d7w-Iy-Qje">
@@ -396,6 +397,96 @@ with MyEtherWallet</string>
             </objects>
             <point key="canvasLocation" x="607" y="281"/>
         </scene>
+        <!--Info View Controller-->
+        <scene sceneID="dlA-hx-fn3">
+            <objects>
+                <viewController id="T20-gx-fZR" customClass="InfoViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tam-fP-WU1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Info" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QRR-el-fva">
+                                <rect key="frame" x="24" y="76" width="327" height="48"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                <color key="textColor" red="0.023529411760000001" green="0.30196078430000001" blue="0.83921568629999999" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="56" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7nl-N6-4xZ" customClass="FlatButton">
+                                <rect key="frame" x="24" y="587" width="327" height="56"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <state key="normal" title="CLOSE">
+                                    <color key="titleColor" red="0.023529411760000001" green="0.30196078430000001" blue="0.83921568629999999" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="theme">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="closeAction:" destination="T20-gx-fZR" eventType="touchUpInside" id="0Am-JA-r7G"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="btJ-B1-EnL">
+                                <rect key="frame" x="0.0" y="124" width="375" height="463"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="DWC-iX-mxL">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="63"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 21.0.312" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G89-d1-aMk">
+                                            <rect key="frame" x="24" y="25" width="327" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" red="0.43137254901960786" green="0.45098039215686275" blue="0.51764705882352935" alpha="1" colorSpace="deviceRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright 2018 MyEtherWallet Inc." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VmI-iZ-Ky7">
+                                            <rect key="frame" x="24" y="45" width="327" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" red="0.43137254901960786" green="0.45098039215686275" blue="0.51764705882352935" alpha="1" colorSpace="deviceRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="VmI-iZ-Ky7" firstAttribute="top" secondItem="G89-d1-aMk" secondAttribute="bottom" constant="2" id="37z-uE-0Mo"/>
+                                        <constraint firstItem="G89-d1-aMk" firstAttribute="top" secondItem="DWC-iX-mxL" secondAttribute="top" constant="25" id="6gx-4K-mfH"/>
+                                        <constraint firstItem="G89-d1-aMk" firstAttribute="leading" secondItem="DWC-iX-mxL" secondAttribute="leading" constant="24" id="al7-VC-nHJ"/>
+                                        <constraint firstItem="VmI-iZ-Ky7" firstAttribute="leading" secondItem="G89-d1-aMk" secondAttribute="leading" id="b06-qr-CNn"/>
+                                        <constraint firstAttribute="trailing" secondItem="G89-d1-aMk" secondAttribute="trailing" constant="24" id="jXl-eu-Bb5"/>
+                                        <constraint firstItem="VmI-iZ-Ky7" firstAttribute="trailing" secondItem="G89-d1-aMk" secondAttribute="trailing" id="w1O-Dc-LcL"/>
+                                    </constraints>
+                                </view>
+                                <sections/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="7nl-N6-4xZ" firstAttribute="trailing" secondItem="QRR-el-fva" secondAttribute="trailing" id="1HX-V5-0TC"/>
+                            <constraint firstAttribute="trailing" secondItem="QRR-el-fva" secondAttribute="trailing" constant="24" id="64Z-WS-KOz"/>
+                            <constraint firstItem="qzh-ol-sLS" firstAttribute="trailing" secondItem="btJ-B1-EnL" secondAttribute="trailing" id="Ke2-T1-CAN"/>
+                            <constraint firstItem="btJ-B1-EnL" firstAttribute="top" secondItem="QRR-el-fva" secondAttribute="bottom" id="Krg-cs-r4G"/>
+                            <constraint firstItem="QRR-el-fva" firstAttribute="leading" secondItem="qzh-ol-sLS" secondAttribute="leading" constant="24" id="LVW-B5-sJZ"/>
+                            <constraint firstItem="QRR-el-fva" firstAttribute="top" secondItem="qzh-ol-sLS" secondAttribute="top" constant="56" id="P52-ar-G8D"/>
+                            <constraint firstItem="7nl-N6-4xZ" firstAttribute="top" secondItem="btJ-B1-EnL" secondAttribute="bottom" id="dmG-Xx-d1v"/>
+                            <constraint firstItem="btJ-B1-EnL" firstAttribute="leading" secondItem="qzh-ol-sLS" secondAttribute="leading" id="fLe-WH-6JH"/>
+                            <constraint firstItem="7nl-N6-4xZ" firstAttribute="leading" secondItem="QRR-el-fva" secondAttribute="leading" id="opI-Im-Mpm"/>
+                            <constraint firstItem="qzh-ol-sLS" firstAttribute="bottom" secondItem="7nl-N6-4xZ" secondAttribute="bottom" constant="24" id="wXk-XA-KPT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="qzh-ol-sLS"/>
+                    </view>
+                    <connections>
+                        <outlet property="copyrightLabel" destination="VmI-iZ-Ky7" id="6fZ-RT-E2y"/>
+                        <outlet property="tableView" destination="btJ-B1-EnL" id="AB1-s8-okh"/>
+                        <outlet property="versionLabel" destination="G89-d1-aMk" id="cJJ-Jk-VBP"/>
+                        <segue destination="ySg-Me-ph6" kind="unwind" identifier="InfoToStartUnwindSegueIdentifier" unwindAction="unwindToStart:" id="lBp-SS-UPN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lwe-by-bLp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="ySg-Me-ph6" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1101.5999999999999" y="510.49475262368821"/>
+        </scene>
         <!--Settings View Controller-->
         <scene sceneID="atF-Ks-CI5">
             <objects>
@@ -409,7 +500,7 @@ with MyEtherWallet</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2d0-Mt-DkT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1102" y="208"/>
+            <point key="canvasLocation" x="1102" y="-179"/>
         </scene>
     </scenes>
     <resources>

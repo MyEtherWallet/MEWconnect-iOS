@@ -113,9 +113,10 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
   self.headerView.searchBar.delegate = self;
   
   //TODO: Remove in future
-  [self.headerView.infoButton addTarget:self action:@selector(infoAction:) forControlEvents:UIControlEventTouchDown];
+  [self.headerView.infoButton addTarget:self action:@selector(infoActionDown:) forControlEvents:UIControlEventTouchDown];
   [self.headerView.infoButton addTarget:self action:@selector(infoActionUp:) forControlEvents:UIControlEventTouchUpInside];
-  [self.headerView.infoButton addTarget:self action:@selector(infoActionUp:) forControlEvents:UIControlEventTouchUpOutside];
+  [self.headerView.infoButton addTarget:self action:@selector(infoActionUpOutside:) forControlEvents:UIControlEventTouchUpInside];
+  [self.headerView.infoButton addTarget:self action:@selector(infoActionUpOutside:) forControlEvents:UIControlEventTouchUpOutside];
   
   [self.dataDisplayManager configureDataDisplayManagerWithAnimator:self.tableViewAnimator];
   self.tableView.dataSource = [self.dataDisplayManager dataSourceForTableView:self.tableView];
@@ -244,7 +245,7 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
   [self.output disconnectAction];
 }
 
-- (IBAction) infoAction:(id)sender {
+- (IBAction) infoActionDown:(id)sender {
   @weakify(self);
   _testnetTimer = [NSTimer timerWithTimeInterval:10.0
                                          repeats:NO
@@ -264,6 +265,10 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
 }
 
 - (IBAction) infoActionUp:(id)sender {
+  [self.output infoAction];
+}
+
+- (IBAction) infoActionUpOutside:(id)sender {
   [_testnetTimer invalidate];
   _testnetTimer = nil;
 }

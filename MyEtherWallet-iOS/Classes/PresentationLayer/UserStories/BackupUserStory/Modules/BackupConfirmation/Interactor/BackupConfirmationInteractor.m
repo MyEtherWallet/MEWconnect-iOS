@@ -10,7 +10,7 @@
 
 #import "BackupConfirmationInteractorOutput.h"
 
-#import "MEWWallet.h"
+#import "MEWwallet.h"
 
 #import "BackupConfirmationQuiz.h"
 

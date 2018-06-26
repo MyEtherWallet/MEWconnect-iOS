@@ -15,7 +15,7 @@
 #import "MEWConnectCommand.h"
 #import "MEWConnectResponse.h"
 
-#import "MEWWallet.h"
+#import "MEWwallet.h"
 
 @interface MessageSignerInteractor ()
 @property (nonatomic, strong) MEWConnectCommand *message;

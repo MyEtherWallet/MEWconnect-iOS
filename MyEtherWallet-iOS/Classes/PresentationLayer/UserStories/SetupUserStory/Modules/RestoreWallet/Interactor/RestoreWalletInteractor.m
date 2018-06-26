@@ -10,7 +10,7 @@
 
 #import "RestoreWalletInteractorOutput.h"
 
-#import "MEWWallet.h"
+#import "MEWwallet.h"
 
 #import "ApplicationConstants.h"
 #import "NSCharacterSet+WNS.h"

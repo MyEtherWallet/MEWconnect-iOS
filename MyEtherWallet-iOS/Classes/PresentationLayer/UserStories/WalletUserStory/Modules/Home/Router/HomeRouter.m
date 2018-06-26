@@ -13,11 +13,13 @@
 #import "MessageSignerModuleInput.h"
 #import "TransactionModuleInput.h"
 #import "BackupInfoModuleInput.h"
+#import "InfoModuleInput.h"
 
 static NSString *const kHomeToScannerSegueIdentifier        = @"HomeToScannerSegueIdentifier";
 static NSString *const kHomeToMessageSignerSegueIdentifier  = @"HomeToMessageSignerSegueIdentifier";
 static NSString *const kHomeToTransactionSegueIdentifier    = @"HomeToTransactionSegueIdentifier";
 static NSString *const kHomeToBackupInfoSegueIdentifier     = @"HomeToBackupInfoSegueIdentifier";
+static NSString *const kHomeToInfoSegueIdentifier           = @"HomeToInfoSegueIdentifier";
 
 @implementation HomeRouter
 
@@ -45,6 +47,13 @@ static NSString *const kHomeToBackupInfoSegueIdentifier     = @"HomeToBackupInfo
 
 - (void) openBackup {
   [[self.transitionHandler openModuleUsingSegue:kHomeToBackupInfoSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<BackupInfoModuleInput> moduleInput) {
+    [moduleInput configureModule];
+    return nil;
+  }];
+}
+
+- (void) openInfo {
+  [[self.transitionHandler openModuleUsingSegue:kHomeToInfoSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<InfoModuleInput> moduleInput) {
     [moduleInput configureModule];
     return nil;
   }];

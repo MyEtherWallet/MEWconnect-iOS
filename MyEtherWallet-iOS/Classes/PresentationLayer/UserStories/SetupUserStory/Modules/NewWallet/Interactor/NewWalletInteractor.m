@@ -12,7 +12,7 @@
 
 #import "NewWalletInteractorOutput.h"
 
-#import "MEWWallet.h"
+#import "MEWwallet.h"
 #import "TokensService.h"
 
 #import "UIImage+MEWBackground.h"

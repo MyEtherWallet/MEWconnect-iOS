@@ -8,7 +8,7 @@
 
 #import "SplashPasswordInteractor.h"
 
-#import "MEWWallet.h"
+#import "MEWwallet.h"
 
 #import "SplashPasswordInteractorOutput.h"
 

@@ -288,6 +288,13 @@ class Web3Wrapper: NSObject {
     return false
   }
   
+  func resetWallet() {
+    let keychain = Keychain(service: KeychainInfo.service)
+    keychain[data: KeychainInfo.Fields.entropy] = nil
+    keychain[data: KeychainInfo.Fields.keydata] = nil
+    keychain[data: KeychainInfo.Fields.publicAddress] = nil
+  }
+  
   //MARK: - Private
   
   private static func request(from: EthereumAddress, contract: ContractV2, contractAddress: EthereumAddress, method: String, parameters: [AnyObject], options: Web3Options, transactionFields:[String]) -> JSONRPCrequest? {

@@ -10,11 +10,11 @@
 
 @protocol TransactionInteractorOutput;
 
-@protocol MEWWallet;
+@protocol MEWwallet;
 @protocol MEWConnectFacade;
 
 @interface TransactionInteractor : NSObject <TransactionInteractorInput>
 @property (nonatomic, weak) id<TransactionInteractorOutput> output;
-@property (nonatomic, strong) id <MEWWallet> walletService;
+@property (nonatomic, strong) id <MEWwallet> walletService;
 @property (nonatomic, strong) id <MEWConnectFacade> connectFacade;
 @end

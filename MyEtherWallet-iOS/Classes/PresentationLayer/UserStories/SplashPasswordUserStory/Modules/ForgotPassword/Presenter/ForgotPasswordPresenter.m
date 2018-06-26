@@ -25,6 +25,15 @@
 	[self.view setupInitialState];
 }
 
+- (void) resetWalletAction {
+  [self.view presentResetConfirmation];
+}
+
+- (void) resetWalletConfirmedAction {
+  [self.interactor resetWallet];
+  [self.router unwindToStart];
+}
+
 #pragma mark - ForgotPasswordInteractorOutput
 
 - (void)closeAction {

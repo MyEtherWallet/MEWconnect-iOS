@@ -8,11 +8,11 @@
 
 #import "RestoreWalletInteractorInput.h"
 
-@protocol MEWWallet;
+@protocol MEWwallet;
 
 @protocol RestoreWalletInteractorOutput;
 
 @interface RestoreWalletInteractor : NSObject <RestoreWalletInteractorInput>
 @property (nonatomic, weak) id<RestoreWalletInteractorOutput> output;
-@property (nonatomic, strong) id<MEWWallet> walletService;
+@property (nonatomic, strong) id<MEWwallet> walletService;
 @end

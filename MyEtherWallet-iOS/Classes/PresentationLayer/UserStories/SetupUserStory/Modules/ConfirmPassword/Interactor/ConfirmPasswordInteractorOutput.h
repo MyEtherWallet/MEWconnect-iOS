@@ -11,6 +11,6 @@
 @protocol ConfirmPasswordInteractorOutput <NSObject>
 - (void) emptyConfirmationPassword;
 - (void) correctPasswords;
-- (void) invalidPassword;
+- (void) incorrectPassword:(BOOL)error;
 - (void) prepareWalletWithPassword:(NSString *)password words:(NSArray <NSString *> *)words;
 @end

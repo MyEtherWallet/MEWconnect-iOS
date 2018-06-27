@@ -6,10 +6,10 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
-#import "MEWWallet.h"
+#import "MEWwallet.h"
 
 @class Web3Wrapper;
 
-@interface MEWWalletImplementation : NSObject <MEWWallet>
+@interface MEWWalletImplementation : NSObject <MEWwallet>
 @property (nonatomic, strong) Web3Wrapper *wrapper;
 @end

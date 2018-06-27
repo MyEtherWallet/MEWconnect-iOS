@@ -16,6 +16,8 @@
 
 @property (nonatomic) BOOL configured;
 @property (nonatomic) BOOL pause;
+
+@property (nonatomic) AVMediaType mediaType;
 @end
 
 @implementation CameraServiceImplementation
@@ -28,6 +30,7 @@
   if (self) {
     self.pause = YES;
     self.session = session;
+    self.mediaType = mediaType;
     AVCaptureDeviceInput *deviceInput = [self _captureDeviceWithMediaType:mediaType];
     if (deviceInput) {
       [self.session addInput:deviceInput];
@@ -48,6 +51,35 @@
 }
 
 #pragma mark - Public
+
+- (void)isHaveAccessWithCompletion:(CameraServiceAccessCompletion)completion {
+  AVAuthorizationStatus state = [AVCaptureDevice authorizationStatusForMediaType:self.mediaType];
+  switch (state) {
+    case AVAuthorizationStatusAuthorized: {
+      completion(YES);
+      break;
+    }
+    case AVAuthorizationStatusDenied: {
+      completion(NO);
+      break;
+    }
+    case AVAuthorizationStatusNotDetermined: {
+      [AVCaptureDevice requestAccessForMediaType:self.mediaType completionHandler:^(BOOL granted) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+          completion(granted);
+        });
+      }];
+      break;
+    }
+    case AVAuthorizationStatusRestricted: {
+      completion(NO);
+      break;
+    }
+      
+    default:
+      break;
+  }
+}
 
 - (void) startReading {
   if (self.configured) {

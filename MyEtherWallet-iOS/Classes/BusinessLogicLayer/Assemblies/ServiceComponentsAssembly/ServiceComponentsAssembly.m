@@ -64,7 +64,7 @@
                         }];
 }
 
-- (id<MEWWallet>)MEWWallet {
+- (id<MEWwallet>)MEWWallet {
   return [TyphoonDefinition withClass:[MEWWalletImplementation class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(wrapper)

@@ -12,13 +12,15 @@
 
 #import "QRScannerViewOutput.h"
 
+#import "LinkedLabel.h"
+
 #import "UIColor+Application.h"
 #import "UIColor+Hex.h"
 
 static CFTimeInterval kQRScannerViewControllerOpacityAnimationDuration = 0.4;
 static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
 
-@interface QRScannerViewController () <AVCaptureMetadataOutputObjectsDelegate>
+@interface QRScannerViewController () <AVCaptureMetadataOutputObjectsDelegate, LinkedLabelDelegate>
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) IBOutlet UILabel *stepsDescriptionLabel;
 @property (nonatomic, weak) IBOutlet UIButton *closeButton;
@@ -36,6 +38,8 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
 @property (nonatomic, weak) IBOutlet UILabel *statusInfoDescriptionLabel;
 
 @property (nonatomic, strong) AVCaptureVideoPreviewLayer *videoPreviewLayer;
+
+@property (nonatomic, weak) IBOutlet LinkedLabel *accessToCameraLabel;
 
 @property (nonatomic) NSInteger runningAnimations;
 @end
@@ -85,7 +89,7 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
 
 #pragma mark - QRScannerViewInput
 
-- (void) setupInitialStateWithCaptureSession:(AVCaptureSession *)captureSession {
+- (void) setupInitialState {
   [self _prepareStepsDescription];
   { //title label
     NSDictionary *attributes = @{NSFontAttributeName: self.titleLabel.font,
@@ -109,6 +113,37 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
     self.focusViewBL.layer.transform = CATransform3DMakeScale(1.0, -1.0, 1.0);
     self.focusViewBR.layer.transform = CATransform3DMakeScale(-1.0, -1.0, 1.0);
   }
+  { //Access to camera
+    NSString *text = NSLocalizedString(@"Please enable camera access for MEWconnect in Settings", @"QR Scanner. Access to camera warning");
+    NSArray <NSString *> *linkedParts = [NSLocalizedString(@"Settings", @"QR Scanner. Access to camera warning. Linked parts") componentsSeparatedByString:@"|"];
+    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+    style.lineSpacing = 5.0;
+    style.alignment = self.accessToCameraLabel.textAlignment;
+    NSDictionary *attributes = @{NSFontAttributeName: self.accessToCameraLabel.font,
+                                 NSForegroundColorAttributeName: self.accessToCameraLabel.textColor,
+                                 NSParagraphStyleAttributeName: style,
+                                 NSKernAttributeName: @(-0.01)};
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:text attributes:attributes];
+    for (NSString *part in linkedParts) {
+      NSRange range = [attributedString.string rangeOfString:part];
+      if (range.location != NSNotFound && range.length > 0) {
+        NSDictionary *linkAttributes = @{NSUnderlineColorAttributeName: [UIColor whiteColor],
+                                         NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle),
+                                         NSLinkAttributeName: [NSURL URLWithString:@"http://dummy.url"],
+                                         NSForegroundColorAttributeName: [UIColor whiteColor]};
+        [attributedString addAttributes:linkAttributes range:range];
+      }
+    }
+    
+    self.accessToCameraLabel.attributedText = attributedString;
+  }
+  [self _updatePrefferedContentSize];
+}
+
+- (void)updateWithCaptureSession:(AVCaptureSession *)captureSession {
+  if (self.videoPreviewLayer) {
+    [self.videoPreviewLayer removeFromSuperlayer];
+  }
   { //Video preview
     self.videoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:captureSession];
     [self.videoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
@@ -116,7 +151,6 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
     self.videoPreviewLayer.frame = self.cameraContainerView.bounds;
     self.videoPreviewLayer.opacity = 0.0;
   }
-  [self _updatePrefferedContentSize];
 }
 
 - (void)animateVideoPreview {
@@ -206,6 +240,30 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
                    }];
 }
 
+- (void) hideAccessWarning {
+  if (!self.accessToCameraLabel.hidden) {
+    self.accessToCameraLabel.alpha = 1.0;
+    [UIView animateWithDuration:kQRScannerViewControllerFadeAnimationDuration
+                     animations:^{
+                       self.accessToCameraLabel.alpha = 0.0;
+                     } completion:^(BOOL finished) {
+                       self.accessToCameraLabel.hidden = YES;
+                     }];
+  }
+}
+
+- (void) showAccessWarning {
+  if (self.accessToCameraLabel.hidden) {
+    self.accessToCameraLabel.alpha = 0.0;
+    self.accessToCameraLabel.hidden = NO;
+    [UIView animateWithDuration:kQRScannerViewControllerFadeAnimationDuration
+                     animations:^{
+                       self.accessToCameraLabel.alpha = 1.0;
+                     } completion:^(BOOL finished) {
+                     }];
+  }
+}
+
 #pragma mark - IBActions
 
 - (IBAction) closeAction:(UIButton *)sender {
@@ -278,6 +336,12 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
   if (!CGSizeEqualToSize(self.preferredContentSize, size)) {
     self.preferredContentSize = size;
   }
+}
+
+#pragma mark - LinkedLabelDelegate
+
+- (void) linkedLabel:(LinkedLabel *)label didSelectURL:(NSURL *)url {
+  [self.output settingsAction];
 }
 
 @end

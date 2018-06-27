@@ -6,6 +6,8 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
+@import libextobjc.EXTScope;
+
 #import "ForgotPasswordViewController.h"
 
 #import "ForgotPasswordViewOutput.h"
@@ -46,7 +48,7 @@
   }
   { //Description
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
-    style.lineSpacing = 5.0;
+    style.lineSpacing = 4.5;
     NSDictionary *attributes = @{NSFontAttributeName: self.descriptionLabel.font,
                                  NSForegroundColorAttributeName: self.descriptionLabel.textColor,
                                  NSParagraphStyleAttributeName: style,
@@ -54,12 +56,25 @@
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.descriptionLabel.text attributes:attributes];
     NSRange backupRange = [self.descriptionLabel.text rangeOfString:NSLocalizedString(@"backup", @"Forgot password. Backup word")];
     if (backupRange.location != NSNotFound) {
-      [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17.0 weight:UIFontWeightBold]
+      [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17.0 weight:UIFontWeightMedium]
                                range:backupRange];
     }
     self.descriptionLabel.attributedText = attributedString;
   }
   [self _updatePrefferedContentSize];
+}
+
+- (void) presentResetConfirmation {
+  UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"⚠️\nWarning: you can loose your account and funds forever", @"Forgot password screen. Reset wallet alert")
+                                                                 message:NSLocalizedString(@"Don't reset if you didn't make a backup, as there will be no way to restore your account after that. Resetting wallet will remove all keys saved in the local vault and bring you back to the app's start screen.", @"Forgot password screen. Reset wallet alert")
+                                                          preferredStyle:UIAlertControllerStyleAlert];
+  [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"Forgot password screen. Reset wallet alert") style:UIAlertActionStyleCancel handler:nil]];
+  @weakify(self);
+  [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Reset wallet", @"Forgot password screen. Reset wallet alert") style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+    @strongify(self);
+    [self.output resetWalletConfirmedAction];
+  }]];
+  [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - IBActions
@@ -70,6 +85,10 @@
 
 - (IBAction) closeAction:(UIButton *)sender {
   [self.output closeAction];
+}
+
+- (IBAction) resetWallet:(UIButton *)sender {
+  [self.output resetWalletAction];
 }
 
 #pragma mark - Override

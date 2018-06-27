@@ -106,7 +106,7 @@ But, what happens if you loose this device? Well… unless you back up your wall
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tls-xM-R26">
                                 <rect key="frame" x="32" y="345" width="311" height="81.5"/>
-                                <string key="text">If your phone gets lost or stolen, you can restore your wallet using your recovery phrase.
+                                <string key="text">If your device gets lost or stolen, you can restore your wallet using your recovery phrase.
 Get pen and paper before you start.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -120,7 +120,7 @@ Get pen and paper before you start.</string>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="theme">
-                                        <integer key="value" value="4"/>
+                                        <integer key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -285,7 +285,7 @@ The order of words is important too.</string>
                                 <color key="textColor" red="0.023529411760000001" green="0.30196078430000001" blue="0.83921568629999999" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="4fM-g5-ulU" customClass="BackupConfirmationSegmenteControl">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="4fM-g5-ulU" customClass="BackupConfirmationSegmentedControl">
                                 <rect key="frame" x="24" y="149.5" width="327" height="29"/>
                                 <segments>
                                     <segment title="witch"/>
@@ -296,7 +296,7 @@ The order of words is important too.</string>
                                     <action selector="answerSelected:" destination="ayZ-Bd-4cv" eventType="valueChanged" id="0QJ-hQ-M54"/>
                                 </connections>
                             </segmentedControl>
-                            <segmentedControl opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="DeQ-ST-6sx" customClass="BackupConfirmationSegmenteControl">
+                            <segmentedControl opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="DeQ-ST-6sx" customClass="BackupConfirmationSegmentedControl">
                                 <rect key="frame" x="24" y="223.5" width="327" height="29"/>
                                 <segments>
                                     <segment title="least"/>
@@ -307,7 +307,7 @@ The order of words is important too.</string>
                                     <action selector="answerSelected:" destination="ayZ-Bd-4cv" eventType="valueChanged" id="VXj-2j-2Tj"/>
                                 </connections>
                             </segmentedControl>
-                            <segmentedControl opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="syd-Vl-cCO" customClass="BackupConfirmationSegmenteControl">
+                            <segmentedControl opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="syd-Vl-cCO" customClass="BackupConfirmationSegmentedControl">
                                 <rect key="frame" x="24" y="297.5" width="327" height="29"/>
                                 <segments>
                                     <segment title="hat"/>
@@ -318,7 +318,7 @@ The order of words is important too.</string>
                                     <action selector="answerSelected:" destination="ayZ-Bd-4cv" eventType="valueChanged" id="c0M-Cv-zyy"/>
                                 </connections>
                             </segmentedControl>
-                            <segmentedControl opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="Nbu-zt-FoO" customClass="BackupConfirmationSegmenteControl">
+                            <segmentedControl opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="Nbu-zt-FoO" customClass="BackupConfirmationSegmentedControl">
                                 <rect key="frame" x="24" y="371.5" width="327" height="29"/>
                                 <segments>
                                     <segment title="witch"/>
@@ -439,7 +439,7 @@ The order of words is important too.</string>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="theme">
-                                        <integer key="value" value="4"/>
+                                        <integer key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>

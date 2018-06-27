@@ -12,7 +12,7 @@
 #import "CleanLaunchRouter.h"
 #import "NavigationControllerFactory.h"
 
-#import "MEWWallet.h"
+#import "MEWwallet.h"
 
 #import "SplashPasswordModuleInput.h"
 

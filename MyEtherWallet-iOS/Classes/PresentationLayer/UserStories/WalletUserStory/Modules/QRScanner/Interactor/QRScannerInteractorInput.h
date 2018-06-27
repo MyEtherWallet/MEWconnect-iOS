@@ -11,11 +11,13 @@
 @class AVCaptureSession;
 
 @protocol QRScannerInteractorInput <NSObject>
+- (void) checkAccess;
 - (AVCaptureSession *) obtainCaptureSession;
 - (void) startReading;
 - (void) stopReading;
 
 - (void) disconnectIfNeeded;
+- (void) cancelAutocloseIfNeeded;
 - (void) subscribe;
 - (void) unsubscribe;
 @end

@@ -9,9 +9,9 @@
 #import "MEWConnectFacade.h"
 
 @protocol MEWConnectService;
-@protocol MEWWallet;
+@protocol MEWwallet;
 
 @interface MEWConnectFacadeImplementation : NSObject <MEWConnectFacade>
 @property (nonatomic, strong) id <MEWConnectService> connectService;
-@property (nonatomic, strong) id <MEWWallet> walletService;
+@property (nonatomic, strong) id <MEWwallet> walletService;
 @end

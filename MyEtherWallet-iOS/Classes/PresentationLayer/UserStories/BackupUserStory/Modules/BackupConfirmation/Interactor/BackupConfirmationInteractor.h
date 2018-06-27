@@ -9,9 +9,9 @@
 #import "BackupConfirmationInteractorInput.h"
 
 @protocol BackupConfirmationInteractorOutput;
-@protocol MEWWallet;
+@protocol MEWwallet;
 
 @interface BackupConfirmationInteractor : NSObject <BackupConfirmationInteractorInput>
 @property (nonatomic, weak) id<BackupConfirmationInteractorOutput> output;
-@property (nonatomic, strong) id <MEWWallet> walletService;
+@property (nonatomic, strong) id <MEWwallet> walletService;
 @end

@@ -15,21 +15,29 @@
 
 #import "TransactionInteractorOutput.h"
 
+#import "AccountPlainObject.h"
+#import "NetworkPlainObject.h"
 #import "MEWConnectCommand.h"
 #import "MEWConnectResponse.h"
 
 @interface TransactionInteractor ()
 @property (nonatomic, strong) MEWConnectCommand *message;
 @property (nonatomic, strong) MEWConnectTransaction *transaction;
+@property (nonatomic, strong) AccountPlainObject *account;
 @end
 
 @implementation TransactionInteractor
 
 #pragma mark - TransactionInteractorInput
 
-- (void) configurateWithMessage:(MEWConnectCommand *)message {
+- (void) configurateWithMessage:(MEWConnectCommand *)message account:(AccountPlainObject *)account {
+  self.account = account;
   self.message = message;
   self.transaction = [message transaction];
+}
+
+- (AccountPlainObject *)obtainAccount {
+  return self.account;
 }
 
 - (MEWConnectTransaction *)obtainTransaction {
@@ -40,6 +48,8 @@
   @weakify(self);
   [self.walletService signTransaction:self.transaction
                              password:password
+                        publicAddress:self.account.publicAddress
+                              network:[self.account.fromNetwork network]
                            completion:^(id data) {
                              @strongify(self);
                              MEWConnectResponse *response = [MEWConnectResponse responseForCommand:self.message data:data];

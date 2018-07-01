@@ -7,12 +7,16 @@
 //
 
 #import "SystemInfrastructureAssembly.h"
+#import "ApplicationConstants.h"
 
 @implementation SystemInfrastructureAssembly
 
 - (NSUserDefaults *)userDefaults {
   return [TyphoonDefinition withClass:[NSUserDefaults class] configuration:^(TyphoonDefinition *definition) {
-    [definition useInitializer:@selector(standardUserDefaults)];
+    [definition useInitializer:@selector(initWithSuiteName:)
+                    parameters:^(TyphoonMethod *initializer) {
+                      [initializer injectParameterWith:kAppGroupIdentifier];
+                    }];
     definition.scope = TyphoonScopeSingleton;
   }];
 }

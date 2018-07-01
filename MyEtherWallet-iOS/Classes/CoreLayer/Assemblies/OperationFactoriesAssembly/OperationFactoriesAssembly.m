@@ -14,10 +14,12 @@
 #import "QueryTransformerBase.h"
 
 #import "ContractsBodyTransformer.h"
+#import "BalanceBodyTransformer.h"
 
 #import "HeadersBuilderBase.h"
 
 #import "TokensOperationFactory.h"
+#import "AccountsOperationFactory.h"
 
 @implementation OperationFactoriesAssembly
 
@@ -29,6 +31,19 @@
                                             [initializer injectParameterWith:[self networkOperationBuilder]];
                                             [initializer injectParameterWith:[self tokensQueryTransformer]];
                                             [initializer injectParameterWith:[self contractsBodyTransformer]];
+                                            [initializer injectParameterWith:[self headersBuilder]];
+                                          }];
+                        }];
+}
+
+- (AccountsOperationFactory *) accountsOperationFactory {
+  return [TyphoonDefinition withClass:[AccountsOperationFactory class]
+                        configuration:^(TyphoonDefinition *definition) {
+                          [definition useInitializer:@selector(initWithBuilder:queryTransformer:bodyTransformer:headersBuilder:)
+                                          parameters:^(TyphoonMethod *initializer) {
+                                            [initializer injectParameterWith:[self networkOperationBuilder]];
+                                            [initializer injectParameterWith:[self accountsQueryTransformer]];
+                                            [initializer injectParameterWith:[self balanceBodyTransformer]];
                                             [initializer injectParameterWith:[self headersBuilder]];
                                           }];
                         }];
@@ -67,10 +82,18 @@
   return [TyphoonDefinition withClass:[QueryTransformerBase class]];
 }
 
+- (QueryTransformerBase *) accountsQueryTransformer {
+  return [TyphoonDefinition withClass:[QueryTransformerBase class]];
+}
+
 #pragma mark - Body Transformers
 
 - (ContractsBodyTransformer *) contractsBodyTransformer {
   return [TyphoonDefinition withClass:[ContractsBodyTransformer class]];
+}
+
+- (BalanceBodyTransformer *) balanceBodyTransformer {
+  return [TyphoonDefinition withClass:[BalanceBodyTransformer class]];
 }
 
 #pragma mark - Headers Builders

@@ -480,6 +480,7 @@ with MyEtherWallet</string>
                         <outlet property="tableView" destination="btJ-B1-EnL" id="AB1-s8-okh"/>
                         <outlet property="versionLabel" destination="G89-d1-aMk" id="cJJ-Jk-VBP"/>
                         <segue destination="ySg-Me-ph6" kind="unwind" identifier="InfoToStartUnwindSegueIdentifier" unwindAction="unwindToStart:" id="lBp-SS-UPN"/>
+                        <segue destination="ySg-Me-ph6" kind="unwind" identifier="InfoToHomeUnwindSegueIdentifier" unwindAction="unwindToHome:" id="pDA-fb-PhX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lwe-by-bLp" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -24,7 +24,9 @@
 @property (nonatomic, weak) IBOutlet UILabel *copyrightLabel;
 @end
 
-@implementation InfoViewController
+@implementation InfoViewController {
+  NSTimer *_testnetTimer;
+}
 
 #pragma mark - LifeCycle
 
@@ -64,7 +66,11 @@
   self.tableView.dataSource = [self.dataDisplayManager dataSourceForTableView:self.tableView];
   self.tableView.delegate = [self.dataDisplayManager delegateForTableView:self.tableView
                                                          withBaseDelegate:self.dataDisplayManager];
-  
+  UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(changeNetworkAction:)];
+  longPressGesture.minimumPressDuration = 7.0;
+  longPressGesture.numberOfTouchesRequired = 2;
+  [self.copyrightLabel addGestureRecognizer:longPressGesture];
+  self.copyrightLabel.userInteractionEnabled = YES;
 }
 
 - (void) presentResetConfirmation {
@@ -84,6 +90,20 @@
 
 - (IBAction) closeAction:(id)sender {
   [self.output closeAction];
+}
+
+- (IBAction) changeNetworkAction:(UILongPressGestureRecognizer *)sender {
+  if (sender.state == UIGestureRecognizerStateBegan) {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Network?", @"Open Easter Egg :)") message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Mainnet" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+      [self.output mainnetAction];
+    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Ropsten" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+      [self.output ropstenAction];
+    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+    [self presentViewController:alert animated:YES completion:nil];
+  }
 }
 
 #pragma mark - Private

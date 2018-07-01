@@ -12,5 +12,5 @@
 
 @protocol NavigationControllerFactory <NSObject>
 - (UINavigationController *) obtainPreconfiguredNavigationController;
-- (UINavigationController *) obtainPreconfiguredAuthorizedNavigationControllerWithAddress:(NSString *)address;
+- (UINavigationController *) obtainPreconfiguredAuthorizedNavigationController;
 @end

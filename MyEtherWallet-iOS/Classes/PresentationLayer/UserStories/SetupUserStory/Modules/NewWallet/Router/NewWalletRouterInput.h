@@ -9,6 +9,6 @@
 @import Foundation;
 
 @protocol NewWalletRouterInput <NSObject>
-- (void) unwindToWalletWithAddress:(NSString *)address;
-- (void) unwindToStartWithAddress:(NSString *)address;
+- (void) unwindToWallet;
+- (void) unwindToStart;
 @end

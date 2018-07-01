@@ -7,12 +7,17 @@
 //
 
 @import WebRTC;
+@import UICKeyChainStore;
+
+#import "ApplicationConstants.h"
 
 #import "MyEtherWallet_iOS-Swift.h"
 
 #import "ResponseMappersFactory.h"
 #import "ServiceComponentsAssembly.h"
 #import "OperationFactoriesAssembly.h"
+#import "SystemInfrastructureAssembly.h"
+#import "PonsomizerAssembly.h"
 
 #import "MEWConnectServiceImplementation.h"
 #import "MEWRTCServiceImplementation.h"
@@ -21,8 +26,10 @@
 #import "MEWConnectFacadeImplementation.h"
 
 #import "TokensServiceImplementation.h"
-
 #import "CameraServiceImplementation.h"
+#import "BlockchainNetworkServiceImplementation.h"
+#import "AccountsServiceImplementation.h"
+#import "KeychainServiceImplementation.h"
 
 #import "OperationSchedulerImplementation.h"
 
@@ -35,7 +42,8 @@
                         configuration:^(TyphoonDefinition *definition) {
                           definition.scope = TyphoonScopeSingleton;
                           [definition injectProperty:@selector(connectService) with:[self MEWConnectService]];
-                          [definition injectProperty:@selector(walletService) with:[self MEWWallet]];
+                          [definition injectProperty:@selector(accountsService) with:[self accountsService]];
+                          [definition injectProperty:@selector(ponsomizer) with:[self.ponsomizerAssembly ponsomizer]];
                         }];
 }
 
@@ -64,7 +72,7 @@
                         }];
 }
 
-- (id<MEWwallet>)MEWWallet {
+- (id<MEWwallet>) MEWwallet {
   return [TyphoonDefinition withClass:[MEWWalletImplementation class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(wrapper)
@@ -77,6 +85,8 @@
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(MEWcrypto)
                                                 with:[self MEWcrypto]];
+                          [definition injectProperty:@selector(keychainService)
+                                                with:[self keychainService]];
                         }];
 }
 
@@ -85,6 +95,27 @@
 }
 
 #pragma mark - Ethereum
+
+
+- (id<BlockchainNetworkService>) blockchainNetworkService {
+  return [TyphoonDefinition withClass:[BlockchainNetworkServiceImplementation class]
+                        configuration:^(TyphoonDefinition *definition) {
+                        }];
+}
+
+- (id <AccountsService>) accountsService {
+  return [TyphoonDefinition withClass:[AccountsServiceImplementation class]
+                        configuration:^(TyphoonDefinition *definition) {
+                          [definition injectProperty:@selector(accountsOperationFactory)
+                                                with:[self.operationFactoriesAssembly accountsOperationFactory]];
+                          [definition injectProperty:@selector(operationScheduler)
+                                                with:[self operationScheduler]];
+                          [definition injectProperty:@selector(MEWwallet)
+                                                with:[self MEWwallet]];
+                          [definition injectProperty:@selector(keychainService)
+                                                with:[self keychainService]];
+                        }];
+}
 
 - (id<TokensService>)tokensService {
   return [TyphoonDefinition withClass:[TokensServiceImplementation class]
@@ -109,6 +140,13 @@
   }];
 }
 
+- (id<KeychainService>)keychainService {
+  return [TyphoonDefinition withClass:[KeychainServiceImplementation class]
+                        configuration:^(TyphoonDefinition *definition) {
+                          [definition injectProperty:@selector(keychainStore) with:[self keychainStore]];
+                        }];
+}
+
 #pragma mark - Helpers
 
 - (RTCPeerConnectionFactory *) peerConnectionFactory {
@@ -118,6 +156,16 @@
 - (id <OperationScheduler>) operationScheduler
 {
   return [TyphoonDefinition withClass:[OperationSchedulerImplementation class]];
+}
+
+- (UICKeyChainStore *) keychainStore {
+  return [TyphoonDefinition withClass:[UICKeyChainStore class]
+                        configuration:^(TyphoonDefinition *definition) {
+                          [definition useInitializer:@selector(keyChainStoreWithService:)
+                                          parameters:^(TyphoonMethod *initializer) {
+                                            [initializer injectParameterWith:kKeychainService];
+                                          }];
+                        }];
 }
 
 #pragma mark - AVCapture

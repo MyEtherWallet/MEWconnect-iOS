@@ -11,5 +11,4 @@
 #import "ApplicationConfigurator.h"
 
 @interface ApplicationConfiguratorImplementation : NSObject <ApplicationConfigurator>
-@property (nonatomic, strong) NSFileManager *fileManager;
 @end

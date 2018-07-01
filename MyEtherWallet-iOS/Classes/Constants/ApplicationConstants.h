@@ -12,6 +12,8 @@
 #define ApplicationConstants_h
 
 static NSString   * const kAppGroupIdentifier                 = @"group.myetherwallet";
+static NSString   * const kKeychainService                    = @"com.myetherwallet.keychainService";
+
 static NSString   * const kCoreDataName                       = @"MEWconnect.sqlite";
 
 static NSInteger    const kMnemonicsWordsMinLength            = 12;

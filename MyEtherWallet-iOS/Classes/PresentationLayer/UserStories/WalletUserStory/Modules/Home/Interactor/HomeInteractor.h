@@ -12,16 +12,18 @@
 
 @protocol HomeInteractorOutput;
 @protocol MEWConnectFacade;
-@protocol MEWwallet;
 @protocol TokensService;
 @protocol CacheTracker;
 @protocol Ponsomizer;
+@protocol BlockchainNetworkService;
+@protocol AccountsService;
 
 @interface HomeInteractor : NSObject <HomeInteractorInput, CacheTrackerDelegate>
 @property (nonatomic, weak) id<HomeInteractorOutput> output;
 @property (nonatomic, strong) id <MEWConnectFacade> connectFacade;
-@property (nonatomic, strong) id <MEWwallet> walletService;
 @property (nonatomic, strong) id <TokensService> tokensService;
 @property (nonatomic, strong) id <CacheTracker> cacheTracker;
 @property (nonatomic, strong) id <Ponsomizer> ponsomizer;
+@property (nonatomic, strong) id <BlockchainNetworkService> blockchainNetworkService;
+@property (nonatomic, strong) id <AccountsService> accountService;
 @end

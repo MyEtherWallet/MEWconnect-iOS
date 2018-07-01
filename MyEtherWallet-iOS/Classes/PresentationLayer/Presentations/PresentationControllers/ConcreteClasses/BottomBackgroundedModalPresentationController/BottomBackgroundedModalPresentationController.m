@@ -8,7 +8,10 @@
 
 #import "BottomBackgroundedModalPresentationController.h"
 
-#import "MEWwallet.h"
+#import "AccountsService.h"
+#import "Ponsomizer.h"
+
+#import "AccountPlainObject.h"
 
 #import "UIImage+MEWBackground.h"
 
@@ -23,8 +26,16 @@
   if (!_mewBackground) {
     _mewBackground = [[UIImageView alloc] init];
     _mewBackground.translatesAutoresizingMaskIntoConstraints = NO;
-    NSString *address = [self.walletService obtainPublicAddress];
-    _mewBackground.image = [UIImage cachedBackgroundWithSeed:address
+    
+    AccountModelObject *accountModelObject = [self.accountsService obtainActiveAccount];
+    
+    NSArray *ignoringProperties = @[NSStringFromSelector(@selector(backedUp)),
+                                    NSStringFromSelector(@selector(fromNetwork)),
+                                    NSStringFromSelector(@selector(price)),
+                                    NSStringFromSelector(@selector(tokens))];
+    AccountPlainObject *account = [self.ponsomizer convertObject:accountModelObject ignoringProperties:ignoringProperties];
+    
+    _mewBackground.image = [UIImage cachedBackgroundWithSeed:account.publicAddress
                                                         size:[UIImage fullSize]
                                                         logo:NO];
   }

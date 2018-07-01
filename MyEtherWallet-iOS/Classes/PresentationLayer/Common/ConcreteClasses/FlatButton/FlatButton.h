@@ -6,7 +6,7 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 typedef NS_ENUM(short, FlatButtonTheme) {
   FlatButtonThemeUnknown    = 0,

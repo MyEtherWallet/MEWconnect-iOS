@@ -9,6 +9,8 @@
 #import "ModuleAssemblyBase.h"
 @import RamblerTyphoonUtils.AssemblyCollector;
 
-@interface SplashPasswordAssembly : ModuleAssemblyBase <RamblerInitialAssembly>
+@class PonsomizerAssembly;
 
+@interface SplashPasswordAssembly : ModuleAssemblyBase <RamblerInitialAssembly>
+@property (nonatomic, strong) PonsomizerAssembly *ponsomizerAssembly;
 @end

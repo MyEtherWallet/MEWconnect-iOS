@@ -6,7 +6,7 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
-#import <libextobjc/EXTScope.h>
+@import libextobjc.EXTScope;
 
 #import "TypingAnimationLabel.h"
 

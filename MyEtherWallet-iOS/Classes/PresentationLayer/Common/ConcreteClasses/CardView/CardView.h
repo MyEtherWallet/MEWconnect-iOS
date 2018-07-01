@@ -6,7 +6,9 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
+
+#import "BlockchainNetworkTypes.h"
 
 @protocol CardViewDelegate;
 
@@ -22,7 +24,7 @@ FOUNDATION_EXPORT CGFloat const kCardViewAspectRatio;
 @property (nonatomic, strong, readonly) UIImage *backgroundImage;
 @property (nonatomic, weak, readonly) UIImageView *blinkImageView;
 - (void) updateWithSeed:(NSString *)seed;
-- (void) updateBalance:(NSDecimalNumber *)balance;
+- (void) updateBalance:(NSDecimalNumber *)balance network:(BlockchainNetworkType)network;
 - (void) updateEthPrice:(NSDecimalNumber *)price;
 @end
 

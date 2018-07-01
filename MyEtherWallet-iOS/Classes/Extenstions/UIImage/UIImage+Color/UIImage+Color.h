@@ -6,7 +6,7 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 @interface UIImage (Color)
 + (UIImage *) imageWithColor:(UIColor *)color size:(CGSize)size cornerRadius:(CGFloat)cornerRadius corners:(UIRectCorner)corners borderColor:(UIColor *)borderColor borderSize:(CGFloat)borderSize;

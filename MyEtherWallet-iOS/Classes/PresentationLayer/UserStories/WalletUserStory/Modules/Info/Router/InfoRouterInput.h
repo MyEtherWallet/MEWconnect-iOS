@@ -11,5 +11,6 @@
 @protocol InfoRouterInput <NSObject>
 - (void) close;
 - (void) unwindToStart;
+- (void) unwindToHome;
 - (void) openMyEtherWalletCom;
 @end

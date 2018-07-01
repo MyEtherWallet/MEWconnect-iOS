@@ -8,6 +8,8 @@
 
 @import Foundation;
 
+@class AccountPlainObject;
+
 @protocol BackupWordsRouterInput <NSObject>
-- (void) openConfirmationWithMnemonics:(NSArray <NSString *> *)mnemonics;
+- (void) openConfirmationWithMnemonics:(NSArray <NSString *> *)mnemonics account:(AccountPlainObject *)account;
 @end

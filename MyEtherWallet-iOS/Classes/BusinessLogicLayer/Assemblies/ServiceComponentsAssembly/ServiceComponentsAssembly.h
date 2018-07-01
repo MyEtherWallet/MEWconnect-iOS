@@ -10,12 +10,16 @@
 @import RamblerTyphoonUtils.AssemblyCollector;
 @import Typhoon;
 
+#import "ServiceComponents.h"
+
 @protocol ResponseMappersFactory;
 @class OperationFactoriesAssembly;
-
-#import "ServiceComponents.h"
+@class SystemInfrastructureAssembly;
+@class PonsomizerAssembly;
 
 @interface ServiceComponentsAssembly : TyphoonAssembly <ServiceComponents, RamblerInitialAssembly>
 @property (nonatomic, strong, readonly) TyphoonAssembly <ResponseMappersFactory> *responseMappersFactory;
-@property (nonatomic, strong) OperationFactoriesAssembly *operationFactoriesAssembly;
+@property (nonatomic, strong, readonly) OperationFactoriesAssembly *operationFactoriesAssembly;
+@property (nonatomic, strong, readonly) SystemInfrastructureAssembly *systemInfrastructureAssembly;
+@property (nonatomic, strong, readonly) PonsomizerAssembly *ponsomizerAssembly;
 @end

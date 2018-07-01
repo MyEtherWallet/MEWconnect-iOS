@@ -19,8 +19,8 @@
 - (void) configureModule {
 }
 
-- (void) configurateForCreatedWalletWithAddress:(NSString *)address {
-  [self.router openWalletWithAddress:address animated:NO];
+- (void) configurateForCreatedWallet {
+  [self.router openWalletAnimated:NO];
 }
 
 #pragma mark - StartViewOutput

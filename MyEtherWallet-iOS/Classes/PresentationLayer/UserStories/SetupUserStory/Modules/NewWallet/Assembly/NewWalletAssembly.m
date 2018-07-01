@@ -9,6 +9,7 @@
 @import ViperMcFlurry;
 
 #import "ServiceComponents.h"
+#import "PonsomizerAssembly.h"
 
 #import "NewWalletAssembly.h"
 
@@ -34,10 +35,12 @@
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(output)
                                                 with:[self presenterNewWallet]];
-                          [definition injectProperty:@selector(walletService)
-                                                with:[self.serviceComponents MEWWallet]];
-                          [definition injectProperty:@selector(tokensService)
-                                                with:[self.serviceComponents tokensService]];
+                          [definition injectProperty:@selector(blockchainNetworkService)
+                                                with:[self.serviceComponents blockchainNetworkService]];
+                          [definition injectProperty:@selector(accountsService)
+                                                with:[self.serviceComponents accountsService]];
+                          [definition injectProperty:@selector(ponsomizer)
+                                                with:[self.ponsomizerAssembly ponsomizer]];
                         }];
 }
 

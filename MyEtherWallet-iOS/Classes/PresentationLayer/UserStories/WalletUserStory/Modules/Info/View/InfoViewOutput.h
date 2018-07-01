@@ -17,4 +17,6 @@
 - (void) myEtherWalletComAction;
 - (void) resetWalletAction;
 - (void) resetWalletConfirmedAction;
+- (void) mainnetAction;
+- (void) ropstenAction;
 @end

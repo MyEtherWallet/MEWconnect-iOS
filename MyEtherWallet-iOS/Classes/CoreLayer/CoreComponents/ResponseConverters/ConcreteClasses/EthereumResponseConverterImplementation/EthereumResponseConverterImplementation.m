@@ -14,14 +14,17 @@ static NSString *const kEthereumResponseBalance   = @"balance";
 static NSString *const kEthereumResponseDecimals  = @"decimals";
 static NSString *const kEthereumResponseName      = @"name";
 static NSString *const kEthereumResponseSymbol    = @"symbol";
+static NSString *const kEthereumResponseAddress   = @"address";
 
 static NSString *const kEthereumResponseResult    = @"result";
+static NSString *const kEthereumResponseId        = @"id";
 
 @implementation EthereumResponseConverterImplementation
 
 - (id)convertFromResponse:(id)response error:(NSError *__autoreleasing *)error {
   NSDecimalNumber *balance = [response[kEthereumResponseResult] decimalNumberFromHexRepresentation];
-  NSDictionary *converted = @{kEthereumResponseBalance: balance,
+  NSDictionary *converted = @{kEthereumResponseAddress: response[kEthereumResponseId],
+                              kEthereumResponseBalance: balance,
                               kEthereumResponseDecimals: @18,
                               kEthereumResponseSymbol: @"ETH",
                               kEthereumResponseName: @"Ethereum"};

@@ -20,16 +20,16 @@ static NSString *const kNewWalletToHomeUnwindSegueIdentifier = @"NewWalletToHome
 
 #pragma mark - NewWalletRouterInput
 
-- (void) unwindToWalletWithAddress:(NSString *)address {
+- (void) unwindToWallet {
   [[self.transitionHandler openModuleUsingSegue:kNewWalletToHomeUnwindSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<HomeModuleInput> moduleInput) {
-    [moduleInput configureModuleWithAddress:address];
+    [moduleInput configureModule];
     return nil;
   }];
 }
 
-- (void) unwindToStartWithAddress:(NSString *)address {
+- (void) unwindToStart {
   [[self.transitionHandler openModuleUsingSegue:kNewWalletToStartUnwindSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<StartModuleInput> moduleInput) {
-    [moduleInput configurateForCreatedWalletWithAddress:address];
+    [moduleInput configurateForCreatedWallet];
     return nil;
   }];
 }

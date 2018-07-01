@@ -98,6 +98,12 @@
 		52A492997EC1ED6D0217C3EC /* SettingsInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8F84C1AD26C649330ADDB3 /* SettingsInteractor.m */; };
 		538EECD03A2A38FF1F86B050 /* BackupWordsAssemblyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E3199023221C9E8C03338E /* BackupWordsAssemblyTests.m */; };
 		55E9071D8FEDC76B564FE729 /* ForgotPasswordRouterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BBC4954EDAA93206F8A803 /* ForgotPasswordRouterTests.m */; };
+		560A866520E6539F00046B53 /* KeychainServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 560A866420E6539F00046B53 /* KeychainServiceImplementation.m */; };
+		560A866F20E65C5F00046B53 /* CoreDataConfiguratorImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 560A866E20E65C5F00046B53 /* CoreDataConfiguratorImplementation.m */; };
+		560A867520E681E700046B53 /* KeychainItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 560A867420E681E700046B53 /* KeychainItemModel.m */; };
+		560A867920E6EF9600046B53 /* AccountsBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 560A867820E6EF9600046B53 /* AccountsBody.m */; };
+		560A867D20E6F0C700046B53 /* AccountsOperationFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 560A867C20E6F0C700046B53 /* AccountsOperationFactory.m */; };
+		560A868120E6F40F00046B53 /* BalanceBodyTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 560A868020E6F40F00046B53 /* BalanceBodyTransformer.m */; };
 		560CAFF2209B0EC500BFF59C /* Web3Wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560CAFF1209B0EC500BFF59C /* Web3Wrapper.swift */; };
 		560CAFFF209B428500BFF59C /* MEWConnectCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 560CAFFE209B428500BFF59C /* MEWConnectCommand.m */; };
 		560CB005209B44A500BFF59C /* MEWMappingProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 560CB004209B44A500BFF59C /* MEWMappingProvider.m */; };
@@ -105,10 +111,6 @@
 		560CB013209B504700BFF59C /* MEWConnectResponseMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 560CB012209B504700BFF59C /* MEWConnectResponseMapper.m */; };
 		560CB01F209B542A00BFF59C /* ResponseMappersAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 560CB01E209B542A00BFF59C /* ResponseMappersAssembly.m */; };
 		560CB022209B6CB200BFF59C /* MEWConnectResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 560CB021209B6CB200BFF59C /* MEWConnectResponse.m */; };
-		560D76E420B47D73009A3D6D /* TokenPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D76DA20B47D73009A3D6D /* TokenPlainObject.m */; };
-		560D76E520B47D73009A3D6D /* _TokenPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D76DD20B47D73009A3D6D /* _TokenPlainObject.m */; };
-		560D76E620B47D73009A3D6D /* _TokenModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D76E020B47D73009A3D6D /* _TokenModelObject.m */; };
-		560D76E720B47D73009A3D6D /* TokenModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D76E320B47D73009A3D6D /* TokenModelObject.m */; };
 		560D76EC20B48213009A3D6D /* PonsomizerImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D76EB20B48213009A3D6D /* PonsomizerImplementation.m */; };
 		560D76F020B48296009A3D6D /* PonsomizerAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D76EF20B48296009A3D6D /* PonsomizerAssembly.m */; };
 		560D76F820B48487009A3D6D /* CacheTransactionBatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D76F720B48487009A3D6D /* CacheTransactionBatch.m */; };
@@ -145,6 +147,24 @@
 		564387A020A4932A0017790F /* UIColor+HSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5643879F20A4932A0017790F /* UIColor+HSL.swift */; };
 		564387A320A496290017790F /* Array+UInt32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564387A220A496290017790F /* Array+UInt32.swift */; };
 		564387A620A4A9820017790F /* CGPoint+RandSeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564387A520A4A9820017790F /* CGPoint+RandSeed.swift */; };
+		564952C120E3DEE300CF2348 /* BlockchainNetworkServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 564952C020E3DEE300CF2348 /* BlockchainNetworkServiceImplementation.m */; };
+		564952E720E3EFEB00CF2348 /* AccountModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 564952C520E3EFEA00CF2348 /* AccountModelObject.m */; };
+		564952E820E3EFEB00CF2348 /* FiatPriceModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 564952C720E3EFEA00CF2348 /* FiatPriceModelObject.m */; };
+		564952E920E3EFEB00CF2348 /* NetworkModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 564952C920E3EFEA00CF2348 /* NetworkModelObject.m */; };
+		564952EA20E3EFEB00CF2348 /* TokenModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 564952CB20E3EFEA00CF2348 /* TokenModelObject.m */; };
+		564952EB20E3EFEB00CF2348 /* AccountPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 564952CE20E3EFEA00CF2348 /* AccountPlainObject.m */; };
+		564952EC20E3EFEB00CF2348 /* FiatPricePlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 564952D020E3EFEA00CF2348 /* FiatPricePlainObject.m */; };
+		564952ED20E3EFEB00CF2348 /* NetworkPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 564952D220E3EFEA00CF2348 /* NetworkPlainObject.m */; };
+		564952EE20E3EFEB00CF2348 /* TokenPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 564952D420E3EFEA00CF2348 /* TokenPlainObject.m */; };
+		564952EF20E3EFEB00CF2348 /* _AccountPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 564952D720E3EFEA00CF2348 /* _AccountPlainObject.m */; };
+		564952F020E3EFEB00CF2348 /* _FiatPricePlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 564952D920E3EFEA00CF2348 /* _FiatPricePlainObject.m */; };
+		564952F120E3EFEB00CF2348 /* _NetworkPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 564952DB20E3EFEA00CF2348 /* _NetworkPlainObject.m */; };
+		564952F220E3EFEB00CF2348 /* _TokenPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 564952DD20E3EFEA00CF2348 /* _TokenPlainObject.m */; };
+		564952F320E3EFEB00CF2348 /* _AccountModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 564952E020E3EFEB00CF2348 /* _AccountModelObject.m */; };
+		564952F420E3EFEB00CF2348 /* _FiatPriceModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 564952E220E3EFEB00CF2348 /* _FiatPriceModelObject.m */; };
+		564952F520E3EFEB00CF2348 /* _NetworkModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 564952E420E3EFEB00CF2348 /* _NetworkModelObject.m */; };
+		564952F620E3EFEB00CF2348 /* _TokenModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 564952E620E3EFEB00CF2348 /* _TokenModelObject.m */; };
+		564952FB20E3F20D00CF2348 /* AccountsServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 564952FA20E3F20D00CF2348 /* AccountsServiceImplementation.m */; };
 		565FFA4F2081838F00755B6C /* TyphoonAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 565FFA4E2081838F00755B6C /* TyphoonAppDelegate.m */; };
 		5668E4DE2083D9220070A402 /* ApplicationAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E4DD2083D9220070A402 /* ApplicationAssembly.m */; };
 		5668E4DF2083D9220070A402 /* ApplicationAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E4DD2083D9220070A402 /* ApplicationAssembly.m */; };
@@ -569,6 +589,20 @@
 		515D2B05CC2A2949F2A326C1 /* PasswordRouter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PasswordRouter.m; sourceTree = "<group>"; };
 		51E74F1346EADB6459C4EF97 /* BackupConfirmationInteractorInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BackupConfirmationInteractorInput.h; sourceTree = "<group>"; };
 		54A82E0249F20A62A3D82E3B /* BackupWordsModuleInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BackupWordsModuleInput.h; sourceTree = "<group>"; };
+		560A866320E6539F00046B53 /* KeychainServiceImplementation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainServiceImplementation.h; sourceTree = "<group>"; };
+		560A866420E6539F00046B53 /* KeychainServiceImplementation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeychainServiceImplementation.m; sourceTree = "<group>"; };
+		560A866620E653A700046B53 /* KeychainService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainService.h; sourceTree = "<group>"; };
+		560A866D20E65C5F00046B53 /* CoreDataConfiguratorImplementation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataConfiguratorImplementation.h; sourceTree = "<group>"; };
+		560A866E20E65C5F00046B53 /* CoreDataConfiguratorImplementation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataConfiguratorImplementation.m; sourceTree = "<group>"; };
+		560A867020E65C6400046B53 /* CoreDataConfigurator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataConfigurator.h; sourceTree = "<group>"; };
+		560A867320E681E700046B53 /* KeychainItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainItemModel.h; sourceTree = "<group>"; };
+		560A867420E681E700046B53 /* KeychainItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeychainItemModel.m; sourceTree = "<group>"; };
+		560A867720E6EF9600046B53 /* AccountsBody.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountsBody.h; sourceTree = "<group>"; };
+		560A867820E6EF9600046B53 /* AccountsBody.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountsBody.m; sourceTree = "<group>"; };
+		560A867B20E6F0C700046B53 /* AccountsOperationFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountsOperationFactory.h; sourceTree = "<group>"; };
+		560A867C20E6F0C700046B53 /* AccountsOperationFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountsOperationFactory.m; sourceTree = "<group>"; };
+		560A867F20E6F40F00046B53 /* BalanceBodyTransformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BalanceBodyTransformer.h; sourceTree = "<group>"; };
+		560A868020E6F40F00046B53 /* BalanceBodyTransformer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BalanceBodyTransformer.m; sourceTree = "<group>"; };
 		560CAFF1209B0EC500BFF59C /* Web3Wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Web3Wrapper.swift; sourceTree = "<group>"; };
 		560CAFFD209B428500BFF59C /* MEWConnectCommand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MEWConnectCommand.h; sourceTree = "<group>"; };
 		560CAFFE209B428500BFF59C /* MEWConnectCommand.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MEWConnectCommand.m; sourceTree = "<group>"; };
@@ -588,14 +622,6 @@
 		560CB020209B6CB200BFF59C /* MEWConnectResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MEWConnectResponse.h; sourceTree = "<group>"; };
 		560CB021209B6CB200BFF59C /* MEWConnectResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MEWConnectResponse.m; sourceTree = "<group>"; };
 		560CB025209B6D0000BFF59C /* MEWConnectCommandTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MEWConnectCommandTypes.h; sourceTree = "<group>"; };
-		560D76D920B47D73009A3D6D /* TokenPlainObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TokenPlainObject.h; sourceTree = "<group>"; };
-		560D76DA20B47D73009A3D6D /* TokenPlainObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TokenPlainObject.m; sourceTree = "<group>"; };
-		560D76DC20B47D73009A3D6D /* _TokenPlainObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _TokenPlainObject.h; sourceTree = "<group>"; };
-		560D76DD20B47D73009A3D6D /* _TokenPlainObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _TokenPlainObject.m; sourceTree = "<group>"; };
-		560D76DF20B47D73009A3D6D /* _TokenModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _TokenModelObject.h; sourceTree = "<group>"; };
-		560D76E020B47D73009A3D6D /* _TokenModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _TokenModelObject.m; sourceTree = "<group>"; };
-		560D76E220B47D73009A3D6D /* TokenModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TokenModelObject.h; sourceTree = "<group>"; };
-		560D76E320B47D73009A3D6D /* TokenModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TokenModelObject.m; sourceTree = "<group>"; };
 		560D76E920B481FE009A3D6D /* Ponsomizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ponsomizer.h; sourceTree = "<group>"; };
 		560D76EA20B48213009A3D6D /* PonsomizerImplementation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PonsomizerImplementation.h; sourceTree = "<group>"; };
 		560D76EB20B48213009A3D6D /* PonsomizerImplementation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PonsomizerImplementation.m; sourceTree = "<group>"; };
@@ -657,6 +683,45 @@
 		5643879F20A4932A0017790F /* UIColor+HSL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+HSL.swift"; sourceTree = "<group>"; };
 		564387A220A496290017790F /* Array+UInt32.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+UInt32.swift"; sourceTree = "<group>"; };
 		564387A520A4A9820017790F /* CGPoint+RandSeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+RandSeed.swift"; sourceTree = "<group>"; };
+		564952BE20E3DEDA00CF2348 /* BlockchainNetworkService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockchainNetworkService.h; sourceTree = "<group>"; };
+		564952BF20E3DEE300CF2348 /* BlockchainNetworkServiceImplementation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockchainNetworkServiceImplementation.h; sourceTree = "<group>"; };
+		564952C020E3DEE300CF2348 /* BlockchainNetworkServiceImplementation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlockchainNetworkServiceImplementation.m; sourceTree = "<group>"; };
+		564952C220E3DFD500CF2348 /* BlockchainNetworkTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockchainNetworkTypes.h; sourceTree = "<group>"; };
+		564952C420E3EFEA00CF2348 /* AccountModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountModelObject.h; sourceTree = "<group>"; };
+		564952C520E3EFEA00CF2348 /* AccountModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountModelObject.m; sourceTree = "<group>"; };
+		564952C620E3EFEA00CF2348 /* FiatPriceModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiatPriceModelObject.h; sourceTree = "<group>"; };
+		564952C720E3EFEA00CF2348 /* FiatPriceModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiatPriceModelObject.m; sourceTree = "<group>"; };
+		564952C820E3EFEA00CF2348 /* NetworkModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkModelObject.h; sourceTree = "<group>"; };
+		564952C920E3EFEA00CF2348 /* NetworkModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkModelObject.m; sourceTree = "<group>"; };
+		564952CA20E3EFEA00CF2348 /* TokenModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TokenModelObject.h; sourceTree = "<group>"; };
+		564952CB20E3EFEA00CF2348 /* TokenModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TokenModelObject.m; sourceTree = "<group>"; };
+		564952CD20E3EFEA00CF2348 /* AccountPlainObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountPlainObject.h; sourceTree = "<group>"; };
+		564952CE20E3EFEA00CF2348 /* AccountPlainObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountPlainObject.m; sourceTree = "<group>"; };
+		564952CF20E3EFEA00CF2348 /* FiatPricePlainObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiatPricePlainObject.h; sourceTree = "<group>"; };
+		564952D020E3EFEA00CF2348 /* FiatPricePlainObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiatPricePlainObject.m; sourceTree = "<group>"; };
+		564952D120E3EFEA00CF2348 /* NetworkPlainObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkPlainObject.h; sourceTree = "<group>"; };
+		564952D220E3EFEA00CF2348 /* NetworkPlainObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkPlainObject.m; sourceTree = "<group>"; };
+		564952D320E3EFEA00CF2348 /* TokenPlainObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TokenPlainObject.h; sourceTree = "<group>"; };
+		564952D420E3EFEA00CF2348 /* TokenPlainObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TokenPlainObject.m; sourceTree = "<group>"; };
+		564952D620E3EFEA00CF2348 /* _AccountPlainObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _AccountPlainObject.h; sourceTree = "<group>"; };
+		564952D720E3EFEA00CF2348 /* _AccountPlainObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _AccountPlainObject.m; sourceTree = "<group>"; };
+		564952D820E3EFEA00CF2348 /* _FiatPricePlainObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _FiatPricePlainObject.h; sourceTree = "<group>"; };
+		564952D920E3EFEA00CF2348 /* _FiatPricePlainObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _FiatPricePlainObject.m; sourceTree = "<group>"; };
+		564952DA20E3EFEA00CF2348 /* _NetworkPlainObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _NetworkPlainObject.h; sourceTree = "<group>"; };
+		564952DB20E3EFEA00CF2348 /* _NetworkPlainObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _NetworkPlainObject.m; sourceTree = "<group>"; };
+		564952DC20E3EFEA00CF2348 /* _TokenPlainObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _TokenPlainObject.h; sourceTree = "<group>"; };
+		564952DD20E3EFEA00CF2348 /* _TokenPlainObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _TokenPlainObject.m; sourceTree = "<group>"; };
+		564952DF20E3EFEB00CF2348 /* _AccountModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _AccountModelObject.h; sourceTree = "<group>"; };
+		564952E020E3EFEB00CF2348 /* _AccountModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _AccountModelObject.m; sourceTree = "<group>"; };
+		564952E120E3EFEB00CF2348 /* _FiatPriceModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _FiatPriceModelObject.h; sourceTree = "<group>"; };
+		564952E220E3EFEB00CF2348 /* _FiatPriceModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _FiatPriceModelObject.m; sourceTree = "<group>"; };
+		564952E320E3EFEB00CF2348 /* _NetworkModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _NetworkModelObject.h; sourceTree = "<group>"; };
+		564952E420E3EFEB00CF2348 /* _NetworkModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _NetworkModelObject.m; sourceTree = "<group>"; };
+		564952E520E3EFEB00CF2348 /* _TokenModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _TokenModelObject.h; sourceTree = "<group>"; };
+		564952E620E3EFEB00CF2348 /* _TokenModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _TokenModelObject.m; sourceTree = "<group>"; };
+		564952F820E3F20400CF2348 /* AccountsService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountsService.h; sourceTree = "<group>"; };
+		564952F920E3F20D00CF2348 /* AccountsServiceImplementation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountsServiceImplementation.h; sourceTree = "<group>"; };
+		564952FA20E3F20D00CF2348 /* AccountsServiceImplementation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountsServiceImplementation.m; sourceTree = "<group>"; };
 		565FFA4D2081838F00755B6C /* TyphoonAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TyphoonAppDelegate.h; sourceTree = "<group>"; };
 		565FFA4E2081838F00755B6C /* TyphoonAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TyphoonAppDelegate.m; sourceTree = "<group>"; };
 		566334FB37EDE9EA46493776 /* ConfirmPasswordInteractorTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ConfirmPasswordInteractorTests.m; sourceTree = "<group>"; };
@@ -1980,14 +2045,79 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
+		560A866220E6539200046B53 /* KeychainService */ = {
+			isa = PBXGroup;
+			children = (
+				560A866620E653A700046B53 /* KeychainService.h */,
+				560A866320E6539F00046B53 /* KeychainServiceImplementation.h */,
+				560A866420E6539F00046B53 /* KeychainServiceImplementation.m */,
+			);
+			path = KeychainService;
+			sourceTree = "<group>";
+		};
+		560A866820E65C1F00046B53 /* CoreDataConfigurator */ = {
+			isa = PBXGroup;
+			children = (
+				560A867020E65C6400046B53 /* CoreDataConfigurator.h */,
+				560A866D20E65C5F00046B53 /* CoreDataConfiguratorImplementation.h */,
+				560A866E20E65C5F00046B53 /* CoreDataConfiguratorImplementation.m */,
+			);
+			path = CoreDataConfigurator;
+			sourceTree = "<group>";
+		};
+		560A867120E681C400046B53 /* MEWcryptoMessage */ = {
+			isa = PBXGroup;
+			children = (
+				56AE728120D711350047D51F /* MEWcryptoMessage.h */,
+				56AE728220D711350047D51F /* MEWcryptoMessage.m */,
+			);
+			path = MEWcryptoMessage;
+			sourceTree = "<group>";
+		};
+		560A867220E681CF00046B53 /* KeychainItemModel */ = {
+			isa = PBXGroup;
+			children = (
+				560A867320E681E700046B53 /* KeychainItemModel.h */,
+				560A867420E681E700046B53 /* KeychainItemModel.m */,
+			);
+			path = KeychainItemModel;
+			sourceTree = "<group>";
+		};
+		560A867620E6EF8B00046B53 /* AccountsBody */ = {
+			isa = PBXGroup;
+			children = (
+				560A867720E6EF9600046B53 /* AccountsBody.h */,
+				560A867820E6EF9600046B53 /* AccountsBody.m */,
+			);
+			path = AccountsBody;
+			sourceTree = "<group>";
+		};
+		560A867A20E6F0B400046B53 /* AccountsOperationFactory */ = {
+			isa = PBXGroup;
+			children = (
+				560A867B20E6F0C700046B53 /* AccountsOperationFactory.h */,
+				560A867C20E6F0C700046B53 /* AccountsOperationFactory.m */,
+			);
+			path = AccountsOperationFactory;
+			sourceTree = "<group>";
+		};
+		560A867E20E6F40100046B53 /* BalanceBodyTransformer */ = {
+			isa = PBXGroup;
+			children = (
+				560A867F20E6F40F00046B53 /* BalanceBodyTransformer.h */,
+				560A868020E6F40F00046B53 /* BalanceBodyTransformer.m */,
+			);
+			path = BalanceBodyTransformer;
+			sourceTree = "<group>";
+		};
 		560CAFFC209B426A00BFF59C /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				560D76E820B481F3009A3D6D /* Ponsomizer */,
-				560D76DE20B47D73009A3D6D /* GeneratedMO */,
-				560D76DB20B47D73009A3D6D /* GeneratedPONSO */,
-				560D76E120B47D73009A3D6D /* ManagedObjects */,
-				560D76D820B47D73009A3D6D /* PlainObjects */,
+				564952DE20E3EFEB00CF2348 /* GeneratedMO */,
+				564952D520E3EFEA00CF2348 /* GeneratedPONSO */,
+				564952C320E3EFEA00CF2348 /* ManagedObjects */,
+				564952CC20E3EFEA00CF2348 /* PlainObjects */,
 				56FB3A2C20B45726007776C8 /* CoreDataModel */,
 				560CB024209B6CEA00BFF59C /* ConcreteClasses */,
 				560CB023209B6CD000BFF59C /* Enumerators */,
@@ -2142,42 +2272,6 @@
 				56FB3A0020B35ED0007776C8 /* MEWConnect */,
 			);
 			path = ConcreteClasses;
-			sourceTree = "<group>";
-		};
-		560D76D820B47D73009A3D6D /* PlainObjects */ = {
-			isa = PBXGroup;
-			children = (
-				560D76D920B47D73009A3D6D /* TokenPlainObject.h */,
-				560D76DA20B47D73009A3D6D /* TokenPlainObject.m */,
-			);
-			path = PlainObjects;
-			sourceTree = "<group>";
-		};
-		560D76DB20B47D73009A3D6D /* GeneratedPONSO */ = {
-			isa = PBXGroup;
-			children = (
-				560D76DC20B47D73009A3D6D /* _TokenPlainObject.h */,
-				560D76DD20B47D73009A3D6D /* _TokenPlainObject.m */,
-			);
-			path = GeneratedPONSO;
-			sourceTree = "<group>";
-		};
-		560D76DE20B47D73009A3D6D /* GeneratedMO */ = {
-			isa = PBXGroup;
-			children = (
-				560D76DF20B47D73009A3D6D /* _TokenModelObject.h */,
-				560D76E020B47D73009A3D6D /* _TokenModelObject.m */,
-			);
-			path = GeneratedMO;
-			sourceTree = "<group>";
-		};
-		560D76E120B47D73009A3D6D /* ManagedObjects */ = {
-			isa = PBXGroup;
-			children = (
-				560D76E220B47D73009A3D6D /* TokenModelObject.h */,
-				560D76E320B47D73009A3D6D /* TokenModelObject.m */,
-			);
-			path = ManagedObjects;
 			sourceTree = "<group>";
 		};
 		560D76E820B481F3009A3D6D /* Ponsomizer */ = {
@@ -2569,9 +2663,91 @@
 			path = "CGPoint+RandSeed";
 			sourceTree = "<group>";
 		};
+		564952BD20E3DEB700CF2348 /* BlockchainNetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				564952BE20E3DEDA00CF2348 /* BlockchainNetworkService.h */,
+				564952BF20E3DEE300CF2348 /* BlockchainNetworkServiceImplementation.h */,
+				564952C020E3DEE300CF2348 /* BlockchainNetworkServiceImplementation.m */,
+				564952C220E3DFD500CF2348 /* BlockchainNetworkTypes.h */,
+			);
+			path = BlockchainNetworkService;
+			sourceTree = "<group>";
+		};
+		564952C320E3EFEA00CF2348 /* ManagedObjects */ = {
+			isa = PBXGroup;
+			children = (
+				564952C420E3EFEA00CF2348 /* AccountModelObject.h */,
+				564952C520E3EFEA00CF2348 /* AccountModelObject.m */,
+				564952C620E3EFEA00CF2348 /* FiatPriceModelObject.h */,
+				564952C720E3EFEA00CF2348 /* FiatPriceModelObject.m */,
+				564952C820E3EFEA00CF2348 /* NetworkModelObject.h */,
+				564952C920E3EFEA00CF2348 /* NetworkModelObject.m */,
+				564952CA20E3EFEA00CF2348 /* TokenModelObject.h */,
+				564952CB20E3EFEA00CF2348 /* TokenModelObject.m */,
+			);
+			path = ManagedObjects;
+			sourceTree = "<group>";
+		};
+		564952CC20E3EFEA00CF2348 /* PlainObjects */ = {
+			isa = PBXGroup;
+			children = (
+				564952CD20E3EFEA00CF2348 /* AccountPlainObject.h */,
+				564952CE20E3EFEA00CF2348 /* AccountPlainObject.m */,
+				564952CF20E3EFEA00CF2348 /* FiatPricePlainObject.h */,
+				564952D020E3EFEA00CF2348 /* FiatPricePlainObject.m */,
+				564952D120E3EFEA00CF2348 /* NetworkPlainObject.h */,
+				564952D220E3EFEA00CF2348 /* NetworkPlainObject.m */,
+				564952D320E3EFEA00CF2348 /* TokenPlainObject.h */,
+				564952D420E3EFEA00CF2348 /* TokenPlainObject.m */,
+			);
+			path = PlainObjects;
+			sourceTree = "<group>";
+		};
+		564952D520E3EFEA00CF2348 /* GeneratedPONSO */ = {
+			isa = PBXGroup;
+			children = (
+				564952D620E3EFEA00CF2348 /* _AccountPlainObject.h */,
+				564952D720E3EFEA00CF2348 /* _AccountPlainObject.m */,
+				564952D820E3EFEA00CF2348 /* _FiatPricePlainObject.h */,
+				564952D920E3EFEA00CF2348 /* _FiatPricePlainObject.m */,
+				564952DA20E3EFEA00CF2348 /* _NetworkPlainObject.h */,
+				564952DB20E3EFEA00CF2348 /* _NetworkPlainObject.m */,
+				564952DC20E3EFEA00CF2348 /* _TokenPlainObject.h */,
+				564952DD20E3EFEA00CF2348 /* _TokenPlainObject.m */,
+			);
+			path = GeneratedPONSO;
+			sourceTree = "<group>";
+		};
+		564952DE20E3EFEB00CF2348 /* GeneratedMO */ = {
+			isa = PBXGroup;
+			children = (
+				564952DF20E3EFEB00CF2348 /* _AccountModelObject.h */,
+				564952E020E3EFEB00CF2348 /* _AccountModelObject.m */,
+				564952E120E3EFEB00CF2348 /* _FiatPriceModelObject.h */,
+				564952E220E3EFEB00CF2348 /* _FiatPriceModelObject.m */,
+				564952E320E3EFEB00CF2348 /* _NetworkModelObject.h */,
+				564952E420E3EFEB00CF2348 /* _NetworkModelObject.m */,
+				564952E520E3EFEB00CF2348 /* _TokenModelObject.h */,
+				564952E620E3EFEB00CF2348 /* _TokenModelObject.m */,
+			);
+			path = GeneratedMO;
+			sourceTree = "<group>";
+		};
+		564952F720E3F18E00CF2348 /* AccountsService */ = {
+			isa = PBXGroup;
+			children = (
+				564952F820E3F20400CF2348 /* AccountsService.h */,
+				564952F920E3F20D00CF2348 /* AccountsServiceImplementation.h */,
+				564952FA20E3F20D00CF2348 /* AccountsServiceImplementation.m */,
+			);
+			path = AccountsService;
+			sourceTree = "<group>";
+		};
 		565FFA492081836800755B6C /* ApplicationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				560A866820E65C1F00046B53 /* CoreDataConfigurator */,
 				560D76F120B48468009A3D6D /* FetchedResultsController */,
 				5668E4F72083DC290070A402 /* ApplicationConfigurator */,
 				5668E4F22083DC120070A402 /* ThirdPartiesConfigurator */,
@@ -3258,6 +3434,9 @@
 		56AC9435208F76DF00E5BC2C /* ConcreteServices */ = {
 			isa = PBXGroup;
 			children = (
+				560A866220E6539200046B53 /* KeychainService */,
+				564952BD20E3DEB700CF2348 /* BlockchainNetworkService */,
+				564952F720E3F18E00CF2348 /* AccountsService */,
 				56FB391120B1A08A007776C8 /* TokensService */,
 				56FB38FE20B0B570007776C8 /* CameraService */,
 				56FB38FD20B0B55D007776C8 /* MEW */,
@@ -3373,8 +3552,8 @@
 		56AE728020D711190047D51F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				56AE728120D711350047D51F /* MEWcryptoMessage.h */,
-				56AE728220D711350047D51F /* MEWcryptoMessage.m */,
+				560A867220E681CF00046B53 /* KeychainItemModel */,
+				560A867120E681C400046B53 /* MEWcryptoMessage */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -3870,6 +4049,7 @@
 		56FB394520B1A8BB007776C8 /* OperationFactories */ = {
 			isa = PBXGroup;
 			children = (
+				560A867A20E6F0B400046B53 /* AccountsOperationFactory */,
 				56FB394620B1A8C5007776C8 /* TokensOperationFactory */,
 			);
 			path = OperationFactories;
@@ -4376,6 +4556,7 @@
 		56FB39F420B35994007776C8 /* ConcreteClasses */ = {
 			isa = PBXGroup;
 			children = (
+				560A867E20E6F40100046B53 /* BalanceBodyTransformer */,
 				56FB39F820B359D4007776C8 /* ContractsBodyTransformer */,
 			);
 			path = ConcreteClasses;
@@ -4466,6 +4647,7 @@
 		56FB3A1620B39197007776C8 /* ObjectBodies */ = {
 			isa = PBXGroup;
 			children = (
+				560A867620E6EF8B00046B53 /* AccountsBody */,
 				56FB3A1720B3919F007776C8 /* TokensBody */,
 			);
 			path = ObjectBodies;
@@ -6600,7 +6782,6 @@
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/EasyMapping/EasyMapping.framework",
 				"${BUILT_PRODUCTS_DIR}/GSKStretchyHeaderView/GSKStretchyHeaderView.framework",
-				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/M13Checkbox/M13Checkbox.framework",
 				"${BUILT_PRODUCTS_DIR}/MagicalRecord/MagicalRecord.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimbus/Nimbus.framework",
@@ -6614,11 +6795,8 @@
 				"${BUILT_PRODUCTS_DIR}/TTTAttributedLabel/TTTAttributedLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/TrezorCrypto/TrezorCrypto.framework",
 				"${BUILT_PRODUCTS_DIR}/Typhoon/Typhoon.framework",
+				"${BUILT_PRODUCTS_DIR}/UICKeyChainStore/UICKeyChainStore.framework",
 				"${BUILT_PRODUCTS_DIR}/ViperMcFlurry/ViperMcFlurry.framework",
-				"${PODS_ROOT}/VirgilCrypto/VSCCrypto/PrebuiltFramework/iOS/VSCCrypto.framework",
-				"${BUILT_PRODUCTS_DIR}/VirgilCrypto/VirgilCrypto.framework",
-				"${BUILT_PRODUCTS_DIR}/VirgilCryptoAPI/VirgilCryptoAPI.framework",
-				"${BUILT_PRODUCTS_DIR}/VirgilCryptoApiImpl/VirgilCryptoApiImpl.framework",
 				"${PODS_ROOT}/WebRTC/WebRTC.framework",
 				"${BUILT_PRODUCTS_DIR}/YLProgressBar/YLProgressBar.framework",
 				"${BUILT_PRODUCTS_DIR}/libextobjc/libextobjc.framework",
@@ -6639,7 +6817,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EasyMapping.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GSKStretchyHeaderView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/M13Checkbox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MagicalRecord.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimbus.framework",
@@ -6653,11 +6830,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTTAttributedLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TrezorCrypto.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Typhoon.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UICKeyChainStore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ViperMcFlurry.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VSCCrypto.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VirgilCrypto.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VirgilCryptoAPI.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VirgilCryptoApiImpl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebRTC.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YLProgressBar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libextobjc.framework",
@@ -6719,7 +6893,6 @@
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/EasyMapping/EasyMapping.framework",
 				"${BUILT_PRODUCTS_DIR}/GSKStretchyHeaderView/GSKStretchyHeaderView.framework",
-				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/M13Checkbox/M13Checkbox.framework",
 				"${BUILT_PRODUCTS_DIR}/MagicalRecord/MagicalRecord.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimbus/Nimbus.framework",
@@ -6733,11 +6906,8 @@
 				"${BUILT_PRODUCTS_DIR}/TTTAttributedLabel/TTTAttributedLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/TrezorCrypto/TrezorCrypto.framework",
 				"${BUILT_PRODUCTS_DIR}/Typhoon/Typhoon.framework",
+				"${BUILT_PRODUCTS_DIR}/UICKeyChainStore/UICKeyChainStore.framework",
 				"${BUILT_PRODUCTS_DIR}/ViperMcFlurry/ViperMcFlurry.framework",
-				"${PODS_ROOT}/VirgilCrypto/VSCCrypto/PrebuiltFramework/iOS/VSCCrypto.framework",
-				"${BUILT_PRODUCTS_DIR}/VirgilCrypto/VirgilCrypto.framework",
-				"${BUILT_PRODUCTS_DIR}/VirgilCryptoAPI/VirgilCryptoAPI.framework",
-				"${BUILT_PRODUCTS_DIR}/VirgilCryptoApiImpl/VirgilCryptoApiImpl.framework",
 				"${PODS_ROOT}/WebRTC/WebRTC.framework",
 				"${BUILT_PRODUCTS_DIR}/YLProgressBar/YLProgressBar.framework",
 				"${BUILT_PRODUCTS_DIR}/libextobjc/libextobjc.framework",
@@ -6759,7 +6929,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EasyMapping.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GSKStretchyHeaderView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/M13Checkbox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MagicalRecord.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimbus.framework",
@@ -6773,11 +6942,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTTAttributedLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TrezorCrypto.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Typhoon.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UICKeyChainStore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ViperMcFlurry.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VSCCrypto.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VirgilCrypto.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VirgilCryptoAPI.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VirgilCryptoApiImpl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebRTC.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YLProgressBar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libextobjc.framework",
@@ -6831,13 +6997,19 @@
 				56FB398F20B227EC007776C8 /* ResponseDeserializersAssembly.m in Sources */,
 				56FB39A320B22A47007776C8 /* ResponseConverterAssembly.m in Sources */,
 				56A29C9E20E0627200D05FF1 /* InfoEmptyTableViewCell.m in Sources */,
+				564952F120E3EFEB00CF2348 /* _NetworkPlainObject.m in Sources */,
 				56C45E9D20A35A00001261A2 /* CardView.m in Sources */,
 				56AC9453208FABDF00E5BC2C /* NSData+SECP256K1.m in Sources */,
 				5668E4FA2083DC300070A402 /* ApplicationConfiguratorImplementation.m in Sources */,
 				72A2267B34B867AC64D35523 /* StartAssembly.m in Sources */,
+				560A866F20E65C5F00046B53 /* CoreDataConfiguratorImplementation.m in Sources */,
+				560A868120E6F40F00046B53 /* BalanceBodyTransformer.m in Sources */,
+				560A866520E6539F00046B53 /* KeychainServiceImplementation.m in Sources */,
+				564952F020E3EFEB00CF2348 /* _FiatPricePlainObject.m in Sources */,
 				56FB38F720B092C3007776C8 /* MEWConnectFacadeImplementation.m in Sources */,
 				560D76FE20B48498009A3D6D /* CacheRequest.m in Sources */,
 				EFF1B135C57BD1034056F8DE /* StartViewController.m in Sources */,
+				560A867520E681E700046B53 /* KeychainItemModel.m in Sources */,
 				5668E4EA2083DA190070A402 /* CleanLaunchAppDelegate.m in Sources */,
 				5643879720A492240017790F /* UIColor+RandSeed.swift in Sources */,
 				5668E50C2083E7280070A402 /* StoryboardAssembly.m in Sources */,
@@ -6862,6 +7034,7 @@
 				56FB39A820B22B3B007776C8 /* ResponseConverterImplementation.m in Sources */,
 				56A4EAA020B5D22A0042A358 /* HomeTableView.m in Sources */,
 				56A4EAD320B9A25A0042A358 /* BottomBackgroundedModalPresentationController.m in Sources */,
+				564952F520E3EFEB00CF2348 /* _NetworkModelObject.m in Sources */,
 				56FB3A4F20B46FB1007776C8 /* ManagedObjectMapper.m in Sources */,
 				569E51CA20D946B000883583 /* NSData+ArrayBuffer.m in Sources */,
 				2A3FFB6DBE3CE8BCA37EC381 /* StartRouter.m in Sources */,
@@ -6871,6 +7044,7 @@
 				5668E4E52083D95F0070A402 /* ModuleAssemblyBase.m in Sources */,
 				563C6AE620AF690A00E85B8B /* CheckboxButton+Blockies.swift in Sources */,
 				56F17AC420E23FF60010393C /* NSBundle+Version.m in Sources */,
+				564952C120E3DEE300CF2348 /* BlockchainNetworkServiceImplementation.m in Sources */,
 				5668E5012083E4D70070A402 /* SystemInfrastructureAssembly.m in Sources */,
 				56AC9449208FA77900E5BC2C /* MEWConnectConstants.m in Sources */,
 				563DF38120986B7900F740FF /* UIImage+Color.m in Sources */,
@@ -6895,6 +7069,7 @@
 				56CF0A9420D87F550029F841 /* NSArray+Data.m in Sources */,
 				560D770C20B4950C009A3D6D /* HomeCellObjectBuilder.m in Sources */,
 				56FB39E520B35766007776C8 /* HeadersBuilderBase.m in Sources */,
+				564952E820E3EFEB00CF2348 /* FiatPriceModelObject.m in Sources */,
 				D8F63615756FC3CF5F64F745 /* RestoreWalletPresenter.m in Sources */,
 				56E6849820A4FE340058AA38 /* NSAttributedString+CustomEllipsis.m in Sources */,
 				56FB39DA20B31874007776C8 /* RESTRequestConfigurator.m in Sources */,
@@ -6904,6 +7079,7 @@
 				48775C9BF345F555A704F7AC /* PasswordAssembly.m in Sources */,
 				FA71744EB496938426D1BE7E /* PasswordViewController.m in Sources */,
 				56A4EABF20B8C4170042A358 /* BottomModalPresentingAnimationController.m in Sources */,
+				564952F420E3EFEB00CF2348 /* _FiatPriceModelObject.m in Sources */,
 				56FB39B220B22CF1007776C8 /* ResponseValidationOperation.m in Sources */,
 				49D57D4B9B90BE2E0D07CEB5 /* PasswordPresenter.m in Sources */,
 				56C7757D20DFEBB300451EEF /* InfoNormalTableViewCellObject.m in Sources */,
@@ -6911,13 +7087,13 @@
 				56C7757020DFEB3C00451EEF /* InfoDataDisplayManager.m in Sources */,
 				56FB3A2F20B45741007776C8 /* MEWconnect.xcdatamodeld in Sources */,
 				56E684A420A5F7250058AA38 /* InlineButton.m in Sources */,
-				560D76E420B47D73009A3D6D /* TokenPlainObject.m in Sources */,
+				560A867920E6EF9600046B53 /* AccountsBody.m in Sources */,
 				563DF3922098AF0500F740FF /* BordlessNavigationBar.m in Sources */,
 				560CAFFF209B428500BFF59C /* MEWConnectCommand.m in Sources */,
-				560D76E620B47D73009A3D6D /* _TokenModelObject.m in Sources */,
 				56FB394920B1A8CC007776C8 /* TokensOperationFactory.m in Sources */,
 				10DC5C17C1A92CD39162B5A9 /* PasswordRouter.m in Sources */,
 				56C878B520BC199300343ADC /* HomeEmptyTableViewCell.m in Sources */,
+				564952E920E3EFEB00CF2348 /* NetworkModelObject.m in Sources */,
 				56FB3A2320B441C8007776C8 /* UIImage+RandSeed.swift in Sources */,
 				560D76F020B48296009A3D6D /* PonsomizerAssembly.m in Sources */,
 				5FEF304FAB4A717221A0C324 /* HomeAssembly.m in Sources */,
@@ -6933,14 +7109,15 @@
 				564387A320A496290017790F /* Array+UInt32.swift in Sources */,
 				67CD1448F27E95D6917799B2 /* QRScannerPresenter.m in Sources */,
 				6032F005DDCDCFECB265AEBF /* QRScannerInteractor.m in Sources */,
-				560D76E520B47D73009A3D6D /* _TokenPlainObject.m in Sources */,
 				56FB39C120B2313E007776C8 /* SingleResponseValidator.m in Sources */,
 				56FB391D20B1A228007776C8 /* OperationSchedulerImplementation.m in Sources */,
 				0200A429F6FF43815C7B2AFD /* QRScannerRouter.m in Sources */,
 				563C6AE320AF122000E85B8B /* CheckboxButton.swift in Sources */,
 				56FB3A1A20B391B4007776C8 /* TokensBody.m in Sources */,
 				560CB009209B453600BFF59C /* NSString+RCFCapitalization.m in Sources */,
+				564952EF20E3EFEB00CF2348 /* _AccountPlainObject.m in Sources */,
 				56FB39FF20B35B33007776C8 /* OperationFactoriesAssembly.m in Sources */,
+				564952EE20E3EFEB00CF2348 /* TokenPlainObject.m in Sources */,
 				563DF38520986F8500F740FF /* PasswordTextField.m in Sources */,
 				56A4EAA420B826A50042A358 /* NSCharacterSet+WNS.m in Sources */,
 				564387A620A4A9820017790F /* CGPoint+RandSeed.swift in Sources */,
@@ -6952,6 +7129,7 @@
 				CA554F32D5BB45CB5F726783 /* TransactionViewController.m in Sources */,
 				5CCAC59021B5F77D54E50DDD /* TransactionPresenter.m in Sources */,
 				56FB399420B22878007776C8 /* JSONResponseDeserializer.m in Sources */,
+				564952EC20E3EFEB00CF2348 /* FiatPricePlainObject.m in Sources */,
 				56E684A020A5D4E40058AA38 /* NSNumberFormatter+USD.m in Sources */,
 				560D771A20B495DE009A3D6D /* FetchedResultsControllerAssembly.m in Sources */,
 				67E3B80B702FB1A5CBC91D10 /* TransactionInteractor.m in Sources */,
@@ -6976,7 +7154,6 @@
 				56FB3A5320B47037007776C8 /* ManagedObjectMappingProvider.m in Sources */,
 				5685FE162099F9A4008C75A1 /* FlatButton.m in Sources */,
 				56FB39FB20B359F9007776C8 /* ContractsBodyTransformer.m in Sources */,
-				560D76E720B47D73009A3D6D /* TokenModelObject.m in Sources */,
 				56FB397C20B224AC007776C8 /* NetworkClientsAssembly.m in Sources */,
 				56FB395D20B1AEC7007776C8 /* OperationChainer.m in Sources */,
 				56FB394420B1A6D0007776C8 /* OperationBuffer.m in Sources */,
@@ -6985,6 +7162,7 @@
 				560D76EC20B48213009A3D6D /* PonsomizerImplementation.m in Sources */,
 				560CAFF2209B0EC500BFF59C /* Web3Wrapper.swift in Sources */,
 				56FB3A2520B441DD007776C8 /* NSString+MEWTokens.m in Sources */,
+				564952F220E3EFEB00CF2348 /* _TokenPlainObject.m in Sources */,
 				564387A020A4932A0017790F /* UIColor+HSL.swift in Sources */,
 				0A4DA5A913C4B14DD728715E /* SettingsAssembly.m in Sources */,
 				560CB013209B504700BFF59C /* MEWConnectResponseMapper.m in Sources */,
@@ -6997,6 +7175,7 @@
 				EE773E901ADEDD4ECF600760 /* SettingsRouter.m in Sources */,
 				5643879A20A492570017790F /* String+RandSeed.swift in Sources */,
 				787E3E34CA8334AE03D0C71F /* ConfirmPasswordAssembly.m in Sources */,
+				560A867D20E6F0C700046B53 /* AccountsOperationFactory.m in Sources */,
 				560D770220B484AE009A3D6D /* CacheTrackerImplementation.m in Sources */,
 				2CDE7A980F538C53DBA4CBF5 /* ConfirmPasswordViewController.m in Sources */,
 				56A4EACF20B8C6B00042A358 /* BottomModalPresentationController.m in Sources */,
@@ -7017,6 +7196,7 @@
 				56BFD41F209BB7D400951000 /* MEWConnectTransaction.m in Sources */,
 				56FB39DE20B31931007776C8 /* CommonNetworkClient.m in Sources */,
 				B6DD4E4FEF354C89A482CF6A /* ConfirmedTransactionAssembly.m in Sources */,
+				564952EB20E3EFEB00CF2348 /* AccountPlainObject.m in Sources */,
 				56FB392220B1A2BD007776C8 /* CompoundOperationBase.m in Sources */,
 				FB1FDDD66CC21DAAB101AB72 /* ConfirmedTransactionViewController.m in Sources */,
 				792EFA6A1C92F889FAAA59CF /* ConfirmedTransactionPresenter.m in Sources */,
@@ -7031,6 +7211,7 @@
 				56C7757420DFEB4F00451EEF /* InfoCellObjectBuilder.m in Sources */,
 				56A29C9420E04B7500D05FF1 /* AccessoryTableViewAction.m in Sources */,
 				A489564CB7B7EA7DD2D3BE4A /* BackupInfoRouter.m in Sources */,
+				564952F320E3EFEB00CF2348 /* _AccountModelObject.m in Sources */,
 				B83681BB9459A6C08ABBA212 /* BackupStartAssembly.m in Sources */,
 				2B4CD051283C97E7A215B46C /* BackupStartViewController.m in Sources */,
 				C1E40ADDC31A90446D7E54FB /* BackupStartPresenter.m in Sources */,
@@ -7049,6 +7230,7 @@
 				583EB1E3327B02D20E3F8A56 /* BackupConfirmationRouter.m in Sources */,
 				EDBE94BE7A73B811AA563C8B /* BackupDoneAssembly.m in Sources */,
 				560D773A20B5A258009A3D6D /* BackupConfirmationQuiz.m in Sources */,
+				564952EA20E3EFEB00CF2348 /* TokenModelObject.m in Sources */,
 				455E984869FF61535DEF1FE7 /* BackupDoneViewController.m in Sources */,
 				0EAB1B3BAE104F2ED13AFBDA /* BackupDonePresenter.m in Sources */,
 				291642C66A4CCAB3EC91FE67 /* BackupDoneInteractor.m in Sources */,
@@ -7060,11 +7242,15 @@
 				56A4EAAF20B8BE920042A358 /* TransitioningDelegateAssembly.m in Sources */,
 				64D2C7DAAAB7CCA5EE92428C /* SplashPasswordInteractor.m in Sources */,
 				56C878AB20BB6F8100343ADC /* StatusButton.m in Sources */,
+				564952FB20E3F20D00CF2348 /* AccountsServiceImplementation.m in Sources */,
+				564952E720E3EFEB00CF2348 /* AccountModelObject.m in Sources */,
+				564952ED20E3EFEB00CF2348 /* NetworkPlainObject.m in Sources */,
 				BFE229932CEED582B99472F2 /* SplashPasswordRouter.m in Sources */,
 				0300F8A0DC179B5B8E58E3EC /* ForgotPasswordAssembly.m in Sources */,
 				A423000337866A1DB124671A /* ForgotPasswordViewController.m in Sources */,
 				010EC2BA658F3F6E97F548A3 /* ForgotPasswordPresenter.m in Sources */,
 				773DCB9854C8B5804DD87712 /* ForgotPasswordInteractor.m in Sources */,
+				564952F620E3EFEB00CF2348 /* _TokenModelObject.m in Sources */,
 				801A5FF6A47B5842C7851F9D /* ForgotPasswordRouter.m in Sources */,
 				4A803C38B488BA0A74A44FF4 /* InfoAssembly.m in Sources */,
 				695B3A2C9A8FC59839A0B89D /* InfoViewController.m in Sources */,

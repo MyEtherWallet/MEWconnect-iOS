@@ -10,10 +10,11 @@
 
 @class MEWConnectCommand;
 @class CacheTransactionBatch;
+@class AccountPlainObject;
 
 @protocol HomeInteractorOutput <NSObject>
 - (void) openMessageSignerWithMessage:(MEWConnectCommand *)command;
-- (void) openTransactionSignerWithMessage:(MEWConnectCommand *)command;
+- (void) openTransactionSignerWithMessage:(MEWConnectCommand *)command account:(AccountPlainObject *)account;
 - (void) didProcessCacheTransaction:(CacheTransactionBatch *)transactionBatch;
 - (void) didUpdateTokens;
 - (void) didUpdateEthereumBalance;

@@ -18,7 +18,8 @@
 
 #pragma mark - SplashPasswordModuleInput
 
-- (void) configureModule {
+- (void) configureModuleWithAccount:(AccountPlainObject *)account {
+  [self.interactor configurateWithAccount:account];
 }
 
 #pragma mark - SplashPasswordViewOutput
@@ -32,7 +33,8 @@
 }
 
 - (void) forgotPasswordAction {
-  [self.router openForgotPassword];
+  AccountPlainObject *account = [self.interactor obtainAccount];
+  [self.router openForgotPasswordWithAccount:account];
 }
 
 #pragma mark - SplashPasswordInteractorOutput

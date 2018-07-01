@@ -8,7 +8,9 @@
 
 @import Foundation;
 
+@class AccountPlainObject;
+
 @protocol SplashPasswordRouterInput <NSObject>
 - (void) close;
-- (void) openForgotPassword;
+- (void) openForgotPasswordWithAccount:(AccountPlainObject *)account;
 @end

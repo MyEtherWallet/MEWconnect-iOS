@@ -30,11 +30,10 @@
 }
 
 - (void)startUsingAction {
-  NSString *address = [self.interactor obtainWalletAddress];
   if (_forgotPassword) {
-    [self.router unwindToWalletWithAddress:address];
+    [self.router unwindToWallet];
   } else {
-    [self.router unwindToStartWithAddress:address];
+    [self.router unwindToStart];
   }
 }
 

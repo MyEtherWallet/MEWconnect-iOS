@@ -16,7 +16,5 @@
 - (void) disconnectAction;
 - (void) backupAction;
 - (void) searchTermDidChanged:(NSString *)searchTerm;
-- (void) mainnetSelectedAction;
-- (void) ropstenSelectedAction;
 - (void) infoAction;
 @end

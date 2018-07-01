@@ -11,6 +11,8 @@
 #import "TransactionViewOutput.h"
 
 #import "MEWConnectTransaction.h"
+#import "NetworkPlainObject.h"
+#import "AccountPlainObject.h"
 
 #import "NSNumberFormatter+Ethereum.h"
 
@@ -59,8 +61,8 @@
   }
 }
 
-- (void) updateWithTransaction:(MEWConnectTransaction *)transaction {
-  NSNumberFormatter *formatter = [NSNumberFormatter ethereumFormatterWithChainID:[transaction.chainId integerValue]];
+- (void) updateWithTransaction:(MEWConnectTransaction *)transaction forAccount:(AccountPlainObject *)account {
+  NSNumberFormatter *formatter = [NSNumberFormatter ethereumFormatterWithNetwork:[account.fromNetwork network]];
   NSDecimalNumber *decimalNumber = [transaction decimalValue];
   NSString *amount = [formatter stringFromNumber:decimalNumber];
   

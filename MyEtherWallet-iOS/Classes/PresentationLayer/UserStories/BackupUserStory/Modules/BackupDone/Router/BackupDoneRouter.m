@@ -20,7 +20,7 @@ static NSString *const kBackupDoneToHomeUnwindSegueIdentifier = @"BackupDoneToHo
 
 - (void)unwindToHome {
   [[self.transitionHandler openModuleUsingSegue:kBackupDoneToHomeUnwindSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<HomeModuleInput> moduleInput) {
-    [moduleInput configuraBackupStatus];
+    [moduleInput configureBackupStatus];
     return nil;
   }];
 }

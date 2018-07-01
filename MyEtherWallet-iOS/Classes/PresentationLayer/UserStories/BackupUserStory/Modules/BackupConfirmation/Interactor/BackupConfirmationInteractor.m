@@ -10,11 +10,12 @@
 
 #import "BackupConfirmationInteractorOutput.h"
 
-#import "MEWwallet.h"
+#import "AccountsService.h"
 
 #import "BackupConfirmationQuiz.h"
 
 @interface BackupConfirmationInteractor ()
+@property (nonatomic, strong) AccountPlainObject *account;
 @property (nonatomic, strong) BackupConfirmationQuiz *quiz;
 @property (nonatomic, strong) NSArray <NSString *> *mnemonics;
 @end
@@ -23,13 +24,14 @@
 
 #pragma mark - BackupConfirmationInteractorInput
 
-- (void) configurateWithMnemonics:(NSArray <NSString *> *)mnemonics {
+- (void) configurateWithMnemonics:(NSArray <NSString *> *)mnemonics ofAccount:(AccountPlainObject *)account {
+  _account = account;
   _mnemonics = mnemonics;
 }
 
 - (BackupConfirmationQuiz *) obtainRecoveryQuiz {
   if (!_quiz) {
-    NSArray *allWords = [self.walletService obtainBIP32Words];
+    NSArray *allWords = [self.accountsService bip32MnemonicsWords];
     _quiz = [[BackupConfirmationQuiz alloc] initWithWords:allWords
                                              correctWords:self.mnemonics
                                                  quizSize:4
@@ -43,7 +45,7 @@
 }
 
 - (void) walletBackedUp {
-  [self.walletService backedUp];
+  [self.accountsService accountBackedUp:self.account];
 }
 
 @end

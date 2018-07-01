@@ -38,23 +38,23 @@ static NSString *const kHomeToInfoSegueIdentifier           = @"HomeToInfoSegueI
   }];
 }
 
-- (void) openTransactionSignerWithMessage:(MEWConnectCommand *)command {
+- (void) openTransactionSignerWithMessage:(MEWConnectCommand *)command account:(AccountPlainObject *)account {
   [[self.transitionHandler openModuleUsingSegue:kHomeToTransactionSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<TransactionModuleInput> moduleInput) {
-    [moduleInput configureModuleWithMessage:command];
+    [moduleInput configureModuleWithMessage:command account:account];
     return nil;
   }];
 }
 
-- (void) openBackup {
+- (void) openBackupWithAccount:(AccountPlainObject *)account {
   [[self.transitionHandler openModuleUsingSegue:kHomeToBackupInfoSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<BackupInfoModuleInput> moduleInput) {
-    [moduleInput configureModule];
+    [moduleInput configureModuleWithAccount:account];
     return nil;
   }];
 }
 
-- (void) openInfo {
+- (void) openInfoWithAccount:(AccountPlainObject *)account {
   [[self.transitionHandler openModuleUsingSegue:kHomeToInfoSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<InfoModuleInput> moduleInput) {
-    [moduleInput configureModule];
+    [moduleInput configureModuleWithAccount:account];
     return nil;
   }];
 }

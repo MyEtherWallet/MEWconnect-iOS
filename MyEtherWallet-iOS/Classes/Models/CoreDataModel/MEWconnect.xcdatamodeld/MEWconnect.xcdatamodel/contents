@@ -1,13 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14133" systemVersion="17E202" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17F77" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Account" representedClassName="AccountModelObject" syncable="YES">
+        <attribute name="active" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="backedUp" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="balance" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="decimals" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="publicAddress" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="fromNetwork" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Network" inverseName="accounts" inverseEntity="Network" syncable="YES"/>
+        <relationship name="price" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="FiatPrice" inverseName="fromAccount" inverseEntity="FiatPrice" syncable="YES"/>
+        <relationship name="tokens" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Token" inverseName="fromAccount" inverseEntity="Token" syncable="YES"/>
+    </entity>
+    <entity name="FiatPrice" representedClassName="FiatPriceModelObject" syncable="YES">
+        <attribute name="usdPrice" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="fromAccount" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Account" inverseName="price" inverseEntity="Account" syncable="YES"/>
+        <relationship name="fromToken" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Token" inverseName="price" inverseEntity="Token" syncable="YES"/>
+    </entity>
+    <entity name="Network" representedClassName="NetworkModelObject" syncable="YES">
+        <attribute name="active" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="chainID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="accounts" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Account" inverseName="fromNetwork" inverseEntity="Account" syncable="YES"/>
+    </entity>
     <entity name="Token" representedClassName="TokenModelObject" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="balance" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="decimals" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="symbol" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="fromAccount" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Account" inverseName="tokens" inverseEntity="Account" syncable="YES"/>
+        <relationship name="price" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="FiatPrice" inverseName="fromToken" inverseEntity="FiatPrice" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Token" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="Account" positionX="-1179" positionY="-6300" width="128" height="163"/>
+        <element name="FiatPrice" positionX="-1019" positionY="-6354" width="128" height="88"/>
+        <element name="Network" positionX="-1343" positionY="-6325" width="128" height="88"/>
+        <element name="Token" positionX="-866" positionY="-6327" width="128" height="148"/>
     </elements>
 </model>

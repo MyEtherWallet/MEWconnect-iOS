@@ -21,7 +21,8 @@
 
 #pragma mark - BackupStartModuleInput
 
-- (void) configureModule {
+- (void) configureModuleWithAccount:(AccountPlainObject *)account {
+  [self.interactor configurateWithAccount:account];
 }
 
 #pragma mark - BackupStartViewOutput
@@ -31,13 +32,15 @@
 }
 
 - (void) startAction {
-  [self.router openSplashPasswordWithOutput:self];
+  AccountPlainObject *account = [self.interactor obtainAccount];
+  [self.router openSplashPasswordWithOutput:self account:account];
 }
 
 #pragma mark - BackupStartInteractorOutput
 
 - (void)mnemonicsDidReceived:(NSArray<NSString *> *)mnemonics {
-  [self.router openWordsWithMnemonics:mnemonics];
+  AccountPlainObject *account = [self.interactor obtainAccount];
+  [self.router openWordsWithMnemonics:mnemonics account:account];
 }
 
 #pragma mark - SplashPasswordModuleOutput

@@ -28,10 +28,10 @@ static NSString *const kStartToRestoreWalletSegueIdentifier   = @"StartToRestore
   }];
 }
 
-- (void) openWalletWithAddress:(NSString *)address animated:(BOOL)animated {
+- (void) openWalletAnimated:(BOOL)animated {
   NSString *segueIdentifier = animated ? kStartToHomeAnimatedSegueIdentifier : kStartToHomeSegueIdentifier;
   [[self.transitionHandler openModuleUsingSegue:segueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<HomeModuleInput> moduleInput) {
-    [moduleInput configureModuleWithAddress:address];
+    [moduleInput configureModule];
     return nil;
   }];
 }

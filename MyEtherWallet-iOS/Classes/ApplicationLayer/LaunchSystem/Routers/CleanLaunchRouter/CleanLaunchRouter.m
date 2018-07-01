@@ -12,7 +12,11 @@
 #import "CleanLaunchRouter.h"
 #import "NavigationControllerFactory.h"
 
-#import "MEWwallet.h"
+#import "AccountsService.h"
+#import "Ponsomizer.h"
+
+#import "NetworkPlainObject.h"
+#import "AccountPlainObject.h"
 
 #import "SplashPasswordModuleInput.h"
 
@@ -40,19 +44,30 @@ static NSString *const kSplashPasswordViewControllerIdentifier  = @"SplashPasswo
 #pragma mark - Public
 
 - (void)openInitialScreen {
-  NSString *address = [self.walletService obtainPublicAddress];
-  UINavigationController *navigationController = [self.navigationControllerFactory obtainPreconfiguredAuthorizedNavigationControllerWithAddress:address];
+  AccountModelObject *accountModelObject = [self.accountsService obtainActiveAccount];
+  
+  NSArray *ignoringProperties = @[NSStringFromSelector(@selector(tokens)),
+                                  NSStringFromSelector(@selector(active)),
+                                  NSStringFromSelector(@selector(accounts))];
+  AccountPlainObject *account = [self.ponsomizer convertObject:accountModelObject ignoringProperties:ignoringProperties];
+  UINavigationController *navigationController = nil;
+  if (accountModelObject) {
+    navigationController = [self.navigationControllerFactory obtainPreconfiguredAuthorizedNavigationController];
+  } else {
+    navigationController = [self.navigationControllerFactory obtainPreconfiguredNavigationController];
+  }
+  
   self.window.rootViewController = navigationController;
   [self.window makeKeyAndVisible];
   
-  if (self.passwordStoryboard && address) {
+  if (self.passwordStoryboard && accountModelObject) {
     /* To prevent "Unbalanced calls to begin/end appearance transitions for..." */
     dispatch_async(dispatch_get_main_queue(), ^{
       RamblerViperModuleFactory *passwordFactory = [[RamblerViperModuleFactory alloc] initWithStoryboard:self.passwordStoryboard
                                                                                         andRestorationId:kSplashPasswordViewControllerIdentifier];
       [[navigationController.topViewController openModuleUsingFactory:passwordFactory
                                                   withTransitionBlock:[self passwordTransitionBlock]]
-       thenChainUsingBlock:[self passwordConfigurationBlock]];
+       thenChainUsingBlock:[self passwordConfigurationBlockWithAccount:account]];
       
     });
   }
@@ -70,9 +85,9 @@ static NSString *const kSplashPasswordViewControllerIdentifier  = @"SplashPasswo
   };
 }
 
-- (RamblerViperModuleLinkBlock) passwordConfigurationBlock {
+- (RamblerViperModuleLinkBlock) passwordConfigurationBlockWithAccount:(AccountPlainObject *)account {
   return ^id<RamblerViperModuleOutput>(id<SplashPasswordModuleInput> moduleInput) {
-    [moduleInput configureModule];
+    [moduleInput configureModuleWithAccount:account];
     return nil;
   };
 }

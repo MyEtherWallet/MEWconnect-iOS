@@ -16,7 +16,8 @@
 
 #pragma mark - ForgotPasswordModuleInput
 
-- (void) configureModule {
+- (void) configureModuleWithAccount:(AccountPlainObject *)account {
+  [self.interactor configurateWithAccount:account];
 }
 
 #pragma mark - ForgotPasswordViewOutput

@@ -43,10 +43,10 @@ abstract_target 'MEWconnect' do
   pod 'WebRTC'
   
   # Cryptographic
-  pod 'TrezorCrypto', :git => 'https://github.com/Foboz/trezor-crypto-ios.git'
+  pod 'TrezorCrypto'#, :git => 'https://github.com/Foboz/trezor-crypto-ios.git'
   
   # Keychain
-  pod 'KeychainAccess', '~> 3.1'
+  pod 'UICKeyChainStore', '~> 2.1'
   
   # Data mapping
   pod 'EasyMapping', '~> 0.15'

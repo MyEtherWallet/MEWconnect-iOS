@@ -39,8 +39,8 @@
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(output)
                                                 with:[self presenterForgotPassword]];
-                          [definition injectProperty:@selector(walletService)
-                                                with:[self.serviceComponents MEWWallet]];
+                          [definition injectProperty:@selector(accountsService)
+                                                with:[self.serviceComponents accountsService]];
                         }];
 }
 

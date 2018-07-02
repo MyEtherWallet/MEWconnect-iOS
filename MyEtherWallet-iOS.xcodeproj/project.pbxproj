@@ -238,6 +238,13 @@
 		56C878BA20BC1A3300343ADC /* HomeEmptyTableViewCellObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C878B920BC1A3300343ADC /* HomeEmptyTableViewCellObject.m */; };
 		56CF0A9420D87F550029F841 /* NSArray+Data.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CF0A9320D87F550029F841 /* NSArray+Data.m */; };
 		56DE4E0C20A9E61F001A2C19 /* BottomImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DE4E0B20A9E61F001A2C19 /* BottomImageButton.m */; };
+		56E14BBA20E979CD00C41F83 /* FiatPricesServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E14BB920E979CD00C41F83 /* FiatPricesServiceImplementation.m */; };
+		56E14BBF20E97B3C00C41F83 /* FiatPricesQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E14BBE20E97B3C00C41F83 /* FiatPricesQuery.m */; };
+		56E14BC320E97C8400C41F83 /* FiatPricesOperationFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E14BC220E97C8400C41F83 /* FiatPricesOperationFactory.m */; };
+		56E14BC820E97ED200C41F83 /* FiatPricesQueryTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E14BC720E97ED200C41F83 /* FiatPricesQueryTransformer.m */; };
+		56E14BCC20E9899B00C41F83 /* TickerResponseConverterImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E14BCB20E9899B00C41F83 /* TickerResponseConverterImplementation.m */; };
+		56E14BD020E99C9500C41F83 /* FiatPricesResponseValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E14BCF20E99C9500C41F83 /* FiatPricesResponseValidator.m */; };
+		56E14BD420EA687700C41F83 /* NSNumberFormatter+TokenPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E14BD320EA687700C41F83 /* NSNumberFormatter+TokenPrice.m */; };
 		56E6849820A4FE340058AA38 /* NSAttributedString+CustomEllipsis.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E6849720A4FE340058AA38 /* NSAttributedString+CustomEllipsis.m */; };
 		56E6849C20A5092C0058AA38 /* NSNumberFormatter+Ethereum.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E6849B20A5092C0058AA38 /* NSNumberFormatter+Ethereum.m */; };
 		56E684A020A5D4E40058AA38 /* NSNumberFormatter+USD.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E6849F20A5D4E40058AA38 /* NSNumberFormatter+USD.m */; };
@@ -867,6 +874,21 @@
 		56CF0A9320D87F550029F841 /* NSArray+Data.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Data.m"; sourceTree = "<group>"; };
 		56DE4E0A20A9E61F001A2C19 /* BottomImageButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BottomImageButton.h; sourceTree = "<group>"; };
 		56DE4E0B20A9E61F001A2C19 /* BottomImageButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BottomImageButton.m; sourceTree = "<group>"; };
+		56E14BB720E979BD00C41F83 /* FiatPricesService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FiatPricesService.h; sourceTree = "<group>"; };
+		56E14BB820E979CD00C41F83 /* FiatPricesServiceImplementation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FiatPricesServiceImplementation.h; sourceTree = "<group>"; };
+		56E14BB920E979CD00C41F83 /* FiatPricesServiceImplementation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FiatPricesServiceImplementation.m; sourceTree = "<group>"; };
+		56E14BBD20E97B3C00C41F83 /* FiatPricesQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FiatPricesQuery.h; sourceTree = "<group>"; };
+		56E14BBE20E97B3C00C41F83 /* FiatPricesQuery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FiatPricesQuery.m; sourceTree = "<group>"; };
+		56E14BC120E97C8400C41F83 /* FiatPricesOperationFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FiatPricesOperationFactory.h; sourceTree = "<group>"; };
+		56E14BC220E97C8400C41F83 /* FiatPricesOperationFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FiatPricesOperationFactory.m; sourceTree = "<group>"; };
+		56E14BC620E97ED200C41F83 /* FiatPricesQueryTransformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FiatPricesQueryTransformer.h; sourceTree = "<group>"; };
+		56E14BC720E97ED200C41F83 /* FiatPricesQueryTransformer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FiatPricesQueryTransformer.m; sourceTree = "<group>"; };
+		56E14BCA20E9899B00C41F83 /* TickerResponseConverterImplementation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TickerResponseConverterImplementation.h; sourceTree = "<group>"; };
+		56E14BCB20E9899B00C41F83 /* TickerResponseConverterImplementation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TickerResponseConverterImplementation.m; sourceTree = "<group>"; };
+		56E14BCE20E99C9500C41F83 /* FiatPricesResponseValidator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FiatPricesResponseValidator.h; sourceTree = "<group>"; };
+		56E14BCF20E99C9500C41F83 /* FiatPricesResponseValidator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FiatPricesResponseValidator.m; sourceTree = "<group>"; };
+		56E14BD220EA687700C41F83 /* NSNumberFormatter+TokenPrice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNumberFormatter+TokenPrice.h"; sourceTree = "<group>"; };
+		56E14BD320EA687700C41F83 /* NSNumberFormatter+TokenPrice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSNumberFormatter+TokenPrice.m"; sourceTree = "<group>"; };
 		56E6849620A4FE340058AA38 /* NSAttributedString+CustomEllipsis.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+CustomEllipsis.h"; sourceTree = "<group>"; };
 		56E6849720A4FE340058AA38 /* NSAttributedString+CustomEllipsis.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+CustomEllipsis.m"; sourceTree = "<group>"; };
 		56E6849A20A5092C0058AA38 /* NSNumberFormatter+Ethereum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNumberFormatter+Ethereum.h"; sourceTree = "<group>"; };
@@ -2268,6 +2290,7 @@
 		560CB024209B6CEA00BFF59C /* ConcreteClasses */ = {
 			isa = PBXGroup;
 			children = (
+				56E14BBB20E97B2300C41F83 /* ObjectQueries */,
 				56FB3A1620B39197007776C8 /* ObjectBodies */,
 				56FB3A0020B35ED0007776C8 /* MEWConnect */,
 			);
@@ -3165,6 +3188,7 @@
 		569E51C420D9465000883583 /* NSNumberFormatter */ = {
 			isa = PBXGroup;
 			children = (
+				56E14BD120EA66E700C41F83 /* NSNumberFormatter+TokenPrice */,
 				56E6849D20A5D4D80058AA38 /* NSNumberFormatter+USD */,
 				56E6849920A509020058AA38 /* NSNumberFormatter+Ethereum */,
 			);
@@ -3434,6 +3458,7 @@
 		56AC9435208F76DF00E5BC2C /* ConcreteServices */ = {
 			isa = PBXGroup;
 			children = (
+				56E14BB620E979AA00C41F83 /* FiatPricesService */,
 				560A866220E6539200046B53 /* KeychainService */,
 				564952BD20E3DEB700CF2348 /* BlockchainNetworkService */,
 				564952F720E3F18E00CF2348 /* AccountsService */,
@@ -3733,6 +3758,86 @@
 				56DE4E0B20A9E61F001A2C19 /* BottomImageButton.m */,
 			);
 			path = BottomImageButton;
+			sourceTree = "<group>";
+		};
+		56E14BB620E979AA00C41F83 /* FiatPricesService */ = {
+			isa = PBXGroup;
+			children = (
+				56E14BB720E979BD00C41F83 /* FiatPricesService.h */,
+				56E14BB820E979CD00C41F83 /* FiatPricesServiceImplementation.h */,
+				56E14BB920E979CD00C41F83 /* FiatPricesServiceImplementation.m */,
+			);
+			path = FiatPricesService;
+			sourceTree = "<group>";
+		};
+		56E14BBB20E97B2300C41F83 /* ObjectQueries */ = {
+			isa = PBXGroup;
+			children = (
+				56E14BBC20E97B2C00C41F83 /* FiatPricesQuery */,
+			);
+			path = ObjectQueries;
+			sourceTree = "<group>";
+		};
+		56E14BBC20E97B2C00C41F83 /* FiatPricesQuery */ = {
+			isa = PBXGroup;
+			children = (
+				56E14BBD20E97B3C00C41F83 /* FiatPricesQuery.h */,
+				56E14BBE20E97B3C00C41F83 /* FiatPricesQuery.m */,
+			);
+			path = FiatPricesQuery;
+			sourceTree = "<group>";
+		};
+		56E14BC020E97C7900C41F83 /* FiatPricesOperationFactory */ = {
+			isa = PBXGroup;
+			children = (
+				56E14BC120E97C8400C41F83 /* FiatPricesOperationFactory.h */,
+				56E14BC220E97C8400C41F83 /* FiatPricesOperationFactory.m */,
+			);
+			path = FiatPricesOperationFactory;
+			sourceTree = "<group>";
+		};
+		56E14BC420E97EB800C41F83 /* ConcreteClasses */ = {
+			isa = PBXGroup;
+			children = (
+				56E14BC520E97EC200C41F83 /* FiatPricesQueryTransformer */,
+			);
+			path = ConcreteClasses;
+			sourceTree = "<group>";
+		};
+		56E14BC520E97EC200C41F83 /* FiatPricesQueryTransformer */ = {
+			isa = PBXGroup;
+			children = (
+				56E14BC620E97ED200C41F83 /* FiatPricesQueryTransformer.h */,
+				56E14BC720E97ED200C41F83 /* FiatPricesQueryTransformer.m */,
+			);
+			path = FiatPricesQueryTransformer;
+			sourceTree = "<group>";
+		};
+		56E14BC920E9898B00C41F83 /* TickerResponseConverterImplementation */ = {
+			isa = PBXGroup;
+			children = (
+				56E14BCA20E9899B00C41F83 /* TickerResponseConverterImplementation.h */,
+				56E14BCB20E9899B00C41F83 /* TickerResponseConverterImplementation.m */,
+			);
+			path = TickerResponseConverterImplementation;
+			sourceTree = "<group>";
+		};
+		56E14BCD20E99C8400C41F83 /* FiatPricesResponseValidator */ = {
+			isa = PBXGroup;
+			children = (
+				56E14BCE20E99C9500C41F83 /* FiatPricesResponseValidator.h */,
+				56E14BCF20E99C9500C41F83 /* FiatPricesResponseValidator.m */,
+			);
+			path = FiatPricesResponseValidator;
+			sourceTree = "<group>";
+		};
+		56E14BD120EA66E700C41F83 /* NSNumberFormatter+TokenPrice */ = {
+			isa = PBXGroup;
+			children = (
+				56E14BD220EA687700C41F83 /* NSNumberFormatter+TokenPrice.h */,
+				56E14BD320EA687700C41F83 /* NSNumberFormatter+TokenPrice.m */,
+			);
+			path = "NSNumberFormatter+TokenPrice";
 			sourceTree = "<group>";
 		};
 		56E6849520A4FE120058AA38 /* NSAttributedString+CustomEllipsis */ = {
@@ -4049,6 +4154,7 @@
 		56FB394520B1A8BB007776C8 /* OperationFactories */ = {
 			isa = PBXGroup;
 			children = (
+				56E14BC020E97C7900C41F83 /* FiatPricesOperationFactory */,
 				560A867A20E6F0B400046B53 /* AccountsOperationFactory */,
 				56FB394620B1A8C5007776C8 /* TokensOperationFactory */,
 			);
@@ -4326,6 +4432,7 @@
 		56FB39A420B22B2F007776C8 /* ConcreteClasses */ = {
 			isa = PBXGroup;
 			children = (
+				56E14BC920E9898B00C41F83 /* TickerResponseConverterImplementation */,
 				56C878AD20BB872500343ADC /* EthereumResponseConverterImplementation */,
 				56FB3A1B20B43FCF007776C8 /* TokensResponseConverterImplementation */,
 				56FB39A520B22B35007776C8 /* ResponseConverterImplementation */,
@@ -4400,6 +4507,7 @@
 		56FB39BC20B23124007776C8 /* ConcreteClasses */ = {
 			isa = PBXGroup;
 			children = (
+				56E14BCD20E99C8400C41F83 /* FiatPricesResponseValidator */,
 				56FB39BE20B23135007776C8 /* ManyResponseValidator */,
 				56FB39BD20B2312E007776C8 /* SingleResponseValidator */,
 			);
@@ -4531,6 +4639,7 @@
 		56FB39E920B3582A007776C8 /* QueryTransformers */ = {
 			isa = PBXGroup;
 			children = (
+				56E14BC420E97EB800C41F83 /* ConcreteClasses */,
 				56FB39EB20B35837007776C8 /* BaseClasses */,
 				56FB39EA20B35832007776C8 /* Protocols */,
 			);
@@ -7015,6 +7124,7 @@
 				5668E50C2083E7280070A402 /* StoryboardAssembly.m in Sources */,
 				56AC9457208FACBA00E5BC2C /* NSData+Hexadecimal.m in Sources */,
 				9545B03A6FC04B1766AA60BF /* StartPresenter.m in Sources */,
+				56E14BBF20E97B3C00C41F83 /* FiatPricesQuery.m in Sources */,
 				5668E5132083E8290070A402 /* NavigationControllerFactoryImplementation.m in Sources */,
 				56FB391720B1A0B7007776C8 /* TokensServiceImplementation.m in Sources */,
 				560CB022209B6CB200BFF59C /* MEWConnectResponse.m in Sources */,
@@ -7036,6 +7146,7 @@
 				56A4EAD320B9A25A0042A358 /* BottomBackgroundedModalPresentationController.m in Sources */,
 				564952F520E3EFEB00CF2348 /* _NetworkModelObject.m in Sources */,
 				56FB3A4F20B46FB1007776C8 /* ManagedObjectMapper.m in Sources */,
+				56E14BC820E97ED200C41F83 /* FiatPricesQueryTransformer.m in Sources */,
 				569E51CA20D946B000883583 /* NSData+ArrayBuffer.m in Sources */,
 				2A3FFB6DBE3CE8BCA37EC381 /* StartRouter.m in Sources */,
 				56FB398A20B22726007776C8 /* NetworkOperation.m in Sources */,
@@ -7076,6 +7187,7 @@
 				56FB392820B1A3F7007776C8 /* AsyncOperation.m in Sources */,
 				F8D31D7A5F793F249A5F0FE5 /* RestoreWalletInteractor.m in Sources */,
 				39E9DD5FBCBFA89BFDA6082E /* RestoreWalletRouter.m in Sources */,
+				56E14BD020E99C9500C41F83 /* FiatPricesResponseValidator.m in Sources */,
 				48775C9BF345F555A704F7AC /* PasswordAssembly.m in Sources */,
 				FA71744EB496938426D1BE7E /* PasswordViewController.m in Sources */,
 				56A4EABF20B8C4170042A358 /* BottomModalPresentingAnimationController.m in Sources */,
@@ -7087,6 +7199,7 @@
 				56C7757020DFEB3C00451EEF /* InfoDataDisplayManager.m in Sources */,
 				56FB3A2F20B45741007776C8 /* MEWconnect.xcdatamodeld in Sources */,
 				56E684A420A5F7250058AA38 /* InlineButton.m in Sources */,
+				56E14BC320E97C8400C41F83 /* FiatPricesOperationFactory.m in Sources */,
 				560A867920E6EF9600046B53 /* AccountsBody.m in Sources */,
 				563DF3922098AF0500F740FF /* BordlessNavigationBar.m in Sources */,
 				560CAFFF209B428500BFF59C /* MEWConnectCommand.m in Sources */,
@@ -7094,6 +7207,7 @@
 				10DC5C17C1A92CD39162B5A9 /* PasswordRouter.m in Sources */,
 				56C878B520BC199300343ADC /* HomeEmptyTableViewCell.m in Sources */,
 				564952E920E3EFEB00CF2348 /* NetworkModelObject.m in Sources */,
+				56E14BD420EA687700C41F83 /* NSNumberFormatter+TokenPrice.m in Sources */,
 				56FB3A2320B441C8007776C8 /* UIImage+RandSeed.swift in Sources */,
 				560D76F020B48296009A3D6D /* PonsomizerAssembly.m in Sources */,
 				5FEF304FAB4A717221A0C324 /* HomeAssembly.m in Sources */,
@@ -7202,6 +7316,7 @@
 				792EFA6A1C92F889FAAA59CF /* ConfirmedTransactionPresenter.m in Sources */,
 				27B323C95CB315D3717C322D /* ConfirmedTransactionInteractor.m in Sources */,
 				56FB39C920B2316B007776C8 /* ResponseValidatorBase.m in Sources */,
+				56E14BCC20E9899B00C41F83 /* TickerResponseConverterImplementation.m in Sources */,
 				2E810B5E7531EEF7C3526F6B /* ConfirmedTransactionRouter.m in Sources */,
 				56FB39CD20B23522007776C8 /* ResponseMappingOperation.m in Sources */,
 				D2144009EF379EB804F2A23A /* BackupInfoAssembly.m in Sources */,
@@ -7226,6 +7341,7 @@
 				30FAFE2FAB76ABF95C9DF392 /* BackupConfirmationAssembly.m in Sources */,
 				CCFC0575BB50C7E834628489 /* BackupConfirmationViewController.m in Sources */,
 				F592C64842F3C8DB2FE294ED /* BackupConfirmationPresenter.m in Sources */,
+				56E14BBA20E979CD00C41F83 /* FiatPricesServiceImplementation.m in Sources */,
 				A331D98C4632BFC6A2D43C90 /* BackupConfirmationInteractor.m in Sources */,
 				583EB1E3327B02D20E3F8A56 /* BackupConfirmationRouter.m in Sources */,
 				EDBE94BE7A73B811AA563C8B /* BackupDoneAssembly.m in Sources */,

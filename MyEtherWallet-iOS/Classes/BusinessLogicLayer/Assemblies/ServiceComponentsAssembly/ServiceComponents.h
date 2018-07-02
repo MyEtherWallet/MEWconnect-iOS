@@ -17,6 +17,7 @@
 @protocol BlockchainNetworkService;
 @protocol AccountsService;
 @protocol KeychainService;
+@protocol FiatPricesService;
 
 @protocol ServiceComponents <NSObject>
 - (id <MEWConnectFacade>) MEWConnectFacade;
@@ -27,4 +28,5 @@
 - (id <BlockchainNetworkService>) blockchainNetworkService;
 - (id <AccountsService>) accountsService;
 - (id <KeychainService>) keychainService;
+- (id <FiatPricesService>) fiatPricesService;
 @end

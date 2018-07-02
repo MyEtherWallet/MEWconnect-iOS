@@ -17,6 +17,9 @@
 
 #import "TokenModelObject.h"
 #import "AccountModelObject.h"
+#import "FiatPriceModelObject.h"
+
+static NSString *const kManagedObjectMappingProviderETH = @"ETH";
 
 @implementation ManagedObjectMappingProvider
 
@@ -60,6 +63,35 @@
                                               mapping.primaryKey = NSStringFromSelector(@selector(publicAddress));
                                               [mapping mapPropertiesFromDictionary:properties];
                                             }];
+}
+
+- (EKManagedObjectMapping *) fiatPriceModelObjectMapping {
+  NSDictionary *properties = @{@"quotes.USD.price": NSStringFromSelector(@selector(usdPrice))};
+  Class entityClass = [FiatPriceModelObject class];
+  NSString *entityName = [self.entityNameFormatter transformToEntityNameClass:entityClass];
+  return [EKManagedObjectMapping mappingForEntityName:entityName
+                                            withBlock:^(EKManagedObjectMapping * _Nonnull mapping) {
+                                              [mapping mapPropertiesFromDictionary:properties];
+                                              [mapping mapKeyPath:@"symbol"
+                                                       toProperty:NSStringFromSelector(@selector(fromParent))
+                                                   withValueBlock:[self fromParentValueBlock]];
+                                            }];
+}
+
+#pragma mark - Value Blocks
+
+- (EKManagedMappingValueBlock) fromParentValueBlock {
+  return ^id(NSString *key, NSString *value, NSManagedObjectContext *context) {
+    if ([value isEqualToString:kManagedObjectMappingProviderETH]) {
+      NSArray <AccountModelObject *> *accounts = [AccountModelObject MR_findAllInContext:context];
+      return accounts;
+    } else {
+      NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.symbol == %@", value];
+      NSArray <TokenModelObject *> *tokens = [TokenModelObject MR_findAllWithPredicate:predicate inContext:context];
+      return tokens;
+    }
+    return nil;
+  };
 }
 
 @end

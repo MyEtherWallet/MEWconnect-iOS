@@ -19,6 +19,7 @@
 - (AccountPlainObject *) obtainAccount;
 - (void) configurate;
 - (NSUInteger) obtainNumberOfTokens;
+- (NSDecimalNumber *) obtainTotalPriceOfTokens;
 - (void) reloadData;
 - (void) subscribe;
 - (void) unsubscribe;

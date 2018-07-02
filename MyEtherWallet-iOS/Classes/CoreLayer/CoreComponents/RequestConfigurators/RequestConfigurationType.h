@@ -12,6 +12,7 @@
 typedef NS_ENUM(NSUInteger, RequestConfigurationType) {
   RequestConfigurationDisabledType      = 0,
   RequestConfigurationMyEtherAPIType    = 1,
+  RequestConfigurationTickerAPIType     = 2,
 };
 
 #endif /* RequestConfigurationType_h */

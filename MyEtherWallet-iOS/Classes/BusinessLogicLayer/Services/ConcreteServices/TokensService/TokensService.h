@@ -15,4 +15,5 @@ typedef void(^TokensServiceCompletion)(NSError *error);
 @protocol TokensService <NSObject>
 - (void) updateTokenBalancesForAccount:(AccountPlainObject *)account withCompletion:(TokensServiceCompletion)completion;
 - (NSUInteger) obtainNumberOfTokensForAccount:(AccountPlainObject *)account;
+- (NSDecimalNumber *) obtainTokensTotalPriceForAccount:(AccountPlainObject *)account;
 @end

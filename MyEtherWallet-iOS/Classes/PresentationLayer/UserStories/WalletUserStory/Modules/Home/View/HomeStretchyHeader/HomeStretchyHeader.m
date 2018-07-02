@@ -15,6 +15,8 @@
 #import "UIColor+Hex.h"
 #import "UIColor+Application.h"
 
+#import "NSNumberFormatter+USD.h"
+
 typedef NS_ENUM(NSInteger, HomeStretchyHeaderStyle) {
   HomeStretchyHeaderStyleDefault,
   HomeStretchyHeaderStyleLightContent,
@@ -127,6 +129,11 @@ static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset       = 8.0;
 
 - (void) updateTitle:(NSString *)title {
   self.titleLabel.text = title;
+}
+
+- (void) updateTokensPrice:(NSDecimalNumber *)price {
+  NSNumberFormatter *usdFormatter = [NSNumberFormatter usdFormatter];
+  self.tokenBalancesLabel.text = [usdFormatter stringFromNumber:price];
 }
 
 #pragma mark - Private
@@ -255,8 +262,8 @@ static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset       = 8.0;
       tokenBalancesLabel.translatesAutoresizingMaskIntoConstraints = NO;
       tokenBalancesLabel.font = [UIFont systemFontOfSize:kHomeStretchyHeaderTokensTitleMaxFontSize weight:UIFontWeightRegular];
       tokenBalancesLabel.textColor = [UIColor colorWithRGB:0x6D7372];
-      tokenBalancesLabel.text = @"$0.00";
-      tokenBalancesLabel.hidden = YES;
+      NSNumberFormatter *usdFormatter = [NSNumberFormatter usdFormatter];
+      tokenBalancesLabel.text = [usdFormatter stringFromNumber:@0];
       [searchBarContainerView addSubview:tokenBalancesLabel];
       [searchBarContainerView.trailingAnchor constraintEqualToAnchor:tokenBalancesLabel.trailingAnchor constant:kHomeStretchyHeaderDefaultOffset].active = YES;
       self.tokenBalancesTopConstraints = [tokenBalancesLabel.topAnchor constraintEqualToAnchor:searchBarContainerView.topAnchor constant:kHomeStretchyHeaderTokensTitleTopMaxOffset];

@@ -11,6 +11,7 @@
 #import "ResponseConverterImplementation.h"
 #import "TokensResponseConverterImplementation.h"
 #import "EthereumResponseConverterImplementation.h"
+#import "TickerResponseConverterImplementation.h"
 
 #import "ResponseConvertingType.h"
 
@@ -24,6 +25,8 @@
                    use:[self tokensConverter]];
     [matcher caseEqual:@(ResponseConvertingEthereumType)
                    use:[self ethereumConverter]];
+    [matcher caseEqual:@(ResponseConvertingTickerType)
+                   use:[self tickerConverter]];
   }];
   
 }
@@ -38,6 +41,10 @@
 
 - (EthereumResponseConverterImplementation *) ethereumConverter {
   return [TyphoonDefinition withClass:[EthereumResponseConverterImplementation class]];
+}
+
+- (TickerResponseConverterImplementation *) tickerConverter {
+  return [TyphoonDefinition withClass:[TickerResponseConverterImplementation class]];
 }
 
 @end

@@ -10,6 +10,7 @@
 
 #import "SingleResponseValidator.h"
 #import "ManyResponseValidator.h"
+#import "FiatPricesResponseValidator.h"
 
 @implementation ResponseValidatorsAssembly
 
@@ -23,17 +24,23 @@
                    use:[self singleResponseValidator]];
     [matcher caseEqual:@(ResponseValidationManyType)
                    use:[self manyResponseValidator]];
+    [matcher caseEqual:@(ResponseValidationFiatPricesType)
+                   use:[self fiatPricesResponseValidator]];
   }];
 }
 
 #pragma mark - Concrete definitions
 
-- (id<ResponseValidator>)singleResponseValidator {
+- (id<ResponseValidator>) singleResponseValidator {
   return [TyphoonDefinition withClass:[SingleResponseValidator class]];
 }
 
-- (id<ResponseValidator>)manyResponseValidator {
+- (id<ResponseValidator>) manyResponseValidator {
   return [TyphoonDefinition withClass:[ManyResponseValidator class]];
+}
+
+- (id<ResponseValidator>) fiatPricesResponseValidator {
+  return [TyphoonDefinition withClass:[FiatPricesResponseValidator class]];
 }
 
 @end

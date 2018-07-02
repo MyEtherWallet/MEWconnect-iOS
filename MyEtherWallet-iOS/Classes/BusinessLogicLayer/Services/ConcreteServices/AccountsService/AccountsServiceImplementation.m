@@ -52,11 +52,17 @@ static NSString *const kMEWDonateAddress = @"0xDECAF9CD2367cdbb726E904cD6397eDFc
 #endif
   [rootSavingContext performBlock:^{
     CompoundOperationBase *compoundOperation = [self.accountsOperationFactory ethereumBalanceWithBody:body inNetwork:[account.fromNetwork network]];
-    [compoundOperation setResultBlock:^(id data, NSError *error) {
-      //merge data from network with local
+    [compoundOperation setResultBlock:^(NSArray <AccountModelObject *> *data, NSError *error) {
+#if DEBUG_BALANCE
+      AccountModelObject *accountModelObject = [AccountModelObject MR_findFirstByAttribute:NSStringFromSelector(@selector(publicAddress)) withValue:account.publicAddress inContext:rootSavingContext];
+      accountModelObject.balance = [data firstObject].balance;
+      accountModelObject.decimals = [data firstObject].decimals;
+      [rootSavingContext MR_deleteObjects:data];
+      [rootSavingContext MR_saveToPersistentStoreAndWait];
+#endif
       dispatch_async(dispatch_get_main_queue(), ^{
         if (completion) {
-          completion(data);
+          completion(error);
         }
       });
     }];

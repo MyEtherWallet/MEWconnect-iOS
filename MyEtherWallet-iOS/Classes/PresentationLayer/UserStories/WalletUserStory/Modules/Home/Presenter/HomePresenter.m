@@ -31,13 +31,14 @@
   [self.view updateWithAccount:account];
 }
 
-- (void)configureAfterChangingNetwork {
+- (void) configureAfterChangingNetwork {
   [self.interactor refreshAccount];
   AccountPlainObject *account = [self.interactor obtainAccount];
   [self.view updateWithAccount:account];
   
   NSUInteger count = [self.interactor obtainNumberOfTokens];
-  [self.view updateWithTokensCount:count];
+  NSDecimalNumber *tokensPrice = [self.interactor obtainTotalPriceOfTokens];
+  [self.view updateWithTokensCount:count withTotalPrice:tokensPrice];
   
   [self.interactor reloadData];
 }
@@ -46,7 +47,8 @@
 
 - (void) didTriggerViewReadyEvent {
   NSUInteger count = [self.interactor obtainNumberOfTokens];
-	[self.view setupInitialStateWithNumberOfTokens:count];
+  NSDecimalNumber *tokensPrice = [self.interactor obtainTotalPriceOfTokens];
+  [self.view setupInitialStateWithNumberOfTokens:count totalPrice:tokensPrice];
   AccountPlainObject *account = [self.interactor obtainAccount];
   [self.view updateWithAccount:account];
   
@@ -104,7 +106,14 @@
 
 - (void) didUpdateTokens {
   NSUInteger count = [self.interactor obtainNumberOfTokens];
-  [self.view updateWithTokensCount:count];
+  NSDecimalNumber *tokensPrice = [self.interactor obtainTotalPriceOfTokens];
+  [self.view updateWithTokensCount:count withTotalPrice:tokensPrice];
+}
+
+- (void)didUpdateTokensBalance {
+  NSUInteger count = [self.interactor obtainNumberOfTokens];
+  NSDecimalNumber *tokensPrice = [self.interactor obtainTotalPriceOfTokens];
+  [self.view updateWithTokensCount:count withTotalPrice:tokensPrice];
 }
 
 - (void) didUpdateEthereumBalance {

@@ -14,9 +14,9 @@
 @class TokenPlainObject;
 
 @protocol HomeViewInput <NSObject>
-- (void) setupInitialStateWithNumberOfTokens:(NSUInteger)tokensCount;
+- (void) setupInitialStateWithNumberOfTokens:(NSUInteger)tokensCount totalPrice:(NSDecimalNumber *)totalPrice;
 - (void) updateWithAccount:(AccountPlainObject *)account;
 - (void) updateWithTransactionBatch:(CacheTransactionBatch *)transactionBatch;
-- (void) updateWithTokensCount:(NSUInteger)tokensCount;
+- (void) updateWithTokensCount:(NSUInteger)tokensCount withTotalPrice:(NSDecimalNumber *)totalPrice;
 - (void) updateWithConnectionStatus:(BOOL)connected animated:(BOOL)animated;
 @end

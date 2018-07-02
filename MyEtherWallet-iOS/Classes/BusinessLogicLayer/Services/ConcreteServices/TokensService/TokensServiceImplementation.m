@@ -20,6 +20,7 @@
 #import "AccountModelObject.h"
 #import "AccountPlainObject.h"
 #import "TokenModelObject.h"
+#import "FiatPriceModelObject.h"
 
 #define DEBUG_TOKENS 1
 #if !DEBUG
@@ -101,6 +102,20 @@ static NSString *const TokensContractAddress = @"0xBE1ecF8e340F13071761e0EeF054d
   NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
   NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.fromAccount.publicAddress == %@", account.publicAddress];
   return [TokenModelObject MR_countOfEntitiesWithPredicate:predicate inContext:context];
+}
+
+- (NSDecimalNumber *) obtainTokensTotalPriceForAccount:(AccountPlainObject *)account {
+  NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
+  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.fromAccount.publicAddress == %@ && SELF.price != nil", account.publicAddress];
+  NSArray <TokenModelObject *> *tokens = [TokenModelObject MR_findAllWithPredicate:predicate inContext:context];
+  NSDecimalNumber *totalPrice = [NSDecimalNumber zero];
+  for (TokenModelObject *tokenModelObject in tokens) {
+    NSDecimalNumber *decimals = [NSDecimalNumber decimalNumberWithMantissa:1 exponent:[tokenModelObject.decimals shortValue] isNegative:NO];
+    NSDecimalNumber *tokenBalance = [tokenModelObject.balance decimalNumberByDividingBy:decimals];
+    NSDecimalNumber *price = [tokenBalance decimalNumberByMultiplyingBy:tokenModelObject.price.usdPrice];
+    totalPrice = [totalPrice decimalNumberByAdding:price];
+  }
+  return totalPrice;
 }
 
 #pragma mark - Private

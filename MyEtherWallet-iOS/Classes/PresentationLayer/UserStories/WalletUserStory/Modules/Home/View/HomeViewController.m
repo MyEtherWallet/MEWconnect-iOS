@@ -17,6 +17,7 @@
 #import "AccountPlainObject.h"
 #import "NetworkPlainObject.h"
 #import "TokenPlainObject.h"
+#import "FiatPricePlainObject.h"
 
 #import "HomeStretchyHeader.h"
 #import "CardView.h"
@@ -97,7 +98,7 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
 
 #pragma mark - HomeViewInput
 
-- (void) setupInitialStateWithNumberOfTokens:(NSUInteger)tokensCount {
+- (void) setupInitialStateWithNumberOfTokens:(NSUInteger)tokensCount totalPrice:(NSDecimalNumber *)totalPrice {
   if (@available(iOS 11.0, *)) {
     self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
   }
@@ -109,6 +110,7 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
   _headerView = header;
   
   _numberOfTokens = tokensCount;
+  [self.headerView updateTokensPrice:totalPrice];
   self.headerView.searchBar.hidden = (tokensCount == 0);
   self.headerView.searchBar.placeholder = [NSString localizedStringWithFormat:NSLocalizedString(@"Search %tu token(s)", @"Wallet. Search field placeholder"), tokensCount];
   
@@ -171,6 +173,7 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
     }
   }
   [self.headerView.cardView updateWithSeed:account.publicAddress];
+  [self.headerView.cardView updateEthPrice:account.price.usdPrice];
   [self.headerView refreshContentIfNeeded];
   
   self.headerView.cardView.backedUp = [account.backedUp boolValue];
@@ -190,7 +193,8 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
   }
 }
 
-- (void) updateWithTokensCount:(NSUInteger)tokensCount {
+- (void) updateWithTokensCount:(NSUInteger)tokensCount withTotalPrice:(NSDecimalNumber *)totalPrice {
+  [self.headerView updateTokensPrice:totalPrice];
   _numberOfTokens = tokensCount;
   if (_numberOfTokens > 0) {
     self.headerView.searchBar.placeholder = [NSString localizedStringWithFormat:NSLocalizedString(@"Search %tu token(s)", @"Wallet. Search field placeholder"), tokensCount];

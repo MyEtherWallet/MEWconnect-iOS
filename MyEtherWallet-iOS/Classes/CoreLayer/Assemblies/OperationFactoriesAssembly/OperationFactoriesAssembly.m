@@ -12,7 +12,9 @@
 #import "OperationChainer.h"
 
 #import "QueryTransformerBase.h"
+#import "FiatPricesQueryTransformer.h"
 
+#import "BodyTransformerBase.h"
 #import "ContractsBodyTransformer.h"
 #import "BalanceBodyTransformer.h"
 
@@ -20,6 +22,7 @@
 
 #import "TokensOperationFactory.h"
 #import "AccountsOperationFactory.h"
+#import "FiatPricesOperationFactory.h"
 
 @implementation OperationFactoriesAssembly
 
@@ -44,6 +47,19 @@
                                             [initializer injectParameterWith:[self networkOperationBuilder]];
                                             [initializer injectParameterWith:[self accountsQueryTransformer]];
                                             [initializer injectParameterWith:[self balanceBodyTransformer]];
+                                            [initializer injectParameterWith:[self headersBuilder]];
+                                          }];
+                        }];
+}
+
+- (FiatPricesOperationFactory *) fiatPricesOperationFactory {
+  return [TyphoonDefinition withClass:[FiatPricesOperationFactory class]
+                        configuration:^(TyphoonDefinition *definition) {
+                          [definition useInitializer:@selector(initWithBuilder:queryTransformer:bodyTransformer:headersBuilder:)
+                                          parameters:^(TyphoonMethod *initializer) {
+                                            [initializer injectParameterWith:[self networkOperationBuilder]];
+                                            [initializer injectParameterWith:[self fiatPricesQueryTransformer]];
+                                            [initializer injectParameterWith:[self fiatPricesBodyTransformer]];
                                             [initializer injectParameterWith:[self headersBuilder]];
                                           }];
                         }];
@@ -86,6 +102,10 @@
   return [TyphoonDefinition withClass:[QueryTransformerBase class]];
 }
 
+- (FiatPricesQueryTransformer *) fiatPricesQueryTransformer {
+  return [TyphoonDefinition withClass:[FiatPricesQueryTransformer class]];
+}
+
 #pragma mark - Body Transformers
 
 - (ContractsBodyTransformer *) contractsBodyTransformer {
@@ -94,6 +114,10 @@
 
 - (BalanceBodyTransformer *) balanceBodyTransformer {
   return [TyphoonDefinition withClass:[BalanceBodyTransformer class]];
+}
+
+- (BodyTransformerBase *) fiatPricesBodyTransformer {
+  return [TyphoonDefinition withClass:[BodyTransformerBase class]];
 }
 
 #pragma mark - Headers Builders

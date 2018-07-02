@@ -10,7 +10,8 @@
 
 #import "RESTRequestConfigurator.h"
 
-static NSString *const kNodeURLPath    = @"https://api.myetherapi.com";
+static NSString *const kNodeURLPath     = @"https://api.myetherapi.com";
+static NSString *const kTickerURLPath   = @"http://still-waters-52916.herokuapp.com";
 
 @implementation RequestConfiguratorsAssembly
 
@@ -20,6 +21,8 @@ static NSString *const kNodeURLPath    = @"https://api.myetherapi.com";
   return [TyphoonDefinition withOption:type matcher:^(TyphoonOptionMatcher *matcher) {
     [matcher caseEqual:@(RequestConfigurationMyEtherAPIType)
                    use:[self myEtherAPIRequestConfigurator]];
+    [matcher caseEqual:@(RequestConfigurationTickerAPIType)
+                   use:[self tickerAPIRequestConfigurator]];;
   }];
 }
 
@@ -27,6 +30,15 @@ static NSString *const kNodeURLPath    = @"https://api.myetherapi.com";
   return [TyphoonDefinition withClass:[RESTRequestConfigurator class] configuration:^(TyphoonDefinition *definition) {
     [definition useInitializer:@selector(initWithBaseURL:apiPath:) parameters:^(TyphoonMethod *initializer) {
       [initializer injectParameterWith:[NSURL URLWithString:kNodeURLPath]];
+      [initializer injectParameterWith:nil];
+    }];
+  }];
+}
+
+- (id<RequestConfigurator>) tickerAPIRequestConfigurator {
+  return [TyphoonDefinition withClass:[RESTRequestConfigurator class] configuration:^(TyphoonDefinition *definition) {
+    [definition useInitializer:@selector(initWithBaseURL:apiPath:) parameters:^(TyphoonMethod *initializer) {
+      [initializer injectParameterWith:[NSURL URLWithString:kTickerURLPath]];
       [initializer injectParameterWith:nil];
     }];
   }];

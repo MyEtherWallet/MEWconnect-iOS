@@ -18,5 +18,6 @@
 - (void) didProcessCacheTransaction:(CacheTransactionBatch *)transactionBatch;
 - (void) didUpdateTokens;
 - (void) didUpdateEthereumBalance;
+- (void) didUpdateTokensBalance;
 - (void) mewConnectionStatusChanged;
 @end

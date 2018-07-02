@@ -54,6 +54,8 @@
                                                 with:[self.serviceComponents accountsService]];
                           [definition injectProperty:@selector(tokensService)
                                                 with:[self.serviceComponents tokensService]];
+                          [definition injectProperty:@selector(fiatPricesService)
+                                                with:[self.serviceComponents fiatPricesService]];
                           [definition injectProperty:@selector(ponsomizer)
                                                 with:[self.ponsomizerAssembly ponsomizer]];
                         }];

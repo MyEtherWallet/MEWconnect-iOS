@@ -18,6 +18,7 @@
 #import "Ponsomizer.h"
 #import "BlockchainNetworkService.h"
 #import "AccountsService.h"
+#import "FiatPricesService.h"
 
 #import "CacheRequest.h"
 #import "CacheTracker.h"
@@ -59,6 +60,10 @@
                                   if (!error) {
                                     @strongify(self);
                                     [self.output didUpdateEthereumBalance];
+                                    [self.fiatPricesService updatePriceForEthereumWithCompletion:^(NSError *error) {
+                                      [self refreshAccount];
+                                      [self.output didUpdateEthereumBalance];
+                                    }];
                                   }
                                 }];
   [self.tokensService updateTokenBalancesForAccount:self.account
@@ -66,6 +71,9 @@
                                        if (!error) {
                                          @strongify(self);
                                          [self.output didUpdateTokens];
+                                         [self.fiatPricesService updatePricesForTokensWithCompletion:^(NSError *error) {
+                                           [self.output didUpdateTokensBalance];
+                                         }];
                                        }
                                      }];
 }
@@ -89,6 +97,10 @@
 
 - (NSUInteger) obtainNumberOfTokens {
   return [self.tokensService obtainNumberOfTokensForAccount:self.account];
+}
+
+- (NSDecimalNumber *) obtainTotalPriceOfTokens {
+  return [self.tokensService obtainTokensTotalPriceForAccount:self.account];
 }
 
 - (void)subscribe {

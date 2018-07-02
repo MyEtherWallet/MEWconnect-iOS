@@ -1,5 +1,5 @@
 #import "_FiatPriceModelObject.h"
 
 @interface FiatPriceModelObject : _FiatPriceModelObject
-// Custom logic goes here.
+@property (nonatomic, strong) id fromParent; /* Used for mapping */
 @end

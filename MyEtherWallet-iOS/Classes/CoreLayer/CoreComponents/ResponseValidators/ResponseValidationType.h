@@ -13,6 +13,7 @@ typedef NS_ENUM(NSUInteger, ResponseValidationType) {
   ResponseValidationDisabledType  = 0,
   ResponseValidationSingleType    = 1,
   ResponseValidationManyType      = 2,
+  ResponseValidationFiatPricesType= 3,
 };
 
 #endif /* ResponseValidationType_h */

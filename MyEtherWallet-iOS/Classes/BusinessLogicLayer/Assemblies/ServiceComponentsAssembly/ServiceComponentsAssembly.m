@@ -30,6 +30,7 @@
 #import "BlockchainNetworkServiceImplementation.h"
 #import "AccountsServiceImplementation.h"
 #import "KeychainServiceImplementation.h"
+#import "FiatPricesServiceImplementation.h"
 
 #import "OperationSchedulerImplementation.h"
 
@@ -122,6 +123,16 @@
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(tokensOperationFactory)
                                                 with:[self.operationFactoriesAssembly tokensOperationFactory]];
+                          [definition injectProperty:@selector(operationScheduler)
+                                                with:[self operationScheduler]];
+                        }];
+}
+
+- (id<FiatPricesService>)fiatPricesService {
+  return [TyphoonDefinition withClass:[FiatPricesServiceImplementation class]
+                        configuration:^(TyphoonDefinition *definition) {
+                          [definition injectProperty:@selector(fiatPricesOperationFactory)
+                                                with:[self.operationFactoriesAssembly fiatPricesOperationFactory]];
                           [definition injectProperty:@selector(operationScheduler)
                                                 with:[self operationScheduler]];
                         }];

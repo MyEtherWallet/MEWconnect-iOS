@@ -9,7 +9,9 @@
 #ifndef ServiceNameConstants_h
 #define ServiceNameConstants_h
 
-static NSString *const kServiceNameETH  =   @"eth";
-static NSString *const kServiceNameROP  =   @"rop";
+static NSString *const kServiceNameETH      =   @"eth";
+static NSString *const kServiceNameROP      =   @"rop";
+
+static NSString *const kServiceNameTicker   =   @"ticker";
 
 #endif /* ServiceNameConstants_h */

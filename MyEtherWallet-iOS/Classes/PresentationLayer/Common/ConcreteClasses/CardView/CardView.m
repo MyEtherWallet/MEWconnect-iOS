@@ -353,6 +353,9 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
     NSRange infoRange = NSMakeRange(NSMaxRange(usdBalanceRange), [finalString length] - NSMaxRange(usdBalanceRange));
     [finalAttributedText addAttributes:infoAttributes range:infoRange];
     self.usdBalanceLabel.attributedText = finalAttributedText;
+    if (self.usdBalanceLabel.hidden) {
+      self.usdBalanceLabel.hidden = NO;
+    }
   }
 }
 

@@ -12,6 +12,10 @@
 
 #import "ApplicationConstants.h"
 
+static CGFloat const kSplashPasswordShakeAnimationDistance = 10.0;
+static CFTimeInterval const kSplashPasswordShakeAnimationDuration = 0.05;
+static float const kSplashPasswordShakeAnimationRepeatCount = 3.0;
+
 @interface SplashPasswordViewController () <UITextFieldDelegate>
 @property (nonatomic, weak) IBOutlet UITextField *passwordTextField;
 @end
@@ -55,6 +59,16 @@
 
 - (void) setupInitialState {
   [self _updatePrefferedContentSize];
+}
+
+- (void) shakeInput {
+  CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
+  animation.duration = kSplashPasswordShakeAnimationDuration;
+  animation.repeatCount = kSplashPasswordShakeAnimationRepeatCount;
+  animation.autoreverses = YES;
+  animation.fromValue = [NSValue valueWithCGPoint:CGPointMake(self.passwordTextField.center.x - kSplashPasswordShakeAnimationDistance, self.passwordTextField.center.y)];
+  animation.toValue = [NSValue valueWithCGPoint:CGPointMake(self.passwordTextField.center.x + kSplashPasswordShakeAnimationDistance, self.passwordTextField.center.y)];
+  [self.passwordTextField.layer addAnimation:animation forKey:@"position"];
 }
 
 #pragma mark - IBActions

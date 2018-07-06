@@ -45,7 +45,7 @@
 }
 
 - (void) incorrectPassword {
-  
+  [self.view shakeInput];
 }
 
 @end

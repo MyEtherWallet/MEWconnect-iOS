@@ -9,7 +9,11 @@
 #import "HomeTableViewCellObject.h"
 #import "HomeTableViewCell.h"
 
+#import "NSNumberFormatter+USD.h"
+#import "NSNumberFormatter+TokenPrice.h"
+
 #import "TokenPlainObject.h"
+#import "FiatPricePlainObject.h"
 
 @implementation HomeTableViewCellObject
 
@@ -18,6 +22,14 @@
     _tokenName = token.name;
     _tokenBalance = token.amountString;
     _token = token;
+    
+    if (token.price) {
+      NSNumberFormatter *usdFormatter = [NSNumberFormatter usdFormatter];
+      NSNumberFormatter *tokenUSDFormatter = [NSNumberFormatter tokenUSDFormatter];
+      NSDecimalNumber *fiatBalance = [token.amount decimalNumberByMultiplyingBy:token.price.usdPrice];
+      _fiatBalance = [usdFormatter stringFromNumber:fiatBalance];
+      _tokenPrice = [tokenUSDFormatter stringFromNumber:token.price.usdPrice];
+    }
   }
   return self;
 }

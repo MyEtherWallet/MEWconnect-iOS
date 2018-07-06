@@ -6,17 +6,14 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
-@class TokenModelObject;
+@class AccountPlainObject;
 
 typedef void(^TokensServiceCompletion)(NSError *error);
 
 @protocol TokensService <NSObject>
-- (void) updateEthereumBalanceForAddress:(NSString *)address withCompletion:(TokensServiceCompletion)completion;
-- (void) updateTokenBalancesForAddress:(NSString *)address withCompletion:(TokensServiceCompletion)completion;
-- (NSArray <TokenModelObject *> *) obtainTokens;
-- (NSUInteger) obtainNumberOfTokens;
-- (TokenModelObject *) obtainEthereum;
-- (void) clearTokens;
+- (void) updateTokenBalancesForAccount:(AccountPlainObject *)account withCompletion:(TokensServiceCompletion)completion;
+- (NSUInteger) obtainNumberOfTokensForAccount:(AccountPlainObject *)account;
+- (NSDecimalNumber *) obtainTokensTotalPriceForAccount:(AccountPlainObject *)account;
 @end

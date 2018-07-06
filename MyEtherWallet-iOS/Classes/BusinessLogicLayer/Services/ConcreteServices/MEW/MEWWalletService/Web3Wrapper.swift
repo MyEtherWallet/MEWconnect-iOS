@@ -8,7 +8,6 @@
 
 import Foundation
 import web3swift
-import KeychainAccess
 import BigInt
 import Result
 
@@ -45,6 +44,22 @@ private struct KeychainInfo {
   }
 }
 
+private struct KeySettings {
+  private struct DerivationPaths {
+    static var mainnet: String  = "m/44'/60'/0'/0"
+    static var ropsten: String  = "m/44'/1'/0'/0"
+  }
+  
+  static func derivationPath(_ network: BlockchainNetworkType) -> String {
+    switch network {
+    case .mainnet:
+      return DerivationPaths.mainnet
+    case .ropsten:
+      return DerivationPaths.ropsten
+    }
+  }
+}
+
 extension TransactionParameters {
   fileprivate static func fieldKeyPath(_ key: TransactionParametersField) -> WritableKeyPath<TransactionParameters, String?> {
     switch key {
@@ -61,19 +76,23 @@ extension TransactionParameters {
 @objc
 class Web3Wrapper: NSObject {
   internal var MEWcrypto: MEWcrypto?
+  internal var keychainService: KeychainService?
   
   /**
    Creates a new private key or restored private key from BIP39 mnemonics words
    and store it into keychain
    
-   **m/44'/60'/0'/0** prefix is using for private key (same as for *MetaMask*)
+   **m/44'/60'/0'/0** prefix is using for private key in Mainnet (same as for *MetaMask*)
+   
+   **m/44'/1'/0'/0** prefix is using for private key in Ropsten
    
    - Parameter password: User-defined password. Using for encryption private key and entropy
    - Parameter words: BIP39 mnemonics words to restore private key
+   - Parameter network: Blockchain network: **mainnet** or **ropsten**
    
    - Returns: Public Ethereum address
    */
-  func createWallet(password: String, words: [String]?) -> String? {
+  func createWallet(password: String, words: [String]?, network: BlockchainNetworkType = .mainnet) -> String? {
     let mnemonics: String
     if words != nil {
       mnemonics = words!.joined(separator: " ")
@@ -82,24 +101,26 @@ class Web3Wrapper: NSObject {
       mnemonics = generatedMnemonics!
     }
     
-    guard let bip32Keystore = try? BIP32Keystore(mnemonics: mnemonics, password: password, mnemonicsPassword: "", language: .english, prefixPath: HDNode.defaultPath), bip32Keystore != nil else { return nil }
+    let prefixPath = KeySettings.derivationPath(network)
+    
+    guard let bip32Keystore = try? BIP32Keystore(mnemonics: mnemonics, password: password, mnemonicsPassword: "", language: .english, prefixPath: prefixPath), bip32Keystore != nil else { return nil }
     
     guard let keydata = try? JSONEncoder().encode(bip32Keystore!.keystoreParams) else { return nil }
     guard let encryptedKeydata = self.MEWcrypto?.encryptData(keydata, withPassword: password) else { return nil }
-    let keychain = Keychain(service: KeychainInfo.service)
-    keychain[data: KeychainInfo.Fields.keydata] = encryptedKeydata
+    
+    guard let account = bip32Keystore?.addresses?.first else { return nil }
+    self.keychainService?.saveKeydata(encryptedKeydata, ofPublicAddress: account.address, from: network)
+    
     /* Restoring case */
     if words == nil {
       guard let entropy = BIP39.mnemonicsToEntropy(mnemonics) else { return nil }
       guard let encryptedEntropy = self.MEWcrypto?.encryptData(entropy, withPassword: password) else { return nil }
-      keychain[data: KeychainInfo.Fields.entropy] = encryptedEntropy
+      
+      self.keychainService?.saveEntropy(encryptedEntropy, ofPublicAddress: account.address, from: network)
     } else {
       //Make sure that we don't have entropy from anywhere
-      try? keychain.remove(KeychainInfo.Fields.entropy)
+      self.keychainService?.removeEntropy(ofPublicAddress: account.address, from: network)
     }
-    
-    guard let account = bip32Keystore?.addresses?.first else { return nil }
-    keychain[string: KeychainInfo.Fields.publicAddress] = account.address
     return account.address
   }
   
@@ -107,12 +128,13 @@ class Web3Wrapper: NSObject {
    Validated user password
    
    - Parameter password: User-typed password. Using for decryption private key
+   - Parameter address: Public address
+   - Parameter network: Blockchain network: **mainnet** or **ropsten**
    
    - Returns: Public Ethereum address or **nil** if password is incorrect
    */
-  func validatePassword(password: String) -> String? {
-    let keychain = Keychain(service: KeychainInfo.service)
-    guard let encryptedKeydata = keychain[data: KeychainInfo.Fields.keydata] else { return nil }
+  func validatePassword(password: String, address: String, network: BlockchainNetworkType = .mainnet) -> String? {
+    guard let encryptedKeydata = self.keychainService?.obtainKeydata(ofPublicAddress: address, from: network) else { return nil }
     guard let keydata = self.MEWcrypto?.decryptData(encryptedKeydata, withPassword: password) else { return nil }
     
     guard let bip32Keystore = BIP32Keystore(keydata) else { return nil }
@@ -126,27 +148,18 @@ class Web3Wrapper: NSObject {
   }
   
   /**
-   Obtaining Ethereum public address
-   
-   - Returns: Public Ethereum address or **nil** if private key doesn't exists
-   */
-  func obtainAddress() -> String? {
-    let keychain = Keychain(service: KeychainInfo.service)
-    return keychain[string: KeychainInfo.Fields.publicAddress]
-  }
-  
-  /**
    Signing message by using private key
    
    - Parameter message: Message that should be signed
    - Parameter password: User password to decrypt private key
+   - Parameter address: Public address
+   - Parameter network: Blockchain network: **mainnet** or **ropsten**
    
    - Returns: Signed message, that can be verified at https://www.myetherwallet.com/signmsg.html
    or **nil** if something goes wrong
    */
-  func signMessage(_ message: String, password: String) -> [String: String]? {
-    let keychain = Keychain(service: KeychainInfo.service)
-    guard let encryptedKeydata = keychain[data: KeychainInfo.Fields.keydata] else { return nil }
+  func signMessage(_ message: String, password: String, address: String, network: BlockchainNetworkType = .mainnet) -> [String: String]? {
+    guard let encryptedKeydata = self.keychainService?.obtainKeydata(ofPublicAddress: address, from: network) else { return nil }
     guard let keydata = self.MEWcrypto?.decryptData(encryptedKeydata, withPassword: password) else { return nil }
     
     guard let bip32Keystore = BIP32Keystore(keydata) else { return nil }
@@ -174,12 +187,13 @@ class Web3Wrapper: NSObject {
    
    - Parameter transaction: Raw transaction that should be signed
    - Parameter password: User password to decrypt private key
+   - Parameter address: Public address
+   - Parameter network: Blockchain network: **mainnet** or **ropsten**
    
    - Returns: Signed transaction or **nil** if something goes wrong
    */
-  func signTransaction(_ transaction: MEWConnectTransaction, password: String) -> String? {
-    let keychain = Keychain(service: KeychainInfo.service)
-    guard let encryptedKeydata = keychain[data: KeychainInfo.Fields.keydata] else { return nil }
+  func signTransaction(_ transaction: MEWConnectTransaction, password: String, address: String, network: BlockchainNetworkType = .mainnet) -> String? {
+    guard let encryptedKeydata = self.keychainService?.obtainKeydata(ofPublicAddress: address, from: network) else { return nil }
     guard let keydata = self.MEWcrypto?.decryptData(encryptedKeydata, withPassword: password) else { return nil }
     
     guard let bip32Keystore = BIP32Keystore(keydata) else { return nil }
@@ -269,30 +283,11 @@ class Web3Wrapper: NSObject {
     return BIP39Language.english.words
   }
   
-  func recoveryMnemonicsWords(_ password: String) -> [String]? {
-    let keychain = Keychain(service: KeychainInfo.service)
-    guard let encryptedEntropy = keychain[data: KeychainInfo.Fields.entropy] else { return nil }
+  func recoveryMnemonicsWords(_ password: String, address: String, network: BlockchainNetworkType = .mainnet) -> [String]? {
+    guard let encryptedEntropy = self.keychainService?.obtainEntropy(ofPublicAddress: address, from: network) else { return nil }
     guard let entropy = self.MEWcrypto?.decryptData(encryptedEntropy, withPassword: password) else { return nil }
     guard let mnemonics = BIP39.generateMnemonicsFromEntropy(entropy: entropy) else { return nil }
     return mnemonics.components(separatedBy: " ")
-  }
-  
-  func resetBackup() {
-    let keychain = Keychain(service: KeychainInfo.service)
-    try? keychain.remove(KeychainInfo.Fields.entropy)
-  }
-  
-  func isBackedUp() -> Bool {
-    let keychain = Keychain(service: KeychainInfo.service)
-    guard let _ = keychain[data: KeychainInfo.Fields.entropy] else { return true }
-    return false
-  }
-  
-  func resetWallet() {
-    let keychain = Keychain(service: KeychainInfo.service)
-    keychain[data: KeychainInfo.Fields.entropy] = nil
-    keychain[data: KeychainInfo.Fields.keydata] = nil
-    keychain[data: KeychainInfo.Fields.publicAddress] = nil
   }
   
   //MARK: - Private

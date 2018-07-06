@@ -37,16 +37,17 @@ abstract_target 'MEWconnect' do
   pod 'GSKStretchyHeaderView', '~> 1.0.4'
   pod 'BEMCheckBox', '~> 1.0.0'
   pod 'M13Checkbox', :git => 'https://github.com/Foboz/M13Checkbox.git'
+  pod 'DZNWebViewController', :git => 'https://github.com/Foboz/DZNWebViewController.git'
   
   # Ethereum
   pod 'web3swift', :git => 'https://github.com/Foboz/web3swift.git'
   pod 'WebRTC'
   
   # Cryptographic
-  pod 'TrezorCrypto', :git => 'https://github.com/Foboz/trezor-crypto-ios.git'
+  pod 'TrezorCrypto'#, :git => 'https://github.com/Foboz/trezor-crypto-ios.git'
   
   # Keychain
-  pod 'KeychainAccess', '~> 3.1'
+  pod 'UICKeyChainStore', '~> 2.1'
   
   # Data mapping
   pod 'EasyMapping', '~> 0.15'

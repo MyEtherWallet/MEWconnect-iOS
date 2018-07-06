@@ -117,6 +117,7 @@
                         <segue destination="TZ6-JA-fY1" kind="presentation" identifier="HomeToMessageSignerSegueIdentifier" id="aQG-NF-Fnb"/>
                         <segue destination="Et8-6R-zGr" kind="presentation" identifier="HomeToBackupInfoSegueIdentifier" id="gma-Fq-rkZ"/>
                         <segue destination="T20-gx-fZR" kind="presentation" identifier="HomeToInfoSegueIdentifier" id="7nn-hV-fTP"/>
+                        <segue destination="bjD-Qn-fHU" kind="presentation" identifier="HomeToBuyEtherSegueIdentifier" id="aaz-Cv-z2t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dKq-6Q-B9q" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -157,7 +158,7 @@
                 <viewControllerPlaceholder storyboardName="Confirmation" id="aal-Ks-Rc6" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="prx-aW-hm4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-43" y="281"/>
+            <point key="canvasLocation" x="-211" y="281"/>
         </scene>
         <!--Delegate-->
         <scene sceneID="UyH-q1-XEx">
@@ -387,7 +388,15 @@ with MyEtherWallet</string>
                 <viewControllerPlaceholder storyboardName="Confirmation" referencedIdentifier="MessageSignerViewController" id="TZ6-JA-fY1" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uwQ-lg-xPN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="305" y="281"/>
+            <point key="canvasLocation" x="137" y="281"/>
+        </scene>
+        <!--BuyEther-->
+        <scene sceneID="pFD-6B-yWR">
+            <objects>
+                <viewControllerPlaceholder storyboardName="BuyEther" id="bjD-Qn-fHU" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VYq-Cb-3EX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="667" y="281"/>
         </scene>
         <!--Backup-->
         <scene sceneID="KoZ-bX-bMZ">
@@ -395,7 +404,7 @@ with MyEtherWallet</string>
                 <viewControllerPlaceholder storyboardName="Backup" id="Et8-6R-zGr" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tCu-5f-aqZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="607" y="281"/>
+            <point key="canvasLocation" x="438" y="281"/>
         </scene>
         <!--Info View Controller-->
         <scene sceneID="dlA-hx-fn3">
@@ -480,6 +489,7 @@ with MyEtherWallet</string>
                         <outlet property="tableView" destination="btJ-B1-EnL" id="AB1-s8-okh"/>
                         <outlet property="versionLabel" destination="G89-d1-aMk" id="cJJ-Jk-VBP"/>
                         <segue destination="ySg-Me-ph6" kind="unwind" identifier="InfoToStartUnwindSegueIdentifier" unwindAction="unwindToStart:" id="lBp-SS-UPN"/>
+                        <segue destination="ySg-Me-ph6" kind="unwind" identifier="InfoToHomeUnwindSegueIdentifier" unwindAction="unwindToHome:" id="pDA-fb-PhX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lwe-by-bLp" userLabel="First Responder" sceneMemberID="firstResponder"/>

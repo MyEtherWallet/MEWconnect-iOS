@@ -9,7 +9,6 @@
 #import "BackupWordsInteractorInput.h"
 
 @protocol BackupWordsInteractorOutput;
-@protocol MEWwallet;
 
 @interface BackupWordsInteractor : NSObject <BackupWordsInteractorInput>
 

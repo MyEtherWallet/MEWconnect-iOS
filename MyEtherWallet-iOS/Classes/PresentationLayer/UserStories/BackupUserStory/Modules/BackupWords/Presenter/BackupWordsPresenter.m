@@ -16,8 +16,8 @@
 
 #pragma mark - BackupWordsModuleInput
 
-- (void) configureModuleWithMnemonics:(NSArray<NSString *> *)mnemonics {
-  [self.interactor configurateWithMnemonics:mnemonics];
+- (void) configureModuleWithMnemonics:(NSArray<NSString *> *)mnemonics account:(AccountPlainObject *)account {
+  [self.interactor configurateWithMnemonics:mnemonics ofAccount:account];
 }
 
 #pragma mark - BackupWordsViewOutput
@@ -28,8 +28,9 @@
 }
 
 - (void) nextAction {
+  AccountPlainObject *account = [self.interactor obtainAccount];
   NSArray *mnemonics = [self.interactor recoveryMnemonicsWords];
-  [self.router openConfirmationWithMnemonics:mnemonics];
+  [self.router openConfirmationWithMnemonics:mnemonics account:account];
 }
 
 - (void) didTriggerViewWillAppearEvent {

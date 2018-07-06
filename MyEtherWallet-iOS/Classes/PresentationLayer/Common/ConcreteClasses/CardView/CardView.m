@@ -41,6 +41,7 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
 @implementation CardView {
   NSString *_seed;
   NSDecimalNumber *_ethBalance;
+  BlockchainNetworkType _network;
   NSDecimalNumber *_ethToUsdPrice;
 }
 
@@ -72,6 +73,12 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
 #pragma mark - Public
 
 - (void) updateWithSeed:(NSString *)seed {
+  if (!seed) {
+    seed = @"";
+  }
+  if ([_seed isEqualToString:seed]) {
+    return;
+  }
   _seed = seed;
   
   CGSize fullSize = [UIImage fullSize];
@@ -111,20 +118,22 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
   maxSize.width -= kCardViewDefaultOffset; //left offset
   maxSize.width -= shareIcon.size.width + 16.0; //share icon
   maxSize.width -= kCardViewDefaultOffset;//right offset
-  attributedSeedString = [attributedSeedString truncatedAttributedStringWithCustomEllipsis:ellipsis maxSize:maxSize truncationPosition:6];
+  if ([attributedSeedString length] > 6) {
+    attributedSeedString = [attributedSeedString truncatedAttributedStringWithCustomEllipsis:ellipsis maxSize:maxSize truncationPosition:6];
+  }
   
   self.seedLabel.attributedText = attributedSeedString;
 }
 
 /* 0.5679 ETH */
-- (void) updateBalance:(NSDecimalNumber *)balance {
+- (void) updateBalance:(NSDecimalNumber *)balance network:(BlockchainNetworkType)network {
   _ethBalance = balance;
+  _network = network;
   if (!balance) {
     balance = [NSDecimalNumber zero];
   }
   
-  //TODO: Refactor in future
-  NSNumberFormatter *ethereumFormatter = [NSNumberFormatter ethereumFormatterWithChainID:[[NSUserDefaults standardUserDefaults] integerForKey:@"chainID"]];
+  NSNumberFormatter *ethereumFormatter = [NSNumberFormatter ethereumFormatterWithNetwork:network];
   
   ethereumFormatter.maximumSignificantDigits = 8;
   NSString *balanceText = [ethereumFormatter stringFromNumber:balance];
@@ -323,7 +332,7 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
                                                   multiplier:216.0/343.0 constant:0.0]];
   
   //Default values
-  [self updateBalance:[NSDecimalNumber decimalNumberWithString:@"0.0"]];
+  [self updateBalance:[NSDecimalNumber decimalNumberWithString:@"0.0"] network:BlockchainNetworkTypeMainnet];
 }
 
 /* $423.65 USD @ $746/ETH */
@@ -331,7 +340,7 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
   if (_ethBalance && _ethToUsdPrice) {
     NSDecimalNumber *usd = [_ethBalance decimalNumberByMultiplyingBy:_ethToUsdPrice];
     NSNumberFormatter *usdFormatter = [NSNumberFormatter usdFormatter];
-    NSNumberFormatter *ethFormatter = [NSNumberFormatter ethereumFormatterWithChainID:[[NSUserDefaults standardUserDefaults] integerForKey:@"chainID"]];
+    NSNumberFormatter *ethFormatter = [NSNumberFormatter ethereumFormatterWithNetwork:_network];
     NSString *usdBalance = [usdFormatter stringFromNumber:usd];
     NSString *ethUsdPrice = [usdFormatter stringFromNumber:_ethToUsdPrice];
     NSString *finalString = [NSString stringWithFormat:@"%@ USD @ %@/%@", usdBalance, ethUsdPrice, ethFormatter.currencySymbol];
@@ -344,6 +353,9 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
     NSRange infoRange = NSMakeRange(NSMaxRange(usdBalanceRange), [finalString length] - NSMaxRange(usdBalanceRange));
     [finalAttributedText addAttributes:infoAttributes range:infoRange];
     self.usdBalanceLabel.attributedText = finalAttributedText;
+    if (self.usdBalanceLabel.hidden) {
+      self.usdBalanceLabel.hidden = NO;
+    }
   }
 }
 

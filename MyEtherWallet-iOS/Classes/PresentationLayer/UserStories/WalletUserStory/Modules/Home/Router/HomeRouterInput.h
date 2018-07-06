@@ -9,11 +9,13 @@
 @import Foundation;
 
 @class MEWConnectCommand;
+@class AccountPlainObject;
 
 @protocol HomeRouterInput <NSObject>
 - (void) openScanner;
 - (void) openMessageSignerWithMessage:(MEWConnectCommand *)command;
-- (void) openTransactionSignerWithMessage:(MEWConnectCommand *)command;
-- (void) openBackup;
-- (void) openInfo;
+- (void) openTransactionSignerWithMessage:(MEWConnectCommand *)command account:(AccountPlainObject *)account;
+- (void) openBackupWithAccount:(AccountPlainObject *)account;
+- (void) openInfoWithAccount:(AccountPlainObject *)account;
+- (void) openBuyEtherWithAccount:(AccountPlainObject *)account;
 @end

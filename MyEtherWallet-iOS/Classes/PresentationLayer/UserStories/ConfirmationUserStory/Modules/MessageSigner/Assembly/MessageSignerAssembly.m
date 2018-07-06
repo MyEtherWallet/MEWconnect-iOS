@@ -35,7 +35,7 @@
                           [definition injectProperty:@selector(output)
                                                 with:[self presenterMessageSigner]];
                           [definition injectProperty:@selector(walletService)
-                                                with:[self.serviceComponents MEWWallet]];
+                                                with:[self.serviceComponents MEWwallet]];
                         }];
 }
 

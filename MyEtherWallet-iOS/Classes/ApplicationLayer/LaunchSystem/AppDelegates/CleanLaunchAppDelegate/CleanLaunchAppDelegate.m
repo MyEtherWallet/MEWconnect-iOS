@@ -11,12 +11,13 @@
 #import "CleanLaunchRouter.h"
 #import "ApplicationConfigurator.h"
 #import "ThirdPartiesConfigurator.h"
+#import "CoreDataConfigurator.h"
 
 @implementation CleanLaunchAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [self.thirdPartiesConfigurator configurate];
-  [self.applicationConfigurator setupCoreDataStack];
+  [self.coreDataConfigurator setupCoreDataStack];
   [self.applicationConfigurator configureInitialSettings];
   [self.applicationConfigurator configurateAppearance];
   [self.cleanStartRouter openInitialScreen];

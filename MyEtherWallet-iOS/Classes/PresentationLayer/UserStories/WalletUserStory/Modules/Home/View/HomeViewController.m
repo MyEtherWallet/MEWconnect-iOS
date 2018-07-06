@@ -14,7 +14,10 @@
 
 #import "HomeDataDisplayManager.h"
 
+#import "AccountPlainObject.h"
+#import "NetworkPlainObject.h"
 #import "TokenPlainObject.h"
+#import "FiatPricePlainObject.h"
 
 #import "HomeStretchyHeader.h"
 #import "CardView.h"
@@ -24,6 +27,8 @@
 #import "UIColor+Application.h"
 
 #import "HomeTableViewAnimator.h"
+
+#import "NSNumberFormatter+Ethereum.h"
 
 static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
 
@@ -42,7 +47,6 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
 @implementation HomeViewController {
   CGFloat _keyboardHeight;
   BOOL _connected;
-  NSTimer *_testnetTimer;
 }
 
 #pragma mark - LifeCycle
@@ -94,7 +98,7 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
 
 #pragma mark - HomeViewInput
 
-- (void) setupInitialStateWithNumberOfTokens:(NSUInteger)tokensCount {
+- (void) setupInitialStateWithNumberOfTokens:(NSUInteger)tokensCount totalPrice:(NSDecimalNumber *)totalPrice {
   if (@available(iOS 11.0, *)) {
     self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
   }
@@ -106,17 +110,15 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
   _headerView = header;
   
   _numberOfTokens = tokensCount;
+  [self.headerView updateTokensPrice:totalPrice];
   self.headerView.searchBar.hidden = (tokensCount == 0);
   self.headerView.searchBar.placeholder = [NSString localizedStringWithFormat:NSLocalizedString(@"Search %tu token(s)", @"Wallet. Search field placeholder"), tokensCount];
   
   self.headerView.cardView.delegate = self;
   self.headerView.searchBar.delegate = self;
   
-  //TODO: Remove in future
-  [self.headerView.infoButton addTarget:self action:@selector(infoActionDown:) forControlEvents:UIControlEventTouchDown];
-  [self.headerView.infoButton addTarget:self action:@selector(infoActionUp:) forControlEvents:UIControlEventTouchUpInside];
-  [self.headerView.infoButton addTarget:self action:@selector(infoActionUpOutside:) forControlEvents:UIControlEventTouchUpInside];
-  [self.headerView.infoButton addTarget:self action:@selector(infoActionUpOutside:) forControlEvents:UIControlEventTouchUpOutside];
+  [self.headerView.infoButton addTarget:self action:@selector(infoAction:) forControlEvents:UIControlEventTouchUpInside];
+  [self.headerView.buyEtherButton addTarget:self action:@selector(buyEtherAction:) forControlEvents:UIControlEventTouchUpInside];
   
   [self.dataDisplayManager configureDataDisplayManagerWithAnimator:self.tableViewAnimator];
   self.tableView.dataSource = [self.dataDisplayManager dataSourceForTableView:self.tableView];
@@ -159,10 +161,31 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
   [self.dataDisplayManager updateDataDisplayManagerWithTransactionBatch:transactionBatch maximumCount:_numberOfTokens];
 }
 
-- (void)updateWithAddress:(NSString *)address {
-  [self.headerView.cardView updateWithSeed:address];
+- (void)updateWithAccount:(AccountPlainObject *)account {
+  switch ([account.fromNetwork network]) {
+    case BlockchainNetworkTypeRopsten: {
+      [self.headerView updateTitle:NSLocalizedString(@"MEWconnect: Ropsten", @"Home screen. Title")];
+      break;
+    }
+    case BlockchainNetworkTypeMainnet:
+    default: {
+      [self.headerView updateTitle:NSLocalizedString(@"MEWconnect", @"Home screen. Title")];
+      break;
+    }
+  }
+  [self.headerView.cardView updateWithSeed:account.publicAddress];
+  [self.headerView.cardView updateEthPrice:account.price.usdPrice];
   [self.headerView refreshContentIfNeeded];
+  
+  self.headerView.cardView.backedUp = [account.backedUp boolValue];
+  
+  NSDecimalNumber *balance = account.balance;
+  [self.headerView.cardView updateBalance:balance network:[account.fromNetwork network]];
+  
+  NSNumberFormatter *ethereumFormatter = [NSNumberFormatter ethereumFormatterWithNetwork:[account.fromNetwork network]];
+  self.headerView.titleBalanceLabel.text = [ethereumFormatter stringFromNumber:balance];
 }
+
 - (void)viewDidLayoutSubviews {
   [super viewDidLayoutSubviews];
   if (@available(iOS 11.0, *)) {
@@ -171,11 +194,8 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
   }
 }
 
-- (void) updateBackupStatus:(BOOL)backedUp {
-  self.headerView.cardView.backedUp = backedUp;
-}
-
-- (void) updateWithTokensCount:(NSUInteger)tokensCount {
+- (void) updateWithTokensCount:(NSUInteger)tokensCount withTotalPrice:(NSDecimalNumber *)totalPrice {
+  [self.headerView updateTokensPrice:totalPrice];
   _numberOfTokens = tokensCount;
   if (_numberOfTokens > 0) {
     self.headerView.searchBar.placeholder = [NSString localizedStringWithFormat:NSLocalizedString(@"Search %tu token(s)", @"Wallet. Search field placeholder"), tokensCount];
@@ -224,17 +244,6 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
   [self _updateTableViewInsets];
 }
 
-- (void)updateEthereumBalance:(TokenPlainObject *)ethereum {
-  [self.headerView.cardView updateBalance:ethereum.amount];
-  if (ethereum) {
-    self.headerView.titleBalanceLabel.text = ethereum.amountString;
-  }
-}
-
-- (void)updateTitle:(NSString *)title {
-  [self.headerView updateTitle:title];
-}
-
 #pragma mark - IBActions
 
 - (IBAction) connectAction:(id)sender {
@@ -245,32 +254,12 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
   [self.output disconnectAction];
 }
 
-- (IBAction) infoActionDown:(id)sender {
-  @weakify(self);
-  _testnetTimer = [NSTimer timerWithTimeInterval:10.0
-                                         repeats:NO
-                                           block:^(NSTimer * _Nonnull timer) {
-                                             @strongify(self);
-                                             UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Network?", @"Open Easter Egg :)") message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-                                             [alert addAction:[UIAlertAction actionWithTitle:@"Mainnet" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                                               [self.output mainnetSelectedAction];
-                                             }]];
-                                             [alert addAction:[UIAlertAction actionWithTitle:@"Ropsten" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                                               [self.output ropstenSelectedAction];
-                                             }]];
-                                             [alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
-                                             [self presentViewController:alert animated:YES completion:nil];
-                                           }];
-  [[NSRunLoop mainRunLoop] addTimer:_testnetTimer forMode:NSRunLoopCommonModes];
-}
-
-- (IBAction) infoActionUp:(id)sender {
+- (IBAction) infoAction:(id)sender {
   [self.output infoAction];
 }
 
-- (IBAction) infoActionUpOutside:(id)sender {
-  [_testnetTimer invalidate];
-  _testnetTimer = nil;
+- (IBAction) buyEtherAction:(id)sender {
+  [self.output buyEtherAction];
 }
 
 - (IBAction)unwindToHome:(UIStoryboardSegue *)sender {}

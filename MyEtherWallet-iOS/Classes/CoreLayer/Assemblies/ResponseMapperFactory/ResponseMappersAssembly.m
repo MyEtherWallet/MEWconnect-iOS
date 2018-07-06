@@ -9,11 +9,15 @@
 #import "ResponseMappersAssembly.h"
 
 #import "MEWConnectResponseMapper.h"
-#import "MEWMappingProvider.h"
 #import "ManagedObjectMapper.h"
+#import "SimplexMapper.h"
 
+#import "MEWMappingProvider.h"
 #import "ManagedObjectMappingProvider.h"
-#import "TokensResponseObjectFormatter.h"
+#import "SimplexMappingProvider.h"
+
+#import "SingleResponseObjectFormatter.h"
+#import "ManyResponseObjectFormatter.h"
 #import "EntityNameFormatterImplementation.h"
 
 @implementation ResponseMappersAssembly
@@ -26,8 +30,12 @@
                    use:[self mewConnectResponseMapper]];
     [matcher caseEqual:@(ResponseMappingCoreDataType)
                    use:[self manyResponseMapper]];
+    [matcher caseEqual:@(ResponseMappingSimplexType)
+                   use:[self simplexMapper]];
   }];
 }
+
+#pragma mark - Concrete Definitions
 
 - (id <ResponseMapper>) mewConnectResponseMapper {
   return [TyphoonDefinition withClass:[MEWConnectResponseMapper class] configuration:^(TyphoonDefinition *definition) {
@@ -37,15 +45,23 @@
   }];
 }
 
-#pragma mark - Concrete Definitions
-
-- (id<ResponseMapper>)manyResponseMapper {
+- (id <ResponseMapper>) manyResponseMapper {
   return [TyphoonDefinition withClass:[ManagedObjectMapper class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition useInitializer:@selector(initWithMappingProvider:responseObjectFormatter:entityNameFormatter:) parameters:^(TyphoonMethod *initializer) {
                             [initializer injectParameterWith:[self mappingProvider]];
-                            [initializer injectParameterWith:[self tokensResponseObjectFormatter]];
+                            [initializer injectParameterWith:[self manyResponseObjectFormatter]];
                             [initializer injectParameterWith:[self entityNameFormatter]];
+                          }];
+                        }];
+}
+
+- (id <ResponseMapper>) simplexMapper {
+  return [TyphoonDefinition withClass:[SimplexMapper class]
+                        configuration:^(TyphoonDefinition *definition) {
+                          [definition useInitializer:@selector(initWithMappingProvider:responseObjectFormatter:) parameters:^(TyphoonMethod *initializer) {
+                            [initializer injectParameterWith:[self simplexMappingProvider]];
+                            [initializer injectParameterWith:[self singleResponseObjectFormatter]];
                           }];
                         }];
 }
@@ -56,8 +72,16 @@
   return [TyphoonDefinition withClass:[MEWMappingProvider class]];
 }
 
-- (ManagedObjectMappingProvider *)mappingProvider {
+- (ManagedObjectMappingProvider *) mappingProvider {
   return [TyphoonDefinition withClass:[ManagedObjectMappingProvider class]
+                        configuration:^(TyphoonDefinition *definition) {
+                          [definition injectProperty:@selector(entityNameFormatter)
+                                                with:[self entityNameFormatter]];
+                        }];
+}
+
+- (SimplexMappingProvider *) simplexMappingProvider {
+  return [TyphoonDefinition withClass:[SimplexMappingProvider class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(entityNameFormatter)
                                                 with:[self entityNameFormatter]];
@@ -66,13 +90,17 @@
 
 #pragma mark - Object formatters
 
-- (id<ResponseObjectFormatter>)tokensResponseObjectFormatter {
-  return [TyphoonDefinition withClass:[TokensResponseObjectFormatter class]];
+- (id <ResponseObjectFormatter>) singleResponseObjectFormatter {
+  return [TyphoonDefinition withClass:[SingleResponseObjectFormatter class]];
+}
+
+- (id <ResponseObjectFormatter>) manyResponseObjectFormatter {
+  return [TyphoonDefinition withClass:[ManyResponseObjectFormatter class]];
 }
 
 #pragma mark - Helpers
 
-- (id<EntityNameFormatter>)entityNameFormatter {
+- (id<EntityNameFormatter>) entityNameFormatter {
   return [TyphoonDefinition withClass:[EntityNameFormatterImplementation class]];
 }
 

@@ -8,9 +8,9 @@
 
 #import "ResponseValidatorBase.h"
 
-static NSString *const kResponseValidationErrorDomain = @"com.myetherwallet.mewconnect.validation-error-domain";
-
 static NSUInteger const kInvalidResponseErrorCode = 1;
+
+NSString *const kResponseValidationErrorDomain = @"com.myetherwallet.mewconnect.validation-error-domain";
 
 @implementation ResponseValidatorBase
 

@@ -9,10 +9,11 @@
 @import Foundation;
 
 @protocol SplashPasswordModuleOutput;
+@class AccountPlainObject;
 
 @protocol TransactionRouterInput <NSObject>
 - (void) openConfirmedTransaction;
 - (void) openDeclinedTransaction;
 - (void) close;
-- (void) openSplashPasswordWithOutput:(id <SplashPasswordModuleOutput>)output;
+- (void) openSplashPasswordWithAccount:(AccountPlainObject *)account moduleOutput:(id <SplashPasswordModuleOutput>)output;
 @end

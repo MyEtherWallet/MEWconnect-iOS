@@ -12,22 +12,26 @@
 
 #import "BackupWordsInteractorOutput.h"
 
-#import "MEWwallet.h"
-
 @interface BackupWordsInteractor ()
 @property (nonatomic, strong) NSArray <NSString *> *mnemonics;
+@property (nonatomic, strong) AccountPlainObject *account;
 @end
 
 @implementation BackupWordsInteractor
 
 #pragma mark - BackupWordsInteractorInput
 
-- (void)configurateWithMnemonics:(NSArray<NSString *> *)mnemonics {
+- (void)configurateWithMnemonics:(NSArray<NSString *> *)mnemonics ofAccount:(AccountPlainObject *)account {
+  _account = account;
   _mnemonics = mnemonics;
 }
 
-- (NSArray <NSString *> *)recoveryMnemonicsWords {
+- (NSArray <NSString *> *) recoveryMnemonicsWords {
   return _mnemonics;
+}
+
+- (AccountPlainObject *) obtainAccount {
+  return self.account;
 }
 
 - (void) subscribeToEvents {

@@ -20,36 +20,40 @@
 
 #pragma mark - HomeModuleInput
 
-- (void) configureModuleWithAddress:(NSString *)address {
-  [self.interactor configurateWithAddress:address];
+- (void) configureModule {
+  [self.interactor refreshAccount];
+  [self.interactor configurate];
 }
 
-- (void)configuraBackupStatus {
-  BOOL backedUp = [self.interactor obtainBackupStatus];
-  [self.view updateBackupStatus:backedUp];
+- (void) configureBackupStatus {
+  [self.interactor refreshAccount];
+  AccountPlainObject *account = [self.interactor obtainAccount];
+  [self.view updateWithAccount:account];
+}
+
+- (void) configureAfterChangingNetwork {
+  [self.interactor refreshAccount];
+  AccountPlainObject *account = [self.interactor obtainAccount];
+  [self.view updateWithAccount:account];
+  
+  NSUInteger count = [self.interactor obtainNumberOfTokens];
+  NSDecimalNumber *tokensPrice = [self.interactor obtainTotalPriceOfTokens];
+  [self.view updateWithTokensCount:count withTotalPrice:tokensPrice];
+  
+  [self.interactor reloadData];
 }
 
 #pragma mark - HomeViewOutput
 
 - (void) didTriggerViewReadyEvent {
   NSUInteger count = [self.interactor obtainNumberOfTokens];
-	[self.view setupInitialStateWithNumberOfTokens:count];
-  NSString *address = [self.interactor obtainAddress];
-  [self.view updateWithAddress:address];
-  BOOL backedUp = [self.interactor obtainBackupStatus];
-  [self.view updateBackupStatus:backedUp];
+  NSDecimalNumber *tokensPrice = [self.interactor obtainTotalPriceOfTokens];
+  [self.view setupInitialStateWithNumberOfTokens:count totalPrice:tokensPrice];
+  AccountPlainObject *account = [self.interactor obtainAccount];
+  [self.view updateWithAccount:account];
+  
   BOOL connected = [self.interactor isConnected];
   [self.view updateWithConnectionStatus:connected animated:NO];
-  TokenPlainObject *ethereum = [self.interactor obtainEthereum];
-  [self.view updateEthereumBalance:ethereum];
-  
-  //TODO: Remove in future
-  NSInteger chainID = [[NSUserDefaults standardUserDefaults] integerForKey:@"chainID"];
-  if (chainID == 3) {
-    [self.view updateTitle:NSLocalizedString(@"MEW Connect: Ropsten", @"Home screen. Title")];
-  } else {
-    [self.view updateTitle:NSLocalizedString(@"MEW Connect", @"Home screen. Title")];
-  }
 }
 
 - (void) didTriggerViewWillAppear {
@@ -77,33 +81,22 @@
 }
 
 - (void) backupAction {
-  [self.router openBackup];
+  AccountPlainObject *account = [self.interactor obtainAccount];
+  [self.router openBackupWithAccount:account];
 }
 
 - (void) searchTermDidChanged:(NSString *)searchTerm {
   [self.interactor searchTokensWithTerm:searchTerm];
 }
 
-- (void)mainnetSelectedAction {
-  [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"chainID"];
-  [[NSUserDefaults standardUserDefaults] synchronize];
-  [self reloadData];
-  [self.view updateTitle:NSLocalizedString(@"MEW Connect", @"Home screen. Title")];
+- (void) infoAction {
+  AccountPlainObject *account = [self.interactor obtainAccount];
+  [self.router openInfoWithAccount:account];
 }
 
-- (void)ropstenSelectedAction {
-  [[NSUserDefaults standardUserDefaults] setInteger:3 forKey:@"chainID"];
-  [[NSUserDefaults standardUserDefaults] synchronize];
-  [self reloadData];
-  [self.view updateTitle:NSLocalizedString(@"MEW Connect: Ropsten", @"Home screen. Title")];
-}
-
-- (void) reloadData {
-  [self.interactor reloadData];
-}
-
-- (void)infoAction {
-  [self.router openInfo];
+- (void) buyEtherAction {
+  AccountPlainObject *account = [self.interactor obtainAccount];
+  [self.router openBuyEtherWithAccount:account];
 }
 
 #pragma mark - HomeInteractorOutput
@@ -112,18 +105,25 @@
   [self.router openMessageSignerWithMessage:command];
 }
 
-- (void) openTransactionSignerWithMessage:(MEWConnectCommand *)command {
-  [self.router openTransactionSignerWithMessage:command];
+- (void) openTransactionSignerWithMessage:(MEWConnectCommand *)command account:(AccountPlainObject *)account {
+  [self.router openTransactionSignerWithMessage:command account:account];
 }
 
 - (void) didUpdateTokens {
   NSUInteger count = [self.interactor obtainNumberOfTokens];
-  [self.view updateWithTokensCount:count];
+  NSDecimalNumber *tokensPrice = [self.interactor obtainTotalPriceOfTokens];
+  [self.view updateWithTokensCount:count withTotalPrice:tokensPrice];
+}
+
+- (void)didUpdateTokensBalance {
+  NSUInteger count = [self.interactor obtainNumberOfTokens];
+  NSDecimalNumber *tokensPrice = [self.interactor obtainTotalPriceOfTokens];
+  [self.view updateWithTokensCount:count withTotalPrice:tokensPrice];
 }
 
 - (void) didUpdateEthereumBalance {
-  TokenPlainObject *ethereum = [self.interactor obtainEthereum];
-  [self.view updateEthereumBalance:ethereum];
+  AccountPlainObject *account = [self.interactor obtainAccount];
+  [self.view updateWithAccount:account];
 }
 
 - (void) mewConnectionStatusChanged {

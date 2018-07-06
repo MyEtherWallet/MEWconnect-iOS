@@ -9,6 +9,7 @@
 @import ViperMcFlurry;
 
 #import "SplashPasswordRouter.h"
+#import "ForgotPasswordModuleInput.h"
 
 static NSString *const kSplashPasswordToForgotPasswordSegueIdentifier = @"SplashPasswordToForgotPasswordSegueIdentifier";
 
@@ -20,8 +21,9 @@ static NSString *const kSplashPasswordToForgotPasswordSegueIdentifier = @"Splash
   [self.transitionHandler closeCurrentModule:YES];
 }
 
-- (void) openForgotPassword {
-  [[self.transitionHandler openModuleUsingSegue:kSplashPasswordToForgotPasswordSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<RamblerViperModuleInput> moduleInput) {
+- (void) openForgotPasswordWithAccount:(AccountPlainObject *)account {
+  [[self.transitionHandler openModuleUsingSegue:kSplashPasswordToForgotPasswordSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<ForgotPasswordModuleInput> moduleInput) {
+    [moduleInput configureModuleWithAccount:account];
     return nil;
   }];
 }

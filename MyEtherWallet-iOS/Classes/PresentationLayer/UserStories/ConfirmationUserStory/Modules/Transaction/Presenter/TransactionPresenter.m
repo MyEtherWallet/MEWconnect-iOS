@@ -24,20 +24,22 @@
 
 #pragma mark - TransactionModuleInput
 
-- (void) configureModuleWithMessage:(MEWConnectCommand *)command {
-  [self.interactor configurateWithMessage:command];
+- (void) configureModuleWithMessage:(MEWConnectCommand *)command account:(AccountPlainObject *)account {
+  [self.interactor configurateWithMessage:command account:account];
 }
 
 #pragma mark - TransactionViewOutput
 
 - (void) didTriggerViewReadyEvent {
 	[self.view setupInitialState];
+  AccountPlainObject *account = [self.interactor obtainAccount];
   MEWConnectTransaction *transaction = [self.interactor obtainTransaction];
-  [self.view updateWithTransaction:transaction];
+  [self.view updateWithTransaction:transaction forAccount:account];
 }
 
 - (void) signAction {
-  [self.router openSplashPasswordWithOutput:self];
+  AccountPlainObject *account = [self.interactor obtainAccount];
+  [self.router openSplashPasswordWithAccount:account moduleOutput:self];
 }
 
 - (void) declineAction {

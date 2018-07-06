@@ -37,9 +37,9 @@ static NSString *const kTransactionToSplashPasswordSegueIdentifier = @"Transacti
   [self.transitionHandler closeCurrentModule:YES];
 }
 
-- (void) openSplashPasswordWithOutput:(id <SplashPasswordModuleOutput>)output {
+- (void) openSplashPasswordWithAccount:(AccountPlainObject *)account moduleOutput:(id<SplashPasswordModuleOutput>)output {
   [[self.transitionHandler openModuleUsingSegue:kTransactionToSplashPasswordSegueIdentifier] thenChainUsingBlock:^id<SplashPasswordModuleOutput>(id<SplashPasswordModuleInput> moduleInput) {
-    [moduleInput configureModule];
+    [moduleInput configureModuleWithAccount:account];
     return output;
   }];
 }

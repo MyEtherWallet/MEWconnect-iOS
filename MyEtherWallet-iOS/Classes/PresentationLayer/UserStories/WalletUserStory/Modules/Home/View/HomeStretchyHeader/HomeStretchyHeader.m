@@ -15,6 +15,8 @@
 #import "UIColor+Hex.h"
 #import "UIColor+Application.h"
 
+#import "NSNumberFormatter+USD.h"
+
 typedef NS_ENUM(NSInteger, HomeStretchyHeaderStyle) {
   HomeStretchyHeaderStyleDefault,
   HomeStretchyHeaderStyleLightContent,
@@ -129,6 +131,11 @@ static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset       = 8.0;
   self.titleLabel.text = title;
 }
 
+- (void) updateTokensPrice:(NSDecimalNumber *)price {
+  NSNumberFormatter *usdFormatter = [NSNumberFormatter usdFormatter];
+  self.tokenBalancesLabel.text = [usdFormatter stringFromNumber:price];
+}
+
 #pragma mark - Private
 
 - (void) _commonInit {
@@ -201,8 +208,25 @@ static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset       = 8.0;
     infoButton.tintColor = [UIColor mainApplicationColor];
     [infoButton setContentEdgeInsets:UIEdgeInsetsMake(4.0, 4.0, 4.0, 4.0)];
     [self.contentView addSubview:infoButton];
-    [self.contentView.rightAnchor constraintEqualToAnchor:infoButton.rightAnchor constant:kHomeStretchyHeaderDefaultOffset].active = YES;
+    [infoButton.leftAnchor constraintEqualToAnchor:self.contentView.leftAnchor constant:kHomeStretchyHeaderDefaultOffset].active = YES;
     _infoButton = infoButton;
+  }
+  UIButton *buyEtherButton = [UIButton buttonWithType:UIButtonTypeSystem];
+  {
+    buyEtherButton.translatesAutoresizingMaskIntoConstraints = NO;
+    UIImage *backgroundImage = [[[UIImage imageWithColor:[UIColor blackColor] size:CGSizeMake(28.0, 28.0) cornerRadius:10.0 insets:UIEdgeInsetsMake(4.0, 4.0, 4.0, 4.0)] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 14.0, 0.0, 14.0)] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [buyEtherButton setBackgroundImage:backgroundImage forState:UIControlStateNormal];
+    NSString *title = NSLocalizedString(@"BUY ETHER", @"Home screen. Buy ether button title");
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:11.0 weight:UIFontWeightSemibold],
+                                 NSForegroundColorAttributeName: [UIColor whiteColor],
+                                 NSKernAttributeName: @0.3};
+    NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attributes];
+    [buyEtherButton setAttributedTitle:attributedTitle forState:UIControlStateNormal];
+    buyEtherButton.tintColor = [UIColor mainApplicationColor];
+    [buyEtherButton setContentEdgeInsets:UIEdgeInsetsMake(0.0, 12.0, 0.0, 12.0)];
+    [self.contentView addSubview:buyEtherButton];
+    [self.contentView.rightAnchor constraintEqualToAnchor:buyEtherButton.rightAnchor constant:kHomeStretchyHeaderDefaultOffset].active = YES;
+    _buyEtherButton = buyEtherButton;
   }
   UIView *searchBarContainerView = [[UIView alloc] init];
   {
@@ -255,8 +279,8 @@ static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset       = 8.0;
       tokenBalancesLabel.translatesAutoresizingMaskIntoConstraints = NO;
       tokenBalancesLabel.font = [UIFont systemFontOfSize:kHomeStretchyHeaderTokensTitleMaxFontSize weight:UIFontWeightRegular];
       tokenBalancesLabel.textColor = [UIColor colorWithRGB:0x6D7372];
-      tokenBalancesLabel.text = @"$0.00";
-      tokenBalancesLabel.hidden = YES;
+      NSNumberFormatter *usdFormatter = [NSNumberFormatter usdFormatter];
+      tokenBalancesLabel.text = [usdFormatter stringFromNumber:@0];
       [searchBarContainerView addSubview:tokenBalancesLabel];
       [searchBarContainerView.trailingAnchor constraintEqualToAnchor:tokenBalancesLabel.trailingAnchor constant:kHomeStretchyHeaderDefaultOffset].active = YES;
       self.tokenBalancesTopConstraints = [tokenBalancesLabel.topAnchor constraintEqualToAnchor:searchBarContainerView.topAnchor constant:kHomeStretchyHeaderTokensTitleTopMaxOffset];
@@ -298,23 +322,33 @@ static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset       = 8.0;
   if (scrollFactor > 0.4) {
     if (self.contentStyle != HomeStretchyHeaderStyleLightContent) {
       self.contentStyle = HomeStretchyHeaderStyleLightContent;
+      NSMutableAttributedString *buyEtherAttributedString = [[self.buyEtherButton attributedTitleForState:UIControlStateNormal] mutableCopy];
+      [buyEtherAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor mainApplicationColor] range:NSMakeRange(0, [buyEtherAttributedString length])];
       [UIView transitionWithView:self.titleLabel
                         duration:kHomeStretchyHeaderFadeDuration
                          options:UIViewAnimationOptionTransitionCrossDissolve|UIViewAnimationOptionBeginFromCurrentState
                       animations:^{
                         self.titleLabel.textColor = [UIColor whiteColor];
                         self.infoButton.tintColor = [UIColor whiteColor];
+                        self.buyEtherButton.tintColor = [UIColor whiteColor];
+                        [self.buyEtherButton setAttributedTitle:buyEtherAttributedString forState:UIControlStateNormal];
                       } completion:nil];
+      
+      
     }
   } else {
     if (self.contentStyle != HomeStretchyHeaderStyleDefault) {
       self.contentStyle = HomeStretchyHeaderStyleDefault;
+      NSMutableAttributedString *buyEtherAttributedString = [[self.buyEtherButton attributedTitleForState:UIControlStateNormal] mutableCopy];
+      [buyEtherAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, [buyEtherAttributedString length])];
       [UIView transitionWithView:self.titleLabel
                         duration:kHomeStretchyHeaderFadeDuration
                          options:UIViewAnimationOptionTransitionCrossDissolve|UIViewAnimationOptionBeginFromCurrentState
                       animations:^{
                         self.titleLabel.textColor = [UIColor darkTextColor];
                         self.infoButton.tintColor = [UIColor mainApplicationColor];
+                        self.buyEtherButton.tintColor = [UIColor mainApplicationColor];
+                        [self.buyEtherButton setAttributedTitle:buyEtherAttributedString forState:UIControlStateNormal];
                       } completion:nil];
     }
   }
@@ -327,6 +361,7 @@ static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset       = 8.0;
   if (self.superview) {
     self.titleLabelTopConstraint.active = YES;
     [self.infoButton.topAnchor constraintEqualToAnchor:self.delegate.topLayoutGuide.bottomAnchor constant:10.0].active = YES;
+    [self.buyEtherButton.topAnchor constraintEqualToAnchor:self.delegate.topLayoutGuide.bottomAnchor constant:10.0].active = YES;
   }
 }
 

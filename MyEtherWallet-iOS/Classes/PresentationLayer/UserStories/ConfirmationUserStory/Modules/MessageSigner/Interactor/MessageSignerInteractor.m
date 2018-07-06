@@ -35,9 +35,11 @@
 
 - (void) signMessage {
   @weakify(self);
-  //TODO: Password
+  //TODO: Sign message
   [self.walletService signMessage:self.message.data
                          password:@""
+                    publicAddress:@""
+                          network:BlockchainNetworkTypeRopsten
                        completion:^(id data) {
                          @strongify(self);
                          MEWConnectResponse *response = [MEWConnectResponse responseForCommand:self.message data:data];

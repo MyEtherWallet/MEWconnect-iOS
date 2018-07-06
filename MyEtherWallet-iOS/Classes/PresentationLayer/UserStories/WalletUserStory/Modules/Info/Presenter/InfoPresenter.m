@@ -3,7 +3,7 @@
 //  MyEtherWallet-iOS
 //
 //  Created by Mikhail Nikanorov on 24/06/2018.
-//  Copyright © 2018 MyEtherWallet, Inc.. All rights reserved.
+//  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
 #import "InfoPresenter.h"
@@ -16,7 +16,8 @@
 
 #pragma mark - InfoModuleInput
 
-- (void) configureModule {
+- (void) configureModuleWithAccount:(AccountPlainObject *)account {
+  [self.interactor configurateWithAccount:account];
 }
 
 #pragma mark - InfoViewOutput
@@ -54,6 +55,22 @@
   [self.router unwindToStart];
 }
 
+- (void) mainnetAction {
+  [self.interactor selectMainnetNetwork];
+}
+
+- (void) ropstenAction {
+  [self.interactor selectRopstenNetwork];
+}
+
 #pragma mark - InfoInteractorOutput
+
+- (void)networkDidChangedWithoutAccount {
+  [self.router unwindToStart];
+}
+
+- (void)networkDidChangedWithAccount {
+  [self.router unwindToHome];
+}
 
 @end

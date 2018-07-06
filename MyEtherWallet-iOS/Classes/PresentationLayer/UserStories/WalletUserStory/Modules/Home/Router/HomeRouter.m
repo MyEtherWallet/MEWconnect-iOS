@@ -14,12 +14,14 @@
 #import "TransactionModuleInput.h"
 #import "BackupInfoModuleInput.h"
 #import "InfoModuleInput.h"
+#import "BuyEtherAmountModuleInput.h"
 
 static NSString *const kHomeToScannerSegueIdentifier        = @"HomeToScannerSegueIdentifier";
 static NSString *const kHomeToMessageSignerSegueIdentifier  = @"HomeToMessageSignerSegueIdentifier";
 static NSString *const kHomeToTransactionSegueIdentifier    = @"HomeToTransactionSegueIdentifier";
 static NSString *const kHomeToBackupInfoSegueIdentifier     = @"HomeToBackupInfoSegueIdentifier";
 static NSString *const kHomeToInfoSegueIdentifier           = @"HomeToInfoSegueIdentifier";
+static NSString *const kHomeToBuyEtherSegueIdentifier       = @"HomeToBuyEtherSegueIdentifier";
 
 @implementation HomeRouter
 
@@ -38,23 +40,30 @@ static NSString *const kHomeToInfoSegueIdentifier           = @"HomeToInfoSegueI
   }];
 }
 
-- (void) openTransactionSignerWithMessage:(MEWConnectCommand *)command {
+- (void) openTransactionSignerWithMessage:(MEWConnectCommand *)command account:(AccountPlainObject *)account {
   [[self.transitionHandler openModuleUsingSegue:kHomeToTransactionSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<TransactionModuleInput> moduleInput) {
-    [moduleInput configureModuleWithMessage:command];
+    [moduleInput configureModuleWithMessage:command account:account];
     return nil;
   }];
 }
 
-- (void) openBackup {
+- (void) openBackupWithAccount:(AccountPlainObject *)account {
   [[self.transitionHandler openModuleUsingSegue:kHomeToBackupInfoSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<BackupInfoModuleInput> moduleInput) {
-    [moduleInput configureModule];
+    [moduleInput configureModuleWithAccount:account];
     return nil;
   }];
 }
 
-- (void) openInfo {
+- (void) openInfoWithAccount:(AccountPlainObject *)account {
   [[self.transitionHandler openModuleUsingSegue:kHomeToInfoSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<InfoModuleInput> moduleInput) {
-    [moduleInput configureModule];
+    [moduleInput configureModuleWithAccount:account];
+    return nil;
+  }];
+}
+
+- (void) openBuyEtherWithAccount:(AccountPlainObject *)account {
+  [[self.transitionHandler openModuleUsingSegue:kHomeToBuyEtherSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<BuyEtherAmountModuleInput> moduleInput) {
+    [moduleInput configureModuleWithAccount:account];
     return nil;
   }];
 }

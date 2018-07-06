@@ -41,19 +41,15 @@ static NSString *const kHomeViewControllerIdentifier            = @"HomeViewCont
   return navigationController;
 }
 
-- (UINavigationController *) obtainPreconfiguredAuthorizedNavigationControllerWithAddress:(NSString *)address {
-  if (!address) {
-    return [self obtainPreconfiguredNavigationController];
-  } else {
-    UINavigationController *navigationController = [self.storyboard instantiateInitialViewController];
-    
-    RamblerViperModuleFactory *homeFactory = [[RamblerViperModuleFactory alloc] initWithStoryboard:self.walletStoryboard
-                                                                                  andRestorationId:kHomeViewControllerIdentifier];
-    [[navigationController.topViewController openModuleUsingFactory:homeFactory
-                                                withTransitionBlock:[self homeTransitionBlock]]
-     thenChainUsingBlock:[self homeConfigurationBlockWithAddress:address]];
-    return navigationController;
-  }
+- (UINavigationController *) obtainPreconfiguredAuthorizedNavigationController {
+  UINavigationController *navigationController = [self.storyboard instantiateInitialViewController];
+  
+  RamblerViperModuleFactory *homeFactory = [[RamblerViperModuleFactory alloc] initWithStoryboard:self.walletStoryboard
+                                                                                andRestorationId:kHomeViewControllerIdentifier];
+  [[navigationController.topViewController openModuleUsingFactory:homeFactory
+                                              withTransitionBlock:[self homeTransitionBlock]]
+   thenChainUsingBlock:[self homeConfigurationBlock]];
+  return navigationController;
 }
 
 #pragma mark - Private 
@@ -67,9 +63,9 @@ static NSString *const kHomeViewControllerIdentifier            = @"HomeViewCont
   };
 }
 
-- (RamblerViperModuleLinkBlock) homeConfigurationBlockWithAddress:(NSString *)address {
+- (RamblerViperModuleLinkBlock) homeConfigurationBlock {
   return ^id<RamblerViperModuleOutput>(id<HomeModuleInput> moduleInput) {
-    [moduleInput configureModuleWithAddress:address];
+    [moduleInput configureModule];
     return nil;
   };
 }

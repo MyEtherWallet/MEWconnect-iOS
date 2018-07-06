@@ -10,14 +10,22 @@
 
 #import "ForgotPasswordInteractorOutput.h"
 
-#import "MEWwallet.h"
+#import "AccountsService.h"
+
+@interface ForgotPasswordInteractor ()
+@property (nonatomic, strong) AccountPlainObject *account;
+@end
 
 @implementation ForgotPasswordInteractor
 
 #pragma mark - ForgotPasswordInteractorInput
 
+- (void)configurateWithAccount:(AccountPlainObject *)account {
+  _account = account;
+}
+
 - (void)resetWallet {
-  [self.walletService resetWallet];
+  [self.accountsService deleteAccount:self.account];
 }
 
 @end

@@ -6,7 +6,7 @@
 //
 
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 <$foreach Relationship noninheritedRelationships do$>@class <$Relationship.destinationEntity.name$>PlainObject;
 <$endforeach do$>

@@ -48,12 +48,14 @@
                                                 with:[self presenterHome]];
                           [definition injectProperty:@selector(connectFacade)
                                                 with:[self.serviceComponents MEWConnectFacade]];
-                          [definition injectProperty:@selector(walletService)
-                                                with:[self.serviceComponents MEWWallet]];
-                          [definition injectProperty:@selector(tokensService)
-                                                with:[self.serviceComponents tokensService]];
                           [definition injectProperty:@selector(cacheTracker)
                                                 with:[self.cacheTrackerAssembly cacheTrackerWithDelegate:[self interactorHome]]];
+                          [definition injectProperty:@selector(accountService)
+                                                with:[self.serviceComponents accountsService]];
+                          [definition injectProperty:@selector(tokensService)
+                                                with:[self.serviceComponents tokensService]];
+                          [definition injectProperty:@selector(fiatPricesService)
+                                                with:[self.serviceComponents fiatPricesService]];
                           [definition injectProperty:@selector(ponsomizer)
                                                 with:[self.ponsomizerAssembly ponsomizer]];
                         }];

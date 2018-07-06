@@ -6,9 +6,11 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
+
+#import "BlockchainNetworkTypes.h"
 
 @interface NSNumberFormatter (Ethereum)
-+ (instancetype)ethereumFormatterWithChainID:(NSInteger)chainID;
++ (instancetype)ethereumFormatterWithNetwork:(BlockchainNetworkType)network;
 + (instancetype)ethereumFormatterWithCurrencySymbol:(NSString *)currencySymbol;
 @end

@@ -35,7 +35,7 @@
                           [definition injectProperty:@selector(output)
                                                 with:[self presenterTransaction]];
                           [definition injectProperty:@selector(walletService)
-                                                with:[self.serviceComponents MEWWallet]];
+                                                with:[self.serviceComponents MEWwallet]];
                           [definition injectProperty:@selector(connectFacade)
                                                 with:[self.serviceComponents MEWConnectFacade]];
                         }];

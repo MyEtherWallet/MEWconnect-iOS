@@ -26,4 +26,5 @@
 - (void) searchTokensWithTerm:(NSString *)term;
 - (void) disconnect;
 - (BOOL) isConnected;
+- (NSArray *) shareActivityItems;
 @end

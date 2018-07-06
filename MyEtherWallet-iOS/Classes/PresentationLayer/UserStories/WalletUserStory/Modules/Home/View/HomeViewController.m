@@ -244,6 +244,11 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
   [self _updateTableViewInsets];
 }
 
+- (void) presentShareWithItems:(NSArray *)items {
+  UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:items applicationActivities:nil];
+  [self presentViewController:activityController animated:YES completion:nil];
+}
+
 #pragma mark - IBActions
 
 - (IBAction) connectAction:(id)sender {
@@ -296,7 +301,7 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
 #pragma mark - CardViewDelegate
 
 - (void)cardViewDidTouchShareButton:(CardView *)cardView {
-  
+  [self.output shareAction];
 }
 
 - (void)cardViewDidTouchBackupButton:(CardView *)cardView {

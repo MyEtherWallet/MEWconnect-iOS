@@ -31,6 +31,7 @@
 #import "AccountsServiceImplementation.h"
 #import "KeychainServiceImplementation.h"
 #import "FiatPricesServiceImplementation.h"
+#import "SimplexServiceImplementation.h"
 
 #import "OperationSchedulerImplementation.h"
 
@@ -118,7 +119,7 @@
                         }];
 }
 
-- (id<TokensService>)tokensService {
+- (id<TokensService>) tokensService {
   return [TyphoonDefinition withClass:[TokensServiceImplementation class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(tokensOperationFactory)
@@ -128,11 +129,21 @@
                         }];
 }
 
-- (id<FiatPricesService>)fiatPricesService {
+- (id<FiatPricesService>) fiatPricesService {
   return [TyphoonDefinition withClass:[FiatPricesServiceImplementation class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(fiatPricesOperationFactory)
                                                 with:[self.operationFactoriesAssembly fiatPricesOperationFactory]];
+                          [definition injectProperty:@selector(operationScheduler)
+                                                with:[self operationScheduler]];
+                        }];
+}
+
+- (id<SimplexService>) simplexService {
+  return [TyphoonDefinition withClass:[SimplexServiceImplementation class]
+                        configuration:^(TyphoonDefinition *definition) {
+                          [definition injectProperty:@selector(simplexOperationFactory)
+                                                with:[self.operationFactoriesAssembly simplexOperationFactory]];
                           [definition injectProperty:@selector(operationScheduler)
                                                 with:[self operationScheduler]];
                         }];

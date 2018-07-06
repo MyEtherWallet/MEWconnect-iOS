@@ -1,5 +1,5 @@
 //
-//  TokensResponseObjectFormatter.h
+//  ManyResponseObjectFormatter.h
 //  MyEtherWallet-iOS
 //
 //  Created by Mikhail Nikanorov on 22/05/2018.
@@ -10,6 +10,6 @@
 
 #import "ResponseObjectFormatter.h"
 
-@interface TokensResponseObjectFormatter : NSObject <ResponseObjectFormatter>
+@interface ManyResponseObjectFormatter : NSObject <ResponseObjectFormatter>
 
 @end

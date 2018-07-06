@@ -14,12 +14,14 @@
 #import "TransactionModuleInput.h"
 #import "BackupInfoModuleInput.h"
 #import "InfoModuleInput.h"
+#import "BuyEtherAmountModuleInput.h"
 
 static NSString *const kHomeToScannerSegueIdentifier        = @"HomeToScannerSegueIdentifier";
 static NSString *const kHomeToMessageSignerSegueIdentifier  = @"HomeToMessageSignerSegueIdentifier";
 static NSString *const kHomeToTransactionSegueIdentifier    = @"HomeToTransactionSegueIdentifier";
 static NSString *const kHomeToBackupInfoSegueIdentifier     = @"HomeToBackupInfoSegueIdentifier";
 static NSString *const kHomeToInfoSegueIdentifier           = @"HomeToInfoSegueIdentifier";
+static NSString *const kHomeToBuyEtherSegueIdentifier       = @"HomeToBuyEtherSegueIdentifier";
 
 @implementation HomeRouter
 
@@ -54,6 +56,13 @@ static NSString *const kHomeToInfoSegueIdentifier           = @"HomeToInfoSegueI
 
 - (void) openInfoWithAccount:(AccountPlainObject *)account {
   [[self.transitionHandler openModuleUsingSegue:kHomeToInfoSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<InfoModuleInput> moduleInput) {
+    [moduleInput configureModuleWithAccount:account];
+    return nil;
+  }];
+}
+
+- (void) openBuyEtherWithAccount:(AccountPlainObject *)account {
+  [[self.transitionHandler openModuleUsingSegue:kHomeToBuyEtherSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<BuyEtherAmountModuleInput> moduleInput) {
     [moduleInput configureModuleWithAccount:account];
     return nil;
   }];

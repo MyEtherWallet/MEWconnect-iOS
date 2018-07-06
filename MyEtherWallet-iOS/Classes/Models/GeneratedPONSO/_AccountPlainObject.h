@@ -9,6 +9,7 @@
 
 @class NetworkPlainObject;
 @class FiatPricePlainObject;
+@class PurchaseHistoryPlainObject;
 @class TokenPlainObject;
 
 @interface _AccountPlainObject : NSObject <NSCoding, NSCopying>
@@ -22,6 +23,8 @@
 @property (nonatomic, copy, readwrite) NetworkPlainObject *fromNetwork;
 
 @property (nonatomic, copy, readwrite) FiatPricePlainObject *price;
+
+@property (nonatomic, copy, readwrite) NSSet<PurchaseHistoryPlainObject *> *purchaseHistory;
 
 @property (nonatomic, copy, readwrite) NSSet<TokenPlainObject *> *tokens;
 

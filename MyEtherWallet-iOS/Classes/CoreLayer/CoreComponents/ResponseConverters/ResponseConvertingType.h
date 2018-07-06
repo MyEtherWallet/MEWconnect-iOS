@@ -15,6 +15,7 @@ typedef NS_ENUM(NSUInteger, ResponseConvertingType) {
   ResponseConvertingTokensType      = 2,
   ResponseConvertingEthereumType    = 3,
   ResponseConvertingTickerType      = 4,
+  ResponseConvertingSimplexType     = 5,
 };
 
 #endif /* ResponseConvertingType_h */

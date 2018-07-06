@@ -19,4 +19,5 @@
 - (void) updateWithTransactionBatch:(CacheTransactionBatch *)transactionBatch;
 - (void) updateWithTokensCount:(NSUInteger)tokensCount withTotalPrice:(NSDecimalNumber *)totalPrice;
 - (void) updateWithConnectionStatus:(BOOL)connected animated:(BOOL)animated;
+- (void) presentShareWithItems:(NSArray *)items;
 @end

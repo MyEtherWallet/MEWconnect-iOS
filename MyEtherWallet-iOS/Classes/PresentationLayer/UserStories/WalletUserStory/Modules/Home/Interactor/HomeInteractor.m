@@ -133,6 +133,10 @@
   return [self.connectFacade connectionStatus] == MEWConnectStatusConnected;
 }
 
+- (NSArray *) shareActivityItems {
+  return @[self.account.publicAddress];
+}
+
 #pragma mark - Notifications
 
 - (void) MEWConnectDidConnect:(NSNotification *)notification {

@@ -17,4 +17,5 @@
 - (void) backupAction;
 - (void) searchTermDidChanged:(NSString *)searchTerm;
 - (void) infoAction;
+- (void) buyEtherAction;
 @end

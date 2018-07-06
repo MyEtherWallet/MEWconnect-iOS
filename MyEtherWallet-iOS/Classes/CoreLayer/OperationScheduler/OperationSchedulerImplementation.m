@@ -34,4 +34,8 @@ static NSString *const kOperationQueueName = @"com.myetherwallet.mewconnect.Oper
   [self.queue addOperation:operation];
 }
 
+- (void) cancelAllOperations {
+  [self.queue cancelAllOperations];
+}
+
 @end

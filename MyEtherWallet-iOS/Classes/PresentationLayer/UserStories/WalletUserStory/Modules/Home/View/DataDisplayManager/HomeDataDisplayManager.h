@@ -12,7 +12,6 @@
 
 @class CacheTransactionBatch;
 @class HomeCellObjectBuilder;
-@class TableViewBatcher;
 @class HomePlainObject;
 @class HomeTableViewAnimator;
 

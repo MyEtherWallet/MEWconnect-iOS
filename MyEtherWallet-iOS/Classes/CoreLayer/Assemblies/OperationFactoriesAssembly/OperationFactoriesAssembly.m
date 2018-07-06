@@ -13,16 +13,20 @@
 
 #import "QueryTransformerBase.h"
 #import "FiatPricesQueryTransformer.h"
+#import "SimplexQueryTransformer.h"
 
 #import "BodyTransformerBase.h"
 #import "ContractsBodyTransformer.h"
 #import "BalanceBodyTransformer.h"
+#import "SimplexBodyTransformer.h"
 
 #import "HeadersBuilderBase.h"
+#import "SimplexHeadersBuilder.h"
 
 #import "TokensOperationFactory.h"
 #import "AccountsOperationFactory.h"
 #import "FiatPricesOperationFactory.h"
+#import "SimplexOperationFactory.h"
 
 @implementation OperationFactoriesAssembly
 
@@ -62,6 +66,21 @@
                                             [initializer injectParameterWith:[self fiatPricesBodyTransformer]];
                                             [initializer injectParameterWith:[self headersBuilder]];
                                           }];
+                        }];
+}
+
+- (SimplexOperationFactory *) simplexOperationFactory {
+  return [TyphoonDefinition withClass:[SimplexOperationFactory class]
+                        configuration:^(TyphoonDefinition *definition) {
+                          [definition useInitializer:@selector(initWithBuilder:queryTransformer:bodyTransformer:headersBuilder:)
+                                          parameters:^(TyphoonMethod *initializer) {
+                                            [initializer injectParameterWith:[self networkOperationBuilder]];
+                                            [initializer injectParameterWith:[self simplexQueryTransformer]];
+                                            [initializer injectParameterWith:[self simplexBodyTransformer]];
+                                            [initializer injectParameterWith:[self simplexHeadersBuilder]];
+                                          }];
+                          [definition injectProperty:@selector(requestConfiguratorsFactory)
+                                                with:self.requestConfiguratorsFactory];
                         }];
 }
 
@@ -106,6 +125,10 @@
   return [TyphoonDefinition withClass:[FiatPricesQueryTransformer class]];
 }
 
+- (SimplexQueryTransformer *) simplexQueryTransformer {
+  return [TyphoonDefinition withClass:[SimplexQueryTransformer class]];
+}
+
 #pragma mark - Body Transformers
 
 - (ContractsBodyTransformer *) contractsBodyTransformer {
@@ -120,10 +143,18 @@
   return [TyphoonDefinition withClass:[BodyTransformerBase class]];
 }
 
+- (SimplexBodyTransformer *) simplexBodyTransformer {
+  return [TyphoonDefinition withClass:[SimplexBodyTransformer class]];
+}
+
 #pragma mark - Headers Builders
 
 - (HeadersBuilderBase *) headersBuilder {
   return [TyphoonDefinition withClass:[HeadersBuilderBase class]];
+}
+
+- (SimplexHeadersBuilder *) simplexHeadersBuilder {
+  return [TyphoonDefinition withClass:[SimplexHeadersBuilder class]];
 }
 
 #pragma mark - Others

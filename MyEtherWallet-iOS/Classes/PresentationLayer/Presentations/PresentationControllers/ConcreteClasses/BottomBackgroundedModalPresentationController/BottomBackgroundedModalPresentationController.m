@@ -81,9 +81,13 @@
   return frame;
 }
 
-- (void)containerViewWillLayoutSubviews {
+- (void) containerViewWillLayoutSubviews {
   [super containerViewWillLayoutSubviews];
-  self.presentedView.frame = [self frameOfPresentedViewInContainerView];
+  CGRect frame = [self frameOfPresentedViewInContainerView];
+  if (!CGRectEqualToRect(frame, self.presentedView.frame)) {
+    self.presentedView.frame = frame;
+  }
+  
   [self _updateMask];
 }
 
@@ -108,3 +112,4 @@
 }
 
 @end
+

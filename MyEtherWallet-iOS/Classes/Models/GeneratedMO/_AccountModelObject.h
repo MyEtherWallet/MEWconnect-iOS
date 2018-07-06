@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class NetworkModelObject;
 @class FiatPriceModelObject;
+@class PurchaseHistoryModelObject;
 @class TokenModelObject;
 
 @interface AccountModelObjectID : NSManagedObjectID {}
@@ -50,8 +51,26 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, nullable) FiatPriceModelObject *price;
 
+@property (nonatomic, strong, nullable) NSOrderedSet<PurchaseHistoryModelObject*> *purchaseHistory;
+- (nullable NSMutableOrderedSet<PurchaseHistoryModelObject*>*)purchaseHistorySet;
+
 @property (nonatomic, strong, nullable) NSSet<TokenModelObject*> *tokens;
 - (nullable NSMutableSet<TokenModelObject*>*)tokensSet;
+
+@end
+
+@interface _AccountModelObject (PurchaseHistoryCoreDataGeneratedAccessors)
+- (void)addPurchaseHistory:(NSOrderedSet<PurchaseHistoryModelObject*>*)value_;
+- (void)removePurchaseHistory:(NSOrderedSet<PurchaseHistoryModelObject*>*)value_;
+- (void)addPurchaseHistoryObject:(PurchaseHistoryModelObject*)value_;
+- (void)removePurchaseHistoryObject:(PurchaseHistoryModelObject*)value_;
+
+- (void)insertObject:(PurchaseHistoryModelObject*)value inPurchaseHistoryAtIndex:(NSUInteger)idx;
+- (void)removeObjectFromPurchaseHistoryAtIndex:(NSUInteger)idx;
+- (void)insertPurchaseHistory:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
+- (void)removePurchaseHistoryAtIndexes:(NSIndexSet *)indexes;
+- (void)replaceObjectInPurchaseHistoryAtIndex:(NSUInteger)idx withObject:(PurchaseHistoryModelObject*)value;
+- (void)replacePurchaseHistoryAtIndexes:(NSIndexSet *)indexes withPurchaseHistory:(NSArray *)values;
 
 @end
 
@@ -95,6 +114,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (FiatPriceModelObject*)primitivePrice;
 - (void)setPrimitivePrice:(FiatPriceModelObject*)value;
 
+- (NSMutableOrderedSet<PurchaseHistoryModelObject*>*)primitivePurchaseHistory;
+- (void)setPrimitivePurchaseHistory:(NSMutableOrderedSet<PurchaseHistoryModelObject*>*)value;
+
 - (NSMutableSet<TokenModelObject*>*)primitiveTokens;
 - (void)setPrimitiveTokens:(NSMutableSet<TokenModelObject*>*)value;
 
@@ -111,6 +133,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface AccountModelObjectRelationships: NSObject
 + (NSString *)fromNetwork;
 + (NSString *)price;
++ (NSString *)purchaseHistory;
 + (NSString *)tokens;
 @end
 

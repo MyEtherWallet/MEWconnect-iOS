@@ -17,4 +17,5 @@
 - (void) openTransactionSignerWithMessage:(MEWConnectCommand *)command account:(AccountPlainObject *)account;
 - (void) openBackupWithAccount:(AccountPlainObject *)account;
 - (void) openInfoWithAccount:(AccountPlainObject *)account;
+- (void) openBuyEtherWithAccount:(AccountPlainObject *)account;
 @end

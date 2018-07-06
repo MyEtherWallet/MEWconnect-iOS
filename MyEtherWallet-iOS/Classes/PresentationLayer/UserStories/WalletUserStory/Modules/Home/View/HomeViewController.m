@@ -118,6 +118,7 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
   self.headerView.searchBar.delegate = self;
   
   [self.headerView.infoButton addTarget:self action:@selector(infoAction:) forControlEvents:UIControlEventTouchUpInside];
+  [self.headerView.buyEtherButton addTarget:self action:@selector(buyEtherAction:) forControlEvents:UIControlEventTouchUpInside];
   
   [self.dataDisplayManager configureDataDisplayManagerWithAnimator:self.tableViewAnimator];
   self.tableView.dataSource = [self.dataDisplayManager dataSourceForTableView:self.tableView];
@@ -163,12 +164,12 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
 - (void)updateWithAccount:(AccountPlainObject *)account {
   switch ([account.fromNetwork network]) {
     case BlockchainNetworkTypeRopsten: {
-      [self.headerView updateTitle:NSLocalizedString(@"MEW Connect: Ropsten", @"Home screen. Title")];
+      [self.headerView updateTitle:NSLocalizedString(@"MEWconnect: Ropsten", @"Home screen. Title")];
       break;
     }
     case BlockchainNetworkTypeMainnet:
     default: {
-      [self.headerView updateTitle:NSLocalizedString(@"MEW Connect", @"Home screen. Title")];
+      [self.headerView updateTitle:NSLocalizedString(@"MEWconnect", @"Home screen. Title")];
       break;
     }
   }
@@ -255,6 +256,10 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
 
 - (IBAction) infoAction:(id)sender {
   [self.output infoAction];
+}
+
+- (IBAction) buyEtherAction:(id)sender {
+  [self.output buyEtherAction];
 }
 
 - (IBAction)unwindToHome:(UIStoryboardSegue *)sender {}

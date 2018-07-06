@@ -95,6 +95,8 @@
     [[BackupConfirmationSegmentedControl appearance] setContentPositionAdjustment:UIOffsetMake(-6.0, 0.0) forSegmentType:UISegmentedControlSegmentLeft barMetrics:UIBarMetricsDefault];
     [[BackupConfirmationSegmentedControl appearance] setContentPositionAdjustment:UIOffsetMake(6.0, 0.0) forSegmentType:UISegmentedControlSegmentRight barMetrics:UIBarMetricsDefault];
   }
+  /* Toolbar Buttons */
+  [UIBarButtonItem appearance].tintColor = [UIColor mainApplicationColor];
 }
 
 @end

@@ -20,6 +20,7 @@
     [aCoder encodeObject:self.publicAddress forKey:@"publicAddress"];
     [aCoder encodeObject:self.fromNetwork forKey:@"fromNetwork"];
     [aCoder encodeObject:self.price forKey:@"price"];
+    [aCoder encodeObject:self.purchaseHistory forKey:@"purchaseHistory"];
     [aCoder encodeObject:self.tokens forKey:@"tokens"];
 }
 
@@ -34,6 +35,7 @@
         _publicAddress = [[aDecoder decodeObjectForKey:@"publicAddress"] copy];
         _fromNetwork = [[aDecoder decodeObjectForKey:@"fromNetwork"] copy];
         _price = [[aDecoder decodeObjectForKey:@"price"] copy];
+        _purchaseHistory = [[aDecoder decodeObjectForKey:@"purchaseHistory"] copy];
         _tokens = [[aDecoder decodeObjectForKey:@"tokens"] copy];
     }
 
@@ -53,6 +55,7 @@
 
     replica.fromNetwork = self.fromNetwork;
     replica.price = self.price;
+    replica.purchaseHistory = self.purchaseHistory;
     replica.tokens = self.tokens;
 
     return replica;

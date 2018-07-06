@@ -37,6 +37,7 @@ abstract_target 'MEWconnect' do
   pod 'GSKStretchyHeaderView', '~> 1.0.4'
   pod 'BEMCheckBox', '~> 1.0.0'
   pod 'M13Checkbox', :git => 'https://github.com/Foboz/M13Checkbox.git'
+  pod 'DZNWebViewController', :git => 'https://github.com/Foboz/DZNWebViewController.git'
   
   # Ethereum
   pod 'web3swift', :git => 'https://github.com/Foboz/web3swift.git'

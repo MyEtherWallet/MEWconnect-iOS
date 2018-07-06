@@ -18,6 +18,7 @@
 @protocol AccountsService;
 @protocol KeychainService;
 @protocol FiatPricesService;
+@protocol SimplexService;
 
 @protocol ServiceComponents <NSObject>
 - (id <MEWConnectFacade>) MEWConnectFacade;
@@ -29,4 +30,5 @@
 - (id <AccountsService>) accountsService;
 - (id <KeychainService>) keychainService;
 - (id <FiatPricesService>) fiatPricesService;
+- (id <SimplexService>) simplexService;
 @end

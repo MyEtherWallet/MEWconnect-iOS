@@ -16,4 +16,18 @@ typedef NS_ENUM(short, BlockchainNetworkType) {
   BlockchainNetworkTypeRopsten  = 3,
 };
 
+NS_INLINE NSString *NSStringCurrencySymbolFromBlockchainNetworkType(BlockchainNetworkType type) {
+  switch (type) {
+    case BlockchainNetworkTypeRopsten: {
+      return @"ROPSTEN ETH";
+      break;
+    }
+    case BlockchainNetworkTypeMainnet:
+    default: {
+      return @"ETH";
+      break;
+    }
+  }
+}
+
 #endif /* BlockchainNetworkTypes_h */

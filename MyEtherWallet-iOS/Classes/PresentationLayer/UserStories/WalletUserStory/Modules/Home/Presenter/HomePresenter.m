@@ -94,6 +94,11 @@
   [self.router openInfoWithAccount:account];
 }
 
+- (void) buyEtherAction {
+  AccountPlainObject *account = [self.interactor obtainAccount];
+  [self.router openBuyEtherWithAccount:account];
+}
+
 #pragma mark - HomeInteractorOutput
 
 - (void) openMessageSignerWithMessage:(MEWConnectCommand *)command {

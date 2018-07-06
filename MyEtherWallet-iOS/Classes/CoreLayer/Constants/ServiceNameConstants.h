@@ -14,4 +14,7 @@ static NSString *const kServiceNameROP      =   @"rop";
 
 static NSString *const kServiceNameTicker   =   @"ticker";
 
+static NSString *const kServiceNameQuote    =   @"quote";
+static NSString *const kServiceNameOrder    =   @"order";
+
 #endif /* ServiceNameConstants_h */

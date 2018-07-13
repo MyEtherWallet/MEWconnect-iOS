@@ -99,6 +99,11 @@
   [self.router openBuyEtherWithAccount:account];
 }
 
+- (void) shareAction {
+  NSArray *items = [self.interactor shareActivityItems];
+  [self.view presentShareWithItems:items];
+}
+
 #pragma mark - HomeInteractorOutput
 
 - (void) openMessageSignerWithMessage:(MEWConnectCommand *)command {

@@ -18,4 +18,5 @@
 - (void) searchTermDidChanged:(NSString *)searchTerm;
 - (void) infoAction;
 - (void) buyEtherAction;
+- (void) shareAction;
 @end

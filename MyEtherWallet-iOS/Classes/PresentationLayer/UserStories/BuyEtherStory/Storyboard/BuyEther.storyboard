@@ -247,7 +247,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="de3-Ge-Pri" firstAttribute="bottom" secondItem="z0O-EI-5HY" secondAttribute="bottom" id="6AB-4g-CGn"/>
+                            <constraint firstAttribute="bottom" secondItem="z0O-EI-5HY" secondAttribute="bottom" id="6AB-4g-CGn"/>
                             <constraint firstItem="gwV-jF-T3l" firstAttribute="top" secondItem="de3-Ge-Pri" secondAttribute="top" constant="46" id="A6w-eX-Igy"/>
                             <constraint firstItem="nJ8-dO-0p9" firstAttribute="baseline" secondItem="gwV-jF-T3l" secondAttribute="baseline" id="FcY-gD-WDI"/>
                             <constraint firstItem="0Ew-qW-Plz" firstAttribute="centerX" secondItem="J5Y-Du-5Ui" secondAttribute="centerX" id="Gsh-8d-tIL"/>

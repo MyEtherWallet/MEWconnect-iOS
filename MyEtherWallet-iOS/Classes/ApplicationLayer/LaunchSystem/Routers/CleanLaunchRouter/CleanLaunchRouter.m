@@ -57,16 +57,15 @@ static NSString *const kSplashPasswordViewControllerIdentifier  = @"SplashPasswo
     navigationController = [self.navigationControllerFactory obtainPreconfiguredNavigationController];
   }
   
-  UIViewController *launchViewController = [self.launchStoryboard instantiateInitialViewController];
-  launchViewController.view.frame = self.window.bounds;
-  launchViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-  
   self.window.rootViewController = navigationController;
   [self.window makeKeyAndVisible];
   
-  [self.window addSubview:launchViewController.view];
-  
   if (self.passwordStoryboard && accountModelObject) {
+    UIViewController *launchViewController = [self.launchStoryboard instantiateInitialViewController];
+    launchViewController.view.frame = self.window.bounds;
+    launchViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    
+    [self.window addSubview:launchViewController.view];
     /* To prevent "Unbalanced calls to begin/end appearance transitions for..." */
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
       dispatch_async(dispatch_get_main_queue(), ^{

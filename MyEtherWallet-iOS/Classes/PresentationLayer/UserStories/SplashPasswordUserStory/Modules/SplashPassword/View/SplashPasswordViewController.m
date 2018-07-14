@@ -12,6 +12,8 @@
 
 #import "ApplicationConstants.h"
 
+#import "UIView+LockFrame.h"
+
 static CGFloat const kSplashPasswordShakeAnimationDistance = 10.0;
 static CFTimeInterval const kSplashPasswordShakeAnimationDuration = 0.05;
 static float const kSplashPasswordShakeAnimationRepeatCount = 3.0;
@@ -41,6 +43,7 @@ static float const kSplashPasswordShakeAnimationRepeatCount = 3.0;
 
 - (void) viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
+  self.view.lockFrame = YES;
 }
 
 - (void) viewLayoutMarginsDidChange {
@@ -102,7 +105,7 @@ static float const kSplashPasswordShakeAnimationRepeatCount = 3.0;
 
 - (void) _updatePrefferedContentSize {
   CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
-  CGRect bounds = self.view.window.bounds;
+  CGRect bounds = self.presentingViewController.view.window.bounds;
   CGSize size = bounds.size;
   size.height -= CGRectGetHeight(statusBarFrame);
   size.height -= kCustomRepresentationTopBigOffset;

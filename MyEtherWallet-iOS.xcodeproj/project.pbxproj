@@ -212,11 +212,13 @@
 		5668E5022083E4D70070A402 /* SystemInfrastructureAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E5002083E4D70070A402 /* SystemInfrastructureAssembly.m */; };
 		5668E5072083E5CA0070A402 /* ApplicationHelperAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E5062083E5CA0070A402 /* ApplicationHelperAssembly.m */; };
 		5668E5082083E5CA0070A402 /* ApplicationHelperAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E5062083E5CA0070A402 /* ApplicationHelperAssembly.m */; };
-		5668E50C2083E7280070A402 /* StoryboardAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E50B2083E7280070A402 /* StoryboardAssembly.m */; };
-		5668E50D2083E7280070A402 /* StoryboardAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E50B2083E7280070A402 /* StoryboardAssembly.m */; };
+		5668E50C2083E7280070A402 /* StoryboardsAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E50B2083E7280070A402 /* StoryboardsAssembly.m */; };
+		5668E50D2083E7280070A402 /* StoryboardsAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E50B2083E7280070A402 /* StoryboardsAssembly.m */; };
 		5668E5132083E8290070A402 /* NavigationControllerFactoryImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E5122083E8290070A402 /* NavigationControllerFactoryImplementation.m */; };
 		5668E5142083E8290070A402 /* NavigationControllerFactoryImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E5122083E8290070A402 /* NavigationControllerFactoryImplementation.m */; };
 		5668E51B2083EE920070A402 /* ServiceComponentsAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E51A2083EE920070A402 /* ServiceComponentsAssembly.m */; };
+		5677BB3920FA13860019E92D /* ModuleFactoriesAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677BB3820FA13860019E92D /* ModuleFactoriesAssembly.m */; };
+		5677BB4220FAB28C0019E92D /* UIView+LockFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677BB4120FAB28C0019E92D /* UIView+LockFrame.m */; };
 		5685FE162099F9A4008C75A1 /* FlatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5685FE152099F9A4008C75A1 /* FlatButton.m */; };
 		5689111F20EE6511001552D4 /* SimplexPaymentQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 5689111E20EE6511001552D4 /* SimplexPaymentQuery.m */; };
 		5695A95A2B5CED358C015C0D /* DeclinedTransactionRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = DD110C7B23B316FCBDF56162 /* DeclinedTransactionRouter.m */; };
@@ -885,8 +887,8 @@
 		5668E5002083E4D70070A402 /* SystemInfrastructureAssembly.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SystemInfrastructureAssembly.m; sourceTree = "<group>"; };
 		5668E5052083E5CA0070A402 /* ApplicationHelperAssembly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApplicationHelperAssembly.h; sourceTree = "<group>"; };
 		5668E5062083E5CA0070A402 /* ApplicationHelperAssembly.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApplicationHelperAssembly.m; sourceTree = "<group>"; };
-		5668E50A2083E7280070A402 /* StoryboardAssembly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoryboardAssembly.h; sourceTree = "<group>"; };
-		5668E50B2083E7280070A402 /* StoryboardAssembly.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoryboardAssembly.m; sourceTree = "<group>"; };
+		5668E50A2083E7280070A402 /* StoryboardsAssembly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoryboardsAssembly.h; sourceTree = "<group>"; };
+		5668E50B2083E7280070A402 /* StoryboardsAssembly.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoryboardsAssembly.m; sourceTree = "<group>"; };
 		5668E5102083E8200070A402 /* NavigationControllerFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavigationControllerFactory.h; sourceTree = "<group>"; };
 		5668E5112083E8290070A402 /* NavigationControllerFactoryImplementation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavigationControllerFactoryImplementation.h; sourceTree = "<group>"; };
 		5668E5122083E8290070A402 /* NavigationControllerFactoryImplementation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NavigationControllerFactoryImplementation.m; sourceTree = "<group>"; };
@@ -903,6 +905,10 @@
 		5668E52B2083F4F10070A402 /* release.tests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = release.tests.xcconfig; sourceTree = "<group>"; };
 		5668E52C2083F4F10070A402 /* release.app.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = release.app.xcconfig; sourceTree = "<group>"; };
 		5668E52D2083F5050070A402 /* common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = common.xcconfig; sourceTree = "<group>"; };
+		5677BB3720FA13860019E92D /* ModuleFactoriesAssembly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModuleFactoriesAssembly.h; sourceTree = "<group>"; };
+		5677BB3820FA13860019E92D /* ModuleFactoriesAssembly.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModuleFactoriesAssembly.m; sourceTree = "<group>"; };
+		5677BB4020FAB28C0019E92D /* UIView+LockFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+LockFrame.h"; sourceTree = "<group>"; };
+		5677BB4120FAB28C0019E92D /* UIView+LockFrame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+LockFrame.m"; sourceTree = "<group>"; };
 		5685FE142099F9A4008C75A1 /* FlatButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlatButton.h; sourceTree = "<group>"; };
 		5685FE152099F9A4008C75A1 /* FlatButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlatButton.m; sourceTree = "<group>"; };
 		5689111D20EE6511001552D4 /* SimplexPaymentQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimplexPaymentQuery.h; sourceTree = "<group>"; };
@@ -3310,6 +3316,7 @@
 		5668E4E02083D93C0070A402 /* Assemblies */ = {
 			isa = PBXGroup;
 			children = (
+				5677BB3620FA137E0019E92D /* ModuleFactoriesAssembly */,
 				56A4EAC420B8C5BB0042A358 /* PresentationControllersAssembly */,
 				56A4EAAB20B8BE2C0042A358 /* TransitionDelegatesAssembly */,
 				5668E5092083E7170070A402 /* StoryboardAssembly */,
@@ -3408,8 +3415,8 @@
 		5668E5092083E7170070A402 /* StoryboardAssembly */ = {
 			isa = PBXGroup;
 			children = (
-				5668E50A2083E7280070A402 /* StoryboardAssembly.h */,
-				5668E50B2083E7280070A402 /* StoryboardAssembly.m */,
+				5668E50A2083E7280070A402 /* StoryboardsAssembly.h */,
+				5668E50B2083E7280070A402 /* StoryboardsAssembly.m */,
 			);
 			path = StoryboardAssembly;
 			sourceTree = "<group>";
@@ -3501,6 +3508,32 @@
 				5668E5282083F4E60070A402 /* appstore.uitests.xcconfig */,
 			);
 			path = AppStore;
+			sourceTree = "<group>";
+		};
+		5677BB3620FA137E0019E92D /* ModuleFactoriesAssembly */ = {
+			isa = PBXGroup;
+			children = (
+				5677BB3720FA13860019E92D /* ModuleFactoriesAssembly.h */,
+				5677BB3820FA13860019E92D /* ModuleFactoriesAssembly.m */,
+			);
+			path = ModuleFactoriesAssembly;
+			sourceTree = "<group>";
+		};
+		5677BB3A20FAA55F0019E92D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				5677BB3F20FAB26C0019E92D /* UIView+LockFrame */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		5677BB3F20FAB26C0019E92D /* UIView+LockFrame */ = {
+			isa = PBXGroup;
+			children = (
+				5677BB4020FAB28C0019E92D /* UIView+LockFrame.h */,
+				5677BB4120FAB28C0019E92D /* UIView+LockFrame.m */,
+			);
+			path = "UIView+LockFrame";
 			sourceTree = "<group>";
 		};
 		5685FE132099F996008C75A1 /* FlatButton */ = {
@@ -3798,6 +3831,7 @@
 		56A4EAAA20B8BE070042A358 /* Presentations */ = {
 			isa = PBXGroup;
 			children = (
+				5677BB3A20FAA55F0019E92D /* Helpers */,
 				56A4EAC920B8C63D0042A358 /* PresentationControllers */,
 				56A4EABA20B8C3D50042A358 /* DismissingAnimationControllers */,
 				56A4EAB720B8C3970042A358 /* PresentingAnimationControllers */,
@@ -8130,6 +8164,7 @@
 				56FB398F20B227EC007776C8 /* ResponseDeserializersAssembly.m in Sources */,
 				56FB39A320B22A47007776C8 /* ResponseConverterAssembly.m in Sources */,
 				563CF2F320EFAD3F005467AE /* BuyEtherHistoryItemTableViewCellObject.m in Sources */,
+				5677BB3920FA13860019E92D /* ModuleFactoriesAssembly.m in Sources */,
 				56A29C9E20E0627200D05FF1 /* InfoEmptyTableViewCell.m in Sources */,
 				56E14C1120EC180500C41F83 /* SingleResponseObjectFormatter.m in Sources */,
 				56C45E9D20A35A00001261A2 /* CardView.m in Sources */,
@@ -8146,7 +8181,7 @@
 				560A867520E681E700046B53 /* KeychainItemModel.m in Sources */,
 				5668E4EA2083DA190070A402 /* CleanLaunchAppDelegate.m in Sources */,
 				5643879720A492240017790F /* UIColor+RandSeed.swift in Sources */,
-				5668E50C2083E7280070A402 /* StoryboardAssembly.m in Sources */,
+				5668E50C2083E7280070A402 /* StoryboardsAssembly.m in Sources */,
 				56AC9457208FACBA00E5BC2C /* NSData+Hexadecimal.m in Sources */,
 				9545B03A6FC04B1766AA60BF /* StartPresenter.m in Sources */,
 				56E14BBF20E97B3C00C41F83 /* FiatPricesQuery.m in Sources */,
@@ -8437,6 +8472,7 @@
 				BB637F92D100EA257CAE4408 /* BuyEtherNavigationAssembly.m in Sources */,
 				305F1DD38D91054D4017098F /* BuyEtherNavigationController.m in Sources */,
 				A30F16618E51D57E2E24EEFA /* BuyEtherNavigationPresenter.m in Sources */,
+				5677BB4220FAB28C0019E92D /* UIView+LockFrame.m in Sources */,
 				EA0EFB4E115E73BC1B98904C /* BuyEtherNavigationRouter.m in Sources */,
 				7CD4D8349C636C9982158EE2 /* BuyEtherWebAssembly.m in Sources */,
 				666B9C38833B024733CF5DB7 /* BuyEtherWebViewController.m in Sources */,
@@ -8452,7 +8488,7 @@
 			files = (
 				5668E5082083E5CA0070A402 /* ApplicationHelperAssembly.m in Sources */,
 				5668E4E62083D95F0070A402 /* ModuleAssemblyBase.m in Sources */,
-				5668E50D2083E7280070A402 /* StoryboardAssembly.m in Sources */,
+				5668E50D2083E7280070A402 /* StoryboardsAssembly.m in Sources */,
 				56FE2B8A20817F1100DB39D5 /* MyEtherWallet_iOSTests.m in Sources */,
 				C60EF5D085150D2CEABA329D /* StartAssemblyTests.m in Sources */,
 				5668E4DF2083D9220070A402 /* ApplicationAssembly.m in Sources */,

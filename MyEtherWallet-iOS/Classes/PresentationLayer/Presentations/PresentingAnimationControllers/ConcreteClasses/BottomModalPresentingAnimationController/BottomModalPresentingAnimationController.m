@@ -16,15 +16,20 @@
   return 0.3;
 }
 
-- (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
+- (void) animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
   UIView *containerView = [transitionContext containerView];
   UIView *presentedView = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey].view;
   
-  presentedView.frame = containerView.bounds;
-  [containerView addSubview:presentedView];
+  [presentedView setNeedsLayout];
+  [presentedView layoutIfNeeded];
+  UIView *presentedViewSnapshot = [presentedView snapshotViewAfterScreenUpdates:YES];
+  presentedView.hidden = YES;
+  [containerView addSubview:presentedViewSnapshot];
+  CGRect frame = presentedView.bounds;
+  frame.origin.y = presentedView.frame.origin.y;
+  presentedViewSnapshot.frame = frame;
   
-  CGAffineTransform transform = presentedView.transform;
-  presentedView.transform = CGAffineTransformTranslate(transform, 0, CGRectGetHeight(containerView.bounds));
+  presentedViewSnapshot.transform = CGAffineTransformMakeTranslation(0, CGRectGetHeight(containerView.bounds));
   
   UIViewAnimationOptions options = UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseOut;
   
@@ -32,8 +37,10 @@
                         delay:0.0
                       options:options
                    animations:^{
-                     presentedView.transform = transform;
+                     presentedViewSnapshot.transform = CGAffineTransformIdentity;
                    } completion:^(BOOL finished) {
+                     presentedView.hidden = NO;
+                     [presentedViewSnapshot removeFromSuperview];
                      [transitionContext completeTransition:YES];
                    }];
 }

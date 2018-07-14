@@ -9,6 +9,7 @@
 @import ViperMcFlurry;
 
 #import "ServiceComponents.h"
+#import "ModuleFactoriesAssembly.h"
 
 #import "StartAssembly.h"
 
@@ -54,6 +55,8 @@
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(transitionHandler)
                                                 with:[self viewStart]];
+                          [definition injectProperty:@selector(homeFactory)
+                                                with:[self.moduleFactoriesAssembly homeFactory]];
                         }];
 }
 

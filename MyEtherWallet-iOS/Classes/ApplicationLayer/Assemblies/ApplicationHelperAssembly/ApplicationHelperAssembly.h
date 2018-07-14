@@ -10,9 +10,9 @@
 @import RamblerTyphoonUtils.AssemblyCollector;
 
 @protocol NavigationControllerFactory;
-@class StoryboardAssembly;
+@class StoryboardsAssembly;
 
 @interface ApplicationHelperAssembly : TyphoonAssembly <RamblerInitialAssembly>
-@property (nonatomic, strong, readonly) StoryboardAssembly *storyboardAssembly;
+@property (nonatomic, strong, readonly) StoryboardsAssembly *storyboardAssembly;
 - (id<NavigationControllerFactory>)navigationControllerFactory;
 @end

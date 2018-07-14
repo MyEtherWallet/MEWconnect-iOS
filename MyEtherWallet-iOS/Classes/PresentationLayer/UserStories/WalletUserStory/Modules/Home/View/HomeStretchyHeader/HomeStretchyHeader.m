@@ -161,6 +161,8 @@ static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset       = 8.0;
     imageView.contentMode = UIViewContentModeCenter;
     imageView.layer.masksToBounds = YES;
     imageView.layer.cornerRadius = kCardViewDefaultCornerRadius;
+    imageView.layer.shouldRasterize = YES;
+    imageView.layer.rasterizationScale = [UIScreen mainScreen].scale;
     [self.contentView addSubview:imageView];
     [self.contentView sendSubviewToBack:imageView];
     
@@ -261,7 +263,7 @@ static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset       = 8.0;
       tokenBalancesTitle.translatesAutoresizingMaskIntoConstraints = NO;
       tokenBalancesTitle.font = [UIFont systemFontOfSize:kHomeStretchyHeaderTokensTitleMaxFontSize weight:UIFontWeightBold];
       tokenBalancesTitle.textColor = [UIColor darkTextColor];
-      tokenBalancesTitle.text = NSLocalizedString(@"Token Balances", @"Home screen. Header");
+      tokenBalancesTitle.text = NSLocalizedString(@"Tokens", @"Home screen. Header");
       [searchBarContainerView addSubview:tokenBalancesTitle];
       [searchBarContainerView addConstraint:[NSLayoutConstraint constraintWithItem:tokenBalancesTitle attribute:NSLayoutAttributeLeading
                                                                          relatedBy:NSLayoutRelationEqual

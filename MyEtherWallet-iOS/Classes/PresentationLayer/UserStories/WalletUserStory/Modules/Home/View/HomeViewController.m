@@ -183,6 +183,7 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
   [self.headerView.cardView updateBalance:balance network:[account.fromNetwork network]];
   
   NSNumberFormatter *ethereumFormatter = [NSNumberFormatter ethereumFormatterWithNetwork:[account.fromNetwork network]];
+  ethereumFormatter.maximumSignificantDigits = 14;
   self.headerView.titleBalanceLabel.text = [ethereumFormatter stringFromNumber:balance];
 }
 
@@ -296,6 +297,9 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
   } else {
     self.headerView.searchBarStyle = HomeStretchyHeaderSearchBarStyleWhite;
   }
+  UIEdgeInsets indicatorInset = self.tableView.scrollIndicatorInsets;
+  indicatorInset.top = CGRectGetHeight(self.headerView.contentView.bounds);
+  self.tableView.scrollIndicatorInsets = indicatorInset;
 }
 
 #pragma mark - CardViewDelegate

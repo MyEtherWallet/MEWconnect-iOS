@@ -31,6 +31,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
+  [self.output didTriggerViewWillAppearEvent];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

@@ -167,9 +167,8 @@ connect</string>
                         <outlet property="mewConnectTitle" destination="PFN-t5-zaG" id="OTh-j7-0fJ"/>
                         <outlet property="pageControl" destination="fwq-RK-za0" id="UL6-7w-O2B"/>
                         <outlet property="restoreWalletButton" destination="p61-aI-WVD" id="NR7-TN-19T"/>
-                        <segue destination="Js0-Yk-gwG" kind="show" identifier="StartToHomeSegueIdentifier" animates="NO" id="Pid-95-T7W"/>
+                        <segue destination="Js0-Yk-gwG" kind="show" identifier="StartToHomeSegueIdentifier" id="Pid-95-T7W"/>
                         <segue destination="Fe6-fl-kwA" kind="presentation" identifier="StartToPasswordSegueIdentifier" id="j9x-JX-jNP"/>
-                        <segue destination="Js0-Yk-gwG" kind="show" identifier="StartToHomeAnimatedSegueIdentifier" id="eIv-wE-wUR"/>
                         <segue destination="7p6-Sy-ZJQ" kind="presentation" identifier="StartToRestoreWalletSegueIdentifier" id="se7-H3-jWW"/>
                     </connections>
                 </viewController>
@@ -593,7 +592,6 @@ password again</string>
         <image name="onboarding_page2_icon" width="194" height="194"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="eIv-wE-wUR"/>
         <segue reference="24Y-DY-ODr"/>
     </inferredMetricsTieBreakers>
 </document>

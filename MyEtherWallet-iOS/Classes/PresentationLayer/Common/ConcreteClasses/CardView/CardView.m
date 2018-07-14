@@ -45,7 +45,7 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
   NSDecimalNumber *_ethToUsdPrice;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame {
+- (instancetype) initWithFrame:(CGRect)frame {
   self = [super initWithFrame:frame];
   if (self) {
     [self _commonInit];
@@ -134,8 +134,8 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
   }
   
   NSNumberFormatter *ethereumFormatter = [NSNumberFormatter ethereumFormatterWithNetwork:network];
-  
   ethereumFormatter.maximumSignificantDigits = 8;
+  
   NSString *balanceText = [ethereumFormatter stringFromNumber:balance];
   NSDictionary *balanceAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor],
                                       NSFontAttributeName: [UIFont systemFontOfSize:30.0 weight:UIFontWeightSemibold],
@@ -333,6 +333,9 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
   
   //Default values
   [self updateBalance:[NSDecimalNumber decimalNumberWithString:@"0.0"] network:BlockchainNetworkTypeMainnet];
+  
+  self.layer.shouldRasterize = YES;
+  self.layer.rasterizationScale = [UIScreen mainScreen].scale;
 }
 
 /* $423.65 USD @ $746/ETH */

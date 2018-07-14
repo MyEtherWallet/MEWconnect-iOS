@@ -10,7 +10,7 @@
 
 #import "ApplicationHelperAssembly.h"
 #import "SystemInfrastructureAssembly.h"
-#import "StoryboardAssembly.h"
+#import "StoryboardsAssembly.h"
 #import "PonsomizerAssembly.h"
 
 #import "ServiceComponents.h"

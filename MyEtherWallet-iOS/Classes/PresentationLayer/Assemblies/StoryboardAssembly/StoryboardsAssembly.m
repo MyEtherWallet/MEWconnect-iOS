@@ -1,12 +1,12 @@
 //
-//  StoryboardAssembly.m
+//  StoryboardsAssembly.m
 //  MyEtherWallet-iOS
 //
 //  Created by Mikhail Nikanorov on 15/04/2018.
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
-#import "StoryboardAssembly.h"
+#import "StoryboardsAssembly.h"
 
 #import "SystemInfrastructureAssembly.h"
 
@@ -15,7 +15,7 @@ static NSString *const kSplashPasswordStoryboardName  = @"SplashPassword";
 static NSString *const kWalletStoryboardName          = @"Wallet";
 static NSString *const kLaunchStoryboardName          = @"LaunchScreen";
 
-@implementation StoryboardAssembly
+@implementation StoryboardsAssembly
 
 - (UIStoryboard *) mainStoryboard {
   return [TyphoonDefinition withClass:[TyphoonStoryboard class]

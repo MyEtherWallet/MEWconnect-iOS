@@ -12,6 +12,8 @@
 
 #import "ForgotPasswordViewOutput.h"
 
+#import "UIView+LockFrame.h"
+
 @interface ForgotPasswordViewController ()
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) IBOutlet UILabel *descriptionLabel;
@@ -25,6 +27,11 @@
 	[super viewDidLoad];
 
 	[self.output didTriggerViewReadyEvent];
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  self.view.lockFrame = YES;
 }
 
 - (void)viewLayoutMarginsDidChange {
@@ -102,7 +109,7 @@
 
 - (void) _updatePrefferedContentSize {
   CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
-  CGRect bounds = self.view.window.bounds;
+  CGRect bounds = self.presentingViewController.view.window.bounds;
   CGSize size = bounds.size;
   size.height -= CGRectGetHeight(statusBarFrame);
   size.height -= 8.0;

@@ -14,13 +14,17 @@
 #import "AccountPlainObject.h"
 
 #import "UIImage+MEWBackground.h"
+#import "UIView+LockFrame.h"
 
 @interface BottomBackgroundedModalPresentationController ()
 @property (nonatomic, strong, readonly) UIImageView *mewBackground;
+@property (nonatomic, strong, readonly) UIView *presentingSnapshot;
+@property (nonatomic, strong, readonly) UIView *presentedWrapper;
 @end
 
 @implementation BottomBackgroundedModalPresentationController
 @synthesize mewBackground = _mewBackground;
+@synthesize presentingSnapshot = _presentingSnapshot;
 
 - (UIImageView *) mewBackground {
   if (!_mewBackground) {
@@ -42,35 +46,63 @@
   return _mewBackground;
 }
 
-- (void)presentationTransitionWillBegin {
-  [self _updateMask];
-  
-  self.mewBackground.alpha = 0.0;
-  [self.containerView addSubview:self.mewBackground];
-  [self.containerView.topAnchor constraintEqualToAnchor:self.mewBackground.topAnchor].active = YES;
-  [self.containerView.leftAnchor constraintEqualToAnchor:self.mewBackground.leftAnchor].active = YES;
-  [self.containerView.rightAnchor constraintEqualToAnchor:self.mewBackground.rightAnchor].active = YES;
-  
-  [self.presentedViewController.transitionCoordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
-    self.mewBackground.alpha = 1.0;
-  } completion:nil];
+- (UIView *) presentedView {
+  if (!_presentedWrapper) {
+    _presentedWrapper = [[UIView alloc] initWithFrame:[super presentedView].frame];
+    _presentedWrapper.autoresizingMask = [super presentedView].autoresizingMask;
+    _presentedWrapper.lockFrame = YES;
+  }
+  return _presentedWrapper;
 }
 
-- (void)presentationTransitionDidEnd:(BOOL)completed {
-  if (!completed) {
-    [self.mewBackground removeFromSuperview];
+- (UIView *) presentingSnapshot {
+  if (!_presentingSnapshot) {
+    _presentingSnapshot = [self.presentingViewController.view snapshotViewAfterScreenUpdates:NO];
+    _presentingSnapshot.translatesAutoresizingMaskIntoConstraints = NO;
+  }
+  return _presentingSnapshot;
+}
+
+- (void) presentationTransitionWillBegin {
+  [self.presentedView addSubview:[super presentedView]];
+  [self.presentingSnapshot addSubview:self.mewBackground];
+  [self.presentingSnapshot.topAnchor constraintEqualToAnchor:self.mewBackground.topAnchor].active = YES;
+  [self.presentingSnapshot.leftAnchor constraintEqualToAnchor:self.mewBackground.leftAnchor].active = YES;
+  [self.presentingSnapshot.rightAnchor constraintEqualToAnchor:self.mewBackground.rightAnchor].active = YES;
+  
+  [self.containerView addSubview:self.presentingSnapshot];
+  [self.containerView.topAnchor constraintEqualToAnchor:self.presentingSnapshot.topAnchor].active = YES;
+  [self.containerView.leftAnchor constraintEqualToAnchor:self.presentingSnapshot.leftAnchor].active = YES;
+  [self.containerView.rightAnchor constraintEqualToAnchor:self.presentingSnapshot.rightAnchor].active = YES;
+  [self.containerView.bottomAnchor constraintEqualToAnchor:self.presentingSnapshot.bottomAnchor].active = YES;
+  
+  [self.containerView addSubview:self.presentedView];
+  
+  if (self.presentedViewController.transitionCoordinator.animated) {
+    self.mewBackground.alpha = 0.0;
+    [self.presentedView snapshotViewAfterScreenUpdates:YES];
+    [self.presentedViewController.transitionCoordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+        self.mewBackground.alpha = 1.0;
+    } completion:nil];
   }
 }
 
-- (void)dismissalTransitionWillBegin {
+- (void) presentationTransitionDidEnd:(BOOL)completed {
+  if (!completed) {
+    [self.presentingSnapshot removeFromSuperview];
+  }
+}
+
+- (void) dismissalTransitionWillBegin {
   [self.presentedViewController.transitionCoordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
     self.mewBackground.alpha = 0.0;
   } completion:nil];
 }
 
-- (void)dismissalTransitionDidEnd:(BOOL)completed {
+- (void) dismissalTransitionDidEnd:(BOOL)completed {
   if (completed) {
     [self.mewBackground removeFromSuperview];
+    [self.presentingSnapshot removeFromSuperview];
   }
 }
 
@@ -84,32 +116,31 @@
 - (void) containerViewWillLayoutSubviews {
   [super containerViewWillLayoutSubviews];
   CGRect frame = [self frameOfPresentedViewInContainerView];
-  if (!CGRectEqualToRect(frame, self.presentedView.frame)) {
-    self.presentedView.frame = frame;
+  if (!CGRectEqualToRect([super presentedView].frame, frame)) {
+    [super presentedView].frame = frame;
+    [self _updateMaskWithFrame:frame];
   }
-  
-  [self _updateMask];
 }
 
 //cornerRadius for top
-- (void) _updateMask {
-  UIView *presentedView = self.presentedViewController.view;
-  CGRect bounds = [self frameOfPresentedViewInContainerView];
+- (void) _updateMaskWithFrame:(CGRect)frame {
+  CGRect bounds = frame;
   bounds.origin = CGPointZero;
   
-  if (!presentedView.layer.mask) {
-    presentedView.layer.mask = [CAShapeLayer layer];
+  if (![super presentedView].layer.mask) {
+    [super presentedView].layer.mask = [CAShapeLayer layer];
   }
   
   UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:bounds
                                                  byRoundingCorners:UIRectCornerTopLeft|UIRectCornerTopRight
                                                        cornerRadii:CGSizeMake(self.cornerRadius, self.cornerRadius)];
-  CAShapeLayer *maskLayer = (CAShapeLayer *)presentedView.layer.mask;
+  CAShapeLayer *maskLayer = (CAShapeLayer *)[super presentedView].layer.mask;
   maskLayer.frame = bounds;
   maskLayer.path = maskPath.CGPath;
   maskLayer.shouldRasterize = YES;
   maskLayer.rasterizationScale = [UIScreen mainScreen].scale;
 }
+
 
 @end
 

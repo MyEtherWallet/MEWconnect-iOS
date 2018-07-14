@@ -12,5 +12,6 @@
 @class AccountPlainObject;
 
 @protocol SplashPasswordModuleInput <RamblerViperModuleInput>
-- (void) configureModuleWithAccount:(AccountPlainObject *)account;
+- (void) configureModuleWithAccount:(AccountPlainObject *)account autoControl:(BOOL)autoControl;
+- (void) takeControlAfterLaunch;
 @end

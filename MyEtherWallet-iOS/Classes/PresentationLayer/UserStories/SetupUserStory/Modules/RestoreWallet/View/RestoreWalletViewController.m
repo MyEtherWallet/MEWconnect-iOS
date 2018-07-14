@@ -7,6 +7,7 @@
 //
 
 @import libextobjc.EXTScope;
+@import UITextView_Placeholder;
 
 #import "RestoreWalletViewController.h"
 
@@ -15,6 +16,8 @@
 #import "NSCharacterSet+WNS.h"
 
 #import "ApplicationConstants.h"
+
+#import "UIColor+Application.h"
 
 @interface RestoreWalletViewController () <UITextViewDelegate>
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *nextButton;
@@ -42,6 +45,8 @@
 #pragma mark - RestoreWalletViewInput
 
 - (void) setupInitialState {
+  self.mnemonicsTextView.placeholder = NSLocalizedString(@"Words, separated by spaces…", @"Restore wallet. Mnemonics placeholder");
+  self.mnemonicsTextView.placeholderColor = [[UIColor lightGreyTextColor] colorWithAlphaComponent:0.5];
   _separatorCharactorSet = [NSCharacterSet whitespaceAndSpaceAndNewlineCharacterSet];
   { //Title label
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];

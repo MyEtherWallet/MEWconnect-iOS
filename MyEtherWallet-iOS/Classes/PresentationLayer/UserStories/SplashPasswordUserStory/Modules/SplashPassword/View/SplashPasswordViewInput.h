@@ -9,6 +9,7 @@
 @import Foundation;
 
 @protocol SplashPasswordViewInput <NSObject>
-- (void) setupInitialState;
+- (void) setupInitialStateWithAutoControl:(BOOL)autoControl;
+- (void) becomePasswordInputActive;
 - (void) shakeInput;
 @end

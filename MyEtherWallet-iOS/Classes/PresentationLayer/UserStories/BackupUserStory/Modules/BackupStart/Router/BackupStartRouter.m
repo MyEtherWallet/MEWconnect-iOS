@@ -23,7 +23,7 @@ static NSString *const kBackupStartToBackupWordsSegueIdentifier = @"BackupStartT
 
 - (void) openSplashPasswordWithOutput:(id <SplashPasswordModuleOutput>)output account:(AccountPlainObject *)account {
   [[self.transitionHandler openModuleUsingSegue:kBackupStartToSplashPasswordSegueIdentifier] thenChainUsingBlock:^id<SplashPasswordModuleOutput>(id<SplashPasswordModuleInput> moduleInput) {
-    [moduleInput configureModuleWithAccount:account];
+    [moduleInput configureModuleWithAccount:account autoControl:YES];
     return output;
   }];
 }

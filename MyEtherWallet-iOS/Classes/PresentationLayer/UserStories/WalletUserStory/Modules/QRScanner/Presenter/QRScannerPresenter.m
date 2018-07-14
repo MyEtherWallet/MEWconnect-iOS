@@ -12,7 +12,10 @@
 #import "QRScannerInteractorInput.h"
 #import "QRScannerRouterInput.h"
 
-@implementation QRScannerPresenter
+@implementation QRScannerPresenter {
+  BOOL _accessGranted;
+  BOOL _viewAppeared;
+}
 
 #pragma mark - QRScannerModuleInput
 
@@ -31,7 +34,10 @@
 }
 
 - (void) didTriggerViewDidAppear {
-  [self.interactor startReading];
+  _viewAppeared = YES;
+  if (_accessGranted && _viewAppeared) {
+    [self.interactor startReading];
+  }
 }
 
 - (void) didTriggerViewDidDisappear {
@@ -72,10 +78,15 @@
 }
 
 - (void) accessGranted {
+  _accessGranted = YES;
   [self.view hideAccessWarning];
   
   AVCaptureSession *session = [self.interactor obtainCaptureSession];
   [self.view updateWithCaptureSession:session];
+  
+  if (_accessGranted && _viewAppeared) {
+    [self.interactor startReading];
+  }
 }
 
 - (void) accessNotGranted {

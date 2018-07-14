@@ -13,7 +13,8 @@
 
 @interface StoryboardAssembly : TyphoonAssembly <RamblerInitialAssembly>
 @property (nonatomic, strong, readonly) SystemInfrastructureAssembly *systemInfrastructureAssembly;
-- (UIStoryboard *)mainStoryboard;
-- (UIStoryboard *)splashPasswordStoryboard;
-- (UIStoryboard *)walletStoryboard;
+- (UIStoryboard *) mainStoryboard;
+- (UIStoryboard *) splashPasswordStoryboard;
+- (UIStoryboard *) walletStoryboard;
+- (UIStoryboard *) launchStoryboard;
 @end

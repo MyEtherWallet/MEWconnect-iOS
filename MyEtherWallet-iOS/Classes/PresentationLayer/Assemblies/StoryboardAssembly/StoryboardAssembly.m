@@ -13,10 +13,11 @@
 static NSString *const kMainStoryboardName            = @"Main";
 static NSString *const kSplashPasswordStoryboardName  = @"SplashPassword";
 static NSString *const kWalletStoryboardName          = @"Wallet";
+static NSString *const kLaunchStoryboardName          = @"LaunchScreen";
 
 @implementation StoryboardAssembly
 
-- (UIStoryboard *)mainStoryboard {
+- (UIStoryboard *) mainStoryboard {
   return [TyphoonDefinition withClass:[TyphoonStoryboard class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition useInitializer:@selector(storyboardWithName:factory:bundle:)
@@ -28,7 +29,7 @@ static NSString *const kWalletStoryboardName          = @"Wallet";
                         }];
 }
 
-- (UIStoryboard *)splashPasswordStoryboard {
+- (UIStoryboard *) splashPasswordStoryboard {
   return [TyphoonDefinition withClass:[TyphoonStoryboard class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition useInitializer:@selector(storyboardWithName:factory:bundle:)
@@ -40,12 +41,24 @@ static NSString *const kWalletStoryboardName          = @"Wallet";
                         }];
 }
 
-- (UIStoryboard *)walletStoryboard {
+- (UIStoryboard *) walletStoryboard {
   return [TyphoonDefinition withClass:[TyphoonStoryboard class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition useInitializer:@selector(storyboardWithName:factory:bundle:)
                                           parameters:^(TyphoonMethod *initializer) {
                                             [initializer injectParameterWith:kWalletStoryboardName];
+                                            [initializer injectParameterWith:self];
+                                            [initializer injectParameterWith:[self.systemInfrastructureAssembly mainBundle]];
+                                          }];
+                        }];
+}
+
+- (UIStoryboard *) launchStoryboard {
+  return [TyphoonDefinition withClass:[TyphoonStoryboard class]
+                        configuration:^(TyphoonDefinition *definition) {
+                          [definition useInitializer:@selector(storyboardWithName:factory:bundle:)
+                                          parameters:^(TyphoonMethod *initializer) {
+                                            [initializer injectParameterWith:kLaunchStoryboardName];
                                             [initializer injectParameterWith:self];
                                             [initializer injectParameterWith:[self.systemInfrastructureAssembly mainBundle]];
                                           }];

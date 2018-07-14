@@ -57,37 +57,56 @@ static NSString *const kSplashPasswordViewControllerIdentifier  = @"SplashPasswo
     navigationController = [self.navigationControllerFactory obtainPreconfiguredNavigationController];
   }
   
+  UIViewController *launchViewController = [self.launchStoryboard instantiateInitialViewController];
+  launchViewController.view.frame = self.window.bounds;
+  launchViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+  
   self.window.rootViewController = navigationController;
   [self.window makeKeyAndVisible];
   
+  [self.window addSubview:launchViewController.view];
+  
   if (self.passwordStoryboard && accountModelObject) {
     /* To prevent "Unbalanced calls to begin/end appearance transitions for..." */
-    dispatch_async(dispatch_get_main_queue(), ^{
-      RamblerViperModuleFactory *passwordFactory = [[RamblerViperModuleFactory alloc] initWithStoryboard:self.passwordStoryboard
-                                                                                        andRestorationId:kSplashPasswordViewControllerIdentifier];
-      [[navigationController.topViewController openModuleUsingFactory:passwordFactory
-                                                  withTransitionBlock:[self passwordTransitionBlock]]
-       thenChainUsingBlock:[self passwordConfigurationBlockWithAccount:account]];
-      
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+      dispatch_async(dispatch_get_main_queue(), ^{
+        RamblerViperModuleFactory *passwordFactory = [[RamblerViperModuleFactory alloc] initWithStoryboard:self.passwordStoryboard
+                                                                                          andRestorationId:kSplashPasswordViewControllerIdentifier];
+        __block id <SplashPasswordModuleInput> passwordModuleInput = nil;
+        RamblerViperModuleLinkBlock linkBlock = [self passwordConfigurationBlockWithAccount:account moduleInputCatch:^(id<SplashPasswordModuleInput> moduleInput) {
+          passwordModuleInput = moduleInput;
+        }];
+        [[navigationController.topViewController openModuleUsingFactory:passwordFactory
+                                                    withTransitionBlock:[self passwordTransitionBlockWithCompletion:^{
+          [UIView animateWithDuration:0.5
+                           animations:^{
+                             launchViewController.view.alpha = 0.0;
+                           } completion:^(BOOL finished) {
+                             [launchViewController.view removeFromSuperview];
+                             [passwordModuleInput takeControlAfterLaunch];
+                           }];
+        }]] thenChainUsingBlock:linkBlock];
+      });
     });
   }
 }
 
 #pragma mark - Private
 
-- (ModuleTransitionBlock) passwordTransitionBlock {
+- (ModuleTransitionBlock) passwordTransitionBlockWithCompletion:(void(^)(void))completion {
   return ^(id<RamblerViperModuleTransitionHandlerProtocol> sourceModuleTransitionHandler, id<RamblerViperModuleTransitionHandlerProtocol> destinationModuleTransitionHandler) {
     UIViewController *destinationViewController = (id)destinationModuleTransitionHandler;
     UIViewController *sourceViewController = (id)sourceModuleTransitionHandler;
     [sourceViewController presentViewController:destinationViewController
                                        animated:NO
-                                     completion:nil];
+                                     completion:completion];
   };
 }
 
-- (RamblerViperModuleLinkBlock) passwordConfigurationBlockWithAccount:(AccountPlainObject *)account {
+- (RamblerViperModuleLinkBlock) passwordConfigurationBlockWithAccount:(AccountPlainObject *)account moduleInputCatch:(void(^)(id<SplashPasswordModuleInput> moduleInput))moduleCatchBlock {
   return ^id<RamblerViperModuleOutput>(id<SplashPasswordModuleInput> moduleInput) {
-    [moduleInput configureModuleWithAccount:account];
+    moduleCatchBlock(moduleInput);
+    [moduleInput configureModuleWithAccount:account autoControl:NO];
     return nil;
   };
 }

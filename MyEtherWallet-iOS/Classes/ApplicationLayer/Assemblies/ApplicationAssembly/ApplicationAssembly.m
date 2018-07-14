@@ -48,13 +48,16 @@
                                                 with:[self cleanStartRouter]];
                           [definition injectProperty:@selector(coreDataConfigurator)
                                                 with:[self coreDataConfigurator]];
-                          
                           definition.scope = TyphoonScopeSingleton;
                         }];
 }
 
 - (id <ApplicationConfigurator>) applicationConfigurator {
-  return [TyphoonDefinition withClass:[ApplicationConfiguratorImplementation class]];
+  return [TyphoonDefinition withClass:[ApplicationConfiguratorImplementation class]
+                        configuration:^(TyphoonDefinition *definition) {
+                          [definition injectProperty:@selector(keychainService)
+                                                with:[self.serviceComponents keychainService]];
+                        }];
 }
 
 - (id <ThirdPartiesConfigurator>) thirdPartiesConfigurator {

@@ -11,7 +11,9 @@
 @implementation SimplexHeadersBuilder
 
 - (NSDictionary *)build {
-  return [super build];
+  NSMutableDictionary *headers = [[super build] mutableCopy];
+  [headers addEntriesFromDictionary:self.additionalHeaders];
+  return headers;
 }
 
 @end

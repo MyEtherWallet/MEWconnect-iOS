@@ -18,6 +18,7 @@
 @protocol HeadersBuilder;
 
 @class SimplexPaymentQuery;
+@class SimplexStatusQuery;
 
 @class SimplexQuoteBody;
 @class SimplexOrderBody;
@@ -30,5 +31,6 @@
                   headersBuilder:(id<HeadersBuilder>)headersBuilder;
 - (CompoundOperationBase *) quoteWithBody:(SimplexQuoteBody *)body;
 - (CompoundOperationBase *) orderWithBody:(SimplexOrderBody *)body;
+- (CompoundOperationBase *) statusWithQuery:(SimplexStatusQuery *)query;
 - (NSURLRequest *) requestWithQuery:(SimplexPaymentQuery *)query;
 @end

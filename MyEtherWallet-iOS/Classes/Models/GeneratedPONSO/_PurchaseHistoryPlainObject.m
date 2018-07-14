@@ -16,7 +16,8 @@
     [aCoder encodeObject:self.amount forKey:@"amount"];
     [aCoder encodeObject:self.date forKey:@"date"];
     [aCoder encodeObject:self.loaded forKey:@"loaded"];
-    [aCoder encodeObject:self.transactionId forKey:@"transactionId"];
+    [aCoder encodeObject:self.status forKey:@"status"];
+    [aCoder encodeObject:self.userId forKey:@"userId"];
     [aCoder encodeObject:self.fromAccount forKey:@"fromAccount"];
 }
 
@@ -27,7 +28,8 @@
         _amount = [[aDecoder decodeObjectForKey:@"amount"] copy];
         _date = [[aDecoder decodeObjectForKey:@"date"] copy];
         _loaded = [[aDecoder decodeObjectForKey:@"loaded"] copy];
-        _transactionId = [[aDecoder decodeObjectForKey:@"transactionId"] copy];
+        _status = [[aDecoder decodeObjectForKey:@"status"] copy];
+        _userId = [[aDecoder decodeObjectForKey:@"userId"] copy];
         _fromAccount = [[aDecoder decodeObjectForKey:@"fromAccount"] copy];
     }
 
@@ -42,7 +44,8 @@
     replica.amount = self.amount;
     replica.date = self.date;
     replica.loaded = self.loaded;
-    replica.transactionId = self.transactionId;
+    replica.status = self.status;
+    replica.userId = self.userId;
 
     replica.fromAccount = self.fromAccount;
 

@@ -14,7 +14,8 @@
 @property (nonatomic, copy, readwrite) NSDecimalNumber *amount;
 @property (nonatomic, copy, readwrite) NSDate *date;
 @property (nonatomic, copy, readwrite) NSNumber *loaded;
-@property (nonatomic, copy, readwrite) NSString *transactionId;
+@property (nonatomic, copy, readwrite) NSNumber *status;
+@property (nonatomic, copy, readwrite) NSString *userId;
 
 @property (nonatomic, copy, readwrite) AccountPlainObject *fromAccount;
 

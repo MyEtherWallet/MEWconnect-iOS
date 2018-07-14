@@ -9,8 +9,8 @@
 @import Foundation;
 @import ViperMcFlurry;
 
+@class AccountPlainObject;
+
 @protocol BuyEtherHistoryModuleInput <RamblerViperModuleInput>
-
-- (void) configureModule;
-
+- (void) configureModuleWithAccount:(AccountPlainObject *)account;
 @end

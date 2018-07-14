@@ -16,7 +16,8 @@
 
 #pragma mark - BuyEtherHistoryModuleInput
 
-- (void) configureModule {
+- (void) configureModuleWithAccount:(AccountPlainObject *)account {
+  [self.interactor configureWithAccount:account];
 }
 
 #pragma mark - BuyEtherHistoryViewOutput
@@ -26,5 +27,9 @@
 }
 
 #pragma mark - BuyEtherHistoryInteractorOutput
+
+- (void) didProcessCacheTransactionBatch:(CacheTransactionBatch *)cacheTransactionBatch {
+  [self.view updateWithCacheTransaction:cacheTransactionBatch];
+}
 
 @end

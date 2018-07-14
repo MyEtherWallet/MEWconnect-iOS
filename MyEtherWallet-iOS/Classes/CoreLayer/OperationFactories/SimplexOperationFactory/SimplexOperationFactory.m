@@ -24,6 +24,9 @@
 #import "SimplexOrder.h"
 
 #import "SimplexPaymentQuery.h"
+#import "SimplexStatusQuery.h"
+
+#import "PurchaseHistoryModelObject.h"
 
 #import "RequestConfiguratorsFactory.h"
 #import "RequestConfigurator.h"
@@ -109,6 +112,33 @@
   RequestDataModel *inputData = [[RequestDataModel alloc] initWithHTTPHeaderFields:headers
                                                                    queryParameters:nil
                                                                           bodyData:bodyData];
+  config.inputQueueData = inputData;
+  return [self.networkOperationBuilder buildCompoundOperationWithConfig:config];
+}
+
+- (CompoundOperationBase *) statusWithQuery:(SimplexStatusQuery *)query {
+  CompoundOperationBuilderConfig *config = [[CompoundOperationBuilderConfig alloc] init];
+  
+  config.requestConfigurationType = RequestConfigurationSimplexAPIType;
+  config.requestMethod = kHTTPMethodGET;
+  config.serviceName = kServiceNameStatus;
+  config.urlParameters = @[query.userId];
+  
+  config.responseDeserializationType = ResponseDeserializationJSONType;
+  
+  config.responseConvertingType = ResponseConvertingSimplexType;
+  
+  config.responseValidationType = ResponseValidationSimplexType;
+  
+  config.responseMappingType = ResponseMappingCoreDataType;
+  
+  config.mappingContext = @{kMappingContextModelClassKey : NSStringFromClass([PurchaseHistoryModelObject class])};
+  
+  NSDictionary *headers = [self.headersBuilder build];
+  
+  RequestDataModel *inputData = [[RequestDataModel alloc] initWithHTTPHeaderFields:headers
+                                                                   queryParameters:nil
+                                                                          bodyData:nil];
   config.inputQueueData = inputData;
   return [self.networkOperationBuilder buildCompoundOperationWithConfig:config];
 }

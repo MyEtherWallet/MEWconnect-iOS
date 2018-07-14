@@ -7,8 +7,9 @@
 //
 
 @import Foundation;
+@import Nimbus.NICellFactory;
 
-@interface BuyEtherHistoryEmptyTableViewCellObject : NSObject
+@interface BuyEtherHistoryEmptyTableViewCellObject : NSObject <NINibCellObject>
 @property (nonatomic, strong) NSString *title;
 + (instancetype) object;
 @end

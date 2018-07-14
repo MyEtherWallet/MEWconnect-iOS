@@ -33,7 +33,7 @@ static NSString *const kBuyEtherAmountToBuyEtherHistorySegueIdentifier  = @"BuyE
 
 - (void) openBuyEtherHistoryForAccount:(AccountPlainObject *)account {
   [[self.transitionHandler openModuleUsingSegue:kBuyEtherAmountToBuyEtherHistorySegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<BuyEtherHistoryModuleInput> moduleInput) {
-    [moduleInput configureModule];
+    [moduleInput configureModuleWithAccount:account];
     return nil;
   }];
 }

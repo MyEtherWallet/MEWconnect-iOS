@@ -35,6 +35,10 @@
 
 #import "OperationSchedulerImplementation.h"
 
+static NSString *const kConfigFileName          = @"ServicesConfig.plist";
+
+static NSString *const kSignallingServerURLKey  = @"API.SignallingServerURL";
+
 @implementation ServiceComponentsAssembly
 
 #pragma mark - MEW
@@ -60,7 +64,10 @@
                                                 with:[self MEWRTCService]];
                           [definition injectProperty:@selector(MEWcrypto)
                                                 with:[self MEWcrypto]];
-                          [definition injectProperty:@selector(delegate) with:[self MEWConnectFacade]];
+                          [definition injectProperty:@selector(delegate)
+                                                with:[self MEWConnectFacade]];
+                          [definition injectProperty:@selector(signallingServerURL)
+                                                with:TyphoonConfig(kSignallingServerURLKey)];
                         }];
 }
 
@@ -146,6 +153,8 @@
                                                 with:[self.operationFactoriesAssembly simplexOperationFactory]];
                           [definition injectProperty:@selector(operationScheduler)
                                                 with:[self operationScheduler]];
+                          [definition injectProperty:@selector(keychainService)
+                                                with:[self keychainService]];
                         }];
 }
 
@@ -166,6 +175,7 @@
   return [TyphoonDefinition withClass:[KeychainServiceImplementation class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(keychainStore) with:[self keychainStore]];
+                          [definition injectProperty:@selector(dateFormatter) with:[self dateFormatter]];
                         }];
 }
 
@@ -190,6 +200,21 @@
                         }];
 }
 
+- (NSDateFormatter *) dateFormatter {
+  return [TyphoonDefinition withClass:[NSDateFormatter class]
+                        configuration:^(TyphoonDefinition *definition) {
+                          definition.scope = TyphoonScopeSingleton;
+                          [definition injectMethod:@selector(setDateFormat:)
+                                        parameters:^(TyphoonMethod *method) {
+                                          [method injectParameterWith:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
+                                        }];
+                          [definition injectMethod:@selector(setTimeZone:)
+                                        parameters:^(TyphoonMethod *method) {
+                                          [method injectParameterWith:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+                                        }];
+                        }];
+}
+
 #pragma mark - AVCapture
 
 - (AVCaptureSession *) captureSession {
@@ -198,6 +223,12 @@
 
 - (AVCaptureMetadataOutput *) captureMetadataOutput {
   return [TyphoonDefinition withClass:[AVCaptureMetadataOutput class]];
+}
+
+#pragma mark - Config
+
+- (id)configurer {
+  return [TyphoonDefinition withConfigName:kConfigFileName];
 }
 
 @end

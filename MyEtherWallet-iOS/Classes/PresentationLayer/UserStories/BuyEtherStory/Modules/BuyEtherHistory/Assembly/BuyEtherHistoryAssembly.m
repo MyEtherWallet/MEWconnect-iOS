@@ -10,6 +10,10 @@
 
 #import "BuyEtherHistoryAssembly.h"
 
+#import "ServiceComponentsAssembly.h"
+#import "FetchedResultsControllerAssembly.h"
+#import "PonsomizerAssembly.h"
+
 #import "BuyEtherHistoryViewController.h"
 #import "BuyEtherHistoryInteractor.h"
 #import "BuyEtherHistoryPresenter.h"
@@ -20,7 +24,7 @@
 
 @implementation BuyEtherHistoryAssembly
 
-- (BuyEtherHistoryViewController *)viewBuyEtherHistory {
+- (BuyEtherHistoryViewController *) viewBuyEtherHistory {
   return [TyphoonDefinition withClass:[BuyEtherHistoryViewController class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(output)
@@ -34,15 +38,21 @@
                         }];
 }
 
-- (BuyEtherHistoryInteractor *)interactorBuyEtherHistory {
+- (BuyEtherHistoryInteractor *) interactorBuyEtherHistory {
   return [TyphoonDefinition withClass:[BuyEtherHistoryInteractor class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(output)
                                                 with:[self presenterBuyEtherHistory]];
+                          [definition injectProperty:@selector(cacheTracker)
+                                                with:[self.cacheTrackerAssembly cacheTrackerWithDelegate:[self interactorBuyEtherHistory]]];
+                          [definition injectProperty:@selector(simplexService)
+                                                with:[self.serviceComponents simplexService]];
+                          [definition injectProperty:@selector(ponsomizer)
+                                                with:[self.ponsomizerAssembly ponsomizer]];
                         }];
 }
 
-- (BuyEtherHistoryPresenter *)presenterBuyEtherHistory{
+- (BuyEtherHistoryPresenter *) presenterBuyEtherHistory{
   return [TyphoonDefinition withClass:[BuyEtherHistoryPresenter class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(view)
@@ -54,7 +64,7 @@
                         }];
 }
 
-- (BuyEtherHistoryRouter *)routerBuyEtherHistory{
+- (BuyEtherHistoryRouter *) routerBuyEtherHistory{
   return [TyphoonDefinition withClass:[BuyEtherHistoryRouter class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(transitionHandler)

@@ -25,7 +25,8 @@
         <attribute name="amount" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="loaded" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="transactionId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="fromAccount" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Account" inverseName="purchaseHistory" inverseEntity="Account" syncable="YES"/>
     </entity>
     <entity name="Token" representedClassName="TokenModelObject" syncable="YES">
@@ -41,7 +42,7 @@
         <element name="Account" positionX="-1179" positionY="-6300" width="128" height="178"/>
         <element name="FiatPrice" positionX="-1019" positionY="-6354" width="128" height="88"/>
         <element name="Network" positionX="-1343" positionY="-6325" width="128" height="88"/>
+        <element name="PurchaseHistory" positionX="-1100" positionY="-6064" width="128" height="133"/>
         <element name="Token" positionX="-866" positionY="-6327" width="128" height="148"/>
-        <element name="PurchaseHistory" positionX="-1179" positionY="-6082" width="128" height="118"/>
     </elements>
 </model>

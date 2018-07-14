@@ -8,6 +8,8 @@
 
 @import Foundation;
 
-@protocol BuyEtherHistoryInteractorOutput <NSObject>
+@class CacheTransactionBatch;
 
+@protocol BuyEtherHistoryInteractorOutput <NSObject>
+- (void) didProcessCacheTransactionBatch:(CacheTransactionBatch *)cacheTransactionBatch;
 @end

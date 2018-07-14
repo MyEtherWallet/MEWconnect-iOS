@@ -43,40 +43,52 @@
       _empty = NO;
     }
   }
-  NSMutableOrderedSet *insertTransactions = [transactionBatch.insertTransactions mutableCopy];
-  [insertTransactions sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"updatedIndexPath.row" ascending:YES]]];
-//  for (CacheTransaction *transaction in insertTransactions) {
-//    HomeTableViewCellObject *cellObject = [self.cellObjectBuilder buildCellObjectForToken:transaction.object];
-//    NSUInteger updatedRow = transaction.updatedIndexPath.row;
-//    [self.tableViewModel insertObject:cellObject atRow:updatedRow inSection:0];
-//  }
   
-//  for (CacheTransaction *transaction in transactionBatch.updateTransactions) {
-//    HomeTableViewCellObject *cellObject = [self.cellObjectBuilder buildCellObjectForToken:transaction.object];
-//    NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:transaction.oldIndexPath.row inSection:0];
-//    [self.tableViewModel removeObjectAtIndexPath:oldIndexPath];
-//    [self.tableViewModel insertObject:cellObject atRow:transaction.updatedIndexPath.row inSection:0];
-//  }
+  for (CacheTransaction *transaction in transactionBatch.insertTransactions) {
+    BuyEtherHistoryItemTableViewCellObject *cellObject = [self.cellObjectBuilder buildCellObjectForHistoryItem:transaction.object];
+    
+    NSUInteger updatedRow = transaction.updatedIndexPath.row;
+    [self.tableViewModel insertObject:cellObject
+                                atRow:updatedRow
+                            inSection:0];
+  }
+  
+  for (CacheTransaction *transaction in transactionBatch.updateTransactions) {
+    BuyEtherHistoryItemTableViewCellObject *cellObject = [self.cellObjectBuilder buildCellObjectForHistoryItem:transaction.object];
+    NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:transaction.oldIndexPath.row
+                                                   inSection:0];
+    [self.tableViewModel removeObjectAtIndexPath:oldIndexPath];
+    [self.tableViewModel insertObject:cellObject
+                                atRow:transaction.updatedIndexPath.row
+                            inSection:0];
+  }
   
   NSMutableArray *removeIndexPaths = [NSMutableArray array];
   for (CacheTransaction *transaction in transactionBatch.deleteTransactions) {
-    NSIndexPath *removeIndexPath = [NSIndexPath indexPathForRow:transaction.oldIndexPath.row inSection:0];
+    NSIndexPath *removeIndexPath = [NSIndexPath indexPathForRow:transaction.oldIndexPath.row
+                                                      inSection:0];
     [removeIndexPaths addObject:removeIndexPath];
   }
-  [removeIndexPaths sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"row" ascending:NO]]];
-  for (NSIndexPath *indexPath in removeIndexPaths) {
+  for (NSInteger i = [removeIndexPaths count] - 1; i >= 0; --i) {
+    NSIndexPath *indexPath = removeIndexPaths[i];
     [self.tableViewModel removeObjectAtIndexPath:indexPath];
   }
   
-//  for (CacheTransaction *transaction in transactionBatch.moveTransactions) {
-//    HomeTableViewCellObject *cellObject = [self.cellObjectBuilder buildCellObjectForToken:transaction.object];
-//    NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:transaction.oldIndexPath.row inSection:0];
-//    [self.tableViewModel removeObjectAtIndexPath:oldIndexPath];
-//    [self.tableViewModel insertObject:cellObject atRow:transaction.updatedIndexPath.row inSection:0];
-//  }
+  for (CacheTransaction *transaction in transactionBatch.moveTransactions) {
+    BuyEtherHistoryItemTableViewCellObject *cellObject = [self.cellObjectBuilder buildCellObjectForHistoryItem:transaction.object];
+    NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:transaction.oldIndexPath.row
+                                                   inSection:0];
+    [self.tableViewModel removeObjectAtIndexPath:oldIndexPath];
+    [self.tableViewModel insertObject:cellObject
+                                atRow:transaction.updatedIndexPath.row
+                            inSection:0];
+  }
+  
   [self.animator updateWithTransactionBatch:transactionBatch];
   
-  if (empty) {
+  NSInteger numberOfModels = [self.tableViewModel tableView:self.animator.tableView numberOfRowsInSection:0];
+  
+  if (numberOfModels == 0) {
     _empty = YES;
     [self.tableViewModel removeSectionAtIndex:0];
     [self.tableViewModel insertSectionWithTitle:nil atIndex:0];
@@ -87,7 +99,7 @@
 
 #pragma mark - UITableViewDelegate methods
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   return [CellFactory tableView:tableView heightForRowAtIndexPath:indexPath model:self.tableViewModel];
 }
 
@@ -114,7 +126,7 @@
   [self.tableViewModel insertSectionWithTitle:nil atIndex:0];
 }
 
-- (void)setupTableViewActions {
+- (void) setupTableViewActions {
   self.tableViewActions = [[NITableViewActions alloc] initWithTarget:self];
 }
 

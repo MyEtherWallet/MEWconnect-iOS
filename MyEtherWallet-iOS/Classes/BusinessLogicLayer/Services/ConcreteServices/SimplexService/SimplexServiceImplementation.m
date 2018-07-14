@@ -11,17 +11,26 @@
 
 #import "SimplexServiceImplementation.h"
 
+#import "KeychainService.h"
+
 #import "OperationScheduler.h"
 #import "CompoundOperationBase.h"
 
 #import "SimplexOperationFactory.h"
 
+#import "SimplexServiceStatusTypes.h"
+
+#import "AccountModelObject.h"
+#import "PurchaseHistoryModelObject.h"
 #import "AccountPlainObject.h"
+#import "NetworkPlainObject.h"
+#import "PurchaseHistoryPlainObject.h"
 
 #import "SimplexQuoteBody.h"
 #import "SimplexOrderBody.h"
 
 #import "SimplexPaymentQuery.h"
+#import "SimplexStatusQuery.h"
 
 #import "SimplexQuote.h"
 #import "SimplexOrder.h"
@@ -54,6 +63,20 @@
   
   CompoundOperationBase *compoundOperation = [self.simplexOperationFactory orderWithBody:body];
   [compoundOperation setResultBlock:^(SimplexOrder *data, NSError *error) {
+    if (data.userID) {
+      NSManagedObjectContext *rootSavingContext = [NSManagedObjectContext MR_rootSavingContext];
+      [rootSavingContext performBlock:^{
+        [self.keychainService saveSimplexUserId:data.userID ofPublicAddress:account.publicAddress fromNetwork:[account.fromNetwork network]];
+        AccountModelObject *accountModelObject = [AccountModelObject MR_findFirstByAttribute:NSStringFromSelector(@selector(publicAddress))
+                                                                                   withValue:account.publicAddress
+                                                                                   inContext:rootSavingContext];
+        PurchaseHistoryModelObject *historyModelObject = [PurchaseHistoryModelObject MR_createEntityInContext:rootSavingContext];
+        historyModelObject.date = [NSDate date];
+        historyModelObject.userId = data.userID;
+        [accountModelObject addPurchaseHistoryObject:historyModelObject];
+        [rootSavingContext MR_saveToPersistentStoreAndWait];
+      }];
+    }
     dispatch_async(dispatch_get_main_queue(), ^{
       if (completion) {
         completion(data, error);
@@ -61,6 +84,38 @@
     });
   }];
   [self.operationScheduler addOperation:compoundOperation];
+}
+
+- (void) statusForPurchase:(PurchaseHistoryPlainObject *)purchase completion:(SimplexServiceStatusCompletion)completion {
+  SimplexStatusQuery *query = [self obtainStatusQueryWithPurchase:purchase];
+  
+  NSManagedObjectContext *rootSavingContext = [NSManagedObjectContext MR_rootSavingContext];
+  [rootSavingContext performBlock:^{
+    CompoundOperationBase *compoundOperation = [self.simplexOperationFactory statusWithQuery:query];
+    [compoundOperation setResultBlock:^(NSArray <PurchaseHistoryModelObject *> *data, NSError *error) {
+      for (PurchaseHistoryModelObject *historyItem in data) {
+        if ([historyItem.status shortValue] != SimplexServicePaymentStatusTypeUnknown) {
+          historyItem.loaded = @YES;
+        }
+      }
+      if ([rootSavingContext hasChanges]) {
+        [rootSavingContext MR_saveToPersistentStoreAndWait];
+      }
+      
+      dispatch_async(dispatch_get_main_queue(), ^{
+        if (completion) {
+          completion(error);
+        }
+      });
+    }];
+    [self.operationScheduler addOperation:compoundOperation];
+  }];
+}
+
+- (NSArray <PurchaseHistoryModelObject *> *) obtainHistoryForAccount:(AccountPlainObject *)account {
+  NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
+  AccountModelObject *accountModelObject = [AccountModelObject MR_findFirstByAttribute:NSStringFromSelector(@selector(publicAddress)) withValue:account.publicAddress inContext:context];
+  return [accountModelObject.purchaseHistory array];
 }
 
 - (NSURLRequest *) obtainRequestWithOrder:(SimplexOrder *)order forAccount:(AccountPlainObject *)account {
@@ -90,6 +145,7 @@
   body.walletAddress = account.publicAddress;
   body.fiatAmount = quote.fiatAmount;
   body.digitalAmount = quote.digitalAmount;
+  body.appInstallDate = [self.keychainService obtainFirstLaunchDate];
   return body;
 }
 
@@ -105,6 +161,12 @@
   query.destinationWallet = account.publicAddress;
   query.fiatTotalAmount = order.fiatTotalAmount;
   query.digitalTotalAmount = order.digitalTotalAmount;
+  return query;
+}
+
+- (SimplexStatusQuery *) obtainStatusQueryWithPurchase:(PurchaseHistoryPlainObject *)history {
+  SimplexStatusQuery *query = [[SimplexStatusQuery alloc] init];
+  query.userId = history.userId;
   return query;
 }
 

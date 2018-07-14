@@ -34,4 +34,8 @@
   [self.dataDisplayManager updateDataDisplayManagerWithTransactionBatch:nil empty:YES];
 }
 
+- (void) updateWithCacheTransaction:(CacheTransactionBatch *)cacheTransactionBatch {
+  [self.dataDisplayManager updateDataDisplayManagerWithTransactionBatch:cacheTransactionBatch empty:NO];
+}
+
 @end

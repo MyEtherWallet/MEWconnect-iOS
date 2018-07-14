@@ -20,6 +20,7 @@ static NSString *const kSimplexQuoteBodyRequestedAmountParameter        = @"requ
 
 static NSString *const kSimplexOrderBodyAccountDetailsParameter         = @"account_details";
 static NSString *const kSimplexOrderBodyAppEndUserIDParameter           = @"app_end_user_id";
+static NSString *const kSimplexOrderBodyAppInstallDateParameter         = @"app_install_date";
 static NSString *const kSimplexOrderBodyTransactionDetailsParameter     = @"transaction_details";
 static NSString *const kSimplexOrderBodyPaymentDetailsParameter         = @"payment_details";
 static NSString *const kSimplexOrderBodyFiatTotalAmountParameter        = @"fiat_total_amount";
@@ -42,7 +43,8 @@ static NSString *const kSimplexOrderBodyAddressParameter                = @"addr
   } else {
     SimplexOrderBody *orderBody = (SimplexOrderBody *)body;
     json = @{kSimplexOrderBodyAccountDetailsParameter           : @{
-              kSimplexOrderBodyAppEndUserIDParameter            : orderBody.userID
+              kSimplexOrderBodyAppEndUserIDParameter            : orderBody.userID,
+              kSimplexOrderBodyAppInstallDateParameter          : orderBody.appInstallDate
              },
              kSimplexOrderBodyTransactionDetailsParameter       : @{
               kSimplexOrderBodyPaymentDetailsParameter          : @{
@@ -59,8 +61,7 @@ static NSString *const kSimplexOrderBodyAddressParameter                = @"addr
                 kSimplexOrderBodyAddressParameter               : orderBody.walletAddress
                }
               }
-             },
-             @"g-recaptcha-response": @[@"03ACgFB9tiTimXBRHswgHq-td91ayRBwMofhVXT29TV9J8aM05GHFidzvmNWfw3jv1cDc91wROH_0guo_ItatQ950ARP7c28UoKwBXbzH1IZWtWb-zHr-_QF4OH9kYARUK-GCkD1klsYTaHqj_q5UWYJHhoTLqxYqmHQFuvb2aTEqtOdQ5tyigqmIQbLpjMWjB09_ftl7dmXqdBwrwaZ5Qtab0dT_2-fSDMybN8HD4HVcVeyccnFk5CLCAfzzgwdllpJyyScarS-XMvUuAwBrCOhAteHXeYi4w2YYTSyrTamuOQovKF0Eg1ihYPspZbxb1Tzj0u9EpHS53rul36LmGLVT_SHVus7t2ARnW_p7thPrh1UoHSY_iBjpZb9uPHjR5j7SD9YM4jLWJHTloF-uTJjrOO9a8mRo9xhQ4RcRSoDzth5b2f3Xzev6twdCQ4DLyCG_VsKksdFbGULBMpaeMQn4_jZxOtYq5yw"]
+             }
             };
   }
   NSData *jsonData = [NSJSONSerialization dataWithJSONObject:json options:0 error:nil];

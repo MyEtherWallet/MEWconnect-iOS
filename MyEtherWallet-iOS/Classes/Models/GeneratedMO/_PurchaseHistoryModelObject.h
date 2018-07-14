@@ -32,7 +32,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)loadedValue;
 - (void)setLoadedValue:(BOOL)value_;
 
-@property (nonatomic, strong, nullable) NSString* transactionId;
+@property (nonatomic, strong, nullable) NSNumber* status;
+
+@property (atomic) int16_t statusValue;
+- (int16_t)statusValue;
+- (void)setStatusValue:(int16_t)value_;
+
+@property (nonatomic, strong, nullable) NSString* userId;
 
 @property (nonatomic, strong, nullable) AccountModelObject *fromAccount;
 
@@ -52,8 +58,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)primitiveLoadedValue;
 - (void)setPrimitiveLoadedValue:(BOOL)value_;
 
-- (nullable NSString*)primitiveTransactionId;
-- (void)setPrimitiveTransactionId:(nullable NSString*)value;
+- (nullable NSNumber*)primitiveStatus;
+- (void)setPrimitiveStatus:(nullable NSNumber*)value;
+
+- (int16_t)primitiveStatusValue;
+- (void)setPrimitiveStatusValue:(int16_t)value_;
+
+- (nullable NSString*)primitiveUserId;
+- (void)setPrimitiveUserId:(nullable NSString*)value;
 
 - (AccountModelObject*)primitiveFromAccount;
 - (void)setPrimitiveFromAccount:(AccountModelObject*)value;
@@ -64,7 +76,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)amount;
 + (NSString *)date;
 + (NSString *)loaded;
-+ (NSString *)transactionId;
++ (NSString *)status;
++ (NSString *)userId;
 @end
 
 @interface PurchaseHistoryModelObjectRelationships: NSObject

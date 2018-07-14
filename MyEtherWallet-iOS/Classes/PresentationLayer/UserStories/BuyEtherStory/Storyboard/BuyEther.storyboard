@@ -292,10 +292,10 @@
             </objects>
             <point key="canvasLocation" x="-233" y="151"/>
         </scene>
-        <!--Buy Ether History View Controller-->
+        <!--Purchase history-->
         <scene sceneID="gcV-fo-DFA">
             <objects>
-                <tableViewController id="1Tc-De-PwT" customClass="BuyEtherHistoryViewController" sceneMemberID="viewController">
+                <tableViewController title="Purchase history" id="1Tc-De-PwT" customClass="BuyEtherHistoryViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="41z-AE-kFX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

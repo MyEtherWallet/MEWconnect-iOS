@@ -19,11 +19,14 @@
 #import "BordlessNavigationBar.h"
 #import "BackupConfirmationSegmentedControl.h"
 
+#import "KeychainService.h"
+
 #import "ApplicationConfiguratorImplementation.h"
 
 @implementation ApplicationConfiguratorImplementation
 
 - (void)configureInitialSettings {
+  [self.keychainService saveFirstLaunchDate];
 }
 
 - (void)configurateAppearance {

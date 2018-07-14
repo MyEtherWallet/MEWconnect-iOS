@@ -28,6 +28,10 @@
 #import "FiatPricesOperationFactory.h"
 #import "SimplexOperationFactory.h"
 
+static NSString *const kConfigFileName        = @"HeadersConfig.plist";
+
+static NSString *const kAdditionalHeadersKey  = @"Headers";
+
 @implementation OperationFactoriesAssembly
 
 - (TokensOperationFactory *) tokensOperationFactory {
@@ -154,7 +158,11 @@
 }
 
 - (SimplexHeadersBuilder *) simplexHeadersBuilder {
-  return [TyphoonDefinition withClass:[SimplexHeadersBuilder class]];
+  return [TyphoonDefinition withClass:[SimplexHeadersBuilder class]
+                        configuration:^(TyphoonDefinition *definition) {
+                          [definition injectProperty:@selector(additionalHeaders)
+                                                with:TyphoonConfig(kAdditionalHeadersKey)];
+                        }];
 }
 
 #pragma mark - Others
@@ -162,6 +170,12 @@
 - (OperationChainer *) operationChainer
 {
   return [TyphoonDefinition withClass:[OperationChainer class]];
+}
+
+#pragma mark - Config
+
+- (id)configurer {
+  return [TyphoonDefinition withConfigName:kConfigFileName];
 }
 
 @end

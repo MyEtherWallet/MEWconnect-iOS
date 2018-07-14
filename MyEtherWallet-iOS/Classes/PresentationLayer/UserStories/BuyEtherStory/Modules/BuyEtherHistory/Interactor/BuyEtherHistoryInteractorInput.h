@@ -8,6 +8,8 @@
 
 @import Foundation;
 
-@protocol BuyEtherHistoryInteractorInput <NSObject>
+@class AccountPlainObject;
 
+@protocol BuyEtherHistoryInteractorInput <NSObject>
+- (void) configureWithAccount:(AccountPlainObject *)account;
 @end

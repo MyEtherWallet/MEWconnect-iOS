@@ -12,6 +12,6 @@
 
 @interface BuyEtherHistoryTableViewAnimator : NSObject
 @property (nonatomic, weak) UITableView *tableView;
-- (void)reloadData;
-- (void)updateWithTransactionBatch:(CacheTransactionBatch *)transactionBatch;
+- (void) reloadData;
+- (void) updateWithTransactionBatch:(CacheTransactionBatch *)transactionBatch;
 @end

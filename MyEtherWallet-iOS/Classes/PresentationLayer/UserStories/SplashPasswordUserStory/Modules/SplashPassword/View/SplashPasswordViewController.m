@@ -20,26 +20,30 @@ static float const kSplashPasswordShakeAnimationRepeatCount = 3.0;
 @property (nonatomic, weak) IBOutlet UITextField *passwordTextField;
 @end
 
-@implementation SplashPasswordViewController
+@implementation SplashPasswordViewController {
+  BOOL _makePasswordTextFieldActive;
+}
 
 #pragma mark - LifeCycle
 
-- (void)viewDidLoad {
+- (void) viewDidLoad {
 	[super viewDidLoad];
   self.modalPresentationCapturesStatusBarAppearance = YES;
 	[self.output didTriggerViewReadyEvent];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void) viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
-  [self.passwordTextField becomeFirstResponder];
+  if (_makePasswordTextFieldActive) {
+    [self.passwordTextField becomeFirstResponder];
+  }
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void) viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
 }
 
-- (void)viewLayoutMarginsDidChange {
+- (void) viewLayoutMarginsDidChange {
   [super viewLayoutMarginsDidChange];
   [self _updatePrefferedContentSize];
 }
@@ -50,15 +54,21 @@ static float const kSplashPasswordShakeAnimationRepeatCount = 3.0;
 
 #pragma mark - Override
 
-- (void)setCustomTransitioningDelegate:(id<UIViewControllerTransitioningDelegate>)customTransitioningDelegate {
+- (void) setCustomTransitioningDelegate:(id<UIViewControllerTransitioningDelegate>)customTransitioningDelegate {
   _customTransitioningDelegate = customTransitioningDelegate;
   self.transitioningDelegate = customTransitioningDelegate;
 }
 
 #pragma mark - SplashPasswordViewInput
 
-- (void) setupInitialState {
+- (void) setupInitialStateWithAutoControl:(BOOL)autoControl {
+  _makePasswordTextFieldActive = autoControl;
   [self _updatePrefferedContentSize];
+}
+
+- (void) becomePasswordInputActive {
+  _makePasswordTextFieldActive = YES;
+  [self.passwordTextField becomeFirstResponder];
 }
 
 - (void) shakeInput {

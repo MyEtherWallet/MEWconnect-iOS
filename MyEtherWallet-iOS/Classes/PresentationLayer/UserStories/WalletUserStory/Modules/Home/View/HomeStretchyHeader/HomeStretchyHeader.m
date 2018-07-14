@@ -218,11 +218,11 @@ static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset       = 8.0;
     [buyEtherButton setBackgroundImage:backgroundImage forState:UIControlStateNormal];
     NSString *title = NSLocalizedString(@"BUY ETHER", @"Home screen. Buy ether button title");
     NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:11.0 weight:UIFontWeightSemibold],
-                                 NSForegroundColorAttributeName: [UIColor whiteColor],
+                                 NSForegroundColorAttributeName: [UIColor mainApplicationColor],
                                  NSKernAttributeName: @0.3};
     NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attributes];
     [buyEtherButton setAttributedTitle:attributedTitle forState:UIControlStateNormal];
-    buyEtherButton.tintColor = [UIColor mainApplicationColor];
+    buyEtherButton.tintColor = [[UIColor mainApplicationColor] colorWithAlphaComponent:0.1];
     [buyEtherButton setContentEdgeInsets:UIEdgeInsetsMake(0.0, 12.0, 0.0, 12.0)];
     [self.contentView addSubview:buyEtherButton];
     [self.contentView.rightAnchor constraintEqualToAnchor:buyEtherButton.rightAnchor constant:kHomeStretchyHeaderDefaultOffset].active = YES;
@@ -340,14 +340,14 @@ static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset       = 8.0;
     if (self.contentStyle != HomeStretchyHeaderStyleDefault) {
       self.contentStyle = HomeStretchyHeaderStyleDefault;
       NSMutableAttributedString *buyEtherAttributedString = [[self.buyEtherButton attributedTitleForState:UIControlStateNormal] mutableCopy];
-      [buyEtherAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, [buyEtherAttributedString length])];
+      [buyEtherAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor mainApplicationColor] range:NSMakeRange(0, [buyEtherAttributedString length])];
       [UIView transitionWithView:self.titleLabel
                         duration:kHomeStretchyHeaderFadeDuration
                          options:UIViewAnimationOptionTransitionCrossDissolve|UIViewAnimationOptionBeginFromCurrentState
                       animations:^{
                         self.titleLabel.textColor = [UIColor darkTextColor];
                         self.infoButton.tintColor = [UIColor mainApplicationColor];
-                        self.buyEtherButton.tintColor = [UIColor mainApplicationColor];
+                        self.buyEtherButton.tintColor = [[UIColor mainApplicationColor] colorWithAlphaComponent:0.1];
                         [self.buyEtherButton setAttributedTitle:buyEtherAttributedString forState:UIControlStateNormal];
                       } completion:nil];
     }

@@ -90,6 +90,8 @@
                                                 with:[self.ponsomizerAssembly ponsomizer]];
                           [definition injectProperty:@selector(passwordStoryboard)
                                                 with:[self.storyboardAssembly splashPasswordStoryboard]];
+                          [definition injectProperty:@selector(launchStoryboard)
+                                                with:[self.storyboardAssembly launchStoryboard]];
                         }];
 }
 

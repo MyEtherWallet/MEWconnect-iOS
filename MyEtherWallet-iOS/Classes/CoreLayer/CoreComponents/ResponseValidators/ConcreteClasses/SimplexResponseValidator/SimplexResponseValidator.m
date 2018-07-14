@@ -24,6 +24,8 @@ static NSInteger const kSimplexResponseErrorCode          = 1;
       NSArray <NSString *> *reasons = response[kSimplexResponseValidatorResult];
       if ([reasons isKindOfClass:[NSString class]]) {
         reasons = @[(NSString *)reasons];
+      } else if ([reasons isKindOfClass:[NSDictionary class]]) {
+        reasons = @[@"Unknown reason"];
       }
       NSDictionary *userInfo = @{NSLocalizedDescriptionKey: reasons ? [reasons componentsJoinedByString:@", "] : @""};
       resultError = [NSError errorWithDomain:kResponseValidationErrorDomain

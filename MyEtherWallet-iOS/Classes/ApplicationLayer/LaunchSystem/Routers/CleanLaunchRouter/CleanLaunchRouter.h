@@ -16,7 +16,8 @@
 @property (nonatomic, strong) id <AccountsService> accountsService;
 @property (nonatomic, strong) id <Ponsomizer> ponsomizer;
 @property (nonatomic, strong) UIStoryboard *passwordStoryboard;
-- (instancetype)initWithNavigationControllerFactory:(id<NavigationControllerFactory>)navigationControllerFactory
-                                             window:(UIWindow *)window;
-- (void)openInitialScreen;
+@property (nonatomic, strong) UIStoryboard *launchStoryboard;
+- (instancetype) initWithNavigationControllerFactory:(id<NavigationControllerFactory>)navigationControllerFactory
+                                              window:(UIWindow *)window;
+- (void) openInitialScreen;
 @end

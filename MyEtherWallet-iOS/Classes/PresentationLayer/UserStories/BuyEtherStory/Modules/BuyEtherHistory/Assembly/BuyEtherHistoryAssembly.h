@@ -6,9 +6,14 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
-@import Typhoon;
 @import RamblerTyphoonUtils.AssemblyCollector;
 
-@interface BuyEtherHistoryAssembly : TyphoonAssembly <RamblerInitialAssembly>
+#import "ModuleAssemblyBase.h"
 
+@class FetchedResultsControllerAssembly;
+@class PonsomizerAssembly;
+
+@interface BuyEtherHistoryAssembly : ModuleAssemblyBase <RamblerInitialAssembly>
+@property (nonatomic, strong, readonly) FetchedResultsControllerAssembly *cacheTrackerAssembly;
+@property (nonatomic, strong, readonly) PonsomizerAssembly *ponsomizerAssembly;
 @end

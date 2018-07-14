@@ -12,4 +12,5 @@
 
 @interface KeychainServiceImplementation : NSObject <KeychainService>
 @property (nonatomic, strong) UICKeyChainStore *keychainStore;
+@property (nonatomic, strong) NSDateFormatter *dateFormatter;
 @end

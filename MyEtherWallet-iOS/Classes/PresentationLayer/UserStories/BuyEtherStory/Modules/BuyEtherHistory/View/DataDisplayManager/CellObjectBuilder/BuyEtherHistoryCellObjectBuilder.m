@@ -13,9 +13,17 @@
 
 @implementation BuyEtherHistoryCellObjectBuilder
 
-- (NSArray<BuyEtherHistoryItemTableViewCellObject *> *)buildCellObjectsForHistoryItems:(NSArray *)items {
-  //TODO
-  return nil;
+- (NSArray<BuyEtherHistoryItemTableViewCellObject *> *) buildCellObjectsForHistoryItems:(NSArray<PurchaseHistoryPlainObject *> *)items {
+  NSMutableArray <BuyEtherHistoryItemTableViewCellObject *> *objects = [[NSMutableArray alloc] initWithCapacity:[items count]];
+  for (PurchaseHistoryPlainObject *historyItem in items) {
+    [objects addObject:[self buildCellObjectForHistoryItem:historyItem]];
+  }
+  return [objects copy];
+}
+
+- (BuyEtherHistoryItemTableViewCellObject *) buildCellObjectForHistoryItem:(PurchaseHistoryPlainObject *)historyItem {
+  BuyEtherHistoryItemTableViewCellObject *object = [BuyEtherHistoryItemTableViewCellObject objectWithPurchaseHistoryItem:historyItem];
+  return object;
 }
 
 - (BuyEtherHistoryEmptyTableViewCellObject *)buildEmptyCellObject {

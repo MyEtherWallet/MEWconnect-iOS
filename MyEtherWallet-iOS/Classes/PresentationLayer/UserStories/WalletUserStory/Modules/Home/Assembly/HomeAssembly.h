@@ -14,6 +14,6 @@
 @class PonsomizerAssembly;
 
 @interface HomeAssembly : ModuleAssemblyBase <RamblerInitialAssembly>
-@property (nonatomic, strong) FetchedResultsControllerAssembly *cacheTrackerAssembly;
-@property (nonatomic, strong) PonsomizerAssembly *ponsomizerAssembly;
+@property (nonatomic, strong, readonly) FetchedResultsControllerAssembly *cacheTrackerAssembly;
+@property (nonatomic, strong, readonly) PonsomizerAssembly *ponsomizerAssembly;
 @end

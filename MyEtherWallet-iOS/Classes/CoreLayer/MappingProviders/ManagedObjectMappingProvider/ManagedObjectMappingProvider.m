@@ -18,6 +18,9 @@
 #import "TokenModelObject.h"
 #import "AccountModelObject.h"
 #import "FiatPriceModelObject.h"
+#import "PurchaseHistoryModelObject.h"
+
+#import "SimplexServiceStatusTypes.h"
 
 static NSString *const kManagedObjectMappingProviderETH = @"ETH";
 
@@ -78,6 +81,21 @@ static NSString *const kManagedObjectMappingProviderETH = @"ETH";
                                             }];
 }
 
+- (EKManagedObjectMapping *) purchaseHistoryModelObjectMapping {
+  NSDictionary *properties = @{@"user_id": NSStringFromSelector(@selector(userId)),
+                               @"fiat_total_amount.amount": NSStringFromSelector(@selector(amount))};
+  Class entityClass = [PurchaseHistoryModelObject class];
+  NSString *entityName = [self.entityNameFormatter transformToEntityNameClass:entityClass];
+  return [EKManagedObjectMapping mappingForEntityName:entityName
+                                            withBlock:^(EKManagedObjectMapping * _Nonnull mapping) {
+                                              mapping.primaryKey = NSStringFromSelector(@selector(userId));
+                                              [mapping mapPropertiesFromDictionary:properties];
+                                              [mapping mapKeyPath:@"status"
+                                                       toProperty:NSStringFromSelector(@selector(status))
+                                                   withValueBlock:[self simplexStatusValueBlock]];
+                                            }];
+}
+
 #pragma mark - Value Blocks
 
 - (EKManagedMappingValueBlock) fromParentValueBlock {
@@ -89,6 +107,16 @@ static NSString *const kManagedObjectMappingProviderETH = @"ETH";
       NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.symbol == %@", value];
       NSArray <TokenModelObject *> *tokens = [TokenModelObject MR_findAllWithPredicate:predicate inContext:context];
       return tokens;
+    }
+    return nil;
+  };
+}
+
+- (EKManagedMappingValueBlock) simplexStatusValueBlock {
+  return ^id(NSString *key, NSString *value, NSManagedObjectContext *context) {
+    SimplexServicePaymentStatusType type = SimplexServicePaymentStatusTypeFromString(value);
+    if (type != SimplexServicePaymentStatusTypeUnknown) {
+      return @(type);
     }
     return nil;
   };

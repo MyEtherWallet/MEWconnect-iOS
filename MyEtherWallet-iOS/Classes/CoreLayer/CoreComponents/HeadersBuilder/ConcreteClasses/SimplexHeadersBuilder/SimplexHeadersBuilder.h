@@ -9,5 +9,5 @@
 #import "HeadersBuilderBase.h"
 
 @interface SimplexHeadersBuilder : HeadersBuilderBase
-
+@property (nonatomic, strong) NSDictionary *additionalHeaders;
 @end

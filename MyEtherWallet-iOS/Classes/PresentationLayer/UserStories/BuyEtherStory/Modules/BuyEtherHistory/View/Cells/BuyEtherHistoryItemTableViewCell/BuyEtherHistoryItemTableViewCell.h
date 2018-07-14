@@ -6,8 +6,8 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
-@import UIKit;
+@import Nimbus.NICellFactory;
 
-@interface BuyEtherHistoryItemTableViewCell : UITableViewCell
+@interface BuyEtherHistoryItemTableViewCell : UITableViewCell <NICell>
 
 @end

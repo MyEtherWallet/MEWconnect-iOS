@@ -182,6 +182,11 @@
 		563DF38A209871AA00F740FF /* UIColor+Application.m in Sources */ = {isa = PBXBuildFile; fileRef = 563DF389209871AA00F740FF /* UIColor+Application.m */; };
 		563DF3922098AF0500F740FF /* BordlessNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 563DF3912098AF0500F740FF /* BordlessNavigationBar.m */; };
 		563DF39620990E6600F740FF /* TypingAnimationLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 563DF39520990E6600F740FF /* TypingAnimationLabel.m */; };
+		56428A7C20F9345E0049E8BC /* KeychainHistoryItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56428A7B20F9345E0049E8BC /* KeychainHistoryItemModel.m */; };
+		56428A8020F93DF90049E8BC /* SimplexStatusQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 56428A7F20F93DF90049E8BC /* SimplexStatusQuery.m */; };
+		56428A8320F96AE90049E8BC /* MEWconnect.API.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56428A8220F96AE80049E8BC /* MEWconnect.API.plist */; };
+		56428A8520F96C880049E8BC /* HeadersConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56428A8420F96C880049E8BC /* HeadersConfig.plist */; };
+		56428A8720F96DE80049E8BC /* ServicesConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56428A8620F96DE80049E8BC /* ServicesConfig.plist */; };
 		5643879720A492240017790F /* UIColor+RandSeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5643879620A492240017790F /* UIColor+RandSeed.swift */; };
 		5643879A20A492570017790F /* String+RandSeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5643879920A492570017790F /* String+RandSeed.swift */; };
 		5643879D20A492F90017790F /* Character+ASCIIValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5643879C20A492F90017790F /* Character+ASCIIValue.swift */; };
@@ -837,6 +842,14 @@
 		563DF3912098AF0500F740FF /* BordlessNavigationBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BordlessNavigationBar.m; sourceTree = "<group>"; };
 		563DF39420990E6600F740FF /* TypingAnimationLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypingAnimationLabel.h; sourceTree = "<group>"; };
 		563DF39520990E6600F740FF /* TypingAnimationLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TypingAnimationLabel.m; sourceTree = "<group>"; };
+		56428A7A20F9345E0049E8BC /* KeychainHistoryItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainHistoryItemModel.h; sourceTree = "<group>"; };
+		56428A7B20F9345E0049E8BC /* KeychainHistoryItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeychainHistoryItemModel.m; sourceTree = "<group>"; };
+		56428A7E20F93DF90049E8BC /* SimplexStatusQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimplexStatusQuery.h; sourceTree = "<group>"; };
+		56428A7F20F93DF90049E8BC /* SimplexStatusQuery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimplexStatusQuery.m; sourceTree = "<group>"; };
+		56428A8120F943010049E8BC /* SimplexServiceStatusTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimplexServiceStatusTypes.h; sourceTree = "<group>"; };
+		56428A8220F96AE80049E8BC /* MEWconnect.API.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = MEWconnect.API.plist; sourceTree = "<group>"; };
+		56428A8420F96C880049E8BC /* HeadersConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = HeadersConfig.plist; sourceTree = "<group>"; };
+		56428A8620F96DE80049E8BC /* ServicesConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ServicesConfig.plist; sourceTree = "<group>"; };
 		5643879620A492240017790F /* UIColor+RandSeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+RandSeed.swift"; sourceTree = "<group>"; };
 		5643879920A492570017790F /* String+RandSeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+RandSeed.swift"; sourceTree = "<group>"; };
 		5643879C20A492F90017790F /* Character+ASCIIValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+ASCIIValue.swift"; sourceTree = "<group>"; };
@@ -3155,6 +3168,24 @@
 			path = TypingAnimationLabel;
 			sourceTree = "<group>";
 		};
+		56428A7920F9344F0049E8BC /* KeychainHistoryItemModel */ = {
+			isa = PBXGroup;
+			children = (
+				56428A7A20F9345E0049E8BC /* KeychainHistoryItemModel.h */,
+				56428A7B20F9345E0049E8BC /* KeychainHistoryItemModel.m */,
+			);
+			path = KeychainHistoryItemModel;
+			sourceTree = "<group>";
+		};
+		56428A7D20F93DEB0049E8BC /* SimplexStatusQuery */ = {
+			isa = PBXGroup;
+			children = (
+				56428A7E20F93DF90049E8BC /* SimplexStatusQuery.h */,
+				56428A7F20F93DF90049E8BC /* SimplexStatusQuery.m */,
+			);
+			path = SimplexStatusQuery;
+			sourceTree = "<group>";
+		};
 		5643879820A492460017790F /* String+RandSeed */ = {
 			isa = PBXGroup;
 			children = (
@@ -3219,11 +3250,11 @@
 		565FFA492081836800755B6C /* ApplicationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				5668E4DA2083D8E30070A402 /* Assemblies */,
 				560A866820E65C1F00046B53 /* CoreDataConfigurator */,
 				560D76F120B48468009A3D6D /* FetchedResultsController */,
 				5668E4F72083DC290070A402 /* ApplicationConfigurator */,
 				5668E4F22083DC120070A402 /* ThirdPartiesConfigurator */,
-				5668E4DA2083D8E30070A402 /* Assemblies */,
 				565FFA4A2081836E00755B6C /* LaunchSystem */,
 			);
 			path = ApplicationLayer;
@@ -3426,6 +3457,7 @@
 				5668E5182083EE720070A402 /* ServiceComponents.h */,
 				5668E5192083EE920070A402 /* ServiceComponentsAssembly.h */,
 				5668E51A2083EE920070A402 /* ServiceComponentsAssembly.m */,
+				56428A8620F96DE80049E8BC /* ServicesConfig.plist */,
 			);
 			path = ServiceComponentsAssembly;
 			sourceTree = "<group>";
@@ -4037,6 +4069,7 @@
 		56AE728020D711190047D51F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				56428A7920F9344F0049E8BC /* KeychainHistoryItemModel */,
 				560A867220E681CF00046B53 /* KeychainItemModel */,
 				560A867120E681C400046B53 /* MEWcryptoMessage */,
 			);
@@ -4233,6 +4266,7 @@
 		56E14BBB20E97B2300C41F83 /* ObjectQueries */ = {
 			isa = PBXGroup;
 			children = (
+				56428A7D20F93DEB0049E8BC /* SimplexStatusQuery */,
 				5689111C20EE645C001552D4 /* SimplexPaymentQuery */,
 				56E14BF120EBCF8E00C41F83 /* SimplexQuery */,
 				56E14BBC20E97B2C00C41F83 /* FiatPricesQuery */,
@@ -4338,6 +4372,7 @@
 				56E14BDC20EBC84500C41F83 /* SimplexServiceImplementation.h */,
 				56E14BDD20EBC84500C41F83 /* SimplexServiceImplementation.m */,
 				56E14BDF20EBC8CD00C41F83 /* SimplexServiceCurrencyTypes.h */,
+				56428A8120F943010049E8BC /* SimplexServiceStatusTypes.h */,
 			);
 			path = SimplexService;
 			sourceTree = "<group>";
@@ -4925,6 +4960,7 @@
 				56FB396B20B2210B007776C8 /* RequestConfiguratorsFactory.h */,
 				56FB396C20B22115007776C8 /* RequestConfiguratorsAssembly.h */,
 				56FB396D20B22115007776C8 /* RequestConfiguratorsAssembly.m */,
+				56428A8220F96AE80049E8BC /* MEWconnect.API.plist */,
 			);
 			path = RequestConfiguratorsFactory;
 			sourceTree = "<group>";
@@ -5362,6 +5398,7 @@
 			children = (
 				56FB39FD20B35B33007776C8 /* OperationFactoriesAssembly.h */,
 				56FB39FE20B35B33007776C8 /* OperationFactoriesAssembly.m */,
+				56428A8420F96C880049E8BC /* HeadersConfig.plist */,
 			);
 			path = OperationFactoriesAssembly;
 			sourceTree = "<group>";
@@ -7800,13 +7837,16 @@
 				563CF30220EFAD8A005467AE /* BuyEtherHistoryEmptyTableViewCell.xib in Resources */,
 				56A29C9F20E0627200D05FF1 /* InfoEmptyTableViewCell.xib in Resources */,
 				560D772D20B4D3E0009A3D6D /* Localizable.stringsdict in Resources */,
+				56428A8320F96AE90049E8BC /* MEWconnect.API.plist in Resources */,
 				56C7758520DFEBC400451EEF /* InfoNormalTableViewCell.xib in Resources */,
 				560D771420B49535009A3D6D /* HomeTableViewCell.xib in Resources */,
+				56428A8520F96C880049E8BC /* HeadersConfig.plist in Resources */,
 				56FE2B7D20817F1100DB39D5 /* LaunchScreen.storyboard in Resources */,
 				56C7758A20DFEBCE00451EEF /* InfoDestructiveTableViewCell.xib in Resources */,
 				56C878B620BC199300343ADC /* HomeEmptyTableViewCell.xib in Resources */,
 				56999848209517EB00D45153 /* Confirmation.storyboard in Resources */,
 				56A4EAA920B8BC440042A358 /* SplashPassword.storyboard in Resources */,
+				56428A8720F96DE80049E8BC /* ServicesConfig.plist in Resources */,
 				56FE2B7A20817F1100DB39D5 /* Assets.xcassets in Resources */,
 				563CF2FA20EFAD65005467AE /* BuyEtherHistoryItemTableViewCell.xib in Resources */,
 				56FE2B7820817F1100DB39D5 /* Main.storyboard in Resources */,
@@ -8153,6 +8193,7 @@
 				569998502095363D00D45153 /* MEWWalletImplementation.m in Sources */,
 				56FB396E20B22115007776C8 /* RequestConfiguratorsAssembly.m in Sources */,
 				56AE727F20D706610047D51F /* MEWcryptoImplementation.m in Sources */,
+				56428A7C20F9345E0049E8BC /* KeychainHistoryItemModel.m in Sources */,
 				C68E10A4E1B3A9BF240DD0D5 /* NewWalletRouter.m in Sources */,
 				4B880994DD0B5F9B4F44203F /* RestoreWalletAssembly.m in Sources */,
 				56C878BA20BC1A3300343ADC /* HomeEmptyTableViewCellObject.m in Sources */,
@@ -8234,6 +8275,7 @@
 				9700C1C0B67BA5FE28F90ECF /* TransactionAssembly.m in Sources */,
 				560D770820B494F6009A3D6D /* HomeDataDisplayManager.m in Sources */,
 				CA554F32D5BB45CB5F726783 /* TransactionViewController.m in Sources */,
+				56428A8020F93DF90049E8BC /* SimplexStatusQuery.m in Sources */,
 				5CCAC59021B5F77D54E50DDD /* TransactionPresenter.m in Sources */,
 				56FB399420B22878007776C8 /* JSONResponseDeserializer.m in Sources */,
 				563CF2DB20EFAAD6005467AE /* TokenPlainObject.m in Sources */,

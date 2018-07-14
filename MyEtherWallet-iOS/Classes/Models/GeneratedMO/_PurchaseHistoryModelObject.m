@@ -34,6 +34,11 @@
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
+	if ([key isEqualToString:@"statusValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"status"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 
 	return keyPaths;
 }
@@ -62,7 +67,27 @@
 	[self setPrimitiveLoaded:@(value_)];
 }
 
-@dynamic transactionId;
+@dynamic status;
+
+- (int16_t)statusValue {
+	NSNumber *result = [self status];
+	return [result shortValue];
+}
+
+- (void)setStatusValue:(int16_t)value_ {
+	[self setStatus:@(value_)];
+}
+
+- (int16_t)primitiveStatusValue {
+	NSNumber *result = [self primitiveStatus];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveStatusValue:(int16_t)value_ {
+	[self setPrimitiveStatus:@(value_)];
+}
+
+@dynamic userId;
 
 @dynamic fromAccount;
 
@@ -78,8 +103,11 @@
 + (NSString *)loaded {
 	return @"loaded";
 }
-+ (NSString *)transactionId {
-	return @"transactionId";
++ (NSString *)status {
+	return @"status";
+}
++ (NSString *)userId {
+	return @"userId";
 }
 @end
 

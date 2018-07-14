@@ -8,8 +8,6 @@
 
 #import "MEWConnectConstants.h"
 
-NSString *const MEWConnectServiceSignallingServerURL      = @"https://35.160.138.139:3200";
-
 /* MEWConnect config keys */
 
 NSString *const kMEWConnectSocketConfigLog                = @"log";

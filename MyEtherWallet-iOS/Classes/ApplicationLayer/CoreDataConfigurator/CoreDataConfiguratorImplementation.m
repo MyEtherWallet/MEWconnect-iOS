@@ -10,11 +10,13 @@
 
 #import "ApplicationConstants.h"
 
-#import "KeychainItemModel.h"
 #import "KeychainService.h"
+#import "KeychainItemModel.h"
+#import "KeychainHistoryItemModel.h"
 
 #import "NetworkModelObject.h"
 #import "AccountModelObject.h"
+#import "PurchaseHistoryModelObject.h"
 
 #import "BlockchainNetworkTypes.h"
 
@@ -63,15 +65,24 @@
 
 - (void) _restoreCoreDataStructure {
   NSManagedObjectContext *rootSavingContext = [NSManagedObjectContext MR_rootSavingContext];
-  NSArray *networkModels = [NetworkModelObject MR_findAll];
-  if ([networkModels count] == 0) {
-    NSArray <KeychainItemModel *> *storedItems = [self.keychainService obtainStoredItems];
-    [rootSavingContext performBlockAndWait:^{
+  [rootSavingContext performBlockAndWait:^{
+    NSArray *networkModels = [NetworkModelObject MR_findAllInContext:rootSavingContext];
+    if ([networkModels count] == 0) {
+      NSArray <KeychainItemModel *> *storedItems = [self.keychainService obtainStoredItems];
+      
       for (KeychainItemModel *keychainItem in storedItems) {
         NetworkModelObject *networkModelObject = [NetworkModelObject MR_findFirstOrCreateByAttribute:NSStringFromSelector(@selector(chainID)) withValue:@(keychainItem.network) inContext:rootSavingContext];
         AccountModelObject *accountModelObject = [AccountModelObject MR_findFirstOrCreateByAttribute:NSStringFromSelector(@selector(publicAddress)) withValue:keychainItem.publicAddress inContext:rootSavingContext];
         accountModelObject.backedUp = @(keychainItem.backedUp);
         [networkModelObject addAccountsObject:accountModelObject];
+        
+        NSArray <KeychainHistoryItemModel *> *purchaseHistory = [self.keychainService obtainSimplexHistoryOfPublicAddress:keychainItem.publicAddress fromNetwork:keychainItem.network];
+        for (KeychainHistoryItemModel *purchaseHistoryItem in purchaseHistory) {
+          PurchaseHistoryModelObject *historyModelObject = [PurchaseHistoryModelObject MR_createEntityInContext:rootSavingContext];
+          historyModelObject.date = purchaseHistoryItem.date;
+          historyModelObject.userId = purchaseHistoryItem.userId;
+          [accountModelObject addPurchaseHistoryObject:historyModelObject];
+        }
       }
       NSArray <NetworkModelObject *> *allNetworks = [NetworkModelObject MR_findAllInContext:rootSavingContext];
       for (NetworkModelObject *network in allNetworks) {
@@ -80,8 +91,8 @@
       NetworkModelObject *mainnetModelObject = [NetworkModelObject MR_findFirstOrCreateByAttribute:NSStringFromSelector(@selector(chainID)) withValue:@(BlockchainNetworkTypeMainnet) inContext:rootSavingContext];
       mainnetModelObject.active = @YES;
       [rootSavingContext MR_saveToPersistentStoreAndWait];
-    }];
-  }
+    }
+  }];
 }
 
 @end

@@ -9,6 +9,6 @@
 @import Foundation;
 
 @protocol ApplicationConfigurator <NSObject>
-- (void)configureInitialSettings;
-- (void)configurateAppearance;
+- (void) configureInitialSettings;
+- (void) configurateAppearance;
 @end

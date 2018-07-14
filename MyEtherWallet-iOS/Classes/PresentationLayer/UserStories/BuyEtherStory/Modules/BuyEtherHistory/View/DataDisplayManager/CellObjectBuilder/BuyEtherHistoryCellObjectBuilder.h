@@ -10,9 +10,10 @@
 
 @class BuyEtherHistoryItemTableViewCellObject;
 @class BuyEtherHistoryEmptyTableViewCellObject;
+@class PurchaseHistoryPlainObject;
 
 @interface BuyEtherHistoryCellObjectBuilder : NSObject
-//TODO
-- (NSArray <BuyEtherHistoryItemTableViewCellObject *> *) buildCellObjectsForHistoryItems:(NSArray *)items;
+- (NSArray <BuyEtherHistoryItemTableViewCellObject *> *) buildCellObjectsForHistoryItems:(NSArray <PurchaseHistoryPlainObject *> *)items;
+- (BuyEtherHistoryItemTableViewCellObject *) buildCellObjectForHistoryItem:(PurchaseHistoryPlainObject *)historyItem;
 - (BuyEtherHistoryEmptyTableViewCellObject *) buildEmptyCellObject;
 @end

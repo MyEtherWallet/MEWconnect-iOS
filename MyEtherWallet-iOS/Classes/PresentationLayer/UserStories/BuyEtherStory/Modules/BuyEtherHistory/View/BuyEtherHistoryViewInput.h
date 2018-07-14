@@ -8,8 +8,10 @@
 
 @import Foundation;
 
-@protocol BuyEtherHistoryViewInput <NSObject>
+@class CacheTransactionBatch;
 
+@protocol BuyEtherHistoryViewInput <NSObject>
 - (void) setupInitialState;
+- (void) updateWithCacheTransaction:(CacheTransactionBatch *)cacheTransactionBatch;
 
 @end

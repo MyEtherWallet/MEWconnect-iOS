@@ -9,12 +9,19 @@
 @import UICKeyChainStore;
 
 #import "KeychainItemModel.h"
+#import "KeychainHistoryItemModel.h"
 
 #import "KeychainServiceImplementation.h"
 
-static NSString *const kKeychainServiceItemFormat     = @"%@_%d";
-static NSString *const kKeychainServiceKeydataField   = @"keydata";
-static NSString *const kKeychainServiceEntropyField   = @"entropy";
+static NSString *const kKeychainServiceItemFormat           = @"%@_%d";
+static NSString *const kKeychainServiceKeydataField         = @"keydata";
+static NSString *const kKeychainServiceEntropyField         = @"entropy";
+static NSString *const kKeychainServiceSimplexHistoryField  = @"history";
+
+static NSString *const kKeychainServiceSimplexUserIdField   = @"userId";
+static NSString *const kKeychainServiceSimplexDateField     = @"date";
+
+static NSString *const kKeychainServiceFirstLaunchField     = @"firstLaunch";
 
 @implementation KeychainServiceImplementation
 
@@ -49,6 +56,20 @@ static NSString *const kKeychainServiceEntropyField   = @"entropy";
   [self _storeItem:item withKey:key];
 }
 
+- (void) saveSimplexUserId:(NSString *)userId ofPublicAddress:(NSString *)publicAddress fromNetwork:(BlockchainNetworkType)network {
+  NSString *key = [NSString stringWithFormat:kKeychainServiceItemFormat, publicAddress, network];
+  NSMutableDictionary *item = [[self _obtainItemWithKey:key] mutableCopy];
+  NSMutableArray *history = [item[kKeychainServiceSimplexHistoryField] mutableCopy];
+  if (!history) {
+    history = [[NSMutableArray alloc] initWithCapacity:1];
+  }
+  NSDictionary *historyItem = @{kKeychainServiceSimplexUserIdField: userId,
+                                kKeychainServiceSimplexDateField: [NSDate date]};
+  [history addObject:historyItem];
+  item[kKeychainServiceSimplexHistoryField] = history;
+  [self _storeItem:item withKey:key];
+}
+
 - (NSData *) obtainKeydataOfPublicAddress:(NSString *)publicAddress fromNetwork:(BlockchainNetworkType)network {
   NSString *key = [NSString stringWithFormat:kKeychainServiceItemFormat, publicAddress, network];
   NSDictionary *item = [self _obtainItemWithKey:key];
@@ -61,6 +82,20 @@ static NSString *const kKeychainServiceEntropyField   = @"entropy";
   return item[kKeychainServiceEntropyField];
 }
 
+- (NSArray<KeychainHistoryItemModel *> *) obtainSimplexHistoryOfPublicAddress:(NSString *)publicAddress fromNetwork:(BlockchainNetworkType)network {
+  NSString *key = [NSString stringWithFormat:kKeychainServiceItemFormat, publicAddress, network];
+  NSDictionary *item = [self _obtainItemWithKey:key];
+  NSArray <NSDictionary *> *history = item[kKeychainServiceSimplexHistoryField];
+  NSMutableArray <KeychainHistoryItemModel *> *historyItems = [[NSMutableArray alloc] initWithCapacity:[history count]];
+  for (NSDictionary *historyItem in history) {
+    NSString *userId = historyItem[kKeychainServiceSimplexUserIdField];
+    NSDate *date = historyItem[kKeychainServiceSimplexDateField];
+    KeychainHistoryItemModel *historyItemModel = [KeychainHistoryItemModel historyItemModelWithUserId:userId date:date];
+    [historyItems addObject:historyItemModel];
+  }
+  return [historyItems copy];
+}
+
 - (void) removeKeydataOfPublicAddress:(NSString *)publicAddress fromNetwork:(BlockchainNetworkType)network {
   NSString *key = [NSString stringWithFormat:kKeychainServiceItemFormat, publicAddress, network];
   [self _removeItemWithKey:key];
@@ -71,6 +106,18 @@ static NSString *const kKeychainServiceEntropyField   = @"entropy";
   NSMutableDictionary *item = [[self _obtainItemWithKey:key] mutableCopy];
   [item removeObjectForKey:kKeychainServiceEntropyField];
   [self _storeItem:item withKey:key];
+}
+
+- (void) saveFirstLaunchDate {
+  if (![self.keychainStore stringForKey:kKeychainServiceFirstLaunchField]) {
+    NSDate *date = [NSDate date];
+    NSString *dateString = [self.dateFormatter stringFromDate:date];
+    [self.keychainStore setString:dateString forKey:kKeychainServiceFirstLaunchField];
+  }
+}
+
+- (NSString *)obtainFirstLaunchDate {
+  return [self.keychainStore stringForKey:kKeychainServiceFirstLaunchField];
 }
 
 #pragma mark - Private

@@ -21,7 +21,7 @@
 - (UIView *) presentingSnapshot {
   if (!_presentingSnapshot) {
     UIView *viewForSnapshot = self.presentingViewController.view;
-    if (self.presentingViewController.presentationController != nil) {
+    if (self.presentingViewController.presentationController.containerView != nil) {
       viewForSnapshot = self.presentingViewController.presentationController.containerView;
     }
     _presentingSnapshot = [viewForSnapshot snapshotViewAfterScreenUpdates:NO];

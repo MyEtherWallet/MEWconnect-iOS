@@ -286,6 +286,18 @@
                         <outlet property="resultLabel" destination="l32-qR-w0g" id="iFB-TG-er7"/>
                         <outlet property="separatorButton" destination="8Oa-xN-1qB" id="QGz-pT-BaB"/>
                         <outlet property="switchCurrencyButton" destination="0Ew-qW-Plz" id="Syk-Xg-hRA"/>
+                        <outletCollection property="keypadButtons" destination="Pvu-IF-7OS" id="Yy7-Gu-hlR"/>
+                        <outletCollection property="keypadButtons" destination="EBj-gl-mA0" id="aNG-ah-8B5"/>
+                        <outletCollection property="keypadButtons" destination="IsK-be-TFY" id="MKG-fS-9Hg"/>
+                        <outletCollection property="keypadButtons" destination="LjV-cI-Aub" id="nJI-xe-7l8"/>
+                        <outletCollection property="keypadButtons" destination="Ldm-Fi-Jhc" id="Kj3-MA-YPM"/>
+                        <outletCollection property="keypadButtons" destination="hFS-N2-dLY" id="dYn-MN-WbZ"/>
+                        <outletCollection property="keypadButtons" destination="Vcx-q0-m4L" id="VKc-38-bmn"/>
+                        <outletCollection property="keypadButtons" destination="Xv4-Qz-SIj" id="SiP-fg-6JJ"/>
+                        <outletCollection property="keypadButtons" destination="VfW-vw-Nr2" id="pOE-iN-3v9"/>
+                        <outletCollection property="keypadButtons" destination="8Oa-xN-1qB" id="29D-a2-4ZD"/>
+                        <outletCollection property="keypadButtons" destination="B0H-md-ELH" id="mLc-kH-mS1"/>
+                        <outletCollection property="keypadButtons" destination="PSW-hT-lhh" id="eE2-nV-Dbp"/>
                         <segue destination="1Tc-De-PwT" kind="show" identifier="BuyEtherAmountToBuyEtherHistorySegueIdentifier" id="1jb-1n-FuZ"/>
                         <segue destination="rI2-gD-VgE" kind="presentation" identifier="BuyEtherAmountToBuyEtherWebSegueIdentifier" id="dH2-rc-sCD"/>
                     </connections>

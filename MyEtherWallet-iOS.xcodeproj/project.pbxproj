@@ -219,6 +219,8 @@
 		5668E51B2083EE920070A402 /* ServiceComponentsAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E51A2083EE920070A402 /* ServiceComponentsAssembly.m */; };
 		5677BB3920FA13860019E92D /* ModuleFactoriesAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677BB3820FA13860019E92D /* ModuleFactoriesAssembly.m */; };
 		5677BB4220FAB28C0019E92D /* UIView+LockFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677BB4120FAB28C0019E92D /* UIView+LockFrame.m */; };
+		5677BB4820FD0A2D0019E92D /* UIScreen+ScreenSizeType.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677BB4720FD0A2D0019E92D /* UIScreen+ScreenSizeType.m */; };
+		5677BB4F20FD0C190019E92D /* UIScreen+ScreenScaleType.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677BB4E20FD0C190019E92D /* UIScreen+ScreenScaleType.m */; };
 		5685FE162099F9A4008C75A1 /* FlatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5685FE152099F9A4008C75A1 /* FlatButton.m */; };
 		5689111F20EE6511001552D4 /* SimplexPaymentQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 5689111E20EE6511001552D4 /* SimplexPaymentQuery.m */; };
 		5695A95A2B5CED358C015C0D /* DeclinedTransactionRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = DD110C7B23B316FCBDF56162 /* DeclinedTransactionRouter.m */; };
@@ -909,6 +911,10 @@
 		5677BB3820FA13860019E92D /* ModuleFactoriesAssembly.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModuleFactoriesAssembly.m; sourceTree = "<group>"; };
 		5677BB4020FAB28C0019E92D /* UIView+LockFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+LockFrame.h"; sourceTree = "<group>"; };
 		5677BB4120FAB28C0019E92D /* UIView+LockFrame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+LockFrame.m"; sourceTree = "<group>"; };
+		5677BB4620FD0A2D0019E92D /* UIScreen+ScreenSizeType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScreen+ScreenSizeType.h"; sourceTree = "<group>"; };
+		5677BB4720FD0A2D0019E92D /* UIScreen+ScreenSizeType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScreen+ScreenSizeType.m"; sourceTree = "<group>"; };
+		5677BB4D20FD0C190019E92D /* UIScreen+ScreenScaleType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScreen+ScreenScaleType.h"; sourceTree = "<group>"; };
+		5677BB4E20FD0C190019E92D /* UIScreen+ScreenScaleType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScreen+ScreenScaleType.m"; sourceTree = "<group>"; };
 		5685FE142099F9A4008C75A1 /* FlatButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlatButton.h; sourceTree = "<group>"; };
 		5685FE152099F9A4008C75A1 /* FlatButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlatButton.m; sourceTree = "<group>"; };
 		5689111D20EE6511001552D4 /* SimplexPaymentQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimplexPaymentQuery.h; sourceTree = "<group>"; };
@@ -3536,6 +3542,40 @@
 			path = "UIView+LockFrame";
 			sourceTree = "<group>";
 		};
+		5677BB4420FD0A150019E92D /* UIScreen */ = {
+			isa = PBXGroup;
+			children = (
+				5677BB4920FD0BFD0019E92D /* UIScreen+ScreenScaleType */,
+				5677BB4520FD0A1C0019E92D /* UIScreen+ScreenSizeType */,
+			);
+			path = UIScreen;
+			sourceTree = "<group>";
+		};
+		5677BB4520FD0A1C0019E92D /* UIScreen+ScreenSizeType */ = {
+			isa = PBXGroup;
+			children = (
+				5677BB4620FD0A2D0019E92D /* UIScreen+ScreenSizeType.h */,
+				5677BB4720FD0A2D0019E92D /* UIScreen+ScreenSizeType.m */,
+			);
+			path = "UIScreen+ScreenSizeType";
+			sourceTree = "<group>";
+		};
+		5677BB4920FD0BFD0019E92D /* UIScreen+ScreenScaleType */ = {
+			isa = PBXGroup;
+			children = (
+				5677BB4D20FD0C190019E92D /* UIScreen+ScreenScaleType.h */,
+				5677BB4E20FD0C190019E92D /* UIScreen+ScreenScaleType.m */,
+			);
+			path = "UIScreen+ScreenScaleType";
+			sourceTree = "<group>";
+		};
+		5677BB5020FD0D830019E92D /* UIDevice */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UIDevice;
+			sourceTree = "<group>";
+		};
 		5685FE132099F996008C75A1 /* FlatButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -4040,6 +4080,8 @@
 		56AC944A208FAAE000E5BC2C /* Extenstions */ = {
 			isa = PBXGroup;
 			children = (
+				5677BB5020FD0D830019E92D /* UIDevice */,
+				5677BB4420FD0A150019E92D /* UIScreen */,
 				56F17AC020E23FDE0010393C /* NSBundle */,
 				569E51C520D9465C00883583 /* Common */,
 				569E51C720D9467500883583 /* UIColor */,
@@ -8323,6 +8365,7 @@
 				67E3B80B702FB1A5CBC91D10 /* TransactionInteractor.m in Sources */,
 				56FB3A2920B44A05007776C8 /* NSString+Hex.m in Sources */,
 				56FB38FC20B09E6F007776C8 /* MEWConnectFacadeConstants.m in Sources */,
+				5677BB4820FD0A2D0019E92D /* UIScreen+ScreenSizeType.m in Sources */,
 				5643879D20A492F90017790F /* Character+ASCIIValue.swift in Sources */,
 				56FB3A5920B470DD007776C8 /* EntityNameFormatterImplementation.m in Sources */,
 				56BFD423209BB87A00951000 /* NSString+HexNSDecimalNumber.m in Sources */,
@@ -8431,6 +8474,7 @@
 				EDBE94BE7A73B811AA563C8B /* BackupDoneAssembly.m in Sources */,
 				560D773A20B5A258009A3D6D /* BackupConfirmationQuiz.m in Sources */,
 				455E984869FF61535DEF1FE7 /* BackupDoneViewController.m in Sources */,
+				5677BB4F20FD0C190019E92D /* UIScreen+ScreenScaleType.m in Sources */,
 				0EAB1B3BAE104F2ED13AFBDA /* BackupDonePresenter.m in Sources */,
 				291642C66A4CCAB3EC91FE67 /* BackupDoneInteractor.m in Sources */,
 				563CF2E220EFAAD6005467AE /* _FiatPriceModelObject.m in Sources */,

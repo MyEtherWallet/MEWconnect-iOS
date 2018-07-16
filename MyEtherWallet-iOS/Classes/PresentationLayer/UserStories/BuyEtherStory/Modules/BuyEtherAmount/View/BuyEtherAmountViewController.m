@@ -18,6 +18,8 @@
 #import "NSNumberFormatter+USD.h"
 #import "NSNumberFormatter+Ethereum.h"
 
+#import "UIScreen+ScreenSizeType.h"
+
 @interface BuyEtherAmountViewController ()
 @property (nonatomic, weak) IBOutlet UILabel *amountLabel;
 @property (nonatomic, weak) IBOutlet UILabel *amountCurrencyLabel;
@@ -25,6 +27,7 @@
 @property (nonatomic, weak) IBOutlet UIButton *switchCurrencyButton;
 @property (nonatomic, weak) IBOutlet UIButton *separatorButton;
 @property (nonatomic, weak) IBOutlet UIButton *buyButton;
+@property (nonatomic, strong) IBOutletCollection(UIButton) NSArray <UIButton *> *keypadButtons;
 @end
 
 @implementation BuyEtherAmountViewController {
@@ -66,6 +69,13 @@
                                   [usdFormatter stringFromNumber:minimumAmount]];
   [self.buyButton setTitle:minimumAmountTitle forState:UIControlStateDisabled];
   self.buyButton.enabled = NO;
+  
+  if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches55) {
+    UIFont *font = [UIFont systemFontOfSize:25.0 weight:UIFontWeightRegular];
+    for (UIButton *keypadButton in self.keypadButtons) {
+      keypadButton.titleLabel.font = font;
+    }
+  }
 }
 
 - (void) updateWithEnteredAmount:(NSString *)enteredAmount convertedAmount:(NSDecimalNumber *)convertedAmount {

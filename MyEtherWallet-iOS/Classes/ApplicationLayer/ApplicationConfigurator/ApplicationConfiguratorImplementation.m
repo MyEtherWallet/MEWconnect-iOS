@@ -39,8 +39,10 @@
   [[PasswordTextField appearance] setTintColor:[UIColor whiteColor]];
   
   /* Bordless navigation bar */
+  UIImage *clearImage = [UIImage imageWithColor:[UIColor clearColor]];
   [[BordlessNavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
   [BordlessNavigationBar appearance].tintColor = [UIColor mainApplicationColor];
+  [[BordlessNavigationBar appearance] setBackgroundImage:clearImage forBarMetrics:UIBarMetricsDefault];
   
   /* Bar buttons */
   NSDictionary *normalTextAttributes = @{NSForegroundColorAttributeName: [UIColor barButtonColorForState:UIControlStateNormal]};

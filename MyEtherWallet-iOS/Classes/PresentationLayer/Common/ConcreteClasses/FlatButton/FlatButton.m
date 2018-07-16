@@ -10,6 +10,7 @@
 #import "UIColor+Application.h"
 #import "UIImage+Color.h"
 #import "UIColor+Hex.h"
+#import "UIScreen+ScreenSizeType.h"
 
 @implementation FlatButton
 
@@ -48,9 +49,14 @@
         break;
       }
     }
+    CGFloat size = 56.0;
+    if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40 && self.compact) {
+      size = 44.0;
+    }
+    CGFloat halfSize = size / 2.0;
     UIImage *background = [[UIImage imageWithColor:backgroundColor
-                                              size:CGSizeMake(56.0, 56.0)
-                                      cornerRadius:10.0] resizableImageWithCapInsets:UIEdgeInsetsMake(28.0, 28.0, 28.0, 28.0)];
+                                              size:CGSizeMake(size, size)
+                                      cornerRadius:10.0] resizableImageWithCapInsets:UIEdgeInsetsMake(halfSize, halfSize, halfSize, halfSize)];
     
     [self setBackgroundImage:background forState:UIControlStateNormal];
     [self setTitleColor:textColor forState:UIControlStateNormal];
@@ -61,19 +67,24 @@
   }
 }
   
-- (void)setAlternativeDisabledTheme:(BOOL)alternativeDisabledTheme {
+- (void) setAlternativeDisabledTheme:(BOOL)alternativeDisabledTheme {
   _alternativeDisabledTheme = alternativeDisabledTheme;
   UIImage *disabledBackground;
   UIColor *textColor = nil;
+  CGFloat size = 56.0;
+  if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40 && self.compact) {
+    size = 44.0;
+  }
+  CGFloat halfSize = size / 2.0;
   if (_alternativeDisabledTheme) {
     disabledBackground = [[UIImage imageWithColor:[UIColor colorWithRGB:0xEBEDF0]
-                                             size:CGSizeMake(56.0, 56.0)
-                                     cornerRadius:10.0] resizableImageWithCapInsets:UIEdgeInsetsMake(28.0, 28.0, 28.0, 28.0)];
+                                             size:CGSizeMake(size, size)
+                                     cornerRadius:10.0] resizableImageWithCapInsets:UIEdgeInsetsMake(halfSize, halfSize, halfSize, halfSize)];
     textColor = [[UIColor lightGreyTextColor] colorWithAlphaComponent:0.29];
   } else {
     disabledBackground = [[UIImage imageWithColor:[UIColor colorWithRGB:0xF0F1F2]
-                                             size:CGSizeMake(56.0, 56.0)
-                                     cornerRadius:10.0] resizableImageWithCapInsets:UIEdgeInsetsMake(28.0, 28.0, 28.0, 28.0)];
+                                             size:CGSizeMake(size, size)
+                                     cornerRadius:10.0] resizableImageWithCapInsets:UIEdgeInsetsMake(halfSize, halfSize, halfSize, halfSize)];
     textColor = [[UIColor lightGreyTextColor] colorWithAlphaComponent:0.2];
   }
   [self setBackgroundImage:disabledBackground forState:UIControlStateDisabled];
@@ -81,6 +92,16 @@
   [UIView performWithoutAnimation:^{
     [self setTitle:[self titleForState:UIControlStateDisabled] forState:UIControlStateDisabled];
   }];
+}
+  
+- (void)setCompact:(BOOL)compact {
+  if (_compact != compact) {
+    _compact = compact;
+    self.alternativeDisabledTheme = self.alternativeDisabledTheme;
+    FlatButtonTheme theme = self.theme;
+    _theme = FlatButtonThemeUnknown;
+    self.theme = theme;
+  }
 }
 
 - (void)setTitle:(NSString *)title forState:(UIControlState)state {

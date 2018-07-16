@@ -430,6 +430,7 @@ with MyEtherWallet</string>
                                     <userDefinedRuntimeAttribute type="number" keyPath="theme">
                                         <integer key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="compact" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="closeAction:" destination="T20-gx-fZR" eventType="touchUpInside" id="0Am-JA-r7G"/>

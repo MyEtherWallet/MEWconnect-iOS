@@ -10,6 +10,8 @@
 #import "MyEtherWallet_iOS-Swift.h"
 #import "CardView.h"
 
+#import "UIScreen+ScreenSizeType.h"
+
 static CGFloat kMEWBackgroundEtherLogoXOffset = 16.0;
 static CGFloat kMEWBackgroundEtherLogoYOffset = 16.0;
 
@@ -93,7 +95,12 @@ static CGFloat kMEWBackgroundEtherLogoYOffset = 16.0;
   seed = [seed lowercaseString];
   UIImage *output = [[self class] _cachedImageWithSeed:seed size:size logo:renderLogo];
   if (!output) {
-    UIImage *ethereumLogo = [UIImage imageNamed:@"ethereum_logo"];
+    UIImage *ethereumLogo = nil;
+    if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+      ethereumLogo = [UIImage imageNamed:@"ethereum_logo_small"];
+    } else {
+      ethereumLogo = [UIImage imageNamed:@"ethereum_logo"];
+    }
     UIImage *shades = [UIImage imageNamed:@"card_shades"];
     
     UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);

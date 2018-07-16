@@ -267,103 +267,127 @@ connect</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oR6-1e-Iju">
-                                <rect key="frame" x="24" y="28" width="182" height="95.5"/>
-                                <string key="text">Pick a
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="CG7-43-VXO">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XuG-7p-0aS">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="332.5"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jyf-Yi-uru" customClass="PasswordTextField">
+                                                <rect key="frame" x="24" y="207.5" width="327" height="48"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="vVa-Ha-Ydp"/>
+                                                </constraints>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" keyboardAppearance="light" returnKeyType="next" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="password"/>
+                                                <connections>
+                                                    <action selector="passwordDidChanged:" destination="jqt-TW-elj" eventType="editingChanged" id="qar-rx-OEg"/>
+                                                    <outlet property="delegate" destination="jqt-TW-elj" id="nED-Xr-qhd"/>
+                                                </connections>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Best passwords are long and contain letters, numbers and special characters" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZTW-M2-q6y">
+                                                <rect key="frame" x="24" y="279.5" width="327" height="41"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.42745098039215684" green="0.45098039215686275" blue="0.44705882352941173" alpha="1" colorSpace="deviceRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oR6-1e-Iju">
+                                                <rect key="frame" x="24" y="28" width="182" height="95.5"/>
+                                                <string key="text">Pick a
 password</string>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
-                                <color key="textColor" red="0.023529411764705882" green="0.30196078431372547" blue="0.83921568627450982" alpha="1" colorSpace="deviceRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="So no one else but you can unlock your wallet" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lej-TZ-YXs">
-                                <rect key="frame" x="24" y="135.5" width="327" height="48"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="deviceRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jyf-Yi-uru" customClass="PasswordTextField">
-                                <rect key="frame" x="24" y="207.5" width="327" height="48"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                                <color key="textColor" red="0.023529411764705882" green="0.30196078431372547" blue="0.83921568627450982" alpha="1" colorSpace="deviceRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weak" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e2q-UQ-i3Z">
+                                                <rect key="frame" x="20" y="260.5" width="42.5" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.83921568627450982" green="0.023529411764705882" blue="0.023529411764705882" alpha="1" colorSpace="deviceRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yBx-vj-n0w" customClass="YLProgressBar">
+                                                <rect key="frame" x="20" y="289.5" width="327" height="4"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="4" id="aND-sG-iBz"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="hideStripes" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="hideGloss" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="progressStretch" value="NO"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="stripesAnimated" value="NO"/>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="trackTintColor">
+                                                        <color key="value" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="deviceRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="uniformTintColor" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="progressBarInset">
+                                                        <real key="value" value="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="aND-sG-iBz"/>
+                                                    </mask>
+                                                </variation>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="So no one else but you can unlock your wallet" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lej-TZ-YXs">
+                                                <rect key="frame" x="24" y="135.5" width="327" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="deviceRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="Jyf-Yi-uru" firstAttribute="leading" secondItem="Lej-TZ-YXs" secondAttribute="leading" id="6C4-PR-CFO"/>
+                                            <constraint firstItem="yBx-vj-n0w" firstAttribute="leading" secondItem="Jyf-Yi-uru" secondAttribute="leading" id="7qI-bv-ak5"/>
+                                            <constraint firstItem="ZTW-M2-q6y" firstAttribute="trailing" secondItem="Jyf-Yi-uru" secondAttribute="trailing" id="9cT-zs-9P3"/>
+                                            <constraint firstItem="Jyf-Yi-uru" firstAttribute="top" secondItem="Lej-TZ-YXs" secondAttribute="bottom" constant="24" id="BIe-NZ-7KL"/>
+                                            <constraint firstItem="oR6-1e-Iju" firstAttribute="top" secondItem="XuG-7p-0aS" secondAttribute="top" constant="28" id="Gc9-ef-czK"/>
+                                            <constraint firstItem="oR6-1e-Iju" firstAttribute="leading" secondItem="XuG-7p-0aS" secondAttribute="leading" constant="24" id="HF4-gD-igA"/>
+                                            <constraint firstItem="Lej-TZ-YXs" firstAttribute="top" secondItem="oR6-1e-Iju" secondAttribute="bottom" constant="12" id="J6S-GQ-bpU"/>
+                                            <constraint firstItem="Jyf-Yi-uru" firstAttribute="trailing" secondItem="Lej-TZ-YXs" secondAttribute="trailing" id="RN4-RM-z2H"/>
+                                            <constraint firstItem="Lej-TZ-YXs" firstAttribute="leading" secondItem="oR6-1e-Iju" secondAttribute="leading" id="Rd5-Jv-8EF"/>
+                                            <constraint firstItem="yBx-vj-n0w" firstAttribute="trailing" secondItem="Jyf-Yi-uru" secondAttribute="trailing" id="SHF-ZQ-L2q"/>
+                                            <constraint firstItem="ZTW-M2-q6y" firstAttribute="leading" secondItem="Jyf-Yi-uru" secondAttribute="leading" id="VHJ-ux-6UX"/>
+                                            <constraint firstAttribute="bottom" secondItem="ZTW-M2-q6y" secondAttribute="bottom" constant="12" id="iYo-II-UTH"/>
+                                            <constraint firstItem="e2q-UQ-i3Z" firstAttribute="top" secondItem="Jyf-Yi-uru" secondAttribute="bottom" constant="13" id="iaf-BS-nmm"/>
+                                            <constraint firstItem="yBx-vj-n0w" firstAttribute="top" secondItem="e2q-UQ-i3Z" secondAttribute="bottom" constant="8" id="ipk-Wr-FfD"/>
+                                            <constraint firstAttribute="trailing" secondItem="Lej-TZ-YXs" secondAttribute="trailing" constant="24" id="lWG-A0-mK6"/>
+                                            <constraint firstItem="e2q-UQ-i3Z" firstAttribute="leading" secondItem="Jyf-Yi-uru" secondAttribute="leading" id="qlD-pd-m6y"/>
+                                            <constraint firstItem="ZTW-M2-q6y" firstAttribute="top" secondItem="Jyf-Yi-uru" secondAttribute="bottom" constant="24" id="tlm-0Q-V4x"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="subviews">
+                                                <exclude reference="e2q-UQ-i3Z"/>
+                                                <exclude reference="yBx-vj-n0w"/>
+                                            </mask>
+                                            <mask key="constraints">
+                                                <exclude reference="iaf-BS-nmm"/>
+                                                <exclude reference="qlD-pd-m6y"/>
+                                                <exclude reference="7qI-bv-ak5"/>
+                                                <exclude reference="SHF-ZQ-L2q"/>
+                                                <exclude reference="ipk-Wr-FfD"/>
+                                            </mask>
+                                        </variation>
+                                    </view>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="vVa-Ha-Ydp"/>
+                                    <constraint firstAttribute="bottom" secondItem="XuG-7p-0aS" secondAttribute="bottom" id="Cis-7j-XCf"/>
+                                    <constraint firstAttribute="trailing" secondItem="XuG-7p-0aS" secondAttribute="trailing" id="DZV-3C-mH5"/>
+                                    <constraint firstItem="XuG-7p-0aS" firstAttribute="top" secondItem="CG7-43-VXO" secondAttribute="top" id="IFA-Km-63b"/>
+                                    <constraint firstItem="XuG-7p-0aS" firstAttribute="width" secondItem="CG7-43-VXO" secondAttribute="width" id="kD7-cr-v1c"/>
+                                    <constraint firstItem="XuG-7p-0aS" firstAttribute="leading" secondItem="CG7-43-VXO" secondAttribute="leading" id="p31-ak-TQN"/>
                                 </constraints>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" keyboardAppearance="light" returnKeyType="next" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="password"/>
-                                <connections>
-                                    <action selector="passwordDidChanged:" destination="jqt-TW-elj" eventType="editingChanged" id="qar-rx-OEg"/>
-                                    <outlet property="delegate" destination="jqt-TW-elj" id="nED-Xr-qhd"/>
-                                </connections>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Best passwords are long and contain letters, numbers and special characters" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZTW-M2-q6y">
-                                <rect key="frame" x="24" y="279.5" width="327" height="41"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.42745098039215684" green="0.45098039215686275" blue="0.44705882352941173" alpha="1" colorSpace="deviceRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weak" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e2q-UQ-i3Z">
-                                <rect key="frame" x="24" y="332" width="42.5" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.83921568627450982" green="0.023529411764705882" blue="0.023529411764705882" alpha="1" colorSpace="deviceRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yBx-vj-n0w" customClass="YLProgressBar">
-                                <rect key="frame" x="24" y="369" width="327" height="4"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="4" id="aND-sG-iBz"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="hideStripes" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="hideGloss" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="progressStretch" value="NO"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="stripesAnimated" value="NO"/>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="trackTintColor">
-                                        <color key="value" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="deviceRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="uniformTintColor" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="progressBarInset">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="aND-sG-iBz"/>
-                                    </mask>
-                                </variation>
-                            </view>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="ZTW-M2-q6y" firstAttribute="top" secondItem="Jyf-Yi-uru" secondAttribute="bottom" constant="24" id="0Ut-D5-hTm"/>
-                            <constraint firstItem="9h3-XE-Nu6" firstAttribute="trailing" secondItem="Lej-TZ-YXs" secondAttribute="trailing" constant="24" id="70o-Xa-qiQ"/>
-                            <constraint firstItem="yBx-vj-n0w" firstAttribute="trailing" secondItem="Jyf-Yi-uru" secondAttribute="trailing" id="Bkv-gr-N9K"/>
-                            <constraint firstItem="Jyf-Yi-uru" firstAttribute="top" secondItem="Lej-TZ-YXs" secondAttribute="bottom" constant="24" id="M4R-sz-mIX"/>
-                            <constraint firstItem="Jyf-Yi-uru" firstAttribute="leading" secondItem="Lej-TZ-YXs" secondAttribute="leading" id="NdJ-o8-Gea"/>
-                            <constraint firstItem="e2q-UQ-i3Z" firstAttribute="leading" secondItem="Jyf-Yi-uru" secondAttribute="leading" id="Oh9-oN-Nq4"/>
-                            <constraint firstItem="Lej-TZ-YXs" firstAttribute="leading" secondItem="oR6-1e-Iju" secondAttribute="leading" id="UVb-DL-don"/>
-                            <constraint firstItem="ZTW-M2-q6y" firstAttribute="leading" secondItem="Jyf-Yi-uru" secondAttribute="leading" id="Uf2-fR-yw8"/>
-                            <constraint firstItem="ZTW-M2-q6y" firstAttribute="trailing" secondItem="Jyf-Yi-uru" secondAttribute="trailing" id="VvM-JC-fHI"/>
-                            <constraint firstItem="e2q-UQ-i3Z" firstAttribute="top" secondItem="Jyf-Yi-uru" secondAttribute="bottom" constant="13" id="XPW-8C-CGt"/>
-                            <constraint firstItem="oR6-1e-Iju" firstAttribute="top" secondItem="9h3-XE-Nu6" secondAttribute="top" constant="28" id="alG-c3-dip"/>
-                            <constraint firstItem="Lej-TZ-YXs" firstAttribute="top" secondItem="oR6-1e-Iju" secondAttribute="bottom" constant="12" id="c8n-g9-J7S"/>
-                            <constraint firstItem="oR6-1e-Iju" firstAttribute="leading" secondItem="9h3-XE-Nu6" secondAttribute="leading" constant="24" id="nSF-y4-SAF"/>
-                            <constraint firstItem="yBx-vj-n0w" firstAttribute="leading" secondItem="Jyf-Yi-uru" secondAttribute="leading" id="rn1-3r-EtV"/>
-                            <constraint firstItem="yBx-vj-n0w" firstAttribute="top" secondItem="e2q-UQ-i3Z" secondAttribute="bottom" constant="8" id="x4p-iP-xOI"/>
-                            <constraint firstItem="Jyf-Yi-uru" firstAttribute="trailing" secondItem="Lej-TZ-YXs" secondAttribute="trailing" id="zsR-Im-Rzn"/>
+                            <constraint firstAttribute="trailing" secondItem="CG7-43-VXO" secondAttribute="trailing" id="ZcQ-gO-0gL"/>
+                            <constraint firstItem="CG7-43-VXO" firstAttribute="leading" secondItem="UN6-pd-0ty" secondAttribute="leading" id="l1B-Mm-enI"/>
+                            <constraint firstItem="9h3-XE-Nu6" firstAttribute="bottom" secondItem="CG7-43-VXO" secondAttribute="bottom" id="qMy-Qj-Gf8"/>
+                            <constraint firstItem="CG7-43-VXO" firstAttribute="top" secondItem="UN6-pd-0ty" secondAttribute="top" id="sUo-KA-g8w"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9h3-XE-Nu6"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="e2q-UQ-i3Z"/>
-                                <exclude reference="yBx-vj-n0w"/>
-                            </mask>
-                            <mask key="constraints">
-                                <exclude reference="Oh9-oN-Nq4"/>
-                                <exclude reference="XPW-8C-CGt"/>
-                                <exclude reference="Bkv-gr-N9K"/>
-                                <exclude reference="rn1-3r-EtV"/>
-                                <exclude reference="x4p-iP-xOI"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="Ojg-YK-5s8">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Eja-md-glo">
@@ -382,15 +406,16 @@ password</string>
                         <outlet property="crackMeterLabel" destination="e2q-UQ-i3Z" id="iJy-qg-daY"/>
                         <outlet property="crackMeterProgress" destination="yBx-vj-n0w" id="dez-Uz-X0h"/>
                         <outlet property="nextBarButtonItem" destination="jbV-gB-VII" id="FrQ-Tl-Pyj"/>
-                        <outlet property="passwordDescriptionVOffsetConstraint" destination="0Ut-D5-hTm" id="WLf-LY-yOh"/>
+                        <outlet property="passwordDescriptionVOffsetConstraint" destination="tlm-0Q-V4x" id="osu-Ra-6r8"/>
                         <outlet property="passwordTextField" destination="Jyf-Yi-uru" id="UfZ-X8-1TQ"/>
+                        <outlet property="scrollView" destination="CG7-43-VXO" id="LRI-ZY-W91"/>
                         <outlet property="titleLabel" destination="oR6-1e-Iju" id="vWF-Fv-8nc"/>
-                        <outletCollection property="crackMeterConstraints" destination="Oh9-oN-Nq4" id="sea-Pi-3eS"/>
-                        <outletCollection property="crackMeterConstraints" destination="XPW-8C-CGt" id="rD8-5x-D4v"/>
-                        <outletCollection property="crackMeterConstraints" destination="rn1-3r-EtV" id="f0P-us-Txg"/>
-                        <outletCollection property="crackMeterConstraints" destination="Bkv-gr-N9K" id="pZ8-wg-DLB"/>
-                        <outletCollection property="crackMeterConstraints" destination="x4p-iP-xOI" id="fdv-IH-5kY"/>
                         <outletCollection property="crackMeterConstraints" destination="aND-sG-iBz" id="Rpb-vO-95c"/>
+                        <outletCollection property="crackMeterConstraints" destination="iaf-BS-nmm" id="3yL-He-Ojg"/>
+                        <outletCollection property="crackMeterConstraints" destination="qlD-pd-m6y" id="iDQ-Fm-UaO"/>
+                        <outletCollection property="crackMeterConstraints" destination="7qI-bv-ak5" id="U5B-ca-y6N"/>
+                        <outletCollection property="crackMeterConstraints" destination="SHF-ZQ-L2q" id="Pis-Ai-43Q"/>
+                        <outletCollection property="crackMeterConstraints" destination="ipk-Wr-FfD" id="dNR-rn-OPk"/>
                         <segue destination="YPA-SR-O3L" kind="show" identifier="PasswordToConfirmPasswordSegueIdentifier" id="sdE-TV-aYy"/>
                     </connections>
                 </viewController>
@@ -450,7 +475,9 @@ password</string>
                         <viewLayoutGuide key="safeArea" id="uTp-tR-fv5"/>
                     </view>
                     <connections>
+                        <outlet property="helperViewHeightConstraint" destination="jQP-b9-SRP" id="FVT-mI-snp"/>
                         <outlet property="startUsingButton" destination="vDv-v1-uhA" id="OYv-ns-mtZ"/>
+                        <outlet property="startUsingCenterYConstraint" destination="JgK-qA-2bj" id="uD1-jv-Yjg"/>
                         <outlet property="typingLabel" destination="C28-ET-RGh" id="xdd-lW-4la"/>
                         <segue destination="ccp-7j-1XS" kind="unwind" identifier="NewWalletToStartUnwindSegueIdentifier" unwindAction="unwindToStart:" id="ezf-Fw-z2t"/>
                         <segue destination="ccp-7j-1XS" kind="unwind" identifier="NewWalletToHomeUnwindSegueIdentifier" unwindAction="unwindToHome:" id="R34-6F-h2v"/>

@@ -46,7 +46,7 @@
   return self;
 }
 
-- (void)dealloc {
+- (void) dealloc {
   [self stopReading];
 }
 
@@ -91,7 +91,7 @@
   }
 }
 
-- (void)pauseReading {
+- (void) pauseReading {
   self.pause = YES;
 }
 

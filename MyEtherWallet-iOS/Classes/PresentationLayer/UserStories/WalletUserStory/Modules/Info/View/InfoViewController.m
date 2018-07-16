@@ -71,6 +71,7 @@
   longPressGesture.numberOfTouchesRequired = 2;
   [self.copyrightLabel addGestureRecognizer:longPressGesture];
   self.copyrightLabel.userInteractionEnabled = YES;
+  [self _updatePrefferedContentSize];
 }
 
 - (void) presentResetConfirmation {
@@ -110,7 +111,7 @@
 
 - (void) _updatePrefferedContentSize {
   CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
-  CGRect bounds = self.view.window.bounds;
+  CGRect bounds = self.presentingViewController.view.window.bounds;
   CGSize size = bounds.size;
   size.height -= CGRectGetHeight(statusBarFrame);
   size.height -= kCustomRepresentationTopSmallOffset;

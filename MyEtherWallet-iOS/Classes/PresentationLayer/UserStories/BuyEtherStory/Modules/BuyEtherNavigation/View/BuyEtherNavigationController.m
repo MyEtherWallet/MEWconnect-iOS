@@ -12,6 +12,8 @@
 
 #import "ApplicationConstants.h"
 
+#import "UIView+LockFrame.h"
+
 @implementation BuyEtherNavigationController
 
 #pragma mark - LifeCycle
@@ -24,6 +26,11 @@
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  self.view.lockFrame = YES;
 }
 
 - (void)viewLayoutMarginsDidChange {
@@ -52,7 +59,7 @@
 
 - (void) _updatePrefferedContentSize {
   CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
-  CGRect bounds = self.view.superview.bounds;
+  CGRect bounds = self.presentingViewController.view.window.bounds;
   CGSize size = bounds.size;
   size.height -= CGRectGetHeight(statusBarFrame);
   size.height -= kCustomRepresentationTopSmallOffset;

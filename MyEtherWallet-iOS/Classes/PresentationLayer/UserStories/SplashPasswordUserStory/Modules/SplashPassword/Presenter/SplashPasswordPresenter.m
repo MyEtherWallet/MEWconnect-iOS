@@ -14,18 +14,26 @@
 
 #import "SplashPasswordModuleOutput.h"
 
-@implementation SplashPasswordPresenter
+@implementation SplashPasswordPresenter {
+  BOOL _control;
+}
 
 #pragma mark - SplashPasswordModuleInput
 
-- (void) configureModuleWithAccount:(AccountPlainObject *)account {
+- (void) configureModuleWithAccount:(AccountPlainObject *)account autoControl:(BOOL)autoControl {
+  _control = autoControl;
   [self.interactor configurateWithAccount:account];
+}
+
+- (void) takeControlAfterLaunch {
+  _control = YES;
+  [self.view becomePasswordInputActive];
 }
 
 #pragma mark - SplashPasswordViewOutput
 
 - (void) didTriggerViewReadyEvent {
-	[self.view setupInitialState];
+	[self.view setupInitialStateWithAutoControl:_control];
 }
 
 - (void) doneActionWithPassword:(NSString *)password {

@@ -1,5 +1,5 @@
 //
-//  StoryboardAssembly.h
+//  StoryboardsAssembly.h
 //  MyEtherWallet-iOS
 //
 //  Created by Mikhail Nikanorov on 15/04/2018.
@@ -11,9 +11,10 @@
 
 @class SystemInfrastructureAssembly;
 
-@interface StoryboardAssembly : TyphoonAssembly <RamblerInitialAssembly>
+@interface StoryboardsAssembly : TyphoonAssembly <RamblerInitialAssembly>
 @property (nonatomic, strong, readonly) SystemInfrastructureAssembly *systemInfrastructureAssembly;
-- (UIStoryboard *)mainStoryboard;
-- (UIStoryboard *)splashPasswordStoryboard;
-- (UIStoryboard *)walletStoryboard;
+- (UIStoryboard *) mainStoryboard;
+- (UIStoryboard *) splashPasswordStoryboard;
+- (UIStoryboard *) walletStoryboard;
+- (UIStoryboard *) launchStoryboard;
 @end

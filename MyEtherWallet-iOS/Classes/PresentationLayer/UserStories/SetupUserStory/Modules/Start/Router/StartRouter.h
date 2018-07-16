@@ -11,7 +11,6 @@
 @protocol RamblerViperModuleTransitionHandlerProtocol;
 
 @interface StartRouter : NSObject <StartRouterInput>
-
-@property (nonatomic, weak) id<RamblerViperModuleTransitionHandlerProtocol> transitionHandler;
-
+@property (nonatomic, weak) id <RamblerViperModuleTransitionHandlerProtocol> transitionHandler;
+@property (nonatomic, strong) RamblerViperModuleFactory *homeFactory;
 @end

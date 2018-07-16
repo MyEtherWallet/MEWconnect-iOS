@@ -330,7 +330,7 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
 
 - (void) _updatePrefferedContentSize {
   CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
-  CGRect bounds = self.view.window.bounds;
+  CGRect bounds = self.presentingViewController.view.window.bounds;
   CGSize size = bounds.size;
   size.height -= CGRectGetHeight(statusBarFrame);
   if (!CGSizeEqualToSize(self.preferredContentSize, size)) {

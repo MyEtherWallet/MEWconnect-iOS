@@ -183,6 +183,7 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
   [self.headerView.cardView updateBalance:balance network:[account.fromNetwork network]];
   
   NSNumberFormatter *ethereumFormatter = [NSNumberFormatter ethereumFormatterWithNetwork:[account.fromNetwork network]];
+  ethereumFormatter.maximumSignificantDigits = 14;
   self.headerView.titleBalanceLabel.text = [ethereumFormatter stringFromNumber:balance];
 }
 
@@ -288,7 +289,7 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
 
 #pragma mark - UIScrollViewDelegate
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+- (void) scrollViewDidScroll:(UIScrollView *)scrollView {
   CGPoint offset = scrollView.contentOffset;
   offset.y += self.headerView.minimumContentHeight;
   if (offset.y > 0.0) {
@@ -296,25 +297,36 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
   } else {
     self.headerView.searchBarStyle = HomeStretchyHeaderSearchBarStyleWhite;
   }
+  UIEdgeInsets indicatorInset = self.tableView.scrollIndicatorInsets;
+  indicatorInset.top = CGRectGetHeight(self.headerView.contentView.bounds);
+  self.tableView.scrollIndicatorInsets = indicatorInset;
 }
 
 #pragma mark - CardViewDelegate
 
-- (void)cardViewDidTouchShareButton:(CardView *)cardView {
+- (void) cardViewDidTouchShareButton:(CardView *)cardView {
   [self.output shareAction];
 }
 
-- (void)cardViewDidTouchBackupButton:(CardView *)cardView {
+- (void) cardViewDidTouchBackupButton:(CardView *)cardView {
   [self.output backupAction];
 }
 
-- (void)cardViewDidTouchBackupStatusButton:(CardView *)cardView {
+- (void) cardViewDidTouchBackupStatusButton:(CardView *)cardView {
   
 }
 
 #pragma mark - UISearchBarDelegate
 
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+- (BOOL) searchBarShouldBeginEditing:(UISearchBar *)searchBar {
+  if ((self.tableView.contentOffset.y + self.headerView.minimumContentHeight) < 0.0) {
+    CGPoint newContentOffset = CGPointMake(0.0, -self.headerView.minimumContentHeight);
+    [self.tableView setContentOffset:newContentOffset animated:YES];
+  }
+  return YES;
+}
+
+- (void) searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
   [self.output searchTermDidChanged:searchText];
 }
 

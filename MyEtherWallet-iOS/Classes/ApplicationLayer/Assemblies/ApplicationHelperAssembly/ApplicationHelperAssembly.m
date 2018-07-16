@@ -8,7 +8,7 @@
 
 #import "ApplicationHelperAssembly.h"
 
-#import "StoryboardAssembly.h"
+#import "StoryboardsAssembly.h"
 #import "NavigationControllerFactoryImplementation.h"
 
 @implementation ApplicationHelperAssembly

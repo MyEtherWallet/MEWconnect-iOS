@@ -20,13 +20,21 @@
   UIView *dismissedView = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey].view;
   UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
   
+  UIView *containerView = [transitionContext containerView];
+  UIView *dismissedViewSnapshot = [dismissedView snapshotViewAfterScreenUpdates:NO];
+  [containerView addSubview:dismissedViewSnapshot];
+  
+  CGRect frame = dismissedView.frame;
+  dismissedViewSnapshot.frame = frame;
+  dismissedView.hidden = YES;
+  
   UIViewAnimationOptions options = UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseIn;
   
   [UIView animateWithDuration:[self transitionDuration:transitionContext]
                         delay:0.0
                       options:options
                    animations:^{
-                     dismissedView.transform = CGAffineTransformMakeTranslation(0.0, CGRectGetHeight(dismissedView.bounds));
+                     dismissedViewSnapshot.transform = CGAffineTransformMakeTranslation(0.0, CGRectGetHeight(dismissedView.bounds));
                    } completion:^(BOOL finished) {
                      [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
                      [toViewController setNeedsStatusBarAppearanceUpdate];

@@ -10,7 +10,7 @@
 
 #import "ApplicationHelperAssembly.h"
 #import "SystemInfrastructureAssembly.h"
-#import "StoryboardAssembly.h"
+#import "StoryboardsAssembly.h"
 #import "PonsomizerAssembly.h"
 
 #import "ServiceComponents.h"
@@ -90,6 +90,8 @@
                                                 with:[self.ponsomizerAssembly ponsomizer]];
                           [definition injectProperty:@selector(passwordStoryboard)
                                                 with:[self.storyboardAssembly splashPasswordStoryboard]];
+                          [definition injectProperty:@selector(launchStoryboard)
+                                                with:[self.storyboardAssembly launchStoryboard]];
                         }];
 }
 

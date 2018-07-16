@@ -24,7 +24,8 @@
 
 - (void) didTriggerViewReadyEvent {
   SimplexServiceCurrencyType currency = [self.interactor obtainCurrencyType];
-	[self.view setupInitialStateWithCurrency:currency];
+  NSDecimalNumber *minimumAmount = [self.interactor obtainMinimumAmount];
+	[self.view setupInitialStateWithCurrency:currency minimumAmount:minimumAmount];
   NSString *enteredAmount = [self.interactor obtainEnteredAmount];
   NSDecimalNumber *convertedAmount = [self.interactor obtainConvertedAmount];
   [self.view updateWithEnteredAmount:enteredAmount convertedAmount:convertedAmount];
@@ -68,6 +69,14 @@
 
 - (void)orderDidCreated:(SimplexOrder *)order forAccount:(AccountPlainObject *)account {
   [self.router openBuyEtherWebWithOrder:order account:account];
+}
+
+- (void) minimumAmountDidReached:(BOOL)minimumAmountReached {
+  if (minimumAmountReached) {
+    [self.view enableContinue];
+  } else {
+    [self.view disableContinue];
+  }
 }
 
 @end

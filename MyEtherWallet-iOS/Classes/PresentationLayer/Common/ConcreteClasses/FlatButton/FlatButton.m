@@ -51,20 +51,36 @@
     UIImage *background = [[UIImage imageWithColor:backgroundColor
                                               size:CGSizeMake(56.0, 56.0)
                                       cornerRadius:10.0] resizableImageWithCapInsets:UIEdgeInsetsMake(28.0, 28.0, 28.0, 28.0)];
-    UIImage *disabledBackground = [[UIImage imageWithColor:[UIColor colorWithRGB:0xF0F1F2]
-                                                      size:CGSizeMake(56.0, 56.0)
-                                              cornerRadius:10.0] resizableImageWithCapInsets:UIEdgeInsetsMake(28.0, 28.0, 28.0, 28.0)];
     
     [self setBackgroundImage:background forState:UIControlStateNormal];
-    [self setBackgroundImage:disabledBackground forState:UIControlStateDisabled];
     [self setTitleColor:textColor forState:UIControlStateNormal];
-    [self setTitleColor:[[UIColor lightGreyTextColor] colorWithAlphaComponent:0.2] forState:UIControlStateDisabled];
     self.titleLabel.font = [UIFont systemFontOfSize:17.0 weight:UIFontWeightSemibold];
     [UIView performWithoutAnimation:^{
       [self setTitle:[self titleForState:UIControlStateNormal] forState:UIControlStateNormal];
-      [self setTitle:[self titleForState:UIControlStateDisabled] forState:UIControlStateDisabled];
     }];
   }
+}
+  
+- (void)setAlternativeDisabledTheme:(BOOL)alternativeDisabledTheme {
+  _alternativeDisabledTheme = alternativeDisabledTheme;
+  UIImage *disabledBackground;
+  UIColor *textColor = nil;
+  if (_alternativeDisabledTheme) {
+    disabledBackground = [[UIImage imageWithColor:[UIColor colorWithRGB:0xEBEDF0]
+                                             size:CGSizeMake(56.0, 56.0)
+                                     cornerRadius:10.0] resizableImageWithCapInsets:UIEdgeInsetsMake(28.0, 28.0, 28.0, 28.0)];
+    textColor = [[UIColor lightGreyTextColor] colorWithAlphaComponent:0.29];
+  } else {
+    disabledBackground = [[UIImage imageWithColor:[UIColor colorWithRGB:0xF0F1F2]
+                                             size:CGSizeMake(56.0, 56.0)
+                                     cornerRadius:10.0] resizableImageWithCapInsets:UIEdgeInsetsMake(28.0, 28.0, 28.0, 28.0)];
+    textColor = [[UIColor lightGreyTextColor] colorWithAlphaComponent:0.2];
+  }
+  [self setBackgroundImage:disabledBackground forState:UIControlStateDisabled];
+  [self setTitleColor:textColor forState:UIControlStateDisabled];
+  [UIView performWithoutAnimation:^{
+    [self setTitle:[self titleForState:UIControlStateDisabled] forState:UIControlStateDisabled];
+  }];
 }
 
 - (void)setTitle:(NSString *)title forState:(UIControlState)state {

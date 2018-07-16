@@ -20,8 +20,11 @@
 
 #import "SimplexQuote.h"
 
-static short const kBuyEtherAmountRoundingETHScale = 8;
-static short const kBuyEtherAmountRoundingUSDScale = 2;
+static short const kBuyEtherAmountRoundingETHScale        = 8;
+static short const kBuyEtherAmountRoundingUSDScale        = 2;
+
+static NSDecimalNumber *kBuyEtherMinimumUSDAmount;
+static NSDecimalNumber *kBuyEtherMaximumUSDAmount;
 
 @interface BuyEtherAmountInteractor ()
 @property (nonatomic, strong) AccountPlainObject *account;
@@ -32,6 +35,11 @@ static short const kBuyEtherAmountRoundingUSDScale = 2;
 @implementation BuyEtherAmountInteractor {
   NSDecimalNumberHandler *_ethRoundHandler;
   NSDecimalNumberHandler *_usdRoundHandler;
+}
+
++ (void)initialize {
+  kBuyEtherMinimumUSDAmount = [NSDecimalNumber decimalNumberWithString:@"50.0"];
+  kBuyEtherMaximumUSDAmount = [NSDecimalNumber decimalNumberWithString:@"20000.0"];
 }
 
 #pragma mark - BuyEtherAmountInteractorInput
@@ -102,9 +110,40 @@ static short const kBuyEtherAmountRoundingUSDScale = 2;
     }
   }
   
+  BOOL minimumAmountReached = NO;
   NSDecimalNumber *convertedAmount = [self obtainConvertedAmount];
+  switch (_currency) {
+    case SimplexServiceCurrencyTypeUSD: {
+      NSDecimalNumber *usd = [self _obtainEnteredAmountNumber];
+      if ([usd compare:kBuyEtherMaximumUSDAmount] == NSOrderedDescending) {
+        usd = kBuyEtherMaximumUSDAmount;
+        convertedAmount = [self _obtainConvertedAmountWithCurrency:SimplexServiceCurrencyTypeETH enteredAmount:usd];
+        [_amount replaceCharactersInRange:NSMakeRange(0, [_amount length]) withString:[usd stringValue]];
+      }
+      minimumAmountReached = [usd compare:kBuyEtherMinimumUSDAmount] != NSOrderedAscending;
+      break;
+    }
+    case SimplexServiceCurrencyTypeETH: {
+      if (convertedAmount) {
+        if ([convertedAmount compare:kBuyEtherMaximumUSDAmount] == NSOrderedDescending) {
+          convertedAmount = kBuyEtherMaximumUSDAmount;
+          NSDecimalNumber *eth = [self _obtainConvertedAmountWithCurrency:SimplexServiceCurrencyTypeUSD enteredAmount:convertedAmount];
+          [_amount replaceCharactersInRange:NSMakeRange(0, [_amount length]) withString:[eth stringValue]];
+        }
+        minimumAmountReached = [convertedAmount compare:kBuyEtherMinimumUSDAmount] != NSOrderedAscending;
+      } else {
+        NSDecimalNumber *eth = [self _obtainEnteredAmountNumber];
+        minimumAmountReached = [eth compare:[NSDecimalNumber zero]] == NSOrderedDescending;
+      }
+      break;
+    }
+      
+    default:
+      break;
+  }
   
   [self.output updateInputPriceWithEnteredAmount:_amount convertedAmount:convertedAmount];
+  [self.output minimumAmountDidReached:minimumAmountReached];
 }
 
 - (void) eraseSymbol {
@@ -114,8 +153,30 @@ static short const kBuyEtherAmountRoundingUSDScale = 2;
   }
 
   NSDecimalNumber *convertedAmount = [self obtainConvertedAmount];
+  
+  BOOL minimumAmountReached = NO;
+  switch (_currency) {
+    case SimplexServiceCurrencyTypeUSD: {
+      NSDecimalNumber *usd = [self _obtainEnteredAmountNumber];
+      minimumAmountReached = [usd compare:kBuyEtherMinimumUSDAmount] != NSOrderedAscending;
+      break;
+    }
+    case SimplexServiceCurrencyTypeETH: {
+      if (convertedAmount) {
+        minimumAmountReached = [convertedAmount compare:kBuyEtherMinimumUSDAmount] != NSOrderedAscending;
+      } else {
+        NSDecimalNumber *eth = [self _obtainEnteredAmountNumber];
+        minimumAmountReached = [eth compare:[NSDecimalNumber zero]] == NSOrderedDescending;
+      }
+      break;
+    }
+      
+    default:
+      break;
+  }
 
   [self.output updateInputPriceWithEnteredAmount:_amount convertedAmount:convertedAmount];
+  [self.output minimumAmountDidReached:minimumAmountReached];
 }
 
 - (NSString *) obtainEnteredAmount {
@@ -124,24 +185,7 @@ static short const kBuyEtherAmountRoundingUSDScale = 2;
 
 - (NSDecimalNumber *) obtainConvertedAmount {
   NSDecimalNumber *enteredAmount = [self _obtainEnteredAmountNumber];
-  NSDecimalNumber *usdPrice = self.account.price.usdPrice;
-  NSDecimalNumber *convertedAmount = nil;
-  if (usdPrice) {
-    switch (self.currency) {
-      case SimplexServiceCurrencyTypeETH: {
-        convertedAmount = [enteredAmount decimalNumberByMultiplyingBy:self.account.price.usdPrice];
-        convertedAmount = [convertedAmount decimalNumberByRoundingAccordingToBehavior:_usdRoundHandler];
-        break;
-      }
-      case SimplexServiceCurrencyTypeUSD:
-      default: {
-        convertedAmount = [enteredAmount decimalNumberByDividingBy:self.account.price.usdPrice];
-        convertedAmount = [convertedAmount decimalNumberByRoundingAccordingToBehavior:_ethRoundHandler];
-        break;
-      }
-    }
-  }
-  return convertedAmount;
+  return [self _obtainConvertedAmountWithCurrency:self.currency enteredAmount:enteredAmount];
 }
 
 - (SimplexServiceCurrencyType) obtainCurrencyType {
@@ -176,6 +220,10 @@ static short const kBuyEtherAmountRoundingUSDScale = 2;
   return self.account;
 }
 
+- (NSDecimalNumber *) obtainMinimumAmount {
+  return kBuyEtherMinimumUSDAmount;
+}
+
 #pragma mark - Private
 
 - (NSDecimalNumber *) _obtainEnteredAmountNumber {
@@ -183,6 +231,27 @@ static short const kBuyEtherAmountRoundingUSDScale = 2;
     [_amount appendString:@"0"];
   }
   return [NSDecimalNumber decimalNumberWithString:_amount];
+}
+
+- (NSDecimalNumber *) _obtainConvertedAmountWithCurrency:(SimplexServiceCurrencyType)currency enteredAmount:(NSDecimalNumber *)enteredAmount {
+  NSDecimalNumber *usdPrice = self.account.price.usdPrice;
+  NSDecimalNumber *convertedAmount = nil;
+  if (usdPrice) {
+    switch (currency) {
+      case SimplexServiceCurrencyTypeETH: {
+        convertedAmount = [enteredAmount decimalNumberByMultiplyingBy:self.account.price.usdPrice];
+        convertedAmount = [convertedAmount decimalNumberByRoundingAccordingToBehavior:_usdRoundHandler];
+        break;
+      }
+      case SimplexServiceCurrencyTypeUSD:
+      default: {
+        convertedAmount = [enteredAmount decimalNumberByDividingBy:self.account.price.usdPrice];
+        convertedAmount = [convertedAmount decimalNumberByRoundingAccordingToBehavior:_ethRoundHandler];
+        break;
+      }
+    }
+  }
+  return convertedAmount;
 }
 
 @end

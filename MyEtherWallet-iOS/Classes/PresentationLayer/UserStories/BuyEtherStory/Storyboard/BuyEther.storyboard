@@ -202,6 +202,7 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="theme">
                                                 <integer key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="alternativeDisabledTheme" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="buyAction:" destination="Zl9-aP-OUl" eventType="touchUpInside" id="amB-TW-j10"/>
@@ -281,6 +282,7 @@
                     <connections>
                         <outlet property="amountCurrencyLabel" destination="nJ8-dO-0p9" id="9Vu-3V-wPA"/>
                         <outlet property="amountLabel" destination="gwV-jF-T3l" id="kbA-jT-62Z"/>
+                        <outlet property="buyButton" destination="jGA-nU-jau" id="GrH-Kr-aMI"/>
                         <outlet property="resultLabel" destination="l32-qR-w0g" id="iFB-TG-er7"/>
                         <outlet property="separatorButton" destination="8Oa-xN-1qB" id="QGz-pT-BaB"/>
                         <outlet property="switchCurrencyButton" destination="0Ew-qW-Plz" id="Syk-Xg-hRA"/>

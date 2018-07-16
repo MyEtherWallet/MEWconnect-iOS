@@ -23,4 +23,5 @@
 - (NSDecimalNumber *) obtainConvertedAmount;
 - (void) prepareQuote;
 - (AccountPlainObject *) obtainAccount;
+- (NSDecimalNumber *) obtainMinimumAmount;
 @end

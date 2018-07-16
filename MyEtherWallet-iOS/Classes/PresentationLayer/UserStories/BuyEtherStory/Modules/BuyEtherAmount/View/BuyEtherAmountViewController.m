@@ -24,6 +24,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *resultLabel;
 @property (nonatomic, weak) IBOutlet UIButton *switchCurrencyButton;
 @property (nonatomic, weak) IBOutlet UIButton *separatorButton;
+@property (nonatomic, weak) IBOutlet UIButton *buyButton;
 @end
 
 @implementation BuyEtherAmountViewController {
@@ -47,7 +48,7 @@
 
 #pragma mark - BuyEtherAmountViewInput
 
-- (void) setupInitialStateWithCurrency:(SimplexServiceCurrencyType)currency {
+- (void) setupInitialStateWithCurrency:(SimplexServiceCurrencyType)currency minimumAmount:(NSDecimalNumber *)minimumAmount {
   _currency = currency;
   self.amountCurrencyLabel.text = NSStringFromSimplexServiceCurrencyType(currency);
   
@@ -55,8 +56,16 @@
                                                               size:CGSizeMake(36.0, 36.0)
                                                       cornerRadius:10.0];
   [self.switchCurrencyButton setBackgroundImage:switchCurrencyBackgroundImage forState:UIControlStateNormal];
+  
   NSString *decimalSeparator = [[NSLocale currentLocale] objectForKey:NSLocaleDecimalSeparator];
   [self.separatorButton setTitle:decimalSeparator forState:UIControlStateNormal];
+  
+  NSNumberFormatter *usdFormatter = [NSNumberFormatter usdFormatter];
+  usdFormatter.maximumFractionDigits = 0;
+  NSString *minimumAmountTitle = [NSString stringWithFormat:NSLocalizedString(@"%@ MINIMUM PURCHASE", @"BuyEther. Minimum amount format"),
+                                  [usdFormatter stringFromNumber:minimumAmount]];
+  [self.buyButton setTitle:minimumAmountTitle forState:UIControlStateDisabled];
+  self.buyButton.enabled = NO;
 }
 
 - (void) updateWithEnteredAmount:(NSString *)enteredAmount convertedAmount:(NSDecimalNumber *)convertedAmount {
@@ -93,6 +102,14 @@
 - (void)updateCurrency:(SimplexServiceCurrencyType)currency {
   _currency = currency;
   self.amountCurrencyLabel.text = NSStringFromSimplexServiceCurrencyType(currency);
+}
+
+- (void) enableContinue {  
+  self.buyButton.enabled = YES;
+}
+
+- (void) disableContinue {
+  self.buyButton.enabled = NO;
 }
 
 #pragma mark - IBActions

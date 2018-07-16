@@ -100,8 +100,10 @@ static NSString *const kMEWDonateAddress = @"0xDECAF9CD2367cdbb726E904cD6397eDFc
         [networkModelObject addAccountsObject:accountModelObject];
         [networkModelObject.accounts setValue:@NO forKey:NSStringFromSelector(@selector(active))];
         accountModelObject.active = @YES;
+        if (words) {
+          accountModelObject.backedUp = @YES;
+        }
         [rootSavingContext MR_saveToPersistentStoreAndWait];
-        
         NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
         accountModelObject = [accountModelObject MR_inContext:context];
         dispatch_async(dispatch_get_main_queue(), ^{

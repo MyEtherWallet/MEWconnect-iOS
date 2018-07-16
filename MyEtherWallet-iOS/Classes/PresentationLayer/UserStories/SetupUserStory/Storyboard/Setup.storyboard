@@ -425,7 +425,7 @@ password</string>
                             </view>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vDv-v1-uhA" customClass="FlatButton">
                                 <rect key="frame" x="24" y="447" width="327" height="30"/>
-                                <state key="normal" title="START USING MEW CONNECT"/>
+                                <state key="normal" title="START USING MEWCONNECT"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="theme">
                                         <integer key="value" value="1"/>

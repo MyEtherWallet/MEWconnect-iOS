@@ -250,9 +250,9 @@ for MEWconnect in Settings</string>
                                         <rect key="frame" x="16" y="26" width="319" height="209"/>
                                         <string key="text">1 Go to MyEtherWallet.com on your computer and choose Send Ether and Tokens option.
 
-2 Select MEW Connect option on How would you like to access your wallet screen.
+2 Select MEWconnect option on How would you like to access your wallet screen.
 
-3 Click Access with MEW Connect and scan the QR code on the screen that will follow. </string>
+3 Click Access with MEWconnect and scan the QR code on the screen that will follow. </string>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>

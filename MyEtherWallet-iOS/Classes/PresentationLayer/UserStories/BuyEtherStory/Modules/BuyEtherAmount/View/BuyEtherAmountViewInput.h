@@ -17,4 +17,6 @@
 - (void) updateCurrency:(SimplexServiceCurrencyType)currency;
 - (void) enableContinue;
 - (void) disableContinue;
+- (void) showLoading;
+- (void) hideLoading;
 @end

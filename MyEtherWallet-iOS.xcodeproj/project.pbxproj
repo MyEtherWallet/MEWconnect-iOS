@@ -222,6 +222,7 @@
 		5677BB4220FAB28C0019E92D /* UIView+LockFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677BB4120FAB28C0019E92D /* UIView+LockFrame.m */; };
 		5677BB4820FD0A2D0019E92D /* UIScreen+ScreenSizeType.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677BB4720FD0A2D0019E92D /* UIScreen+ScreenSizeType.m */; };
 		5677BB4F20FD0C190019E92D /* UIScreen+ScreenScaleType.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677BB4E20FD0C190019E92D /* UIScreen+ScreenScaleType.m */; };
+		5677BB6020FE9FC70019E92D /* UIView+LockAlpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677BB5F20FE9FC70019E92D /* UIView+LockAlpha.m */; };
 		5685FE162099F9A4008C75A1 /* FlatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5685FE152099F9A4008C75A1 /* FlatButton.m */; };
 		5689111F20EE6511001552D4 /* SimplexPaymentQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 5689111E20EE6511001552D4 /* SimplexPaymentQuery.m */; };
 		5695A95A2B5CED358C015C0D /* DeclinedTransactionRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = DD110C7B23B316FCBDF56162 /* DeclinedTransactionRouter.m */; };
@@ -932,6 +933,8 @@
 		5677BB4720FD0A2D0019E92D /* UIScreen+ScreenSizeType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScreen+ScreenSizeType.m"; sourceTree = "<group>"; };
 		5677BB4D20FD0C190019E92D /* UIScreen+ScreenScaleType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScreen+ScreenScaleType.h"; sourceTree = "<group>"; };
 		5677BB4E20FD0C190019E92D /* UIScreen+ScreenScaleType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScreen+ScreenScaleType.m"; sourceTree = "<group>"; };
+		5677BB5E20FE9FC70019E92D /* UIView+LockAlpha.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+LockAlpha.h"; sourceTree = "<group>"; };
+		5677BB5F20FE9FC70019E92D /* UIView+LockAlpha.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+LockAlpha.m"; sourceTree = "<group>"; };
 		5685FE142099F9A4008C75A1 /* FlatButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlatButton.h; sourceTree = "<group>"; };
 		5685FE152099F9A4008C75A1 /* FlatButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlatButton.m; sourceTree = "<group>"; };
 		5689111D20EE6511001552D4 /* SimplexPaymentQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimplexPaymentQuery.h; sourceTree = "<group>"; };
@@ -3608,14 +3611,6 @@
 			path = ModuleFactoriesAssembly;
 			sourceTree = "<group>";
 		};
-		5677BB3A20FAA55F0019E92D /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				5677BB3F20FAB26C0019E92D /* UIView+LockFrame */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
 		5677BB3F20FAB26C0019E92D /* UIView+LockFrame */ = {
 			isa = PBXGroup;
 			children = (
@@ -3657,6 +3652,24 @@
 			children = (
 			);
 			path = UIDevice;
+			sourceTree = "<group>";
+		};
+		5677BB5720FE9F5C0019E92D /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				5677BB5D20FE9FB90019E92D /* UIView+LockAlpha */,
+				5677BB3F20FAB26C0019E92D /* UIView+LockFrame */,
+			);
+			path = UIView;
+			sourceTree = "<group>";
+		};
+		5677BB5D20FE9FB90019E92D /* UIView+LockAlpha */ = {
+			isa = PBXGroup;
+			children = (
+				5677BB5E20FE9FC70019E92D /* UIView+LockAlpha.h */,
+				5677BB5F20FE9FC70019E92D /* UIView+LockAlpha.m */,
+			);
+			path = "UIView+LockAlpha";
 			sourceTree = "<group>";
 		};
 		5685FE132099F996008C75A1 /* FlatButton */ = {
@@ -3955,7 +3968,6 @@
 		56A4EAAA20B8BE070042A358 /* Presentations */ = {
 			isa = PBXGroup;
 			children = (
-				5677BB3A20FAA55F0019E92D /* Helpers */,
 				56A4EAC920B8C63D0042A358 /* PresentationControllers */,
 				56A4EABA20B8C3D50042A358 /* DismissingAnimationControllers */,
 				56A4EAB720B8C3970042A358 /* PresentingAnimationControllers */,
@@ -4164,6 +4176,7 @@
 		56AC944A208FAAE000E5BC2C /* Extenstions */ = {
 			isa = PBXGroup;
 			children = (
+				5677BB5720FE9F5C0019E92D /* UIView */,
 				5677BB5020FD0D830019E92D /* UIDevice */,
 				5677BB4420FD0A150019E92D /* UIScreen */,
 				56F17AC020E23FDE0010393C /* NSBundle */,
@@ -8615,6 +8628,7 @@
 				AFDE8EED4FD1C618C0BD78A1 /* SplashPasswordAssembly.m in Sources */,
 				56C7758020DFEBB900451EEF /* InfoDestructiveTableViewCellObject.m in Sources */,
 				5021EF96AB77F0EA72FB8653 /* SplashPasswordViewController.m in Sources */,
+				5677BB6020FE9FC70019E92D /* UIView+LockAlpha.m in Sources */,
 				9B249DCA77F6F403B94E38F4 /* SplashPasswordPresenter.m in Sources */,
 				56A4EAAF20B8BE920042A358 /* TransitioningDelegateAssembly.m in Sources */,
 				64D2C7DAAAB7CCA5EE92428C /* SplashPasswordInteractor.m in Sources */,

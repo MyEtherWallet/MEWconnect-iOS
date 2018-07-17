@@ -7,12 +7,17 @@
 //
 
 @import WebRTC;
+@import UICKeyChainStore;
+
+#import "ApplicationConstants.h"
 
 #import "MyEtherWallet_iOS-Swift.h"
 
 #import "ResponseMappersFactory.h"
 #import "ServiceComponentsAssembly.h"
 #import "OperationFactoriesAssembly.h"
+#import "SystemInfrastructureAssembly.h"
+#import "PonsomizerAssembly.h"
 
 #import "MEWConnectServiceImplementation.h"
 #import "MEWRTCServiceImplementation.h"
@@ -21,10 +26,18 @@
 #import "MEWConnectFacadeImplementation.h"
 
 #import "TokensServiceImplementation.h"
-
 #import "CameraServiceImplementation.h"
+#import "BlockchainNetworkServiceImplementation.h"
+#import "AccountsServiceImplementation.h"
+#import "KeychainServiceImplementation.h"
+#import "FiatPricesServiceImplementation.h"
+#import "SimplexServiceImplementation.h"
 
 #import "OperationSchedulerImplementation.h"
+
+static NSString *const kConfigFileName          = @"ServicesConfig.plist";
+
+static NSString *const kSignallingServerURLKey  = @"API.SignallingServerURL";
 
 @implementation ServiceComponentsAssembly
 
@@ -35,7 +48,8 @@
                         configuration:^(TyphoonDefinition *definition) {
                           definition.scope = TyphoonScopeSingleton;
                           [definition injectProperty:@selector(connectService) with:[self MEWConnectService]];
-                          [definition injectProperty:@selector(walletService) with:[self MEWWallet]];
+                          [definition injectProperty:@selector(accountsService) with:[self accountsService]];
+                          [definition injectProperty:@selector(ponsomizer) with:[self.ponsomizerAssembly ponsomizer]];
                         }];
 }
 
@@ -50,7 +64,10 @@
                                                 with:[self MEWRTCService]];
                           [definition injectProperty:@selector(MEWcrypto)
                                                 with:[self MEWcrypto]];
-                          [definition injectProperty:@selector(delegate) with:[self MEWConnectFacade]];
+                          [definition injectProperty:@selector(delegate)
+                                                with:[self MEWConnectFacade]];
+                          [definition injectProperty:@selector(signallingServerURL)
+                                                with:TyphoonConfig(kSignallingServerURLKey)];
                         }];
 }
 
@@ -64,7 +81,7 @@
                         }];
 }
 
-- (id<MEWwallet>)MEWWallet {
+- (id<MEWwallet>) MEWwallet {
   return [TyphoonDefinition withClass:[MEWWalletImplementation class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(wrapper)
@@ -77,6 +94,8 @@
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(MEWcrypto)
                                                 with:[self MEWcrypto]];
+                          [definition injectProperty:@selector(keychainService)
+                                                with:[self keychainService]];
                         }];
 }
 
@@ -86,13 +105,56 @@
 
 #pragma mark - Ethereum
 
-- (id<TokensService>)tokensService {
+
+- (id<BlockchainNetworkService>) blockchainNetworkService {
+  return [TyphoonDefinition withClass:[BlockchainNetworkServiceImplementation class]
+                        configuration:^(TyphoonDefinition *definition) {
+                        }];
+}
+
+- (id <AccountsService>) accountsService {
+  return [TyphoonDefinition withClass:[AccountsServiceImplementation class]
+                        configuration:^(TyphoonDefinition *definition) {
+                          [definition injectProperty:@selector(accountsOperationFactory)
+                                                with:[self.operationFactoriesAssembly accountsOperationFactory]];
+                          [definition injectProperty:@selector(operationScheduler)
+                                                with:[self operationScheduler]];
+                          [definition injectProperty:@selector(MEWwallet)
+                                                with:[self MEWwallet]];
+                          [definition injectProperty:@selector(keychainService)
+                                                with:[self keychainService]];
+                        }];
+}
+
+- (id<TokensService>) tokensService {
   return [TyphoonDefinition withClass:[TokensServiceImplementation class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(tokensOperationFactory)
                                                 with:[self.operationFactoriesAssembly tokensOperationFactory]];
                           [definition injectProperty:@selector(operationScheduler)
                                                 with:[self operationScheduler]];
+                        }];
+}
+
+- (id<FiatPricesService>) fiatPricesService {
+  return [TyphoonDefinition withClass:[FiatPricesServiceImplementation class]
+                        configuration:^(TyphoonDefinition *definition) {
+                          [definition injectProperty:@selector(fiatPricesOperationFactory)
+                                                with:[self.operationFactoriesAssembly fiatPricesOperationFactory]];
+                          [definition injectProperty:@selector(operationScheduler)
+                                                with:[self operationScheduler]];
+                        }];
+}
+
+- (id<SimplexService>) simplexService {
+  return [TyphoonDefinition withClass:[SimplexServiceImplementation class]
+                        configuration:^(TyphoonDefinition *definition) {
+                          [definition injectProperty:@selector(simplexOperationFactory)
+                                                with:[self.operationFactoriesAssembly simplexOperationFactory]];
+                          [definition injectProperty:@selector(operationScheduler)
+                                                with:[self operationScheduler]];
+                          [definition injectProperty:@selector(keychainService)
+                                                with:[self keychainService]];
                         }];
 }
 
@@ -109,6 +171,14 @@
   }];
 }
 
+- (id<KeychainService>)keychainService {
+  return [TyphoonDefinition withClass:[KeychainServiceImplementation class]
+                        configuration:^(TyphoonDefinition *definition) {
+                          [definition injectProperty:@selector(keychainStore) with:[self keychainStore]];
+                          [definition injectProperty:@selector(dateFormatter) with:[self dateFormatter]];
+                        }];
+}
+
 #pragma mark - Helpers
 
 - (RTCPeerConnectionFactory *) peerConnectionFactory {
@@ -120,6 +190,31 @@
   return [TyphoonDefinition withClass:[OperationSchedulerImplementation class]];
 }
 
+- (UICKeyChainStore *) keychainStore {
+  return [TyphoonDefinition withClass:[UICKeyChainStore class]
+                        configuration:^(TyphoonDefinition *definition) {
+                          [definition useInitializer:@selector(keyChainStoreWithService:)
+                                          parameters:^(TyphoonMethod *initializer) {
+                                            [initializer injectParameterWith:kKeychainService];
+                                          }];
+                        }];
+}
+
+- (NSDateFormatter *) dateFormatter {
+  return [TyphoonDefinition withClass:[NSDateFormatter class]
+                        configuration:^(TyphoonDefinition *definition) {
+                          definition.scope = TyphoonScopeSingleton;
+                          [definition injectMethod:@selector(setDateFormat:)
+                                        parameters:^(TyphoonMethod *method) {
+                                          [method injectParameterWith:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
+                                        }];
+                          [definition injectMethod:@selector(setTimeZone:)
+                                        parameters:^(TyphoonMethod *method) {
+                                          [method injectParameterWith:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+                                        }];
+                        }];
+}
+
 #pragma mark - AVCapture
 
 - (AVCaptureSession *) captureSession {
@@ -128,6 +223,12 @@
 
 - (AVCaptureMetadataOutput *) captureMetadataOutput {
   return [TyphoonDefinition withClass:[AVCaptureMetadataOutput class]];
+}
+
+#pragma mark - Config
+
+- (id)configurer {
+  return [TyphoonDefinition withConfigName:kConfigFileName];
 }
 
 @end

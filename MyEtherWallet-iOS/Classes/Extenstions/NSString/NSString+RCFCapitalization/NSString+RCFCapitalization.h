@@ -6,7 +6,7 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 @interface NSString (RCFCapitalization)
 - (NSString *)rcf_decapitalizedStringSavingCase;

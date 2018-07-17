@@ -9,6 +9,9 @@
 @import Foundation;
 @import ViperMcFlurry;
 
+@class AccountPlainObject;
+
 @protocol SplashPasswordModuleInput <RamblerViperModuleInput>
-- (void) configureModule;
+- (void) configureModuleWithAccount:(AccountPlainObject *)account autoControl:(BOOL)autoControl;
+- (void) takeControlAfterLaunch;
 @end

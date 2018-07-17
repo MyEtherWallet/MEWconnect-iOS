@@ -11,6 +11,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class AccountModelObject;
+@class FiatPriceModelObject;
+
 @interface TokenModelObjectID : NSManagedObjectID {}
 @end
 
@@ -34,6 +37,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, nullable) NSString* symbol;
 
+@property (nonatomic, strong, nullable) AccountModelObject *fromAccount;
+
+@property (nonatomic, strong, nullable) FiatPriceModelObject *price;
+
 @end
 
 @interface _TokenModelObject (CoreDataGeneratedPrimitiveAccessors)
@@ -56,6 +63,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSString*)primitiveSymbol;
 - (void)setPrimitiveSymbol:(nullable NSString*)value;
 
+- (AccountModelObject*)primitiveFromAccount;
+- (void)setPrimitiveFromAccount:(AccountModelObject*)value;
+
+- (FiatPriceModelObject*)primitivePrice;
+- (void)setPrimitivePrice:(FiatPriceModelObject*)value;
+
 @end
 
 @interface TokenModelObjectAttributes: NSObject 
@@ -64,6 +77,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)decimals;
 + (NSString *)name;
 + (NSString *)symbol;
+@end
+
+@interface TokenModelObjectRelationships: NSObject
++ (NSString *)fromAccount;
++ (NSString *)price;
 @end
 
 NS_ASSUME_NONNULL_END

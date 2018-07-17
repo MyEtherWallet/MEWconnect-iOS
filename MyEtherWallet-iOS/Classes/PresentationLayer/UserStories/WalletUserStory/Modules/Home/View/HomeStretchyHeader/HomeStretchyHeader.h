@@ -24,11 +24,13 @@ typedef NS_ENUM(NSInteger, HomeStretchyHeaderSearchBarStyle) {
 @property (nonatomic, weak, readonly) CardView *cardView;
 @property (nonatomic, weak, readonly) UISearchBar *searchBar;
 @property (nonatomic, weak, readonly) UIButton *infoButton;
+@property (nonatomic, weak, readonly) UIButton *buyEtherButton;
 @property (nonatomic, weak, readonly) UILabel *titleBalanceLabel;
 @property (nonatomic) HomeStretchyHeaderSearchBarStyle searchBarStyle;
 - (void) refreshContentIfNeeded;
 - (void) updateHeightIfNeeded;
 - (void) updateTitle:(NSString *)title;
+- (void) updateTokensPrice:(NSDecimalNumber *)price;
 - (UIStatusBarStyle) preferredStatusBarStyle;
 - (instancetype)initWithFrame:(CGRect)frame delegate:(id <HomeStretchyHeaderDelegate>)delegate;
 @end

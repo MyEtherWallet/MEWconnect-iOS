@@ -10,6 +10,8 @@
 
 #import "ModuleAssemblyBase.h"
 
-@interface StartAssembly : ModuleAssemblyBase <RamblerInitialAssembly>
+@class ModuleFactoriesAssembly;
 
+@interface StartAssembly : ModuleAssemblyBase <RamblerInitialAssembly>
+@property (nonatomic, strong, readonly) ModuleFactoriesAssembly *moduleFactoriesAssembly;
 @end

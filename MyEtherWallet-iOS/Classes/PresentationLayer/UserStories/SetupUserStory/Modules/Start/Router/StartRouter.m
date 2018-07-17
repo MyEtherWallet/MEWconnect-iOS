@@ -14,7 +14,6 @@
 #import "RestoreWalletModuleInput.h"
 
 static NSString *const kStartToPasswordSegueIdentifier        = @"StartToPasswordSegueIdentifier";
-static NSString *const kStartToHomeAnimatedSegueIdentifier    = @"StartToHomeAnimatedSegueIdentifier";
 static NSString *const kStartToHomeSegueIdentifier            = @"StartToHomeSegueIdentifier";
 static NSString *const kStartToRestoreWalletSegueIdentifier   = @"StartToRestoreWalletSegueIdentifier";
 
@@ -28,12 +27,27 @@ static NSString *const kStartToRestoreWalletSegueIdentifier   = @"StartToRestore
   }];
 }
 
-- (void) openWalletWithAddress:(NSString *)address animated:(BOOL)animated {
-  NSString *segueIdentifier = animated ? kStartToHomeAnimatedSegueIdentifier : kStartToHomeSegueIdentifier;
-  [[self.transitionHandler openModuleUsingSegue:segueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<HomeModuleInput> moduleInput) {
-    [moduleInput configureModuleWithAddress:address];
-    return nil;
-  }];
+- (void) openWalletAnimated:(BOOL)animated {
+  if (animated) {
+    NSString *segueIdentifier = kStartToHomeSegueIdentifier;
+    [[self.transitionHandler openModuleUsingSegue:segueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<HomeModuleInput> moduleInput) {
+      [moduleInput configureModule];
+      return nil;
+    }];
+  } else {
+    [[self.transitionHandler openModuleUsingFactory:self.homeFactory
+                                withTransitionBlock:^(id<RamblerViperModuleTransitionHandlerProtocol> sourceModuleTransitionHandler, id<RamblerViperModuleTransitionHandlerProtocol> destinationModuleTransitionHandler) {
+                                  UIViewController *fromViewController = (UIViewController *)sourceModuleTransitionHandler;
+                                  UIViewController *toViewController = (UIViewController *)destinationModuleTransitionHandler;
+                                  
+                                  UINavigationController *navigationController = [fromViewController navigationController];
+                                  NSArray <__kindof UIViewController *> *viewControllers = [navigationController.viewControllers arrayByAddingObject:toViewController];
+                                  [navigationController setViewControllers:viewControllers animated:NO];
+                                }] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<HomeModuleInput> moduleInput) {
+                                  [moduleInput configureModule];
+                                  return nil;
+                                }];
+  }
 }
 
 - (void) openRestoreWallet {

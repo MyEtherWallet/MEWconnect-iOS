@@ -12,7 +12,10 @@
 
 #import "MEWConnectFacadeConstants.h"
 
-#import "MEWwallet.h"
+#import "AccountsService.h"
+#import "Ponsomizer.h"
+#import "AccountPlainObject.h"
+
 #import "MEWConnectService.h"
 #import "MEWConnectServiceDelegate.h"
 
@@ -47,8 +50,14 @@
 - (void) MEWConnect:(id <MEWConnectService>)mewConnect didReceiveMessage:(MEWConnectCommand *)message {
   switch (message.type) {
     case MEWConnectCommandTypeGetAddress: {
-      NSString *address = [self.walletService obtainPublicAddress];
-      MEWConnectResponse *response = [MEWConnectResponse responseForCommand:message data:address];
+      AccountModelObject *accountModelObject = [self.accountsService obtainActiveAccount];
+      
+      NSArray *ignoringProperties = @[NSStringFromSelector(@selector(backedUp)),
+                                      NSStringFromSelector(@selector(fromNetwork)),
+                                      NSStringFromSelector(@selector(price)),
+                                      NSStringFromSelector(@selector(tokens))];
+      AccountPlainObject *account = [self.ponsomizer convertObject:accountModelObject ignoringProperties:ignoringProperties];
+      MEWConnectResponse *response = [MEWConnectResponse responseForCommand:message data:account.publicAddress];
       [self.connectService sendMessage:response];
       break;
     }

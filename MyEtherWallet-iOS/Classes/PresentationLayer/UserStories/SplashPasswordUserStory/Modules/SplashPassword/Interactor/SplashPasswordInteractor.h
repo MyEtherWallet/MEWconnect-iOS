@@ -9,9 +9,11 @@
 #import "SplashPasswordInteractorInput.h"
 
 @protocol SplashPasswordInteractorOutput;
-@protocol MEWwallet;
+@protocol AccountsService;
+@protocol Ponsomizer;
 
 @interface SplashPasswordInteractor : NSObject <SplashPasswordInteractorInput>
 @property (nonatomic, weak) id <SplashPasswordInteractorOutput> output;
-@property (nonatomic, strong) id <MEWwallet> walletService;
+@property (nonatomic, strong) id <AccountsService> accountsService;
+@property (nonatomic, strong) id <Ponsomizer> ponsomizer;
 @end

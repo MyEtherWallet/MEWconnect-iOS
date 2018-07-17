@@ -66,6 +66,10 @@
 
 @dynamic symbol;
 
+@dynamic fromAccount;
+
+@dynamic price;
+
 @end
 
 @implementation TokenModelObjectAttributes 
@@ -83,6 +87,15 @@
 }
 + (NSString *)symbol {
 	return @"symbol";
+}
+@end
+
+@implementation TokenModelObjectRelationships 
++ (NSString *)fromAccount {
+	return @"fromAccount";
+}
++ (NSString *)price {
+	return @"price";
 }
 @end
 

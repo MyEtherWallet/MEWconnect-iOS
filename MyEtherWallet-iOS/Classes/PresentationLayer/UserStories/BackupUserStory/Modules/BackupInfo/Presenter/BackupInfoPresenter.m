@@ -16,7 +16,8 @@
 
 #pragma mark - BackupInfoModuleInput
 
-- (void) configureModule {
+- (void) configureModuleWithAccount:(AccountPlainObject *)account {
+  [self.interactor configurateWithAccount:account];
 }
 
 #pragma mark - BackupInfoViewOutput
@@ -26,7 +27,8 @@
 }
 
 - (void)startAction {
-  [self.router openBackupStart];
+  AccountPlainObject *account = [self.interactor obtainAccount];
+  [self.router openBackupStartWithAccount:account];
 }
 
 - (void)cancelAction {

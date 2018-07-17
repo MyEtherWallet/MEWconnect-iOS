@@ -117,6 +117,7 @@
                         <segue destination="TZ6-JA-fY1" kind="presentation" identifier="HomeToMessageSignerSegueIdentifier" id="aQG-NF-Fnb"/>
                         <segue destination="Et8-6R-zGr" kind="presentation" identifier="HomeToBackupInfoSegueIdentifier" id="gma-Fq-rkZ"/>
                         <segue destination="T20-gx-fZR" kind="presentation" identifier="HomeToInfoSegueIdentifier" id="7nn-hV-fTP"/>
+                        <segue destination="bjD-Qn-fHU" kind="presentation" identifier="HomeToBuyEtherSegueIdentifier" id="aaz-Cv-z2t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dKq-6Q-B9q" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -124,8 +125,8 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="82"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Token Balances" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ps0-jf-I1V">
-                            <rect key="frame" x="16" y="10" width="127" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tokens" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ps0-jf-I1V">
+                            <rect key="frame" x="16" y="10" width="58.5" height="21"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                             <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="deviceRGB"/>
                             <nil key="highlightedColor"/>
@@ -157,7 +158,7 @@
                 <viewControllerPlaceholder storyboardName="Confirmation" id="aal-Ks-Rc6" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="prx-aW-hm4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-43" y="281"/>
+            <point key="canvasLocation" x="-211" y="281"/>
         </scene>
         <!--Delegate-->
         <scene sceneID="UyH-q1-XEx">
@@ -249,9 +250,9 @@ for MEWconnect in Settings</string>
                                         <rect key="frame" x="16" y="26" width="319" height="209"/>
                                         <string key="text">1 Go to MyEtherWallet.com on your computer and choose Send Ether and Tokens option.
 
-2 Select MEW Connect option on How would you like to access your wallet screen.
+2 Select MEWconnect option on How would you like to access your wallet screen.
 
-3 Click Access with MEW Connect and scan the QR code on the screen that will follow. </string>
+3 Click Access with MEWconnect and scan the QR code on the screen that will follow. </string>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -387,7 +388,15 @@ with MyEtherWallet</string>
                 <viewControllerPlaceholder storyboardName="Confirmation" referencedIdentifier="MessageSignerViewController" id="TZ6-JA-fY1" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uwQ-lg-xPN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="305" y="281"/>
+            <point key="canvasLocation" x="137" y="281"/>
+        </scene>
+        <!--BuyEther-->
+        <scene sceneID="pFD-6B-yWR">
+            <objects>
+                <viewControllerPlaceholder storyboardName="BuyEther" id="bjD-Qn-fHU" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VYq-Cb-3EX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="667" y="281"/>
         </scene>
         <!--Backup-->
         <scene sceneID="KoZ-bX-bMZ">
@@ -395,7 +404,7 @@ with MyEtherWallet</string>
                 <viewControllerPlaceholder storyboardName="Backup" id="Et8-6R-zGr" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tCu-5f-aqZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="607" y="281"/>
+            <point key="canvasLocation" x="438" y="281"/>
         </scene>
         <!--Info View Controller-->
         <scene sceneID="dlA-hx-fn3">
@@ -406,7 +415,7 @@ with MyEtherWallet</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Info" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QRR-el-fva">
-                                <rect key="frame" x="24" y="76" width="327" height="48"/>
+                                <rect key="frame" x="24" y="56" width="327" height="48"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                 <color key="textColor" red="0.023529411760000001" green="0.30196078430000001" blue="0.83921568629999999" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
@@ -421,13 +430,14 @@ with MyEtherWallet</string>
                                     <userDefinedRuntimeAttribute type="number" keyPath="theme">
                                         <integer key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="compact" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="closeAction:" destination="T20-gx-fZR" eventType="touchUpInside" id="0Am-JA-r7G"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="btJ-B1-EnL">
-                                <rect key="frame" x="0.0" y="124" width="375" height="463"/>
+                                <rect key="frame" x="0.0" y="104" width="375" height="483"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="DWC-iX-mxL">
@@ -467,7 +477,7 @@ with MyEtherWallet</string>
                             <constraint firstItem="qzh-ol-sLS" firstAttribute="trailing" secondItem="btJ-B1-EnL" secondAttribute="trailing" id="Ke2-T1-CAN"/>
                             <constraint firstItem="btJ-B1-EnL" firstAttribute="top" secondItem="QRR-el-fva" secondAttribute="bottom" id="Krg-cs-r4G"/>
                             <constraint firstItem="QRR-el-fva" firstAttribute="leading" secondItem="qzh-ol-sLS" secondAttribute="leading" constant="24" id="LVW-B5-sJZ"/>
-                            <constraint firstItem="QRR-el-fva" firstAttribute="top" secondItem="qzh-ol-sLS" secondAttribute="top" constant="56" id="P52-ar-G8D"/>
+                            <constraint firstItem="QRR-el-fva" firstAttribute="top" secondItem="tam-fP-WU1" secondAttribute="top" constant="56" id="P52-ar-G8D"/>
                             <constraint firstItem="7nl-N6-4xZ" firstAttribute="top" secondItem="btJ-B1-EnL" secondAttribute="bottom" id="dmG-Xx-d1v"/>
                             <constraint firstItem="btJ-B1-EnL" firstAttribute="leading" secondItem="qzh-ol-sLS" secondAttribute="leading" id="fLe-WH-6JH"/>
                             <constraint firstItem="7nl-N6-4xZ" firstAttribute="leading" secondItem="QRR-el-fva" secondAttribute="leading" id="opI-Im-Mpm"/>
@@ -480,6 +490,7 @@ with MyEtherWallet</string>
                         <outlet property="tableView" destination="btJ-B1-EnL" id="AB1-s8-okh"/>
                         <outlet property="versionLabel" destination="G89-d1-aMk" id="cJJ-Jk-VBP"/>
                         <segue destination="ySg-Me-ph6" kind="unwind" identifier="InfoToStartUnwindSegueIdentifier" unwindAction="unwindToStart:" id="lBp-SS-UPN"/>
+                        <segue destination="ySg-Me-ph6" kind="unwind" identifier="InfoToHomeUnwindSegueIdentifier" unwindAction="unwindToHome:" id="pDA-fb-PhX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lwe-by-bLp" userLabel="First Responder" sceneMemberID="firstResponder"/>

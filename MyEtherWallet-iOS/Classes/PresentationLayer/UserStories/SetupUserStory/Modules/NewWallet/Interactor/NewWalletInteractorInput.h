@@ -9,6 +9,5 @@
 @import Foundation;
 
 @protocol NewWalletInteractorInput <NSObject>
-- (NSString *) obtainWalletAddress;
 - (void) createNewWalletWithPassword:(NSString *)password words:(NSArray <NSString *> *)words;
 @end

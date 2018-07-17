@@ -84,12 +84,11 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
       [self.connectionId length] == 0 || [self.privateKey length] == 0) {
     return NO;
   }
-  NSURL *url = [NSURL URLWithString:MEWConnectServiceSignallingServerURL];
-  if (!url) {
+  if (!self.signallingServerURL) {
     return NO;
   }
   [self.MEWcrypto configurateWithConnectionPrivateKey:[self.privateKey parseHexData]];
-  self.socketManager = [[SocketManager alloc] initWithSocketURL:url config:[self _socketConfig]];
+  self.socketManager = [[SocketManager alloc] initWithSocketURL:self.signallingServerURL config:[self _socketConfig]];
   SocketIOClient *client = [self.socketManager defaultSocket];
   [self _defineSignalsWithSocketClient:client];
   [client connect];
@@ -98,7 +97,7 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
   return YES;
 }
 
-- (void)disconnect {
+- (void) disconnect {
   self.connectionStatus = MEWConnectStatusDisconnected;
   [self.rtcService disconnect];
   [self.socketManager disconnect];

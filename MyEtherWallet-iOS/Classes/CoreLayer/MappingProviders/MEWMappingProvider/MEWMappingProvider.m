@@ -16,6 +16,7 @@
 #import "MEWConnectResponse.h"
 
 @implementation MEWMappingProvider
+
 - (EKObjectMapping *)mappingForModelClass:(Class)modelClass {
   NSString *objectModelStringName = NSStringFromClass(modelClass);
   NSString *mappingName = [NSString stringWithFormat:@"%@Mapping", objectModelStringName];

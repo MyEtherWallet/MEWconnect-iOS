@@ -5,7 +5,10 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
+
+@class AccountPlainObject;
+@class FiatPricePlainObject;
 
 @interface _TokenPlainObject : NSObject <NSCoding, NSCopying>
 
@@ -14,5 +17,9 @@
 @property (nonatomic, copy, readwrite) NSNumber *decimals;
 @property (nonatomic, copy, readwrite) NSString *name;
 @property (nonatomic, copy, readwrite) NSString *symbol;
+
+@property (nonatomic, copy, readwrite) AccountPlainObject *fromAccount;
+
+@property (nonatomic, copy, readwrite) FiatPricePlainObject *price;
 
 @end

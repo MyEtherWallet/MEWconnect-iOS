@@ -9,6 +9,7 @@
 @import ViperMcFlurry;
 
 #import "TransitioningDelegateFactory.h"
+#import "ServiceComponents.h"
 
 #import "ForgotPasswordAssembly.h"
 
@@ -38,6 +39,8 @@
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(output)
                                                 with:[self presenterForgotPassword]];
+                          [definition injectProperty:@selector(accountsService)
+                                                with:[self.serviceComponents accountsService]];
                         }];
 }
 

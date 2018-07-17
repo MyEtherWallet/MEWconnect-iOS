@@ -11,8 +11,6 @@
 
 #import "MyEtherWallet_iOS-Swift.h"
 
-#import "ApplicationConstants.h"
-
 #import "UIImage+Color.h"
 #import "UIColor+Hex.h"
 #import "UIColor+Application.h"
@@ -21,11 +19,14 @@
 #import "BordlessNavigationBar.h"
 #import "BackupConfirmationSegmentedControl.h"
 
+#import "KeychainService.h"
+
 #import "ApplicationConfiguratorImplementation.h"
 
 @implementation ApplicationConfiguratorImplementation
 
 - (void)configureInitialSettings {
+  [self.keychainService saveFirstLaunchDate];
 }
 
 - (void)configurateAppearance {
@@ -38,8 +39,10 @@
   [[PasswordTextField appearance] setTintColor:[UIColor whiteColor]];
   
   /* Bordless navigation bar */
+  UIImage *clearImage = [UIImage imageWithColor:[UIColor clearColor]];
   [[BordlessNavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
   [BordlessNavigationBar appearance].tintColor = [UIColor mainApplicationColor];
+  [[BordlessNavigationBar appearance] setBackgroundImage:clearImage forBarMetrics:UIBarMetricsDefault];
   
   /* Bar buttons */
   NSDictionary *normalTextAttributes = @{NSForegroundColorAttributeName: [UIColor barButtonColorForState:UIControlStateNormal]};
@@ -97,42 +100,8 @@
     [[BackupConfirmationSegmentedControl appearance] setContentPositionAdjustment:UIOffsetMake(-6.0, 0.0) forSegmentType:UISegmentedControlSegmentLeft barMetrics:UIBarMetricsDefault];
     [[BackupConfirmationSegmentedControl appearance] setContentPositionAdjustment:UIOffsetMake(6.0, 0.0) forSegmentType:UISegmentedControlSegmentRight barMetrics:UIBarMetricsDefault];
   }
-}
-
-#pragma mark - Core Data
-
-- (void)setupCoreDataStack {
-  if ([self shouldMigrateCoreData]) {
-    [self migrateStore];
-  } else {
-    NSURL *directory = [self.fileManager containerURLForSecurityApplicationGroupIdentifier:kAppGroupIdentifier];
-    NSURL *storeURL = [directory URLByAppendingPathComponent:kCoreDataName];
-    [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreAtURL:storeURL];
-  }
-}
-
-- (BOOL)shouldMigrateCoreData {
-  NSString *oldStoreName = [MagicalRecord defaultStoreName];
-  return [[NSFileManager defaultManager] fileExistsAtPath:oldStoreName];
-}
-
-- (void)migrateStore {
-  NSString *oldStoreName = [MagicalRecord defaultStoreName];
-  NSPersistentStoreCoordinator *coordinator = [NSPersistentStoreCoordinator MR_coordinatorWithSqliteStoreNamed:oldStoreName];
-  // grab the current store
-  NSPersistentStore *currentStore = coordinator.persistentStores.lastObject;
-  // create a new URL
-  NSURL *directory = [self.fileManager containerURLForSecurityApplicationGroupIdentifier:kAppGroupIdentifier];
-  NSURL *newStoreURL = [directory URLByAppendingPathComponent:kCoreDataName];
-  
-  NSDictionary *storeOptions = @{NSPersistentStoreFileProtectionKey: NSFileProtectionComplete};
-  // migrate current store to new URL
-  [coordinator migratePersistentStore:currentStore
-                                toURL:newStoreURL
-                              options:storeOptions
-                             withType:NSSQLiteStoreType
-                                error:nil];
-  [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreAtURL:newStoreURL];
+  /* Toolbar Buttons */
+  [UIBarButtonItem appearance].tintColor = [UIColor mainApplicationColor];
 }
 
 @end

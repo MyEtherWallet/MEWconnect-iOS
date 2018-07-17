@@ -10,7 +10,8 @@
 
 #import "ApplicationHelperAssembly.h"
 #import "SystemInfrastructureAssembly.h"
-#import "StoryboardAssembly.h"
+#import "StoryboardsAssembly.h"
+#import "PonsomizerAssembly.h"
 
 #import "ServiceComponents.h"
 
@@ -18,6 +19,7 @@
 #import "CleanLaunchRouter.h"
 #import "ApplicationConfiguratorImplementation.h"
 #import "ThirdPartiesConfiguratorImplementation.h"
+#import "CoreDataConfiguratorImplementation.h"
 
 #import "ApplicationAssembly.h"
 
@@ -28,9 +30,7 @@
                         configuration:^(TyphoonDefinition *definition){
                           [definition injectMethod:@selector(addAppDelegates:)
                                         parameters:^(TyphoonMethod *method) {
-                                          [method injectParameterWith:@[
-                                                                        [self cleanStartAppDelegate]
-                                                                        ]
+                                          [method injectParameterWith:@[[self cleanStartAppDelegate]]
                                            ];
                                         }];
                           definition.scope = TyphoonScopeSingleton;
@@ -46,21 +46,32 @@
                                                 with:[self thirdPartiesConfigurator]];
                           [definition injectProperty:@selector(cleanStartRouter)
                                                 with:[self cleanStartRouter]];
-                          
+                          [definition injectProperty:@selector(coreDataConfigurator)
+                                                with:[self coreDataConfigurator]];
                           definition.scope = TyphoonScopeSingleton;
                         }];
 }
 
-- (id <ApplicationConfigurator>)applicationConfigurator {
+- (id <ApplicationConfigurator>) applicationConfigurator {
   return [TyphoonDefinition withClass:[ApplicationConfiguratorImplementation class]
                         configuration:^(TyphoonDefinition *definition) {
-                          [definition injectProperty:@selector(fileManager)
-                                                with:[self.systemInfrastructureAssembly fileManager]];
+                          [definition injectProperty:@selector(keychainService)
+                                                with:[self.serviceComponents keychainService]];
                         }];
 }
 
-- (id <ThirdPartiesConfigurator>)thirdPartiesConfigurator {
+- (id <ThirdPartiesConfigurator>) thirdPartiesConfigurator {
   return [TyphoonDefinition withClass:[ThirdPartiesConfiguratorImplementation class]];
+}
+
+- (id <CoreDataConfigurator>) coreDataConfigurator {
+  return [TyphoonDefinition withClass:[CoreDataConfiguratorImplementation class]
+                        configuration:^(TyphoonDefinition *definition) {
+                          [definition injectProperty:@selector(fileManager)
+                                                with:[self.systemInfrastructureAssembly fileManager]];
+                          [definition injectProperty:@selector(keychainService)
+                                                with:[self.serviceComponents keychainService]];
+                        }];
 }
 
 #pragma mark - StartUpSystem
@@ -73,10 +84,14 @@
                                             [initializer injectParameterWith:[self.applicationHelperAssembly navigationControllerFactory]];
                                             [initializer injectParameterWith:[self.systemInfrastructureAssembly mainWindow]];
                                           }];
-                          [definition injectProperty:@selector(walletService)
-                                                with:[self.serviceComponents MEWWallet]];
+                          [definition injectProperty:@selector(accountsService)
+                                                with:[self.serviceComponents accountsService]];
+                          [definition injectProperty:@selector(ponsomizer)
+                                                with:[self.ponsomizerAssembly ponsomizer]];
                           [definition injectProperty:@selector(passwordStoryboard)
                                                 with:[self.storyboardAssembly splashPasswordStoryboard]];
+                          [definition injectProperty:@selector(launchStoryboard)
+                                                with:[self.storyboardAssembly launchStoryboard]];
                         }];
 }
 

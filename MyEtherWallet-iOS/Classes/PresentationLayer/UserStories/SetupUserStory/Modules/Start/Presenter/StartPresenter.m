@@ -12,15 +12,17 @@
 #import "StartInteractorInput.h"
 #import "StartRouterInput.h"
 
-@implementation StartPresenter
+@implementation StartPresenter {
+  BOOL _shouldOpenWallet;
+}
 
 #pragma mark - StartModuleInput
 
 - (void) configureModule {
 }
 
-- (void) configurateForCreatedWalletWithAddress:(NSString *)address {
-  [self.router openWalletWithAddress:address animated:NO];
+- (void) configurateForCreatedWallet {
+  _shouldOpenWallet = YES;
 }
 
 #pragma mark - StartViewOutput
@@ -29,7 +31,14 @@
 	[self.view setupInitialState];
 }
 
-- (void)createNewWalletAction {
+- (void) didTriggerViewWillAppearEvent {
+  if (_shouldOpenWallet) {
+    _shouldOpenWallet = NO;
+    [self.router openWalletAnimated:NO];
+  }
+}
+
+- (void) createNewWalletAction {
   [self.router openCreateNewWallet];
 }
 

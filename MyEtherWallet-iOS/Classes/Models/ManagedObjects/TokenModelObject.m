@@ -8,6 +8,4 @@
 
 @implementation TokenModelObject
 
-// Custom logic goes here.
-
 @end

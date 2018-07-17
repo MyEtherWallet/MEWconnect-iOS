@@ -11,12 +11,17 @@
 #import "NewWalletViewOutput.h"
 
 #import "TypingAnimationLabel.h"
+
 #import "UIColor+Application.h"
 #import "UIColor+Hex.h"
+#import "UIScreen+ScreenSizeType.h"
 
 @interface NewWalletViewController () <TypingAnimationLabelDelegate>
 @property (nonatomic, weak) IBOutlet TypingAnimationLabel *typingLabel;
 @property (nonatomic, weak) IBOutlet UIButton *startUsingButton;
+
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *helperViewHeightConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *startUsingCenterYConstraint;
 @end
 
 @implementation NewWalletViewController {
@@ -46,6 +51,10 @@
 #pragma mark - NewWalletViewInput
 
 - (void) setupInitialState {
+  if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+    self.helperViewHeightConstraint.constant = 201.0;
+    self.startUsingCenterYConstraint.constant = -24.0;
+  }
   NSMutableArray *texts = [[NSMutableArray alloc] init];
   { //Prepare texts
     { //Generating your Ethereum address
@@ -102,10 +111,12 @@
   NSRange range = [string rangeOfString:focus];
   if (range.location != NSNotFound) {
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor mainApplicationColor] range:range];
-    [attributedString.mutableString replaceOccurrencesOfString:@" "
-                                                    withString:@"\u00a0" //Non-breaking space
-                                                       options:0
-                                                         range:range];
+    if ([UIScreen mainScreen].screenSizeType != ScreenSizeTypeInches40) {
+      [attributedString.mutableString replaceOccurrencesOfString:@" "
+                                                      withString:@"\u00a0" //Non-breaking space
+                                                         options:0
+                                                           range:range];
+    }
   }
   {
     [attributedString addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, [attributedString length])];

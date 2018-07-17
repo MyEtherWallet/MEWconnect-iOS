@@ -21,16 +21,16 @@ static NSString *const kBackupStartToBackupWordsSegueIdentifier = @"BackupStartT
 
 #pragma mark - BackupStartRouterInput
 
-- (void) openSplashPasswordWithOutput:(id <SplashPasswordModuleOutput>)output {
+- (void) openSplashPasswordWithOutput:(id <SplashPasswordModuleOutput>)output account:(AccountPlainObject *)account {
   [[self.transitionHandler openModuleUsingSegue:kBackupStartToSplashPasswordSegueIdentifier] thenChainUsingBlock:^id<SplashPasswordModuleOutput>(id<SplashPasswordModuleInput> moduleInput) {
-    [moduleInput configureModule];
+    [moduleInput configureModuleWithAccount:account autoControl:YES];
     return output;
   }];
 }
 
-- (void) openWordsWithMnemonics:(NSArray<NSString *> *)mnemonics {
+- (void) openWordsWithMnemonics:(NSArray<NSString *> *)mnemonics account:(AccountPlainObject *)account {
   [[self.transitionHandler openModuleUsingSegue:kBackupStartToBackupWordsSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<BackupWordsModuleInput> moduleInput) {
-    [moduleInput configureModuleWithMnemonics:mnemonics];
+    [moduleInput configureModuleWithMnemonics:mnemonics account:account];
     return nil;
   }];
 }

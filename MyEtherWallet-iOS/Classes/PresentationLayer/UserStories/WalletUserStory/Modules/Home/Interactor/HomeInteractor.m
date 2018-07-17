@@ -14,19 +14,23 @@
 
 #import "MEWConnectFacade.h"
 #import "MEWConnectFacadeConstants.h"
-#import "MEWwallet.h"
 #import "MEWConnectCommand.h"
 #import "Ponsomizer.h"
+#import "BlockchainNetworkService.h"
+#import "AccountsService.h"
+#import "FiatPricesService.h"
 
 #import "CacheRequest.h"
 #import "CacheTracker.h"
 
+#import "NetworkPlainObject.h"
+#import "AccountPlainObject.h"
 #import "TokenModelObject.h"
 
 #import "HomeInteractorOutput.h"
 
 @interface HomeInteractor ()
-@property (nonatomic, strong) NSString *address;
+@property (nonatomic, strong) AccountPlainObject *account;
 @end
 
 @implementation HomeInteractor
@@ -37,48 +41,66 @@
 
 #pragma mark - HomeInteractorInput
 
-- (void) configurateWithAddress:(NSString *)address {
-  self.address = address;
-  CacheRequest *request = [CacheRequest requestWithPredicate:[NSPredicate predicateWithFormat:@"SELF.address != nil"]
-                                             sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(name)) ascending:YES]]
-                                                 objectClass:[TokenModelObject class]
-                                                 filterValue:nil];
-  [self.cacheTracker setupWithCacheRequest:request];
-  CacheTransactionBatch *initialBatch = [self.cacheTracker obtainTransactionBatchFromCurrentCache];
-  [self.output didProcessCacheTransaction:initialBatch];
+- (void) configurate {
+  if (!self.account) {
+    [self refreshAccount];
+  }
+  [self _reloadCacheRequest];
+  [self reloadData];
 }
 
 - (void)reloadData {
-  if (!self.address) {
+  if (!self.account) {
+    [self refreshAccount];
     return;
   }
   @weakify(self);
-  [self.tokensService updateTokenBalancesForAddress:self.address
+  [self.accountService updateBalanceForAccount:self.account
+                                withCompletion:^(NSError *error) {
+                                  if (!error) {
+                                    @strongify(self);
+                                    [self.output didUpdateEthereumBalance];
+                                    [self.fiatPricesService updatePriceForEthereumWithCompletion:^(NSError *error) {
+                                      [self refreshAccount];
+                                      [self.output didUpdateEthereumBalance];
+                                    }];
+                                  }
+                                }];
+  [self.tokensService updateTokenBalancesForAccount:self.account
                                      withCompletion:^(NSError *error) {
                                        if (!error) {
                                          @strongify(self);
                                          [self.output didUpdateTokens];
+                                         [self.fiatPricesService updatePricesForTokensWithCompletion:^(NSError *error) {
+                                           [self.output didUpdateTokensBalance];
+                                         }];
                                        }
                                      }];
-  [self.tokensService updateEthereumBalanceForAddress:self.address
-                                       withCompletion:^(NSError *error) {
-                                         if (!error) {
-                                           @strongify(self);
-                                           [self.output didUpdateEthereumBalance];
-                                         }
-                                       }];
 }
 
-- (NSString *) obtainAddress {
-  return self.address;
+- (void) refreshAccount {
+  AccountModelObject *accountModelObject = [self.accountService obtainActiveAccount];
+  NSArray *ignoringProperties = @[NSStringFromSelector(@selector(tokens)),
+                                  NSStringFromSelector(@selector(active)),
+                                  NSStringFromSelector(@selector(accounts))];
+  AccountPlainObject *account = [self.ponsomizer convertObject:accountModelObject ignoringProperties:ignoringProperties];
+  BOOL refreshCacheRequest = self.account && ![account isEqualToAccount:self.account];
+  self.account = account;
+  if (refreshCacheRequest) {
+    [self _reloadCacheRequest];
+  }
+}
+
+- (AccountPlainObject *) obtainAccount {
+  return self.account;
 }
 
 - (NSUInteger) obtainNumberOfTokens {
-  return [self.tokensService obtainNumberOfTokens];
+  return [self.tokensService obtainNumberOfTokensForAccount:self.account];
 }
 
-- (BOOL) obtainBackupStatus {
-  return [self.walletService isBackedUp];
+- (NSDecimalNumber *) obtainTotalPriceOfTokens {
+  return [self.tokensService obtainTokensTotalPriceForAccount:self.account];
 }
 
 - (void)subscribe {
@@ -111,13 +133,8 @@
   return [self.connectFacade connectionStatus] == MEWConnectStatusConnected;
 }
 
-- (TokenPlainObject *)obtainEthereum {
-  TokenModelObject *ethereumModel = [self.tokensService obtainEthereum];
-  if (ethereumModel) {
-    TokenPlainObject *ethereum = [self.ponsomizer convertObject:ethereumModel];
-    return ethereum;
-  }
-  return nil;
+- (NSArray *) shareActivityItems {
+  return @[self.account.publicAddress];
 }
 
 #pragma mark - Notifications
@@ -138,7 +155,7 @@
       break;
     }
     case MEWConnectCommandTypeSignTransaction: {
-      [self.output openTransactionSignerWithMessage:command];
+      [self.output openTransactionSignerWithMessage:command account:self.account];
       break;
     }
       
@@ -151,6 +168,18 @@
 
 - (void) didProcessTransactionBatch:(CacheTransactionBatch *)transactionBatch {
   [self.output didProcessCacheTransaction:transactionBatch];
+}
+
+#pragma mark - Private
+
+- (void) _reloadCacheRequest {
+  CacheRequest *request = [CacheRequest requestWithPredicate:[NSPredicate predicateWithFormat:@"SELF.fromAccount.publicAddress == %@", self.account.publicAddress]
+                                             sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(name)) ascending:YES]]
+                                                 objectClass:[TokenModelObject class]
+                                                 filterValue:nil];
+  [self.cacheTracker setupWithCacheRequest:request];
+  CacheTransactionBatch *initialBatch = [self.cacheTracker obtainTransactionBatchFromCurrentCache];
+  [self.output didProcessCacheTransaction:initialBatch];
 }
 
 @end

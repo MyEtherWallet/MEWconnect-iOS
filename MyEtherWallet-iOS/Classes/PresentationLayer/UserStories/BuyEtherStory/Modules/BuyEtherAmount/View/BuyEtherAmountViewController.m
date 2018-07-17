@@ -18,6 +18,8 @@
 #import "NSNumberFormatter+USD.h"
 #import "NSNumberFormatter+Ethereum.h"
 
+#import "UIScreen+ScreenSizeType.h"
+
 @interface BuyEtherAmountViewController ()
 @property (nonatomic, weak) IBOutlet UILabel *amountLabel;
 @property (nonatomic, weak) IBOutlet UILabel *amountCurrencyLabel;
@@ -25,6 +27,10 @@
 @property (nonatomic, weak) IBOutlet UIButton *switchCurrencyButton;
 @property (nonatomic, weak) IBOutlet UIButton *separatorButton;
 @property (nonatomic, weak) IBOutlet UIButton *buyButton;
+@property (nonatomic, strong) IBOutletCollection(UIButton) NSArray <UIButton *> *keypadButtons;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *amountTopOffsetConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *keypadToContainerTopOffsetConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *buttonBottomOffsetConstraint;
 @end
 
 @implementation BuyEtherAmountViewController {
@@ -49,6 +55,11 @@
 #pragma mark - BuyEtherAmountViewInput
 
 - (void) setupInitialStateWithCurrency:(SimplexServiceCurrencyType)currency minimumAmount:(NSDecimalNumber *)minimumAmount {
+  if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+    self.amountTopOffsetConstraint.constant = -4.0;
+    self.keypadToContainerTopOffsetConstraint.constant = 17.0;
+    self.buttonBottomOffsetConstraint.constant = 22.0;
+  }
   _currency = currency;
   self.amountCurrencyLabel.text = NSStringFromSimplexServiceCurrencyType(currency);
   
@@ -66,6 +77,13 @@
                                   [usdFormatter stringFromNumber:minimumAmount]];
   [self.buyButton setTitle:minimumAmountTitle forState:UIControlStateDisabled];
   self.buyButton.enabled = NO;
+  
+  if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches55) {
+    UIFont *font = [UIFont systemFontOfSize:25.0 weight:UIFontWeightRegular];
+    for (UIButton *keypadButton in self.keypadButtons) {
+      keypadButton.titleLabel.font = font;
+    }
+  }
 }
 
 - (void) updateWithEnteredAmount:(NSString *)enteredAmount convertedAmount:(NSDecimalNumber *)convertedAmount {

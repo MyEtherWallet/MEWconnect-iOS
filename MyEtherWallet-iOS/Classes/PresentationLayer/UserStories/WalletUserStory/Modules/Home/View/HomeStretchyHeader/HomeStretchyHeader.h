@@ -32,7 +32,7 @@ typedef NS_ENUM(NSInteger, HomeStretchyHeaderSearchBarStyle) {
 - (void) updateTitle:(NSString *)title;
 - (void) updateTokensPrice:(NSDecimalNumber *)price;
 - (UIStatusBarStyle) preferredStatusBarStyle;
-- (instancetype)initWithFrame:(CGRect)frame delegate:(id <HomeStretchyHeaderDelegate>)delegate;
+- (instancetype) initWithFrame:(CGRect)frame delegate:(id <HomeStretchyHeaderDelegate>)delegate;
 @end
 
 @protocol HomeStretchyHeaderDelegate <NSObject>

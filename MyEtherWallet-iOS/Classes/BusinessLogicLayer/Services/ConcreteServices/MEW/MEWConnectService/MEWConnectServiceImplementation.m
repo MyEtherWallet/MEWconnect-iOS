@@ -379,9 +379,18 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
 - (void) MEWRTCService:(id<MEWRTCService>)rtcService didReceiveMessage:(NSDictionary *)message {
   MEWcryptoMessage *cryptoMessage = [MEWcryptoMessage messageWithRepresentation:message];
   NSData *decryptedMessage = [self.MEWcrypto decryptMessage:cryptoMessage];
-  message = [NSJSONSerialization JSONObjectWithData:decryptedMessage
-                                            options:0
-                                              error:nil];
+  if (!decryptedMessage) {
+    return;
+  }
+  @try {
+    message = [NSJSONSerialization JSONObjectWithData:decryptedMessage
+                                              options:0
+                                                error:nil];
+  }
+  @catch (NSException *exception) {
+    DDLogError(@"MEWRTC. Received message, but can't parse: %@", [exception reason]);
+    return;
+  }
 #if DEBUG_ANYSIGNAL
   DDLogVerbose(@"MESSAGE: %@", message);
 #endif

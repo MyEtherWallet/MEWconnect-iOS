@@ -57,7 +57,11 @@
 
 - (UIView *) presentingSnapshot {
   if (!_presentingSnapshot) {
-    _presentingSnapshot = [self.presentingViewController.view snapshotViewAfterScreenUpdates:NO];
+    UIView *viewForSnapshot = self.presentingViewController.view;
+    if (self.presentingViewController.presentationController.containerView != nil) {
+      viewForSnapshot = self.presentingViewController.presentationController.containerView;
+    }
+    _presentingSnapshot = [viewForSnapshot snapshotViewAfterScreenUpdates:NO];
     _presentingSnapshot.translatesAutoresizingMaskIntoConstraints = NO;
   }
   return _presentingSnapshot;

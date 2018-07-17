@@ -14,9 +14,12 @@
 
 #import "UIColor+Application.h"
 
+#import "UIScreen+ScreenSizeType.h"
+
 @interface DeclinedTransactionViewController () <LinkedLabelDelegate>
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) IBOutlet LinkedLabel *descriptionLabel;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *titleTopOffsetConstraint;
 @end
 
 @implementation DeclinedTransactionViewController
@@ -29,9 +32,16 @@
 	[self.output didTriggerViewReadyEvent];
 }
 
+- (UIStatusBarStyle) preferredStatusBarStyle {
+  return UIStatusBarStyleLightContent;
+}
+
 #pragma mark - DeclinedTransactionViewInput
 
 - (void) setupInitialState {
+  if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+    self.titleTopOffsetConstraint.constant = 24.0;
+  }
   { //Title label
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
     style.lineSpacing = 0.0;

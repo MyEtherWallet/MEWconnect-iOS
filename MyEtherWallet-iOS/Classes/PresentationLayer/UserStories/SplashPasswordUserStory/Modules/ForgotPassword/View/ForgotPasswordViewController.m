@@ -13,10 +13,14 @@
 #import "ForgotPasswordViewOutput.h"
 
 #import "UIView+LockFrame.h"
+#import "UIScreen+ScreenSizeType.h"
 
 @interface ForgotPasswordViewController ()
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) IBOutlet UILabel *descriptionLabel;
+
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *titleLabelTopYOffsetConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *titleToDescriptionLabelYOffsetConstraint;
 @end
 
 @implementation ForgotPasswordViewController
@@ -42,6 +46,10 @@
 #pragma mark - ForgotPasswordViewInput
 
 - (void) setupInitialState {
+  if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+    self.titleLabelTopYOffsetConstraint.constant = 52.0;
+    self.titleToDescriptionLabelYOffsetConstraint.constant = 15.0;
+  }
   { //Title label
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
     style.lineSpacing = 0.0;

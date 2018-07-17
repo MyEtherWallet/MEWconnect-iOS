@@ -13,7 +13,5 @@
 @protocol TransactionViewOutput;
 
 @interface TransactionViewController : UIViewController <TransactionViewInput>
-
-@property (nonatomic, strong) id<TransactionViewOutput> output;
-
+@property (nonatomic, strong) id <TransactionViewOutput> output;
 @end

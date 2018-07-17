@@ -23,7 +23,7 @@
 
 static NSString *const FiatPricesEthereumSymbol = @"ETH";
 
-#define DEBUG_PRICES 1
+#define DEBUG_PRICES 0
 #if !DEBUG
 #undef DEBUG_PRICES
 #define DEBUG_PRICES 0

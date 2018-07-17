@@ -8,12 +8,24 @@
 
 #import "BackupConfirmationSegmentedControl.h"
 
-static CGFloat const kBackupConfirmationSegmenteControlHeight = 56.0;
+static CGFloat const kBackupConfirmationSegmentedControlHeight        = 56.0;
+static CGFloat const kBackupConfirmationSegmentedControlCompactHeight = 44.0;
 
 @implementation BackupConfirmationSegmentedControl
 
+- (void)setCompact:(BOOL)compact {
+  if (_compact != compact) {
+    _compact = compact;
+    [self invalidateIntrinsicContentSize];
+  }
+}
+
 - (CGSize)intrinsicContentSize {
-  return CGSizeMake(UIViewNoIntrinsicMetric, kBackupConfirmationSegmenteControlHeight);
+  CGFloat height = kBackupConfirmationSegmentedControlHeight;
+  if (self.compact) {
+    height = kBackupConfirmationSegmentedControlCompactHeight;
+  }
+  return CGSizeMake(UIViewNoIntrinsicMetric, height);
 }
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {

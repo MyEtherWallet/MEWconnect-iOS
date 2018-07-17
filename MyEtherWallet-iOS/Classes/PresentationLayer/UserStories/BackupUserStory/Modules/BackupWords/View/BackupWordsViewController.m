@@ -12,6 +12,7 @@
 
 #import "UIColor+Application.h"
 #import "UIColor+Hex.h"
+#import "UIScreen+ScreenSizeType.h"
 
 @interface BackupWordsViewController ()
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
@@ -20,6 +21,18 @@
 @property (nonatomic, weak) IBOutlet UILabel *wordsPart1Label;
 @property (nonatomic, weak) IBOutlet UILabel *wordsPart2Label;
 @property (nonatomic, weak) IBOutlet UILabel *bewareLabel;
+
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *titleToContentYOffsetConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *descriptionToWordsContainerYOffsetConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *wordsContainerLeftOffsetConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *wordsContainerRightOffsetConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *wordsPart1LeftOffsetConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *wordsPart2LeftOffsetConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *wordsTopOffsetConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *wordsBottomOffsetConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *wordsContainerToBewareYOffsetConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *bewareLeftOffsetConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *bewareRightOffsetConstraint;
 @end
 
 @implementation BackupWordsViewController
@@ -51,6 +64,19 @@
 #pragma mark - BackupWordsViewInput
 
 - (void) setupInitialStateWithWords:(NSArray<NSString *> *)words {
+  if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+    self.titleToContentYOffsetConstraint.constant = 15.0;
+    self.descriptionToWordsContainerYOffsetConstraint.constant = 11.0;
+    self.wordsContainerLeftOffsetConstraint.constant = 14.0;
+    self.wordsContainerRightOffsetConstraint.constant = 13.0;
+    self.wordsPart1LeftOffsetConstraint.constant = 21.0;
+    self.wordsPart2LeftOffsetConstraint.constant = 21.0;
+    self.wordsTopOffsetConstraint.constant = 14.0;;
+    self.wordsBottomOffsetConstraint.constant = 15.0;
+    self.wordsContainerToBewareYOffsetConstraint.constant = 10.0;
+    self.bewareLeftOffsetConstraint.constant = -4.0;
+    self.bewareRightOffsetConstraint.constant = 4.0;
+  }
   { //Words containter shadow
     self.wordsContrainterView.layer.cornerRadius = 10.0;
     self.wordsContrainterView.layer.shadowOffset = CGSizeMake(0.0, 10.0);
@@ -61,9 +87,16 @@
   { //Title label
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
     style.lineSpacing = 0.0;
-    style.maximumLineHeight = 40.0;
-    style.minimumLineHeight = 40.0;
-    NSDictionary *attributes = @{NSFontAttributeName: self.titleLabel.font,
+    UIFont *font = self.titleLabel.font;
+    if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+      font = [font fontWithSize:36.0];
+      style.maximumLineHeight = 36.0;
+      style.minimumLineHeight = 36.0;
+    } else {
+      style.maximumLineHeight = 40.0;
+      style.minimumLineHeight = 40.0;
+    }
+    NSDictionary *attributes = @{NSFontAttributeName: font,
                                  NSForegroundColorAttributeName: self.titleLabel.textColor,
                                  NSParagraphStyleAttributeName: style,
                                  NSKernAttributeName: @(-0.3)};
@@ -113,9 +146,17 @@
 #pragma mark - Private
 
 - (void) _prepareWordsList:(NSArray <NSString *> *)words inLabel:(UILabel *)label startIndex:(NSInteger)index {
+  CGFloat wordFontSize = 22.0;
+  CGFloat lineHeight = 26.0;
+  CGFloat wordsTabOffset = 26.0;
+  if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+    wordFontSize = 17.0;
+    lineHeight = 22.0;
+    wordsTabOffset = 22.0;
+  }
   NSDictionary *idxAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:13.0 weight:UIFontWeightRegular],
                                   NSForegroundColorAttributeName: [UIColor colorWithRGB:0x9D9D9D]};
-  NSDictionary *wordAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:22.0 weight:UIFontWeightRegular],
+  NSDictionary *wordAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:wordFontSize weight:UIFontWeightRegular],
                                    NSForegroundColorAttributeName: [UIColor darkTextColor]};
   NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] init];
   for (NSInteger i = 0; i < [words count]; ++i) {
@@ -130,10 +171,11 @@
   }
   NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
   NSTextTab *zeroTab = [[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentNatural location:0.0 options:@{}];
-  NSTextTab *textTab = [[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentNatural location:26.0 options:@{}];
+  NSTextTab *textTab = [[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentNatural location:wordsTabOffset options:@{}];
   style.tabStops = @[zeroTab, textTab];
   style.lineSpacing = 6.0;
-  style.maximumLineHeight = style.minimumLineHeight = 26.0;
+
+  style.maximumLineHeight = style.minimumLineHeight = lineHeight;
   [attributedString addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, [attributedString length])];
   label.attributedText = attributedString;
 }

@@ -18,6 +18,8 @@
 #import "UIImage+Color.h"
 #import "InlineButton.h"
 
+#import "UIScreen+ScreenSizeType.h"
+
 static CGFloat kCardViewSmallOffset             = 6.0;
 static CGFloat kCardViewEthereumTitleTopOffset  = 87.0;
 
@@ -102,11 +104,20 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
   NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
   style.lineBreakMode = NSLineBreakByTruncatingMiddle;
   style.baseWritingDirection = NSWritingDirectionLeftToRight;
+  UIFont *font = nil;
+  UIFont *ellipsesFont = nil;
+  if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+    font = [UIFont systemFontOfSize:19.0 weight:UIFontWeightMedium];
+    ellipsesFont = [UIFont fontWithName:@"PingFangSC-Medium" size:19.0];
+  } else {
+    font = [UIFont systemFontOfSize:22.0 weight:UIFontWeightMedium];
+    ellipsesFont = [UIFont fontWithName:@"PingFangSC-Medium" size:22.0];
+  }
   NSDictionary *attributes = @{NSForegroundColorAttributeName: [UIColor whiteColor],
-                               NSFontAttributeName: [UIFont systemFontOfSize:22 weight:UIFontWeightMedium],
+                               NSFontAttributeName: font,
                                NSParagraphStyleAttributeName: style};
   
-  NSDictionary *ellipsesAttributes = @{NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Medium" size:22.0],
+  NSDictionary *ellipsesAttributes = @{NSFontAttributeName: ellipsesFont,
                                        NSForegroundColorAttributeName: [UIColor whiteColor],
                                        NSKernAttributeName: @(0.35)};
   NSAttributedString *ellipsis = [[NSAttributedString alloc] initWithString:@"⋯" attributes:ellipsesAttributes];
@@ -136,11 +147,21 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
   NSNumberFormatter *ethereumFormatter = [NSNumberFormatter ethereumFormatterWithNetwork:network];
   ethereumFormatter.maximumSignificantDigits = 8;
   
+  UIFont *balanceFont = nil;
+  UIFont *currencyFont = nil;
+  if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+    balanceFont = [UIFont systemFontOfSize:26.0 weight:UIFontWeightSemibold];
+    currencyFont = [UIFont systemFontOfSize:16.0 weight:UIFontWeightBold];
+  } else {
+    balanceFont = [UIFont systemFontOfSize:30.0 weight:UIFontWeightSemibold];
+    currencyFont = [UIFont systemFontOfSize:20.0 weight:UIFontWeightBold];
+  }
+  
   NSString *balanceText = [ethereumFormatter stringFromNumber:balance];
   NSDictionary *balanceAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor],
-                                      NSFontAttributeName: [UIFont systemFontOfSize:30.0 weight:UIFontWeightSemibold],
+                                      NSFontAttributeName: balanceFont,
                                       NSKernAttributeName: @0.5};
-  NSDictionary *currencyAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:20.0 weight:UIFontWeightBold]};
+  NSDictionary *currencyAttributes = @{NSFontAttributeName: currencyFont};
   NSMutableAttributedString *balanceAttributedText = [[NSMutableAttributedString alloc] initWithString:balanceText attributes:balanceAttributes];
   NSRange currencyRange = [balanceText rangeOfString:ethereumFormatter.currencySymbol];
   if (currencyRange.location != NSNotFound) {
@@ -219,12 +240,22 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
     UILabel *balanceLabel = [[UILabel alloc] init];
     balanceLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:balanceLabel];
+    CGFloat correction = 1.0;
+    if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+      correction = 0.0;
+    }
     [self addConstraint:[NSLayoutConstraint constraintWithItem:balanceLabel attribute:NSLayoutAttributeTop
                                                      relatedBy:NSLayoutRelationEqual
                                                         toItem:self attribute:NSLayoutAttributeTop
-                                                    multiplier:1.0 constant:kCardViewDefaultOffset + 1.0]];
+                                                    multiplier:1.0 constant:kCardViewDefaultOffset + correction]];
     NSDictionary *views = @{@"balance": balanceLabel};
-    UIImage *logo = [UIImage imageNamed:@"ethereum_logo"];
+    UIImage *logo = nil;
+    if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+      logo = [UIImage imageNamed:@"ethereum_logo_small"];
+    } else {
+      logo = [UIImage imageNamed:@"ethereum_logo"];
+    }
+    
     NSDictionary *metrics = @{@"LOFFSET": @(kCardViewDefaultOffset),
                               @"ROFFSET": @(kCardViewDefaultOffset * 2.0 + logo.size.width)};
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(LOFFSET)-[balance]-(ROFFSET)-|" options:NSLayoutFormatDirectionLeftToRight metrics:metrics views:views]];
@@ -263,12 +294,20 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
                                                      relatedBy:NSLayoutRelationGreaterThanOrEqual
                                                         toItem:self.balanceLabel attribute:NSLayoutAttributeRight
                                                     multiplier:1.0 constant:kCardViewDefaultOffset]];
+    CGFloat offset = kCardViewEthereumTitleTopOffset;
+    UIFont *font = nil;
+    if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+      offset = 62.0;
+      font = [UIFont systemFontOfSize:10.0 weight:UIFontWeightRegular];
+    } else {
+      font = [UIFont systemFontOfSize:12.0 weight:UIFontWeightRegular];
+    }
     [self addConstraint:[NSLayoutConstraint constraintWithItem:ethereumTitleLabel attribute:NSLayoutAttributeTop
                                                      relatedBy:NSLayoutRelationEqual
                                                         toItem:self attribute:NSLayoutAttributeTop
-                                                    multiplier:1.0 constant:kCardViewEthereumTitleTopOffset]];
+                                                    multiplier:1.0 constant:offset]];
     NSDictionary *attributes = @{NSForegroundColorAttributeName: [UIColor whiteColor],
-                                 NSFontAttributeName: [UIFont systemFontOfSize:12.0 weight:UIFontWeightRegular],
+                                 NSFontAttributeName: font,
                                  NSKernAttributeName: @0.0};
     NSString *title = NSLocalizedString(@"Your public Ethereum address", @"Card view");
     ethereumTitleLabel.attributedText = [[NSAttributedString alloc] initWithString:title attributes:attributes];
@@ -278,6 +317,12 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
     UILabel *seedLabel = [[UILabel alloc] init];
     seedLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:seedLabel];
+    CGFloat verticalOffset = 0.0;
+    if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+      verticalOffset = 2.0;
+    } else {
+      verticalOffset = -1.0;
+    }
     [self addConstraint:[NSLayoutConstraint constraintWithItem:seedLabel attribute:NSLayoutAttributeLeft
                                                      relatedBy:NSLayoutRelationEqual
                                                         toItem:self.balanceLabel attribute:NSLayoutAttributeLeft
@@ -285,7 +330,7 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
     [self addConstraint:[NSLayoutConstraint constraintWithItem:seedLabel attribute:NSLayoutAttributeTop
                                                      relatedBy:NSLayoutRelationEqual
                                                         toItem:self.ethereumTitleLabel attribute:NSLayoutAttributeBottom
-                                                    multiplier:1.0 constant:-1.0]];
+                                                    multiplier:1.0 constant:verticalOffset]];
     self.seedLabel = seedLabel;
   }
   { //Share button
@@ -329,7 +374,7 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
   [self addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeHeight
                                                    relatedBy:NSLayoutRelationEqual
                                                       toItem:self attribute:NSLayoutAttributeWidth
-                                                  multiplier:216.0/343.0 constant:0.0]];
+                                                  multiplier:kCardViewAspectRatio constant:0.0]];
   
   //Default values
   [self updateBalance:[NSDecimalNumber decimalNumberWithString:@"0.0"] network:BlockchainNetworkTypeMainnet];
@@ -347,10 +392,21 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
     NSString *usdBalance = [usdFormatter stringFromNumber:usd];
     NSString *ethUsdPrice = [usdFormatter stringFromNumber:_ethToUsdPrice];
     NSString *finalString = [NSString stringWithFormat:@"%@ USD @ %@/%@", usdBalance, ethUsdPrice, ethFormatter.currencySymbol];
+    
+    UIFont *balanceFont = nil;
+    UIFont *infoFont = nil;
+    if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+      balanceFont = [UIFont systemFontOfSize:13.0 weight:UIFontWeightMedium];
+      infoFont = [UIFont systemFontOfSize:9.0 weight:UIFontWeightSemibold];
+    } else {
+      balanceFont = [UIFont systemFontOfSize:15.0 weight:UIFontWeightMedium];
+      infoFont = [UIFont systemFontOfSize:11.0 weight:UIFontWeightSemibold];
+    }
+    
     NSDictionary *balanceAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor],
-                                        NSFontAttributeName: [UIFont systemFontOfSize:15.0 weight:UIFontWeightMedium],
+                                        NSFontAttributeName: balanceFont,
                                         NSKernAttributeName: @0.15};
-    NSDictionary *infoAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:11.0 weight:UIFontWeightSemibold]};
+    NSDictionary *infoAttributes = @{NSFontAttributeName: infoFont};
     NSMutableAttributedString *finalAttributedText = [[NSMutableAttributedString alloc] initWithString:finalString attributes:balanceAttributes];
     NSRange usdBalanceRange = [finalString rangeOfString:usdBalance];
     NSRange infoRange = NSMakeRange(NSMaxRange(usdBalanceRange), [finalString length] - NSMaxRange(usdBalanceRange));
@@ -415,7 +471,13 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
       NSDictionary *attributes = @{NSForegroundColorAttributeName: [UIColor whiteColor],
                                    NSFontAttributeName: [UIFont systemFontOfSize:12.0 weight:UIFontWeightSemibold],
                                    NSKernAttributeName: @0.0};
-      NSString *title = NSLocalizedString(@"Action required: not backed up", @"Card view: backup warning");
+      NSString *title = nil;
+      if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+        title = NSLocalizedString(@"Action required", @"Card view: backup warning. 4.0 Inches");
+      } else {
+        title = NSLocalizedString(@"Action required: not backed up", @"Card view: backup warning");
+      }
+      
       backupWarningLabel.attributedText = [[NSAttributedString alloc] initWithString:title attributes:attributes];
     }
     UILabel *backupWarningDesciption = [[UILabel alloc] init];
@@ -442,7 +504,13 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
                                    NSFontAttributeName: [UIFont systemFontOfSize:12.0 weight:UIFontWeightRegular],
                                    NSKernAttributeName: @0.0,
                                    NSParagraphStyleAttributeName: style};
-      NSString *title = NSLocalizedString(@"If you loose this device you will loose\nyour account and all your funds forever.", @"Card view: backup warning description");
+      
+      NSString *title = nil;
+      if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+        title = NSLocalizedString(@"If you loose this device you\nloose your account forever.", @"Card view: backup warning description. 4.0 Inches");
+      } else {
+        title = NSLocalizedString(@"If you loose this device you will loose\nyour account and all your funds forever.", @"Card view: backup warning description");
+      }
       backupWarningDesciption.attributedText = [[NSAttributedString alloc] initWithString:title attributes:attributes];
     }
     { //Backup button

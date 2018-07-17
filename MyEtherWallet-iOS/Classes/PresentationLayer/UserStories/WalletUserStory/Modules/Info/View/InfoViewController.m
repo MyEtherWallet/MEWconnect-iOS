@@ -7,6 +7,7 @@
 //
 
 @import libextobjc.EXTScope;
+@import MessageUI;
 
 #import "InfoViewController.h"
 
@@ -16,9 +17,9 @@
 
 #import "ApplicationConstants.h"
 
-#import "NSBundle+Version.h"
+#import "UIView+LockFrame.h"
 
-@interface InfoViewController () <InfoDataDisplayManagerDelegate>
+@interface InfoViewController () <InfoDataDisplayManagerDelegate, MFMailComposeViewControllerDelegate>
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, weak) IBOutlet UILabel *versionLabel;
 @property (nonatomic, weak) IBOutlet UILabel *copyrightLabel;
@@ -34,6 +35,11 @@
   [super viewDidLoad];
   self.modalPresentationCapturesStatusBarAppearance = YES;
   [self.output didTriggerViewReadyEvent];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  self.view.lockFrame = YES;
 }
 
 - (void)viewLayoutMarginsDidChange {
@@ -54,8 +60,8 @@
 
 #pragma mark - InfoViewInput
 
-- (void) setupInitialState {
-  self.versionLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Version %@", @"Info screen. Version format"), [[NSBundle mainBundle] applicationVersion]];
+- (void) setupInitialStateWithVersion:(NSString *)version {
+  self.versionLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Version %@", @"Info screen. Version format"), version];
   NSInteger year = [[NSCalendar currentCalendar] component:NSCalendarUnitYear fromDate:[NSDate date]];
   if (kStartDevelopmentYear < year) {
     self.copyrightLabel.text = [NSString stringWithFormat:@"Copyright %zd-%zd MyEtherWallet Inc.", kStartDevelopmentYear, year];
@@ -85,6 +91,22 @@
     [self.output resetWalletConfirmedAction];
   }]];
   [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void) presentMailComposeWithSubject:(NSString *)subject recipients:(NSArray <NSString *> *)recipients {
+  if ([MFMailComposeViewController canSendMail]) {
+    MFMailComposeViewController *mailComposeViewController = [[MFMailComposeViewController alloc] init];
+    [mailComposeViewController setSubject:subject];
+    [mailComposeViewController setToRecipients:recipients];
+    mailComposeViewController.mailComposeDelegate = self;
+    [self presentViewController:mailComposeViewController animated:YES completion:nil];
+  } else {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", @"Info screen. Contact")
+                                                                   message:NSLocalizedString(@"Can't send email", @"Info screen. Contact")
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"Info screen. Contact") style:UIAlertActionStyleDefault handler:nil]];
+    [self presentViewController:alert animated:YES completion:nil];
+  }
 }
 
 #pragma mark - IBActions
@@ -140,6 +162,12 @@
 
 - (void) didTapResetWallet {
   [self.output resetWalletAction];
+}
+
+#pragma mark - MFMailComposeViewControllerDelegate
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(nullable NSError *)error {
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

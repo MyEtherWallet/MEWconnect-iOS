@@ -15,4 +15,6 @@
 - (void) updateInputPriceWithEnteredAmount:(NSString *)enteredAmount convertedAmount:(NSDecimalNumber *)convertedAmount;
 - (void) orderDidCreated:(SimplexOrder *)order forAccount:(AccountPlainObject *)account;
 - (void) minimumAmountDidReached:(BOOL)minimumAmountReached;
+- (void) loadingDidStart;
+- (void) loadingDidEnd;
 @end

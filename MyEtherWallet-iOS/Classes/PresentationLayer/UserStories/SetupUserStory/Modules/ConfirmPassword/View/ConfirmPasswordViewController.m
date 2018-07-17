@@ -12,6 +12,8 @@
 
 #import "PasswordTextField.h"
 
+#import "UIScreen+ScreenSizeType.h"
+
 static NSTimeInterval kConfirmPasswordViewControllerAnimationDuration   = 0.2;
 static CGFloat        kConfirmPasswordViewControllerIncorrectVOffset    = 42.0;
 static CGFloat        kConfirmPasswordViewControllerCorrectVOffset      = 24.0;
@@ -28,11 +30,16 @@ static CGFloat        kConfirmPasswordViewControllerCorrectVOffset      = 24.0;
 //Constraints
 @property (nonatomic, strong) IBOutletCollection(NSLayoutConstraint) NSArray *incorrectPasswordConstraints;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *restoreDescriptionVOffsetConstraint;
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint *descriptionToPasswordYOffset;
 //Bar buttons
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *nextBarButtonItem;
+//Scroll view
+@property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
 @end
 
-@implementation ConfirmPasswordViewController
+@implementation ConfirmPasswordViewController {
+  CGFloat _keyboardHeight;
+}
 
 #pragma mark - LifeCycle
 
@@ -44,21 +51,40 @@ static CGFloat        kConfirmPasswordViewControllerCorrectVOffset      = 24.0;
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
   [self.passwordTextField becomeFirstResponder];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+  [super viewDidDisappear:animated];
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void) viewSafeAreaInsetsDidChange {
+  [super viewSafeAreaInsetsDidChange];
+  [self _updateScrollViewInsets];
 }
 
 #pragma mark - ConfirmPasswordViewInput
 
 - (void) setupInitialState {
+  if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+    self.descriptionToPasswordYOffset.constant = 16.0;
+  }
   { //Title label
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.maximumLineHeight = 40.0;
     paragraphStyle.minimumLineHeight = 40.0;
     paragraphStyle.lineSpacing = 0.0;
+    CGFloat kern = -0.4;
+    if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+      kern = -1.8;
+    }
     NSDictionary *attributes = @{NSForegroundColorAttributeName: self.titleLabel.textColor,
                                  NSFontAttributeName: self.titleLabel.font,
                                  NSParagraphStyleAttributeName: paragraphStyle,
-                                 NSKernAttributeName: @(-0.4)};
+                                 NSKernAttributeName: @(kern)};
     self.titleLabel.attributedText = [[NSAttributedString alloc] initWithString:self.titleLabel.text
                                                                      attributes:attributes];
   }
@@ -168,6 +194,37 @@ static CGFloat        kConfirmPasswordViewControllerCorrectVOffset      = 24.0;
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
   [self.output nextActionWithPassword:self.passwordTextField.text];
   return NO;
+}
+
+#pragma mark - Notifications
+
+- (void) keyboardWillShow:(NSNotification *)notification {
+  CGSize keyboardSize = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+  _keyboardHeight = keyboardSize.height;
+  [self _updateScrollViewInsets];
+}
+
+- (void) keyboardWillHide:(NSNotification *)notification {
+  _keyboardHeight = 0.0;
+  [self _updateScrollViewInsets];
+}
+
+#pragma mark - Private
+
+- (void) _updateScrollViewInsets {
+  UIEdgeInsets insets;
+  if (@available(iOS 11.0, *)) {
+    insets = self.scrollView.adjustedContentInset;
+  } else {
+    insets = self.scrollView.contentInset;
+  }
+  insets.bottom = _keyboardHeight;
+  
+  self.scrollView.contentInset = insets;
+  
+  UIEdgeInsets indicatorInset = self.scrollView.scrollIndicatorInsets;
+  indicatorInset.bottom = _keyboardHeight;
+  self.scrollView.scrollIndicatorInsets = indicatorInset;
 }
 
 @end

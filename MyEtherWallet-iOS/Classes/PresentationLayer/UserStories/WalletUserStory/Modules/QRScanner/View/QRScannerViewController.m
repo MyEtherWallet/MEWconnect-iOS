@@ -16,6 +16,7 @@
 
 #import "UIColor+Application.h"
 #import "UIColor+Hex.h"
+#import "UIScreen+ScreenSizeType.h"
 
 static CFTimeInterval kQRScannerViewControllerOpacityAnimationDuration = 0.4;
 static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
@@ -42,6 +43,11 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
 @property (nonatomic, weak) IBOutlet LinkedLabel *accessToCameraLabel;
 
 @property (nonatomic) NSInteger runningAnimations;
+
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *cameraContainerHeightConstraint;
+@property (nonatomic, strong) IBOutletCollection(NSLayoutConstraint) NSArray <NSLayoutConstraint *> *focusViewYOffsetConstraints;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *cameraToDescriptionYOffsetConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *descriptionRightOffsetConstraint;
 @end
 
 @implementation QRScannerViewController
@@ -90,6 +96,14 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
 #pragma mark - QRScannerViewInput
 
 - (void) setupInitialState {
+  if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+    self.cameraContainerHeightConstraint.constant = -19.0;
+    for (NSLayoutConstraint *constraint in self.focusViewYOffsetConstraints) {
+      constraint.constant = 18.0;
+    }
+    self.cameraToDescriptionYOffsetConstraint.constant = 17.0;
+    self.descriptionRightOffsetConstraint.constant = 20.0;
+  }
   [self _prepareStepsDescription];
   { //title label
     NSDictionary *attributes = @{NSFontAttributeName: self.titleLabel.font,
@@ -185,7 +199,7 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
     NSDictionary *attributes = @{NSForegroundColorAttributeName: self.statusInfoDescriptionLabel.textColor,
                                  NSFontAttributeName: self.statusInfoDescriptionLabel.font,
                                  NSParagraphStyleAttributeName: style};
-    NSString *text = NSLocalizedString(@"Please try again or use a different QR code.", @"QRScanner. Connection error description");
+    NSString *text = NSLocalizedString(@"Please try again or use a\ndifferent QR code.", @"QRScanner. Connection error description");
     self.statusInfoDescriptionLabel.attributedText = [[NSAttributedString alloc] initWithString:text attributes:attributes];
   }
   
@@ -300,13 +314,24 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
   style.headIndent = 24.0;
   style.lineSpacing = 2.0;
   style.paragraphSpacing = 20.0;
-  NSTextTab *zeroTab = [[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentNatural location:6.0 options:@{}];
+  
+  CGFloat zeroTabOffset = 6.0;
+  if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+    zeroTabOffset = 5.0;
+  }
+  NSTextTab *zeroTab = [[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentNatural location:zeroTabOffset options:@{}];
   NSTextTab *textTab = [[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentNatural location:24.0 options:@{}];
   style.tabStops = @[zeroTab, textTab];
+  CGFloat fontSize = 15.0;
+  CGFloat kern = -0.12;
+  if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+    fontSize = 13.0;
+    kern = -0.24;
+  }
   NSDictionary *attributes = @{NSForegroundColorAttributeName: [UIColor whiteColor],
-                               NSFontAttributeName: [UIFont systemFontOfSize:15.0],
+                               NSFontAttributeName: [UIFont systemFontOfSize:fontSize],
                                NSParagraphStyleAttributeName: style,
-                               NSKernAttributeName: @(-0.12)};
+                               NSKernAttributeName: @(kern)};
   NSString *finalString = [NSString stringWithFormat:@"\t%zd\t%@", stepNumber, string];
   NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:finalString attributes:attributes];
   //Change text color and font of "1"
@@ -321,7 +346,7 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
   for (NSString *semibold in semiboldParts) {
     NSRange range = [finalString rangeOfString:semibold];
     if (range.location != NSNotFound) {
-      [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15.0 weight:UIFontWeightSemibold] range:range];
+      [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:fontSize weight:UIFontWeightSemibold] range:range];
     }
   }
   [attributedString fixAttributesInRange:NSMakeRange(0, [attributedString length])];

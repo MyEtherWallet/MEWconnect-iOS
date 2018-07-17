@@ -169,7 +169,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WC6-as-09h" userLabel="topContainer">
-                                <rect key="frame" x="0.0" y="20" width="375" height="96"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan QR code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h5f-xs-YvH">
                                         <rect key="frame" x="40" y="18" width="196" height="36"/>
@@ -194,29 +194,29 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hc2-fc-sHK">
-                                <rect key="frame" x="0.0" y="116" width="375" height="271"/>
+                                <rect key="frame" x="0.0" y="96" width="375" height="271"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="Hc2-fc-sHK" secondAttribute="height" multiplier="375:271" id="swu-h5-MYW"/>
+                                    <constraint firstAttribute="height" secondItem="Hc2-fc-sHK" secondAttribute="width" multiplier="271:375" id="swu-h5-MYW"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BZ6-kF-gE9">
-                                <rect key="frame" x="83" y="147" width="209" height="209"/>
+                                <rect key="frame" x="83.5" y="127" width="208.5" height="209"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scan_focus_tl" translatesAutoresizingMaskIntoConstraints="NO" id="dhP-fj-3b3">
-                                        <rect key="frame" x="0.0" y="0.0" width="38" height="38"/>
+                                        <rect key="frame" x="0.5" y="0.0" width="38" height="38"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scan_focus_tl" translatesAutoresizingMaskIntoConstraints="NO" id="fAv-yz-KXL">
                                         <rect key="frame" x="171" y="0.0" width="38" height="38"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scan_focus_tl" translatesAutoresizingMaskIntoConstraints="NO" id="MVX-Us-Aeo">
-                                        <rect key="frame" x="0.0" y="171" width="38" height="38"/>
+                                        <rect key="frame" x="0.5" y="171" width="38" height="38"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scan_focus_tl" translatesAutoresizingMaskIntoConstraints="NO" id="Cw4-BC-mgS">
                                         <rect key="frame" x="171" y="171" width="38" height="38"/>
                                     </imageView>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Pe-dr-1i3" customClass="LinkedLabel">
-                                        <rect key="frame" x="0.0" y="86.5" width="209" height="36"/>
+                                        <rect key="frame" x="0.5" y="86.5" width="208.5" height="36"/>
                                         <string key="text"> Please enable camera access
 for MEWconnect in Settings</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -244,10 +244,10 @@ for MEWconnect in Settings</string>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RTV-Dy-8jr">
-                                <rect key="frame" x="0.0" y="387" width="375" height="280"/>
+                                <rect key="frame" x="0.0" y="367" width="375" height="300"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yW4-Nc-2RA">
-                                        <rect key="frame" x="16" y="26" width="319" height="209"/>
+                                        <rect key="frame" x="16" y="26" width="319" height="223.5"/>
                                         <string key="text">1 Go to MyEtherWallet.com on your computer and choose Send Ether and Tokens option.
 
 2 Select MEWconnect option on How would you like to access your wallet screen.
@@ -316,7 +316,7 @@ with MyEtherWallet</string>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RYd-fJ-xeM" customClass="BottomImageButton">
-                                        <rect key="frame" x="109" y="243" width="156" height="37"/>
+                                        <rect key="frame" x="109" y="263" width="156" height="37"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                         <inset key="contentEdgeInsets" minX="30" minY="0.0" maxX="30" maxY="19"/>
@@ -354,7 +354,7 @@ with MyEtherWallet</string>
                             <constraint firstItem="BZ6-kF-gE9" firstAttribute="centerX" secondItem="v25-Cw-kJV" secondAttribute="centerX" id="mEI-Yf-Ieu"/>
                             <constraint firstItem="WIg-qq-OFB" firstAttribute="trailing" secondItem="Hc2-fc-sHK" secondAttribute="trailing" id="osm-5l-inr"/>
                             <constraint firstItem="RTV-Dy-8jr" firstAttribute="top" secondItem="Hc2-fc-sHK" secondAttribute="bottom" id="qjm-27-a6S"/>
-                            <constraint firstItem="WC6-as-09h" firstAttribute="top" secondItem="WIg-qq-OFB" secondAttribute="top" id="rt2-lA-mp7"/>
+                            <constraint firstItem="WC6-as-09h" firstAttribute="top" secondItem="v25-Cw-kJV" secondAttribute="top" id="rt2-lA-mp7"/>
                             <constraint firstItem="Hc2-fc-sHK" firstAttribute="top" secondItem="WC6-as-09h" secondAttribute="bottom" id="uQM-zY-QPR"/>
                             <constraint firstAttribute="trailing" secondItem="WC6-as-09h" secondAttribute="trailing" id="unM-Z2-dKv"/>
                             <constraint firstAttribute="bottom" secondItem="RTV-Dy-8jr" secondAttribute="bottom" id="viN-vS-m0r"/>
@@ -363,8 +363,11 @@ with MyEtherWallet</string>
                     </view>
                     <connections>
                         <outlet property="accessToCameraLabel" destination="5Pe-dr-1i3" id="Axn-Pk-R19"/>
+                        <outlet property="cameraContainerHeightConstraint" destination="swu-h5-MYW" id="Mee-v5-PXs"/>
                         <outlet property="cameraContainerView" destination="Hc2-fc-sHK" id="GpC-et-7rA"/>
+                        <outlet property="cameraToDescriptionYOffsetConstraint" destination="kfV-kh-Zfu" id="Fhz-WD-9qG"/>
                         <outlet property="closeButton" destination="RYd-fJ-xeM" id="hAj-3k-1uZ"/>
+                        <outlet property="descriptionRightOffsetConstraint" destination="oli-ha-3y3" id="7kV-2W-mCh"/>
                         <outlet property="focusViewBL" destination="MVX-Us-Aeo" id="Cw8-46-cXl"/>
                         <outlet property="focusViewBR" destination="Cw4-BC-mgS" id="qlQ-zW-Ha9"/>
                         <outlet property="focusViewTR" destination="fAv-yz-KXL" id="n6c-I5-wZt"/>
@@ -376,6 +379,8 @@ with MyEtherWallet</string>
                         <outlet property="statusInfoTitleLabel" destination="ZKV-Fk-dcp" id="Rzf-Hi-4MO"/>
                         <outlet property="stepsDescriptionLabel" destination="yW4-Nc-2RA" id="0hP-VD-bgX"/>
                         <outlet property="titleLabel" destination="h5f-xs-YvH" id="at9-hw-Eg9"/>
+                        <outletCollection property="focusViewYOffsetConstraints" destination="8HC-fM-k3T" id="Rdt-0E-VVy"/>
+                        <outletCollection property="focusViewYOffsetConstraints" destination="3KX-mb-nLg" id="9PU-ve-st4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="muh-85-vYU" userLabel="First Responder" sceneMemberID="firstResponder"/>

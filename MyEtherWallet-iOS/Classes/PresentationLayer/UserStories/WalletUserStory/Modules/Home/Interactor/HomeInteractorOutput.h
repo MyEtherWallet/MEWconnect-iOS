@@ -20,4 +20,6 @@
 - (void) didUpdateEthereumBalance;
 - (void) didUpdateTokensBalance;
 - (void) mewConnectionStatusChanged;
+- (void) tokensDidStartUpdating;
+- (void) tokensDidEndUpdating;
 @end

@@ -10,6 +10,7 @@
 
 #import "CardView.h"
 #import "MEWSearchBar.h"
+#import "RotationButton.h"
 
 #import "UIImage+Color.h"
 #import "UIColor+Hex.h"
@@ -66,6 +67,7 @@ static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset             = 8.0;
 @property (nonatomic, weak) UIImageView *searchBarBackgroundImageView;
 @property (nonatomic, weak) UILabel *tokenBalancesTitleLabel;
 @property (nonatomic, weak) UILabel *tokenBalancesLabel;
+@property (nonatomic, weak) RotationButton *refreshButton;
 
 @property (nonatomic) HomeStretchyHeaderStyle contentStyle;
 @property (nonatomic) UIStatusBarStyle statusBarStyle;
@@ -288,6 +290,18 @@ static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset             = 8.0;
                                                                           multiplier:1.0 constant:_tokensTitleTopMaxOffset];
       [searchBarContainerView addConstraint:self.tokenBalancesTitleTopConstraints];
       self.tokenBalancesTitleLabel = tokenBalancesTitle;
+    }
+    { //Refresh button
+      RotationButton *button = [RotationButton buttonWithType:UIButtonTypeSystem];
+      button.translatesAutoresizingMaskIntoConstraints = NO;
+      [button setContentEdgeInsets:UIEdgeInsetsMake(2.0, 2.0, 2.0, 2.0)];
+      [button setImage:[UIImage imageNamed:@"refresh_icon"] forState:UIControlStateNormal];
+      button.tintColor = [UIColor mainApplicationColor];
+      [searchBarContainerView addSubview:button];
+      [button.centerYAnchor constraintEqualToAnchor:self.tokenBalancesTitleLabel.centerYAnchor].active = YES;
+      [button.leadingAnchor constraintEqualToAnchor:self.tokenBalancesTitleLabel.trailingAnchor constant:8.0].active = YES;
+      
+      _refreshButton = button;
     }
     {
       UILabel *tokenBalancesLabel = [[UILabel alloc] init];

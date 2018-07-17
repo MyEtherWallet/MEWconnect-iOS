@@ -12,6 +12,10 @@
 #import "InfoInteractorInput.h"
 #import "InfoRouterInput.h"
 
+#import "ApplicationConstants.h"
+
+#import "NSBundle+Version.h"
+
 @implementation InfoPresenter
 
 #pragma mark - InfoModuleInput
@@ -23,7 +27,8 @@
 #pragma mark - InfoViewOutput
 
 - (void) didTriggerViewReadyEvent {
-	[self.view setupInitialState];
+  NSString *version = [[NSBundle mainBundle] applicationVersion];
+	[self.view setupInitialStateWithVersion:version];
 }
 
 - (void) closeAction {
@@ -31,15 +36,18 @@
 }
 
 - (void) contactAction {
-  
+  NSString *version = [[NSBundle mainBundle] applicationVersion];
+  NSString *subject = [NSString stringWithFormat:@"MEWconnect v.%@ support request", version];
+  NSArray *recipients = @[kMyEtherWalletSupportEmail];
+  [self.view presentMailComposeWithSubject:subject recipients:recipients];
 }
 
 - (void) knowledgeBaseAction {
-  
+  [self.router openKnowledgeBase];
 }
 
 - (void) privacyAndTermsAction {
-  
+  [self.router openPrivacyAndTerms];
 }
 
 - (void) myEtherWalletComAction {

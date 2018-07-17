@@ -13,4 +13,6 @@
 - (void) unwindToStart;
 - (void) unwindToHome;
 - (void) openMyEtherWalletCom;
+- (void) openKnowledgeBase;
+- (void) openPrivacyAndTerms;
 @end

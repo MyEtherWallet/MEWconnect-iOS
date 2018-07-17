@@ -24,4 +24,5 @@ typedef NS_ENUM(short, FlatButtonTheme) {
 #endif
 @property (nonatomic) IBInspectable BOOL alternativeDisabledTheme;
 @property (nonatomic) IBInspectable BOOL compact;
+@property (nonatomic) BOOL loading;
 @end

@@ -55,6 +55,7 @@
     return;
   }
   @weakify(self);
+  [self.output tokensDidStartUpdating];
   [self.accountService updateBalanceForAccount:self.account
                                 withCompletion:^(NSError *error) {
                                   if (!error) {
@@ -73,7 +74,10 @@
                                          [self.output didUpdateTokens];
                                          [self.fiatPricesService updatePricesForTokensWithCompletion:^(NSError *error) {
                                            [self.output didUpdateTokensBalance];
+                                           [self.output tokensDidEndUpdating];
                                          }];
+                                       } else {
+                                         [self.output tokensDidEndUpdating];
                                        }
                                      }];
 }
@@ -135,6 +139,24 @@
 
 - (NSArray *) shareActivityItems {
   return @[self.account.publicAddress];
+}
+
+- (void) refreshTokens {
+  @weakify(self);
+  [self.output tokensDidStartUpdating];
+  [self.tokensService updateTokenBalancesForAccount:self.account
+                                     withCompletion:^(NSError *error) {
+                                       if (!error) {
+                                         @strongify(self);
+                                         [self.output didUpdateTokens];
+                                         [self.fiatPricesService updatePricesForTokensWithCompletion:^(NSError *error) {
+                                           [self.output didUpdateTokensBalance];
+                                           [self.output tokensDidEndUpdating];
+                                         }];
+                                       } else {
+                                         [self.output tokensDidEndUpdating];
+                                       }
+                                     }];
 }
 
 #pragma mark - Notifications

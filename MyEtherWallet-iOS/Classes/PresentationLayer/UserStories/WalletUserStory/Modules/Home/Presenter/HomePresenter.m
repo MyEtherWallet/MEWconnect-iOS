@@ -16,7 +16,9 @@
 
 #import "MEWConnectCommand.h"
 
-@implementation HomePresenter
+@implementation HomePresenter {
+  BOOL _tokensRefreshing;
+}
 
 #pragma mark - HomeModuleInput
 
@@ -54,6 +56,9 @@
   
   BOOL connected = [self.interactor isConnected];
   [self.view updateWithConnectionStatus:connected animated:NO];
+  if (_tokensRefreshing) {
+    [self.view startAnimatingTokensRefreshing];
+  }
 }
 
 - (void) didTriggerViewWillAppear {
@@ -99,6 +104,10 @@
   [self.router openBuyEtherWithAccount:account];
 }
 
+- (void) refreshTokensAction {
+  [self.interactor refreshTokens];
+}
+
 - (void) shareAction {
   NSArray *items = [self.interactor shareActivityItems];
   [self.view presentShareWithItems:items];
@@ -134,6 +143,16 @@
 - (void) mewConnectionStatusChanged {
   BOOL connected = [self.interactor isConnected];
   [self.view updateWithConnectionStatus:connected animated:YES];
+}
+
+- (void) tokensDidStartUpdating {
+  _tokensRefreshing = YES;
+  [self.view startAnimatingTokensRefreshing];
+}
+
+- (void) tokensDidEndUpdating {
+  _tokensRefreshing = NO;
+  [self.view stopAnimatingTokensRefreshing];
 }
 
 @end

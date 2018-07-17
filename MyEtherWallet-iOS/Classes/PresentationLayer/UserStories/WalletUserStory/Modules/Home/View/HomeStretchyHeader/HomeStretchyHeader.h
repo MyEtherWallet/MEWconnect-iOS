@@ -9,6 +9,7 @@
 @import GSKStretchyHeaderView;
 
 @class CardView;
+@class RotationButton;
 
 @protocol HomeStretchyHeaderDelegate;
 
@@ -26,6 +27,7 @@ typedef NS_ENUM(NSInteger, HomeStretchyHeaderSearchBarStyle) {
 @property (nonatomic, weak, readonly) UIButton *infoButton;
 @property (nonatomic, weak, readonly) UIButton *buyEtherButton;
 @property (nonatomic, weak, readonly) UILabel *titleBalanceLabel;
+@property (nonatomic, weak, readonly) RotationButton *refreshButton;
 @property (nonatomic) HomeStretchyHeaderSearchBarStyle searchBarStyle;
 - (void) refreshContentIfNeeded;
 - (void) updateHeightIfNeeded;

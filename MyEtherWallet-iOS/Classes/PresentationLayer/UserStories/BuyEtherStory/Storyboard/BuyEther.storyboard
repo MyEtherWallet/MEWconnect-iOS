@@ -14,7 +14,7 @@
         <scene sceneID="4Ju-5h-xiV">
             <objects>
                 <navigationController id="Gq6-wK-9dX" customClass="BuyEtherNavigationController" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Cfi-4h-HGZ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Cfi-4h-HGZ" customClass="BordlessNavigationBar">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -203,6 +203,7 @@
                                                 <integer key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="alternativeDisabledTheme" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="compact" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="buyAction:" destination="Zl9-aP-OUl" eventType="touchUpInside" id="amB-TW-j10"/>
@@ -282,7 +283,10 @@
                     <connections>
                         <outlet property="amountCurrencyLabel" destination="nJ8-dO-0p9" id="9Vu-3V-wPA"/>
                         <outlet property="amountLabel" destination="gwV-jF-T3l" id="kbA-jT-62Z"/>
+                        <outlet property="amountTopOffsetConstraint" destination="A6w-eX-Igy" id="K15-Pt-FsP"/>
+                        <outlet property="buttonBottomOffsetConstraint" destination="Tq8-ZD-s00" id="sho-ln-3tu"/>
                         <outlet property="buyButton" destination="jGA-nU-jau" id="GrH-Kr-aMI"/>
+                        <outlet property="keypadToContainerTopOffsetConstraint" destination="h4n-w9-5v5" id="5LH-R5-4L9"/>
                         <outlet property="resultLabel" destination="l32-qR-w0g" id="iFB-TG-er7"/>
                         <outlet property="separatorButton" destination="8Oa-xN-1qB" id="QGz-pT-BaB"/>
                         <outlet property="switchCurrencyButton" destination="0Ew-qW-Plz" id="Syk-Xg-hRA"/>

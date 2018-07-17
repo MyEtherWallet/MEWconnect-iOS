@@ -25,6 +25,7 @@
 #import "UIImage+Color.h"
 #import "UIColor+Hex.h"
 #import "UIColor+Application.h"
+#import "UIScreen+ScreenSizeType.h"
 
 #import "HomeTableViewAnimator.h"
 
@@ -183,7 +184,15 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
   [self.headerView.cardView updateBalance:balance network:[account.fromNetwork network]];
   
   NSNumberFormatter *ethereumFormatter = [NSNumberFormatter ethereumFormatterWithNetwork:[account.fromNetwork network]];
-  ethereumFormatter.maximumSignificantDigits = 14;
+  switch ([UIScreen mainScreen].screenSizeType) {
+    case ScreenSizeTypeInches40: { ethereumFormatter.maximumSignificantDigits = 9; break; }
+    case ScreenSizeTypeInches58:
+    case ScreenSizeTypeInches47: { ethereumFormatter.maximumSignificantDigits = 15; break; }
+    case ScreenSizeTypeInches55: { ethereumFormatter.maximumSignificantDigits = 19; break; }
+    default:
+      break;
+  }
+  
   self.headerView.titleBalanceLabel.text = [ethereumFormatter stringFromNumber:balance];
 }
 
@@ -333,7 +342,7 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
 #pragma mark - Notifications
 
 - (void) keyboardWillShow:(NSNotification *)notification {
-  CGSize keyboardSize = [notification.userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+  CGSize keyboardSize = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
   _keyboardHeight = keyboardSize.height;
   [self _updateTableViewInsets];
 }

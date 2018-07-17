@@ -28,6 +28,9 @@
 @property (nonatomic, weak) IBOutlet UIButton *separatorButton;
 @property (nonatomic, weak) IBOutlet UIButton *buyButton;
 @property (nonatomic, strong) IBOutletCollection(UIButton) NSArray <UIButton *> *keypadButtons;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *amountTopOffsetConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *keypadToContainerTopOffsetConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *buttonBottomOffsetConstraint;
 @end
 
 @implementation BuyEtherAmountViewController {
@@ -52,6 +55,11 @@
 #pragma mark - BuyEtherAmountViewInput
 
 - (void) setupInitialStateWithCurrency:(SimplexServiceCurrencyType)currency minimumAmount:(NSDecimalNumber *)minimumAmount {
+  if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+    self.amountTopOffsetConstraint.constant = -4.0;
+    self.keypadToContainerTopOffsetConstraint.constant = 17.0;
+    self.buttonBottomOffsetConstraint.constant = 22.0;
+  }
   _currency = currency;
   self.amountCurrencyLabel.text = NSStringFromSimplexServiceCurrencyType(currency);
   

@@ -15,8 +15,10 @@
 #import "MEWConnectTransaction.h"
 #import "NetworkPlainObject.h"
 #import "AccountPlainObject.h"
+#import "FiatPricePlainObject.h"
 
 #import "NSNumberFormatter+Ethereum.h"
+#import "NSNumberFormatter+USD.h"
 #import "UIScreen+ScreenSizeType.h"
 
 @interface TransactionViewController ()
@@ -85,17 +87,31 @@
 
 - (void) updateWithTransaction:(MEWConnectTransaction *)transaction forAccount:(AccountPlainObject *)account {
   NSNumberFormatter *formatter = [NSNumberFormatter ethereumFormatterWithNetwork:[account.fromNetwork network]];
-  NSDecimalNumber *decimalNumber = [transaction decimalValue];
-  NSString *amount = [formatter stringFromNumber:decimalNumber];
+  NSDecimalNumber *ethAmount = [transaction decimalValue];
+  NSString *amount = [formatter stringFromNumber:ethAmount];
   
-  [self.addressCheckboxButton updateWithContentTitle:NSLocalizedString(@"Check address you’re sending to:", @"Transaction screen. Title")];
+  NSString *usdAmount = nil;
+  NSDecimalNumber *usdPrice = account.price.usdPrice;
+  if (usdPrice) {
+    NSNumberFormatter *usdFormatter = [NSNumberFormatter usdFormatter];
+    NSDecimalNumber *usd = [ethAmount decimalNumberByMultiplyingBy:usdPrice];
+    usdAmount = [usdFormatter stringFromNumber:usd];
+  }
+  
+  if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+    [self.addressCheckboxButton updateWithContentTitle:NSLocalizedString(@"Check address:", @"Transaction screen. Title. 4.0 Inches")];
+  } else {
+    [self.addressCheckboxButton updateWithContentTitle:NSLocalizedString(@"Check address you’re sending to:", @"Transaction screen. Title")];
+  }
+  
   [self.addressCheckboxButton updateWithContentText:transaction.to];
-//  [self.addressCheckboxButton updateWithContentDescription:@"pay.mewtopia.eth"];
   [self.addressCheckboxButton updateWithRightImageWithSeed:transaction.to];
   
   [self.amountCheckboxButton updateWithContentTitle:@"Check the amount:"];
   [self.amountCheckboxButton updateWithContentText:amount];
-//  [self.amountCheckboxButton updateWithContentDescription:@"$751.80"];
+  if (usdAmount) {
+    [self.amountCheckboxButton updateWithContentDescription:usdAmount];
+  }
 }
 
 - (void)enableSign:(BOOL)enable {

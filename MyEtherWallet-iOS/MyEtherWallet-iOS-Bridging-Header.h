@@ -6,5 +6,6 @@
 #import "MEWConnectTransaction.h"
 #import "UIColor+Application.h"
 #import "UIColor+Hex.h"
+#import "UIScreen+ScreenSizeType.h"
 #import "MEWcrypto.h"
 #import "KeychainService.h"

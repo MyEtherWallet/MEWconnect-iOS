@@ -69,8 +69,10 @@
   [[CheckboxButton appearance] setBackgroundImage:selectedBackgroundImage forState:UIControlStateSelected|UIControlStateHighlighted];
   { /* BackupConfirmationSegmentedControl */
     CGFloat size = 56.0;
+    CGFloat fontSize = 17.0;
     if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
       size = 44.0;
+      fontSize = 15.0;
     }
     CGFloat halfSize = (size - 8.0) / 2.0; //-8 - for segment in the middle
     UIImage *backgroundNormal = [[UIImage imageWithColor:[UIColor backgroundLightBlue] size:CGSizeMake(size, size) cornerRadius:10.0] resizableImageWithCapInsets:UIEdgeInsetsMake(halfSize, halfSize, halfSize, halfSize)];
@@ -96,9 +98,9 @@
     [[BackupConfirmationSegmentedControl appearance] setDividerImage:separatorHighlighted forLeftSegmentState:UIControlStateSelected rightSegmentState:UIControlStateNormal|UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
     
     NSDictionary *normalAttributes = @{NSForegroundColorAttributeName: [UIColor blackColor],
-                                       NSFontAttributeName: [UIFont systemFontOfSize:17.0 weight:UIFontWeightMedium]};
+                                       NSFontAttributeName: [UIFont systemFontOfSize:fontSize weight:UIFontWeightMedium]};
     NSDictionary *selectedAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor],
-                                         NSFontAttributeName: [UIFont systemFontOfSize:17.0 weight:UIFontWeightMedium]};
+                                         NSFontAttributeName: [UIFont systemFontOfSize:fontSize weight:UIFontWeightMedium]};
     [[BackupConfirmationSegmentedControl appearance] setTitleTextAttributes:normalAttributes forState:UIControlStateNormal];
     [[BackupConfirmationSegmentedControl appearance] setTitleTextAttributes:normalAttributes forState:UIControlStateNormal|UIControlStateHighlighted];
     [[BackupConfirmationSegmentedControl appearance] setTitleTextAttributes:selectedAttributes forState:UIControlStateSelected];

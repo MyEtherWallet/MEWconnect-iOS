@@ -63,6 +63,10 @@
   [self.router unwindToStart];
 }
 
+- (void) userGuideAction {
+  [self.router openUserGuide];
+}
+
 - (void) mainnetAction {
   [self.interactor selectMainnetNetwork];
 }

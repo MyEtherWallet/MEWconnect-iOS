@@ -15,6 +15,7 @@
 - (void) knowledgeBaseAction;
 - (void) privacyAndTermsAction;
 - (void) myEtherWalletComAction;
+- (void) userGuideAction;
 - (void) resetWalletAction;
 - (void) resetWalletConfirmedAction;
 - (void) mainnetAction;

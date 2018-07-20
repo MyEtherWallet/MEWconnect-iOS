@@ -10,6 +10,7 @@
 #import "InfoNormalTableViewCellObject.h"
 
 static CGFloat const kInfoNormalTableViewCellHeight = 56.0;
+static CGFloat const kInfoNormalTableViewCellCompactHeight  = 44.0;
 
 @interface InfoNormalTableViewCell ()
 @end
@@ -23,8 +24,12 @@ static CGFloat const kInfoNormalTableViewCellHeight = 56.0;
   return YES;
 }
 
-+ (CGFloat)heightForObject:(id)object atIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView {
-  return kInfoNormalTableViewCellHeight;
++ (CGFloat)heightForObject:(InfoNormalTableViewCellObject *)object atIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView {
+  if (object.compact) {
+    return kInfoNormalTableViewCellCompactHeight;
+  } else {
+    return kInfoNormalTableViewCellHeight;
+  }
 }
 
 @end

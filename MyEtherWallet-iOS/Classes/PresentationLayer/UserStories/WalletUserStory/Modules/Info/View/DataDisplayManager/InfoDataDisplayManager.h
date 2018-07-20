@@ -18,6 +18,7 @@
 - (void) didTapPrivacyAndTerms;
 - (void) didTapMyEtherWalletCom;
 - (void) didTapResetWallet;
+- (void) didTapUserGuide;
 @end
 
 @interface InfoDataDisplayManager : NSObject <DataDisplayManager, UITableViewDelegate>

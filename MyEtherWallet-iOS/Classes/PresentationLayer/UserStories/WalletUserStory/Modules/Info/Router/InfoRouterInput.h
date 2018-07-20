@@ -15,4 +15,5 @@
 - (void) openMyEtherWalletCom;
 - (void) openKnowledgeBase;
 - (void) openPrivacyAndTerms;
+- (void) openUserGuide;
 @end

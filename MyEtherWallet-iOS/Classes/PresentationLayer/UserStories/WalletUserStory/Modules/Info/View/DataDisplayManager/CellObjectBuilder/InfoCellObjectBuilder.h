@@ -13,10 +13,11 @@
 @class InfoEmptyTableViewCellObject;
 
 @interface InfoCellObjectBuilder : NSObject
-- (InfoNormalTableViewCellObject *) buildContactCellObject;
-- (InfoNormalTableViewCellObject *) buildKnowledgeBaseCellObject;
-- (InfoNormalTableViewCellObject *) buildPrivacyAndTermsCellObject;
-- (InfoNormalTableViewCellObject *) buildMyetherwalletComCellObject;
+- (InfoNormalTableViewCellObject *) buildContactCellObjectWithCompactSize:(BOOL)compact;
+- (InfoNormalTableViewCellObject *) buildKnowledgeBaseCellObjectWithCompactSize:(BOOL)compact;
+- (InfoNormalTableViewCellObject *) buildPrivacyAndTermsCellObjectWithCompactSize:(BOOL)compact;
+- (InfoNormalTableViewCellObject *) buildMyetherwalletComCellObjectWithCompactSize:(BOOL)compact;
+- (InfoNormalTableViewCellObject *) buildUserGuideCellObjectWithCompactSize:(BOOL)compact;
 - (InfoDestructiveTableViewCellObject *) buildResetWalletCellObject;
 - (InfoEmptyTableViewCellObject *) buildEmptyCellObject;
 @end

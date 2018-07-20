@@ -10,7 +10,11 @@
 @import libextobjc.EXTScope;
 @import WebRTC;
 
+#if BETA
+#import "MyEtherWallet_iOS_Beta-Swift.h"
+#else
 #import "MyEtherWallet_iOS-Swift.h"
+#endif
 
 #import "NetworkingConstantsHeader.h"
 #import "ResponseMapper.h"

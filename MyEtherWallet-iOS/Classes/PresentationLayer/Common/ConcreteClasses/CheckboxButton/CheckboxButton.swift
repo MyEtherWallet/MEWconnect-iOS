@@ -116,9 +116,22 @@ class CheckboxButton: UIButton {
   private func _update() {
     
     let attributedTitle = NSMutableAttributedString()
+    let contentDescriptionFontSize: CGFloat
+    let contentTextFontSize: CGFloat
+    let contentTitleFontSize: CGFloat
+    
+    if UIScreen.main.screenSizeType() == .inches40 {
+      contentDescriptionFontSize = 13.0
+      contentTextFontSize = 13.0
+      contentTitleFontSize = 14.0
+    } else {
+      contentDescriptionFontSize = 14.0
+      contentTextFontSize = 17.0
+      contentTitleFontSize = 14.0
+    }
     
     if let cDescription = contentDescription {
-      let descriptionAttributes:[String:Any] = [NSFontAttributeName: UIFont.systemFont(ofSize: 14.0, weight: UIFontWeightRegular),
+      let descriptionAttributes:[String:Any] = [NSFontAttributeName: UIFont.systemFont(ofSize: contentDescriptionFontSize, weight: UIFontWeightRegular),
                                                 NSForegroundColorAttributeName: UIColor.lightGreyText(),
                                                 NSParagraphStyleAttributeName: NSParagraphStyle()]
       attributedTitle.append(NSAttributedString(string: cDescription, attributes: descriptionAttributes))
@@ -133,7 +146,7 @@ class CheckboxButton: UIButton {
       let textParagraphStyle = NSMutableParagraphStyle()
       textParagraphStyle.lineSpacing = 4.0
       textParagraphStyle.paragraphSpacing = 2.0
-      let textAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 17.0, weight: UIFontWeightSemibold),
+      let textAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: contentTextFontSize, weight: UIFontWeightSemibold),
                             NSForegroundColorAttributeName: UIColor.black,
                             NSParagraphStyleAttributeName: textParagraphStyle]
       attributedTitle.insert(NSAttributedString(string: text, attributes: textAttributes), at: 0)
@@ -147,7 +160,7 @@ class CheckboxButton: UIButton {
       }
       let titleParagraphSpacing = NSMutableParagraphStyle()
       titleParagraphSpacing.paragraphSpacing = 6.0
-      let titleAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 14.0, weight: UIFontWeightRegular),
+      let titleAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: contentTitleFontSize, weight: UIFontWeightRegular),
                              NSForegroundColorAttributeName: UIColor.black,
                              NSParagraphStyleAttributeName: titleParagraphSpacing]
       attributedTitle.insert(NSAttributedString(string: text, attributes: titleAttributes), at: 0)

@@ -10,10 +10,12 @@
 
 #import "CardView.h"
 #import "MEWSearchBar.h"
+#import "RotationButton.h"
 
 #import "UIImage+Color.h"
 #import "UIColor+Hex.h"
 #import "UIColor+Application.h"
+#import "UIScreen+ScreenSizeType.h"
 
 #import "NSNumberFormatter+USD.h"
 
@@ -22,29 +24,32 @@ typedef NS_ENUM(NSInteger, HomeStretchyHeaderStyle) {
   HomeStretchyHeaderStyleLightContent,
 };
 
-static CGFloat const kHomeStretchyHeaderMinimumContentHeight      = 130.0;
-static CGFloat const kHomeStretchyHeaderMaximumContentHeight      = 176.0;
+static CGFloat const kHomeStretchyHeaderMinimumContentHeight            = 130.0;
+static CGFloat const kHomeStretchyHeaderMaximumContentHeight            = 176.0;
+static CGFloat const kHomeStretchyHeaderMaximumContentHeight40Inches    = 172.0;
 
-NSTimeInterval const kHomeStretchyHeaderFadeDuration              = 0.2;
+NSTimeInterval const kHomeStretchyHeaderFadeDuration                    = 0.2;
 
-static CGFloat const kHomeStretchyHeaderDefaultOffset             = 16.0;
-static CGFloat const kHomeStretchyHeaderTopDefaultOffset          = 48.0;
+static CGFloat const kHomeStretchyHeaderDefaultOffset                   = 16.0;
+static CGFloat const kHomeStretchyHeaderTopDefaultOffset                = 48.0;
 
-static CGFloat const kHomeStretchyHeaderTitleTopMinOffset         = 6.0;
-static CGFloat const kHomeStretchyHeaderTitleTopMaxOffset         = 14.0;
+static CGFloat const kHomeStretchyHeaderTitleTopMinOffset               = 6.0;
+static CGFloat const kHomeStretchyHeaderTitleTopMaxOffset               = 14.0;
 
-static CGFloat const kHomeStretchyHeaderMinSearchBarHeight        = 82.0;
-static CGFloat const kHomeStretchyHeaderMaxSearchBarHeight        = 104.0;
+static CGFloat const kHomeStretchyHeaderMinSearchBarHeight              = 82.0;
+static CGFloat const kHomeStretchyHeaderMaxSearchBarHeight              = 104.0;
 
-static CGFloat const kHomeStretchyHeaderTokensTitleMinFontSize    = 17.0;
-static CGFloat const kHomeStretchyHeaderTokensTitleMaxFontSize    = 22.0;
+static CGFloat const kHomeStretchyHeaderTokensTitleMinFontSize          = 17.0;
+static CGFloat const kHomeStretchyHeaderTokensTitleMaxFontSize          = 22.0;
 
-static CGFloat const kHomeStretchyHeaderTokensTitleTopMinOffset   = 14.0;
-static CGFloat const kHomeStretchyHeaderTokensTitleTopMaxOffset   = 17.0;
+static CGFloat const kHomeStretchyHeaderTokensTitleTopMinOffset         = 14.0;
+static CGFloat const kHomeStretchyHeaderTokensTitleTopMaxOffset         = 17.0;
+static CGFloat const kHomeStretchyHeaderTokensTitleTopMaxOffset40Inches = 19.0;
 
-static CGFloat const kHomeStretchyHeaderSearchBarHOffset          = 8.0;
-static CGFloat const kHomeStretchyHeaderSearchBarBMinOffset       = 0.0;
-static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset       = 8.0;
+static CGFloat const kHomeStretchyHeaderSearchBarHOffset                = 8.0;
+static CGFloat const kHomeStretchyHeaderSearchBarHOffset40Inches        = 6.0;
+static CGFloat const kHomeStretchyHeaderSearchBarBMinOffset             = 0.0;
+static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset             = 8.0;
 
 @interface HomeStretchyHeader ()
 @property (nonatomic, weak) UILabel *titleLabel;
@@ -62,6 +67,7 @@ static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset       = 8.0;
 @property (nonatomic, weak) UIImageView *searchBarBackgroundImageView;
 @property (nonatomic, weak) UILabel *tokenBalancesTitleLabel;
 @property (nonatomic, weak) UILabel *tokenBalancesLabel;
+@property (nonatomic, weak) RotationButton *refreshButton;
 
 @property (nonatomic) HomeStretchyHeaderStyle contentStyle;
 @property (nonatomic) UIStatusBarStyle statusBarStyle;
@@ -69,6 +75,7 @@ static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset       = 8.0;
 
 @implementation HomeStretchyHeader {
   CGFloat _safeHeight;
+  CGFloat _tokensTitleTopMaxOffset;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame delegate:(id<HomeStretchyHeaderDelegate>)delegate {
@@ -99,7 +106,11 @@ static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset       = 8.0;
     CGFloat oldSafeHeight = _safeHeight;
     _safeHeight = topLayoutGuide.length;
     self.minimumContentHeight = kHomeStretchyHeaderMinimumContentHeight + _safeHeight;
-    CGFloat newHeight = kHomeStretchyHeaderMaximumContentHeight + self.cardView.intrinsicContentSize.height + _safeHeight;
+    CGFloat height = kHomeStretchyHeaderMaximumContentHeight;
+    if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+      height = kHomeStretchyHeaderMaximumContentHeight40Inches;
+    }
+    CGFloat newHeight = height + self.cardView.intrinsicContentSize.height + _safeHeight;
     [self setMaximumContentHeight:newHeight resetAnimated:NO];
     if (self.cardTopConstraint.constant == kHomeStretchyHeaderTopDefaultOffset + oldSafeHeight) {
       self.cardTopConstraint.constant = kHomeStretchyHeaderTopDefaultOffset + _safeHeight;
@@ -191,6 +202,15 @@ static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset       = 8.0;
     self.titleLabelTopConstraint = [titleLabel.topAnchor constraintEqualToAnchor:self.delegate.topLayoutGuide.bottomAnchor constant:kHomeStretchyHeaderTitleTopMaxOffset];
     self.titleLabel = titleLabel;
   }
+#if BETA
+  {
+    UIImageView *betaIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"beta_icon"]];
+    betaIcon.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.contentView addSubview:betaIcon];
+    [titleLabel.rightAnchor constraintEqualToAnchor:betaIcon.leftAnchor constant:1.0].active = YES;
+    [titleLabel.topAnchor constraintEqualToAnchor:betaIcon.centerYAnchor constant:-1.0].active = YES;
+  }
+#endif
   UILabel *titleBalanceLabel = [[UILabel alloc] init];
   {
     titleBalanceLabel.alpha = 0.0;
@@ -269,12 +289,28 @@ static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset       = 8.0;
                                                                          relatedBy:NSLayoutRelationEqual
                                                                             toItem:searchBarContainerView attribute:NSLayoutAttributeLeading
                                                                         multiplier:1.0 constant:kHomeStretchyHeaderDefaultOffset]];
+      _tokensTitleTopMaxOffset = kHomeStretchyHeaderTokensTitleTopMaxOffset;
+      if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+        _tokensTitleTopMaxOffset = kHomeStretchyHeaderTokensTitleTopMaxOffset40Inches;
+      }
       self.tokenBalancesTitleTopConstraints = [NSLayoutConstraint constraintWithItem:tokenBalancesTitle attribute:NSLayoutAttributeTop
                                                                            relatedBy:NSLayoutRelationEqual
                                                                               toItem:searchBarContainerView attribute:NSLayoutAttributeTop
-                                                                          multiplier:1.0 constant:kHomeStretchyHeaderTokensTitleTopMaxOffset];
+                                                                          multiplier:1.0 constant:_tokensTitleTopMaxOffset];
       [searchBarContainerView addConstraint:self.tokenBalancesTitleTopConstraints];
       self.tokenBalancesTitleLabel = tokenBalancesTitle;
+    }
+    { //Refresh button
+      RotationButton *button = [RotationButton buttonWithType:UIButtonTypeSystem];
+      button.translatesAutoresizingMaskIntoConstraints = NO;
+      [button setContentEdgeInsets:UIEdgeInsetsMake(2.0, 2.0, 2.0, 2.0)];
+      [button setImage:[UIImage imageNamed:@"refresh_icon"] forState:UIControlStateNormal];
+      button.tintColor = [UIColor mainApplicationColor];
+      [searchBarContainerView addSubview:button];
+      [button.centerYAnchor constraintEqualToAnchor:self.tokenBalancesTitleLabel.centerYAnchor].active = YES;
+      [button.leadingAnchor constraintEqualToAnchor:self.tokenBalancesTitleLabel.trailingAnchor constant:8.0].active = YES;
+      
+      _refreshButton = button;
     }
     {
       UILabel *tokenBalancesLabel = [[UILabel alloc] init];
@@ -294,8 +330,12 @@ static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset       = 8.0;
       searchBar.searchBarStyle = UISearchBarStyleMinimal;
       searchBar.translatesAutoresizingMaskIntoConstraints = NO;
       [searchBarContainerView addSubview:searchBar];
-      NSDictionary *metrics = @{@"LOFFSET": @(kHomeStretchyHeaderSearchBarHOffset),
-                                @"ROFFSET": @(kHomeStretchyHeaderSearchBarHOffset)};
+      CGFloat hOffset = kHomeStretchyHeaderSearchBarHOffset;
+      if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+        hOffset = kHomeStretchyHeaderSearchBarHOffset40Inches;
+      }
+      NSDictionary *metrics = @{@"LOFFSET": @(hOffset),
+                                @"ROFFSET": @(hOffset)};
       NSDictionary *views = @{@"search": searchBar};
       [searchBarContainerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(LOFFSET)-[search]-(ROFFSET)-|" options:0 metrics:metrics views:views]];
       self.searchBarBottomConstraint = [searchBarContainerView.bottomAnchor constraintEqualToAnchor:searchBar.bottomAnchor constant:kHomeStretchyHeaderSearchBarBMaxOffset];
@@ -408,7 +448,7 @@ static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset       = 8.0;
   self.tokenBalancesTitleLabel.font = [UIFont systemFontOfSize:fontSize weight:UIFontWeightBold];
   self.tokenBalancesLabel.font = [UIFont systemFontOfSize:fontSize weight:UIFontWeightRegular];
   self.searchBarBackgroundImageView.alpha = searchBarBackgroundAlphaFactor;
-  self.tokenBalancesTitleTopConstraints.constant = self.tokenBalancesTopConstraints.constant = CGFloatInterpolate(searchBarContainerStretchFactor, kHomeStretchyHeaderTokensTitleTopMinOffset, kHomeStretchyHeaderTokensTitleTopMaxOffset);
+  self.tokenBalancesTitleTopConstraints.constant = self.tokenBalancesTopConstraints.constant = CGFloatInterpolate(searchBarContainerStretchFactor, kHomeStretchyHeaderTokensTitleTopMinOffset, _tokensTitleTopMaxOffset);
   self.searchBarBottomConstraint.constant = CGFloatInterpolate(searchBarContainerStretchFactor, kHomeStretchyHeaderSearchBarBMinOffset, kHomeStretchyHeaderSearchBarBMaxOffset);
   
   self.titleLabelTopConstraint.constant = CGFloatInterpolate(titleStretchFactor, kHomeStretchyHeaderTitleTopMinOffset, kHomeStretchyHeaderTitleTopMaxOffset);

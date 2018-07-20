@@ -46,16 +46,18 @@
 
 - (void)signTransactionWithPassword:(NSString *)password {
   @weakify(self);
-  [self.walletService signTransaction:self.transaction
-                             password:password
-                        publicAddress:self.account.publicAddress
-                              network:[self.account.fromNetwork network]
-                           completion:^(id data) {
-                             @strongify(self);
-                             MEWConnectResponse *response = [MEWConnectResponse responseForCommand:self.message data:data];
-                             [self.connectFacade sendMessage:response];
-                             [self.output transactionDidSigned:response];
-                           }];
+  if (self.transaction) {
+    [self.walletService signTransaction:self.transaction
+                               password:password
+                          publicAddress:self.account.publicAddress
+                                network:[self.account.fromNetwork network]
+                             completion:^(id data) {
+                               @strongify(self);
+                               MEWConnectResponse *response = [MEWConnectResponse responseForCommand:self.message data:data];
+                               [self.connectFacade sendMessage:response];
+                               [self.output transactionDidSigned:response];
+                             }];
+  }
 }
 
 @end

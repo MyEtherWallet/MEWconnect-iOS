@@ -23,7 +23,7 @@
 static CGFloat kCardViewSmallOffset             = 6.0;
 static CGFloat kCardViewEthereumTitleTopOffset  = 87.0;
 
-CGFloat const kCardViewBlinkDefaultAlpha        = 0.4;
+CGFloat const kCardViewBlinkDefaultAlpha        = 0.6;
 CGFloat const kCardViewDefaultShadowOpacity     = 0.2;
 CGFloat const kCardViewDefaultCornerRadius      = 16.0;
 CGFloat const kCardViewDefaultOffset            = 16.0;
@@ -228,11 +228,11 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.backgroundImageView attribute:NSLayoutAttributeCenterX
                                                      relatedBy:NSLayoutRelationEqual
                                                         toItem:blinkImageView attribute:NSLayoutAttributeCenterX
-                                                    multiplier:1.0 constant:0.0]];
+                                                    multiplier:1.0 constant:-50.0]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.backgroundImageView attribute:NSLayoutAttributeCenterY
                                                      relatedBy:NSLayoutRelationEqual
                                                         toItem:blinkImageView attribute:NSLayoutAttributeCenterY
-                                                    multiplier:1.0 constant:0.0]];
+                                                    multiplier:1.0 constant:25.0]];
     _blinkImageView = blinkImageView;
     [self _addMotionEffect:blinkImageView];
   }

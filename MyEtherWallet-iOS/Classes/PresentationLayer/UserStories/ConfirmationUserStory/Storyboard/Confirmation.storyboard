@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--Confirmation Navigation View Controller-->
         <scene sceneID="OEM-9P-bb2">
             <objects>
-                <navigationController navigationBarHidden="YES" id="dSU-dI-qOt" sceneMemberID="viewController">
+                <navigationController navigationBarHidden="YES" id="dSU-dI-qOt" customClass="ConfirmationNavigationViewController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="jlT-a1-amU">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -43,6 +43,7 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="theme">
                                         <integer key="value" value="3"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="compact" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="declineAction:" destination="XFV-L1-tpZ" eventType="touchUpInside" id="QXr-io-RNi"/>
@@ -58,6 +59,7 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="theme">
                                         <integer key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="compact" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="confirmAction:" destination="XFV-L1-tpZ" eventType="touchUpInside" id="xHa-h7-dtb"/>
@@ -123,9 +125,12 @@ transaction</string>
                     <connections>
                         <outlet property="addressCheckboxButton" destination="iIY-vJ-qAa" id="q7R-sv-BNF"/>
                         <outlet property="amountCheckboxButton" destination="j1M-Mb-kKC" id="cP9-ue-GJl"/>
+                        <outlet property="buttonsWidthConstraint" destination="nIs-wp-npk" id="6qZ-3V-HJH"/>
                         <outlet property="confirmButton" destination="ELz-ph-v1O" id="Wmi-Fj-itJ"/>
                         <outlet property="descriptionLabel" destination="9lA-gj-2kw" id="C2c-Ej-c0D"/>
+                        <outlet property="interbuttonOffsetConstraint" destination="Q2O-Fc-8H9" id="pU7-7Z-i5W"/>
                         <outlet property="titleLabel" destination="8Th-YD-m1u" id="Uph-vg-3B3"/>
+                        <outlet property="titleTopOffsetConstraint" destination="TQ0-xB-EoZ" id="8d4-zJ-5FZ"/>
                         <segue destination="V5h-zr-lHt" kind="show" identifier="TransactionToDeclinedTransactionSegueIdentifier" id="1xX-zz-QIs"/>
                         <segue destination="Osz-z3-Lpi" kind="show" identifier="TransactionToConfirmedTransactionSegueIdentifier" id="9FK-49-v55"/>
                         <segue destination="Y4n-mg-mQJ" kind="presentation" identifier="TransactionToSplashPasswordSegueIdentifier" id="VgU-CY-Pdz"/>
@@ -178,6 +183,7 @@ declined</string>
                                     <userDefinedRuntimeAttribute type="number" keyPath="theme">
                                         <integer key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="compact" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="closeAction:" destination="V5h-zr-lHt" eventType="touchUpInside" id="o4z-YB-fCy"/>
@@ -201,6 +207,7 @@ declined</string>
                     <connections>
                         <outlet property="descriptionLabel" destination="GUW-65-6Uk" id="4hM-YY-7Uf"/>
                         <outlet property="titleLabel" destination="5mr-vE-qya" id="f7q-pV-ezR"/>
+                        <outlet property="titleTopOffsetConstraint" destination="1gp-v1-g9H" id="791-lV-RDe"/>
                         <segue destination="VAR-VY-WRP" kind="unwind" identifier="DeclinedTransactionToHomeUnwindSegueIdentifier" unwindAction="unwindToHome:" id="Vsv-6w-NWX"/>
                     </connections>
                 </viewController>
@@ -305,6 +312,7 @@ declined</string>
                                     <userDefinedRuntimeAttribute type="number" keyPath="theme">
                                         <integer key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="compact" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="closeAction:" destination="V5h-zr-lHt" eventType="touchUpInside" id="Lij-rD-4hj"/>
@@ -336,6 +344,7 @@ declined</string>
                     <connections>
                         <outlet property="descriptionLabel" destination="tXI-2j-zCW" id="YZV-f1-fet"/>
                         <outlet property="titleLabel" destination="RGz-tl-k6o" id="Au4-X5-k6R"/>
+                        <outlet property="titleTopOffsetConstraint" destination="mTE-qf-eBo" id="TJf-us-bwZ"/>
                         <segue destination="2Se-bZ-vDF" kind="unwind" identifier="ConfirmedTransactionToHomeUnwindSegueIdentifier" unwindAction="unwindToHome:" id="m24-ac-yVe"/>
                     </connections>
                 </viewController>

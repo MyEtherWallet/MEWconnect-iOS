@@ -79,4 +79,12 @@
   }
 }
 
+- (void) loadingDidStart {
+  [self.view showLoading];
+}
+
+- (void) loadingDidEnd {
+  [self.view hideLoading];
+}
+
 @end

@@ -50,21 +50,21 @@ static CGFloat        kPasswordViewControllerWOCrackMeterVOffset  = 24.0;
 	[self.output didTriggerViewReadyEvent];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void) viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
   [self.passwordTextField becomeFirstResponder];
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
+- (void) viewDidDisappear:(BOOL)animated {
   [super viewDidDisappear:animated];
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)viewSafeAreaInsetsDidChange {
+- (void) viewSafeAreaInsetsDidChange {
   [super viewSafeAreaInsetsDidChange];
-  [self _updateTableViewInsets];
+  [self _updateScrollViewInsets];
 }
 
 #pragma mark - PasswordViewInput
@@ -234,19 +234,19 @@ static CGFloat        kPasswordViewControllerWOCrackMeterVOffset  = 24.0;
 #pragma mark - Notifications
 
 - (void) keyboardWillShow:(NSNotification *)notification {
-  CGSize keyboardSize = [notification.userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+  CGSize keyboardSize = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
   _keyboardHeight = keyboardSize.height;
-  [self _updateTableViewInsets];
+  [self _updateScrollViewInsets];
 }
 
 - (void) keyboardWillHide:(NSNotification *)notification {
   _keyboardHeight = 0.0;
-  [self _updateTableViewInsets];
+  [self _updateScrollViewInsets];
 }
 
 #pragma mark - Private
 
-- (void) _updateTableViewInsets {
+- (void) _updateScrollViewInsets {
   UIEdgeInsets insets;
   if (@available(iOS 11.0, *)) {
     insets = self.scrollView.adjustedContentInset;

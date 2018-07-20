@@ -12,12 +12,12 @@
 
 #import "BuyEtherAmountViewOutput.h"
 
+#import "FlatButton.h"
+
 #import "UIColor+Application.h"
 #import "UIImage+Color.h"
-
 #import "NSNumberFormatter+USD.h"
 #import "NSNumberFormatter+Ethereum.h"
-
 #import "UIScreen+ScreenSizeType.h"
 
 @interface BuyEtherAmountViewController ()
@@ -26,8 +26,11 @@
 @property (nonatomic, weak) IBOutlet UILabel *resultLabel;
 @property (nonatomic, weak) IBOutlet UIButton *switchCurrencyButton;
 @property (nonatomic, weak) IBOutlet UIButton *separatorButton;
-@property (nonatomic, weak) IBOutlet UIButton *buyButton;
+@property (nonatomic, weak) IBOutlet FlatButton *buyButton;
 @property (nonatomic, strong) IBOutletCollection(UIButton) NSArray <UIButton *> *keypadButtons;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *amountTopOffsetConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *keypadToContainerTopOffsetConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *buttonBottomOffsetConstraint;
 @end
 
 @implementation BuyEtherAmountViewController {
@@ -52,6 +55,11 @@
 #pragma mark - BuyEtherAmountViewInput
 
 - (void) setupInitialStateWithCurrency:(SimplexServiceCurrencyType)currency minimumAmount:(NSDecimalNumber *)minimumAmount {
+  if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+    self.amountTopOffsetConstraint.constant = -4.0;
+    self.keypadToContainerTopOffsetConstraint.constant = 17.0;
+    self.buttonBottomOffsetConstraint.constant = 22.0;
+  }
   _currency = currency;
   self.amountCurrencyLabel.text = NSStringFromSimplexServiceCurrencyType(currency);
   
@@ -120,6 +128,14 @@
 
 - (void) disableContinue {
   self.buyButton.enabled = NO;
+}
+
+- (void) showLoading {
+  self.buyButton.loading = YES;
+}
+
+- (void) hideLoading {
+  self.buyButton.loading = NO;
 }
 
 #pragma mark - IBActions

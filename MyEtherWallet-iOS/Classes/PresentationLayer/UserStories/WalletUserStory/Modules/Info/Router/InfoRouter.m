@@ -47,4 +47,22 @@ static NSString *const kInfoToHomeUnwindSegueIdentifier = @"InfoToHomeUnwindSegu
   }
 }
 
+- (void) openKnowledgeBase {
+  NSURL *url = [NSURL URLWithString:kKnowledgeBaseURL];
+  if (url) {
+    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+  }
+}
+
+- (void) openPrivacyAndTerms {
+  //TODO
+}
+
+- (void) openUserGuide {
+  NSURL *url = [NSURL URLWithString:kUserGuideURL];
+  if (url) {
+    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+  }
+}
+
 @end

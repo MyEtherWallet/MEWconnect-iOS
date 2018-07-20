@@ -194,6 +194,7 @@ static NSDecimalNumber *kBuyEtherMaximumUSDAmount;
 
 - (void) prepareQuote {
   NSDecimalNumber *amount = [self _obtainEnteredAmountNumber];
+  [self.output loadingDidStart];
   if (![amount isEqualToNumber:[NSDecimalNumber zero]]) {
     @weakify(self);
     [self.simplexService quoteForAccount:self.account
@@ -206,11 +207,13 @@ static NSDecimalNumber *kBuyEtherMaximumUSDAmount;
                                                                  quote:quote
                                                             completion:^(SimplexOrder *order, NSError *error) {
                                                               if (error) {
-                                                                
                                                               } else {
                                                                 [self.output orderDidCreated:order forAccount:self.account];
                                                               }
+                                                              [self.output loadingDidEnd];
                                                             }];
+                                } else {
+                                  [self.output loadingDidEnd];
                                 }
                               }];
   }

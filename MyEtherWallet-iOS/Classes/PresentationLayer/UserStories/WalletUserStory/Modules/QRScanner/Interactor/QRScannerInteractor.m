@@ -18,7 +18,7 @@
 #import "MEWConnectFacade.h"
 #import "MEWConnectFacadeConstants.h"
 
-static NSTimeInterval kQRScannerInteractorAutocloseInterval = 5.0;
+static NSTimeInterval kQRScannerInteractorAutocloseInterval = 2.0;
 
 @implementation QRScannerInteractor {
   NSTimer *_closeTimer;

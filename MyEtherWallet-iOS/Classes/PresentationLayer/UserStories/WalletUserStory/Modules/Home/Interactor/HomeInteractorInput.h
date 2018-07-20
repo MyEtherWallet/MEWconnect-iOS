@@ -21,6 +21,7 @@
 - (NSUInteger) obtainNumberOfTokens;
 - (NSDecimalNumber *) obtainTotalPriceOfTokens;
 - (void) reloadData;
+- (void) refreshTokens;
 - (void) subscribe;
 - (void) unsubscribe;
 - (void) searchTokensWithTerm:(NSString *)term;

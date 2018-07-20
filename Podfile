@@ -39,6 +39,7 @@ abstract_target 'MEWconnect' do
   pod 'M13Checkbox', :git => 'https://github.com/Foboz/M13Checkbox.git'
   pod 'DZNWebViewController', :git => 'https://github.com/Foboz/DZNWebViewController.git'
   pod 'UITextView+Placeholder', '~> 1.2.0'
+  pod 'CHIPageControl/Chimayo'
   
   # Ethereum
   pod 'web3swift', :git => 'https://github.com/Foboz/web3swift.git'
@@ -64,6 +65,13 @@ abstract_target 'MEWconnect' do
       pod 'OCMock', '3.3.1'
       pod 'RamblerTyphoonUtils/AssemblyTesting', '1.5.0'
     end
+    
+  end
+  
+  target 'MyEtherWallet-iOS-Beta' do
+    
+    #VIPER
+    pod 'RamblerTyphoonUtils/AssemblyCollector', '1.5.0'
     
   end
   

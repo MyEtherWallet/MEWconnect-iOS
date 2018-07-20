@@ -14,20 +14,24 @@
 
 @implementation InfoCellObjectBuilder
 
-- (InfoNormalTableViewCellObject *) buildContactCellObject {
-  return [InfoNormalTableViewCellObject objectWithType:InfoNormalTableViewCellObjectTypeContact];
+- (InfoNormalTableViewCellObject *) buildContactCellObjectWithCompactSize:(BOOL)compact {
+  return [InfoNormalTableViewCellObject objectWithType:InfoNormalTableViewCellObjectTypeContact compact:compact];
 }
 
-- (InfoNormalTableViewCellObject *) buildKnowledgeBaseCellObject {
-  return [InfoNormalTableViewCellObject objectWithType:InfoNormalTableViewCellObjectTypeKnowledgeBase];
+- (InfoNormalTableViewCellObject *) buildKnowledgeBaseCellObjectWithCompactSize:(BOOL)compact {
+  return [InfoNormalTableViewCellObject objectWithType:InfoNormalTableViewCellObjectTypeKnowledgeBase compact:compact];
 }
 
-- (InfoNormalTableViewCellObject *) buildPrivacyAndTermsCellObject {
-  return [InfoNormalTableViewCellObject objectWithType:InfoNormalTableViewCellObjectTypePrivateAndTerms];
+- (InfoNormalTableViewCellObject *) buildPrivacyAndTermsCellObjectWithCompactSize:(BOOL)compact {
+  return [InfoNormalTableViewCellObject objectWithType:InfoNormalTableViewCellObjectTypePrivateAndTerms compact:compact];
 }
 
-- (InfoNormalTableViewCellObject *) buildMyetherwalletComCellObject {
-  return [InfoNormalTableViewCellObject objectWithType:InfoNormalTableViewCellObjectTypeMyEtherWalletCom];
+- (InfoNormalTableViewCellObject *) buildMyetherwalletComCellObjectWithCompactSize:(BOOL)compact {
+  return [InfoNormalTableViewCellObject objectWithType:InfoNormalTableViewCellObjectTypeMyEtherWalletCom compact:compact];
+}
+
+- (InfoNormalTableViewCellObject *) buildUserGuideCellObjectWithCompactSize:(BOOL)compact {
+  return [InfoNormalTableViewCellObject objectWithType:InfoNormalTableViewCellObjectTypeUserGuide compact:compact];
 }
 
 - (InfoDestructiveTableViewCellObject *) buildResetWalletCellObject {

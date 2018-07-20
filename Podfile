@@ -68,6 +68,13 @@ abstract_target 'MEWconnect' do
     
   end
   
+  target 'MyEtherWallet-iOS-Beta' do
+    
+    #VIPER
+    pod 'RamblerTyphoonUtils/AssemblyCollector', '1.5.0'
+    
+  end
+  
   target 'MyEtherWallet-iOSUITests' do
     inherit! :search_paths
     

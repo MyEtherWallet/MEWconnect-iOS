@@ -11,7 +11,11 @@
 
 #import "ApplicationConstants.h"
 
+#if BETA
+#import "MyEtherWallet_iOS_Beta-Swift.h"
+#else
 #import "MyEtherWallet_iOS-Swift.h"
+#endif
 
 #import "ResponseMappersFactory.h"
 #import "ServiceComponentsAssembly.h"

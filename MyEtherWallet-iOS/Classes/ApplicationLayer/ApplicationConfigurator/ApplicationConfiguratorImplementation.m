@@ -9,7 +9,11 @@
 @import UIKit;
 @import MagicalRecord;
 
+#if BETA
+#import "MyEtherWallet_iOS_Beta-Swift.h"
+#else
 #import "MyEtherWallet_iOS-Swift.h"
+#endif
 
 #import "UIImage+Color.h"
 #import "UIColor+Hex.h"

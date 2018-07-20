@@ -27,5 +27,6 @@ static NSInteger    const kStartDevelopmentYear               = 2018;
 static NSString   * const kMyEtherWalletComURL                = @"https://www.myetherwallet.com";
 static NSString   * const kKnowledgeBaseURL                   = @"https://myetherwallet.github.io/knowledge-base/";
 static NSString   * const kMyEtherWalletSupportEmail          = @"support@myetherwallet.com";
+static NSString   * const kUserGuideURL                       = @"https://mewconnect.myetherwallet.com/userguide";
 
 #endif /* ApplicationConstants_h */

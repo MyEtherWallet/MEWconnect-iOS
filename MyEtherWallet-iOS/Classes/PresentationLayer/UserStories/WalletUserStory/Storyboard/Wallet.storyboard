@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -446,29 +447,56 @@ with MyEtherWallet</string>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="DWC-iX-mxL">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="63"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="115"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 21.0.312" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G89-d1-aMk">
-                                            <rect key="frame" x="24" y="25" width="327" height="18"/>
+                                            <rect key="frame" x="24" y="34" width="327" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="0.43137254901960786" green="0.45098039215686275" blue="0.51764705882352935" alpha="1" colorSpace="deviceRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JAh-FV-Ufs" userLabel="Copyright">
+                                            <rect key="frame" x="24" y="54" width="327" height="36"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <gestureRecognizers/>
+                                            <connections>
+                                                <outletCollection property="gestureRecognizers" destination="d5v-01-7s8" appends="YES" id="cKK-Pd-XnQ"/>
+                                            </connections>
+                                        </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright 2018 MyEtherWallet Inc." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VmI-iZ-Ky7">
-                                            <rect key="frame" x="24" y="45" width="327" height="18"/>
+                                            <rect key="frame" x="24" y="54" width="327" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="0.43137254901960786" green="0.45098039215686275" blue="0.51764705882352935" alpha="1" colorSpace="deviceRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ui4-Nu-eAE" customClass="InlineButton">
+                                            <rect key="frame" x="24" y="81" width="129" height="31"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="tintColor" red="0.43137254899999999" green="0.45098039220000002" blue="0.51764705879999995" alpha="1" colorSpace="deviceRGB"/>
+                                            <inset key="contentEdgeInsets" minX="0.0" minY="10" maxX="30" maxY="0.0"/>
+                                            <inset key="imageEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal" title="Reset wallet" image="inline_small_chevron">
+                                                <color key="titleColor" red="0.43137254899999999" green="0.45098039220000002" blue="0.51764705879999995" alpha="1" colorSpace="deviceRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="resetWalletAction:" destination="T20-gx-fZR" eventType="touchUpInside" id="t01-EO-LyS"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="VmI-iZ-Ky7" firstAttribute="top" secondItem="G89-d1-aMk" secondAttribute="bottom" constant="2" id="37z-uE-0Mo"/>
-                                        <constraint firstItem="G89-d1-aMk" firstAttribute="top" secondItem="DWC-iX-mxL" secondAttribute="top" constant="25" id="6gx-4K-mfH"/>
+                                        <constraint firstItem="G89-d1-aMk" firstAttribute="top" secondItem="DWC-iX-mxL" secondAttribute="top" constant="34" id="6gx-4K-mfH"/>
+                                        <constraint firstItem="Ui4-Nu-eAE" firstAttribute="leading" secondItem="VmI-iZ-Ky7" secondAttribute="leading" id="ARf-V9-BaQ"/>
+                                        <constraint firstItem="JAh-FV-Ufs" firstAttribute="height" secondItem="VmI-iZ-Ky7" secondAttribute="height" multiplier="2" id="ENa-sV-1OS"/>
+                                        <constraint firstItem="JAh-FV-Ufs" firstAttribute="trailing" secondItem="VmI-iZ-Ky7" secondAttribute="trailing" id="N69-en-jXw"/>
                                         <constraint firstItem="G89-d1-aMk" firstAttribute="leading" secondItem="DWC-iX-mxL" secondAttribute="leading" constant="24" id="al7-VC-nHJ"/>
                                         <constraint firstItem="VmI-iZ-Ky7" firstAttribute="leading" secondItem="G89-d1-aMk" secondAttribute="leading" id="b06-qr-CNn"/>
+                                        <constraint firstItem="JAh-FV-Ufs" firstAttribute="leading" secondItem="VmI-iZ-Ky7" secondAttribute="leading" id="f7v-ud-ibq"/>
                                         <constraint firstAttribute="trailing" secondItem="G89-d1-aMk" secondAttribute="trailing" constant="24" id="jXl-eu-Bb5"/>
+                                        <constraint firstItem="Ui4-Nu-eAE" firstAttribute="top" secondItem="VmI-iZ-Ky7" secondAttribute="bottom" constant="9" id="kbF-L9-YZp"/>
+                                        <constraint firstItem="JAh-FV-Ufs" firstAttribute="top" secondItem="VmI-iZ-Ky7" secondAttribute="top" id="lwd-I8-PEl"/>
                                         <constraint firstItem="VmI-iZ-Ky7" firstAttribute="trailing" secondItem="G89-d1-aMk" secondAttribute="trailing" id="w1O-Dc-LcL"/>
                                     </constraints>
                                 </view>
@@ -494,12 +522,18 @@ with MyEtherWallet</string>
                         <outlet property="copyrightLabel" destination="VmI-iZ-Ky7" id="6fZ-RT-E2y"/>
                         <outlet property="tableView" destination="btJ-B1-EnL" id="AB1-s8-okh"/>
                         <outlet property="versionLabel" destination="G89-d1-aMk" id="cJJ-Jk-VBP"/>
+                        <outlet property="versionTopOffsetConstraint" destination="6gx-4K-mfH" id="ycG-mc-KYg"/>
                         <segue destination="ySg-Me-ph6" kind="unwind" identifier="InfoToStartUnwindSegueIdentifier" unwindAction="unwindToStart:" id="lBp-SS-UPN"/>
                         <segue destination="ySg-Me-ph6" kind="unwind" identifier="InfoToHomeUnwindSegueIdentifier" unwindAction="unwindToHome:" id="pDA-fb-PhX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lwe-by-bLp" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ySg-Me-ph6" userLabel="Exit" sceneMemberID="exit"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="7" numberOfTouchesRequired="2" id="d5v-01-7s8">
+                    <connections>
+                        <action selector="changeNetworkAction:" destination="T20-gx-fZR" id="YOR-Wv-cca"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1101.5999999999999" y="510.49475262368821"/>
         </scene>
@@ -521,6 +555,7 @@ with MyEtherWallet</string>
     </scenes>
     <resources>
         <image name="bottom_chevron" width="46" height="12"/>
+        <image name="inline_small_chevron" width="6" height="10"/>
         <image name="qr_icon" width="18" height="18"/>
         <image name="scan_error_icon" width="44" height="44"/>
         <image name="scan_focus_tl" width="38" height="38"/>

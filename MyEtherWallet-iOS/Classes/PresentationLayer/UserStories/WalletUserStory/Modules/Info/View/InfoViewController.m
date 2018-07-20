@@ -18,11 +18,13 @@
 #import "ApplicationConstants.h"
 
 #import "UIView+LockFrame.h"
+#import "UIScreen+ScreenSizeType.h"
 
 @interface InfoViewController () <InfoDataDisplayManagerDelegate, MFMailComposeViewControllerDelegate>
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, weak) IBOutlet UILabel *versionLabel;
 @property (nonatomic, weak) IBOutlet UILabel *copyrightLabel;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *versionTopOffsetConstraint;
 @end
 
 @implementation InfoViewController {
@@ -61,6 +63,9 @@
 #pragma mark - InfoViewInput
 
 - (void) setupInitialStateWithVersion:(NSString *)version {
+  if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+    self.versionTopOffsetConstraint.constant = 20.0;
+  }
   self.versionLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Version %@", @"Info screen. Version format"), version];
   NSInteger year = [[NSCalendar currentCalendar] component:NSCalendarUnitYear fromDate:[NSDate date]];
   if (kStartDevelopmentYear < year) {
@@ -72,11 +77,6 @@
   self.tableView.dataSource = [self.dataDisplayManager dataSourceForTableView:self.tableView];
   self.tableView.delegate = [self.dataDisplayManager delegateForTableView:self.tableView
                                                          withBaseDelegate:self.dataDisplayManager];
-  UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(changeNetworkAction:)];
-  longPressGesture.minimumPressDuration = 7.0;
-  longPressGesture.numberOfTouchesRequired = 2;
-  [self.copyrightLabel addGestureRecognizer:longPressGesture];
-  self.copyrightLabel.userInteractionEnabled = YES;
   [self _updatePrefferedContentSize];
 }
 
@@ -113,6 +113,10 @@
 
 - (IBAction) closeAction:(id)sender {
   [self.output closeAction];
+}
+
+- (IBAction) resetWalletAction:(id)sender {
+  [self.output resetWalletAction];
 }
 
 - (IBAction) changeNetworkAction:(UILongPressGestureRecognizer *)sender {
@@ -162,6 +166,10 @@
 
 - (void) didTapResetWallet {
   [self.output resetWalletAction];
+}
+
+- (void) didTapUserGuide {
+  [self.output userGuideAction];
 }
 
 #pragma mark - MFMailComposeViewControllerDelegate

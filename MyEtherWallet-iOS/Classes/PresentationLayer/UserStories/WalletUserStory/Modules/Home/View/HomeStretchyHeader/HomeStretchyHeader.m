@@ -202,6 +202,15 @@ static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset             = 8.0;
     self.titleLabelTopConstraint = [titleLabel.topAnchor constraintEqualToAnchor:self.delegate.topLayoutGuide.bottomAnchor constant:kHomeStretchyHeaderTitleTopMaxOffset];
     self.titleLabel = titleLabel;
   }
+#if BETA
+  {
+    UIImageView *betaIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"beta_icon"]];
+    betaIcon.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.contentView addSubview:betaIcon];
+    [titleLabel.rightAnchor constraintEqualToAnchor:betaIcon.leftAnchor constant:1.0].active = YES;
+    [titleLabel.topAnchor constraintEqualToAnchor:betaIcon.centerYAnchor constant:-1.0].active = YES;
+  }
+#endif
   UILabel *titleBalanceLabel = [[UILabel alloc] init];
   {
     titleBalanceLabel.alpha = 0.0;

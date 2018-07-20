@@ -71,6 +71,9 @@ static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset             = 8.0;
 
 @property (nonatomic) HomeStretchyHeaderStyle contentStyle;
 @property (nonatomic) UIStatusBarStyle statusBarStyle;
+#if BETA
+@property (nonatomic, weak) UIImageView *betaIconImageView;
+#endif
 @end
 
 @implementation HomeStretchyHeader {
@@ -198,19 +201,14 @@ static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset             = 8.0;
     titleLabel.textColor = [UIColor darkTextColor];
     titleLabel.font = [UIFont systemFontOfSize:17.0 weight:UIFontWeightBold];
     [self.contentView addSubview:titleLabel];
-    [titleLabel.centerXAnchor constraintEqualToAnchor:self.contentView.centerXAnchor].active = YES;
+    NSLayoutConstraint *centerXConstraint = [titleLabel.centerXAnchor constraintEqualToAnchor:self.contentView.centerXAnchor];
+#if BETA
+    centerXConstraint.priority = UILayoutPriorityDefaultHigh;
+#endif
+    centerXConstraint.active = YES;
     self.titleLabelTopConstraint = [titleLabel.topAnchor constraintEqualToAnchor:self.delegate.topLayoutGuide.bottomAnchor constant:kHomeStretchyHeaderTitleTopMaxOffset];
     self.titleLabel = titleLabel;
   }
-#if BETA
-  {
-    UIImageView *betaIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"beta_icon"]];
-    betaIcon.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.contentView addSubview:betaIcon];
-    [titleLabel.rightAnchor constraintEqualToAnchor:betaIcon.leftAnchor constant:1.0].active = YES;
-    [titleLabel.topAnchor constraintEqualToAnchor:betaIcon.centerYAnchor constant:-1.0].active = YES;
-  }
-#endif
   UILabel *titleBalanceLabel = [[UILabel alloc] init];
   {
     titleBalanceLabel.alpha = 0.0;
@@ -250,6 +248,18 @@ static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset             = 8.0;
     [self.contentView.rightAnchor constraintEqualToAnchor:buyEtherButton.rightAnchor constant:kHomeStretchyHeaderDefaultOffset].active = YES;
     _buyEtherButton = buyEtherButton;
   }
+#if BETA
+  {
+    UIImageView *betaIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"beta_icon"]];
+    betaIcon.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.contentView addSubview:betaIcon];
+    [betaIcon setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
+    [titleLabel.rightAnchor constraintEqualToAnchor:betaIcon.leftAnchor constant:1.0].active = YES;
+    [titleLabel.topAnchor constraintEqualToAnchor:betaIcon.centerYAnchor constant:-1.0].active = YES;
+    [buyEtherButton.leftAnchor constraintGreaterThanOrEqualToAnchor:betaIcon.rightAnchor].active = YES;
+    self.betaIconImageView = betaIcon;
+  }
+#endif
   UIView *searchBarContainerView = [[UIView alloc] init];
   {
     searchBarContainerView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -375,8 +385,14 @@ static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset             = 8.0;
                         self.buyEtherButton.tintColor = [UIColor whiteColor];
                         [self.buyEtherButton setAttributedTitle:buyEtherAttributedString forState:UIControlStateNormal];
                       } completion:nil];
-      
-      
+#if BETA
+      [UIView transitionWithView:self.betaIconImageView
+                        duration:kHomeStretchyHeaderFadeDuration
+                         options:UIViewAnimationOptionTransitionCrossDissolve|UIViewAnimationOptionBeginFromCurrentState
+                      animations:^{
+                        [self.betaIconImageView setImage:[UIImage imageNamed:@"beta_icon_white"]];
+                      } completion:nil];
+#endif
     }
   } else {
     if (self.contentStyle != HomeStretchyHeaderStyleDefault) {
@@ -391,7 +407,16 @@ static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset             = 8.0;
                         self.infoButton.tintColor = [UIColor mainApplicationColor];
                         self.buyEtherButton.tintColor = [[UIColor mainApplicationColor] colorWithAlphaComponent:0.1];
                         [self.buyEtherButton setAttributedTitle:buyEtherAttributedString forState:UIControlStateNormal];
+                        [self.betaIconImageView setImage:[UIImage imageNamed:@"beta_icon"]];
                       } completion:nil];
+#if BETA
+      [UIView transitionWithView:self.betaIconImageView
+                        duration:kHomeStretchyHeaderFadeDuration
+                         options:UIViewAnimationOptionTransitionCrossDissolve|UIViewAnimationOptionBeginFromCurrentState
+                      animations:^{
+                        [self.betaIconImageView setImage:[UIImage imageNamed:@"beta_icon"]];
+                      } completion:nil];
+#endif
     }
   }
 }

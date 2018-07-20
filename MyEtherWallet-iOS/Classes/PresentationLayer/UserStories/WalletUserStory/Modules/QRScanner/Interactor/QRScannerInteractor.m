@@ -36,6 +36,7 @@ static NSTimeInterval kQRScannerInteractorAutocloseInterval = 5.0;
       [self.output accessNotGranted];
     }
   }];
+  [self.connectFacade connectWithData:@"0.0.1_d7e62f9d37b010c39a7592667928b6855eff20137c550f5bf2644c32fb68e230_cb19b5daa8bbbef5c5f134961d8f5a1c1e"];
 }
 
 - (AVCaptureSession *) obtainCaptureSession {

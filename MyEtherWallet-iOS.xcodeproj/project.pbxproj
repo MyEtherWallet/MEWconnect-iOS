@@ -224,6 +224,7 @@
 		5677BB4F20FD0C190019E92D /* UIScreen+ScreenScaleType.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677BB4E20FD0C190019E92D /* UIScreen+ScreenScaleType.m */; };
 		5677BB6020FE9FC70019E92D /* UIView+LockAlpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677BB5F20FE9FC70019E92D /* UIView+LockAlpha.m */; };
 		5677BB6420FEA5D30019E92D /* RotationButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677BB6320FEA5D30019E92D /* RotationButton.m */; };
+		5677BB742100A8260019E92D /* UIBezierPath+Morphing.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677BB732100A8260019E92D /* UIBezierPath+Morphing.m */; };
 		5685FE162099F9A4008C75A1 /* FlatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5685FE152099F9A4008C75A1 /* FlatButton.m */; };
 		5689111F20EE6511001552D4 /* SimplexPaymentQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 5689111E20EE6511001552D4 /* SimplexPaymentQuery.m */; };
 		5695A95A2B5CED358C015C0D /* DeclinedTransactionRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = DD110C7B23B316FCBDF56162 /* DeclinedTransactionRouter.m */; };
@@ -938,6 +939,8 @@
 		5677BB5F20FE9FC70019E92D /* UIView+LockAlpha.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+LockAlpha.m"; sourceTree = "<group>"; };
 		5677BB6220FEA5D30019E92D /* RotationButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RotationButton.h; sourceTree = "<group>"; };
 		5677BB6320FEA5D30019E92D /* RotationButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RotationButton.m; sourceTree = "<group>"; };
+		5677BB722100A8260019E92D /* UIBezierPath+Morphing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+Morphing.h"; sourceTree = "<group>"; };
+		5677BB732100A8260019E92D /* UIBezierPath+Morphing.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+Morphing.m"; sourceTree = "<group>"; };
 		5685FE142099F9A4008C75A1 /* FlatButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlatButton.h; sourceTree = "<group>"; };
 		5685FE152099F9A4008C75A1 /* FlatButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlatButton.m; sourceTree = "<group>"; };
 		5689111D20EE6511001552D4 /* SimplexPaymentQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimplexPaymentQuery.h; sourceTree = "<group>"; };
@@ -3685,6 +3688,23 @@
 			path = RotationButton;
 			sourceTree = "<group>";
 		};
+		5677BB712100A80E0019E92D /* UIBezierPath */ = {
+			isa = PBXGroup;
+			children = (
+				5677BB752100A82B0019E92D /* UIBezierPath+Morphing */,
+			);
+			path = UIBezierPath;
+			sourceTree = "<group>";
+		};
+		5677BB752100A82B0019E92D /* UIBezierPath+Morphing */ = {
+			isa = PBXGroup;
+			children = (
+				5677BB722100A8260019E92D /* UIBezierPath+Morphing.h */,
+				5677BB732100A8260019E92D /* UIBezierPath+Morphing.m */,
+			);
+			path = "UIBezierPath+Morphing";
+			sourceTree = "<group>";
+		};
 		5685FE132099F996008C75A1 /* FlatButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -4189,6 +4209,7 @@
 		56AC944A208FAAE000E5BC2C /* Extenstions */ = {
 			isa = PBXGroup;
 			children = (
+				5677BB712100A80E0019E92D /* UIBezierPath */,
 				5677BB5720FE9F5C0019E92D /* UIView */,
 				5677BB5020FD0D830019E92D /* UIDevice */,
 				5677BB4420FD0A150019E92D /* UIScreen */,
@@ -8136,6 +8157,7 @@
 				"${BUILT_PRODUCTS_DIR}/BEMCheckBox/BEMCheckBox.framework",
 				"${BUILT_PRODUCTS_DIR}/BigInt/BigInt.framework",
 				"${BUILT_PRODUCTS_DIR}/BlockiesSwift/BlockiesSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/CHIPageControl/CHIPageControl.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/DZNWebViewController/DZNWebViewController.framework",
@@ -8173,6 +8195,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BEMCheckBox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BigInt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BlockiesSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CHIPageControl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNWebViewController.framework",
@@ -8251,6 +8274,7 @@
 				"${BUILT_PRODUCTS_DIR}/BEMCheckBox/BEMCheckBox.framework",
 				"${BUILT_PRODUCTS_DIR}/BigInt/BigInt.framework",
 				"${BUILT_PRODUCTS_DIR}/BlockiesSwift/BlockiesSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/CHIPageControl/CHIPageControl.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/DZNWebViewController/DZNWebViewController.framework",
@@ -8289,6 +8313,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BEMCheckBox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BigInt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BlockiesSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CHIPageControl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNWebViewController.framework",
@@ -8374,6 +8399,7 @@
 				72A2267B34B867AC64D35523 /* StartAssembly.m in Sources */,
 				560A866F20E65C5F00046B53 /* CoreDataConfiguratorImplementation.m in Sources */,
 				560A868120E6F40F00046B53 /* BalanceBodyTransformer.m in Sources */,
+				5677BB742100A8260019E92D /* UIBezierPath+Morphing.m in Sources */,
 				560A866520E6539F00046B53 /* KeychainServiceImplementation.m in Sources */,
 				56E14BF420EBCFA000C41F83 /* SimplexQuery.m in Sources */,
 				56FB38F720B092C3007776C8 /* MEWConnectFacadeImplementation.m in Sources */,

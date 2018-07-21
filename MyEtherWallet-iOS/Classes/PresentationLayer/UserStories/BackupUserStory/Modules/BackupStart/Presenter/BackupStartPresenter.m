@@ -38,9 +38,11 @@
 
 #pragma mark - BackupStartInteractorOutput
 
-- (void)mnemonicsDidReceived:(NSArray<NSString *> *)mnemonics {
-  AccountPlainObject *account = [self.interactor obtainAccount];
-  [self.router openWordsWithMnemonics:mnemonics account:account];
+- (void) mnemonicsDidReceived:(NSArray<NSString *> *)mnemonics {
+  dispatch_async(dispatch_get_main_queue(), ^{
+    AccountPlainObject *account = [self.interactor obtainAccount];
+    [self.router openWordsWithMnemonics:mnemonics account:account];
+  });
 }
 
 #pragma mark - SplashPasswordModuleOutput

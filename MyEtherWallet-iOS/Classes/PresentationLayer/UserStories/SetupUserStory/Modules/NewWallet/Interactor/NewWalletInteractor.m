@@ -12,6 +12,7 @@
 
 #import "NewWalletInteractorOutput.h"
 
+#import "MEWConnectFacade.h"
 #import "BlockchainNetworkService.h"
 #import "AccountsService.h"
 #import "Ponsomizer.h"
@@ -38,6 +39,8 @@
   
   [self.accountsService createNewAccountInNetwork:network password:password words:words completion:^(AccountModelObject *accountModelObject) {
     @strongify(self);
+    
+    [self.connectFacade disconnect];
     
     NSArray *ignoringProperties = @[NSStringFromSelector(@selector(backedUp)),
                                     NSStringFromSelector(@selector(fromNetwork)),

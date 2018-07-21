@@ -7,7 +7,7 @@
 //
 
 @import Foundation;
-@import ViperMcFlurry;
+@import ViperMcFlurryX;
 
 @protocol RestoreWalletModuleInput <RamblerViperModuleInput>
 - (void) configureModuleWhileForgotPassword:(BOOL)forgotPassword;

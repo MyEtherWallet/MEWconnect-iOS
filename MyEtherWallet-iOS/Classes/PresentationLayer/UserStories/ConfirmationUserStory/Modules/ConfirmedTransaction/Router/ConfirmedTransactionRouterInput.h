@@ -9,5 +9,4 @@
 @import Foundation;
 
 @protocol ConfirmedTransactionRouterInput <NSObject>
-- (void) close;
 @end

@@ -7,7 +7,7 @@
 //
 
 @import UIKit;
-@import ViperMcFlurry;
+@import ViperMcFlurryX;
 
 #import "CleanLaunchRouter.h"
 #import "NavigationControllerFactory.h"

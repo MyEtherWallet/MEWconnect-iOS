@@ -13,7 +13,7 @@
         <!--Confirmation Navigation View Controller-->
         <scene sceneID="OEM-9P-bb2">
             <objects>
-                <navigationController navigationBarHidden="YES" id="dSU-dI-qOt" customClass="ConfirmationNavigationViewController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="TransactionViewController" navigationBarHidden="YES" id="dSU-dI-qOt" customClass="ConfirmationNavigationViewController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="jlT-a1-amU">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -208,11 +208,9 @@ declined</string>
                         <outlet property="descriptionLabel" destination="GUW-65-6Uk" id="4hM-YY-7Uf"/>
                         <outlet property="titleLabel" destination="5mr-vE-qya" id="f7q-pV-ezR"/>
                         <outlet property="titleTopOffsetConstraint" destination="1gp-v1-g9H" id="791-lV-RDe"/>
-                        <segue destination="VAR-VY-WRP" kind="unwind" identifier="DeclinedTransactionToHomeUnwindSegueIdentifier" unwindAction="unwindToHome:" id="Vsv-6w-NWX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1zz-CD-ran" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="VAR-VY-WRP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1751" y="-667"/>
         </scene>
@@ -345,11 +343,9 @@ declined</string>
                         <outlet property="descriptionLabel" destination="tXI-2j-zCW" id="YZV-f1-fet"/>
                         <outlet property="titleLabel" destination="RGz-tl-k6o" id="Au4-X5-k6R"/>
                         <outlet property="titleTopOffsetConstraint" destination="mTE-qf-eBo" id="TJf-us-bwZ"/>
-                        <segue destination="2Se-bZ-vDF" kind="unwind" identifier="ConfirmedTransactionToHomeUnwindSegueIdentifier" unwindAction="unwindToHome:" id="m24-ac-yVe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rk5-Jx-RTv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="2Se-bZ-vDF" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1750" y="27"/>
         </scene>

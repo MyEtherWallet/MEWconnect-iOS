@@ -370,6 +370,15 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
   [self _sendConnected];
 }
 
+- (void) MEWRTCServiceConnectionDidDisconnected:(id<MEWRTCService>)rtcService {
+  if ([self.delegate respondsToSelector:@selector(MEWConnectDidDisconnected:)]) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+      self.connectionStatus = MEWConnectStatusDisconnected;
+      [self.delegate MEWConnectDidDisconnected:self];
+    });
+  }
+}
+
 - (void) MEWRTCServiceDataChannelDidOpen:(id<MEWRTCService>)rtcService {
   if ([self.delegate respondsToSelector:@selector(MEWConnectDidConnected:)]) {
     dispatch_async(dispatch_get_main_queue(), ^{

@@ -14,6 +14,7 @@
 - (void) MEWRTCService:(id <MEWRTCService>)rtcService didGenerateAnswer:(RTCSessionDescription *)answer;
 - (void) MEWRTCServiceConnectionDidFailed:(id <MEWRTCService>)rtcService;
 - (void) MEWRTCServiceConnectionDidConnected:(id <MEWRTCService>)rtcService;
+- (void) MEWRTCServiceConnectionDidDisconnected:(id <MEWRTCService>)rtcService;
 - (void) MEWRTCServiceDataChannelDidOpen:(id <MEWRTCService>)rtcService;
 - (void) MEWRTCService:(id <MEWRTCService>)rtcService didReceiveMessage:(NSDictionary *)message;
 @end

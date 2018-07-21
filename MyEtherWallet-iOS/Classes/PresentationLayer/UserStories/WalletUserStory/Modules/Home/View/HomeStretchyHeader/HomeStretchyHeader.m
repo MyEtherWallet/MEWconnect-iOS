@@ -234,6 +234,7 @@ static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset             = 8.0;
   UIButton *buyEtherButton = [UIButton buttonWithType:UIButtonTypeSystem];
   {
     buyEtherButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [buyEtherButton setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
     UIImage *backgroundImage = [[[UIImage imageWithColor:[UIColor blackColor] size:CGSizeMake(28.0, 28.0) cornerRadius:10.0 insets:UIEdgeInsetsMake(4.0, 4.0, 4.0, 4.0)] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 14.0, 0.0, 14.0)] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [buyEtherButton setBackgroundImage:backgroundImage forState:UIControlStateNormal];
     NSString *title = NSLocalizedString(@"BUY ETHER", @"Home screen. Buy ether button title");

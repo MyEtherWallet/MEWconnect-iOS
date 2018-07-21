@@ -84,6 +84,14 @@
   [queue enqueueNotification:notification postingStyle:NSPostNow coalesceMask:NSNotificationCoalescingOnSender|NSNotificationCoalescingOnName forModes:@[NSDefaultRunLoopMode]];
 }
 
+- (void) MEWConnectDidDisconnected:(id<MEWConnectService>)mewConnect {
+  NSNotificationQueue *queue = [NSNotificationQueue defaultQueue];
+  NSNotification *notification = [NSNotification notificationWithName:MEWConnectFacadeDidDisconnectNotification
+                                                               object:self
+                                                             userInfo:@{kMEWConnectFacadeDisconnectReason: kMEWConnectFacadeReasonClosed}];
+  [queue enqueueNotification:notification postingStyle:NSPostNow coalesceMask:NSNotificationCoalescingOnSender|NSNotificationCoalescingOnName forModes:@[NSDefaultRunLoopMode]];
+}
+
 - (void) MEWConnectDidDisconnectedByTimeout:(id <MEWConnectService>)mewConnect {
   NSNotificationQueue *queue = [NSNotificationQueue defaultQueue];
   NSNotification *notification = [NSNotification notificationWithName:MEWConnectFacadeDidDisconnectNotification

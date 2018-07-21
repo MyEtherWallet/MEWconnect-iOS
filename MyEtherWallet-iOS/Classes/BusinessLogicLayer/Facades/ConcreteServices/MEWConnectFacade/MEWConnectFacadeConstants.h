@@ -16,5 +16,6 @@ FOUNDATION_EXPORT NSString *const MEWConnectFacadeDidReceiveMessageNotification;
 FOUNDATION_EXPORT NSString *const kMEWConnectFacadeDisconnectReason;
 FOUNDATION_EXPORT NSString *const kMEWConnectFacadeMessage;
 
+FOUNDATION_EXPORT NSString *const kMEWConnectFacadeReasonClosed;
 FOUNDATION_EXPORT NSString *const kMEWConnectFacadeReasonTimeout;
 FOUNDATION_EXPORT NSString *const kMEWConnectFacadeReasonError;

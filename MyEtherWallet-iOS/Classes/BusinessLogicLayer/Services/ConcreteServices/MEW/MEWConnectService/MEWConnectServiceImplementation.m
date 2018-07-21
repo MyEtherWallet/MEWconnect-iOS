@@ -75,7 +75,7 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
 
 - (BOOL) connectWithData:(NSString *)data {
   if (self.connectionStatus != MEWConnectStatusDisconnected) {
-    [self disconnect];
+    [self _disconnect];
   }
   NSArray *params = [data componentsSeparatedByString:@"_"];
   if ([params count] < 3) {
@@ -102,14 +102,16 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
 }
 
 - (void) disconnect {
-  self.connectionStatus = MEWConnectStatusDisconnected;
-  [self.rtcService disconnect];
-  [self.socketManager disconnect];
-  self.socketManager = nil;
-  [self _cancelTimeoutTimer];
+  [self _disconnect];
+  if ([self.delegate respondsToSelector:@selector(MEWConnectDidDisconnected:)]) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+      self.connectionStatus = MEWConnectStatusDisconnected;
+      [self.delegate MEWConnectDidDisconnected:self];
+    });
+  }
 }
 
-- (BOOL)sendMessage:(id)message {
+- (BOOL) sendMessage:(id)message {
   NSDictionary *context = @{kMappingContextModelClassKey: NSStringFromClass([message class])};
   NSError *error = nil;
   id serializedMessage = [self.messageMapper serializeResponse:message withMappingContext:context error:&error];
@@ -124,7 +126,7 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
 
 #pragma mark - NSURLSessionDelegate
 
-- (void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler {
+- (void) URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler {
   completionHandler(NSURLSessionAuthChallengeUseCredential, [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust]);
 }
 
@@ -212,7 +214,7 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
 }
 
 - (void) _timeout {
-  [self disconnect];
+  [self _disconnect];
   if ([self.delegate respondsToSelector:@selector(MEWConnectDidDisconnectedByTimeout:)]) {
     [self.delegate MEWConnectDidDisconnectedByTimeout:self];
   }
@@ -242,6 +244,14 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
     dispatch_source_cancel(self.timeoutTimer);
     self.timeoutTimer = nil;
   }
+}
+
+- (void) _disconnect {
+  self.connectionStatus = MEWConnectStatusDisconnected;
+  [self.rtcService disconnect];
+  [self.socketManager disconnect];
+  self.socketManager = nil;
+  [self _cancelTimeoutTimer];
 }
 
 #pragma mark - Signals
@@ -305,7 +315,7 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
 
 - (void) _signalError:(NSArray *)data {
   dispatch_async(dispatch_get_main_queue(), ^{
-    [self disconnect];
+    [self _disconnect];
     if ([self.delegate respondsToSelector:@selector(MEWConnectDidReceiveError:)]) {
       [self.delegate MEWConnectDidReceiveError:self];
     }
@@ -315,7 +325,7 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
 
 - (void) _signalConfirmationError:(NSArray *)data {
   dispatch_async(dispatch_get_main_queue(), ^{
-    [self disconnect];
+    [self _disconnect];
     if ([self.delegate respondsToSelector:@selector(MEWConnectDidReceiveError:)]) {
       [self.delegate MEWConnectDidReceiveError:self];
     }
@@ -368,6 +378,15 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
 
 - (void) MEWRTCServiceConnectionDidConnected:(id<MEWRTCService>)rtcService {
   [self _sendConnected];
+}
+
+- (void) MEWRTCServiceConnectionDidDisconnected:(id<MEWRTCService>)rtcService {
+  if ([self.delegate respondsToSelector:@selector(MEWConnectDidDisconnected:)]) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+      self.connectionStatus = MEWConnectStatusDisconnected;
+      [self.delegate MEWConnectDidDisconnected:self];
+    });
+  }
 }
 
 - (void) MEWRTCServiceDataChannelDidOpen:(id<MEWRTCService>)rtcService {

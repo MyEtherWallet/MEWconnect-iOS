@@ -35,8 +35,17 @@
 
 @implementation HomeInteractor
 
-- (void)dealloc {
-  [self unsubscribe];
+- (instancetype) init {
+  self = [super init];
+  if (self) {
+    [self _subscribe];
+  }
+  return self;
+}
+
+- (void) dealloc {
+  [self disconnect];
+  [self _unsubscribe];
 }
 
 #pragma mark - HomeInteractorInput
@@ -49,7 +58,7 @@
   [self reloadData];
 }
 
-- (void)reloadData {
+- (void) reloadData {
   if (!self.account) {
     [self refreshAccount];
     return;
@@ -107,17 +116,6 @@
   return [self.tokensService obtainTokensTotalPriceForAccount:self.account];
 }
 
-- (void)subscribe {
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(MEWConnectDidConnect:) name:MEWConnectFacadeDidConnectNotification object:self.connectFacade];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(MEWConnectDidDisconnect:) name:MEWConnectFacadeDidDisconnectNotification object:self.connectFacade];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(MEWConnectDidReceiveMessage:) name:MEWConnectFacadeDidReceiveMessageNotification object:self.connectFacade];
-  
-}
-
-- (void)unsubscribe {
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 - (void) searchTokensWithTerm:(NSString *)term {
   if ([term length] > 0) {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(SELF.name contains[cd] %@ || SELF.symbol contains[cd] %@) && SELF.address != nil", term, term];
@@ -129,11 +127,11 @@
   [self.output didProcessCacheTransaction:searchBatch];
 }
 
-- (void)disconnect {
+- (void) disconnect {
   [self.connectFacade disconnect];
 }
 
-- (BOOL)isConnected {
+- (BOOL) isConnected {
   return [self.connectFacade connectionStatus] == MEWConnectStatusConnected;
 }
 
@@ -202,6 +200,16 @@
   [self.cacheTracker setupWithCacheRequest:request];
   CacheTransactionBatch *initialBatch = [self.cacheTracker obtainTransactionBatchFromCurrentCache];
   [self.output didProcessCacheTransaction:initialBatch];
+}
+
+- (void) _subscribe {
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(MEWConnectDidConnect:) name:MEWConnectFacadeDidConnectNotification object:self.connectFacade];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(MEWConnectDidDisconnect:) name:MEWConnectFacadeDidDisconnectNotification object:self.connectFacade];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(MEWConnectDidReceiveMessage:) name:MEWConnectFacadeDidReceiveMessageNotification object:self.connectFacade];
+}
+
+- (void) _unsubscribe {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

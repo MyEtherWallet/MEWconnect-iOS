@@ -6,12 +6,13 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
-@import ViperMcFlurry;
+@import ViperMcFlurryX;
 
 #import "FetchedResultsControllerAssembly.h"
 #import "PonsomizerAssembly.h"
 
 #import "ServiceComponents.h"
+#import "ModuleFactoriesAssembly.h"
 
 #import "HomeAssembly.h"
 
@@ -27,7 +28,7 @@
 
 @implementation HomeAssembly
 
-- (HomeViewController *)viewHome {
+- (HomeViewController *) viewHome {
   return [TyphoonDefinition withClass:[HomeViewController class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(output)
@@ -41,7 +42,7 @@
                         }];
 }
 
-- (HomeInteractor *)interactorHome {
+- (HomeInteractor *) interactorHome {
   return [TyphoonDefinition withClass:[HomeInteractor class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(output)
@@ -61,7 +62,7 @@
                         }];
 }
 
-- (HomePresenter *)presenterHome{
+- (HomePresenter *) presenterHome{
   return [TyphoonDefinition withClass:[HomePresenter class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(view)
@@ -73,11 +74,13 @@
                         }];
 }
 
-- (HomeRouter *)routerHome{
+- (HomeRouter *) routerHome{
   return [TyphoonDefinition withClass:[HomeRouter class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(transitionHandler)
                                                 with:[self viewHome]];
+                          [definition injectProperty:@selector(transactionFactory)
+                                                with:[self.moduleFactoriesAssembly transactionFactory]];
                         }];
 }
 

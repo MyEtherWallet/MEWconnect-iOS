@@ -8,7 +8,7 @@ abstract_target 'MEWconnect' do
   pod 'Typhoon', '3.5.1'
   
   # Navigation
-  pod 'ViperMcFlurry'
+  pod 'ViperMcFlurryX', :git => 'https://github.com/Foboz/ViperMcFlurryX.git'
   
   # Network
   pod 'AFNetworking'

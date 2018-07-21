@@ -43,15 +43,15 @@
 }
 
 - (void) declineAction {
-  [self.router openDeclinedTransaction];
+  [self.router openDeclinedTransactionWithConfirmationDelegate:self.moduleOutput];
 }
 
-- (void)confirmAddressAction:(BOOL)confirmed {
+- (void) confirmAddressAction:(BOOL)confirmed {
   _addressConfirmed = confirmed;
   [self.view enableSign:_addressConfirmed && _amountConfirmer];
 }
 
-- (void)confirmAmountAction:(BOOL)confirmed {
+- (void) confirmAmountAction:(BOOL)confirmed {
   _amountConfirmer = confirmed;
   [self.view enableSign:_addressConfirmed && _amountConfirmer];
 }
@@ -59,12 +59,12 @@
 #pragma mark - TransactionInteractorOutput
 
 - (void) transactionDidSigned:(MEWConnectResponse *)response {
-  [self.router openConfirmedTransaction];
+  [self.router openConfirmedTransactionWithConfirmationDelegate:self.moduleOutput];
 }
 
 #pragma mark - SplashPasswordModuleOutput
 
-- (void)passwordDidEntered:(NSString *)password {
+- (void) passwordDidEntered:(NSString *)password {
   [self.interactor signTransactionWithPassword:password];
 }
 

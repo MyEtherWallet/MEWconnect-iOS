@@ -169,6 +169,9 @@
     case RTCIceConnectionStateDisconnected: {
       DDLogVerbose(@"RTC Ice connection state: DISCONNECTED");
       [self _clearConnection];
+      dispatch_async(dispatch_get_main_queue(), ^{
+        [self.delegate MEWRTCServiceConnectionDidDisconnected:self];
+      });
       break;
     }
     case RTCIceConnectionStateFailed: {

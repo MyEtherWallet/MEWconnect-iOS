@@ -77,6 +77,7 @@
 }
 
 - (void) MEWConnectDidConnected:(id <MEWConnectService>)mewConnect {
+  self.application.idleTimerDisabled = YES;
   NSNotificationQueue *queue = [NSNotificationQueue defaultQueue];
   NSNotification *notification = [NSNotification notificationWithName:MEWConnectFacadeDidConnectNotification
                                                                object:self
@@ -85,6 +86,7 @@
 }
 
 - (void) MEWConnectDidDisconnected:(id<MEWConnectService>)mewConnect {
+  self.application.idleTimerDisabled = NO;
   NSNotificationQueue *queue = [NSNotificationQueue defaultQueue];
   NSNotification *notification = [NSNotification notificationWithName:MEWConnectFacadeDidDisconnectNotification
                                                                object:self
@@ -93,6 +95,7 @@
 }
 
 - (void) MEWConnectDidDisconnectedByTimeout:(id <MEWConnectService>)mewConnect {
+  self.application.idleTimerDisabled = NO;
   NSNotificationQueue *queue = [NSNotificationQueue defaultQueue];
   NSNotification *notification = [NSNotification notificationWithName:MEWConnectFacadeDidDisconnectNotification
                                                                object:self
@@ -101,6 +104,7 @@
 }
 
 - (void) MEWConnectDidReceiveError:(id <MEWConnectService>)mewConnect {
+  self.application.idleTimerDisabled = NO;
   NSNotificationQueue *queue = [NSNotificationQueue defaultQueue];
   NSNotification *notification = [NSNotification notificationWithName:MEWConnectFacadeDidDisconnectNotification
                                                                object:self

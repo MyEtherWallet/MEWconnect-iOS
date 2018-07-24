@@ -158,6 +158,9 @@
 - (void) mewConnectionStatusChanged {
   BOOL connected = [self.interactor isConnected];
   [self.view updateWithConnectionStatus:connected animated:YES];
+  if (!connected) {
+    [self.transactionModuleInput closeWithCompletion:nil];
+  }
 }
 
 - (void) tokensDidStartUpdating {

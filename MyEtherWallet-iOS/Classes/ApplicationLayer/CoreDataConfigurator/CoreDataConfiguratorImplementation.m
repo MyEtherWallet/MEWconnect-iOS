@@ -33,6 +33,10 @@
     NSURL *directory = [self.fileManager containerURLForSecurityApplicationGroupIdentifier:kAppGroupIdentifier];
     NSURL *storeURL = [directory URLByAppendingPathComponent:kCoreDataName];
     [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreAtURL:storeURL];
+    NSError *error = nil;
+    if (![storeURL setResourceValue:@YES forKey:NSURLIsExcludedFromBackupKey error:&error]) {
+      DDLogError(@"CoreData configurator: %@", [error localizedDescription]);
+    }
   }
   [self _restoreCoreDataStructure];
 }

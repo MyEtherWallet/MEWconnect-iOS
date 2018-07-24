@@ -263,24 +263,17 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
 - (void) _signalHandshake:(NSArray *)data {
   DDLogVerbose(@"MEWConnect: handshake");
   
-  NSString *toSign = [data firstObject][kMEWConnectSocketToSign];
-  if (toSign) {
-    NSData *toSignHashData = [self.MEWcrypto hashPersonalMessage:[self.privateKey dataUsingEncoding:NSUTF8StringEncoding]];
-    NSData *privateKeyData = [self.privateKey parseHexData];
-    NSData *signedData = [toSignHashData signWithPrivateKeyData:privateKeyData];
-    NSString *signedMessage = [signedData hexadecimalString];
-
-    if (signedMessage) {
-      NSData *currentSchemaVersionData = [kMEWConnectCurrentSchemaVersion dataUsingEncoding:NSUTF8StringEncoding];
-      MEWcryptoMessage *cryptoMessage = [self.MEWcrypto encryptMessage:currentSchemaVersionData];
-      NSDictionary *message = @{kMEWConnectMessageSigned: signedMessage,
-                                kMEWConnectMessageConnId: self.connectionId,
-                                kMEWConnectMessageVersion: [cryptoMessage representation] ?: @""};
-      [self _emit:kMEWConnectEmitSignature message:message];
-    }
-  } else {
-    NSDictionary *message = @{kMEWConnectMessageConnId: self.connectionId,
-                              kMEWConnectMessageVersion: kMEWConnectCurrentSchemaVersion};
+  NSData *toSignHashData = [self.MEWcrypto hashPersonalMessage:[self.privateKey dataUsingEncoding:NSUTF8StringEncoding]];
+  NSData *privateKeyData = [self.privateKey parseHexData];
+  NSData *signedData = [toSignHashData signWithPrivateKeyData:privateKeyData];
+  NSString *signedMessage = [signedData hexadecimalString];
+  
+  if (signedMessage) {
+    NSData *currentSchemaVersionData = [kMEWConnectCurrentSchemaVersion dataUsingEncoding:NSUTF8StringEncoding];
+    MEWcryptoMessage *cryptoMessage = [self.MEWcrypto encryptMessage:currentSchemaVersionData];
+    NSDictionary *message = @{kMEWConnectMessageSigned: signedMessage,
+                              kMEWConnectMessageConnId: self.connectionId,
+                              kMEWConnectMessageVersion: [cryptoMessage representation] ?: @""};
     [self _emit:kMEWConnectEmitSignature message:message];
   }
 }

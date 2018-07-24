@@ -54,6 +54,7 @@ static NSString *const kSignallingServerURLKey  = @"API.SignallingServerURL";
                           [definition injectProperty:@selector(connectService) with:[self MEWConnectService]];
                           [definition injectProperty:@selector(accountsService) with:[self accountsService]];
                           [definition injectProperty:@selector(ponsomizer) with:[self.ponsomizerAssembly ponsomizer]];
+                          [definition injectProperty:@selector(application) with:[self.systemInfrastructureAssembly application]];
                         }];
 }
 

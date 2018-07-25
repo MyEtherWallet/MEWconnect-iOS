@@ -20,4 +20,5 @@
 - (void) resetWalletConfirmedAction;
 - (void) mainnetAction;
 - (void) ropstenAction;
+- (void) aboutAction;
 @end

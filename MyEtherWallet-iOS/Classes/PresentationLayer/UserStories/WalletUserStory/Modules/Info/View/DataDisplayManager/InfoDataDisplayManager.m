@@ -40,6 +40,7 @@
   [self.tableViewModel addObject:[self.cellObjectBuilder buildKnowledgeBaseCellObjectWithCompactSize:compact]];
   [self.tableViewModel addObject:[self.cellObjectBuilder buildPrivacyAndTermsCellObjectWithCompactSize:compact]];
   [self.tableViewModel addObject:[self.cellObjectBuilder buildMyetherwalletComCellObjectWithCompactSize:compact]];
+  [self.tableViewModel addObject:[self.cellObjectBuilder buildAboutCellObjectWithCompactSize:compact]];
   [self.tableViewModel addObject:[self.cellObjectBuilder buildEmptyCellObject]];
 }
 
@@ -111,6 +112,10 @@
                                   }
                                   case InfoNormalTableViewCellObjectTypeUserGuide: {
                                     [self.delegate didTapUserGuide];
+                                    break;
+                                  }
+                                  case InfoNormalTableViewCellObjectTypeAbout: {
+                                    [self.delegate didTapAbout];
                                     break;
                                   }
                                   default:

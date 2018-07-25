@@ -25,6 +25,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *versionLabel;
 @property (nonatomic, weak) IBOutlet UILabel *copyrightLabel;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *versionTopOffsetConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *titleTopOffsetConstraint;
 @end
 
 @implementation InfoViewController {
@@ -63,8 +64,17 @@
 #pragma mark - InfoViewInput
 
 - (void) setupInitialStateWithVersion:(NSString *)version {
-  if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
-    self.versionTopOffsetConstraint.constant = 20.0;
+  switch ([UIScreen mainScreen].screenSizeType) {
+    case ScreenSizeTypeInches35:
+    case ScreenSizeTypeInches40: {
+      self.versionTopOffsetConstraint.constant = 20.0;
+    }
+    case ScreenSizeTypeInches47: {
+      self.titleTopOffsetConstraint.constant = 24.0;
+      break;
+    }
+    default:
+      break;
   }
   self.versionLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Version %@", @"Info screen. Version format"), version];
   NSInteger year = [[NSCalendar currentCalendar] component:NSCalendarUnitYear fromDate:[NSDate date]];
@@ -170,6 +180,10 @@
 
 - (void) didTapUserGuide {
   [self.output userGuideAction];
+}
+
+- (void) didTapAbout {
+  [self.output aboutAction];
 }
 
 #pragma mark - MFMailComposeViewControllerDelegate

@@ -75,6 +75,10 @@
   [self.interactor selectRopstenNetwork];
 }
 
+- (void) aboutAction {
+  [self.router openAbout];
+}
+
 #pragma mark - InfoInteractorOutput
 
 - (void)networkDidChangedWithoutAccount {

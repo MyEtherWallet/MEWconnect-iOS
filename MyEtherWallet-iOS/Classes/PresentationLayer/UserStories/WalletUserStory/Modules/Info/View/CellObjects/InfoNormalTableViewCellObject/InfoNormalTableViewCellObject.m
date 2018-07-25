@@ -37,6 +37,9 @@
         _title = NSLocalizedString(@"User guide", @"Info screen");
         break;
       }
+      case InfoNormalTableViewCellObjectTypeAbout: {
+        _title = NSLocalizedString(@"About", @"Info screen");
+      }
       default:
         break;
     }

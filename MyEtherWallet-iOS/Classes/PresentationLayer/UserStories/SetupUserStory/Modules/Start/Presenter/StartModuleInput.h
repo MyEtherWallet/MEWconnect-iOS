@@ -7,7 +7,7 @@
 //
 
 @import Foundation;
-@import ViperMcFlurry;
+@import ViperMcFlurryX;
 
 @protocol StartModuleInput <RamblerViperModuleInput>
 - (void) configureModule;

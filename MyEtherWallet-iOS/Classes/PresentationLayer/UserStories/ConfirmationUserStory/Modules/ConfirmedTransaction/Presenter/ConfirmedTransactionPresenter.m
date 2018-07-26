@@ -26,7 +26,7 @@
 }
 
 - (void) closeAction {
-  [self.router close];
+  [self.moduleOutput transactionDidSigned];
 }
 
 #pragma mark - ConfirmedTransactionInteractorOutput

@@ -6,17 +6,19 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
-@import ViperMcFlurry;
+@import ViperMcFlurryX;
 
 #import "InfoRouter.h"
 
 #import "StartModuleInput.h"
 #import "HomeModuleInput.h"
+#import "AboutModuleInput.h"
 
 #import "ApplicationConstants.h"
 
 static NSString *const kInfoToStartUnwindSegueIdentifier = @"InfoToStartUnwindSegueIdentifier";
 static NSString *const kInfoToHomeUnwindSegueIdentifier = @"InfoToHomeUnwindSegueIdentifier";
+static NSString *const kInfoToAboutSegueIdentifier = @"InfoToAboutSegueIdentifier";
 
 @implementation InfoRouter
 
@@ -63,6 +65,13 @@ static NSString *const kInfoToHomeUnwindSegueIdentifier = @"InfoToHomeUnwindSegu
   if (url) {
     [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
   }
+}
+
+- (void)openAbout {
+  [[self.transitionHandler openModuleUsingSegue:kInfoToAboutSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<AboutModuleInput> moduleInput) {
+    [moduleInput configureModule];
+    return nil;
+  }];
 }
 
 @end

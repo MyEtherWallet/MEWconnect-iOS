@@ -6,12 +6,13 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
-@import ViperMcFlurry;
+@import ViperMcFlurryX;
 
 #import "TransactionRouter.h"
 
 #import "SplashPasswordModuleInput.h"
 #import "SplashPasswordModuleOutput.h"
+#import "ConfirmationStoryModuleOutput.h"
 
 static NSString *const kTransactionToDeclinedTransactionSegueIdentifier = @"TransactionToDeclinedTransactionSegueIdentifier";
 static NSString *const kTransactionToConfirmedTransactionSegueIdentifier = @"TransactionToConfirmedTransactionSegueIdentifier";
@@ -21,15 +22,15 @@ static NSString *const kTransactionToSplashPasswordSegueIdentifier = @"Transacti
 
 #pragma mark - TransactionRouterInput
 
-- (void) openConfirmedTransaction {
-  [[self.transitionHandler openModuleUsingSegue:kTransactionToConfirmedTransactionSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<RamblerViperModuleInput> moduleInput) {
-    return nil;
+- (void) openConfirmedTransactionWithConfirmationDelegate:(id<ConfirmationStoryModuleOutput>)confirmationDelegate {
+  [[self.transitionHandler openModuleUsingSegue:kTransactionToConfirmedTransactionSegueIdentifier] thenChainUsingBlock:^id<ConfirmationStoryModuleOutput>(id<RamblerViperModuleInput> moduleInput) {
+    return confirmationDelegate;
   }];
 }
 
-- (void) openDeclinedTransaction {
-  [[self.transitionHandler openModuleUsingSegue:kTransactionToDeclinedTransactionSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<RamblerViperModuleInput> moduleInput) {
-    return nil;
+- (void) openDeclinedTransactionWithConfirmationDelegate:(id<ConfirmationStoryModuleOutput>)confirmationDelegate {
+  [[self.transitionHandler openModuleUsingSegue:kTransactionToDeclinedTransactionSegueIdentifier] thenChainUsingBlock:^id<ConfirmationStoryModuleOutput>(id<RamblerViperModuleInput> moduleInput) {
+    return confirmationDelegate;
   }];
 }
 

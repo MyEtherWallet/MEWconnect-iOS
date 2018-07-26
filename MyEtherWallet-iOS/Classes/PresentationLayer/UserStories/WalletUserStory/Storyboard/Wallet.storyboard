@@ -521,10 +521,12 @@ with MyEtherWallet</string>
                     <connections>
                         <outlet property="copyrightLabel" destination="VmI-iZ-Ky7" id="6fZ-RT-E2y"/>
                         <outlet property="tableView" destination="btJ-B1-EnL" id="AB1-s8-okh"/>
+                        <outlet property="titleTopOffsetConstraint" destination="P52-ar-G8D" id="oSc-8s-zXf"/>
                         <outlet property="versionLabel" destination="G89-d1-aMk" id="cJJ-Jk-VBP"/>
                         <outlet property="versionTopOffsetConstraint" destination="6gx-4K-mfH" id="ycG-mc-KYg"/>
                         <segue destination="ySg-Me-ph6" kind="unwind" identifier="InfoToStartUnwindSegueIdentifier" unwindAction="unwindToStart:" id="lBp-SS-UPN"/>
                         <segue destination="ySg-Me-ph6" kind="unwind" identifier="InfoToHomeUnwindSegueIdentifier" unwindAction="unwindToHome:" id="pDA-fb-PhX"/>
+                        <segue destination="u8G-4f-a56" kind="presentation" identifier="InfoToAboutSegueIdentifier" id="H6X-Mc-9wo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lwe-by-bLp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -536,6 +538,65 @@ with MyEtherWallet</string>
                 </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1101.5999999999999" y="510.49475262368821"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="qBv-Bo-8LF">
+            <objects>
+                <navigationController id="u8G-4f-a56" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fOq-cp-i2y" customClass="BordlessNavigationBar">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="CSY-Aj-DSw" kind="relationship" relationship="rootViewController" id="tHN-yM-8ov"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hf7-P5-yJ3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1897" y="510"/>
+        </scene>
+        <!--About-->
+        <scene sceneID="0nI-Uy-1EZ">
+            <objects>
+                <viewController id="CSY-Aj-DSw" customClass="AboutViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yDc-qL-Pm8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8On-Cv-TlD">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <mutableString key="text">MEWconnect is a simple, powerful new app for your mobile device that enables a better, more secure way of managing your Ethereum assets and ERC-20 Tokens. It is an official mobile software brought by MyEtherWallet Inc, currently available only on IOS for iPhone 5 and above. 
+MEWconnect generates a new wallet then encrypts your private key and then stores it in isolation using your device’s built-in security architecture. The app  establishes a secure connection while keeping your private key separate from the browser. The software implements two-factor authentication, protecting you from unauthorized transaction broadcasting on the blockchain. Only you will be able to verify and sign the transaction. MyEtherWallet will never collect any of your personal data, all of your information will only be stored on your mobile device. 
+With added layers of security, MEWconnect puts you in total control of your crypto assets.</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="8On-Cv-TlD" firstAttribute="trailing" secondItem="q3V-XL-S7B" secondAttribute="trailing" id="0qb-vD-OHE"/>
+                            <constraint firstItem="q3V-XL-S7B" firstAttribute="bottom" secondItem="8On-Cv-TlD" secondAttribute="bottom" id="CER-pv-cZu"/>
+                            <constraint firstItem="8On-Cv-TlD" firstAttribute="top" secondItem="q3V-XL-S7B" secondAttribute="top" id="pJW-6g-KR2"/>
+                            <constraint firstItem="8On-Cv-TlD" firstAttribute="leading" secondItem="q3V-XL-S7B" secondAttribute="leading" id="vGM-MR-Yxr"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="q3V-XL-S7B"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="About" id="YML-55-VQO">
+                        <barButtonItem key="leftBarButtonItem" title="Close" id="0WK-pT-dpJ">
+                            <connections>
+                                <action selector="closeAction:" destination="CSY-Aj-DSw" id="Lzj-jh-bwq"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="textView" destination="8On-Cv-TlD" id="X8g-Jy-i7V"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BJp-nb-14y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2673" y="510"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="atF-Ks-CI5">

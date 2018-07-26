@@ -14,6 +14,7 @@ static NSString *const kMainStoryboardName            = @"Main";
 static NSString *const kSplashPasswordStoryboardName  = @"SplashPassword";
 static NSString *const kWalletStoryboardName          = @"Wallet";
 static NSString *const kLaunchStoryboardName          = @"LaunchScreen";
+static NSString *const kConfirmationStoryboardName    = @"Confirmation";
 
 @implementation StoryboardsAssembly
 
@@ -59,6 +60,18 @@ static NSString *const kLaunchStoryboardName          = @"LaunchScreen";
                           [definition useInitializer:@selector(storyboardWithName:factory:bundle:)
                                           parameters:^(TyphoonMethod *initializer) {
                                             [initializer injectParameterWith:kLaunchStoryboardName];
+                                            [initializer injectParameterWith:self];
+                                            [initializer injectParameterWith:[self.systemInfrastructureAssembly mainBundle]];
+                                          }];
+                        }];
+}
+
+- (UIStoryboard *) confirmationStoryboard {
+  return [TyphoonDefinition withClass:[TyphoonStoryboard class]
+                        configuration:^(TyphoonDefinition *definition) {
+                          [definition useInitializer:@selector(storyboardWithName:factory:bundle:)
+                                          parameters:^(TyphoonMethod *initializer) {
+                                            [initializer injectParameterWith:kConfirmationStoryboardName];
                                             [initializer injectParameterWith:self];
                                             [initializer injectParameterWith:[self.systemInfrastructureAssembly mainBundle]];
                                           }];

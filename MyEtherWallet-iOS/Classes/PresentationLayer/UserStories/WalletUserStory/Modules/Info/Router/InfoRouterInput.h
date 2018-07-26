@@ -16,4 +16,5 @@
 - (void) openKnowledgeBase;
 - (void) openPrivacyAndTerms;
 - (void) openUserGuide;
+- (void) openAbout;
 @end

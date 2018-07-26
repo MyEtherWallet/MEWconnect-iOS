@@ -6,20 +6,12 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
-@import ViperMcFlurry;
+@import ViperMcFlurryX;
 
 #import "DeclinedTransactionRouter.h"
-
-static NSString *const kDeclinedTransactionToHomeUnwindSegueIdentifier = @"DeclinedTransactionToHomeUnwindSegueIdentifier";
 
 @implementation DeclinedTransactionRouter
 
 #pragma mark - DeclinedTransactionRouterInput
-
-- (void)close {
-  [[self.transitionHandler openModuleUsingSegue:kDeclinedTransactionToHomeUnwindSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<RamblerViperModuleInput> moduleInput) {
-    return nil;
-  }];
-}
 
 @end

@@ -155,8 +155,8 @@
       break;
     }
     case RTCIceConnectionStateConnected: {
-        self.dataChannel = [self.peerConnection dataChannelForLabel:MEWRTCDataChannelLabel configuration:[self _RTCDataChannelConfiguration]];
-        self.dataChannel.delegate = self;
+      self.dataChannel = [self.peerConnection dataChannelForLabel:MEWRTCDataChannelLabel configuration:[self _RTCDataChannelConfiguration]];
+      self.dataChannel.delegate = self;
       dispatch_async(dispatch_get_main_queue(), ^{
         [self.delegate MEWRTCServiceConnectionDidConnected:self];
       });

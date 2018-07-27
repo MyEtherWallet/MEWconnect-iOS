@@ -195,12 +195,13 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
   self.headerView.titleBalanceLabel.text = [ethereumFormatter stringFromNumber:balance];
 }
 
-- (void)viewDidLayoutSubviews {
+- (void) viewDidLayoutSubviews {
   [super viewDidLayoutSubviews];
   if (@available(iOS 11.0, *)) {
   } else {
     [self.headerView updateHeightIfNeeded];
   }
+  [self _updateTableViewFooterIfNeeded];
 }
 
 - (void) updateWithTokensCount:(NSUInteger)tokensCount withTotalPrice:(NSDecimalNumber *)totalPrice {
@@ -338,6 +339,17 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
   self.tableView.scrollIndicatorInsets = indicatorInset;
 }
 
+- (void) scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+  CGFloat fullSize = self.headerView.maximumContentHeight - self.headerView.minimumContentHeight;
+  if ((*targetContentOffset).y < -self.headerView.minimumContentHeight) {
+    if ((*targetContentOffset).y < -self.headerView.maximumContentHeight + fullSize * 0.65) {
+      (*targetContentOffset).y = -scrollView.contentInset.top;
+    } else {
+      (*targetContentOffset).y = -self.headerView.minimumContentHeight;
+    }
+  }
+}
+
 #pragma mark - CardViewDelegate
 
 - (void) cardViewDidTouchShareButton:(CardView *)cardView {
@@ -390,7 +402,7 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
   }
   CGFloat statusHeight = _connected ?
       CGRectGetHeight(self.statusView.frame) :
-      CGRectGetHeight(self.connectButton.frame) + self.connectButtonBottomConstraint.constant;
+      self.numberOfTokens > 0 ? CGRectGetHeight(self.connectButton.frame) + self.connectButtonBottomConstraint.constant : 0.0;
   insets.bottom = MAX(_keyboardHeight, statusHeight);
   
   self.tableView.contentInset = insets;
@@ -398,6 +410,20 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
   UIEdgeInsets indicatorInset = self.tableView.scrollIndicatorInsets;
   indicatorInset.bottom = _keyboardHeight;
   self.tableView.scrollIndicatorInsets = indicatorInset;
+  [self _updateTableViewFooterIfNeeded];
+}
+
+- (void) _updateTableViewFooterIfNeeded {
+  CGFloat additionalHeight = CGRectGetHeight(self.view.frame) - (self.tableView.contentSize.height - CGRectGetHeight(self.tableView.tableFooterView.frame)) - self.headerView.minimumContentHeight - self.tableView.contentInset.bottom;
+  if (additionalHeight > 0.0 && _numberOfTokens > 0) {
+    if (CGRectGetHeight(self.tableView.tableFooterView.frame) != additionalHeight) {
+      UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 1.0, additionalHeight)];
+      footerView.backgroundColor = [UIColor clearColor];
+      self.tableView.tableFooterView = footerView;
+    }
+  } else {
+    self.tableView.tableFooterView = nil;
+  }
 }
 
 @end

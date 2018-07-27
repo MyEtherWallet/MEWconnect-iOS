@@ -12,6 +12,7 @@
 #import "ManyResponseValidator.h"
 #import "FiatPricesResponseValidator.h"
 #import "SimplexResponseValidator.h"
+#import "EthereumResponseValidator.h"
 
 @implementation ResponseValidatorsAssembly
 
@@ -29,6 +30,8 @@
                    use:[self fiatPricesResponseValidator]];
     [matcher caseEqual:@(ResponseValidationSimplexType)
                    use:[self simplexResponseValidator]];
+    [matcher caseEqual:@(ResponseValidationEthereumType)
+                   use:[self ethereumResponseValidator]];
   }];
 }
 
@@ -48,6 +51,10 @@
 
 - (id <ResponseValidator>) simplexResponseValidator {
   return [TyphoonDefinition withClass:[SimplexResponseValidator class]];
+}
+
+- (id <ResponseValidator>) ethereumResponseValidator {
+  return [TyphoonDefinition withClass:[EthereumResponseValidator class]];
 }
 
 @end

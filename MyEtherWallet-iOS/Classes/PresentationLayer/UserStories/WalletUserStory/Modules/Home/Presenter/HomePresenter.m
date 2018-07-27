@@ -120,6 +120,18 @@
   [self.view presentShareWithItems:items];
 }
 
+- (void) networkAction {
+  [self.view presentNetworkSelection];
+}
+
+- (void) mainnetAction {
+  [self.interactor selectMainnetNetwork];
+}
+
+- (void) ropstenAction {
+  [self.interactor selectRopstenNetwork];
+}
+
 #pragma mark - HomeInteractorOutput
 
 - (void) openMessageSignerWithMessage:(MEWConnectCommand *)command {
@@ -152,7 +164,7 @@
 
 - (void) didUpdateEthereumBalance {
   AccountPlainObject *account = [self.interactor obtainAccount];
-  [self.view updateWithAccount:account];
+  [self.view updateEthereumBalanceWithAccount:account];
 }
 
 - (void) mewConnectionStatusChanged {
@@ -171,6 +183,14 @@
 - (void) tokensDidEndUpdating {
   _tokensRefreshing = NO;
   [self.view stopAnimatingTokensRefreshing];
+}
+
+- (void)networkDidChangedWithoutAccount {
+  [self.router unwindToStart];
+}
+
+- (void)networkDidChangedWithAccount {
+  [self configureAfterChangingNetwork];
 }
 
 #pragma mark - ConfirmationStoryModuleOutput

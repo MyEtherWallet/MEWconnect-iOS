@@ -20,4 +20,5 @@
 - (void) openBackupWithAccount:(AccountPlainObject *)account;
 - (void) openInfoWithAccount:(AccountPlainObject *)account;
 - (void) openBuyEtherWithAccount:(AccountPlainObject *)account;
+- (void) unwindToStart;
 @end

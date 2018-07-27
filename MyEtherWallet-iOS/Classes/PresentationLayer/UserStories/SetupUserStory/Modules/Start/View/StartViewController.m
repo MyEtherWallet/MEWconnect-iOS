@@ -127,7 +127,7 @@ static NSUInteger kStartViewIconMinimumCorners  = 4;
                             NSLocalizedString(@"Store your private keys safely in a local isolated secure vault on your device", @"Intro. Page 3 description"),
                             NSLocalizedString(@"Protect yourself from phishers and malware. No one can obtain your private key.", @"Intro. Page 4 description"),
                             NSLocalizedString(@"No data collection: MyEtherWallet can’t collect your personal data even if we wanted to.", @"Intro. Page 5 description"),
-                            NSLocalizedString(@"No centralized servers, no databases.\nMEWconnect and MyEtherWallet talk via P2P communication. ", @"Intro. Page 6 description"),
+                            NSLocalizedString(@"No centralized servers for communication.\nNo databases. MEWconnect uses P2P instead.", @"Intro. Page 6 description"),
                             NSLocalizedString(@"Transparent, free and open source. Audited by the community", @"Intro. Page 7 description")];
   
   NSArray *descriptionBoldParts = @[NSLocalizedString(@"", @"Intro. Page 1 description bold part"),

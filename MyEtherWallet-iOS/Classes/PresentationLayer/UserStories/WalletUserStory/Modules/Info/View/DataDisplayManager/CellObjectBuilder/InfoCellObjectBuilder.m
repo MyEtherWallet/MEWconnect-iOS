@@ -34,6 +34,10 @@
   return [InfoNormalTableViewCellObject objectWithType:InfoNormalTableViewCellObjectTypeUserGuide compact:compact];
 }
 
+- (InfoNormalTableViewCellObject *) buildAboutCellObjectWithCompactSize:(BOOL)compact {
+  return [InfoNormalTableViewCellObject objectWithType:InfoNormalTableViewCellObjectTypeAbout compact:compact];
+}
+
 - (InfoDestructiveTableViewCellObject *) buildResetWalletCellObject {
   return [InfoDestructiveTableViewCellObject objectWithType:InfoDestructiveTableViewCellObjectResetType];
 }

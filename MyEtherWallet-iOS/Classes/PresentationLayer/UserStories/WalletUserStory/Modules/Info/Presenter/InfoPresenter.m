@@ -67,22 +67,8 @@
   [self.router openUserGuide];
 }
 
-- (void) mainnetAction {
-  [self.interactor selectMainnetNetwork];
-}
-
-- (void) ropstenAction {
-  [self.interactor selectRopstenNetwork];
-}
-
-#pragma mark - InfoInteractorOutput
-
-- (void)networkDidChangedWithoutAccount {
-  [self.router unwindToStart];
-}
-
-- (void)networkDidChangedWithAccount {
-  [self.router unwindToHome];
+- (void) aboutAction {
+  [self.router openAbout];
 }
 
 @end

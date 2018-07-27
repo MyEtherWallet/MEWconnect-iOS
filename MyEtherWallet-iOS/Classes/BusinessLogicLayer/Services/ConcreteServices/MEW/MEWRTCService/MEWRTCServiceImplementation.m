@@ -22,7 +22,7 @@
 @implementation MEWRTCServiceImplementation
 @synthesize delegate = _delegate;
 
-- (void)connectWithOffer:(RTCSessionDescription *)offer {
+- (void) connectWithOffer:(RTCSessionDescription *)offer {
   self.peerConnection = [self.peerConnectionFactory peerConnectionWithConfiguration:[self _RTCConfigurationWithIceServers:nil]
                                                                         constraints:[self _RTCMediaConstraints]
                                                                            delegate:self];

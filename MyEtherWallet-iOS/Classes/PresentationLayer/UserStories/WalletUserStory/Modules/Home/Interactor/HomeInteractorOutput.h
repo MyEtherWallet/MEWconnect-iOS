@@ -22,4 +22,6 @@
 - (void) mewConnectionStatusChanged;
 - (void) tokensDidStartUpdating;
 - (void) tokensDidEndUpdating;
+- (void) networkDidChangedWithAccount;
+- (void) networkDidChangedWithoutAccount;
 @end

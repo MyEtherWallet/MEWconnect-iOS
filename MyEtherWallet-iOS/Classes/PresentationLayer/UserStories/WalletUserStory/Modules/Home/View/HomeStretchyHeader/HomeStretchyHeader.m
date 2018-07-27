@@ -11,6 +11,7 @@
 #import "CardView.h"
 #import "MEWSearchBar.h"
 #import "RotationButton.h"
+#import "InlineButton.h"
 
 #import "UIImage+Color.h"
 #import "UIColor+Hex.h"
@@ -34,7 +35,7 @@ static CGFloat const kHomeStretchyHeaderDefaultOffset                   = 16.0;
 static CGFloat const kHomeStretchyHeaderTopDefaultOffset                = 48.0;
 
 static CGFloat const kHomeStretchyHeaderTitleTopMinOffset               = 6.0;
-static CGFloat const kHomeStretchyHeaderTitleTopMaxOffset               = 14.0;
+static CGFloat const kHomeStretchyHeaderTitleTopMaxOffset               = 9.0; //14
 
 static CGFloat const kHomeStretchyHeaderMinSearchBarHeight              = 82.0;
 static CGFloat const kHomeStretchyHeaderMaxSearchBarHeight              = 104.0;
@@ -51,8 +52,15 @@ static CGFloat const kHomeStretchyHeaderSearchBarHOffset40Inches        = 6.0;
 static CGFloat const kHomeStretchyHeaderSearchBarBMinOffset             = 0.0;
 static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset             = 8.0;
 
+static CGFloat const kHomeStretchyHeaderNetworkButtonMinScale           = 0.8;
+static CGFloat const kHomeStretchyHeaderNetworkButtonMaxScale           = 1.0;
+
+static CGFloat const kHomeStretcyHeaderTitleBalanceTopMinOffset         = 0.0;
+static CGFloat const kHomeStretcyHeaderTitleBalanceTopMaxOffset         = 26.0;
+
 @interface HomeStretchyHeader ()
 @property (nonatomic, weak) UILabel *titleLabel;
+@property (nonatomic, weak) UIButton *networkButton;
 @property (nonatomic, strong) NSLayoutConstraint *titleLabelTopConstraint;
 
 @property (nonatomic, weak) UIImageView *patternImageView;
@@ -64,6 +72,8 @@ static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset             = 8.0;
 @property (nonatomic, strong) NSLayoutConstraint *tokenBalancesTitleTopConstraints;
 @property (nonatomic, strong) NSLayoutConstraint *tokenBalancesTopConstraints;
 @property (nonatomic, strong) NSLayoutConstraint *searchBarBottomConstraint;
+@property (nonatomic, strong) NSLayoutConstraint *networkButtonTopConstraint;
+@property (nonatomic, strong) NSLayoutConstraint *titleBalanceLabelTopConstraint;
 @property (nonatomic, weak) UIImageView *searchBarBackgroundImageView;
 @property (nonatomic, weak) UILabel *tokenBalancesTitleLabel;
 @property (nonatomic, weak) UILabel *tokenBalancesLabel;
@@ -95,7 +105,7 @@ static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset             = 8.0;
 
 #pragma mark - Public
 
-- (void)refreshContentIfNeeded {
+- (void) refreshContentIfNeeded {
   self.patternImageView.image = self.cardView.backgroundImage;
 }
 
@@ -206,8 +216,26 @@ static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset             = 8.0;
     centerXConstraint.priority = UILayoutPriorityDefaultHigh;
 #endif
     centerXConstraint.active = YES;
-    self.titleLabelTopConstraint = [titleLabel.topAnchor constraintEqualToAnchor:self.delegate.topLayoutGuide.bottomAnchor constant:kHomeStretchyHeaderTitleTopMaxOffset];
+    self.titleLabelTopConstraint = [titleLabel.topAnchor constraintEqualToAnchor:self.delegate.topLayoutGuide.bottomAnchor constant:kHomeStretchyHeaderTitleTopMinOffset];
     self.titleLabel = titleLabel;
+  }
+  UIButton *networkButton = [InlineButton inlineButtonWithChevron:YES];
+  {
+    networkButton.translatesAutoresizingMaskIntoConstraints = NO;
+    networkButton.tintColor = [UIColor lightGreyTextColor];
+    [networkButton setTitleColor:[UIColor lightGreyTextColor] forState:UIControlStateNormal];
+    networkButton.titleLabel.font = [UIFont systemFontOfSize:11.0 weight:UIFontWeightMedium];
+    [networkButton setContentEdgeInsets:UIEdgeInsetsMake(17.0, 0.0, 0.0, 0.0)];
+    [networkButton setImageEdgeInsets:UIEdgeInsetsMake(0.0, 1.0, 0.0, 0.0)];
+    [networkButton setImage:[UIImage imageNamed:@"inline_bottom_chevron"] forState:UIControlStateNormal];
+    [self.contentView addSubview:networkButton];
+    [networkButton.centerXAnchor constraintEqualToAnchor:self.titleLabel.centerXAnchor].active = YES;
+    self.networkButtonTopConstraint = [networkButton.topAnchor constraintEqualToAnchor:self.titleLabel.topAnchor];
+    self.networkButtonTopConstraint.active = YES;
+    NSLayoutConstraint *widthConstraint = [networkButton.widthAnchor constraintEqualToAnchor:self.titleLabel.widthAnchor multiplier:1.0];
+    widthConstraint.priority = UILayoutPriorityDefaultHigh;
+    widthConstraint.active = YES;
+    self.networkButton = networkButton;
   }
   UILabel *titleBalanceLabel = [[UILabel alloc] init];
   {
@@ -218,15 +246,18 @@ static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset             = 8.0;
     titleBalanceLabel.text = @"0.00 ETH";
     [self.contentView addSubview:titleBalanceLabel];
     [titleLabel.centerXAnchor constraintEqualToAnchor:titleBalanceLabel.centerXAnchor].active = YES;
-    [titleBalanceLabel.topAnchor constraintEqualToAnchor:titleLabel.bottomAnchor constant:0.0].active = YES;
+    self.titleBalanceLabelTopConstraint = [titleBalanceLabel.topAnchor constraintEqualToAnchor:titleLabel.bottomAnchor constant:0.0];
+    self.titleBalanceLabelTopConstraint.active = YES;
     _titleBalanceLabel = titleBalanceLabel;
   }
   UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeSystem];
   {
     infoButton.translatesAutoresizingMaskIntoConstraints = NO;
     [infoButton setImage:[UIImage imageNamed:@"i_icon"] forState:UIControlStateNormal];
-    infoButton.tintColor = [UIColor mainApplicationColor];
+    infoButton.tintColor = [[UIColor mainApplicationColor] colorWithAlphaComponent:0.1];
     [infoButton setContentEdgeInsets:UIEdgeInsetsMake(4.0, 4.0, 4.0, 4.0)];
+    UIImage *backgroundImage = [[[UIImage imageWithColor:[UIColor blackColor] size:CGSizeMake(28.0, 28.0) cornerRadius:10.0 insets:UIEdgeInsetsMake(4.0, 4.0, 4.0, 4.0)] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 14.0, 0.0, 14.0)] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [infoButton setBackgroundImage:backgroundImage forState:UIControlStateNormal];
     [self.contentView addSubview:infoButton];
     [infoButton.leftAnchor constraintEqualToAnchor:self.contentView.leftAnchor constant:kHomeStretchyHeaderDefaultOffset].active = YES;
     _infoButton = infoButton;
@@ -405,10 +436,9 @@ static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset             = 8.0;
                          options:UIViewAnimationOptionTransitionCrossDissolve|UIViewAnimationOptionBeginFromCurrentState
                       animations:^{
                         self.titleLabel.textColor = [UIColor darkTextColor];
-                        self.infoButton.tintColor = [UIColor mainApplicationColor];
+                        self.infoButton.tintColor = [[UIColor mainApplicationColor] colorWithAlphaComponent:0.1];
                         self.buyEtherButton.tintColor = [[UIColor mainApplicationColor] colorWithAlphaComponent:0.1];
                         [self.buyEtherButton setAttributedTitle:buyEtherAttributedString forState:UIControlStateNormal];
-                        [self.betaIconImageView setImage:[UIImage imageNamed:@"beta_icon"]];
                       } completion:nil];
 #if BETA
       [UIView transitionWithView:self.betaIconImageView
@@ -440,13 +470,14 @@ static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset             = 8.0;
   
   CGFloat titleBarOffsetDif = kHomeStretchyHeaderTitleTopMaxOffset - kHomeStretchyHeaderTitleTopMinOffset;
   CGFloat titleStretchFactor = MAX(0.0, MIN(1.0, (CGRectGetHeight(self.bounds) - self.minimumContentHeight - searchBarContainerDif) / titleBarOffsetDif));
-
+  
   CGVector scrollRange = CGVectorMake(0.0, 0.4);
   CGVector alphaRange = CGVectorMake(0.2, 0.45);
   CGVector lrRange = CGVectorMake(0.3, 0.55);
   CGVector blinkAlphaRange = CGVectorMake(0.0, 0.3);
   CGVector shadowRange = CGVectorMake(0.0, 0.3);
   CGVector cornerRadiusRange = CGVectorMake(0.5, 0.7);
+  CGVector titleBarContentRange = CGVectorMake(0.8, 0.91);
   
   CGVector searchBarBackgroundRange = CGVectorMake(0.0, 0.25);
   
@@ -456,6 +487,7 @@ static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset             = 8.0;
   CGFloat blinkFactor = (MAX(blinkAlphaRange.dx, MIN(blinkAlphaRange.dy, stretchFactor)) - blinkAlphaRange.dx) * (1.0 / (blinkAlphaRange.dy - blinkAlphaRange.dx));
   CGFloat shadowFactor = (MAX(shadowRange.dx, MIN(shadowRange.dy, stretchFactor)) - shadowRange.dx) * (1.0 / (shadowRange.dy - shadowRange.dx));
   CGFloat cornerRadiusFactor = (MAX(cornerRadiusRange.dx, MIN(cornerRadiusRange.dy, stretchFactor)) - cornerRadiusRange.dx) * (1.0 / (cornerRadiusRange.dy - cornerRadiusRange.dx));
+  CGFloat titleBarContentStretchFactor = 1.0 - (MAX(titleBarContentRange.dx, MIN(titleBarContentRange.dy, stretchFactor)) - titleBarContentRange.dx) * (1.0 / (titleBarContentRange.dy - titleBarContentRange.dx));
   
   CGFloat searchBarBackgroundAlphaFactor = (MAX(searchBarBackgroundRange.dx, MIN(searchBarBackgroundRange.dy, stretchFactor)) - searchBarBackgroundRange.dx) * (1.0 / (searchBarBackgroundRange.dy - searchBarBackgroundRange.dx));
   
@@ -478,7 +510,15 @@ static CGFloat const kHomeStretchyHeaderSearchBarBMaxOffset             = 8.0;
   self.searchBarBottomConstraint.constant = CGFloatInterpolate(searchBarContainerStretchFactor, kHomeStretchyHeaderSearchBarBMinOffset, kHomeStretchyHeaderSearchBarBMaxOffset);
   
   self.titleLabelTopConstraint.constant = CGFloatInterpolate(titleStretchFactor, kHomeStretchyHeaderTitleTopMinOffset, kHomeStretchyHeaderTitleTopMaxOffset);
-  self.titleBalanceLabel.alpha = 1.0 - titleStretchFactor;
+  
+  self.titleBalanceLabel.alpha = 1.0 - titleBarContentStretchFactor;
+  CGFloat networkScale = CGFloatInterpolate(titleBarContentStretchFactor, kHomeStretchyHeaderNetworkButtonMinScale, kHomeStretchyHeaderNetworkButtonMaxScale);
+  self.networkButtonTopConstraint.constant = CGFloatInterpolate(titleBarContentStretchFactor, kHomeStretchyHeaderTitleTopMaxOffset - kHomeStretchyHeaderTitleTopMinOffset, /*kHomeStretchyHeaderTitleTopMaxOffset - kHomeStretchyHeaderTitleTopMaxOffset*/ 0.0);
+  self.titleBalanceLabelTopConstraint.constant = CGFloatInterpolate(titleBarContentStretchFactor, kHomeStretcyHeaderTitleBalanceTopMinOffset, kHomeStretcyHeaderTitleBalanceTopMaxOffset);
+  self.networkButton.transform = CGAffineTransformMakeScale(networkScale, networkScale);
+  self.networkButton.alpha = titleBarContentStretchFactor;
+  
+  
   [self.delegate homeStretchyHeaderViewDidChangeBackgroundAlpha:searchBarBackgroundAlphaFactor];
 }
    

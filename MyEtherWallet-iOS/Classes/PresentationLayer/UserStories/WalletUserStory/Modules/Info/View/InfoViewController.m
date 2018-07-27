@@ -25,6 +25,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *versionLabel;
 @property (nonatomic, weak) IBOutlet UILabel *copyrightLabel;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *versionTopOffsetConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *titleTopOffsetConstraint;
 @end
 
 @implementation InfoViewController {
@@ -63,8 +64,17 @@
 #pragma mark - InfoViewInput
 
 - (void) setupInitialStateWithVersion:(NSString *)version {
-  if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
-    self.versionTopOffsetConstraint.constant = 20.0;
+  switch ([UIScreen mainScreen].screenSizeType) {
+    case ScreenSizeTypeInches35:
+    case ScreenSizeTypeInches40: {
+      self.versionTopOffsetConstraint.constant = 20.0;
+    }
+    case ScreenSizeTypeInches47: {
+      self.titleTopOffsetConstraint.constant = 24.0;
+      break;
+    }
+    default:
+      break;
   }
   self.versionLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Version %@", @"Info screen. Version format"), version];
   NSInteger year = [[NSCalendar currentCalendar] component:NSCalendarUnitYear fromDate:[NSDate date]];
@@ -119,20 +129,6 @@
   [self.output resetWalletAction];
 }
 
-- (IBAction) changeNetworkAction:(UILongPressGestureRecognizer *)sender {
-  if (sender.state == UIGestureRecognizerStateBegan) {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Network?", @"Open Easter Egg :)") message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    [alert addAction:[UIAlertAction actionWithTitle:@"Mainnet" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-      [self.output mainnetAction];
-    }]];
-    [alert addAction:[UIAlertAction actionWithTitle:@"Ropsten" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-      [self.output ropstenAction];
-    }]];
-    [alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
-    [self presentViewController:alert animated:YES completion:nil];
-  }
-}
-
 #pragma mark - Private
 
 - (void) _updatePrefferedContentSize {
@@ -170,6 +166,10 @@
 
 - (void) didTapUserGuide {
   [self.output userGuideAction];
+}
+
+- (void) didTapAbout {
+  [self.output aboutAction];
 }
 
 #pragma mark - MFMailComposeViewControllerDelegate

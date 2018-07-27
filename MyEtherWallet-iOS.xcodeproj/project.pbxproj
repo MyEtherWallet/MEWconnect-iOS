@@ -59,7 +59,6 @@
 		25E617B7CC0D07D3C8619264 /* BackupInfoRouterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FFEF1ED758EDDCE8DD21F346 /* BackupInfoRouterTests.m */; };
 		265DC5BD2ADEBDDDD22CD3B3 /* AboutInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF488F3DD448529EA6DC29E /* AboutInteractor.m */; };
 		26D2DE0E3793944D5C0074AC /* MessageSignerViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6302F5F75E81007E17AFB95E /* MessageSignerViewControllerTests.m */; };
-		27AD20308DBFA7E39A3426B6 /* AboutPresenterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CB566F051380CDC6CB218191 /* AboutPresenterTests.m */; };
 		27B323C95CB315D3717C322D /* ConfirmedTransactionInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = D765AA7C041DB78407C7DE44 /* ConfirmedTransactionInteractor.m */; };
 		285944FCD7519FA22BE2A38B /* DeclinedTransactionViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AEC9881F8C31ACA3128783E /* DeclinedTransactionViewControllerTests.m */; };
 		28AD71C67FB0F608F8514588 /* BackupStartPresenterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DEF74034DBEA36B30ABEA20 /* BackupStartPresenterTests.m */; };
@@ -107,7 +106,6 @@
 		4BECCB3B960C486BF2D02A9C /* HomePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4862E32C35521FB6A5C04492 /* HomePresenter.m */; };
 		4C207752034CE3CABBBAA1A8 /* RestoreWalletViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2C6DC4BA23012CDDE75026 /* RestoreWalletViewControllerTests.m */; };
 		4CDFE48F0C0F007F99DA2FBF /* QRScannerInteractorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C2AFE38F3096F6D7BED2C8 /* QRScannerInteractorTests.m */; };
-		4CEFDC0FE0EDF91900335410 /* AboutRouterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E532318CFAF1E146624B5FCA /* AboutRouterTests.m */; };
 		4E7D62928FDE3E37BD869C52 /* BuyEtherAmountAssemblyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 194C2160E44CEA834E302B47 /* BuyEtherAmountAssemblyTests.m */; };
 		4E8AE5FCD1594A861F1B471A /* BuyEtherNavigationRouterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C469E896852666A2C64CED9 /* BuyEtherNavigationRouterTests.m */; };
 		5021EF96AB77F0EA72FB8653 /* SplashPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C0B8BCCB953F98BF38B46 /* SplashPasswordViewController.m */; };
@@ -150,6 +148,13 @@
 		561840C620CD2AD5004BEB7E /* RamblerTyphoonUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 561840C520CD2AD5004BEB7E /* RamblerTyphoonUtils.framework */; };
 		5627B6F6210A81B7009787F7 /* EthereumResponseValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5627B6F5210A81B7009787F7 /* EthereumResponseValidator.m */; };
 		5627B6F7210A8282009787F7 /* EthereumResponseValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5627B6F5210A81B7009787F7 /* EthereumResponseValidator.m */; };
+		5627B6F9210B5260009787F7 /* AboutAssemblyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5627B6F8210B525F009787F7 /* AboutAssemblyTests.m */; };
+		5627B6FB210B526C009787F7 /* AboutInteractorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5627B6FA210B526B009787F7 /* AboutInteractorTests.m */; };
+		5627B6FD210B5272009787F7 /* AboutPresenterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5627B6FC210B5272009787F7 /* AboutPresenterTests.m */; };
+		5627B6FF210B5278009787F7 /* AboutRouterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5627B6FE210B5278009787F7 /* AboutRouterTests.m */; };
+		5627B701210B527E009787F7 /* AboutViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5627B700210B527E009787F7 /* AboutViewControllerTests.m */; };
+		5627B712210B5E15009787F7 /* PropertyAnimatorsAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 5627B711210B5E15009787F7 /* PropertyAnimatorsAssembly.m */; };
+		5627B714210B60CE009787F7 /* PropertyAnimatorsAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 5627B711210B5E15009787F7 /* PropertyAnimatorsAssembly.m */; };
 		5629AEEABED9B97DBBCA7D51 /* BackupStartViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3632CF7A5B7F967934023AC0 /* BackupStartViewControllerTests.m */; };
 		563C6AD820AC696300E85B8B /* MEWSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 563C6AD720AC696300E85B8B /* MEWSearchBar.m */; };
 		563C6AE320AF122000E85B8B /* CheckboxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563C6AE220AF122000E85B8B /* CheckboxButton.swift */; };
@@ -742,7 +747,6 @@
 		5A9720CE34524A8E048E3916 /* InfoAssemblyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD6AC7E259746637D9C1B3C /* InfoAssemblyTests.m */; };
 		5B6327A009EB7A4F0688D269 /* BackupInfoInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4258EA163224F05B1429A731 /* BackupInfoInteractor.m */; };
 		5BD78DE1A174B79420D4B0CE /* ForgotPasswordViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF8591C5BFABBADF0FCC509 /* ForgotPasswordViewControllerTests.m */; };
-		5BDA690989ACF1F1C85FAD66 /* AboutAssemblyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D1DA32DD051E34E4EA888538 /* AboutAssemblyTests.m */; };
 		5C11FB249B0F3CDE7C466126 /* BuyEtherAmountInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0573139F9F12C21BFBD593 /* BuyEtherAmountInteractor.m */; };
 		5C31BC8BB11AD002045A5F11 /* PasswordAssemblyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A199D0E848B3FD7B43858C7A /* PasswordAssemblyTests.m */; };
 		5CCAC59021B5F77D54E50DDD /* TransactionPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = E86FAAC41765670FF148E3E6 /* TransactionPresenter.m */; };
@@ -788,7 +792,6 @@
 		7879FEAD66BF19CB8B3E2E9C /* ConfirmPasswordInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = F7BD97263E0A4FD60F5D12F3 /* ConfirmPasswordInteractor.m */; };
 		787E3E34CA8334AE03D0C71F /* ConfirmPasswordAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3FCE8A4C03F212E0A52768 /* ConfirmPasswordAssembly.m */; };
 		792EFA6A1C92F889FAAA59CF /* ConfirmedTransactionPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = AC238600B0FEA751E0AD8D3F /* ConfirmedTransactionPresenter.m */; };
-		79E5CB722B9665C888FBB688 /* AboutViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F3391665D978DA2B8688B5B1 /* AboutViewControllerTests.m */; };
 		7A416AAF53A83B9F5FBA1BD0 /* ConfirmationNavigationRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = B09EAAF645E5969576DF2D0D /* ConfirmationNavigationRouter.m */; };
 		7C8EB252FBCFFDC9C8C0A6CF /* ConfirmPasswordPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = E06EF4FC27EA9AECBABAEA4B /* ConfirmPasswordPresenter.m */; };
 		7CD4D8349C636C9982158EE2 /* BuyEtherWebAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 7530E81B4FB49B75557FB3C2 /* BuyEtherWebAssembly.m */; };
@@ -888,7 +891,6 @@
 		EE2E56F2E2160F882F6FD764 /* BackupWordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A9A5D39F020C91F4AE6903 /* BackupWordsViewController.m */; };
 		EE63BF834C30352DF539298F /* DeclinedTransactionAssemblyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD532C8FBCA91CC76E5F929 /* DeclinedTransactionAssemblyTests.m */; };
 		EE773E901ADEDD4ECF600760 /* SettingsRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 165E42E6BEFBFE71A1C7BBD4 /* SettingsRouter.m */; };
-		EFD5462DA132D898C74DEBAF /* AboutInteractorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C32C2F2B730D285F3F4A338B /* AboutInteractorTests.m */; };
 		EFF1B135C57BD1034056F8DE /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A53C7A8A371F90CE150A9 /* StartViewController.m */; };
 		F3BEB5996A9106BD0DE22462 /* NewWalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D5D390AB77CB9DB1DE78D51 /* NewWalletViewController.m */; };
 		F56BA5669B8973DB2B861843 /* BackupDoneInteractorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E9629DE819FA5324BECC2913 /* BackupDoneInteractorTests.m */; };
@@ -1185,6 +1187,14 @@
 		561840C520CD2AD5004BEB7E /* RamblerTyphoonUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RamblerTyphoonUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5627B6F4210A81B7009787F7 /* EthereumResponseValidator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EthereumResponseValidator.h; sourceTree = "<group>"; };
 		5627B6F5210A81B7009787F7 /* EthereumResponseValidator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EthereumResponseValidator.m; sourceTree = "<group>"; };
+		5627B6F8210B525F009787F7 /* AboutAssemblyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutAssemblyTests.m; sourceTree = "<group>"; };
+		5627B6FA210B526B009787F7 /* AboutInteractorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutInteractorTests.m; sourceTree = "<group>"; };
+		5627B6FC210B5272009787F7 /* AboutPresenterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutPresenterTests.m; sourceTree = "<group>"; };
+		5627B6FE210B5278009787F7 /* AboutRouterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutRouterTests.m; sourceTree = "<group>"; };
+		5627B700210B527E009787F7 /* AboutViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewControllerTests.m; sourceTree = "<group>"; };
+		5627B710210B5E15009787F7 /* PropertyAnimatorsAssembly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PropertyAnimatorsAssembly.h; sourceTree = "<group>"; };
+		5627B711210B5E15009787F7 /* PropertyAnimatorsAssembly.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PropertyAnimatorsAssembly.m; sourceTree = "<group>"; };
+		5627B713210B6037009787F7 /* PropertyAnimatorsFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PropertyAnimatorsFactory.h; sourceTree = "<group>"; };
 		563C6AD620AC696300E85B8B /* MEWSearchBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MEWSearchBar.h; sourceTree = "<group>"; };
 		563C6AD720AC696300E85B8B /* MEWSearchBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MEWSearchBar.m; sourceTree = "<group>"; };
 		563C6AE220AF122000E85B8B /* CheckboxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxButton.swift; sourceTree = "<group>"; };
@@ -1913,7 +1923,6 @@
 		C10EA29F39D4F0064C408EEB /* SettingsAssembly.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SettingsAssembly.h; sourceTree = "<group>"; };
 		C1F7821BAD78C5760E99E26C /* QRScannerPresenterTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = QRScannerPresenterTests.m; sourceTree = "<group>"; };
 		C201DF93422CB9F7AB397BA0 /* BackupInfoRouter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BackupInfoRouter.h; sourceTree = "<group>"; };
-		C32C2F2B730D285F3F4A338B /* AboutInteractorTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = AboutInteractorTests.m; sourceTree = "<group>"; };
 		C3DEC10486790B03C3C02599 /* BuyEtherAmountViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BuyEtherAmountViewController.m; sourceTree = "<group>"; };
 		C623641EDB8D1AB70465606A /* BackupInfoAssembly.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BackupInfoAssembly.m; sourceTree = "<group>"; };
 		C6744BFB93AEA720C20D614F /* StartInteractorOutput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = StartInteractorOutput.h; sourceTree = "<group>"; };
@@ -1925,7 +1934,6 @@
 		CA25B4B1B52A39E96D2E52AB /* BackupWordsAssembly.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BackupWordsAssembly.m; sourceTree = "<group>"; };
 		CA313CF2020E19E7A94D62E5 /* ConfirmedTransactionInteractorOutput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ConfirmedTransactionInteractorOutput.h; sourceTree = "<group>"; };
 		CB548FF334AED83FA24326A9 /* QRScannerRouterTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = QRScannerRouterTests.m; sourceTree = "<group>"; };
-		CB566F051380CDC6CB218191 /* AboutPresenterTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = AboutPresenterTests.m; sourceTree = "<group>"; };
 		CB7CD9FE9BB0ED249BBFA32D /* MessageSignerRouterTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MessageSignerRouterTests.m; sourceTree = "<group>"; };
 		CBE83FDE5A0C1ABF14744D48 /* BuyEtherNavigationAssembly_Testable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BuyEtherNavigationAssembly_Testable.h; sourceTree = "<group>"; };
 		CC1A20CAD8F05EB0E387EE38 /* ConfirmedTransactionViewOutput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ConfirmedTransactionViewOutput.h; sourceTree = "<group>"; };
@@ -1945,7 +1953,6 @@
 		D0B488D63CB0C571E19ADBFF /* BackupInfoAssembly.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BackupInfoAssembly.h; sourceTree = "<group>"; };
 		D10DC99ABD222E7056186D08 /* BuyEtherAmountPresenterTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BuyEtherAmountPresenterTests.m; sourceTree = "<group>"; };
 		D1994268EBC1B09C2E130C26 /* ConfirmPasswordInteractorOutput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ConfirmPasswordInteractorOutput.h; sourceTree = "<group>"; };
-		D1DA32DD051E34E4EA888538 /* AboutAssemblyTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = AboutAssemblyTests.m; sourceTree = "<group>"; };
 		D2AB498975954102CEF72084 /* ForgotPasswordAssembly.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordAssembly.h; sourceTree = "<group>"; };
 		D313732E7465E0EC13FD5915 /* RestoreWalletPresenter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RestoreWalletPresenter.m; sourceTree = "<group>"; };
 		D316092F5618DC02FB587D47 /* ConfirmedTransactionPresenter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ConfirmedTransactionPresenter.h; sourceTree = "<group>"; };
@@ -1985,7 +1992,6 @@
 		E41C30B6F82B25469C7DA10C /* BuyEtherAmountPresenter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BuyEtherAmountPresenter.h; sourceTree = "<group>"; };
 		E4895971AAFB3D42D11BB1BF /* StartAssembly.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = StartAssembly.m; sourceTree = "<group>"; };
 		E48BA1EB0C4CEF850329853C /* Pods-MEWconnect-MyEtherWallet-iOSTests.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MEWconnect-MyEtherWallet-iOSTests.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-MEWconnect-MyEtherWallet-iOSTests/Pods-MEWconnect-MyEtherWallet-iOSTests.appstore.xcconfig"; sourceTree = "<group>"; };
-		E532318CFAF1E146624B5FCA /* AboutRouterTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = AboutRouterTests.m; sourceTree = "<group>"; };
 		E5F681B99B890000304285D3 /* SplashPasswordAssembly.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SplashPasswordAssembly.h; sourceTree = "<group>"; };
 		E5F9C4AEC6DC58874EAA0F50 /* BackupDoneViewInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BackupDoneViewInput.h; sourceTree = "<group>"; };
 		E6FAD7C3A1D4CC6D743135CB /* BackupStartInteractor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BackupStartInteractor.m; sourceTree = "<group>"; };
@@ -2028,7 +2034,6 @@
 		F240931A50C13E5A097815E6 /* DeclinedTransactionViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = DeclinedTransactionViewController.h; sourceTree = "<group>"; };
 		F295E58C783B4F5FFE051EF5 /* AboutRouterInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AboutRouterInput.h; sourceTree = "<group>"; };
 		F30E495392611F7AF4A60C3B /* BackupConfirmationInteractorTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BackupConfirmationInteractorTests.m; sourceTree = "<group>"; };
-		F3391665D978DA2B8688B5B1 /* AboutViewControllerTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = AboutViewControllerTests.m; sourceTree = "<group>"; };
 		F40A7C1F26A16F67EB693815 /* ConfirmationNavigationViewOutput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ConfirmationNavigationViewOutput.h; sourceTree = "<group>"; };
 		F5142BFCEA930C8A33BDE892 /* ConfirmPasswordInteractorInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ConfirmPasswordInteractorInput.h; sourceTree = "<group>"; };
 		F61A8D28763FF8C24805A561 /* SettingsViewControllerTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SettingsViewControllerTests.m; sourceTree = "<group>"; };
@@ -2165,7 +2170,7 @@
 		087FD8E2F830A2EFB7304809 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				CB566F051380CDC6CB218191 /* AboutPresenterTests.m */,
+				5627B6FC210B5272009787F7 /* AboutPresenterTests.m */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -2475,7 +2480,7 @@
 		2352CF1D313794BB95A6E825 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				F3391665D978DA2B8688B5B1 /* AboutViewControllerTests.m */,
+				5627B700210B527E009787F7 /* AboutViewControllerTests.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2959,7 +2964,7 @@
 		52FAE276C12C8D61CC38F99F /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
-				C32C2F2B730D285F3F4A338B /* AboutInteractorTests.m */,
+				5627B6FA210B526B009787F7 /* AboutInteractorTests.m */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -3504,6 +3509,16 @@
 			path = EthereumResponseValidator;
 			sourceTree = "<group>";
 		};
+		5627B70F210B5DFD009787F7 /* PropertyAnimatorsAssembly */ = {
+			isa = PBXGroup;
+			children = (
+				5627B713210B6037009787F7 /* PropertyAnimatorsFactory.h */,
+				5627B710210B5E15009787F7 /* PropertyAnimatorsAssembly.h */,
+				5627B711210B5E15009787F7 /* PropertyAnimatorsAssembly.m */,
+			);
+			path = PropertyAnimatorsAssembly;
+			sourceTree = "<group>";
+		};
 		5629F3A70372781973FD76D1 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -3907,6 +3922,7 @@
 		5668E4E02083D93C0070A402 /* Assemblies */ = {
 			isa = PBXGroup;
 			children = (
+				5627B70F210B5DFD009787F7 /* PropertyAnimatorsAssembly */,
 				5677BB3620FA137E0019E92D /* ModuleFactoriesAssembly */,
 				56A4EAC420B8C5BB0042A358 /* PresentationControllersAssembly */,
 				56A4EAAB20B8BE2C0042A358 /* TransitionDelegatesAssembly */,
@@ -6327,8 +6343,8 @@
 				56FB390C20B19253007776C8 /* Resources */,
 				56FE2B7020817F1100DB39D5 /* AppDelegate.h */,
 				56FE2B7120817F1100DB39D5 /* AppDelegate.m */,
-				56FE2B7620817F1100DB39D5 /* Main.storyboard */,
 				56FE2B7B20817F1100DB39D5 /* LaunchScreen.storyboard */,
+				56FE2B7620817F1100DB39D5 /* Main.storyboard */,
 				56BCB37B208789FF009EF24B /* MyEtherWallet-iOS-Bridging-Header.h */,
 			);
 			path = "MyEtherWallet-iOS";
@@ -6853,7 +6869,7 @@
 		7C64D4A15F96105B815E1F68 /* Router */ = {
 			isa = PBXGroup;
 			children = (
-				E532318CFAF1E146624B5FCA /* AboutRouterTests.m */,
+				5627B6FE210B5278009787F7 /* AboutRouterTests.m */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -8106,7 +8122,7 @@
 		E21992CB4A9300B6E1D0E345 /* Assembly */ = {
 			isa = PBXGroup;
 			children = (
-				D1DA32DD051E34E4EA888538 /* AboutAssemblyTests.m */,
+				5627B6F8210B525F009787F7 /* AboutAssemblyTests.m */,
 				E83F8285362C6A508EFC11C1 /* AboutAssembly_Testable.h */,
 			);
 			path = Assembly;
@@ -9414,6 +9430,7 @@
 				56E3E60E21016DB60014152D /* BackupDoneRouter.m in Sources */,
 				56E3E60F21016DB60014152D /* SplashPasswordAssembly.m in Sources */,
 				56E3E61021016DB60014152D /* InfoDestructiveTableViewCellObject.m in Sources */,
+				5627B714210B60CE009787F7 /* PropertyAnimatorsAssembly.m in Sources */,
 				56E3E61121016DB60014152D /* SplashPasswordViewController.m in Sources */,
 				56E3E61221016DB60014152D /* UIView+LockAlpha.m in Sources */,
 				56E3E61321016DB60014152D /* SplashPasswordPresenter.m in Sources */,
@@ -9767,6 +9784,7 @@
 				5677BB6020FE9FC70019E92D /* UIView+LockAlpha.m in Sources */,
 				9B249DCA77F6F403B94E38F4 /* SplashPasswordPresenter.m in Sources */,
 				56A4EAAF20B8BE920042A358 /* TransitioningDelegateAssembly.m in Sources */,
+				5627B712210B5E15009787F7 /* PropertyAnimatorsAssembly.m in Sources */,
 				64D2C7DAAAB7CCA5EE92428C /* SplashPasswordInteractor.m in Sources */,
 				563CF2E120EFAAD6005467AE /* _AccountModelObject.m in Sources */,
 				56C878AB20BB6F8100343ADC /* StatusButton.m in Sources */,
@@ -9858,6 +9876,7 @@
 				AF7B6630366D598791D75999 /* HomePresenterTests.m in Sources */,
 				15F5F1109034C17CA984130C /* HomeInteractorTests.m in Sources */,
 				B04DB1B9AD0D63952532E700 /* HomeRouterTests.m in Sources */,
+				5627B6FB210B526C009787F7 /* AboutInteractorTests.m in Sources */,
 				235C5B92B3D2D778591269BF /* QRScannerAssemblyTests.m in Sources */,
 				4A11049EB4BA67C879510715 /* QRScannerViewControllerTests.m in Sources */,
 				D613E39CAD7A19EA13E70438 /* QRScannerPresenterTests.m in Sources */,
@@ -9882,6 +9901,7 @@
 				08131B96FF9A1D0292CF08BD /* ConfirmPasswordViewControllerTests.m in Sources */,
 				3A2630757230211BFF11A710 /* ConfirmPasswordPresenterTests.m in Sources */,
 				1CD31ED33DBEBAEAF170E4EF /* ConfirmPasswordInteractorTests.m in Sources */,
+				5627B6FF210B5278009787F7 /* AboutRouterTests.m in Sources */,
 				0A385617125118C843549D4D /* ConfirmPasswordRouterTests.m in Sources */,
 				5F2E9575DE804FDD31175F30 /* MessageSignerAssemblyTests.m in Sources */,
 				26D2DE0E3793944D5C0074AC /* MessageSignerViewControllerTests.m in Sources */,
@@ -9914,6 +9934,7 @@
 				0C1D0D2B7DD347E44C10985D /* BackupConfirmationInteractorTests.m in Sources */,
 				A57E3A28EFCB6A82D830E485 /* BackupConfirmationRouterTests.m in Sources */,
 				869C8341929A12E9ABC3A664 /* BackupDoneAssemblyTests.m in Sources */,
+				5627B6FD210B5272009787F7 /* AboutPresenterTests.m in Sources */,
 				CAF91D3EE8BA37572E14DC12 /* BackupDoneViewControllerTests.m in Sources */,
 				FFA36F95235B107FA26A8D06 /* BackupDonePresenterTests.m in Sources */,
 				F56BA5669B8973DB2B861843 /* BackupDoneInteractorTests.m in Sources */,
@@ -9923,6 +9944,7 @@
 				62FB6F31985FC1641D2C06E7 /* SplashPasswordPresenterTests.m in Sources */,
 				561840B820CC8CE1004BEB7E /* MEWcryptoTests.m in Sources */,
 				49CF7B0BFFB0ED4E73184D1C /* SplashPasswordInteractorTests.m in Sources */,
+				5627B6F9210B5260009787F7 /* AboutAssemblyTests.m in Sources */,
 				189A9B01D033288D19871699 /* SplashPasswordRouterTests.m in Sources */,
 				6DFEAB759557E89925E532F3 /* ForgotPasswordAssemblyTests.m in Sources */,
 				5BD78DE1A174B79420D4B0CE /* ForgotPasswordViewControllerTests.m in Sources */,
@@ -9952,6 +9974,7 @@
 				654FAE143B46B9D46DC1FD3B /* BuyEtherWebAssemblyTests.m in Sources */,
 				BF2128604CBBEF13B8D53D92 /* BuyEtherWebViewControllerTests.m in Sources */,
 				6EEBC47DDAC498ADFF78E393 /* BuyEtherWebPresenterTests.m in Sources */,
+				5627B701210B527E009787F7 /* AboutViewControllerTests.m in Sources */,
 				2330039409F0E27E84AA1A92 /* BuyEtherWebInteractorTests.m in Sources */,
 				7D99509495D4CDED1E18B858 /* BuyEtherWebRouterTests.m in Sources */,
 				2B130D588AD27F525E7DEB5C /* ConfirmationNavigationAssemblyTests.m in Sources */,
@@ -9959,11 +9982,6 @@
 				CFAE33710664647D130E8662 /* ConfirmationNavigationPresenterTests.m in Sources */,
 				B21D0A67967BA053A25D4C5A /* ConfirmationNavigationInteractorTests.m in Sources */,
 				74BF76B18E5383AD2121EA9A /* ConfirmationNavigationRouterTests.m in Sources */,
-				5BDA690989ACF1F1C85FAD66 /* AboutAssemblyTests.m in Sources */,
-				79E5CB722B9665C888FBB688 /* AboutViewControllerTests.m in Sources */,
-				27AD20308DBFA7E39A3426B6 /* AboutPresenterTests.m in Sources */,
-				EFD5462DA132D898C74DEBAF /* AboutInteractorTests.m in Sources */,
-				4CEFDC0FE0EDF91900335410 /* AboutRouterTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

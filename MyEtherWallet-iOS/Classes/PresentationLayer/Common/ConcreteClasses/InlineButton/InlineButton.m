@@ -37,7 +37,7 @@
   UIImage *image = [self imageForState:self.state];
   CGFloat imageWidth = 0.0;
   if (image) {
-    imageWidth = image.size.width - self.imageEdgeInsets.right + self.imageEdgeInsets.left;
+    imageWidth = image.size.width;
   }
   frame.origin.x = CGRectGetMinX(frame) - imageWidth;
   return frame;

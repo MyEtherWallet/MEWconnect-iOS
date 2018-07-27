@@ -129,20 +129,6 @@
   [self.output resetWalletAction];
 }
 
-- (IBAction) changeNetworkAction:(UILongPressGestureRecognizer *)sender {
-  if (sender.state == UIGestureRecognizerStateBegan) {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Network?", @"Open Easter Egg :)") message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    [alert addAction:[UIAlertAction actionWithTitle:@"Mainnet" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-      [self.output mainnetAction];
-    }]];
-    [alert addAction:[UIAlertAction actionWithTitle:@"Ropsten" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-      [self.output ropstenAction];
-    }]];
-    [alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
-    [self presentViewController:alert animated:YES completion:nil];
-  }
-}
-
 #pragma mark - Private
 
 - (void) _updatePrefferedContentSize {

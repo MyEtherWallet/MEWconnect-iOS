@@ -18,7 +18,5 @@
 - (void) userGuideAction;
 - (void) resetWalletAction;
 - (void) resetWalletConfirmedAction;
-- (void) mainnetAction;
-- (void) ropstenAction;
 - (void) aboutAction;
 @end

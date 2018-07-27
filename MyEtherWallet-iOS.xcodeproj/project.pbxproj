@@ -148,6 +148,8 @@
 		560D773A20B5A258009A3D6D /* BackupConfirmationQuiz.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D773920B5A258009A3D6D /* BackupConfirmationQuiz.m */; };
 		561840B820CC8CE1004BEB7E /* MEWcryptoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 561840B720CC8CE1004BEB7E /* MEWcryptoTests.m */; };
 		561840C620CD2AD5004BEB7E /* RamblerTyphoonUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 561840C520CD2AD5004BEB7E /* RamblerTyphoonUtils.framework */; };
+		5627B6F6210A81B7009787F7 /* EthereumResponseValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5627B6F5210A81B7009787F7 /* EthereumResponseValidator.m */; };
+		5627B6F7210A8282009787F7 /* EthereumResponseValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5627B6F5210A81B7009787F7 /* EthereumResponseValidator.m */; };
 		5629AEEABED9B97DBBCA7D51 /* BackupStartViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3632CF7A5B7F967934023AC0 /* BackupStartViewControllerTests.m */; };
 		563C6AD820AC696300E85B8B /* MEWSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 563C6AD720AC696300E85B8B /* MEWSearchBar.m */; };
 		563C6AE320AF122000E85B8B /* CheckboxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563C6AE220AF122000E85B8B /* CheckboxButton.swift */; };
@@ -1181,6 +1183,8 @@
 		561840B720CC8CE1004BEB7E /* MEWcryptoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MEWcryptoTests.m; path = MEWcrypto/MEWcryptoTests.m; sourceTree = "<group>"; };
 		561840BE20CCA0BA004BEB7E /* RamblerTyphoonUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RamblerTyphoonUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		561840C520CD2AD5004BEB7E /* RamblerTyphoonUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RamblerTyphoonUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5627B6F4210A81B7009787F7 /* EthereumResponseValidator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EthereumResponseValidator.h; sourceTree = "<group>"; };
+		5627B6F5210A81B7009787F7 /* EthereumResponseValidator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EthereumResponseValidator.m; sourceTree = "<group>"; };
 		563C6AD620AC696300E85B8B /* MEWSearchBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MEWSearchBar.h; sourceTree = "<group>"; };
 		563C6AD720AC696300E85B8B /* MEWSearchBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MEWSearchBar.m; sourceTree = "<group>"; };
 		563C6AE220AF122000E85B8B /* CheckboxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxButton.swift; sourceTree = "<group>"; };
@@ -3489,6 +3493,15 @@
 				56115D332103706000C176F4 /* ConfirmationStoryModuleOutput.h */,
 			);
 			path = ConfirmationStoryModuleOutput;
+			sourceTree = "<group>";
+		};
+		5627B6F3210A81A8009787F7 /* EthereumResponseValidator */ = {
+			isa = PBXGroup;
+			children = (
+				5627B6F4210A81B7009787F7 /* EthereumResponseValidator.h */,
+				5627B6F5210A81B7009787F7 /* EthereumResponseValidator.m */,
+			);
+			path = EthereumResponseValidator;
 			sourceTree = "<group>";
 		};
 		5629F3A70372781973FD76D1 /* Presenter */ = {
@@ -5883,6 +5896,7 @@
 		56FB39BC20B23124007776C8 /* ConcreteClasses */ = {
 			isa = PBXGroup;
 			children = (
+				5627B6F3210A81A8009787F7 /* EthereumResponseValidator */,
 				56E14C0520EC0D4100C41F83 /* SimplexResponseValidator */,
 				56E14BCD20E99C8400C41F83 /* FiatPricesResponseValidator */,
 				56FB39BE20B23135007776C8 /* ManyResponseValidator */,
@@ -9230,6 +9244,7 @@
 				56E3E56721016DB60014152D /* HomeEmptyTableViewCell.m in Sources */,
 				56E3E56821016DB60014152D /* _PurchaseHistoryPlainObject.m in Sources */,
 				56E3E56921016DB60014152D /* NSNumberFormatter+TokenPrice.m in Sources */,
+				5627B6F7210A8282009787F7 /* EthereumResponseValidator.m in Sources */,
 				56E3E56A21016DB60014152D /* UIImage+RandSeed.swift in Sources */,
 				56E3E56B21016DB60014152D /* _NetworkPlainObject.m in Sources */,
 				56E3E56C21016DB60014152D /* PonsomizerAssembly.m in Sources */,
@@ -9582,6 +9597,7 @@
 				56E14BD420EA687700C41F83 /* NSNumberFormatter+TokenPrice.m in Sources */,
 				56FB3A2320B441C8007776C8 /* UIImage+RandSeed.swift in Sources */,
 				563CF2DE20EFAAD6005467AE /* _NetworkPlainObject.m in Sources */,
+				5627B6F6210A81B7009787F7 /* EthereumResponseValidator.m in Sources */,
 				560D76F020B48296009A3D6D /* PonsomizerAssembly.m in Sources */,
 				5FEF304FAB4A717221A0C324 /* HomeAssembly.m in Sources */,
 				56E14BF820EBCFAD00C41F83 /* SimplexQuoteBody.m in Sources */,

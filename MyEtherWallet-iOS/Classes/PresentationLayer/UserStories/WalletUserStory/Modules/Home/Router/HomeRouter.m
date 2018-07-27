@@ -17,6 +17,8 @@
 #import "InfoModuleInput.h"
 #import "BuyEtherAmountModuleInput.h"
 #import "ConfirmationNavigationModuleInput.h"
+#import "StartModuleInput.h"
+
 #import "ConfirmationStoryModuleOutput.h"
 
 static NSString *const kHomeToScannerSegueIdentifier        = @"HomeToScannerSegueIdentifier";
@@ -25,10 +27,18 @@ static NSString *const kHomeToTransactionSegueIdentifier    = @"HomeToTransactio
 static NSString *const kHomeToBackupInfoSegueIdentifier     = @"HomeToBackupInfoSegueIdentifier";
 static NSString *const kHomeToInfoSegueIdentifier           = @"HomeToInfoSegueIdentifier";
 static NSString *const kHomeToBuyEtherSegueIdentifier       = @"HomeToBuyEtherSegueIdentifier";
+static NSString *const kHomeToStartUnwindSegueIdentifier    = @"HomeToStartUnwindSegueIdentifier";
 
 @implementation HomeRouter
 
 #pragma mark - HomeRouterInput
+
+- (void) unwindToStart {
+  [[self.transitionHandler openModuleUsingSegue:kHomeToStartUnwindSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<StartModuleInput> moduleInput) {
+    [moduleInput configureModule];
+    return nil;
+  }];
+}
 
 - (void) openScanner {
   [[self.transitionHandler openModuleUsingSegue:kHomeToScannerSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<RamblerViperModuleInput> moduleInput) {
@@ -51,15 +61,7 @@ static NSString *const kHomeToBuyEtherSegueIdentifier       = @"HomeToBuyEtherSe
                                                   UIViewController *toViewController = (UIViewController *)destinationModuleTransitionHandler;
                                                   
                                                   UINavigationController *fromNavigationController = [fromViewController navigationController];
-                                                  //find correct viewcontroller to present transaction signer
-                                                  //...
-                                                  //
-                                                  
-//                                                  if (fromNavigationController.visibleViewController) {
-                                                    [fromNavigationController.visibleViewController presentViewController:toViewController animated:YES completion:nil];
-//                                                  } else {
-//                                                    [fromNavigationController presentViewController:toViewController animated:YES completion:nil];
-//                                                  }
+                                                  [fromNavigationController.visibleViewController presentViewController:toViewController animated:YES completion:nil];
                                                 } originalModuleInput:&originalModuleInput];
   [promise thenChainUsingBlock:^id<ConfirmationStoryModuleOutput>(id<TransactionModuleInput> moduleInput) {
     [moduleInput configureModuleWithMessage:command account:account];

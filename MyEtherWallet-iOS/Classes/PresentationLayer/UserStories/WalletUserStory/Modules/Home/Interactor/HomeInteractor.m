@@ -65,7 +65,7 @@
   }
   @weakify(self);
   [self.output tokensDidStartUpdating];
-  [self.accountService updateBalanceForAccount:self.account
+  [self.accountsService updateBalanceForAccount:self.account
                                 withCompletion:^(NSError *error) {
                                   if (!error) {
                                     @strongify(self);
@@ -92,7 +92,7 @@
 }
 
 - (void) refreshAccount {
-  AccountModelObject *accountModelObject = [self.accountService obtainActiveAccount];
+  AccountModelObject *accountModelObject = [self.accountsService obtainActiveAccount];
   NSArray *ignoringProperties = @[NSStringFromSelector(@selector(tokens)),
                                   NSStringFromSelector(@selector(active)),
                                   NSStringFromSelector(@selector(accounts))];
@@ -155,6 +155,30 @@
                                          [self.output tokensDidEndUpdating];
                                        }
                                      }];
+}
+
+- (void)selectMainnetNetwork {
+  BOOL selected = [self.blockchainNetworkService selectNetwork:BlockchainNetworkTypeMainnet];
+  if (selected) {
+    AccountModelObject *accountModelObject = [self.accountsService obtainActiveAccount];
+    if (accountModelObject) {
+      [self.output networkDidChangedWithAccount];
+    } else {
+      [self.output networkDidChangedWithoutAccount];
+    }
+  }
+}
+
+- (void)selectRopstenNetwork {
+  BOOL selected = [self.blockchainNetworkService selectNetwork:BlockchainNetworkTypeRopsten];
+  if (selected) {
+    AccountModelObject *accountModelObject = [self.accountsService obtainActiveAccount];
+    if (accountModelObject) {
+      [self.output networkDidChangedWithAccount];
+    } else {
+      [self.output networkDidChangedWithoutAccount];
+    }
+  }
 }
 
 #pragma mark - Notifications

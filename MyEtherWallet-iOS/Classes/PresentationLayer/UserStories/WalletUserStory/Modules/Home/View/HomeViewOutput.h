@@ -20,4 +20,7 @@
 - (void) buyEtherAction;
 - (void) refreshTokensAction;
 - (void) shareAction;
+- (void) networkAction;
+- (void) mainnetAction;
+- (void) ropstenAction;
 @end

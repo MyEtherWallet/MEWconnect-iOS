@@ -44,8 +44,8 @@ static NSString *const kHomeViewControllerIdentifier            = @"HomeViewCont
 - (UINavigationController *) obtainPreconfiguredAuthorizedNavigationController {
   UINavigationController *navigationController = [self.storyboard instantiateInitialViewController];
   
-  RamblerViperModuleFactory *homeFactory = [[RamblerViperModuleFactory alloc] initWithStoryboard:self.walletStoryboard
-                                                                                andRestorationId:kHomeViewControllerIdentifier];
+  RamblerViperModuleFactory *homeFactory = [[RamblerViperModuleFactory alloc] initWithViewControllerLoader:self.walletStoryboard
+                                                                               andViewControllerIdentifier:kHomeViewControllerIdentifier];
   [[navigationController.topViewController openModuleUsingFactory:homeFactory
                                               withTransitionBlock:[self homeTransitionBlock]]
    thenChainUsingBlock:[self homeConfigurationBlock]];

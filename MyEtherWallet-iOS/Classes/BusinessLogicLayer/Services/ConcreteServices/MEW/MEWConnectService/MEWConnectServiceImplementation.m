@@ -46,7 +46,7 @@ static NSString *const kMEWConnectCurrentSchemaVersion  =  @"0.0.1";
 
 static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
 
-@interface MEWConnectServiceImplementation () <NSURLSessionDelegate, MEWRTCServiceDelegate>
+@interface MEWConnectServiceImplementation () <MEWRTCServiceDelegate>
 @property (nonatomic, strong) NSString *connectionId;
 @property (nonatomic, strong) NSString *privateKey;
 @property (nonatomic, strong) SocketManager *socketManager;
@@ -124,12 +124,6 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
   return [self.rtcService sendMessage:[cryptoMessage representation]];
 }
 
-#pragma mark - NSURLSessionDelegate
-
-- (void) URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler {
-  completionHandler(NSURLSessionAuthChallengeUseCredential, [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust]);
-}
-
 #pragma mark - Private
 
 - (NSDictionary *) _socketConfig {
@@ -138,11 +132,9 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
   NSData *signedData = [toSignHashData signWithPrivateKeyData:privateKeyData];
   NSString *signedMessage = [signedData hexadecimalString];
 
-  NSDictionary *config = @{kMEWConnectSocketConfigLog             : @NO,
+  NSDictionary *config = @{kMEWConnectSocketConfigLog             : @YES,
                            kMEWConnectSocketConfigCompress        : @YES,
                            kMEWConnectSocketConfigSecure          : @YES,
-                           kMEWConnectSocketConfigSelfSigned      : @YES,
-                           kMEWConnectSocketConfigSessionDelegate : self,
                            kMEWConnectSocketConfigConnectParams   : @{
                                kMEWConnectSocketConfigConnId      : self.connectionId,
                                kMEWConnectSocketConfigStage       : MEWConnectSocketReceiver,
@@ -267,7 +259,6 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
   NSData *privateKeyData = [self.privateKey parseHexData];
   NSData *signedData = [toSignHashData signWithPrivateKeyData:privateKeyData];
   NSString *signedMessage = [signedData hexadecimalString];
-  
   if (signedMessage) {
     NSData *currentSchemaVersionData = [kMEWConnectCurrentSchemaVersion dataUsingEncoding:NSUTF8StringEncoding];
     MEWcryptoMessage *cryptoMessage = [self.MEWcrypto encryptMessage:currentSchemaVersionData];

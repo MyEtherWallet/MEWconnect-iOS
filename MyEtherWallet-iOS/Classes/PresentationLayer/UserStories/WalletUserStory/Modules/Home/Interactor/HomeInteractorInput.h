@@ -26,4 +26,6 @@
 - (void) disconnect;
 - (BOOL) isConnected;
 - (NSArray *) shareActivityItems;
+- (void) selectMainnetNetwork;
+- (void) selectRopstenNetwork;
 @end

@@ -146,6 +146,53 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
   
   NSNumberFormatter *ethereumFormatter = [NSNumberFormatter ethereumFormatterWithNetwork:network];
   ethereumFormatter.maximumSignificantDigits = 8;
+  switch (network) {
+    case BlockchainNetworkTypeMainnet: {
+      switch ([UIScreen mainScreen].screenSizeType) {
+        case ScreenSizeTypeInches40: {
+          ethereumFormatter.maximumSignificantDigits = 9;
+          break;
+        }
+        case ScreenSizeTypeInches47:
+        case ScreenSizeTypeInches58: {
+          ethereumFormatter.maximumSignificantDigits = 10;
+          break;
+        }
+        case ScreenSizeTypeInches55: {
+          ethereumFormatter.maximumSignificantDigits = 12;
+          break;
+        }
+        default:
+          ethereumFormatter.maximumSignificantDigits = 8;
+          break;
+      }
+      break;
+    }
+    case BlockchainNetworkTypeRopsten: {
+      switch ([UIScreen mainScreen].screenSizeType) {
+        case ScreenSizeTypeInches40: {
+          ethereumFormatter.maximumSignificantDigits = 5;
+          break;
+        }
+        case ScreenSizeTypeInches47:
+        case ScreenSizeTypeInches58: {
+          ethereumFormatter.maximumSignificantDigits = 5;
+          break;
+        }
+        case ScreenSizeTypeInches55: {
+          ethereumFormatter.maximumSignificantDigits = 7;
+          break;
+        }
+        default:
+          ethereumFormatter.maximumSignificantDigits = 8;
+          break;
+      }
+      break;
+    }
+      
+    default:
+      break;
+  }
   
   UIFont *balanceFont = nil;
   UIFont *currencyFont = nil;

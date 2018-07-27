@@ -7,7 +7,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -119,9 +118,11 @@
                         <segue destination="Et8-6R-zGr" kind="presentation" identifier="HomeToBackupInfoSegueIdentifier" id="gma-Fq-rkZ"/>
                         <segue destination="T20-gx-fZR" kind="presentation" identifier="HomeToInfoSegueIdentifier" id="7nn-hV-fTP"/>
                         <segue destination="bjD-Qn-fHU" kind="presentation" identifier="HomeToBuyEtherSegueIdentifier" id="aaz-Cv-z2t"/>
+                        <segue destination="SCy-K4-Xfl" kind="unwind" identifier="HomeToStartUnwindSegueIdentifier" unwindAction="unwindToStart:" id="Jrq-uR-yox"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dKq-6Q-B9q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="SCy-K4-Xfl" userLabel="Exit" sceneMemberID="exit"/>
                 <view contentMode="scaleToFill" id="gZS-FJ-E9G">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="82"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -456,14 +457,6 @@ with MyEtherWallet</string>
                                             <color key="textColor" red="0.43137254901960786" green="0.45098039215686275" blue="0.51764705882352935" alpha="1" colorSpace="deviceRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JAh-FV-Ufs" userLabel="Copyright">
-                                            <rect key="frame" x="24" y="54" width="327" height="36"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <gestureRecognizers/>
-                                            <connections>
-                                                <outletCollection property="gestureRecognizers" destination="d5v-01-7s8" appends="YES" id="cKK-Pd-XnQ"/>
-                                            </connections>
-                                        </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright 2018 MyEtherWallet Inc." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VmI-iZ-Ky7">
                                             <rect key="frame" x="24" y="54" width="327" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -489,14 +482,10 @@ with MyEtherWallet</string>
                                         <constraint firstItem="VmI-iZ-Ky7" firstAttribute="top" secondItem="G89-d1-aMk" secondAttribute="bottom" constant="2" id="37z-uE-0Mo"/>
                                         <constraint firstItem="G89-d1-aMk" firstAttribute="top" secondItem="DWC-iX-mxL" secondAttribute="top" constant="34" id="6gx-4K-mfH"/>
                                         <constraint firstItem="Ui4-Nu-eAE" firstAttribute="leading" secondItem="VmI-iZ-Ky7" secondAttribute="leading" id="ARf-V9-BaQ"/>
-                                        <constraint firstItem="JAh-FV-Ufs" firstAttribute="height" secondItem="VmI-iZ-Ky7" secondAttribute="height" multiplier="2" id="ENa-sV-1OS"/>
-                                        <constraint firstItem="JAh-FV-Ufs" firstAttribute="trailing" secondItem="VmI-iZ-Ky7" secondAttribute="trailing" id="N69-en-jXw"/>
                                         <constraint firstItem="G89-d1-aMk" firstAttribute="leading" secondItem="DWC-iX-mxL" secondAttribute="leading" constant="24" id="al7-VC-nHJ"/>
                                         <constraint firstItem="VmI-iZ-Ky7" firstAttribute="leading" secondItem="G89-d1-aMk" secondAttribute="leading" id="b06-qr-CNn"/>
-                                        <constraint firstItem="JAh-FV-Ufs" firstAttribute="leading" secondItem="VmI-iZ-Ky7" secondAttribute="leading" id="f7v-ud-ibq"/>
                                         <constraint firstAttribute="trailing" secondItem="G89-d1-aMk" secondAttribute="trailing" constant="24" id="jXl-eu-Bb5"/>
                                         <constraint firstItem="Ui4-Nu-eAE" firstAttribute="top" secondItem="VmI-iZ-Ky7" secondAttribute="bottom" constant="9" id="kbF-L9-YZp"/>
-                                        <constraint firstItem="JAh-FV-Ufs" firstAttribute="top" secondItem="VmI-iZ-Ky7" secondAttribute="top" id="lwd-I8-PEl"/>
                                         <constraint firstItem="VmI-iZ-Ky7" firstAttribute="trailing" secondItem="G89-d1-aMk" secondAttribute="trailing" id="w1O-Dc-LcL"/>
                                     </constraints>
                                 </view>
@@ -525,17 +514,11 @@ with MyEtherWallet</string>
                         <outlet property="versionLabel" destination="G89-d1-aMk" id="cJJ-Jk-VBP"/>
                         <outlet property="versionTopOffsetConstraint" destination="6gx-4K-mfH" id="ycG-mc-KYg"/>
                         <segue destination="ySg-Me-ph6" kind="unwind" identifier="InfoToStartUnwindSegueIdentifier" unwindAction="unwindToStart:" id="lBp-SS-UPN"/>
-                        <segue destination="ySg-Me-ph6" kind="unwind" identifier="InfoToHomeUnwindSegueIdentifier" unwindAction="unwindToHome:" id="pDA-fb-PhX"/>
                         <segue destination="u8G-4f-a56" kind="presentation" identifier="InfoToAboutSegueIdentifier" id="H6X-Mc-9wo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lwe-by-bLp" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ySg-Me-ph6" userLabel="Exit" sceneMemberID="exit"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="7" numberOfTouchesRequired="2" id="d5v-01-7s8">
-                    <connections>
-                        <action selector="changeNetworkAction:" destination="T20-gx-fZR" id="YOR-Wv-cca"/>
-                    </connections>
-                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1101.5999999999999" y="510.49475262368821"/>
         </scene>
@@ -567,9 +550,9 @@ with MyEtherWallet</string>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8On-Cv-TlD">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <mutableString key="text">MEWconnect is a simple, powerful new app for your mobile device that enables a better, more secure way of managing your Ethereum assets and ERC-20 Tokens. It is an official mobile software brought by MyEtherWallet Inc, currently available only on IOS for iPhone 5 and above. 
+                                <string key="text">MEWconnect is a simple, powerful new app for your mobile device that enables a better, more secure way of managing your Ethereum assets and ERC-20 Tokens. It is an official mobile software brought by MyEtherWallet Inc, currently available only on IOS for iPhone 5 and above. 
 MEWconnect generates a new wallet then encrypts your private key and then stores it in isolation using your device’s built-in security architecture. The app  establishes a secure connection while keeping your private key separate from the browser. The software implements two-factor authentication, protecting you from unauthorized transaction broadcasting on the blockchain. Only you will be able to verify and sign the transaction. MyEtherWallet will never collect any of your personal data, all of your information will only be stored on your mobile device. 
-With added layers of security, MEWconnect puts you in total control of your crypto assets.</mutableString>
+With added layers of security, MEWconnect puts you in total control of your crypto assets.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>

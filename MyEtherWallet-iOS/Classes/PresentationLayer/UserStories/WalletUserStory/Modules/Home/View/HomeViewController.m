@@ -122,6 +122,7 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
   [self.headerView.infoButton addTarget:self action:@selector(infoAction:) forControlEvents:UIControlEventTouchUpInside];
   [self.headerView.buyEtherButton addTarget:self action:@selector(buyEtherAction:) forControlEvents:UIControlEventTouchUpInside];
   [self.headerView.refreshButton addTarget:self action:@selector(refreshTokensAction:) forControlEvents:UIControlEventTouchUpInside];
+  [self.headerView.networkButton addTarget:self action:@selector(networkAction:) forControlEvents:UIControlEventTouchUpInside];
   
   [self.dataDisplayManager configureDataDisplayManagerWithAnimator:self.tableViewAnimator];
   self.tableView.dataSource = [self.dataDisplayManager dataSourceForTableView:self.tableView];
@@ -165,7 +166,9 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
 }
 
 - (void)updateWithAccount:(AccountPlainObject *)account {
-  switch ([account.fromNetwork network]) {
+  BlockchainNetworkType networkType = [account.fromNetwork network];
+  [self.headerView.networkButton setTitle:NSStringFromBlockchainNetworkType(networkType) forState:UIControlStateNormal];
+  switch (networkType) {
     case BlockchainNetworkTypeRopsten: {
       [self.headerView updateTitle:NSLocalizedString(@"MEWconnect: Ropsten", @"Home screen. Title")];
       break;
@@ -177,13 +180,15 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
     }
   }
   [self.headerView.cardView updateWithSeed:account.publicAddress];
-  [self.headerView.cardView updateEthPrice:account.price.usdPrice];
+  
   [self.headerView refreshContentIfNeeded];
   
   self.headerView.cardView.backedUp = [account.backedUp boolValue];
-  
-  NSDecimalNumber *balance = account.balance;
-  [self.headerView.cardView updateBalance:balance network:[account.fromNetwork network]];
+  [self updateEthereumBalanceWithAccount:account];
+}
+
+- (void)updateEthereumBalanceWithAccount:(AccountPlainObject *)account {
+  [self.headerView.cardView updateEthPrice:account.price.usdPrice];
   
   NSNumberFormatter *ethereumFormatter = [NSNumberFormatter ethereumFormatterWithNetwork:[account.fromNetwork network]];
   switch ([UIScreen mainScreen].screenSizeType) {
@@ -195,6 +200,8 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
       break;
   }
   
+  NSDecimalNumber *balance = account.balance;
+  [self.headerView.cardView updateBalance:balance network:[account.fromNetwork network]];
   self.headerView.titleBalanceLabel.text = [ethereumFormatter stringFromNumber:balance];
 }
 
@@ -269,6 +276,18 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
   self.headerView.refreshButton.rotation = NO;
 }
 
+- (void)presentNetworkSelection {
+  UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Network?", @"Wallet. Network selection") message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+  [alert addAction:[UIAlertAction actionWithTitle:@"Mainnet" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    [self.output mainnetAction];
+  }]];
+  [alert addAction:[UIAlertAction actionWithTitle:@"Ropsten" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    [self.output ropstenAction];
+  }]];
+  [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"Wallet. Network selection. Cancel") style:UIAlertActionStyleCancel handler:nil]];
+  [self presentViewController:alert animated:YES completion:nil];
+}
+
 #pragma mark - IBActions
 
 - (IBAction) connectAction:(id)sender {
@@ -289,6 +308,10 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
 
 - (IBAction) refreshTokensAction:(id)sender {
   [self.output refreshTokensAction];
+}
+
+- (IBAction) networkAction:(id)sender {
+  [self.output networkAction];
 }
 
 - (IBAction)unwindToHome:(UIStoryboardSegue *)sender {}

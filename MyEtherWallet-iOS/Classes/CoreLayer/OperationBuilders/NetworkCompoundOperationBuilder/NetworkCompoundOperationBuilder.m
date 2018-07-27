@@ -57,8 +57,8 @@
 //  [self buildRequestSigningOperationWithConfig:config];
   [self buildNetworkOperationWithConfig:config];
   [self buildResponseDeserializationOperationWithConfig:config];
-  [self buildResponseConverterOperationWithConfig:config];
   [self buildResponseValidationOperationWithConfig:config];
+  [self buildResponseConverterOperationWithConfig:config];
   [self buildResponseMappingOperationWithConfig:config];
   
   CompoundOperationBase *compoundOperation = [self getResultCompoundOperation];

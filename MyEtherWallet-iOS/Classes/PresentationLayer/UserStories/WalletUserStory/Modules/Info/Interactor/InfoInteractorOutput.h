@@ -9,6 +9,4 @@
 @import Foundation;
 
 @protocol InfoInteractorOutput <NSObject>
-- (void) networkDidChangedWithoutAccount;
-- (void) networkDidChangedWithAccount;
 @end

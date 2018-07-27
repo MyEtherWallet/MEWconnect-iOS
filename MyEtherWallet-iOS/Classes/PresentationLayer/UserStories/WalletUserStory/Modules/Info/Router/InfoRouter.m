@@ -11,13 +11,11 @@
 #import "InfoRouter.h"
 
 #import "StartModuleInput.h"
-#import "HomeModuleInput.h"
 #import "AboutModuleInput.h"
 
 #import "ApplicationConstants.h"
 
 static NSString *const kInfoToStartUnwindSegueIdentifier = @"InfoToStartUnwindSegueIdentifier";
-static NSString *const kInfoToHomeUnwindSegueIdentifier = @"InfoToHomeUnwindSegueIdentifier";
 static NSString *const kInfoToAboutSegueIdentifier = @"InfoToAboutSegueIdentifier";
 
 @implementation InfoRouter
@@ -31,13 +29,6 @@ static NSString *const kInfoToAboutSegueIdentifier = @"InfoToAboutSegueIdentifie
 - (void) unwindToStart {
   [[self.transitionHandler openModuleUsingSegue:kInfoToStartUnwindSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<StartModuleInput> moduleInput) {
     [moduleInput configureModule];
-    return nil;
-  }];
-}
-
-- (void) unwindToHome {
-  [[self.transitionHandler openModuleUsingSegue:kInfoToHomeUnwindSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<HomeModuleInput> moduleInput) {
-    [moduleInput configureAfterChangingNetwork];
     return nil;
   }];
 }

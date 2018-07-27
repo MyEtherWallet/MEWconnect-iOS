@@ -12,7 +12,5 @@
 
 @protocol InfoInteractorInput <NSObject>
 - (void) configurateWithAccount:(AccountPlainObject *)account;
-- (void) selectMainnetNetwork;
-- (void) selectRopstenNetwork;
 - (void) resetWallet;
 @end

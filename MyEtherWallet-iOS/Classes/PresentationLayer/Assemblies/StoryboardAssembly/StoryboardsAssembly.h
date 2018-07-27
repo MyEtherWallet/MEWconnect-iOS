@@ -17,4 +17,5 @@
 - (UIStoryboard *) splashPasswordStoryboard;
 - (UIStoryboard *) walletStoryboard;
 - (UIStoryboard *) launchStoryboard;
+- (UIStoryboard *) confirmationStoryboard;
 @end

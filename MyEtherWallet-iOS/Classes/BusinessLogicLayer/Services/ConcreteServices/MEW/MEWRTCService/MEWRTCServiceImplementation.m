@@ -22,7 +22,7 @@
 @implementation MEWRTCServiceImplementation
 @synthesize delegate = _delegate;
 
-- (void)connectWithOffer:(RTCSessionDescription *)offer {
+- (void) connectWithOffer:(RTCSessionDescription *)offer {
   self.peerConnection = [self.peerConnectionFactory peerConnectionWithConfiguration:[self _RTCConfigurationWithIceServers:nil]
                                                                         constraints:[self _RTCMediaConstraints]
                                                                            delegate:self];
@@ -169,6 +169,9 @@
     case RTCIceConnectionStateDisconnected: {
       DDLogVerbose(@"RTC Ice connection state: DISCONNECTED");
       [self _clearConnection];
+      dispatch_async(dispatch_get_main_queue(), ^{
+        [self.delegate MEWRTCServiceConnectionDidDisconnected:self];
+      });
       break;
     }
     case RTCIceConnectionStateFailed: {

@@ -20,6 +20,8 @@
 
 #import "AccessoryTableViewAction.h"
 
+#import "UIScreen+ScreenSizeType.h"
+
 @interface InfoDataDisplayManager ()
 @property (nonatomic, strong) NIMutableTableViewModel *tableViewModel;
 @property (nonatomic, strong) NITableViewActions *tableViewActions;
@@ -29,18 +31,17 @@
 
 - (void) updateDataDisplayManager {
   [self updateTableViewModel];
+  
+  BOOL compact = ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40);
+  
   [self.tableViewModel addObject:[self.cellObjectBuilder buildEmptyCellObject]];
-  [self.tableViewModel addObject:[self.cellObjectBuilder buildContactCellObject]];
-  [self.tableViewModel addObject:[self.cellObjectBuilder buildKnowledgeBaseCellObject]];
+  [self.tableViewModel addObject:[self.cellObjectBuilder buildContactCellObjectWithCompactSize:compact]];
+  [self.tableViewModel addObject:[self.cellObjectBuilder buildUserGuideCellObjectWithCompactSize:compact]];
+  [self.tableViewModel addObject:[self.cellObjectBuilder buildKnowledgeBaseCellObjectWithCompactSize:compact]];
+  [self.tableViewModel addObject:[self.cellObjectBuilder buildPrivacyAndTermsCellObjectWithCompactSize:compact]];
+  [self.tableViewModel addObject:[self.cellObjectBuilder buildMyetherwalletComCellObjectWithCompactSize:compact]];
+  [self.tableViewModel addObject:[self.cellObjectBuilder buildAboutCellObjectWithCompactSize:compact]];
   [self.tableViewModel addObject:[self.cellObjectBuilder buildEmptyCellObject]];
-  [self.tableViewModel addSectionWithTitle:@" "];
-  [self.tableViewModel addObject:[self.cellObjectBuilder buildEmptyCellObject]];
-  [self.tableViewModel addObject:[self.cellObjectBuilder buildPrivacyAndTermsCellObject]];
-  [self.tableViewModel addObject:[self.cellObjectBuilder buildMyetherwalletComCellObject]];
-  [self.tableViewModel addObject:[self.cellObjectBuilder buildEmptyCellObject]];
-  [self.tableViewModel addSectionWithTitle:@" "];
-  [self.tableViewModel addObject:[self.cellObjectBuilder buildEmptyCellObject]];
-  [self.tableViewModel addObject:[self.cellObjectBuilder buildResetWalletCellObject]];
 }
 
 #pragma mark - UITableViewDelegate methods
@@ -107,6 +108,14 @@
                                   }
                                   case InfoNormalTableViewCellObjectTypePrivateAndTerms: {
                                     [self.delegate didTapPrivacyAndTerms];
+                                    break;
+                                  }
+                                  case InfoNormalTableViewCellObjectTypeUserGuide: {
+                                    [self.delegate didTapUserGuide];
+                                    break;
+                                  }
+                                  case InfoNormalTableViewCellObjectTypeAbout: {
+                                    [self.delegate didTapAbout];
                                     break;
                                   }
                                   default:

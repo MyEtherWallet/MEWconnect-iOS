@@ -11,9 +11,10 @@
 
 @implementation InfoNormalTableViewCellObject
 
-- (instancetype) initWithType:(InfoNormalTableViewCellObjectType)type {
+- (instancetype) initWithType:(InfoNormalTableViewCellObjectType)type compact:(BOOL)compact {
   self = [super init];
   if (self) {
+    _compact = compact;
     _type = type;
     switch (type) {
       case InfoNormalTableViewCellObjectTypeContact: {
@@ -25,12 +26,19 @@
         break;
       }
       case InfoNormalTableViewCellObjectTypeMyEtherWalletCom: {
-        _title = NSLocalizedString(@"Myetherwallet.com", @"Info screen");
+        _title = NSLocalizedString(@"MyEtherWallet.com", @"Info screen");
         break;
       }
       case InfoNormalTableViewCellObjectTypePrivateAndTerms: {
-        _title = NSLocalizedString(@"Privacy and Terms", @"Info screen");
+        _title = NSLocalizedString(@"Privacy and terms", @"Info screen");
         break;
+      }
+      case InfoNormalTableViewCellObjectTypeUserGuide: {
+        _title = NSLocalizedString(@"User guide", @"Info screen");
+        break;
+      }
+      case InfoNormalTableViewCellObjectTypeAbout: {
+        _title = NSLocalizedString(@"About", @"Info screen");
       }
       default:
         break;
@@ -39,8 +47,8 @@
   return self;
 }
 
-+ (instancetype) objectWithType:(InfoNormalTableViewCellObjectType)type {
-  return [[[self class] alloc] initWithType:type];
++ (instancetype) objectWithType:(InfoNormalTableViewCellObjectType)type compact:(BOOL)compact {
+  return [[[self class] alloc] initWithType:type compact:(BOOL)compact];
 }
 
 #pragma mark - CellObjectAction

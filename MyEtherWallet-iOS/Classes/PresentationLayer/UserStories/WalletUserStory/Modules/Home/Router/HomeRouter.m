@@ -6,7 +6,8 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
-@import ViperMcFlurry;
+@import ViperMcFlurryX;
+@import libextobjc.EXTScope;
 
 #import "HomeRouter.h"
 
@@ -15,6 +16,10 @@
 #import "BackupInfoModuleInput.h"
 #import "InfoModuleInput.h"
 #import "BuyEtherAmountModuleInput.h"
+#import "ConfirmationNavigationModuleInput.h"
+#import "StartModuleInput.h"
+
+#import "ConfirmationStoryModuleOutput.h"
 
 static NSString *const kHomeToScannerSegueIdentifier        = @"HomeToScannerSegueIdentifier";
 static NSString *const kHomeToMessageSignerSegueIdentifier  = @"HomeToMessageSignerSegueIdentifier";
@@ -22,10 +27,18 @@ static NSString *const kHomeToTransactionSegueIdentifier    = @"HomeToTransactio
 static NSString *const kHomeToBackupInfoSegueIdentifier     = @"HomeToBackupInfoSegueIdentifier";
 static NSString *const kHomeToInfoSegueIdentifier           = @"HomeToInfoSegueIdentifier";
 static NSString *const kHomeToBuyEtherSegueIdentifier       = @"HomeToBuyEtherSegueIdentifier";
+static NSString *const kHomeToStartUnwindSegueIdentifier    = @"HomeToStartUnwindSegueIdentifier";
 
 @implementation HomeRouter
 
 #pragma mark - HomeRouterInput
+
+- (void) unwindToStart {
+  [[self.transitionHandler openModuleUsingSegue:kHomeToStartUnwindSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<StartModuleInput> moduleInput) {
+    [moduleInput configureModule];
+    return nil;
+  }];
+}
 
 - (void) openScanner {
   [[self.transitionHandler openModuleUsingSegue:kHomeToScannerSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<RamblerViperModuleInput> moduleInput) {
@@ -40,11 +53,24 @@ static NSString *const kHomeToBuyEtherSegueIdentifier       = @"HomeToBuyEtherSe
   }];
 }
 
-- (void) openTransactionSignerWithMessage:(MEWConnectCommand *)command account:(AccountPlainObject *)account {
-  [[self.transitionHandler openModuleUsingSegue:kHomeToTransactionSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<TransactionModuleInput> moduleInput) {
+- (id <ConfirmationNavigationModuleInput>) openTransactionSignerWithMessage:(MEWConnectCommand *)command account:(AccountPlainObject *)account confirmationDelegate:(id<ConfirmationStoryModuleOutput>)confirmationDelegate {
+  id <RamblerViperModuleInput> originalModuleInput = nil;
+  RamblerViperOpenModulePromise *promise = [self promiseWithFactory:self.transactionFactory
+                                                withTransitionBlock:^(id<RamblerViperModuleTransitionHandlerProtocol> sourceModuleTransitionHandler, id<RamblerViperModuleTransitionHandlerProtocol> destinationModuleTransitionHandler) {
+                                                  UIViewController *fromViewController = (UIViewController *)sourceModuleTransitionHandler;
+                                                  UIViewController *toViewController = (UIViewController *)destinationModuleTransitionHandler;
+                                                  
+                                                  UINavigationController *fromNavigationController = [fromViewController navigationController];
+                                                  [fromNavigationController.visibleViewController presentViewController:toViewController animated:YES completion:nil];
+                                                } originalModuleInput:&originalModuleInput];
+  [promise thenChainUsingBlock:^id<ConfirmationStoryModuleOutput>(id<TransactionModuleInput> moduleInput) {
     [moduleInput configureModuleWithMessage:command account:account];
-    return nil;
+    return confirmationDelegate;
   }];
+  if ([originalModuleInput conformsToProtocol:@protocol(ConfirmationNavigationModuleInput)]) {
+    return (id <ConfirmationNavigationModuleInput>)originalModuleInput;
+  }
+  return nil;
 }
 
 - (void) openBackupWithAccount:(AccountPlainObject *)account {
@@ -66,6 +92,37 @@ static NSString *const kHomeToBuyEtherSegueIdentifier       = @"HomeToBuyEtherSe
     [moduleInput configureModuleWithAccount:account];
     return nil;
   }];
+}
+
+#pragma mark - Private
+
+- (RamblerViperOpenModulePromise*) promiseWithFactory:(RamblerViperModuleFactory *)moduleFactory withTransitionBlock:(ModuleTransitionBlock)transitionBlock originalModuleInput:(id <RamblerViperModuleInput> *)originalModuleInput {
+  RamblerViperOpenModulePromise *openModulePromise = [[RamblerViperOpenModulePromise alloc] init];
+  id<RamblerViperModuleTransitionHandlerProtocol> destinationModuleTransitionHandler = [moduleFactory instantiateModuleTransitionHandler];
+  
+  id<RamblerViperModuleInput> moduleInput = nil;
+  if ([destinationModuleTransitionHandler respondsToSelector:@selector(moduleInput)]) {
+    moduleInput = [destinationModuleTransitionHandler moduleInput];
+  }
+  
+  *originalModuleInput = moduleInput;
+  
+  UIViewController *toViewController = (UIViewController *)destinationModuleTransitionHandler;
+  if ([toViewController isKindOfClass:[UINavigationController class]]) {
+    UINavigationController *navigationController = (UINavigationController *)toViewController;
+    toViewController = navigationController.topViewController;
+    if ([toViewController respondsToSelector:@selector(moduleInput)]) {
+      moduleInput = [toViewController moduleInput];
+    }
+  }
+  
+  openModulePromise.moduleInput = moduleInput;
+  if (transitionBlock != nil) {
+    openModulePromise.postLinkActionBlock = ^{
+      transitionBlock(self.transitionHandler,destinationModuleTransitionHandler);
+    };
+  }
+  return openModulePromise;
 }
 
 @end

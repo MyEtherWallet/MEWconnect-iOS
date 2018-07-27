@@ -7,7 +7,7 @@
 //
 
 @import UIKit;
-@import ViperMcFlurry;
+@import ViperMcFlurryX;
 
 #import "CleanLaunchRouter.h"
 #import "NavigationControllerFactory.h"
@@ -69,8 +69,8 @@ static NSString *const kSplashPasswordViewControllerIdentifier  = @"SplashPasswo
     /* To prevent "Unbalanced calls to begin/end appearance transitions for..." */
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
       dispatch_async(dispatch_get_main_queue(), ^{
-        RamblerViperModuleFactory *passwordFactory = [[RamblerViperModuleFactory alloc] initWithStoryboard:self.passwordStoryboard
-                                                                                          andRestorationId:kSplashPasswordViewControllerIdentifier];
+        RamblerViperModuleFactory *passwordFactory = [[RamblerViperModuleFactory alloc] initWithViewControllerLoader:self.passwordStoryboard
+                                                                                         andViewControllerIdentifier:kSplashPasswordViewControllerIdentifier];
         __block id <SplashPasswordModuleInput> passwordModuleInput = nil;
         RamblerViperModuleLinkBlock linkBlock = [self passwordConfigurationBlockWithAccount:account moduleInputCatch:^(id<SplashPasswordModuleInput> moduleInput) {
           passwordModuleInput = moduleInput;

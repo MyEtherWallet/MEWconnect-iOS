@@ -26,6 +26,6 @@
 @property (nonatomic, strong) id <CacheTracker> cacheTracker;
 @property (nonatomic, strong) id <Ponsomizer> ponsomizer;
 @property (nonatomic, strong) id <BlockchainNetworkService> blockchainNetworkService;
-@property (nonatomic, strong) id <AccountsService> accountService;
+@property (nonatomic, strong) id <AccountsService> accountsService;
 @property (nonatomic, strong) id <FiatPricesService> fiatPricesService;
 @end

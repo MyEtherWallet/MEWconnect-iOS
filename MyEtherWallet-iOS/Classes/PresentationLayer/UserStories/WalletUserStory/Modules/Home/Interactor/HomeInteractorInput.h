@@ -22,10 +22,10 @@
 - (NSDecimalNumber *) obtainTotalPriceOfTokens;
 - (void) reloadData;
 - (void) refreshTokens;
-- (void) subscribe;
-- (void) unsubscribe;
 - (void) searchTokensWithTerm:(NSString *)term;
 - (void) disconnect;
 - (BOOL) isConnected;
 - (NSArray *) shareActivityItems;
+- (void) selectMainnetNetwork;
+- (void) selectRopstenNetwork;
 @end

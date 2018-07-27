@@ -25,30 +25,6 @@
   _account = account;
 }
 
-- (void)selectMainnetNetwork {
-  BOOL selected = [self.blockchainNetworkService selectNetwork:BlockchainNetworkTypeMainnet];
-  if (selected) {
-    AccountModelObject *accountModelObject = [self.accountsService obtainActiveAccount];
-    if (accountModelObject) {
-      [self.output networkDidChangedWithAccount];
-    } else {
-      [self.output networkDidChangedWithoutAccount];
-    }
-  }
-}
-
-- (void)selectRopstenNetwork {
-  BOOL selected = [self.blockchainNetworkService selectNetwork:BlockchainNetworkTypeRopsten];
-  if (selected) {
-    AccountModelObject *accountModelObject = [self.accountsService obtainActiveAccount];
-    if (accountModelObject) {
-      [self.output networkDidChangedWithAccount];
-    } else {
-      [self.output networkDidChangedWithoutAccount];
-    }
-  }
-}
-
 - (void) resetWallet {
   [self.accountsService deleteAccount:self.account];
 }

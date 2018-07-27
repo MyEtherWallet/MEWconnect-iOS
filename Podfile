@@ -8,7 +8,7 @@ abstract_target 'MEWconnect' do
   pod 'Typhoon', '3.5.1'
   
   # Navigation
-  pod 'ViperMcFlurry'
+  pod 'ViperMcFlurryX', :git => 'https://github.com/Foboz/ViperMcFlurryX.git'
   
   # Network
   pod 'AFNetworking'
@@ -65,6 +65,13 @@ abstract_target 'MEWconnect' do
       pod 'OCMock', '3.3.1'
       pod 'RamblerTyphoonUtils/AssemblyTesting', '1.5.0'
     end
+    
+  end
+  
+  target 'MyEtherWallet-iOS-Beta' do
+    
+    #VIPER
+    pod 'RamblerTyphoonUtils/AssemblyCollector', '1.5.0'
     
   end
   

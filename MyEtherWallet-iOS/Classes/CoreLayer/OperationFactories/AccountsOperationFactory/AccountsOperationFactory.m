@@ -71,7 +71,7 @@
   
   config.responseConvertingType = ResponseConvertingEthereumType;
   
-  config.responseValidationType = ResponseValidationDisabledType;
+  config.responseValidationType = ResponseValidationEthereumType;
   
   config.responseMappingType = ResponseMappingCoreDataType;
   

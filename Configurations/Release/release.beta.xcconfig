@@ -1,0 +1,3 @@
+#include "../common.xcconfig"
+#include "../../Pods/Target Support Files/Pods-MEWconnect-MyEtherWallet-iOS-Beta/Pods-MEWconnect-MyEtherWallet-iOS-Beta.release.xcconfig"
+#include "../common.beta.xcconfig"

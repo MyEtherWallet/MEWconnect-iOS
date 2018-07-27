@@ -113,6 +113,7 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
   
   _numberOfTokens = tokensCount;
   [self.headerView updateTokensPrice:totalPrice];
+  [self.headerView updateTitle:NSLocalizedString(@"MEWconnect", @"Home screen. Title")];
   self.headerView.searchBar.hidden = (tokensCount == 0);
   self.headerView.searchBar.placeholder = [NSString localizedStringWithFormat:NSLocalizedString(@"Search %tu token(s)", @"Wallet. Search field placeholder"), tokensCount];
   
@@ -168,17 +169,6 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
 - (void)updateWithAccount:(AccountPlainObject *)account {
   BlockchainNetworkType networkType = [account.fromNetwork network];
   [self.headerView.networkButton setTitle:NSStringFromBlockchainNetworkType(networkType) forState:UIControlStateNormal];
-  switch (networkType) {
-    case BlockchainNetworkTypeRopsten: {
-      [self.headerView updateTitle:NSLocalizedString(@"MEWconnect: Ropsten", @"Home screen. Title")];
-      break;
-    }
-    case BlockchainNetworkTypeMainnet:
-    default: {
-      [self.headerView updateTitle:NSLocalizedString(@"MEWconnect", @"Home screen. Title")];
-      break;
-    }
-  }
   [self.headerView.cardView updateWithSeed:account.publicAddress];
   
   [self.headerView refreshContentIfNeeded];

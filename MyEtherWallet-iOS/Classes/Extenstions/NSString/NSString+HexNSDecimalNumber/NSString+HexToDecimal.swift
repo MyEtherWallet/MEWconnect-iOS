@@ -21,19 +21,5 @@ extension NSString {
     guard let bigUInt = BigUInt(str, radix: 16) else { return nil }
     let decimalString = String(bigUInt, radix: 10)
     return decimalString as NSString
-//
-//
-//    var asd = "0x0771d2fbfbcfa436037800"
-//
-//    if asd.hasPrefix("0x") {
-//      let indexStart = asd.index(asd.startIndex, offsetBy: 2)
-//      asd = String(asd[indexStart...])
-//    }
-//
-//    let bui = BigUInt(asd, radix: 16)
-//    let str = String(bui!, radix: 10)
-//
-//    return nil
-    
   }
 }

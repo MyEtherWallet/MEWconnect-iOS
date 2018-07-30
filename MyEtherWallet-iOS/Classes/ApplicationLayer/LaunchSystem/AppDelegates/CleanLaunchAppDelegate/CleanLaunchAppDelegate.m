@@ -15,13 +15,17 @@
 
 @implementation CleanLaunchAppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL) application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [self.thirdPartiesConfigurator configurate];
   [self.coreDataConfigurator setupCoreDataStack];
   [self.applicationConfigurator configureInitialSettings];
   [self.applicationConfigurator configurateAppearance];
   [self.cleanStartRouter openInitialScreen];
   return YES;
+}
+
+- (void)applicationWillTerminate:(UIApplication *)application {
+  [self.thirdPartiesConfigurator cleanup];
 }
 
 @end

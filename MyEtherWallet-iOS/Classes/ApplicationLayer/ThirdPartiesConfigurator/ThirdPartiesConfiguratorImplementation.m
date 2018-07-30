@@ -6,15 +6,25 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
+@import WebRTC;
+
 #import "ThirdPartiesConfiguratorImplementation.h"
 
 @implementation ThirdPartiesConfiguratorImplementation
 
-- (void)configurate {
+- (void) configurate {
+  /* Logger */
   [DDLog addLogger:[DDTTYLogger sharedInstance]];
 #if !DEBUG
   [DDLog addLogger:[DDASLLogger sharedInstance]];
 #endif
+  /* WebRTC */
+  RTCInitializeSSL();
+}
+
+- (void) cleanup {
+  /* WebRTC */
+  RTCCleanupSSL();
 }
 
 @end

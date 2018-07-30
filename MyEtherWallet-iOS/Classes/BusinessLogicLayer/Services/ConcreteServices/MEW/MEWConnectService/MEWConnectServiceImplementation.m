@@ -8,7 +8,6 @@
 
 @import SocketIO;
 @import libextobjc.EXTScope;
-@import WebRTC;
 
 #if BETA
 #import "MyEtherWallet_iOS_Beta-Swift.h"
@@ -132,13 +131,13 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
   NSData *signedData = [toSignHashData signWithPrivateKeyData:privateKeyData];
   NSString *signedMessage = [signedData hexadecimalString];
 
-  NSDictionary *config = @{kMEWConnectSocketConfigLog             : @YES,
+  NSDictionary *config = @{kMEWConnectSocketConfigLog             : @NO,
                            kMEWConnectSocketConfigCompress        : @YES,
                            kMEWConnectSocketConfigSecure          : @YES,
                            kMEWConnectSocketConfigConnectParams   : @{
                                kMEWConnectSocketConfigConnId      : self.connectionId,
                                kMEWConnectSocketConfigStage       : MEWConnectSocketReceiver,
-                               kMEWConnectMessageSigned: signedMessage}
+                               kMEWConnectMessageSigned           : signedMessage}
                            };
   DDLogVerbose(@"MEWconnect. Config: %@", config);
   return config;
@@ -283,12 +282,10 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
     DDLogError(@"JSON Parse error: %@", [error localizedDescription]);
 #endif
     NSString *offerType = offer[kMEWConnectSocketType];
-    NSString *offerSDP = offer[kMEWConnectSocketSDP];
-    if (offerType && offerSDP) {
-      RTCSdpType type = [RTCSessionDescription typeForString:offerType];
-      RTCSessionDescription *description = [[RTCSessionDescription alloc] initWithType:type sdp:offerSDP];
+    NSString *offerSdp = offer[kMEWConnectSocketSDP];
+    if (offerType && offerSdp) {
       dispatch_async(dispatch_get_main_queue(), ^{
-        [self.rtcService connectWithOffer:description];
+        [self.rtcService connectWithType:offerType andSdp:offerSdp];
       });
     }
   }
@@ -325,11 +322,9 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
 
 #pragma mark - WebRTC Communication
 
-- (void) _sendAnswer:(RTCSessionDescription *)answer {
-  NSString *answerType = [RTCSessionDescription stringForType:answer.type];
-  NSString *answerSDP = answer.sdp;
-  NSArray *answerMessage = @[@{kMEWConnectSocketSDP: answerSDP,
-                               kMEWConnectSocketType: answerType}];
+- (void) _sendAnswerWithType:(NSString *)type andSdp:(NSString *)sdp {
+  NSArray *answerMessage = @[@{kMEWConnectSocketSDP: sdp,
+                               kMEWConnectSocketType: type}];
   NSData *answerJsonData = [NSJSONSerialization dataWithJSONObject:answerMessage
                                                            options:0
                                                              error:nil];
@@ -340,7 +335,6 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
 }
 
 - (void) _sendTryTurn {
-  //TODO: ?
   NSDictionary *message = @{kMEWConnectMessageCont: @YES,
                             kMEWConnectMessageConnId: self.connectionId};
   [self _emit:kMEWConnectEmitTryTurn message:message];
@@ -352,8 +346,8 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
 
 #pragma mark - MEWRTCServiceDelegate
 
-- (void) MEWRTCService:(id<MEWRTCService>)rtcService didGenerateAnswer:(RTCSessionDescription *)answer {
-  [self _sendAnswer:answer];
+- (void) MEWRTCService:(id<MEWRTCService>)rtcService didGenerateAnswerWithType:(NSString *)type sdp:(NSString *)sdp {
+  [self _sendAnswerWithType:type andSdp:sdp];
 }
 
 - (void) MEWRTCServiceConnectionDidFailed:(id<MEWRTCService>)rtcService {
@@ -379,6 +373,8 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
       self.connectionStatus = MEWConnectStatusConnected;
       [self _cancelTimeoutTimer];
       [self.delegate MEWConnectDidConnected:self];
+      [self.socketManager disconnect];
+      self.socketManager = nil;
     });
   }
 }

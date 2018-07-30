@@ -10,11 +10,9 @@
 
 @protocol MEWRTCServiceDelegate;
 
-@class RTCSessionDescription;
-
 @protocol MEWRTCService <NSObject>
 @property (nonatomic, weak) id <MEWRTCServiceDelegate> delegate;
-- (void) connectWithOffer:(RTCSessionDescription *)offer;
+- (void) connectWithType:(NSString *)type andSdp:(NSString *)sdp;
 - (void) disconnect;
 - (BOOL) sendMessage:(id)message;
 @end

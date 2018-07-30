@@ -113,6 +113,8 @@
 		52A492997EC1ED6D0217C3EC /* SettingsInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8F84C1AD26C649330ADDB3 /* SettingsInteractor.m */; };
 		538EECD03A2A38FF1F86B050 /* BackupWordsAssemblyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E3199023221C9E8C03338E /* BackupWordsAssemblyTests.m */; };
 		55E9071D8FEDC76B564FE729 /* ForgotPasswordRouterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BBC4954EDAA93206F8A803 /* ForgotPasswordRouterTests.m */; };
+		5606B344210F712200576C28 /* ApplicationIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5606B343210F712200576C28 /* ApplicationIcon.xcassets */; };
+		5606B347210F713500576C28 /* ApplicationIcon-Beta.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5606B345210F712E00576C28 /* ApplicationIcon-Beta.xcassets */; };
 		560A866520E6539F00046B53 /* KeychainServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 560A866420E6539F00046B53 /* KeychainServiceImplementation.m */; };
 		560A866F20E65C5F00046B53 /* CoreDataConfiguratorImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 560A866E20E65C5F00046B53 /* CoreDataConfiguratorImplementation.m */; };
 		560A867520E681E700046B53 /* KeychainItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 560A867420E681E700046B53 /* KeychainItemModel.m */; };
@@ -844,7 +846,6 @@
 		B6DD4E4FEF354C89A482CF6A /* ConfirmedTransactionAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4269D4156974450E4F43D5 /* ConfirmedTransactionAssembly.m */; };
 		B6E884657C163E2341CDE46D /* Pods_MyEtherWallet_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63C3500E2DF800223CA8934 /* Pods_MyEtherWallet_iOSUITests.framework */; };
 		B7C7C08C581BE1908BF5AE03 /* Pods_MEWconnect_MyEtherWallet_iOS_Beta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA8EA631AB8066826B0F7E8 /* Pods_MEWconnect_MyEtherWallet_iOS_Beta.framework */; };
-		B80F930D5EC13140E643A029 /* Pods_MEWconnect_MyEtherWallet_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42681991858E2AFCA7D0A2BF /* Pods_MEWconnect_MyEtherWallet_iOS.framework */; };
 		B83681BB9459A6C08ABBA212 /* BackupStartAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D83CE195EBBDA38420C38 /* BackupStartAssembly.m */; };
 		B97380417D4D48CEFBC3AD41 /* BuyEtherWebRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7866460D72C34FF931B4E2 /* BuyEtherWebRouter.m */; };
 		B9B3DACD03B86B5A8AFC950C /* DeclinedTransactionInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B619FD5CBEE97E87B364112 /* DeclinedTransactionInteractor.m */; };
@@ -1112,6 +1113,8 @@
 		53C68AE5401EEBB54AC40EEC /* ConfirmationNavigationAssembly.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ConfirmationNavigationAssembly.m; sourceTree = "<group>"; };
 		54A82E0249F20A62A3D82E3B /* BackupWordsModuleInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BackupWordsModuleInput.h; sourceTree = "<group>"; };
 		554943B399B4156055E2AE24 /* BuyEtherNavigationRouterInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BuyEtherNavigationRouterInput.h; sourceTree = "<group>"; };
+		5606B343210F712200576C28 /* ApplicationIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ApplicationIcon.xcassets; sourceTree = "<group>"; };
+		5606B345210F712E00576C28 /* ApplicationIcon-Beta.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "ApplicationIcon-Beta.xcassets"; sourceTree = "<group>"; };
 		560A866320E6539F00046B53 /* KeychainServiceImplementation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainServiceImplementation.h; sourceTree = "<group>"; };
 		560A866420E6539F00046B53 /* KeychainServiceImplementation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeychainServiceImplementation.m; sourceTree = "<group>"; };
 		560A866620E653A700046B53 /* KeychainService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainService.h; sourceTree = "<group>"; };
@@ -2081,7 +2084,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0DF62A5D2ADA9A9D882B5582 /* Pods_MEWconnect_MyEtherWallet_iOS.framework in Frameworks */,
-				B80F930D5EC13140E643A029 /* Pods_MEWconnect_MyEtherWallet_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3007,6 +3009,15 @@
 				49E25473B847DFA074D8A45F /* BackupConfirmationRouter.m */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		5606B342210F710D00576C28 /* ApplicationIcon */ = {
+			isa = PBXGroup;
+			children = (
+				5606B343210F712200576C28 /* ApplicationIcon.xcassets */,
+				5606B345210F712E00576C28 /* ApplicationIcon-Beta.xcassets */,
+			);
+			path = ApplicationIcon;
 			sourceTree = "<group>";
 		};
 		560A866220E6539200046B53 /* KeychainService */ = {
@@ -5374,6 +5385,7 @@
 		56FB390C20B19253007776C8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5606B342210F710D00576C28 /* ApplicationIcon */,
 				560D772B20B4D3CF009A3D6D /* Localization */,
 				56FE2B7920817F1100DB39D5 /* Assets.xcassets */,
 				56E3E666210174A00014152D /* Assets-Beta.xcassets */,
@@ -8709,6 +8721,7 @@
 				56E3E668210175270014152D /* Assets-Beta.xcassets in Resources */,
 				56E3E64921016DB60014152D /* Localizable.stringsdict in Resources */,
 				56E3E64A21016DB60014152D /* MEWconnect.API.plist in Resources */,
+				5606B347210F713500576C28 /* ApplicationIcon-Beta.xcassets in Resources */,
 				56E3E64B21016DB60014152D /* InfoNormalTableViewCell.xib in Resources */,
 				56E3E64C21016DB60014152D /* HomeTableViewCell.xib in Resources */,
 				56E3E64D21016DB60014152D /* HeadersConfig.plist in Resources */,
@@ -8728,6 +8741,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5606B344210F712200576C28 /* ApplicationIcon.xcassets in Resources */,
 				5699983C2095141100D45153 /* Setup.storyboard in Resources */,
 				56999846209517D500D45153 /* Wallet.storyboard in Resources */,
 				560D773220B4F0C1009A3D6D /* Backup.storyboard in Resources */,
@@ -10111,7 +10125,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5E9DFA439A8965987C8E2D53 /* Pods-MEWconnect-MyEtherWallet-iOS-MyEtherWallet-iOSTests.appstore.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -10427,7 +10441,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 07DF82019A108691F7CBCB64 /* Pods-MEWconnect-MyEtherWallet-iOS-MyEtherWallet-iOSTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -10452,7 +10466,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D62B98088A6460F358412CDF /* Pods-MEWconnect-MyEtherWallet-iOS-MyEtherWallet-iOSTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;

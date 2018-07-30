@@ -9,5 +9,6 @@
 @import Foundation;
 
 @protocol ThirdPartiesConfigurator <NSObject>
-- (void)configurate;
+- (void) configurate;
+- (void) cleanup;
 @end

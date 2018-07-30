@@ -11,7 +11,8 @@
 @protocol MEWRTCService;
 
 @protocol MEWRTCServiceDelegate <NSObject>
-- (void) MEWRTCService:(id <MEWRTCService>)rtcService didGenerateAnswer:(RTCSessionDescription *)answer;
+//- (void) MEWRTCService:(id <MEWRTCService>)rtcService didGenerateAnswer:(RTCSessionDescription *)answer;
+- (void) MEWRTCService:(id <MEWRTCService>)rtcService didGenerateAnswerWithType:(NSString *)type sdp:(NSString *)sdp;
 - (void) MEWRTCServiceConnectionDidFailed:(id <MEWRTCService>)rtcService;
 - (void) MEWRTCServiceConnectionDidConnected:(id <MEWRTCService>)rtcService;
 - (void) MEWRTCServiceConnectionDidDisconnected:(id <MEWRTCService>)rtcService;

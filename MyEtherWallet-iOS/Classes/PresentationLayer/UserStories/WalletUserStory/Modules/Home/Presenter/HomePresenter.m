@@ -6,6 +6,8 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
+@import libextobjc.EXTScope;
+
 #import "HomePresenter.h"
 
 #import "HomeViewInput.h"
@@ -15,6 +17,13 @@
 #import "MessageSignerModuleOutput.h"
 
 #import "MEWConnectCommand.h"
+
+#import "ConfirmationNavigationModuleInput.h"
+#import "ConfirmationStoryModuleOutput.h"
+
+@interface HomePresenter () <ConfirmationStoryModuleOutput>
+@property (nonatomic, weak) id <ConfirmationNavigationModuleInput> transactionModuleInput;
+@end
 
 @implementation HomePresenter {
   BOOL _tokensRefreshing;
@@ -62,13 +71,11 @@
 }
 
 - (void) didTriggerViewWillAppear {
-  [self.interactor subscribe];
   BOOL connected = [self.interactor isConnected];
   [self.view updateWithConnectionStatus:connected animated:NO];
 }
 
 - (void) didTriggerViewDidDisappear {
-  [self.interactor unsubscribe];
 }
 
 - (void) connectAction {
@@ -113,6 +120,18 @@
   [self.view presentShareWithItems:items];
 }
 
+- (void) networkAction {
+  [self.view presentNetworkSelection];
+}
+
+- (void) mainnetAction {
+  [self.interactor selectMainnetNetwork];
+}
+
+- (void) ropstenAction {
+  [self.interactor selectRopstenNetwork];
+}
+
 #pragma mark - HomeInteractorOutput
 
 - (void) openMessageSignerWithMessage:(MEWConnectCommand *)command {
@@ -120,7 +139,15 @@
 }
 
 - (void) openTransactionSignerWithMessage:(MEWConnectCommand *)command account:(AccountPlainObject *)account {
-  [self.router openTransactionSignerWithMessage:command account:account];
+  if (self.transactionModuleInput) {
+    @weakify(self);
+    [self.transactionModuleInput closeWithCompletion:^{
+      @strongify(self);
+      self.transactionModuleInput = [self.router openTransactionSignerWithMessage:command account:account confirmationDelegate:self];
+    }];
+  } else {
+    self.transactionModuleInput = [self.router openTransactionSignerWithMessage:command account:account confirmationDelegate:self];
+  }
 }
 
 - (void) didUpdateTokens {
@@ -137,12 +164,15 @@
 
 - (void) didUpdateEthereumBalance {
   AccountPlainObject *account = [self.interactor obtainAccount];
-  [self.view updateWithAccount:account];
+  [self.view updateEthereumBalanceWithAccount:account];
 }
 
 - (void) mewConnectionStatusChanged {
   BOOL connected = [self.interactor isConnected];
   [self.view updateWithConnectionStatus:connected animated:YES];
+  if (!connected) {
+    [self.transactionModuleInput closeWithCompletion:nil];
+  }
 }
 
 - (void) tokensDidStartUpdating {
@@ -153,6 +183,24 @@
 - (void) tokensDidEndUpdating {
   _tokensRefreshing = NO;
   [self.view stopAnimatingTokensRefreshing];
+}
+
+- (void)networkDidChangedWithoutAccount {
+  [self.router unwindToStart];
+}
+
+- (void)networkDidChangedWithAccount {
+  [self configureAfterChangingNetwork];
+}
+
+#pragma mark - ConfirmationStoryModuleOutput
+
+- (void) transactionDidSigned {
+  [self.transactionModuleInput closeWithCompletion:nil];
+}
+
+- (void) transactionDidRejected {
+  [self.transactionModuleInput closeWithCompletion:nil];
 }
 
 @end

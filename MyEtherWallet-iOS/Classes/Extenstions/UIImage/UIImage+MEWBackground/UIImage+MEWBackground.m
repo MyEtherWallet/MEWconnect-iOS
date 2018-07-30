@@ -7,7 +7,11 @@
 //
 
 #import "UIImage+MEWBackground.h"
+#if BETA
+#import "MyEtherWallet_iOS_Beta-Swift.h"
+#else
 #import "MyEtherWallet_iOS-Swift.h"
+#endif
 #import "CardView.h"
 
 #import "UIScreen+ScreenSizeType.h"

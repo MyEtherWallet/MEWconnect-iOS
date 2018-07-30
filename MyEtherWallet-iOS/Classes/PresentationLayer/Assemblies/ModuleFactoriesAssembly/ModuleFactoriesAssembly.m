@@ -6,12 +6,13 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
-@import ViperMcFlurry;
+@import ViperMcFlurryX;
 
 #import "ModuleFactoriesAssembly.h"
 #import "StoryboardsAssembly.h"
 
-static NSString *const kHomeViewControllerIdentifier = @"HomeViewController";
+static NSString *const kHomeViewControllerIdentifier        = @"HomeViewController";
+static NSString *const kTransactionViewControllerIdentifier = @"TransactionViewController";
 
 @implementation ModuleFactoriesAssembly
 
@@ -22,6 +23,17 @@ static NSString *const kHomeViewControllerIdentifier = @"HomeViewController";
                                           parameters:^(TyphoonMethod *initializer) {
                                             [initializer injectParameterWith:[self.storyboardsAssembly walletStoryboard]];
                                             [initializer injectParameterWith:kHomeViewControllerIdentifier];
+                                          }];
+                        }];
+}
+
+- (RamblerViperModuleFactory *) transactionFactory {
+  return [TyphoonDefinition withClass:[RamblerViperModuleFactory class]
+                        configuration:^(TyphoonDefinition *definition) {
+                          [definition useInitializer:@selector(initWithStoryboard:andRestorationId:)
+                                          parameters:^(TyphoonMethod *initializer) {
+                                            [initializer injectParameterWith:[self.storyboardsAssembly confirmationStoryboard]];
+                                            [initializer injectParameterWith:kTransactionViewControllerIdentifier];
                                           }];
                         }];
 }

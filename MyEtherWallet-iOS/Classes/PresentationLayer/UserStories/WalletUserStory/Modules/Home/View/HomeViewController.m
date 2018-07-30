@@ -113,6 +113,7 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
   
   _numberOfTokens = tokensCount;
   [self.headerView updateTokensPrice:totalPrice];
+  [self.headerView updateTitle:NSLocalizedString(@"MEWconnect", @"Home screen. Title")];
   self.headerView.searchBar.hidden = (tokensCount == 0);
   self.headerView.searchBar.placeholder = [NSString localizedStringWithFormat:NSLocalizedString(@"Search %tu token(s)", @"Wallet. Search field placeholder"), tokensCount];
   
@@ -122,6 +123,7 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
   [self.headerView.infoButton addTarget:self action:@selector(infoAction:) forControlEvents:UIControlEventTouchUpInside];
   [self.headerView.buyEtherButton addTarget:self action:@selector(buyEtherAction:) forControlEvents:UIControlEventTouchUpInside];
   [self.headerView.refreshButton addTarget:self action:@selector(refreshTokensAction:) forControlEvents:UIControlEventTouchUpInside];
+  [self.headerView.networkButton addTarget:self action:@selector(networkAction:) forControlEvents:UIControlEventTouchUpInside];
   
   [self.dataDisplayManager configureDataDisplayManagerWithAnimator:self.tableViewAnimator];
   self.tableView.dataSource = [self.dataDisplayManager dataSourceForTableView:self.tableView];
@@ -165,25 +167,18 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
 }
 
 - (void)updateWithAccount:(AccountPlainObject *)account {
-  switch ([account.fromNetwork network]) {
-    case BlockchainNetworkTypeRopsten: {
-      [self.headerView updateTitle:NSLocalizedString(@"MEWconnect: Ropsten", @"Home screen. Title")];
-      break;
-    }
-    case BlockchainNetworkTypeMainnet:
-    default: {
-      [self.headerView updateTitle:NSLocalizedString(@"MEWconnect", @"Home screen. Title")];
-      break;
-    }
-  }
+  BlockchainNetworkType networkType = [account.fromNetwork network];
+  [self.headerView.networkButton setTitle:NSStringFromBlockchainNetworkType(networkType) forState:UIControlStateNormal];
   [self.headerView.cardView updateWithSeed:account.publicAddress];
-  [self.headerView.cardView updateEthPrice:account.price.usdPrice];
+  
   [self.headerView refreshContentIfNeeded];
   
   self.headerView.cardView.backedUp = [account.backedUp boolValue];
-  
-  NSDecimalNumber *balance = account.balance;
-  [self.headerView.cardView updateBalance:balance network:[account.fromNetwork network]];
+  [self updateEthereumBalanceWithAccount:account];
+}
+
+- (void)updateEthereumBalanceWithAccount:(AccountPlainObject *)account {
+  [self.headerView.cardView updateEthPrice:account.price.usdPrice];
   
   NSNumberFormatter *ethereumFormatter = [NSNumberFormatter ethereumFormatterWithNetwork:[account.fromNetwork network]];
   switch ([UIScreen mainScreen].screenSizeType) {
@@ -195,15 +190,18 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
       break;
   }
   
+  NSDecimalNumber *balance = account.balance;
+  [self.headerView.cardView updateBalance:balance network:[account.fromNetwork network]];
   self.headerView.titleBalanceLabel.text = [ethereumFormatter stringFromNumber:balance];
 }
 
-- (void)viewDidLayoutSubviews {
+- (void) viewDidLayoutSubviews {
   [super viewDidLayoutSubviews];
   if (@available(iOS 11.0, *)) {
   } else {
     [self.headerView updateHeightIfNeeded];
   }
+  [self _updateTableViewFooterIfNeeded];
 }
 
 - (void) updateWithTokensCount:(NSUInteger)tokensCount withTotalPrice:(NSDecimalNumber *)totalPrice {
@@ -269,6 +267,18 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
   self.headerView.refreshButton.rotation = NO;
 }
 
+- (void)presentNetworkSelection {
+  UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Network?", @"Wallet. Network selection") message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+  [alert addAction:[UIAlertAction actionWithTitle:@"Mainnet" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    [self.output mainnetAction];
+  }]];
+  [alert addAction:[UIAlertAction actionWithTitle:@"Ropsten" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    [self.output ropstenAction];
+  }]];
+  [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"Wallet. Network selection. Cancel") style:UIAlertActionStyleCancel handler:nil]];
+  [self presentViewController:alert animated:YES completion:nil];
+}
+
 #pragma mark - IBActions
 
 - (IBAction) connectAction:(id)sender {
@@ -289,6 +299,10 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
 
 - (IBAction) refreshTokensAction:(id)sender {
   [self.output refreshTokensAction];
+}
+
+- (IBAction) networkAction:(id)sender {
+  [self.output networkAction];
 }
 
 - (IBAction)unwindToHome:(UIStoryboardSegue *)sender {}
@@ -323,6 +337,17 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
   UIEdgeInsets indicatorInset = self.tableView.scrollIndicatorInsets;
   indicatorInset.top = CGRectGetHeight(self.headerView.contentView.bounds);
   self.tableView.scrollIndicatorInsets = indicatorInset;
+}
+
+- (void) scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+  CGFloat fullSize = self.headerView.maximumContentHeight - self.headerView.minimumContentHeight;
+  if ((*targetContentOffset).y < -self.headerView.minimumContentHeight) {
+    if ((*targetContentOffset).y < -self.headerView.maximumContentHeight + fullSize * 0.65) {
+      (*targetContentOffset).y = -scrollView.contentInset.top;
+    } else {
+      (*targetContentOffset).y = -self.headerView.minimumContentHeight;
+    }
+  }
 }
 
 #pragma mark - CardViewDelegate
@@ -377,7 +402,7 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
   }
   CGFloat statusHeight = _connected ?
       CGRectGetHeight(self.statusView.frame) :
-      CGRectGetHeight(self.connectButton.frame) + self.connectButtonBottomConstraint.constant;
+      self.numberOfTokens > 0 ? CGRectGetHeight(self.connectButton.frame) + self.connectButtonBottomConstraint.constant : 0.0;
   insets.bottom = MAX(_keyboardHeight, statusHeight);
   
   self.tableView.contentInset = insets;
@@ -385,6 +410,20 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
   UIEdgeInsets indicatorInset = self.tableView.scrollIndicatorInsets;
   indicatorInset.bottom = _keyboardHeight;
   self.tableView.scrollIndicatorInsets = indicatorInset;
+  [self _updateTableViewFooterIfNeeded];
+}
+
+- (void) _updateTableViewFooterIfNeeded {
+  CGFloat additionalHeight = CGRectGetHeight(self.view.frame) - (self.tableView.contentSize.height - CGRectGetHeight(self.tableView.tableFooterView.frame)) - self.headerView.minimumContentHeight - self.tableView.contentInset.bottom;
+  if (additionalHeight > 0.0 && _numberOfTokens > 0) {
+    if (CGRectGetHeight(self.tableView.tableFooterView.frame) != additionalHeight) {
+      UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 1.0, additionalHeight)];
+      footerView.backgroundColor = [UIColor clearColor];
+      self.tableView.tableFooterView = footerView;
+    }
+  } else {
+    self.tableView.tableFooterView = nil;
+  }
 }
 
 @end

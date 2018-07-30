@@ -92,6 +92,8 @@
                                                 with:[self.storyboardAssembly splashPasswordStoryboard]];
                           [definition injectProperty:@selector(launchStoryboard)
                                                 with:[self.storyboardAssembly launchStoryboard]];
+                          [definition injectProperty:@selector(propertyAnimatorsFactory)
+                                                with:self.propertyAnimatorsFactory];
                         }];
 }
 

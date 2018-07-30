@@ -25,28 +25,23 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8nP-CK-LKH" userLabel="contentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="750" height="667"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="2625" height="667"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k4X-dr-mCo" userLabel="page1">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PFN-t5-zaG">
-                                                        <rect key="frame" x="40" y="94" width="295" height="167.5"/>
-                                                        <string key="text">MEW
-connect</string>
-                                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="70"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro_mewconnect_logo" translatesAutoresizingMaskIntoConstraints="NO" id="YLW-t7-njx">
+                                                        <rect key="frame" x="37" y="100" width="274" height="92"/>
+                                                    </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="by MyEtherWallet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgr-4b-rhX">
-                                                        <rect key="frame" x="40" y="280.5" width="134" height="21"/>
+                                                        <rect key="frame" x="40" y="207" width="134" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Safely and securely build and manage your future wealth" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dKN-Rk-zZ5">
-                                                        <rect key="frame" x="40" y="411.5" width="295" height="107.5"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Finally, a ‘hardware wallet’ without all the hardware. Officially by MyEtherWallet" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dKN-Rk-zZ5" userLabel="descriptionPage1">
+                                                        <rect key="frame" x="40" y="392.5" width="295" height="124.5"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="26"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -55,20 +50,22 @@ connect</string>
                                                 <constraints>
                                                     <constraint firstItem="dKN-Rk-zZ5" firstAttribute="leading" secondItem="k4X-dr-mCo" secondAttribute="leading" constant="40" id="943-B7-SB4"/>
                                                     <constraint firstAttribute="trailing" secondItem="dKN-Rk-zZ5" secondAttribute="trailing" constant="40" id="FN3-4S-h1a"/>
-                                                    <constraint firstItem="PFN-t5-zaG" firstAttribute="leading" secondItem="k4X-dr-mCo" secondAttribute="leading" constant="40" id="WD7-56-ilx"/>
-                                                    <constraint firstAttribute="trailing" secondItem="PFN-t5-zaG" secondAttribute="trailing" constant="40" id="kWr-YL-qOi"/>
-                                                    <constraint firstItem="hgr-4b-rhX" firstAttribute="top" secondItem="PFN-t5-zaG" secondAttribute="bottom" constant="19" id="lnU-1x-U6l"/>
-                                                    <constraint firstItem="hgr-4b-rhX" firstAttribute="leading" secondItem="PFN-t5-zaG" secondAttribute="leading" id="s2d-NA-PNl"/>
+                                                    <constraint firstAttribute="width" constant="375" id="JCt-Hu-Oae"/>
+                                                    <constraint firstItem="YLW-t7-njx" firstAttribute="leading" secondItem="k4X-dr-mCo" secondAttribute="leading" constant="37" id="Ks3-0v-8U2"/>
+                                                    <constraint firstItem="hgr-4b-rhX" firstAttribute="leading" secondItem="YLW-t7-njx" secondAttribute="leading" constant="3" id="d6q-yP-7OC"/>
+                                                    <constraint firstItem="hgr-4b-rhX" firstAttribute="top" secondItem="YLW-t7-njx" secondAttribute="bottom" constant="15" id="fW0-g7-vMX"/>
                                                 </constraints>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="JCt-Hu-Oae"/>
+                                                    </mask>
+                                                </variation>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A3T-SH-eyu" userLabel="page2">
                                                 <rect key="frame" x="375" y="0.0" width="375" height="667"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onboarding_page2_icon" translatesAutoresizingMaskIntoConstraints="NO" id="UXY-PL-g5m">
-                                                        <rect key="frame" x="90.5" y="108" width="194" height="194"/>
-                                                    </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Interact directly with the blockchain with full control of your keys &amp; your funds." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xkV-Ja-NFK">
-                                                        <rect key="frame" x="40" y="375.5" width="295" height="143.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Interact directly with the blockchain with full control of your keys &amp; your funds." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xkV-Ja-NFK" userLabel="descriptionPage2">
+                                                        <rect key="frame" x="40" y="373.5" width="295" height="143.5"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -76,9 +73,88 @@ connect</string>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="xkV-Ja-NFK" secondAttribute="trailing" constant="40" id="Glt-tz-gs8"/>
                                                     <constraint firstItem="xkV-Ja-NFK" firstAttribute="leading" secondItem="A3T-SH-eyu" secondAttribute="leading" constant="40" id="caE-AP-xOZ"/>
-                                                    <constraint firstItem="UXY-PL-g5m" firstAttribute="centerX" secondItem="A3T-SH-eyu" secondAttribute="centerX" id="zSM-bf-Oe9"/>
+                                                    <constraint firstAttribute="trailing" secondItem="xkV-Ja-NFK" secondAttribute="trailing" constant="40" id="p9D-ff-AN1"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wp2-p6-Bdx" userLabel="page3">
+                                                <rect key="frame" x="750" y="0.0" width="375" height="667"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Interact directly with the blockchain with full control of your keys &amp; your funds." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sdn-1n-Fgb" userLabel="descriptionPage3">
+                                                        <rect key="frame" x="40" y="373.5" width="295" height="143.5"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="Sdn-1n-Fgb" firstAttribute="leading" secondItem="Wp2-p6-Bdx" secondAttribute="leading" constant="40" id="SeU-vL-q4s"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Sdn-1n-Fgb" secondAttribute="trailing" constant="40" id="X8r-U4-ipg"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yau-K5-SH0" userLabel="page4">
+                                                <rect key="frame" x="1125" y="0.0" width="375" height="667"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Interact directly with the blockchain with full control of your keys &amp; your funds." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gfg-cS-tRp" userLabel="descriptionPage4">
+                                                        <rect key="frame" x="40" y="373.5" width="295" height="143.5"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="Gfg-cS-tRp" secondAttribute="trailing" constant="40" id="B95-I3-Pji"/>
+                                                    <constraint firstItem="Gfg-cS-tRp" firstAttribute="leading" secondItem="Yau-K5-SH0" secondAttribute="leading" constant="40" id="leZ-kv-Eza"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WpW-OB-Yzz" userLabel="page5">
+                                                <rect key="frame" x="1500" y="0.0" width="375" height="667"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Interact directly with the blockchain with full control of your keys &amp; your funds." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A1v-5z-d7A" userLabel="descriptionPage5">
+                                                        <rect key="frame" x="40" y="373.5" width="295" height="143.5"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="A1v-5z-d7A" secondAttribute="trailing" constant="40" id="NCP-I5-cb6"/>
+                                                    <constraint firstItem="A1v-5z-d7A" firstAttribute="leading" secondItem="WpW-OB-Yzz" secondAttribute="leading" constant="40" id="XXF-J8-ZDj"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VVD-sr-X45" userLabel="page6">
+                                                <rect key="frame" x="1875" y="0.0" width="375" height="667"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="6" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Interact directly with the blockchain with full control of your keys &amp; your funds." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0tG-ye-IIL" userLabel="descriptionPage6">
+                                                        <rect key="frame" x="40" y="373.5" width="295" height="143.5"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="0tG-ye-IIL" firstAttribute="leading" secondItem="VVD-sr-X45" secondAttribute="leading" constant="40" id="Qr7-YF-Uda"/>
+                                                    <constraint firstAttribute="trailing" secondItem="0tG-ye-IIL" secondAttribute="trailing" constant="40" id="raR-SU-yO0"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HJa-fj-4Je" userLabel="page7">
+                                                <rect key="frame" x="2250" y="0.0" width="375" height="667"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="7" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Interact directly with the blockchain with full control of your keys &amp; your funds." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LwO-OS-ot9" userLabel="descriptionPage7">
+                                                        <rect key="frame" x="40" y="373.5" width="295" height="143.5"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="LwO-OS-ot9" firstAttribute="leading" secondItem="HJa-fj-4Je" secondAttribute="leading" constant="40" id="AoY-Op-RmC"/>
+                                                    <constraint firstAttribute="trailing" secondItem="LwO-OS-ot9" secondAttribute="trailing" constant="40" id="yqM-ps-dV1"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -86,13 +162,38 @@ connect</string>
                                         <constraints>
                                             <constraint firstItem="k4X-dr-mCo" firstAttribute="top" secondItem="8nP-CK-LKH" secondAttribute="top" id="1tR-Qg-gsb"/>
                                             <constraint firstItem="k4X-dr-mCo" firstAttribute="width" secondItem="A3T-SH-eyu" secondAttribute="width" id="6xP-pQ-S9W"/>
-                                            <constraint firstAttribute="trailing" secondItem="A3T-SH-eyu" secondAttribute="trailing" id="BC3-as-qag"/>
+                                            <constraint firstItem="Yau-K5-SH0" firstAttribute="width" secondItem="k4X-dr-mCo" secondAttribute="width" id="7R1-Nm-K0q"/>
+                                            <constraint firstItem="Gfg-cS-tRp" firstAttribute="bottom" secondItem="dKN-Rk-zZ5" secondAttribute="bottom" id="7yR-e0-rzK"/>
+                                            <constraint firstItem="HJa-fj-4Je" firstAttribute="width" secondItem="k4X-dr-mCo" secondAttribute="width" id="A5u-VS-7lR"/>
+                                            <constraint firstItem="Wp2-p6-Bdx" firstAttribute="width" secondItem="k4X-dr-mCo" secondAttribute="width" id="AWN-0C-Rd9"/>
+                                            <constraint firstAttribute="bottom" secondItem="Yau-K5-SH0" secondAttribute="bottom" id="DpA-CT-Fnb"/>
+                                            <constraint firstItem="VVD-sr-X45" firstAttribute="top" secondItem="8nP-CK-LKH" secondAttribute="top" id="Dth-JJ-aoX"/>
+                                            <constraint firstItem="LwO-OS-ot9" firstAttribute="bottom" secondItem="dKN-Rk-zZ5" secondAttribute="bottom" id="JVr-uN-3F1"/>
+                                            <constraint firstItem="Wp2-p6-Bdx" firstAttribute="right" secondItem="Yau-K5-SH0" secondAttribute="left" id="JfF-zf-eZe"/>
+                                            <constraint firstAttribute="bottom" secondItem="Wp2-p6-Bdx" secondAttribute="bottom" id="NjP-cw-36Z"/>
+                                            <constraint firstItem="VVD-sr-X45" firstAttribute="right" secondItem="HJa-fj-4Je" secondAttribute="left" id="P5d-VN-kEa"/>
+                                            <constraint firstItem="Wp2-p6-Bdx" firstAttribute="top" secondItem="8nP-CK-LKH" secondAttribute="top" id="SZa-2p-foB"/>
                                             <constraint firstItem="A3T-SH-eyu" firstAttribute="top" secondItem="8nP-CK-LKH" secondAttribute="top" id="SbI-f5-s1z"/>
+                                            <constraint firstItem="0tG-ye-IIL" firstAttribute="bottom" secondItem="dKN-Rk-zZ5" secondAttribute="bottom" id="Ttt-fC-3Ph"/>
                                             <constraint firstAttribute="bottom" secondItem="A3T-SH-eyu" secondAttribute="bottom" id="UBQ-kI-KXT"/>
-                                            <constraint firstItem="k4X-dr-mCo" firstAttribute="leading" secondItem="8nP-CK-LKH" secondAttribute="leading" id="Www-eX-VY4"/>
+                                            <constraint firstItem="VVD-sr-X45" firstAttribute="width" secondItem="k4X-dr-mCo" secondAttribute="width" id="UI8-uZ-ZlI"/>
+                                            <constraint firstItem="k4X-dr-mCo" firstAttribute="left" secondItem="8nP-CK-LKH" secondAttribute="left" id="Www-eX-VY4"/>
+                                            <constraint firstItem="Sdn-1n-Fgb" firstAttribute="bottom" secondItem="dKN-Rk-zZ5" secondAttribute="bottom" id="Z9v-3u-iW9"/>
                                             <constraint firstItem="dKN-Rk-zZ5" firstAttribute="bottom" secondItem="xkV-Ja-NFK" secondAttribute="bottom" id="aAp-S2-RlU"/>
+                                            <constraint firstAttribute="bottom" secondItem="VVD-sr-X45" secondAttribute="bottom" id="cob-KE-voS"/>
                                             <constraint firstAttribute="bottom" secondItem="k4X-dr-mCo" secondAttribute="bottom" id="dQl-vX-b2k"/>
-                                            <constraint firstItem="k4X-dr-mCo" firstAttribute="trailing" secondItem="A3T-SH-eyu" secondAttribute="leading" id="lo6-bl-ryd"/>
+                                            <constraint firstAttribute="bottom" secondItem="WpW-OB-Yzz" secondAttribute="bottom" id="daR-5R-O8i"/>
+                                            <constraint firstItem="WpW-OB-Yzz" firstAttribute="top" secondItem="8nP-CK-LKH" secondAttribute="top" id="fMb-Mh-qeh"/>
+                                            <constraint firstItem="Yau-K5-SH0" firstAttribute="right" secondItem="WpW-OB-Yzz" secondAttribute="left" id="gte-Rw-hOv"/>
+                                            <constraint firstAttribute="right" secondItem="HJa-fj-4Je" secondAttribute="right" id="l84-9u-aQD"/>
+                                            <constraint firstItem="k4X-dr-mCo" firstAttribute="right" secondItem="A3T-SH-eyu" secondAttribute="left" id="lo6-bl-ryd"/>
+                                            <constraint firstAttribute="bottom" secondItem="HJa-fj-4Je" secondAttribute="bottom" id="nEY-DX-KD0"/>
+                                            <constraint firstItem="WpW-OB-Yzz" firstAttribute="width" secondItem="k4X-dr-mCo" secondAttribute="width" id="nMO-WE-k7u"/>
+                                            <constraint firstItem="A1v-5z-d7A" firstAttribute="bottom" secondItem="dKN-Rk-zZ5" secondAttribute="bottom" id="nU9-1H-xtU"/>
+                                            <constraint firstItem="Yau-K5-SH0" firstAttribute="top" secondItem="8nP-CK-LKH" secondAttribute="top" id="tOx-jf-auI"/>
+                                            <constraint firstItem="A3T-SH-eyu" firstAttribute="right" secondItem="Wp2-p6-Bdx" secondAttribute="left" id="tbk-za-wJv"/>
+                                            <constraint firstItem="WpW-OB-Yzz" firstAttribute="right" secondItem="VVD-sr-X45" secondAttribute="left" id="vZs-Dh-gkX"/>
+                                            <constraint firstItem="HJa-fj-4Je" firstAttribute="top" secondItem="8nP-CK-LKH" secondAttribute="top" id="ze2-GR-6H0"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -108,11 +209,41 @@ connect</string>
                                     <outlet property="delegate" destination="TZA-8o-0tf" id="dkF-e2-VWq"/>
                                 </connections>
                             </scrollView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="fwq-RK-za0">
-                                <rect key="frame" x="176" y="521" width="23" height="37"/>
-                            </pageControl>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jWv-Df-5QC">
+                                <rect key="frame" x="87.5" y="100" width="200" height="200"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="pmO-Nb-qiq"/>
+                                    <constraint firstAttribute="width" constant="200" id="w4E-Gm-Baz"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="100" placeholderIntrinsicHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="4Zd-Zy-Eni" customClass="CHIPageControlChimayo" customModule="CHIPageControl">
+                                <rect key="frame" x="137.5" y="533" width="100" height="10"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="numberOfPages">
+                                        <integer key="value" value="7"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="padding">
+                                        <real key="value" value="16"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="inactiveTransparency">
+                                        <real key="value" value="-1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="currentPageTintColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oZu-OL-Hv5" customClass="FlatButton">
-                                <rect key="frame" x="40" y="565" width="295" height="30"/>
+                                <rect key="frame" x="40" y="567" width="295" height="30"/>
                                 <state key="normal" title="CREATE NEW WALLET"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="theme">
@@ -124,7 +255,7 @@ connect</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p61-aI-WVD" customClass="InlineButton">
-                                <rect key="frame" x="118" y="622" width="138" height="18"/>
+                                <rect key="frame" x="118.5" y="623" width="138" height="18"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -138,35 +269,46 @@ connect</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="PFN-t5-zaG" firstAttribute="top" secondItem="sCg-UF-gAk" secondAttribute="top" constant="74" id="0ky-ie-LfE"/>
                             <constraint firstAttribute="bottom" secondItem="2mb-ws-FXz" secondAttribute="bottom" id="1BB-f1-Exj"/>
-                            <constraint firstItem="sCg-UF-gAk" firstAttribute="bottom" secondItem="p61-aI-WVD" secondAttribute="bottom" constant="27" id="2Ed-YZ-W6s"/>
+                            <constraint firstItem="sCg-UF-gAk" firstAttribute="bottom" secondItem="p61-aI-WVD" secondAttribute="bottom" constant="26" id="2Ed-YZ-W6s"/>
+                            <constraint firstItem="YLW-t7-njx" firstAttribute="top" secondItem="sCg-UF-gAk" secondAttribute="top" constant="80" id="2cy-xg-9Bh"/>
                             <constraint firstAttribute="right" secondItem="xa7-gv-aDf" secondAttribute="right" id="4cZ-HB-CCS"/>
+                            <constraint firstItem="4Zd-Zy-Eni" firstAttribute="centerX" secondItem="0Ai-uf-6Fu" secondAttribute="centerX" id="57d-md-Olz"/>
                             <constraint firstItem="p61-aI-WVD" firstAttribute="centerX" secondItem="0Ai-uf-6Fu" secondAttribute="centerX" id="Tdl-8k-ctP"/>
+                            <constraint firstItem="oZu-OL-Hv5" firstAttribute="top" secondItem="4Zd-Zy-Eni" secondAttribute="bottom" constant="24" id="WUQ-qg-fvg"/>
                             <constraint firstItem="sCg-UF-gAk" firstAttribute="trailing" secondItem="oZu-OL-Hv5" secondAttribute="trailing" constant="40" id="XK4-8f-5tc"/>
                             <constraint firstItem="2mb-ws-FXz" firstAttribute="top" secondItem="0Ai-uf-6Fu" secondAttribute="top" id="YCH-tL-Vwl"/>
+                            <constraint firstItem="jWv-Df-5QC" firstAttribute="top" secondItem="YLW-t7-njx" secondAttribute="top" id="YtJ-mP-Msg"/>
                             <constraint firstItem="2mb-ws-FXz" firstAttribute="left" secondItem="0Ai-uf-6Fu" secondAttribute="left" id="YwC-by-UEa"/>
                             <constraint firstItem="xa7-gv-aDf" firstAttribute="top" secondItem="0Ai-uf-6Fu" secondAttribute="top" id="ZYk-62-3xj"/>
-                            <constraint firstItem="p61-aI-WVD" firstAttribute="top" secondItem="oZu-OL-Hv5" secondAttribute="bottom" constant="27" id="fLt-3g-70e"/>
+                            <constraint firstItem="jWv-Df-5QC" firstAttribute="centerX" secondItem="0Ai-uf-6Fu" secondAttribute="centerX" id="dsH-cS-bF8"/>
+                            <constraint firstItem="p61-aI-WVD" firstAttribute="top" secondItem="oZu-OL-Hv5" secondAttribute="bottom" constant="26" id="fLt-3g-70e"/>
                             <constraint firstAttribute="right" secondItem="2mb-ws-FXz" secondAttribute="right" id="gvK-oI-zwZ"/>
-                            <constraint firstItem="fwq-RK-za0" firstAttribute="top" secondItem="dKN-Rk-zZ5" secondAttribute="bottom" constant="2" id="hV0-pD-bK9"/>
                             <constraint firstItem="oZu-OL-Hv5" firstAttribute="leading" secondItem="sCg-UF-gAk" secondAttribute="leading" constant="40" id="jZE-id-Vxt"/>
-                            <constraint firstItem="oZu-OL-Hv5" firstAttribute="top" secondItem="fwq-RK-za0" secondAttribute="bottom" constant="7" id="nIF-ER-cdf"/>
                             <constraint firstItem="xa7-gv-aDf" firstAttribute="left" secondItem="0Ai-uf-6Fu" secondAttribute="left" id="niD-lX-0QM"/>
                             <constraint firstAttribute="bottom" secondItem="xa7-gv-aDf" secondAttribute="bottom" id="oQb-hf-I0N"/>
-                            <constraint firstItem="UXY-PL-g5m" firstAttribute="top" secondItem="sCg-UF-gAk" secondAttribute="top" constant="88" id="tF7-qR-erT"/>
-                            <constraint firstItem="fwq-RK-za0" firstAttribute="centerX" secondItem="0Ai-uf-6Fu" secondAttribute="centerX" id="uVQ-ao-j8X"/>
+                            <constraint firstItem="oZu-OL-Hv5" firstAttribute="top" secondItem="dKN-Rk-zZ5" secondAttribute="bottom" constant="50" id="xnM-Ux-wEr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sCg-UF-gAk"/>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
-                    <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="byMyEtherWalletTitle" destination="hgr-4b-rhX" id="kCb-jH-ovd"/>
                         <outlet property="createNewWalletButton" destination="oZu-OL-Hv5" id="9Ze-AN-aXL"/>
-                        <outlet property="mewConnectTitle" destination="PFN-t5-zaG" id="OTh-j7-0fJ"/>
-                        <outlet property="pageControl" destination="fwq-RK-za0" id="UL6-7w-O2B"/>
+                        <outlet property="mewConnectLogo" destination="YLW-t7-njx" id="3Bf-GB-ZHS"/>
+                        <outlet property="mewConnectLogoTopOffsetConstraint" destination="2cy-xg-9Bh" id="xxt-1L-Zbv"/>
+                        <outlet property="morphingIconContainer" destination="jWv-Df-5QC" id="zIC-zi-loP"/>
+                        <outlet property="morphingIconContrainerCenterXConstraint" destination="dsH-cS-bF8" id="YKG-qI-EYK"/>
+                        <outlet property="morphingIconContrainerTopOffsetConstraint" destination="YtJ-mP-Msg" id="Fnx-wm-cvY"/>
+                        <outlet property="pageControl" destination="4Zd-Zy-Eni" id="cqw-jD-GBc"/>
                         <outlet property="restoreWalletButton" destination="p61-aI-WVD" id="NR7-TN-19T"/>
+                        <outletCollection property="pageDescriptions" destination="dKN-Rk-zZ5" id="Ozl-Vd-MUQ"/>
+                        <outletCollection property="pageDescriptions" destination="xkV-Ja-NFK" id="AJ9-me-g07"/>
+                        <outletCollection property="pageDescriptions" destination="Sdn-1n-Fgb" id="CmT-TT-goO"/>
+                        <outletCollection property="pageDescriptions" destination="Gfg-cS-tRp" id="tk4-ob-RVB"/>
+                        <outletCollection property="pageDescriptions" destination="A1v-5z-d7A" id="bl9-l1-iF8"/>
+                        <outletCollection property="pageDescriptions" destination="0tG-ye-IIL" id="NZH-Se-EJu"/>
+                        <outletCollection property="pageDescriptions" destination="LwO-OS-ot9" id="6Ob-kV-eJ1"/>
                         <segue destination="Js0-Yk-gwG" kind="show" identifier="StartToHomeSegueIdentifier" id="Pid-95-T7W"/>
                         <segue destination="Fe6-fl-kwA" kind="presentation" identifier="StartToPasswordSegueIdentifier" id="j9x-JX-jNP"/>
                         <segue destination="7p6-Sy-ZJQ" kind="presentation" identifier="StartToRestoreWalletSegueIdentifier" id="se7-H3-jWW"/>
@@ -174,7 +316,7 @@ connect</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BEN-9E-cSV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-202" y="-201"/>
+            <point key="canvasLocation" x="-508" y="967"/>
         </scene>
         <!--Restore Wallet View Controller-->
         <scene sceneID="iNc-3E-wGU">
@@ -670,10 +812,10 @@ password again</string>
     </scenes>
     <resources>
         <image name="inline_small_chevron" width="6" height="10"/>
+        <image name="intro_mewconnect_logo" width="274" height="92"/>
         <image name="onboarding_background" width="414" height="812"/>
-        <image name="onboarding_page2_icon" width="194" height="194"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="24Y-DY-ODr"/>
+        <segue reference="fTS-Oo-qqM"/>
     </inferredMetricsTieBreakers>
 </document>

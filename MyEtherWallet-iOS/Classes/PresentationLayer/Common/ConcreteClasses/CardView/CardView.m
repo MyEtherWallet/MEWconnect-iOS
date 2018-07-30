@@ -23,7 +23,7 @@
 static CGFloat kCardViewSmallOffset             = 6.0;
 static CGFloat kCardViewEthereumTitleTopOffset  = 87.0;
 
-CGFloat const kCardViewBlinkDefaultAlpha        = 0.4;
+CGFloat const kCardViewBlinkDefaultAlpha        = 0.6;
 CGFloat const kCardViewDefaultShadowOpacity     = 0.2;
 CGFloat const kCardViewDefaultCornerRadius      = 16.0;
 CGFloat const kCardViewDefaultOffset            = 16.0;
@@ -146,6 +146,53 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
   
   NSNumberFormatter *ethereumFormatter = [NSNumberFormatter ethereumFormatterWithNetwork:network];
   ethereumFormatter.maximumSignificantDigits = 8;
+  switch (network) {
+    case BlockchainNetworkTypeMainnet: {
+      switch ([UIScreen mainScreen].screenSizeType) {
+        case ScreenSizeTypeInches40: {
+          ethereumFormatter.maximumSignificantDigits = 9;
+          break;
+        }
+        case ScreenSizeTypeInches47:
+        case ScreenSizeTypeInches58: {
+          ethereumFormatter.maximumSignificantDigits = 10;
+          break;
+        }
+        case ScreenSizeTypeInches55: {
+          ethereumFormatter.maximumSignificantDigits = 12;
+          break;
+        }
+        default:
+          ethereumFormatter.maximumSignificantDigits = 8;
+          break;
+      }
+      break;
+    }
+    case BlockchainNetworkTypeRopsten: {
+      switch ([UIScreen mainScreen].screenSizeType) {
+        case ScreenSizeTypeInches40: {
+          ethereumFormatter.maximumSignificantDigits = 5;
+          break;
+        }
+        case ScreenSizeTypeInches47:
+        case ScreenSizeTypeInches58: {
+          ethereumFormatter.maximumSignificantDigits = 5;
+          break;
+        }
+        case ScreenSizeTypeInches55: {
+          ethereumFormatter.maximumSignificantDigits = 7;
+          break;
+        }
+        default:
+          ethereumFormatter.maximumSignificantDigits = 8;
+          break;
+      }
+      break;
+    }
+      
+    default:
+      break;
+  }
   
   UIFont *balanceFont = nil;
   UIFont *currencyFont = nil;
@@ -228,11 +275,11 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.backgroundImageView attribute:NSLayoutAttributeCenterX
                                                      relatedBy:NSLayoutRelationEqual
                                                         toItem:blinkImageView attribute:NSLayoutAttributeCenterX
-                                                    multiplier:1.0 constant:0.0]];
+                                                    multiplier:1.0 constant:-50.0]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.backgroundImageView attribute:NSLayoutAttributeCenterY
                                                      relatedBy:NSLayoutRelationEqual
                                                         toItem:blinkImageView attribute:NSLayoutAttributeCenterY
-                                                    multiplier:1.0 constant:0.0]];
+                                                    multiplier:1.0 constant:25.0]];
     _blinkImageView = blinkImageView;
     [self _addMotionEffect:blinkImageView];
   }

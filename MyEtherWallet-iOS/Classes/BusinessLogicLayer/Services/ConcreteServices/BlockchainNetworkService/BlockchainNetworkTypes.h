@@ -30,4 +30,20 @@ NS_INLINE NSString *NSStringCurrencySymbolFromBlockchainNetworkType(BlockchainNe
   }
 }
 
+NS_INLINE NSString *NSStringFromBlockchainNetworkType(BlockchainNetworkType type) {
+  switch (type) {
+    case BlockchainNetworkTypeMainnet: {
+      return @"Mainnet";
+      break;
+    }
+    case BlockchainNetworkTypeRopsten: {
+      return @"Ropsten";
+      break;
+    }
+      
+    default:
+      break;
+  }
+}
+
 #endif /* BlockchainNetworkTypes_h */

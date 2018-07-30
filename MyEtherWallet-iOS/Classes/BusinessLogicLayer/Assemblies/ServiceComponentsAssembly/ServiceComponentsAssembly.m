@@ -11,7 +11,11 @@
 
 #import "ApplicationConstants.h"
 
+#if BETA
+#import "MyEtherWallet_iOS_Beta-Swift.h"
+#else
 #import "MyEtherWallet_iOS-Swift.h"
+#endif
 
 #import "ResponseMappersFactory.h"
 #import "ServiceComponentsAssembly.h"
@@ -50,6 +54,7 @@ static NSString *const kSignallingServerURLKey  = @"API.SignallingServerURL";
                           [definition injectProperty:@selector(connectService) with:[self MEWConnectService]];
                           [definition injectProperty:@selector(accountsService) with:[self accountsService]];
                           [definition injectProperty:@selector(ponsomizer) with:[self.ponsomizerAssembly ponsomizer]];
+                          [definition injectProperty:@selector(application) with:[self.systemInfrastructureAssembly application]];
                         }];
 }
 

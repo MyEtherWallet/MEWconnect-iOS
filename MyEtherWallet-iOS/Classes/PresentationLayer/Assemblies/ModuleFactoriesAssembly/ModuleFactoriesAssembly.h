@@ -15,4 +15,5 @@
 @interface ModuleFactoriesAssembly : TyphoonAssembly <RamblerInitialAssembly>
 @property (nonatomic, strong, readonly) StoryboardsAssembly *storyboardsAssembly;
 - (RamblerViperModuleFactory *) homeFactory;
+- (RamblerViperModuleFactory *) transactionFactory;
 @end

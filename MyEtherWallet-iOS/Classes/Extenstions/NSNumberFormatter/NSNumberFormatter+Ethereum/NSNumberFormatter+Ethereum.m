@@ -27,6 +27,7 @@
     [positiveFormat appendString:@" ¤"];
     ethereumFormatter.positiveFormat = [positiveFormat copy];
   }
+  ethereumFormatter.usesSignificantDigits = YES;
   ethereumFormatter.maximumFractionDigits = 18;
   ethereumFormatter.maximumIntegerDigits = 18;
   ethereumFormatter.maximumSignificantDigits = ethereumFormatter.maximumFractionDigits + ethereumFormatter.maximumIntegerDigits;

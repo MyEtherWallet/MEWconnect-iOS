@@ -93,9 +93,9 @@
                             <constraint firstAttribute="bottom" secondItem="6Ru-E1-NPD" secondAttribute="bottom" id="ECm-pe-rrH"/>
                             <constraint firstAttribute="bottom" secondItem="nkI-6m-aT8" secondAttribute="bottom" id="IG7-0Q-Mon"/>
                             <constraint firstItem="6Ru-E1-NPD" firstAttribute="leading" secondItem="Azs-lb-GwS" secondAttribute="leading" id="Mjv-px-XSi"/>
-                            <constraint firstItem="Hzg-WC-EO7" firstAttribute="bottom" secondItem="2b3-2N-jAz" secondAttribute="bottom" constant="16" id="VdT-AT-xXC"/>
                             <constraint firstItem="2b3-2N-jAz" firstAttribute="centerX" secondItem="Azs-lb-GwS" secondAttribute="centerX" id="WGt-rO-EfB"/>
                             <constraint firstItem="Hzg-WC-EO7" firstAttribute="trailing" secondItem="6Ru-E1-NPD" secondAttribute="trailing" id="Y1s-ti-YyK"/>
+                            <constraint firstItem="MD1-Jg-pEi" firstAttribute="top" secondItem="2b3-2N-jAz" secondAttribute="bottom" constant="38" id="aqo-d5-W3M"/>
                             <constraint firstAttribute="right" secondItem="MD1-Jg-pEi" secondAttribute="right" id="fVj-o0-7EK"/>
                             <constraint firstItem="nkI-6m-aT8" firstAttribute="leading" secondItem="Hzg-WC-EO7" secondAttribute="leading" id="tnK-OU-IMd"/>
                             <constraint firstItem="MD1-Jg-pEi" firstAttribute="height" secondItem="nkI-6m-aT8" secondAttribute="height" id="v8t-z8-nRs"/>
@@ -105,7 +105,7 @@
                     </view>
                     <connections>
                         <outlet property="connectButton" destination="2b3-2N-jAz" id="Lbz-ik-LZW"/>
-                        <outlet property="connectButtonBottomConstraint" destination="VdT-AT-xXC" id="uc2-Jf-RrP"/>
+                        <outlet property="connectButtonBottomConstraint" destination="aqo-d5-W3M" id="Z4I-Jl-GO1"/>
                         <outlet property="statusBackgroundImageView" destination="PuM-3y-tUh" id="mNM-yd-3wZ"/>
                         <outlet property="statusBottomContraint" destination="zIH-Qz-bb0" id="1aV-35-Yie"/>
                         <outlet property="statusView" destination="MD1-Jg-pEi" id="gCc-Cd-D5R"/>

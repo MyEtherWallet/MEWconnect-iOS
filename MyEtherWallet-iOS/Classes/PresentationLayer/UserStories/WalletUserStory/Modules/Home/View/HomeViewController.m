@@ -32,7 +32,7 @@
 
 #import "NSNumberFormatter+Ethereum.h"
 
-static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
+static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
 
 @interface HomeViewController () <UIScrollViewDelegate, GSKStretchyHeaderViewStretchDelegate, HomeStretchyHeaderDelegate, CardViewDelegate, UISearchBarDelegate>
 @property (nonatomic, weak) IBOutlet UIButton *connectButton;
@@ -279,6 +279,21 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
   [self presentViewController:alert animated:YES completion:nil];
 }
 
+- (void) showInternetConnection {
+//  self.statusBottomContraint.constant = -(CGRectGetHeight(self.statusView.bounds));
+}
+
+- (void) showNoInternetConnection {
+//  self.statusView.hidden = NO;
+//  UIImage *disconnectBackgroundImage = [[UIImage imageWithColor:[UIColor colorWithRGB:0xB6B9C1]
+//                                                           size:CGSizeMake(20.0, 28.0)
+//                                                   cornerRadius:8.0
+//                                                        corners:UIRectCornerTopLeft|UIRectCornerTopRight]
+//                                        resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 10.0, 0.0, 10.0)];
+//  [self.statusBackgroundImageView setImage:disconnectBackgroundImage];
+//  self.statusBottomContraint.constant = 0.0;
+}
+
 #pragma mark - IBActions
 
 - (IBAction) connectAction:(id)sender {
@@ -305,22 +320,22 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
   [self.output networkAction];
 }
 
-- (IBAction)unwindToHome:(UIStoryboardSegue *)sender {}
+- (IBAction) unwindToHome:(UIStoryboardSegue *)sender {}
 
 #pragma mark - GSKStretchyHeaderViewStretchDelegate
 
-- (void)stretchyHeaderView:(GSKStretchyHeaderView *)headerView didChangeStretchFactor:(CGFloat)stretchFactor {
+- (void) stretchyHeaderView:(GSKStretchyHeaderView *)headerView didChangeStretchFactor:(CGFloat)stretchFactor {
 }
 
 #pragma mark - HomeStretchyHeaderDelegate
 
-- (void)homeStretchyHeaderRequirinUpdateStatusBarStyle:(HomeStretchyHeader *)strethyHeader {
+- (void) homeStretchyHeaderRequirinUpdateStatusBarStyle:(HomeStretchyHeader *)strethyHeader {
   [UIView animateWithDuration:kHomeStretchyHeaderFadeDuration animations:^{
     [self setNeedsStatusBarAppearanceUpdate];
   }];
 }
 
-- (void)homeStretchyHeaderViewDidChangeBackgroundAlpha:(CGFloat)alpha {
+- (void) homeStretchyHeaderViewDidChangeBackgroundAlpha:(CGFloat)alpha {
   self.tableView.backgroundView.alpha = alpha;
 }
 

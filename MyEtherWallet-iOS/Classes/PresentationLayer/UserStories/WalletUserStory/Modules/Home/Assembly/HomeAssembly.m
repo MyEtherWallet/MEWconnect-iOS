@@ -61,6 +61,8 @@
                                                 with:[self.serviceComponents blockchainNetworkService]];
                           [definition injectProperty:@selector(ponsomizer)
                                                 with:[self.ponsomizerAssembly ponsomizer]];
+                          [definition injectProperty:@selector(reachabilityService)
+                                                with:[self.serviceComponents reachabilityServiceWithDelegate:[self interactorHome]]];
                         }];
 }
 

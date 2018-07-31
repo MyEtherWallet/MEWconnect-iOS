@@ -185,12 +185,20 @@
   [self.view stopAnimatingTokensRefreshing];
 }
 
-- (void)networkDidChangedWithoutAccount {
+- (void) networkDidChangedWithoutAccount {
   [self.router unwindToStart];
 }
 
-- (void)networkDidChangedWithAccount {
+- (void) networkDidChangedWithAccount {
   [self configureAfterChangingNetwork];
+}
+
+- (void) internetConnectionIsReachable {
+  [self.view showInternetConnection];
+}
+
+- (void) internetConnectionIsUnreachable {
+  [self.view showNoInternetConnection];
 }
 
 #pragma mark - ConfirmationStoryModuleOutput

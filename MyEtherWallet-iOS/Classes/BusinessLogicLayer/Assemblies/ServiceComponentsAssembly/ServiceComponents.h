@@ -19,6 +19,8 @@
 @protocol KeychainService;
 @protocol FiatPricesService;
 @protocol SimplexService;
+@protocol ReachabilityService;
+@protocol ReachabilityServiceDelegate;
 
 @protocol ServiceComponents <NSObject>
 - (id <MEWConnectFacade>) MEWConnectFacade;
@@ -31,4 +33,5 @@
 - (id <KeychainService>) keychainService;
 - (id <FiatPricesService>) fiatPricesService;
 - (id <SimplexService>) simplexService;
+- (id <ReachabilityService>) reachabilityServiceWithDelegate:(id <ReachabilityServiceDelegate>)delegate;
 @end

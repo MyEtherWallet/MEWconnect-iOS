@@ -24,4 +24,6 @@
 - (void) startAnimatingTokensRefreshing;
 - (void) stopAnimatingTokensRefreshing;
 - (void) presentNetworkSelection;
+- (void) showInternetConnection;
+- (void) showNoInternetConnection;
 @end

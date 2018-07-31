@@ -19,6 +19,7 @@
 #import "BlockchainNetworkService.h"
 #import "AccountsService.h"
 #import "FiatPricesService.h"
+#import "ReachabilityServiceDelegate.h"
 
 #import "CacheRequest.h"
 #import "CacheTracker.h"
@@ -234,6 +235,16 @@
 
 - (void) _unsubscribe {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - ReachabilityServiceDelegate
+
+- (void)reachabilityStatusDidChanged:(BOOL)isReachable {
+  if (!isReachable) {
+    [self.output internetConnectionIsReachable];
+  } else {
+    [self.output internetConnectionIsUnreachable];
+  }
 }
 
 @end

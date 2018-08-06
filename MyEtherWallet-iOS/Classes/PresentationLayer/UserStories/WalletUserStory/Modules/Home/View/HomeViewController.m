@@ -361,16 +361,6 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
   }
 }
 
-- (void)showInternetConnectionAnimated:(BOOL)animated {
-  <#code#>
-}
-
-
-- (void)showNoInternetConnectionAnimated:(BOOL)animated {
-  <#code#>
-}
-
-
 - (void) showInternetConnection {
   self.statusBottomContraint.constant = -(CGRectGetHeight(self.statusView.bounds));
 }

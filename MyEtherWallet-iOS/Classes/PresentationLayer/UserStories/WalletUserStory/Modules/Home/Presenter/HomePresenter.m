@@ -33,6 +33,7 @@ typedef NS_OPTIONS(short, HomeViewPresenterStatus) {
 @end
 
 @implementation HomePresenter {
+  BOOL _viewVisible;
   BOOL _tokensRefreshing;
 }
 
@@ -77,10 +78,12 @@ typedef NS_OPTIONS(short, HomeViewPresenterStatus) {
 }
 
 - (void) didTriggerViewWillAppear {
+  _viewVisible = YES;
   [self _refreshViewStatusAnimated:NO];
 }
 
 - (void) didTriggerViewDidDisappear {
+  _viewVisible = NO;
 }
 
 - (void) connectAction {
@@ -204,10 +207,12 @@ typedef NS_OPTIONS(short, HomeViewPresenterStatus) {
 
 - (void) internetConnectionIsReachable {
   self.connectionStatus |= HomeViewPresenterStatusInternetConnection;
+  [self _refreshViewStatusAnimated:_viewVisible];
 }
 
 - (void) internetConnectionIsUnreachable {
   self.connectionStatus &= ~HomeViewPresenterStatusInternetConnection;
+  [self _refreshViewStatusAnimated:_viewVisible];
 }
 
 #pragma mark - ConfirmationStoryModuleOutput

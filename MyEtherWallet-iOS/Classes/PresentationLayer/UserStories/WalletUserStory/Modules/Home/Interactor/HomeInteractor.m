@@ -240,7 +240,7 @@
 #pragma mark - ReachabilityServiceDelegate
 
 - (void)reachabilityStatusDidChanged:(BOOL)isReachable {
-  if (!isReachable) {
+  if (isReachable) {
     [self.output internetConnectionIsReachable];
   } else {
     [self.output internetConnectionIsUnreachable];

@@ -8,6 +8,7 @@
 
 @import UIKit;
 @import ViperMcFlurryX;
+@import libextobjc.EXTScope;
 
 #import "CleanLaunchRouter.h"
 #import "NavigationControllerFactory.h"
@@ -114,39 +115,45 @@ static NSInteger const kSplashPasswordLogoImageViewTag          = 1;
 
 - (void) _animateSplash:(UIViewController *)launchViewController parentView:(UIView *)parentView withCompletion:(void(^)(void))completion {
   UIImageView *logoImageView = (UIImageView *)[launchViewController.view viewWithTag:kSplashPasswordLogoImageViewTag];
-  UIViewPropertyAnimator *animator03 = [self.propertyAnimatorsFactory mewQuatroPropertyAnimatorWithDuration:@0.3];
+  UIViewPropertyAnimator *animator = [self.propertyAnimatorsFactory mewQuatroPropertyAnimatorWithDuration:@0.9];
   
   NSLayoutConstraint *widthConstraint = [logoImageView.widthAnchor constraintEqualToConstant:logoImageView.image.size.width];
   widthConstraint.active = YES;
   [launchViewController.view layoutIfNeeded];
   
-  [animator03 addAnimations:^{
-    widthConstraint.constant = 0.9 * logoImageView.image.size.width;
-    [launchViewController.view layoutIfNeeded];
-  }];
+  CGFloat firstPartAnimationDuration = 1.0/3.0;
   
-  UIViewPropertyAnimator *animator06 = [self.propertyAnimatorsFactory mewQuatroPropertyAnimatorWithDuration:@0.6];
-  parentView.transform = CGAffineTransformMakeScale(1.1, 1.1);
-  [animator06 addAnimations:^{
-    launchViewController.view.alpha = 0.0;
-    parentView.transform = CGAffineTransformIdentity;
+  [animator addAnimations:^{
+    [UIView animateKeyframesWithDuration:0.0
+                                   delay:0.0
+                                 options:0
+                              animations:^{
+                                [UIView addKeyframeWithRelativeStartTime:0.0
+                                                        relativeDuration:firstPartAnimationDuration
+                                                              animations:^{
+                                                                parentView.transform = CGAffineTransformMakeScale(1.1, 1.1);
+                                                                widthConstraint.constant = 0.9 * logoImageView.image.size.width;
+                                                                [launchViewController.view layoutIfNeeded];
+                                                              }];
+                                [UIView addKeyframeWithRelativeStartTime:firstPartAnimationDuration
+                                                        relativeDuration:1.0 - firstPartAnimationDuration
+                                                              animations:^{
+                                                                parentView.transform = CGAffineTransformIdentity;
+                                                                launchViewController.view.alpha = 0.0;
+                                                                widthConstraint.constant = 16.0 * logoImageView.image.size.width;
+                                                                [launchViewController.view layoutIfNeeded];
+                                                              }];
+                              } completion:^(BOOL finished) {
+                                
+                              }];
+    
   }];
-  
-  [animator03 addCompletion:^(UIViewAnimatingPosition finalPosition) {
-    [animator06 addAnimations:^{
-      widthConstraint.constant = 16.0 * logoImageView.image.size.width;
-      [launchViewController.view layoutIfNeeded];
-    }];
-    [animator06 startAnimation];
-  }];
-  
-  [animator06 addCompletion:^(UIViewAnimatingPosition finalPosition) {
+  [animator addCompletion:^(UIViewAnimatingPosition finalPosition) {
     if (completion) {
       completion();
     }
   }];
-  
-  [animator03 startAnimation];
+  [animator startAnimation];
 }
 
 @end

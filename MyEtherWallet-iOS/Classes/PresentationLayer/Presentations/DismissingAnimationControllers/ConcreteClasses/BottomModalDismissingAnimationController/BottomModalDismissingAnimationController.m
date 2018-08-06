@@ -19,6 +19,9 @@
 - (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
   UIView *dismissedView = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey].view;
   UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+  UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+  [fromViewController beginAppearanceTransition:NO animated:[self transitionDuration:transitionContext] > 0.0];
+  [toViewController beginAppearanceTransition:YES animated:[self transitionDuration:transitionContext] > 0.0];
   
   UIView *containerView = [transitionContext containerView];
   UIView *dismissedViewSnapshot = [dismissedView snapshotViewAfterScreenUpdates:NO];
@@ -38,6 +41,8 @@
                    } completion:^(BOOL finished) {
                      [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
                      [toViewController setNeedsStatusBarAppearanceUpdate];
+                     [fromViewController endAppearanceTransition];
+                     [toViewController endAppearanceTransition];
                    }];
 }
 

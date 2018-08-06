@@ -129,7 +129,7 @@
 
 - (void) showScreenshotAlert {
   UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Oops! It looks like you've just taken a screenshot.", @"Backup. Screenshot warning title")
-                                                                 message:NSLocalizedString(@"Please remember NOT to keep your passphrase anywhere digitally, otherwise you can loose all your funds.\nWe strongly suggest to delete the screenshot you've just taken and write down the passphrase using pen and paper.", @"Backup. Screenshot warning description")
+                                                                 message:NSLocalizedString(@"Please remember NOT to keep your passphrase anywhere digitally, otherwise you can lose all your funds.\nWe strongly suggest to delete the screenshot you've just taken and write down the passphrase using pen and paper.", @"Backup. Screenshot warning description")
                                                           preferredStyle:UIAlertControllerStyleAlert];
   [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Ok", @"Backup. Screenshot action button title")
                                             style:UIAlertActionStyleDefault

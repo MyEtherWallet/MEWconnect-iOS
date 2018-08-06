@@ -21,11 +21,19 @@
 #import "ConfirmationNavigationModuleInput.h"
 #import "ConfirmationStoryModuleOutput.h"
 
+typedef NS_OPTIONS(short, HomeViewPresenterStatus) {
+  HomeViewPresenterStatusUnknown              =   0 << 0,
+  HomeViewPresenterStatusInternetConnection   =   1 << 0,
+  HomeViewPresenterStatusMEWconnectConnection =   1 << 1,
+};
+
 @interface HomePresenter () <ConfirmationStoryModuleOutput>
 @property (nonatomic, weak) id <ConfirmationNavigationModuleInput> transactionModuleInput;
+@property (nonatomic) HomeViewPresenterStatus connectionStatus;
 @end
 
 @implementation HomePresenter {
+  BOOL _viewVisible;
   BOOL _tokensRefreshing;
 }
 
@@ -63,19 +71,19 @@
   AccountPlainObject *account = [self.interactor obtainAccount];
   [self.view updateWithAccount:account];
   
-  BOOL connected = [self.interactor isConnected];
-  [self.view updateWithConnectionStatus:connected animated:NO];
+  [self _refreshViewStatusAnimated:NO];
   if (_tokensRefreshing) {
     [self.view startAnimatingTokensRefreshing];
   }
 }
 
 - (void) didTriggerViewWillAppear {
-  BOOL connected = [self.interactor isConnected];
-  [self.view updateWithConnectionStatus:connected animated:NO];
+  _viewVisible = YES;
+  [self _refreshViewStatusAnimated:NO];
 }
 
 - (void) didTriggerViewDidDisappear {
+  _viewVisible = NO;
 }
 
 - (void) connectAction {
@@ -84,8 +92,7 @@
 
 - (void) disconnectAction {
   [self.interactor disconnect];
-  BOOL connected = [self.interactor isConnected];
-  [self.view updateWithConnectionStatus:connected animated:YES];
+  [self _refreshViewStatusAnimated:YES];
 }
 
 - (void) didProcessCacheTransaction:(CacheTransactionBatch *)transactionBatch {
@@ -169,7 +176,12 @@
 
 - (void) mewConnectionStatusChanged {
   BOOL connected = [self.interactor isConnected];
-  [self.view updateWithConnectionStatus:connected animated:YES];
+  if (connected) {
+    self.connectionStatus |= HomeViewPresenterStatusMEWconnectConnection;
+  } else {
+    self.connectionStatus &= ~HomeViewPresenterStatusMEWconnectConnection;
+  }
+  [self _refreshViewStatusAnimated:YES];
   if (!connected) {
     [self.transactionModuleInput closeWithCompletion:nil];
   }
@@ -185,12 +197,22 @@
   [self.view stopAnimatingTokensRefreshing];
 }
 
-- (void)networkDidChangedWithoutAccount {
+- (void) networkDidChangedWithoutAccount {
   [self.router unwindToStart];
 }
 
-- (void)networkDidChangedWithAccount {
+- (void) networkDidChangedWithAccount {
   [self configureAfterChangingNetwork];
+}
+
+- (void) internetConnectionIsReachable {
+  self.connectionStatus |= HomeViewPresenterStatusInternetConnection;
+  [self _refreshViewStatusAnimated:_viewVisible];
+}
+
+- (void) internetConnectionIsUnreachable {
+  self.connectionStatus &= ~HomeViewPresenterStatusInternetConnection;
+  [self _refreshViewStatusAnimated:_viewVisible];
 }
 
 #pragma mark - ConfirmationStoryModuleOutput
@@ -201,6 +223,14 @@
 
 - (void) transactionDidRejected {
   [self.transactionModuleInput closeWithCompletion:nil];
+}
+
+#pragma mark - Private
+
+- (void) _refreshViewStatusAnimated:(BOOL)animated {
+  [self.view updateStatusWithInternetConnection:(self.connectionStatus & HomeViewPresenterStatusInternetConnection) == HomeViewPresenterStatusInternetConnection
+                           mewConnectConnection:(self.connectionStatus & HomeViewPresenterStatusMEWconnectConnection) == HomeViewPresenterStatusMEWconnectConnection
+                                       animated:animated];
 }
 
 @end

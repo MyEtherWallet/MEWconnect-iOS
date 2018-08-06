@@ -554,9 +554,9 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
       
       NSString *title = nil;
       if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
-        title = NSLocalizedString(@"If you loose this device you\nloose your account forever.", @"Card view: backup warning description. 4.0 Inches");
+        title = NSLocalizedString(@"If you lose this device you\nlose your account forever.", @"Card view: backup warning description. 4.0 Inches");
       } else {
-        title = NSLocalizedString(@"If you loose this device you will loose\nyour account and all your funds forever.", @"Card view: backup warning description");
+        title = NSLocalizedString(@"If you lose this device you will lose\nyour account and all your funds forever.", @"Card view: backup warning description");
       }
       backupWarningDesciption.attributedText = [[NSAttributedString alloc] initWithString:title attributes:attributes];
     }

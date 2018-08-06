@@ -113,6 +113,8 @@
 		52A492997EC1ED6D0217C3EC /* SettingsInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8F84C1AD26C649330ADDB3 /* SettingsInteractor.m */; };
 		538EECD03A2A38FF1F86B050 /* BackupWordsAssemblyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E3199023221C9E8C03338E /* BackupWordsAssemblyTests.m */; };
 		55E9071D8FEDC76B564FE729 /* ForgotPasswordRouterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BBC4954EDAA93206F8A803 /* ForgotPasswordRouterTests.m */; };
+		5606B34B210FDAC500576C28 /* ReachabilityServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5606B34A210FDAC500576C28 /* ReachabilityServiceImplementation.m */; };
+		5606B34E210FE2A700576C28 /* ReachabilityServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5606B34A210FDAC500576C28 /* ReachabilityServiceImplementation.m */; };
 		560A866520E6539F00046B53 /* KeychainServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 560A866420E6539F00046B53 /* KeychainServiceImplementation.m */; };
 		560A866F20E65C5F00046B53 /* CoreDataConfiguratorImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 560A866E20E65C5F00046B53 /* CoreDataConfiguratorImplementation.m */; };
 		560A867520E681E700046B53 /* KeychainItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 560A867420E681E700046B53 /* KeychainItemModel.m */; };
@@ -1112,6 +1114,10 @@
 		53C68AE5401EEBB54AC40EEC /* ConfirmationNavigationAssembly.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ConfirmationNavigationAssembly.m; sourceTree = "<group>"; };
 		54A82E0249F20A62A3D82E3B /* BackupWordsModuleInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BackupWordsModuleInput.h; sourceTree = "<group>"; };
 		554943B399B4156055E2AE24 /* BuyEtherNavigationRouterInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BuyEtherNavigationRouterInput.h; sourceTree = "<group>"; };
+		5606B349210FDAC500576C28 /* ReachabilityServiceImplementation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReachabilityServiceImplementation.h; sourceTree = "<group>"; };
+		5606B34A210FDAC500576C28 /* ReachabilityServiceImplementation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReachabilityServiceImplementation.m; sourceTree = "<group>"; };
+		5606B34C210FDAD200576C28 /* ReachabilityServiceDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReachabilityServiceDelegate.h; sourceTree = "<group>"; };
+		5606B34D210FE22700576C28 /* ReachabilityService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReachabilityService.h; sourceTree = "<group>"; };
 		560A866320E6539F00046B53 /* KeychainServiceImplementation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainServiceImplementation.h; sourceTree = "<group>"; };
 		560A866420E6539F00046B53 /* KeychainServiceImplementation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeychainServiceImplementation.m; sourceTree = "<group>"; };
 		560A866620E653A700046B53 /* KeychainService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainService.h; sourceTree = "<group>"; };
@@ -3009,6 +3015,17 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
+		5606B348210FDA9900576C28 /* ReachabilityService */ = {
+			isa = PBXGroup;
+			children = (
+				5606B34D210FE22700576C28 /* ReachabilityService.h */,
+				5606B34C210FDAD200576C28 /* ReachabilityServiceDelegate.h */,
+				5606B349210FDAC500576C28 /* ReachabilityServiceImplementation.h */,
+				5606B34A210FDAC500576C28 /* ReachabilityServiceImplementation.m */,
+			);
+			path = ReachabilityService;
+			sourceTree = "<group>";
+		};
 		560A866220E6539200046B53 /* KeychainService */ = {
 			isa = PBXGroup;
 			children = (
@@ -4666,6 +4683,7 @@
 		56AC9435208F76DF00E5BC2C /* ConcreteServices */ = {
 			isa = PBXGroup;
 			children = (
+				5606B348210FDA9900576C28 /* ReachabilityService */,
 				56E14BDA20EBC82C00C41F83 /* SimplexService */,
 				56E14BB620E979AA00C41F83 /* FiatPricesService */,
 				560A866220E6539200046B53 /* KeychainService */,
@@ -8794,8 +8812,6 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MEWconnect-MyEtherWallet-iOS/Pods-MEWconnect-MyEtherWallet-iOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Alamofire-Synchronous/Alamofire_Synchronous.framework",
 				"${BUILT_PRODUCTS_DIR}/BEMCheckBox/BEMCheckBox.framework",
 				"${BUILT_PRODUCTS_DIR}/BigInt/BigInt.framework",
 				"${BUILT_PRODUCTS_DIR}/BlockiesSwift/BlockiesSwift.framework",
@@ -8809,6 +8825,7 @@
 				"${BUILT_PRODUCTS_DIR}/M13Checkbox/M13Checkbox.framework",
 				"${BUILT_PRODUCTS_DIR}/MagicalRecord/MagicalRecord.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimbus/Nimbus.framework",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/RamblerAppDelegateProxy/RamblerAppDelegateProxy.framework",
 				"${BUILT_PRODUCTS_DIR}/RamblerTyphoonUtils-AssemblyCollector/RamblerTyphoonUtils.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
@@ -8834,8 +8851,6 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire_Synchronous.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BEMCheckBox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BigInt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BlockiesSwift.framework",
@@ -8849,6 +8864,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/M13Checkbox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MagicalRecord.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimbus.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RamblerAppDelegateProxy.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RamblerTyphoonUtils.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
@@ -8920,8 +8936,6 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MEWconnect-MyEtherWallet-iOS-Beta/Pods-MEWconnect-MyEtherWallet-iOS-Beta-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Alamofire-Synchronous/Alamofire_Synchronous.framework",
 				"${BUILT_PRODUCTS_DIR}/BEMCheckBox/BEMCheckBox.framework",
 				"${BUILT_PRODUCTS_DIR}/BigInt/BigInt.framework",
 				"${BUILT_PRODUCTS_DIR}/BlockiesSwift/BlockiesSwift.framework",
@@ -8935,6 +8949,7 @@
 				"${BUILT_PRODUCTS_DIR}/M13Checkbox/M13Checkbox.framework",
 				"${BUILT_PRODUCTS_DIR}/MagicalRecord/MagicalRecord.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimbus/Nimbus.framework",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/RamblerAppDelegateProxy/RamblerAppDelegateProxy.framework",
 				"${BUILT_PRODUCTS_DIR}/RamblerTyphoonUtils-AssemblyCollector/RamblerTyphoonUtils.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
@@ -8960,8 +8975,6 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire_Synchronous.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BEMCheckBox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BigInt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BlockiesSwift.framework",
@@ -8975,6 +8988,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/M13Checkbox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MagicalRecord.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimbus.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RamblerAppDelegateProxy.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RamblerTyphoonUtils.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
@@ -9023,8 +9037,6 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MEWconnect-MyEtherWallet-iOS-MyEtherWallet-iOSTests/Pods-MEWconnect-MyEtherWallet-iOS-MyEtherWallet-iOSTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Alamofire-Synchronous/Alamofire_Synchronous.framework",
 				"${BUILT_PRODUCTS_DIR}/BEMCheckBox/BEMCheckBox.framework",
 				"${BUILT_PRODUCTS_DIR}/BigInt/BigInt.framework",
 				"${BUILT_PRODUCTS_DIR}/BlockiesSwift/BlockiesSwift.framework",
@@ -9038,6 +9050,7 @@
 				"${BUILT_PRODUCTS_DIR}/M13Checkbox/M13Checkbox.framework",
 				"${BUILT_PRODUCTS_DIR}/MagicalRecord/MagicalRecord.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimbus/Nimbus.framework",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/RamblerAppDelegateProxy/RamblerAppDelegateProxy.framework",
 				"${BUILT_PRODUCTS_DIR}/RamblerTyphoonUtils-AssemblyCollector-AssemblyTesting/RamblerTyphoonUtils.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
@@ -9064,8 +9077,6 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire_Synchronous.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BEMCheckBox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BigInt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BlockiesSwift.framework",
@@ -9079,6 +9090,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/M13Checkbox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MagicalRecord.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimbus.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RamblerAppDelegateProxy.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RamblerTyphoonUtils.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
@@ -9218,6 +9230,7 @@
 				56E3E53F21016DB60014152D /* MEWWalletImplementation.m in Sources */,
 				56E3E54021016DB60014152D /* RequestConfiguratorsAssembly.m in Sources */,
 				56E3E54121016DB60014152D /* MEWcryptoImplementation.m in Sources */,
+				5606B34E210FE2A700576C28 /* ReachabilityServiceImplementation.m in Sources */,
 				56E3E54221016DB60014152D /* KeychainHistoryItemModel.m in Sources */,
 				56E3E54321016DB60014152D /* NewWalletRouter.m in Sources */,
 				566D155F2107F9DE0020E4F3 /* AboutAssembly.m in Sources */,
@@ -9572,6 +9585,7 @@
 				569998502095363D00D45153 /* MEWWalletImplementation.m in Sources */,
 				56FB396E20B22115007776C8 /* RequestConfiguratorsAssembly.m in Sources */,
 				56AE727F20D706610047D51F /* MEWcryptoImplementation.m in Sources */,
+				5606B34B210FDAC500576C28 /* ReachabilityServiceImplementation.m in Sources */,
 				56428A7C20F9345E0049E8BC /* KeychainHistoryItemModel.m in Sources */,
 				C68E10A4E1B3A9BF240DD0D5 /* NewWalletRouter.m in Sources */,
 				4B880994DD0B5F9B4F44203F /* RestoreWalletAssembly.m in Sources */,
@@ -10103,7 +10117,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MyEtherWallet-iOS/MyEtherWallet-iOS-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = AppStore;
 		};
@@ -10173,7 +10187,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "MyEtherWallet-iOS/MyEtherWallet-iOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -10201,7 +10215,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MyEtherWallet-iOS/MyEtherWallet-iOS-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -10229,7 +10243,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MyEtherWallet-iOS/MyEtherWallet-iOS-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = AppStore;
 		};
@@ -10391,7 +10405,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "MyEtherWallet-iOS/MyEtherWallet-iOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -10419,7 +10433,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MyEtherWallet-iOS/MyEtherWallet-iOS-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

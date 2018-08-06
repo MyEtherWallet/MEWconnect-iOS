@@ -23,6 +23,7 @@
 #import "HomeDataDisplayManager.h"
 #import "HomeCellObjectBuilder.h"
 #import "HomeTableViewAnimator.h"
+#import "PropertyAnimatorsFactory.h"
 
 #import "CacheTracker.h"
 
@@ -39,6 +40,8 @@
                                                 with:[self dataDisplayManagerHome]];
                           [definition injectProperty:@selector(tableViewAnimator)
                                                 with:[self tableViewAnimatorHome]];
+                          [definition injectProperty:@selector(animator)
+                                                with:[self.propertyAnimatorsFactory mewQuatroPropertyAnimatorWithDuration:@0.3]];
                         }];
 }
 
@@ -61,6 +64,8 @@
                                                 with:[self.serviceComponents blockchainNetworkService]];
                           [definition injectProperty:@selector(ponsomizer)
                                                 with:[self.ponsomizerAssembly ponsomizer]];
+                          [definition injectProperty:@selector(reachabilityService)
+                                                with:[self.serviceComponents reachabilityServiceWithDelegate:[self interactorHome]]];
                         }];
 }
 

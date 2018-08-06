@@ -80,7 +80,7 @@
 }
 
 - (void) presentResetConfirmation {
-  UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"⚠️\nWarning: you can loose your account and funds forever", @"Forgot password screen. Reset wallet alert")
+  UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"⚠️\nWarning: you can lose your account and funds forever", @"Forgot password screen. Reset wallet alert")
                                                                  message:NSLocalizedString(@"Don't reset if you didn't make a backup, as there will be no way to restore your account after that. Resetting wallet will remove all keys saved in the local vault and bring you back to the app's start screen.", @"Forgot password screen. Reset wallet alert")
                                                           preferredStyle:UIAlertControllerStyleAlert];
   [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"Forgot password screen. Reset wallet alert") style:UIAlertActionStyleCancel handler:nil]];

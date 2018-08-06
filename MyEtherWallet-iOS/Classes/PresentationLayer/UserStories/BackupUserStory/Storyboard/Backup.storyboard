@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="24K-H9-RgB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.3.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="24K-H9-RgB">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -32,7 +31,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V1f-Ht-c84">
                                 <rect key="frame" x="32" y="279.5" width="311" height="142.5"/>
                                 <string key="text">Your Ethereum address and private key are stored in a local secure vault on this device.
-But, what happens if you loose this device? Well… unless you back up your wallet, you will loose all your funds forever.</string>
+But, what happens if you lose this device? Well… unless you back up your wallet, you will lose all your funds forever.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -111,7 +110,7 @@ But, what happens if you loose this device? Well… unless you back up your wall
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tls-xM-R26">
-                                <rect key="frame" x="32" y="345" width="311" height="81.5"/>
+                                <rect key="frame" x="32" y="344.5" width="311" height="81.5"/>
                                 <string key="text">If your device gets lost or stolen, you can restore your wallet using your recovery phrase.
 Get pen and paper before you start.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -504,7 +503,7 @@ The order of words is important too.</string>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kmF-gZ-enj">
-                                <rect key="frame" x="32" y="297" width="311" height="122"/>
+                                <rect key="frame" x="32" y="296.5" width="311" height="122"/>
                                 <string key="text">Protect your recovery phrase like a million dollars your account might once be worth.
 In a de-centralized world your safety and security is your own responsibility. 
 Stay safe out there!</string>

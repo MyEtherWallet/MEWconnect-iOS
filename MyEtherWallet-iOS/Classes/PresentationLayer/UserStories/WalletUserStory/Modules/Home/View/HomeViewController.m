@@ -32,7 +32,7 @@
 
 #import "NSNumberFormatter+Ethereum.h"
 
-static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
+static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
 
 @interface HomeViewController () <UIScrollViewDelegate, GSKStretchyHeaderViewStretchDelegate, HomeStretchyHeaderDelegate, CardViewDelegate, UISearchBarDelegate>
 @property (nonatomic, weak) IBOutlet UIButton *connectButton;
@@ -41,7 +41,9 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
 @property (nonatomic, strong) IBOutlet UIView *tableHeaderView;
 @property (nonatomic) NSUInteger numberOfTokens;
 @property (nonatomic, weak) IBOutlet UIImageView *statusBackgroundImageView;
-@property (nonatomic, strong) IBOutlet UIView *statusView;
+@property (nonatomic, weak) IBOutlet UIView *statusView;
+@property (nonatomic, weak) IBOutlet UILabel *statusLabel;
+@property (nonatomic, weak) IBOutlet UIButton *disconnectButton;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *statusBottomContraint;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *connectButtonBottomConstraint;
 @end
@@ -216,44 +218,6 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
   }
 }
 
-- (void) updateWithConnectionStatus:(BOOL)connected animated:(BOOL)animated {
-  _connected = connected;
-  if (connected) {
-    self.statusBottomContraint.constant = -(CGRectGetHeight(self.statusView.bounds));
-    [self.view layoutIfNeeded];
-    self.connectButtonBottomConstraint.constant = -(CGRectGetHeight(self.connectButton.frame) + kHomeViewControllerBottomDefaultOffset + self.view.layoutMargins.bottom);
-    self.statusBottomContraint.constant = 0.0;
-    self.statusView.hidden = NO;
-    if (animated) {
-      [UIView animateWithDuration:0.3
-                       animations:^{
-                         [self.view layoutIfNeeded];
-                       } completion:^(BOOL finished) {
-                         self.connectButton.hidden = YES;
-                       }];
-    } else {
-      [self.view layoutIfNeeded];
-      self.connectButton.hidden = YES;
-    }
-  } else {
-    self.connectButtonBottomConstraint.constant = kHomeViewControllerBottomDefaultOffset;
-    self.statusBottomContraint.constant = -(CGRectGetHeight(self.statusView.bounds));
-    self.connectButton.hidden = NO;
-    if (animated) {
-      [UIView animateWithDuration:0.3
-                       animations:^{
-                         [self.view layoutIfNeeded];
-                       } completion:^(BOOL finished) {
-                         self.statusView.hidden = YES;
-                       }];
-    } else {
-      [self.view layoutIfNeeded];
-      self.statusView.hidden = YES;
-    }
-  }
-  [self _updateTableViewInsets];
-}
-
 - (void) presentShareWithItems:(NSArray *)items {
   UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:items applicationActivities:nil];
   [self presentViewController:activityController animated:YES completion:nil];
@@ -268,15 +232,148 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
 }
 
 - (void)presentNetworkSelection {
-  UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Network?", @"Wallet. Network selection") message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-  [alert addAction:[UIAlertAction actionWithTitle:@"Mainnet" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+  UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Select network", @"Wallet. Network selection") message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+  [alert addAction:[UIAlertAction actionWithTitle:@"Main Ethereum network" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
     [self.output mainnetAction];
   }]];
-  [alert addAction:[UIAlertAction actionWithTitle:@"Ropsten" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+  [alert addAction:[UIAlertAction actionWithTitle:@"Ropsten Test network" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
     [self.output ropstenAction];
   }]];
   [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"Wallet. Network selection. Cancel") style:UIAlertActionStyleCancel handler:nil]];
   [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)updateStatusWithInternetConnection:(BOOL)internetConnection mewConnectConnection:(BOOL)mewConnectConnection animated:(BOOL)animated {
+  _connected = mewConnectConnection;
+  @weakify(self);
+  if (internetConnection) {
+    if (mewConnectConnection) {
+      self.connectButtonBottomConstraint.constant = -(CGRectGetHeight(self.connectButton.frame) + kHomeViewControllerBottomDefaultOffset + self.view.layoutMargins.bottom);
+      UIImage *backgroundImage = [[UIImage imageWithColor:[UIColor mainApplicationColor]
+                                                     size:CGSizeMake(20.0, 28.0)
+                                             cornerRadius:8.0
+                                                  corners:UIRectCornerTopLeft|UIRectCornerTopRight]
+                                  resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 10.0, 0.0, 10.0)];
+      self.statusView.hidden = NO;
+      self.statusView.alpha = 1.0;
+      if (animated) {
+        if (self.disconnectButton.hidden) {
+          self.disconnectButton.hidden = NO;
+          self.disconnectButton.alpha = 0.0;
+          [self.animator addAnimations:^{
+            @strongify(self);
+            self.disconnectButton.alpha = 1.0;
+          }];
+        }
+        [UIView transitionWithView:self.statusBackgroundImageView
+                          duration:self.animator.duration
+                           options:UIViewAnimationOptionTransitionCrossDissolve|UIViewAnimationOptionBeginFromCurrentState
+                        animations:^{
+                          [self.statusBackgroundImageView setImage:backgroundImage];
+                        } completion:nil];
+        [UIView transitionWithView:self.statusLabel
+                          duration:self.animator.duration
+                           options:UIViewAnimationOptionTransitionCrossDissolve|UIViewAnimationOptionBeginFromCurrentState
+                        animations:^{
+                          self.statusLabel.text = NSLocalizedString(@"Connected to MyEtherWallet", @"Wallet. MEWconnect connected status");
+                        } completion:nil];
+      } else {
+        [self.statusBackgroundImageView setImage:backgroundImage];
+        self.statusLabel.text = NSLocalizedString(@"Connected to MyEtherWallet", @"Wallet. MEWconnect connected status");
+        self.disconnectButton.hidden = NO;
+        self.disconnectButton.alpha = 1.0;
+      }
+      self.statusBottomContraint.constant = 0.0;
+    } else {
+      self.connectButtonBottomConstraint.constant = kHomeViewControllerBottomDefaultOffset;
+      if (animated) {
+        self.statusView.alpha = 1.0;
+        [self.animator addCompletion:^(UIViewAnimatingPosition finalPosition) {
+          @strongify(self);
+          self.statusView.alpha = 0.0;
+          self.statusView.hidden = YES;
+        }];
+      } else {
+        self.statusView.hidden = YES;
+      }
+      
+      self.statusBottomContraint.constant = -(CGRectGetHeight(self.statusView.bounds));
+    }
+  } else {
+    UIImage *backgroundImage = [[UIImage imageWithColor:[UIColor colorWithRGB:0xB6B9C1]
+                                                   size:CGSizeMake(20.0, 28.0)
+                                           cornerRadius:8.0
+                                                corners:UIRectCornerTopLeft|UIRectCornerTopRight]
+                                resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 10.0, 0.0, 10.0)];
+    if (animated) {
+      [UIView transitionWithView:self.statusBackgroundImageView
+                        duration:self.animator.duration
+                         options:UIViewAnimationOptionTransitionCrossDissolve|UIViewAnimationOptionBeginFromCurrentState
+                      animations:^{
+                        [self.statusBackgroundImageView setImage:backgroundImage];
+                      } completion:nil];
+    } else {
+      [self.statusBackgroundImageView setImage:backgroundImage];
+    }
+    
+    self.statusView.hidden = NO;
+    self.statusView.alpha = 1.0;
+    self.statusBottomContraint.constant = 0.0;
+    if (animated) {
+      [UIView transitionWithView:self.statusLabel
+                        duration:self.animator.duration
+                         options:UIViewAnimationOptionTransitionCrossDissolve|UIViewAnimationOptionBeginFromCurrentState
+                      animations:^{
+                        self.statusLabel.text = NSLocalizedString(@"No internet connection", @"Wallet. No internet connection status");
+                      } completion:nil];
+      [self.animator addAnimations:^{
+        @strongify(self);
+        self.disconnectButton.alpha = 0.0;
+      }];
+      [self.animator addCompletion:^(UIViewAnimatingPosition finalPosition) {
+        @strongify(self);
+        self.disconnectButton.hidden = YES;
+        self.disconnectButton.alpha = 1.0;
+      }];
+    } else {
+      self.statusLabel.text = NSLocalizedString(@"No internet connection", @"Wallet. No internet connection status");
+      self.disconnectButton.hidden = YES;
+    }
+    if (mewConnectConnection) {
+      self.connectButtonBottomConstraint.constant = -(CGRectGetHeight(self.connectButton.frame) + kHomeViewControllerBottomDefaultOffset + self.view.layoutMargins.bottom);
+    } else {
+      self.connectButtonBottomConstraint.constant = kHomeViewControllerBottomDefaultOffset;
+    }
+  }
+  if (animated) {
+    [self.animator addAnimations:^{
+      @strongify(self);
+      [self.view layoutIfNeeded];
+    }];
+    [self.animator addCompletion:^(UIViewAnimatingPosition finalPosition) {
+      @strongify(self);
+      [self _updateTableViewInsets];
+    }];
+    [self.animator startAnimation];
+  } else {
+    [self.view layoutIfNeeded];
+    [self _updateTableViewInsets];
+  }
+}
+
+- (void) showInternetConnection {
+  self.statusBottomContraint.constant = -(CGRectGetHeight(self.statusView.bounds));
+}
+
+- (void) showNoInternetConnection {
+  self.statusView.hidden = NO;
+  UIImage *disconnectBackgroundImage = [[UIImage imageWithColor:[UIColor colorWithRGB:0xB6B9C1]
+                                                           size:CGSizeMake(20.0, 28.0)
+                                                   cornerRadius:8.0
+                                                        corners:UIRectCornerTopLeft|UIRectCornerTopRight]
+                                        resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 10.0, 0.0, 10.0)];
+  [self.statusBackgroundImageView setImage:disconnectBackgroundImage];
+  self.statusBottomContraint.constant = 0.0;
 }
 
 #pragma mark - IBActions
@@ -305,22 +402,22 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
   [self.output networkAction];
 }
 
-- (IBAction)unwindToHome:(UIStoryboardSegue *)sender {}
+- (IBAction) unwindToHome:(UIStoryboardSegue *)sender {}
 
 #pragma mark - GSKStretchyHeaderViewStretchDelegate
 
-- (void)stretchyHeaderView:(GSKStretchyHeaderView *)headerView didChangeStretchFactor:(CGFloat)stretchFactor {
+- (void) stretchyHeaderView:(GSKStretchyHeaderView *)headerView didChangeStretchFactor:(CGFloat)stretchFactor {
 }
 
 #pragma mark - HomeStretchyHeaderDelegate
 
-- (void)homeStretchyHeaderRequirinUpdateStatusBarStyle:(HomeStretchyHeader *)strethyHeader {
+- (void) homeStretchyHeaderRequirinUpdateStatusBarStyle:(HomeStretchyHeader *)strethyHeader {
   [UIView animateWithDuration:kHomeStretchyHeaderFadeDuration animations:^{
     [self setNeedsStatusBarAppearanceUpdate];
   }];
 }
 
-- (void)homeStretchyHeaderViewDidChangeBackgroundAlpha:(CGFloat)alpha {
+- (void) homeStretchyHeaderViewDidChangeBackgroundAlpha:(CGFloat)alpha {
   self.tableView.backgroundView.alpha = alpha;
 }
 
@@ -401,8 +498,8 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 16.0;
     insets = self.tableView.contentInset;
   }
   CGFloat statusHeight = _connected ?
-      CGRectGetHeight(self.statusView.frame) :
-      self.numberOfTokens > 0 ? CGRectGetHeight(self.connectButton.frame) + self.connectButtonBottomConstraint.constant : 0.0;
+  CGRectGetHeight(self.statusView.frame) :
+  self.numberOfTokens > 0 ? CGRectGetHeight(self.connectButton.frame) + self.connectButtonBottomConstraint.constant : 0.0;
   insets.bottom = MAX(_keyboardHeight, statusHeight);
   
   self.tableView.contentInset = insets;

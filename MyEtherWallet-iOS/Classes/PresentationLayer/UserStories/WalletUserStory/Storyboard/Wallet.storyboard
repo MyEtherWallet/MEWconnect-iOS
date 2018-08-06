@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ngK-1K-Lfe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.3.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ngK-1K-Lfe">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -43,7 +42,7 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PuM-3y-tUh">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="28"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDT-K4-ldC" customClass="StatusButton">
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDT-K4-ldC" customClass="StatusButton">
                                         <rect key="frame" x="255" y="0.0" width="120" height="28"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="28" id="cKd-Qc-VKb"/>
@@ -58,7 +57,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connected to MyEtherWallet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MzZ-p5-5TQ">
-                                        <rect key="frame" x="16" y="0.0" width="173.5" height="28"/>
+                                        <rect key="frame" x="16" y="0.0" width="223" height="28"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -69,6 +68,7 @@
                                     <constraint firstItem="PuM-3y-tUh" firstAttribute="leading" secondItem="MD1-Jg-pEi" secondAttribute="leading" id="2xf-GN-8Zl"/>
                                     <constraint firstItem="PuM-3y-tUh" firstAttribute="top" secondItem="MD1-Jg-pEi" secondAttribute="top" id="6SE-mU-4MH"/>
                                     <constraint firstItem="MzZ-p5-5TQ" firstAttribute="leading" secondItem="MD1-Jg-pEi" secondAttribute="leading" constant="16" id="GVQ-v0-xMb"/>
+                                    <constraint firstItem="cDT-K4-ldC" firstAttribute="leading" secondItem="MzZ-p5-5TQ" secondAttribute="trailing" constant="16" id="aS8-OV-aKs"/>
                                     <constraint firstItem="MzZ-p5-5TQ" firstAttribute="top" secondItem="cDT-K4-ldC" secondAttribute="top" id="eJG-oc-Iw3"/>
                                     <constraint firstAttribute="trailing" secondItem="PuM-3y-tUh" secondAttribute="trailing" id="fWd-vf-6uQ"/>
                                     <constraint firstItem="cDT-K4-ldC" firstAttribute="top" secondItem="PuM-3y-tUh" secondAttribute="top" id="fYx-Gp-cNG"/>
@@ -106,8 +106,10 @@
                     <connections>
                         <outlet property="connectButton" destination="2b3-2N-jAz" id="Lbz-ik-LZW"/>
                         <outlet property="connectButtonBottomConstraint" destination="aqo-d5-W3M" id="Z4I-Jl-GO1"/>
+                        <outlet property="disconnectButton" destination="cDT-K4-ldC" id="naq-ci-9vU"/>
                         <outlet property="statusBackgroundImageView" destination="PuM-3y-tUh" id="mNM-yd-3wZ"/>
                         <outlet property="statusBottomContraint" destination="zIH-Qz-bb0" id="1aV-35-Yie"/>
+                        <outlet property="statusLabel" destination="MzZ-p5-5TQ" id="JOL-xu-lx6"/>
                         <outlet property="statusView" destination="MD1-Jg-pEi" id="gCc-Cd-D5R"/>
                         <outlet property="tableHeaderView" destination="gZS-FJ-E9G" id="mk0-b6-hg0"/>
                         <outlet property="tableView" destination="6Ru-E1-NPD" id="46N-xq-rAz"/>
@@ -203,22 +205,22 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BZ6-kF-gE9">
-                                <rect key="frame" x="83.5" y="127" width="208.5" height="209"/>
+                                <rect key="frame" x="83" y="127" width="209" height="209"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scan_focus_tl" translatesAutoresizingMaskIntoConstraints="NO" id="dhP-fj-3b3">
-                                        <rect key="frame" x="0.5" y="0.0" width="38" height="38"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="38" height="38"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scan_focus_tl" translatesAutoresizingMaskIntoConstraints="NO" id="fAv-yz-KXL">
                                         <rect key="frame" x="171" y="0.0" width="38" height="38"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scan_focus_tl" translatesAutoresizingMaskIntoConstraints="NO" id="MVX-Us-Aeo">
-                                        <rect key="frame" x="0.5" y="171" width="38" height="38"/>
+                                        <rect key="frame" x="0.0" y="171" width="38" height="38"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scan_focus_tl" translatesAutoresizingMaskIntoConstraints="NO" id="Cw4-BC-mgS">
                                         <rect key="frame" x="171" y="171" width="38" height="38"/>
                                     </imageView>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Pe-dr-1i3" customClass="LinkedLabel">
-                                        <rect key="frame" x="0.5" y="86.5" width="208.5" height="36"/>
+                                        <rect key="frame" x="0.0" y="86.5" width="209" height="36"/>
                                         <string key="text"> Please enable camera access
 for MEWconnect in Settings</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -260,7 +262,7 @@ for MEWconnect in Settings</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J3R-dv-EsU">
-                                        <rect key="frame" x="65.5" y="24" width="243" height="99"/>
+                                        <rect key="frame" x="66" y="24" width="243" height="99"/>
                                         <subviews>
                                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="pg1-km-Qx3">
                                                 <rect key="frame" x="103" y="0.0" width="37" height="37"/>
@@ -292,7 +294,7 @@ with MyEtherWallet</string>
                                                 <rect key="frame" x="165.5" y="0.0" width="44" height="44"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Something went wrong" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKV-Fk-dcp">
-                                                <rect key="frame" x="79" y="66" width="218" height="24"/>
+                                                <rect key="frame" x="78.5" y="66" width="218" height="24"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -318,7 +320,7 @@ with MyEtherWallet</string>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RYd-fJ-xeM" customClass="BottomImageButton">
-                                        <rect key="frame" x="109" y="263" width="156" height="37"/>
+                                        <rect key="frame" x="109.5" y="263" width="156" height="37"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                         <inset key="contentEdgeInsets" minX="30" minY="0.0" maxX="30" maxY="19"/>

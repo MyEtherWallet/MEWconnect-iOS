@@ -19,4 +19,5 @@
 @property (nonatomic, strong) id<HomeViewOutput> output;
 @property (nonatomic, strong) HomeTableViewAnimator *tableViewAnimator;
 @property (nonatomic, strong) HomeDataDisplayManager *dataDisplayManager;
+@property (nonatomic, strong) UIViewPropertyAnimator *animator;
 @end

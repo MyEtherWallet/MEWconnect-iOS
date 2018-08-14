@@ -6,9 +6,10 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
-@import ViperMcFlurry;
+@import ViperMcFlurryX;
 
 #import "ServiceComponents.h"
+#import "PonsomizerAssembly.h"
 
 #import "NewWalletAssembly.h"
 
@@ -19,7 +20,7 @@
 
 @implementation NewWalletAssembly
 
-- (NewWalletViewController *)viewNewWallet {
+- (NewWalletViewController *) viewNewWallet {
   return [TyphoonDefinition withClass:[NewWalletViewController class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(output)
@@ -29,19 +30,23 @@
                         }];
 }
 
-- (NewWalletInteractor *)interactorNewWallet {
+- (NewWalletInteractor *) interactorNewWallet {
   return [TyphoonDefinition withClass:[NewWalletInteractor class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(output)
                                                 with:[self presenterNewWallet]];
-                          [definition injectProperty:@selector(walletService)
-                                                with:[self.serviceComponents MEWWallet]];
-                          [definition injectProperty:@selector(tokensService)
-                                                with:[self.serviceComponents tokensService]];
+                          [definition injectProperty:@selector(blockchainNetworkService)
+                                                with:[self.serviceComponents blockchainNetworkService]];
+                          [definition injectProperty:@selector(accountsService)
+                                                with:[self.serviceComponents accountsService]];
+                          [definition injectProperty:@selector(ponsomizer)
+                                                with:[self.ponsomizerAssembly ponsomizer]];
+                          [definition injectProperty:@selector(connectFacade)
+                                                with:[self.serviceComponents MEWConnectFacade]];
                         }];
 }
 
-- (NewWalletPresenter *)presenterNewWallet{
+- (NewWalletPresenter *) presenterNewWallet{
   return [TyphoonDefinition withClass:[NewWalletPresenter class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(view)
@@ -53,7 +58,7 @@
                         }];
 }
 
-- (NewWalletRouter *)routerNewWallet{
+- (NewWalletRouter *) routerNewWallet{
   return [TyphoonDefinition withClass:[NewWalletRouter class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(transitionHandler)

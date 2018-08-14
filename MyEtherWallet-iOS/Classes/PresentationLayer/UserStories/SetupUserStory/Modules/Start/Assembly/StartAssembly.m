@@ -6,9 +6,10 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
-@import ViperMcFlurry;
+@import ViperMcFlurryX;
 
 #import "ServiceComponents.h"
+#import "ModuleFactoriesAssembly.h"
 
 #import "StartAssembly.h"
 
@@ -54,6 +55,8 @@
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(transitionHandler)
                                                 with:[self viewStart]];
+                          [definition injectProperty:@selector(homeFactory)
+                                                with:[self.moduleFactoriesAssembly homeFactory]];
                         }];
 }
 

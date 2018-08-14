@@ -6,10 +6,11 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
-@import ViperMcFlurry;
+@import ViperMcFlurryX;
 
 #import "TransitioningDelegateFactory.h"
 #import "ServiceComponents.h"
+#import "PonsomizerAssembly.h"
 
 #import "SplashPasswordAssembly.h"
 
@@ -39,8 +40,10 @@
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(output)
                                                 with:[self presenterSplashPassword]];
-                          [definition injectProperty:@selector(walletService)
-                                                with:[self.serviceComponents MEWWallet]];
+                          [definition injectProperty:@selector(accountsService)
+                                                with:[self.serviceComponents accountsService]];
+                          [definition injectProperty:@selector(ponsomizer)
+                                                with:[self.ponsomizerAssembly ponsomizer]];
                         }];
 }
 

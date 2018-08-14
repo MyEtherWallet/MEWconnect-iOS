@@ -10,6 +10,6 @@
 
 @protocol StartRouterInput <NSObject>
 - (void) openCreateNewWallet;
-- (void) openWalletWithAddress:(NSString *)address animated:(BOOL)animated;
+- (void) openWalletAnimated:(BOOL)animated;
 - (void) openRestoreWallet;
 @end

@@ -8,9 +8,11 @@
 
 @import UIKit;
 
-@protocol MEWWallet;
+@protocol AccountsService;
+@protocol Ponsomizer;
 
 @interface BottomBackgroundedModalPresentationController : UIPresentationController
-@property (nonatomic, strong) id <MEWWallet> walletService;
+@property (nonatomic, strong) id <AccountsService> accountsService;
+@property (nonatomic, strong) id <Ponsomizer> ponsomizer;
 @property (nonatomic) CGFloat cornerRadius;
 @end

@@ -8,30 +8,26 @@
 
 #import "NSNumberFormatter+Ethereum.h"
 
-static NSNumberFormatter *ethereumFormatter = nil;
-
 @implementation NSNumberFormatter (Ethereum)
 
-+ (instancetype)ethereumFormatter {
-  return [self ethereumFormatterWithCurrencySymbol:@"ETH"];
++ (instancetype)ethereumFormatterWithNetwork:(BlockchainNetworkType)network {
+  return [self ethereumFormatterWithCurrencySymbol:NSStringCurrencySymbolFromBlockchainNetworkType(network)];
 }
 
 + (instancetype)ethereumFormatterWithCurrencySymbol:(NSString *)currencySymbol {
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    ethereumFormatter = [[NSNumberFormatter alloc] init];
-    ethereumFormatter.numberStyle = NSNumberFormatterCurrencyStyle;
-    ethereumFormatter.currencyDecimalSeparator = @".";
-    ethereumFormatter.currencySymbol = currencySymbol;
-    //Move currency symbol to the end
-    NSRange currencySymbolRange = [ethereumFormatter.positiveFormat rangeOfString:@"¤"];
-    if (currencySymbolRange.location == 0) {
-      NSMutableString *positiveFormat = [ethereumFormatter.positiveFormat mutableCopy];
-      [positiveFormat replaceCharactersInRange:currencySymbolRange withString:@""];
-      [positiveFormat appendString:@" ¤"];
-      ethereumFormatter.positiveFormat = [positiveFormat copy];
-    }
-  });
+  NSNumberFormatter *ethereumFormatter  = [[NSNumberFormatter alloc] init];
+  ethereumFormatter.numberStyle = NSNumberFormatterCurrencyStyle;
+  ethereumFormatter.currencyDecimalSeparator = @".";
+  ethereumFormatter.currencySymbol = currencySymbol;
+  //Move currency symbol to the end
+  NSRange currencySymbolRange = [ethereumFormatter.positiveFormat rangeOfString:@"¤"];
+  if (currencySymbolRange.location == 0) {
+    NSMutableString *positiveFormat = [ethereumFormatter.positiveFormat mutableCopy];
+    [positiveFormat replaceCharactersInRange:currencySymbolRange withString:@""];
+    [positiveFormat appendString:@" ¤"];
+    ethereumFormatter.positiveFormat = [positiveFormat copy];
+  }
+  ethereumFormatter.usesSignificantDigits = YES;
   ethereumFormatter.maximumFractionDigits = 18;
   ethereumFormatter.maximumIntegerDigits = 18;
   ethereumFormatter.maximumSignificantDigits = ethereumFormatter.maximumFractionDigits + ethereumFormatter.maximumIntegerDigits;

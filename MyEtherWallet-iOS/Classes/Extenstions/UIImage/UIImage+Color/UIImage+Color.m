@@ -10,7 +10,7 @@
 
 @implementation UIImage (Color)
 
-+ (UIImage *) imageWithColor:(UIColor *)color size:(CGSize)size cornerRadius:(CGFloat)cornerRadius corners:(UIRectCorner)corners borderColor:(UIColor *)borderColor borderSize:(CGFloat)borderSize
++ (UIImage *) imageWithColor:(UIColor *)color size:(CGSize)size cornerRadius:(CGFloat)cornerRadius corners:(UIRectCorner)corners borderColor:(UIColor *)borderColor borderSize:(CGFloat)borderSize insets:(UIEdgeInsets)insets
 {
   CGRect rect = CGRectZero;
   rect.size = size;
@@ -22,16 +22,17 @@
   if (stroke) {
     CGContextSetStrokeColorWithColor(context, [borderColor CGColor]);
   }
+  CGRect drawRect = CGRectMake(insets.left, insets.top, CGRectGetWidth(rect) - insets.left - insets.right, CGRectGetHeight(rect) - insets.top - insets.bottom);
   if (cornerRadius > 0.0) {
-    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:rect byRoundingCorners:corners cornerRadii:CGSizeMake(cornerRadius, cornerRadius)];
+    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:drawRect byRoundingCorners:corners cornerRadii:CGSizeMake(cornerRadius, cornerRadius)];
     [bezierPath fill];
     if (stroke) {
-      UIBezierPath *strokeBezierPath = [UIBezierPath bezierPathWithRoundedRect:CGRectInset(rect, borderSize / 2.0, borderSize / 2.0) byRoundingCorners:corners cornerRadii:CGSizeMake(cornerRadius, cornerRadius)];
+      UIBezierPath *strokeBezierPath = [UIBezierPath bezierPathWithRoundedRect:CGRectInset(drawRect, borderSize / 2.0, borderSize / 2.0) byRoundingCorners:corners cornerRadii:CGSizeMake(cornerRadius, cornerRadius)];
       strokeBezierPath.lineWidth = borderSize;
       [strokeBezierPath stroke];
     }
   } else {
-    CGContextFillRect(context, rect);
+    CGContextFillRect(context, drawRect);
   }
   
   UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
@@ -42,11 +43,16 @@
 }
 
 + (UIImage *) imageWithColor:(UIColor *)color size:(CGSize)size cornerRadius:(CGFloat)cornerRadius borderColor:(UIColor *)borderColor borderSize:(CGFloat)borderSize {
-  return [self imageWithColor:color size:size cornerRadius:cornerRadius corners:UIRectCornerAllCorners borderColor:borderColor borderSize:borderSize];
+  return [self imageWithColor:color size:size cornerRadius:cornerRadius corners:UIRectCornerAllCorners borderColor:borderColor borderSize:borderSize insets:UIEdgeInsetsZero];
 }
 
 + (UIImage *) imageWithColor:(UIColor *)color size:(CGSize)size cornerRadius:(CGFloat)cornerRadius corners:(UIRectCorner)corners {
-  return [self imageWithColor:color size:size cornerRadius:cornerRadius corners:corners borderColor:nil borderSize:0.0];
+  return [self imageWithColor:color size:size cornerRadius:cornerRadius corners:corners borderColor:nil borderSize:0.0 insets:UIEdgeInsetsZero];
+}
+
++ (UIImage *) imageWithColor:(UIColor *)color size:(CGSize)size cornerRadius:(CGFloat)cornerRadius insets:(UIEdgeInsets)insets
+{
+  return [self imageWithColor:color size:size cornerRadius:cornerRadius corners:UIRectCornerAllCorners borderColor:nil borderSize:0.0 insets:insets];
 }
 
 + (UIImage *) imageWithColor:(UIColor *)color size:(CGSize)size cornerRadius:(CGFloat)cornerRadius

@@ -10,9 +10,9 @@
 
 @protocol StartInteractorOutput;
 
-@protocol MEWWallet;
+@protocol MEWwallet;
 
 @interface StartInteractor : NSObject <StartInteractorInput>
 @property (nonatomic, weak) id<StartInteractorOutput> output;
-@property (nonatomic, strong) id <MEWWallet> walletService;
+@property (nonatomic, strong) id <MEWwallet> walletService;
 @end

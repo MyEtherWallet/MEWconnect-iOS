@@ -7,10 +7,10 @@
 //
 
 @import Foundation;
-@import ViperMcFlurry;
+@import ViperMcFlurryX;
+
+@class AccountPlainObject;
 
 @protocol BackupConfirmationModuleInput <RamblerViperModuleInput>
-
-- (void) configureModule;
-
+- (void) configureModuleWithMnemonics:(NSArray <NSString *> *)mnemonics account:(AccountPlainObject *)account;
 @end

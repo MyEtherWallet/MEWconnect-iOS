@@ -27,15 +27,19 @@
     if ([_password isEqualToString:password]) {
       [self.output correctPasswords];
     } else {
-      [self.output invalidPassword];
+      [self.output incorrectPassword:NO];
     }
   } else {
     [self.output emptyConfirmationPassword];
   }
 }
 
-- (void) confirmPassword {
-  [self.output prepareWalletWithPassword:_password words:_words];
+- (void) confirmPasswordWithPassword:(NSString *)password {
+  if ([password length] > 0 && [_password isEqualToString:password]) {
+    [self.output prepareWalletWithPassword:_password words:_words];
+  } else {
+    [self.output incorrectPassword:YES];
+  }
 }
 
 @end

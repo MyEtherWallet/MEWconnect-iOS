@@ -7,10 +7,10 @@
 //
 
 @import Foundation;
-@import ViperMcFlurry;
+@import ViperMcFlurryX;
+
+@class AccountPlainObject;
 
 @protocol ForgotPasswordModuleInput <RamblerViperModuleInput>
-
-- (void) configureModule;
-
+- (void) configureModuleWithAccount:(AccountPlainObject *)account;
 @end

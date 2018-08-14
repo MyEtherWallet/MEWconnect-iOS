@@ -10,6 +10,8 @@
 
 #import "ModuleAssemblyBase.h"
 
-@interface NewWalletAssembly : ModuleAssemblyBase <RamblerInitialAssembly>
+@class PonsomizerAssembly;
 
+@interface NewWalletAssembly : ModuleAssemblyBase <RamblerInitialAssembly>
+@property (nonatomic, strong, readonly) PonsomizerAssembly *ponsomizerAssembly;
 @end

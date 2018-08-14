@@ -9,10 +9,14 @@
 @import Foundation;
 
 @protocol SplashPasswordModuleOutput;
+@protocol ConfirmationStoryModuleOutput;
+@class AccountPlainObject;
+
+#import "ConfirmationNavigationModuleInput.h"
 
 @protocol TransactionRouterInput <NSObject>
-- (void) openConfirmedTransaction;
-- (void) openDeclinedTransaction;
+- (void) openConfirmedTransactionWithConfirmationDelegate:(id<ConfirmationStoryModuleOutput>)confirmationDelegate;
+- (void) openDeclinedTransactionWithConfirmationDelegate:(id<ConfirmationStoryModuleOutput>)confirmationDelegate;
 - (void) close;
-- (void) openSplashPasswordWithOutput:(id <SplashPasswordModuleOutput>)output;
+- (void) openSplashPasswordWithAccount:(AccountPlainObject *)account moduleOutput:(id <SplashPasswordModuleOutput>)output;
 @end

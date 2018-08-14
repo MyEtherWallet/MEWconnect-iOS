@@ -29,7 +29,6 @@
 @property (nonatomic, strong) id<ResponseValidatorsFactory> responseValidatorsFactory;
 @property (nonatomic, strong) id<ResponseMappersFactory> responseMappersFactory;
 @property (nonatomic, strong, readonly) OperationChainer *chainer;
-@property (nonatomic, strong) NSDateFormatter *lastModifiedDateFormatter;
 
 - (instancetype) initWithOperationChainer:(OperationChainer *)chainer;
 - (CompoundOperationBase *) buildCompoundOperationWithConfig:(CompoundOperationBuilderConfig *)config;

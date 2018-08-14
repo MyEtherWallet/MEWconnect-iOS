@@ -10,14 +10,18 @@
 
 @class CacheTransactionBatch;
 
+@class AccountPlainObject;
 @class TokenPlainObject;
 
 @protocol HomeViewInput <NSObject>
-- (void) setupInitialStateWithNumberOfTokens:(NSUInteger)tokensCount;
-- (void) updateWithAddress:(NSString *)address;
+- (void) setupInitialStateWithNumberOfTokens:(NSUInteger)tokensCount totalPrice:(NSDecimalNumber *)totalPrice;
+- (void) updateWithAccount:(AccountPlainObject *)account;
+- (void) updateEthereumBalanceWithAccount:(AccountPlainObject *)account;
 - (void) updateWithTransactionBatch:(CacheTransactionBatch *)transactionBatch;
-- (void) updateBackupStatus:(BOOL)backedUp;
-- (void) updateWithTokensCount:(NSUInteger)tokensCount;
-- (void) updateWithConnectionStatus:(BOOL)connected animated:(BOOL)animated;
-- (void) updateEthereumBalance:(TokenPlainObject *)ethereum;
+- (void) updateWithTokensCount:(NSUInteger)tokensCount withTotalPrice:(NSDecimalNumber *)totalPrice;
+- (void) presentShareWithItems:(NSArray *)items;
+- (void) startAnimatingTokensRefreshing;
+- (void) stopAnimatingTokensRefreshing;
+- (void) presentNetworkSelection;
+- (void) updateStatusWithInternetConnection:(BOOL)internetConnection mewConnectConnection:(BOOL)mewConnectConnection animated:(BOOL)animated;
 @end

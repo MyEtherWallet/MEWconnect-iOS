@@ -8,8 +8,6 @@
 
 @import Foundation;
 
-FOUNDATION_EXPORT NSString *const MEWConnectServiceSignallingServerURL;
-
 /* MEWConnect config keys */
 
 FOUNDATION_EXPORT NSString *const kMEWConnectSocketConfigLog;

@@ -10,8 +10,17 @@
 #import "UIColor+Application.h"
 #import "UIImage+Color.h"
 #import "UIColor+Hex.h"
+#import "UIView+LockAlpha.h"
+#import "UIScreen+ScreenSizeType.h"
 
-@implementation FlatButton
+@interface FlatButton ()
+@property (nonatomic, weak) UIActivityIndicatorView *activityIndicatorView;
+@end
+
+@implementation FlatButton {
+  NSAttributedString *_normalTitle;
+  NSAttributedString *_disabledTitle;
+}
 
 #if TARGET_INTERFACE_BUILDER
 - (void)setTheme:(short)theme {
@@ -48,35 +57,125 @@
         break;
       }
     }
+    CGFloat size = 56.0;
+    if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40 && self.compact) {
+      size = 44.0;
+    }
+    CGFloat halfSize = size / 2.0;
     UIImage *background = [[UIImage imageWithColor:backgroundColor
-                                              size:CGSizeMake(56.0, 56.0)
-                                      cornerRadius:10.0] resizableImageWithCapInsets:UIEdgeInsetsMake(28.0, 28.0, 28.0, 28.0)];
-    UIImage *disabledBackground = [[UIImage imageWithColor:[UIColor colorWithRGB:0xF0F1F2]
-                                                      size:CGSizeMake(56.0, 56.0)
-                                              cornerRadius:10.0] resizableImageWithCapInsets:UIEdgeInsetsMake(28.0, 28.0, 28.0, 28.0)];
+                                              size:CGSizeMake(size, size)
+                                      cornerRadius:10.0] resizableImageWithCapInsets:UIEdgeInsetsMake(halfSize, halfSize, halfSize, halfSize)];
     
     [self setBackgroundImage:background forState:UIControlStateNormal];
-    [self setBackgroundImage:disabledBackground forState:UIControlStateDisabled];
     [self setTitleColor:textColor forState:UIControlStateNormal];
-    [self setTitleColor:[[UIColor lightGreyTextColor] colorWithAlphaComponent:0.2] forState:UIControlStateDisabled];
     self.titleLabel.font = [UIFont systemFontOfSize:17.0 weight:UIFontWeightSemibold];
     [UIView performWithoutAnimation:^{
       [self setTitle:[self titleForState:UIControlStateNormal] forState:UIControlStateNormal];
-      [self setTitle:[self titleForState:UIControlStateDisabled] forState:UIControlStateDisabled];
     }];
   }
 }
+  
+- (void) setAlternativeDisabledTheme:(BOOL)alternativeDisabledTheme {
+  _alternativeDisabledTheme = alternativeDisabledTheme;
+  UIImage *disabledBackground;
+  UIColor *textColor = nil;
+  CGFloat size = 56.0;
+  if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40 && self.compact) {
+    size = 44.0;
+  }
+  CGFloat halfSize = size / 2.0;
+  if (_alternativeDisabledTheme) {
+    disabledBackground = [[UIImage imageWithColor:[UIColor colorWithRGB:0xEBEDF0]
+                                             size:CGSizeMake(size, size)
+                                     cornerRadius:10.0] resizableImageWithCapInsets:UIEdgeInsetsMake(halfSize, halfSize, halfSize, halfSize)];
+    textColor = [[UIColor lightGreyTextColor] colorWithAlphaComponent:0.29];
+  } else {
+    disabledBackground = [[UIImage imageWithColor:[UIColor colorWithRGB:0xF0F1F2]
+                                             size:CGSizeMake(size, size)
+                                     cornerRadius:10.0] resizableImageWithCapInsets:UIEdgeInsetsMake(halfSize, halfSize, halfSize, halfSize)];
+    textColor = [[UIColor lightGreyTextColor] colorWithAlphaComponent:0.2];
+  }
+  [self setBackgroundImage:disabledBackground forState:UIControlStateDisabled];
+  [self setTitleColor:textColor forState:UIControlStateDisabled];
+  [UIView performWithoutAnimation:^{
+    [self setTitle:[self titleForState:UIControlStateDisabled] forState:UIControlStateDisabled];
+  }];
+}
+  
+- (void) setCompact:(BOOL)compact {
+  if (_compact != compact) {
+    _compact = compact;
+    self.alternativeDisabledTheme = self.alternativeDisabledTheme;
+    FlatButtonTheme theme = self.theme;
+    _theme = FlatButtonThemeUnknown;
+    self.theme = theme;
+  }
+}
+  
+- (void) setLoading:(BOOL)loading {
+  if (_loading != loading) {
+    _loading = loading;
+    if (_loading) {
+      self.userInteractionEnabled = NO;
+      _normalTitle = [self attributedTitleForState:UIControlStateNormal];
+      _disabledTitle = [self attributedTitleForState:UIControlStateDisabled];
+      UIActivityIndicatorViewStyle indicatorStyle = self.enabled ? UIActivityIndicatorViewStyleWhite : UIActivityIndicatorViewStyleGray;
+      UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:indicatorStyle];
+      activityIndicator.translatesAutoresizingMaskIntoConstraints = NO;
+      [self addSubview:activityIndicator];
+      [activityIndicator.centerXAnchor constraintEqualToAnchor:self.centerXAnchor].active = YES;
+      [activityIndicator.centerYAnchor constraintEqualToAnchor:self.centerYAnchor].active = YES;
+      activityIndicator.alpha = 0.0;
+      self.activityIndicatorView = activityIndicator;
+      [self.activityIndicatorView startAnimating];
+      [UIView animateWithDuration:0.3
+                            delay:0.0
+                          options:UIViewAnimationOptionBeginFromCurrentState
+                       animations:^{
+                         self.titleLabel.alpha = 0.0;
+                         self.activityIndicatorView.alpha = 1.0;
+                         self.titleLabel.lockAlpha = YES;
+                       } completion:^(BOOL finished) {
+                       }];
+    } else {
+      [UIView animateWithDuration:0.3
+                            delay:0.0
+                          options:UIViewAnimationOptionBeginFromCurrentState
+                       animations:^{
+                         self.titleLabel.lockAlpha = NO;
+                         self.titleLabel.alpha = 1.0;
+                         self.activityIndicatorView.alpha = 0.0;
+                       } completion:^(BOOL finished) {
+                         [self.activityIndicatorView removeFromSuperview];
+                         self.userInteractionEnabled = YES;
+                       }];
+    }
+  }
+}
+  
+- (void) setEnabled:(BOOL)enabled {
+  [super setEnabled:enabled];
+  if (self.activityIndicatorView) {
+    UIActivityIndicatorViewStyle indicatorStyle = self.enabled ? UIActivityIndicatorViewStyleWhite : UIActivityIndicatorViewStyleGray;
+    self.activityIndicatorView.activityIndicatorViewStyle = indicatorStyle;
+  }
+  
+}
 
 - (void)setTitle:(NSString *)title forState:(UIControlState)state {
-  UIColor *textColor = [self titleColorForState:state];
-  if (!textColor) {
-    textColor = [self titleColorForState:UIControlStateNormal];
+  if (title) {
+    UIColor *textColor = [self titleColorForState:state];
+    if (!textColor) {
+      textColor = [self titleColorForState:UIControlStateNormal];
+    }
+    NSDictionary *attributes = @{NSFontAttributeName: self.titleLabel.font,
+                                 NSForegroundColorAttributeName: textColor,
+                                 NSKernAttributeName: @(0.5)};
+    NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attributes];
+    [self setAttributedTitle:attributedTitle forState:state];
+  } else {
+    [self setAttributedTitle:nil forState:state];
   }
-  NSDictionary *attributes = @{NSFontAttributeName: self.titleLabel.font,
-                               NSForegroundColorAttributeName: textColor,
-                               NSKernAttributeName: @(0.5)};
-  NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attributes];
-  [self setAttributedTitle:attributedTitle forState:state];
 }
 
 @end

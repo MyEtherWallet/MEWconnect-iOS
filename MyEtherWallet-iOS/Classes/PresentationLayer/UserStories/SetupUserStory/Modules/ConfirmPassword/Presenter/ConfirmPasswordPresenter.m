@@ -33,8 +33,8 @@
   [self.interactor complareConfirmationPassword:password];
 }
 
-- (void) nextAction {
-  [self.interactor confirmPassword];
+- (void) nextActionWithPassword:(NSString *)password {
+  [self.interactor confirmPasswordWithPassword:password];
 }
 
 #pragma mark - ConfirmPasswordInteractorOutput
@@ -49,8 +49,12 @@
   [self.view enableNext];
 }
 
-- (void) invalidPassword {
-  [self.view showInvalidPasswordInput];
+- (void) incorrectPassword:(BOOL)error {
+  if (error) {
+    [self.view showInvalidPasswordInput];
+  } else {
+    [self.view showValidPasswordInput];
+  }
   [self.view disableNext];
 }
 

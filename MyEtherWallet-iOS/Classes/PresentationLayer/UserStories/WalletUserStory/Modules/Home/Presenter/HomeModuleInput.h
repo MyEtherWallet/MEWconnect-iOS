@@ -7,9 +7,10 @@
 //
 
 @import Foundation;
-@import ViperMcFlurry;
+@import ViperMcFlurryX;
 
 @protocol HomeModuleInput <RamblerViperModuleInput>
-- (void) configureModuleWithAddress:(NSString *)address;
-- (void) configuraBackupStatus;
+- (void) configureModule;
+- (void) configureBackupStatus;
+- (void) configureAfterChangingNetwork;
 @end

@@ -6,9 +6,10 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
-@import ViperMcFlurry;
+@import ViperMcFlurryX;
 
 #import "TransitioningDelegateFactory.h"
+#import "ServiceComponents.h"
 
 #import "ForgotPasswordAssembly.h"
 
@@ -38,6 +39,8 @@
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(output)
                                                 with:[self presenterForgotPassword]];
+                          [definition injectProperty:@selector(accountsService)
+                                                with:[self.serviceComponents accountsService]];
                         }];
 }
 

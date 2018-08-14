@@ -16,12 +16,16 @@
 static int const MEWcryptoConnectionPublicKeySize   = 65;
 static int const MEWcryptoConnectionPrivateKeySize  = 32;
 
+static NSString *const kMEWcryptoHashPersonalMessagePrefixFormat = @"\x19""Ethereum Signed Message:\n%tu";
+
 @interface MEWcryptoImplementation ()
 @property (nonatomic, strong) NSData *connectionPrivateKey;
 @property (nonatomic, strong) NSData *connectionPublicKey;
 @end
 
 @implementation MEWcryptoImplementation
+
+#pragma mark - MEWconnect protocol
 
 - (void) configurateWithConnectionPrivateKey:(nonnull NSData *)connectionPrivateKey {
   NSParameterAssert(connectionPrivateKey);
@@ -78,15 +82,7 @@ static int const MEWcryptoConnectionPrivateKeySize  = 32;
   }
   { //Encryption
     /* Checking message alignment */
-    NSMutableData *messageData = [message mutableCopy];
-    
-    uint8_t padding = AES_BLOCK_SIZE - ([messageData length] % AES_BLOCK_SIZE);
-    if (padding == 0) {
-      padding = AES_BLOCK_SIZE;
-    }
-    for (short i = 0; i < padding; ++i) {
-      [messageData appendBytes:&padding length:sizeof(uint8_t)];
-    }
+    NSData *messageData = [self _addPaddingIfNeeded:message blockSize:AES_BLOCK_SIZE];
     
     //buffers
     uint8_t *buffer = malloc(sizeof(uint8_t) * [messageData length]);
@@ -215,26 +211,115 @@ static int const MEWcryptoConnectionPrivateKeySize  = 32;
     free(buffer);
     
     /* Removing alignment */
-    unsigned char lastByte;
-    [decryptedData getBytes:&lastByte range:NSMakeRange([decryptedData length] - 1, 1)];
-    if (lastByte <= AES_BLOCK_SIZE && [decryptedData length] > lastByte) {
-      BOOL cutPadding = YES;
-      unsigned char *lastBytes = malloc(sizeof(unsigned char) * lastByte);
-      [decryptedData getBytes:lastBytes range:NSMakeRange([decryptedData length] - lastByte, lastByte)];
-      for (short i = 0; i < lastByte && cutPadding; ++i) {
-        cutPadding = cutPadding && (lastBytes[i] == lastByte);
-      }
-      if (cutPadding) {
-        decryptedData = [decryptedData subdataWithRange:NSMakeRange(0, [decryptedData length] - lastByte)];
-      }
-      memset(lastBytes, 0, sizeof(uint8_t) * lastByte);
-      free(lastBytes);
-    }
+    decryptedData = [self _removePaddingIfNeeded:decryptedData blockSize:AES_BLOCK_SIZE];
   }
   return decryptedData;
 }
 
+#pragma mark - Ethereum Signing Message
+
+- (NSData *) hashPersonalMessage:(NSData *)message {
+  NSMutableData *data = [[NSMutableData alloc] initWithCapacity:0];
+  NSString *prefix = [NSString stringWithFormat:kMEWcryptoHashPersonalMessagePrefixFormat, message.length];
+  [data appendData:[prefix dataUsingEncoding:NSASCIIStringEncoding]];
+  [data appendData:message];
+  
+  uint8_t *digest = malloc(sizeof(uint8_t) * SHA3_256_DIGEST_LENGTH);
+  
+  keccak_256(data.bytes, data.length, digest);
+  NSData *hash = [NSData dataWithBytes:digest length:SHA3_256_DIGEST_LENGTH];
+  
+  memset(digest, 0, sizeof(uint8_t) * SHA3_256_DIGEST_LENGTH);
+  free(digest);
+  return hash;
+}
+
+#pragma mark - AES-256 + SHA3 Encryption
+
+- (nullable NSData *) encryptData:(NSData *)data withPassword:(NSString *)password {
+  NSData *passwordData = [password dataUsingEncoding:NSUTF8StringEncoding];
+  
+  NSData *messageData = [self _addPaddingIfNeeded:data blockSize:AES_BLOCK_SIZE];
+  
+  uint8_t *digest = malloc(sizeof(uint8_t) * SHA3_256_DIGEST_LENGTH);
+  sha3_256(passwordData.bytes, passwordData.length, digest);
+  
+  uint8_t *buffer = malloc(sizeof(uint8_t) * messageData.length);
+  
+  aes_encrypt_ctx context;
+  aes_encrypt_key256(digest, &context);
+  aes_ecb_encrypt(messageData.bytes, buffer, (int)messageData.length, &context);
+  
+  NSData *encryptedData = [NSData dataWithBytes:buffer length:messageData.length];
+  
+  memset(buffer, 0, sizeof(uint8_t) * messageData.length);
+  free(buffer);
+  
+  memset(digest, 0, sizeof(uint8_t) * SHA3_256_DIGEST_LENGTH);
+  free(digest);
+  
+  return encryptedData;
+}
+
+- (nullable NSData *) decryptData:(NSData *)data withPassword:(NSString *)password {
+  NSData *passwordData = [password dataUsingEncoding:NSUTF8StringEncoding];
+  
+  uint8_t *digest = malloc(sizeof(uint8_t) * SHA3_256_DIGEST_LENGTH);
+  sha3_256(passwordData.bytes, passwordData.length, digest);
+  
+  uint8_t *buffer = malloc(sizeof(uint8_t) * data.length);
+  
+  aes_decrypt_ctx context;
+  aes_decrypt_key256(digest, &context);
+  aes_ecb_decrypt(data.bytes, buffer, (int)data.length, &context);
+  
+  NSData *decryptedData = [NSData dataWithBytes:buffer length:data.length];
+  
+  memset(buffer, 0, sizeof(uint8_t) * data.length);
+  free(buffer);
+  
+  memset(digest, 0, sizeof(uint8_t) * SHA3_256_DIGEST_LENGTH);
+  free(digest);
+  
+  return [self _removePaddingIfNeeded:decryptedData blockSize:AES_BLOCK_SIZE];
+}
+
 #pragma mark - Private
+
+- (NSData *) _addPaddingIfNeeded:(NSData *)data blockSize:(NSUInteger)blockSize {
+  NSMutableData *mutableData = [data mutableCopy];
+  
+  uint8_t padding = blockSize - ([mutableData length] % blockSize);
+  if (padding == 0) {
+    padding = blockSize;
+  }
+  for (short i = 0; i < padding; ++i) {
+    [mutableData appendBytes:&padding length:sizeof(uint8_t)];
+  }
+  return [mutableData copy];
+}
+
+- (NSData *) _removePaddingIfNeeded:(NSData *)data blockSize:(NSUInteger)blockSize {
+  NSData *clearData = data;
+  
+  /* Removing alignment */
+  uint8_t lastByte;
+  [data getBytes:&lastByte range:NSMakeRange([data length] - 1, 1)];
+  if (lastByte <= blockSize && [data length] > lastByte) {
+    BOOL cutPadding = YES;
+    uint8_t *lastBytes = malloc(sizeof(uint8_t) * lastByte);
+    [data getBytes:lastBytes range:NSMakeRange([data length] - lastByte, lastByte)];
+    for (short i = 0; i < lastByte && cutPadding; ++i) {
+      cutPadding = cutPadding && (lastBytes[i] == lastByte);
+    }
+    if (cutPadding) {
+      clearData = [data subdataWithRange:NSMakeRange(0, [data length] - lastByte)];
+    }
+    memset(lastBytes, 0, sizeof(uint8_t) * lastByte);
+    free(lastBytes);
+  }
+  return clearData;
+}
 
 - (NSData *) _randomDataWithLength:(NSUInteger)length {
   uint8_t *buffer = malloc(sizeof(uint8_t) * length);

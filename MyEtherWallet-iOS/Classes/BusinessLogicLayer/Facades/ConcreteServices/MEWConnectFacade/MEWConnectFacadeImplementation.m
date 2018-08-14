@@ -12,7 +12,10 @@
 
 #import "MEWConnectFacadeConstants.h"
 
-#import "MEWWallet.h"
+#import "AccountsService.h"
+#import "Ponsomizer.h"
+#import "AccountPlainObject.h"
+
 #import "MEWConnectService.h"
 #import "MEWConnectServiceDelegate.h"
 
@@ -47,8 +50,14 @@
 - (void) MEWConnect:(id <MEWConnectService>)mewConnect didReceiveMessage:(MEWConnectCommand *)message {
   switch (message.type) {
     case MEWConnectCommandTypeGetAddress: {
-      NSString *address = [self.walletService obtainPublicAddress];
-      MEWConnectResponse *response = [MEWConnectResponse responseForCommand:message data:address];
+      AccountModelObject *accountModelObject = [self.accountsService obtainActiveAccount];
+      
+      NSArray *ignoringProperties = @[NSStringFromSelector(@selector(backedUp)),
+                                      NSStringFromSelector(@selector(fromNetwork)),
+                                      NSStringFromSelector(@selector(price)),
+                                      NSStringFromSelector(@selector(tokens))];
+      AccountPlainObject *account = [self.ponsomizer convertObject:accountModelObject ignoringProperties:ignoringProperties];
+      MEWConnectResponse *response = [MEWConnectResponse responseForCommand:message data:account.publicAddress];
       [self.connectService sendMessage:response];
       break;
     }
@@ -68,6 +77,7 @@
 }
 
 - (void) MEWConnectDidConnected:(id <MEWConnectService>)mewConnect {
+  self.application.idleTimerDisabled = YES;
   NSNotificationQueue *queue = [NSNotificationQueue defaultQueue];
   NSNotification *notification = [NSNotification notificationWithName:MEWConnectFacadeDidConnectNotification
                                                                object:self
@@ -75,7 +85,17 @@
   [queue enqueueNotification:notification postingStyle:NSPostNow coalesceMask:NSNotificationCoalescingOnSender|NSNotificationCoalescingOnName forModes:@[NSDefaultRunLoopMode]];
 }
 
+- (void) MEWConnectDidDisconnected:(id<MEWConnectService>)mewConnect {
+  self.application.idleTimerDisabled = NO;
+  NSNotificationQueue *queue = [NSNotificationQueue defaultQueue];
+  NSNotification *notification = [NSNotification notificationWithName:MEWConnectFacadeDidDisconnectNotification
+                                                               object:self
+                                                             userInfo:@{kMEWConnectFacadeDisconnectReason: kMEWConnectFacadeReasonClosed}];
+  [queue enqueueNotification:notification postingStyle:NSPostNow coalesceMask:NSNotificationCoalescingOnSender|NSNotificationCoalescingOnName forModes:@[NSDefaultRunLoopMode]];
+}
+
 - (void) MEWConnectDidDisconnectedByTimeout:(id <MEWConnectService>)mewConnect {
+  self.application.idleTimerDisabled = NO;
   NSNotificationQueue *queue = [NSNotificationQueue defaultQueue];
   NSNotification *notification = [NSNotification notificationWithName:MEWConnectFacadeDidDisconnectNotification
                                                                object:self
@@ -84,6 +104,7 @@
 }
 
 - (void) MEWConnectDidReceiveError:(id <MEWConnectService>)mewConnect {
+  self.application.idleTimerDisabled = NO;
   NSNotificationQueue *queue = [NSNotificationQueue defaultQueue];
   NSNotification *notification = [NSNotification notificationWithName:MEWConnectFacadeDidDisconnectNotification
                                                                object:self

@@ -8,6 +8,9 @@
 
 @import Foundation;
 
-@protocol BackupInfoInteractorInput <NSObject>
+@class AccountPlainObject;
 
+@protocol BackupInfoInteractorInput <NSObject>
+- (void) configurateWithAccount:(AccountPlainObject *)account;
+- (AccountPlainObject *) obtainAccount;
 @end

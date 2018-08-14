@@ -9,5 +9,4 @@
 @import Foundation;
 
 @protocol DeclinedTransactionRouterInput <NSObject>
-- (void) close;
 @end

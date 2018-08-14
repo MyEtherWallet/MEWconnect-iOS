@@ -16,4 +16,11 @@
 - (void) disconnectAction;
 - (void) backupAction;
 - (void) searchTermDidChanged:(NSString *)searchTerm;
+- (void) infoAction;
+- (void) buyEtherAction;
+- (void) refreshTokensAction;
+- (void) shareAction;
+- (void) networkAction;
+- (void) mainnetAction;
+- (void) ropstenAction;
 @end

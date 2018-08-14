@@ -10,6 +10,9 @@
 
 #import "SingleResponseValidator.h"
 #import "ManyResponseValidator.h"
+#import "FiatPricesResponseValidator.h"
+#import "SimplexResponseValidator.h"
+#import "EthereumResponseValidator.h"
 
 @implementation ResponseValidatorsAssembly
 
@@ -23,17 +26,35 @@
                    use:[self singleResponseValidator]];
     [matcher caseEqual:@(ResponseValidationManyType)
                    use:[self manyResponseValidator]];
+    [matcher caseEqual:@(ResponseValidationFiatPricesType)
+                   use:[self fiatPricesResponseValidator]];
+    [matcher caseEqual:@(ResponseValidationSimplexType)
+                   use:[self simplexResponseValidator]];
+    [matcher caseEqual:@(ResponseValidationEthereumType)
+                   use:[self ethereumResponseValidator]];
   }];
 }
 
 #pragma mark - Concrete definitions
 
-- (id<ResponseValidator>)singleResponseValidator {
+- (id <ResponseValidator>) singleResponseValidator {
   return [TyphoonDefinition withClass:[SingleResponseValidator class]];
 }
 
-- (id<ResponseValidator>)manyResponseValidator {
+- (id <ResponseValidator>) manyResponseValidator {
   return [TyphoonDefinition withClass:[ManyResponseValidator class]];
+}
+
+- (id <ResponseValidator>) fiatPricesResponseValidator {
+  return [TyphoonDefinition withClass:[FiatPricesResponseValidator class]];
+}
+
+- (id <ResponseValidator>) simplexResponseValidator {
+  return [TyphoonDefinition withClass:[SimplexResponseValidator class]];
+}
+
+- (id <ResponseValidator>) ethereumResponseValidator {
+  return [TyphoonDefinition withClass:[EthereumResponseValidator class]];
 }
 
 @end

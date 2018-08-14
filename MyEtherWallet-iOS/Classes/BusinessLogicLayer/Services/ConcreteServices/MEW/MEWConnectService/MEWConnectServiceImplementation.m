@@ -8,9 +8,12 @@
 
 @import SocketIO;
 @import libextobjc.EXTScope;
-@import WebRTC;
 
+#if BETA
+#import "MyEtherWallet_iOS_Beta-Swift.h"
+#else
 #import "MyEtherWallet_iOS-Swift.h"
+#endif
 
 #import "NetworkingConstantsHeader.h"
 #import "ResponseMapper.h"
@@ -42,7 +45,7 @@ static NSString *const kMEWConnectCurrentSchemaVersion  =  @"0.0.1";
 
 static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
 
-@interface MEWConnectServiceImplementation () <NSURLSessionDelegate, MEWRTCServiceDelegate>
+@interface MEWConnectServiceImplementation () <MEWRTCServiceDelegate>
 @property (nonatomic, strong) NSString *connectionId;
 @property (nonatomic, strong) NSString *privateKey;
 @property (nonatomic, strong) SocketManager *socketManager;
@@ -71,7 +74,7 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
 
 - (BOOL) connectWithData:(NSString *)data {
   if (self.connectionStatus != MEWConnectStatusDisconnected) {
-    [self disconnect];
+    [self _disconnect];
   }
   NSArray *params = [data componentsSeparatedByString:@"_"];
   if ([params count] < 3) {
@@ -84,12 +87,11 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
       [self.connectionId length] == 0 || [self.privateKey length] == 0) {
     return NO;
   }
-  NSURL *url = [NSURL URLWithString:MEWConnectServiceSignallingServerURL];
-  if (!url) {
+  if (!self.signallingServerURL) {
     return NO;
   }
   [self.MEWcrypto configurateWithConnectionPrivateKey:[self.privateKey parseHexData]];
-  self.socketManager = [[SocketManager alloc] initWithSocketURL:url config:[self _socketConfig]];
+  self.socketManager = [[SocketManager alloc] initWithSocketURL:self.signallingServerURL config:[self _socketConfig]];
   SocketIOClient *client = [self.socketManager defaultSocket];
   [self _defineSignalsWithSocketClient:client];
   [client connect];
@@ -98,15 +100,17 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
   return YES;
 }
 
-- (void)disconnect {
-  self.connectionStatus = MEWConnectStatusDisconnected;
-  [self.rtcService disconnect];
-  [self.socketManager disconnect];
-  self.socketManager = nil;
-  [self _cancelTimeoutTimer];
+- (void) disconnect {
+  [self _disconnect];
+  if ([self.delegate respondsToSelector:@selector(MEWConnectDidDisconnected:)]) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+      self.connectionStatus = MEWConnectStatusDisconnected;
+      [self.delegate MEWConnectDidDisconnected:self];
+    });
+  }
 }
 
-- (BOOL)sendMessage:(id)message {
+- (BOOL) sendMessage:(id)message {
   NSDictionary *context = @{kMappingContextModelClassKey: NSStringFromClass([message class])};
   NSError *error = nil;
   id serializedMessage = [self.messageMapper serializeResponse:message withMappingContext:context error:&error];
@@ -119,16 +123,10 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
   return [self.rtcService sendMessage:[cryptoMessage representation]];
 }
 
-#pragma mark - NSURLSessionDelegate
-
-- (void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler {
-  completionHandler(NSURLSessionAuthChallengeUseCredential, [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust]);
-}
-
 #pragma mark - Private
 
 - (NSDictionary *) _socketConfig {
-  NSData *toSignHashData = [Web3Wrapper hashWithData:[self.privateKey dataUsingEncoding:NSUTF8StringEncoding]];
+  NSData *toSignHashData = [self.MEWcrypto hashPersonalMessage:[self.privateKey dataUsingEncoding:NSUTF8StringEncoding]];
   NSData *privateKeyData = [self.privateKey parseHexData];
   NSData *signedData = [toSignHashData signWithPrivateKeyData:privateKeyData];
   NSString *signedMessage = [signedData hexadecimalString];
@@ -136,12 +134,10 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
   NSDictionary *config = @{kMEWConnectSocketConfigLog             : @NO,
                            kMEWConnectSocketConfigCompress        : @YES,
                            kMEWConnectSocketConfigSecure          : @YES,
-                           kMEWConnectSocketConfigSelfSigned      : @YES,
-                           kMEWConnectSocketConfigSessionDelegate : self,
                            kMEWConnectSocketConfigConnectParams   : @{
                                kMEWConnectSocketConfigConnId      : self.connectionId,
                                kMEWConnectSocketConfigStage       : MEWConnectSocketReceiver,
-                               kMEWConnectMessageSigned: signedMessage}
+                               kMEWConnectMessageSigned           : signedMessage}
                            };
   DDLogVerbose(@"MEWconnect. Config: %@", config);
   return config;
@@ -209,7 +205,7 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
 }
 
 - (void) _timeout {
-  [self disconnect];
+  [self _disconnect];
   if ([self.delegate respondsToSelector:@selector(MEWConnectDidDisconnectedByTimeout:)]) {
     [self.delegate MEWConnectDidDisconnectedByTimeout:self];
   }
@@ -241,6 +237,14 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
   }
 }
 
+- (void) _disconnect {
+  self.connectionStatus = MEWConnectStatusDisconnected;
+  [self.rtcService disconnect];
+  [self.socketManager disconnect];
+  self.socketManager = nil;
+  [self _cancelTimeoutTimer];
+}
+
 #pragma mark - Signals
 
 - (void) _signalConnect:(NSArray *)data {
@@ -250,24 +254,16 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
 - (void) _signalHandshake:(NSArray *)data {
   DDLogVerbose(@"MEWConnect: handshake");
   
-  NSString *toSign = [data firstObject][kMEWConnectSocketToSign];
-  if (toSign) {
-    NSData *toSignHashData = [Web3Wrapper hashWithData:[self.privateKey dataUsingEncoding:NSUTF8StringEncoding]];
-    NSData *privateKeyData = [self.privateKey parseHexData];
-    NSData *signedData = [toSignHashData signWithPrivateKeyData:privateKeyData];
-    NSString *signedMessage = [signedData hexadecimalString];
-
-    if (signedMessage) {
-      NSData *currentSchemaVersionData = [kMEWConnectCurrentSchemaVersion dataUsingEncoding:NSUTF8StringEncoding];
-      MEWcryptoMessage *cryptoMessage = [self.MEWcrypto encryptMessage:currentSchemaVersionData];
-      NSDictionary *message = @{kMEWConnectMessageSigned: signedMessage,
-                                kMEWConnectMessageConnId: self.connectionId,
-                                kMEWConnectMessageVersion: [cryptoMessage representation] ?: @""};
-      [self _emit:kMEWConnectEmitSignature message:message];
-    }
-  } else {
-    NSDictionary *message = @{kMEWConnectMessageConnId: self.connectionId,
-                              kMEWConnectMessageVersion: kMEWConnectCurrentSchemaVersion};
+  NSData *toSignHashData = [self.MEWcrypto hashPersonalMessage:[self.privateKey dataUsingEncoding:NSUTF8StringEncoding]];
+  NSData *privateKeyData = [self.privateKey parseHexData];
+  NSData *signedData = [toSignHashData signWithPrivateKeyData:privateKeyData];
+  NSString *signedMessage = [signedData hexadecimalString];
+  if (signedMessage) {
+    NSData *currentSchemaVersionData = [kMEWConnectCurrentSchemaVersion dataUsingEncoding:NSUTF8StringEncoding];
+    MEWcryptoMessage *cryptoMessage = [self.MEWcrypto encryptMessage:currentSchemaVersionData];
+    NSDictionary *message = @{kMEWConnectMessageSigned: signedMessage,
+                              kMEWConnectMessageConnId: self.connectionId,
+                              kMEWConnectMessageVersion: [cryptoMessage representation] ?: @""};
     [self _emit:kMEWConnectEmitSignature message:message];
   }
 }
@@ -286,12 +282,10 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
     DDLogError(@"JSON Parse error: %@", [error localizedDescription]);
 #endif
     NSString *offerType = offer[kMEWConnectSocketType];
-    NSString *offerSDP = offer[kMEWConnectSocketSDP];
-    if (offerType && offerSDP) {
-      RTCSdpType type = [RTCSessionDescription typeForString:offerType];
-      RTCSessionDescription *description = [[RTCSessionDescription alloc] initWithType:type sdp:offerSDP];
+    NSString *offerSdp = offer[kMEWConnectSocketSDP];
+    if (offerType && offerSdp) {
       dispatch_async(dispatch_get_main_queue(), ^{
-        [self.rtcService connectWithOffer:description];
+        [self.rtcService connectWithType:offerType andSdp:offerSdp];
       });
     }
   }
@@ -302,7 +296,7 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
 
 - (void) _signalError:(NSArray *)data {
   dispatch_async(dispatch_get_main_queue(), ^{
-    [self disconnect];
+    [self _disconnect];
     if ([self.delegate respondsToSelector:@selector(MEWConnectDidReceiveError:)]) {
       [self.delegate MEWConnectDidReceiveError:self];
     }
@@ -312,7 +306,7 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
 
 - (void) _signalConfirmationError:(NSArray *)data {
   dispatch_async(dispatch_get_main_queue(), ^{
-    [self disconnect];
+    [self _disconnect];
     if ([self.delegate respondsToSelector:@selector(MEWConnectDidReceiveError:)]) {
       [self.delegate MEWConnectDidReceiveError:self];
     }
@@ -328,11 +322,9 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
 
 #pragma mark - WebRTC Communication
 
-- (void) _sendAnswer:(RTCSessionDescription *)answer {
-  NSString *answerType = [RTCSessionDescription stringForType:answer.type];
-  NSString *answerSDP = answer.sdp;
-  NSArray *answerMessage = @[@{kMEWConnectSocketSDP: answerSDP,
-                               kMEWConnectSocketType: answerType}];
+- (void) _sendAnswerWithType:(NSString *)type andSdp:(NSString *)sdp {
+  NSArray *answerMessage = @[@{kMEWConnectSocketSDP: sdp,
+                               kMEWConnectSocketType: type}];
   NSData *answerJsonData = [NSJSONSerialization dataWithJSONObject:answerMessage
                                                            options:0
                                                              error:nil];
@@ -343,7 +335,6 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
 }
 
 - (void) _sendTryTurn {
-  //TODO: ?
   NSDictionary *message = @{kMEWConnectMessageCont: @YES,
                             kMEWConnectMessageConnId: self.connectionId};
   [self _emit:kMEWConnectEmitTryTurn message:message];
@@ -355,8 +346,8 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
 
 #pragma mark - MEWRTCServiceDelegate
 
-- (void) MEWRTCService:(id<MEWRTCService>)rtcService didGenerateAnswer:(RTCSessionDescription *)answer {
-  [self _sendAnswer:answer];
+- (void) MEWRTCService:(id<MEWRTCService>)rtcService didGenerateAnswerWithType:(NSString *)type sdp:(NSString *)sdp {
+  [self _sendAnswerWithType:type andSdp:sdp];
 }
 
 - (void) MEWRTCServiceConnectionDidFailed:(id<MEWRTCService>)rtcService {
@@ -367,12 +358,23 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
   [self _sendConnected];
 }
 
+- (void) MEWRTCServiceConnectionDidDisconnected:(id<MEWRTCService>)rtcService {
+  if ([self.delegate respondsToSelector:@selector(MEWConnectDidDisconnected:)]) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+      self.connectionStatus = MEWConnectStatusDisconnected;
+      [self.delegate MEWConnectDidDisconnected:self];
+    });
+  }
+}
+
 - (void) MEWRTCServiceDataChannelDidOpen:(id<MEWRTCService>)rtcService {
   if ([self.delegate respondsToSelector:@selector(MEWConnectDidConnected:)]) {
     dispatch_async(dispatch_get_main_queue(), ^{
       self.connectionStatus = MEWConnectStatusConnected;
       [self _cancelTimeoutTimer];
       [self.delegate MEWConnectDidConnected:self];
+      [self.socketManager disconnect];
+      self.socketManager = nil;
     });
   }
 }
@@ -380,9 +382,18 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
 - (void) MEWRTCService:(id<MEWRTCService>)rtcService didReceiveMessage:(NSDictionary *)message {
   MEWcryptoMessage *cryptoMessage = [MEWcryptoMessage messageWithRepresentation:message];
   NSData *decryptedMessage = [self.MEWcrypto decryptMessage:cryptoMessage];
-  message = [NSJSONSerialization JSONObjectWithData:decryptedMessage
-                                            options:0
-                                              error:nil];
+  if (!decryptedMessage) {
+    return;
+  }
+  @try {
+    message = [NSJSONSerialization JSONObjectWithData:decryptedMessage
+                                              options:0
+                                                error:nil];
+  }
+  @catch (NSException *exception) {
+    DDLogError(@"MEWRTC. Received message, but can't parse: %@", [exception reason]);
+    return;
+  }
 #if DEBUG_ANYSIGNAL
   DDLogVerbose(@"MESSAGE: %@", message);
 #endif

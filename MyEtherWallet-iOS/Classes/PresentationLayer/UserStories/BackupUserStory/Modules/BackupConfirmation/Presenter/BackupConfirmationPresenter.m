@@ -16,7 +16,8 @@
 
 #pragma mark - BackupConfirmationModuleInput
 
-- (void) configureModule {
+- (void) configureModuleWithMnemonics:(NSArray<NSString *> *)mnemonics account:(AccountPlainObject *)account {
+  [self.interactor configurateWithMnemonics:mnemonics ofAccount:account];
 }
 
 #pragma mark - BackupConfirmationViewOutput

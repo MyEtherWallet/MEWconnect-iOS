@@ -9,9 +9,11 @@
 @import UIKit;
 @import MagicalRecord;
 
+#if BETA
+#import "MyEtherWallet_iOS_Beta-Swift.h"
+#else
 #import "MyEtherWallet_iOS-Swift.h"
-
-#import "ApplicationConstants.h"
+#endif
 
 #import "UIImage+Color.h"
 #import "UIColor+Hex.h"
@@ -19,13 +21,18 @@
 
 #import "PasswordTextField.h"
 #import "BordlessNavigationBar.h"
-#import "BackupConfirmationSegmenteControl.h"
+#import "BackupConfirmationSegmentedControl.h"
+
+#import "KeychainService.h"
 
 #import "ApplicationConfiguratorImplementation.h"
+
+#import "UIScreen+ScreenSizeType.h"
 
 @implementation ApplicationConfiguratorImplementation
 
 - (void)configureInitialSettings {
+  [self.keychainService saveFirstLaunchDate];
 }
 
 - (void)configurateAppearance {
@@ -38,8 +45,10 @@
   [[PasswordTextField appearance] setTintColor:[UIColor whiteColor]];
   
   /* Bordless navigation bar */
+  UIImage *clearImage = [UIImage imageWithColor:[UIColor clearColor]];
   [[BordlessNavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
   [BordlessNavigationBar appearance].tintColor = [UIColor mainApplicationColor];
+  [[BordlessNavigationBar appearance] setBackgroundImage:clearImage forBarMetrics:UIBarMetricsDefault];
   
   /* Bar buttons */
   NSDictionary *normalTextAttributes = @{NSForegroundColorAttributeName: [UIColor barButtonColorForState:UIControlStateNormal]};
@@ -63,76 +72,49 @@
   [[CheckboxButton appearance] setBackgroundImage:selectedBackgroundImage forState:UIControlStateSelected];
   [[CheckboxButton appearance] setBackgroundImage:selectedBackgroundImage forState:UIControlStateSelected|UIControlStateHighlighted];
   { /* BackupConfirmationSegmentedControl */
-    UIImage *backgroundNormal = [[UIImage imageWithColor:[UIColor backgroundLightBlue] size:CGSizeMake(56.0, 56.0) cornerRadius:10.0] resizableImageWithCapInsets:UIEdgeInsetsMake(20.0, 20.0, 20.0, 20.0)];
-    UIImage *backgroundSelected = [[UIImage imageWithColor:[UIColor mainApplicationColor] size:CGSizeMake(56.0, 56.0) cornerRadius:10.0] resizableImageWithCapInsets:UIEdgeInsetsMake(20.0, 20.0, 20.0, 20.0)];
-    UIImage *backgroundHighlighted = [[UIImage imageWithColor:[[UIColor mainApplicationColor] colorWithAlphaComponent:0.5] size:CGSizeMake(56.0, 56.0) cornerRadius:10.0] resizableImageWithCapInsets:UIEdgeInsetsMake(20.0, 20.0, 20.0, 20.0)];
+    CGFloat size = 56.0;
+    CGFloat fontSize = 17.0;
+    if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+      size = 44.0;
+      fontSize = 15.0;
+    }
+    CGFloat halfSize = (size - 8.0) / 2.0; //-8 - for segment in the middle
+    UIImage *backgroundNormal = [[UIImage imageWithColor:[UIColor backgroundLightBlue] size:CGSizeMake(size, size) cornerRadius:10.0] resizableImageWithCapInsets:UIEdgeInsetsMake(halfSize, halfSize, halfSize, halfSize)];
+    UIImage *backgroundSelected = [[UIImage imageWithColor:[UIColor mainApplicationColor] size:CGSizeMake(size, size) cornerRadius:10.0] resizableImageWithCapInsets:UIEdgeInsetsMake(halfSize, halfSize, halfSize, halfSize)];
+    UIImage *backgroundHighlighted = [[UIImage imageWithColor:[[UIColor mainApplicationColor] colorWithAlphaComponent:0.5] size:CGSizeMake(size, size) cornerRadius:10.0] resizableImageWithCapInsets:UIEdgeInsetsMake(halfSize, halfSize, halfSize, halfSize)];
     UIImage *separatorNormal = [[UIImage imageWithColor:[UIColor colorWithRGB:0xD2D7E3] size:CGSizeMake(1.0, 3.0) cornerRadius:0.0] resizableImageWithCapInsets:UIEdgeInsetsMake(1.0, 0.0, 1.0, 0.0)];
     UIImage *separatorSelected = [[UIImage imageWithColor:[UIColor colorWithRGB:0x1A54C5] size:CGSizeMake(1.0, 3.0) cornerRadius:0.0] resizableImageWithCapInsets:UIEdgeInsetsMake(1.0, 0.0, 1.0, 0.0)];
     UIImage *separatorHighlighted = [[UIImage imageWithColor:[[UIColor colorWithRGB:0x1A54C5] colorWithAlphaComponent:0.5] size:CGSizeMake(1.0, 3.0) cornerRadius:0.0] resizableImageWithCapInsets:UIEdgeInsetsMake(1.0, 0.0, 1.0, 0.0)];
     
-    [[BackupConfirmationSegmenteControl appearance] setBackgroundImage:backgroundNormal forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    [[BackupConfirmationSegmenteControl appearance] setBackgroundImage:backgroundSelected forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
-    [[BackupConfirmationSegmenteControl appearance] setBackgroundImage:backgroundHighlighted forState:UIControlStateNormal|UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
-    [[BackupConfirmationSegmenteControl appearance] setBackgroundImage:backgroundHighlighted forState:UIControlStateSelected|UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+    [[BackupConfirmationSegmentedControl appearance] setBackgroundImage:backgroundNormal forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [[BackupConfirmationSegmentedControl appearance] setBackgroundImage:backgroundSelected forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+    [[BackupConfirmationSegmentedControl appearance] setBackgroundImage:backgroundHighlighted forState:UIControlStateNormal|UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+    [[BackupConfirmationSegmentedControl appearance] setBackgroundImage:backgroundHighlighted forState:UIControlStateSelected|UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
     
-    [[BackupConfirmationSegmenteControl appearance] setDividerImage:separatorNormal forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [[BackupConfirmationSegmentedControl appearance] setDividerImage:separatorNormal forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     
-    [[BackupConfirmationSegmenteControl appearance] setDividerImage:separatorSelected forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
-    [[BackupConfirmationSegmenteControl appearance] setDividerImage:separatorSelected forLeftSegmentState:UIControlStateSelected rightSegmentState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [[BackupConfirmationSegmentedControl appearance] setDividerImage:separatorSelected forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+    [[BackupConfirmationSegmentedControl appearance] setDividerImage:separatorSelected forLeftSegmentState:UIControlStateSelected rightSegmentState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     
-    [[BackupConfirmationSegmenteControl appearance] setDividerImage:separatorHighlighted forLeftSegmentState:UIControlStateNormal|UIControlStateHighlighted rightSegmentState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
-    [[BackupConfirmationSegmenteControl appearance] setDividerImage:separatorHighlighted forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateSelected|UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
-    [[BackupConfirmationSegmenteControl appearance] setDividerImage:separatorHighlighted forLeftSegmentState:UIControlStateSelected|UIControlStateHighlighted rightSegmentState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    [[BackupConfirmationSegmenteControl appearance] setDividerImage:separatorHighlighted forLeftSegmentState:UIControlStateSelected rightSegmentState:UIControlStateNormal|UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+    [[BackupConfirmationSegmentedControl appearance] setDividerImage:separatorHighlighted forLeftSegmentState:UIControlStateNormal|UIControlStateHighlighted rightSegmentState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+    [[BackupConfirmationSegmentedControl appearance] setDividerImage:separatorHighlighted forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateSelected|UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+    [[BackupConfirmationSegmentedControl appearance] setDividerImage:separatorHighlighted forLeftSegmentState:UIControlStateSelected|UIControlStateHighlighted rightSegmentState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [[BackupConfirmationSegmentedControl appearance] setDividerImage:separatorHighlighted forLeftSegmentState:UIControlStateSelected rightSegmentState:UIControlStateNormal|UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
     
     NSDictionary *normalAttributes = @{NSForegroundColorAttributeName: [UIColor blackColor],
-                                       NSFontAttributeName: [UIFont systemFontOfSize:17.0 weight:UIFontWeightMedium]};
+                                       NSFontAttributeName: [UIFont systemFontOfSize:fontSize weight:UIFontWeightMedium]};
     NSDictionary *selectedAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor],
-                                         NSFontAttributeName: [UIFont systemFontOfSize:17.0 weight:UIFontWeightMedium]};
-    [[BackupConfirmationSegmenteControl appearance] setTitleTextAttributes:normalAttributes forState:UIControlStateNormal];
-    [[BackupConfirmationSegmenteControl appearance] setTitleTextAttributes:normalAttributes forState:UIControlStateNormal|UIControlStateHighlighted];
-    [[BackupConfirmationSegmenteControl appearance] setTitleTextAttributes:selectedAttributes forState:UIControlStateSelected];
-    [[BackupConfirmationSegmenteControl appearance] setTitleTextAttributes:selectedAttributes forState:UIControlStateSelected|UIControlStateHighlighted];
+                                         NSFontAttributeName: [UIFont systemFontOfSize:fontSize weight:UIFontWeightMedium]};
+    [[BackupConfirmationSegmentedControl appearance] setTitleTextAttributes:normalAttributes forState:UIControlStateNormal];
+    [[BackupConfirmationSegmentedControl appearance] setTitleTextAttributes:normalAttributes forState:UIControlStateNormal|UIControlStateHighlighted];
+    [[BackupConfirmationSegmentedControl appearance] setTitleTextAttributes:selectedAttributes forState:UIControlStateSelected];
+    [[BackupConfirmationSegmentedControl appearance] setTitleTextAttributes:selectedAttributes forState:UIControlStateSelected|UIControlStateHighlighted];
     
-    [[BackupConfirmationSegmenteControl appearance] setContentPositionAdjustment:UIOffsetMake(-6.0, 0.0) forSegmentType:UISegmentedControlSegmentLeft barMetrics:UIBarMetricsDefault];
-    [[BackupConfirmationSegmenteControl appearance] setContentPositionAdjustment:UIOffsetMake(6.0, 0.0) forSegmentType:UISegmentedControlSegmentRight barMetrics:UIBarMetricsDefault];
+    [[BackupConfirmationSegmentedControl appearance] setContentPositionAdjustment:UIOffsetMake(-6.0, 0.0) forSegmentType:UISegmentedControlSegmentLeft barMetrics:UIBarMetricsDefault];
+    [[BackupConfirmationSegmentedControl appearance] setContentPositionAdjustment:UIOffsetMake(6.0, 0.0) forSegmentType:UISegmentedControlSegmentRight barMetrics:UIBarMetricsDefault];
   }
-}
-
-#pragma mark - Core Data
-
-- (void)setupCoreDataStack {
-  if ([self shouldMigrateCoreData]) {
-    [self migrateStore];
-  } else {
-    NSURL *directory = [self.fileManager containerURLForSecurityApplicationGroupIdentifier:AppGroupIdentifier];
-    NSURL *storeURL = [directory URLByAppendingPathComponent:kCoreDataName];
-    [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreAtURL:storeURL];
-  }
-}
-
-- (BOOL)shouldMigrateCoreData {
-  NSString *oldStoreName = [MagicalRecord defaultStoreName];
-  return [[NSFileManager defaultManager] fileExistsAtPath:oldStoreName];
-}
-
-- (void)migrateStore {
-  NSString *oldStoreName = [MagicalRecord defaultStoreName];
-  NSPersistentStoreCoordinator *coordinator = [NSPersistentStoreCoordinator MR_coordinatorWithSqliteStoreNamed:oldStoreName];
-  // grab the current store
-  NSPersistentStore *currentStore = coordinator.persistentStores.lastObject;
-  // create a new URL
-  NSURL *directory = [self.fileManager containerURLForSecurityApplicationGroupIdentifier:AppGroupIdentifier];
-  NSURL *newStoreURL = [directory URLByAppendingPathComponent:kCoreDataName];
-  
-  NSDictionary *storeOptions = @{NSPersistentStoreFileProtectionKey: NSFileProtectionComplete};
-  // migrate current store to new URL
-  [coordinator migratePersistentStore:currentStore
-                                toURL:newStoreURL
-                              options:storeOptions
-                             withType:NSSQLiteStoreType
-                                error:nil];
-  [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreAtURL:newStoreURL];
+  /* Toolbar Buttons */
+  [UIBarButtonItem appearance].tintColor = [UIColor mainApplicationColor];
 }
 
 @end

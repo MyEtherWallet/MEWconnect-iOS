@@ -1,0 +1,62 @@
+//
+//  BuyEtherAmountViewControllerTests.m
+//  MyEtherWallet-iOS
+//
+//  Created by Mikhail Nikanorov on 02/07/2018.
+//  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
+//
+
+@import XCTest;
+@import OCMock;
+
+#import "BuyEtherAmountViewController.h"
+
+#import "BuyEtherAmountViewOutput.h"
+
+@interface BuyEtherAmountViewControllerTests : XCTestCase
+
+@property (nonatomic, strong) BuyEtherAmountViewController *controller;
+
+@property (nonatomic, strong) id mockOutput;
+
+@end
+
+@implementation BuyEtherAmountViewControllerTests
+
+#pragma mark - Config the environment
+
+- (void)setUp {
+    [super setUp];
+
+    self.controller = [[BuyEtherAmountViewController alloc] init];
+
+    self.mockOutput = OCMProtocolMock(@protocol(BuyEtherAmountViewOutput));
+
+    self.controller.output = self.mockOutput;
+}
+
+- (void)tearDown {
+    self.controller = nil;
+
+    self.mockOutput = nil;
+
+    [super tearDown];
+}
+
+#pragma mark - Lifecycle tests
+
+- (void)testThatControllerNotifiesPresenterOnDidLoad {
+	// given
+
+	// when
+	[self.controller viewDidLoad];
+
+	// then
+	OCMVerify([self.mockOutput didTriggerViewReadyEvent]);
+}
+
+#pragma mark - UI tests
+
+#pragma mark - BuyEtherAmountViewInput tests
+
+@end

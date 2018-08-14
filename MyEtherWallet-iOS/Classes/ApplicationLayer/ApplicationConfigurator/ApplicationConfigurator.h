@@ -9,7 +9,6 @@
 @import Foundation;
 
 @protocol ApplicationConfigurator <NSObject>
-- (void)setupCoreDataStack;
-- (void)configureInitialSettings;
-- (void)configurateAppearance;
+- (void) configureInitialSettings;
+- (void) configurateAppearance;
 @end

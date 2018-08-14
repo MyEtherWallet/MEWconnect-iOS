@@ -19,6 +19,17 @@
 - (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
   UIView *dismissedView = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey].view;
   UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+  UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+  [fromViewController beginAppearanceTransition:NO animated:[self transitionDuration:transitionContext] > 0.0];
+  [toViewController beginAppearanceTransition:YES animated:[self transitionDuration:transitionContext] > 0.0];
+  
+  UIView *containerView = [transitionContext containerView];
+  UIView *dismissedViewSnapshot = [dismissedView snapshotViewAfterScreenUpdates:NO];
+  [containerView addSubview:dismissedViewSnapshot];
+  
+  CGRect frame = dismissedView.frame;
+  dismissedViewSnapshot.frame = frame;
+  dismissedView.hidden = YES;
   
   UIViewAnimationOptions options = UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseIn;
   
@@ -26,10 +37,12 @@
                         delay:0.0
                       options:options
                    animations:^{
-                     dismissedView.transform = CGAffineTransformMakeTranslation(0.0, CGRectGetHeight(dismissedView.bounds));
+                     dismissedViewSnapshot.transform = CGAffineTransformMakeTranslation(0.0, CGRectGetHeight(dismissedView.bounds));
                    } completion:^(BOOL finished) {
                      [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
                      [toViewController setNeedsStatusBarAppearanceUpdate];
+                     [fromViewController endAppearanceTransition];
+                     [toViewController endAppearanceTransition];
                    }];
 }
 

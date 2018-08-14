@@ -9,10 +9,8 @@
 #import "BackupWordsInteractorInput.h"
 
 @protocol BackupWordsInteractorOutput;
-@protocol MEWWallet;
 
 @interface BackupWordsInteractor : NSObject <BackupWordsInteractorInput>
 
 @property (nonatomic, weak) id<BackupWordsInteractorOutput> output;
-@property (nonatomic, strong) id <MEWWallet> walletService;
 @end

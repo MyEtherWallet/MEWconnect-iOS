@@ -6,12 +6,16 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
-#import <libextobjc/EXTScope.h>
+@import libextobjc.EXTScope;
 
 #import "TypingAnimationLabel.h"
 
 static NSTimeInterval kTypingAnimationDefaultTypingSpeed        = 1.0/60.0;
+#if DEBUG
+static NSTimeInterval kTypingAnimationDefaultTypingDelay        = 0.1;
+#else
 static NSTimeInterval kTypingAnimationDefaultTypingDelay        = 2.0;
+#endif
 static NSTimeInterval kTypingAnimationDefaultCaretBlinkingTime  = 0.25;
 
 @interface TypingAnimationLabel ()

@@ -8,17 +8,33 @@
 
 #import "SplashPasswordInteractor.h"
 
-#import "MEWWallet.h"
+#import "AccountsService.h"
+#import "Ponsomizer.h"
+
+#import "NetworkPlainObject.h"
+#import "AccountPlainObject.h"
 
 #import "SplashPasswordInteractorOutput.h"
+
+@interface SplashPasswordInteractor ()
+@property (nonatomic, strong) AccountPlainObject *account;
+@end
 
 @implementation SplashPasswordInteractor
 
 #pragma mark - SplashPasswordInteractorInput
 
+- (void) configurateWithAccount:(AccountPlainObject *)account {
+  self.account = account;
+}
+
+- (AccountPlainObject *) obtainAccount {
+  return self.account;
+}
+
 - (void)checkPassword:(NSString *)password {
-  NSString *address = [self.walletService validatePassword:password];
-  if (address) {
+  BOOL validated = [self.accountsService validatePassword:password forAccount:self.account];
+  if (validated) {
     [self.output correctPassword:password];
   } else {
     [self.output incorrectPassword];

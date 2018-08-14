@@ -6,7 +6,7 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
-@import ViperMcFlurry;
+@import ViperMcFlurryX;
 
 #import "ServiceComponents.h"
 
@@ -35,7 +35,7 @@
                           [definition injectProperty:@selector(output)
                                                 with:[self presenterMessageSigner]];
                           [definition injectProperty:@selector(walletService)
-                                                with:[self.serviceComponents MEWWallet]];
+                                                with:[self.serviceComponents MEWwallet]];
                         }];
 }
 

@@ -18,6 +18,9 @@
 @protocol ResponseConverterFactory;
 
 @class TokensOperationFactory;
+@class AccountsOperationFactory;
+@class FiatPricesOperationFactory;
+@class SimplexOperationFactory;
 
 @interface OperationFactoriesAssembly : TyphoonAssembly <RamblerInitialAssembly>
 @property (nonatomic, strong, readonly) TyphoonAssembly <RequestConfiguratorsFactory> *requestConfiguratorsFactory;
@@ -28,5 +31,8 @@
 @property (nonatomic, strong, readonly) TyphoonAssembly <ResponseMappersFactory> *responseMappersFactory;
 @property (nonatomic, strong, readonly) TyphoonAssembly <ResponseConverterFactory> *responseConverterFactory;
 - (TokensOperationFactory *) tokensOperationFactory;
+- (AccountsOperationFactory *) accountsOperationFactory;
+- (FiatPricesOperationFactory *) fiatPricesOperationFactory;
+- (SimplexOperationFactory *) simplexOperationFactory;
 @end
 

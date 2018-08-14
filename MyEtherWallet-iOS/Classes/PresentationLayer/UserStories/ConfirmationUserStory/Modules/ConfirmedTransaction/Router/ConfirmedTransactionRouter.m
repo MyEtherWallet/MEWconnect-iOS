@@ -6,20 +6,12 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
-@import ViperMcFlurry;
+@import ViperMcFlurryX;
 
 #import "ConfirmedTransactionRouter.h"
-
-static NSString *const kConfirmedTransactionToHomeUnwindSegueIdentifier = @"ConfirmedTransactionToHomeUnwindSegueIdentifier";
 
 @implementation ConfirmedTransactionRouter
 
 #pragma mark - ConfirmedTransactionRouterInput
-
-- (void)close {
-  [[self.transitionHandler openModuleUsingSegue:kConfirmedTransactionToHomeUnwindSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<RamblerViperModuleInput> moduleInput) {
-    return nil;
-  }];
-}
 
 @end

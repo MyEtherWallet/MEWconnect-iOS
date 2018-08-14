@@ -6,12 +6,13 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
-@import ViperMcFlurry;
+@import ViperMcFlurryX;
 
 #import "FetchedResultsControllerAssembly.h"
 #import "PonsomizerAssembly.h"
 
 #import "ServiceComponents.h"
+#import "ModuleFactoriesAssembly.h"
 
 #import "HomeAssembly.h"
 
@@ -22,12 +23,13 @@
 #import "HomeDataDisplayManager.h"
 #import "HomeCellObjectBuilder.h"
 #import "HomeTableViewAnimator.h"
+#import "PropertyAnimatorsFactory.h"
 
 #import "CacheTracker.h"
 
 @implementation HomeAssembly
 
-- (HomeViewController *)viewHome {
+- (HomeViewController *) viewHome {
   return [TyphoonDefinition withClass:[HomeViewController class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(output)
@@ -38,28 +40,36 @@
                                                 with:[self dataDisplayManagerHome]];
                           [definition injectProperty:@selector(tableViewAnimator)
                                                 with:[self tableViewAnimatorHome]];
+                          [definition injectProperty:@selector(animator)
+                                                with:[self.propertyAnimatorsFactory mewQuatroPropertyAnimatorWithDuration:@0.3]];
                         }];
 }
 
-- (HomeInteractor *)interactorHome {
+- (HomeInteractor *) interactorHome {
   return [TyphoonDefinition withClass:[HomeInteractor class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(output)
                                                 with:[self presenterHome]];
                           [definition injectProperty:@selector(connectFacade)
                                                 with:[self.serviceComponents MEWConnectFacade]];
-                          [definition injectProperty:@selector(walletService)
-                                                with:[self.serviceComponents MEWWallet]];
-                          [definition injectProperty:@selector(tokensService)
-                                                with:[self.serviceComponents tokensService]];
                           [definition injectProperty:@selector(cacheTracker)
                                                 with:[self.cacheTrackerAssembly cacheTrackerWithDelegate:[self interactorHome]]];
+                          [definition injectProperty:@selector(accountsService)
+                                                with:[self.serviceComponents accountsService]];
+                          [definition injectProperty:@selector(tokensService)
+                                                with:[self.serviceComponents tokensService]];
+                          [definition injectProperty:@selector(fiatPricesService)
+                                                with:[self.serviceComponents fiatPricesService]];
+                          [definition injectProperty:@selector(blockchainNetworkService)
+                                                with:[self.serviceComponents blockchainNetworkService]];
                           [definition injectProperty:@selector(ponsomizer)
                                                 with:[self.ponsomizerAssembly ponsomizer]];
+                          [definition injectProperty:@selector(reachabilityService)
+                                                with:[self.serviceComponents reachabilityServiceWithDelegate:[self interactorHome]]];
                         }];
 }
 
-- (HomePresenter *)presenterHome{
+- (HomePresenter *) presenterHome{
   return [TyphoonDefinition withClass:[HomePresenter class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(view)
@@ -71,11 +81,13 @@
                         }];
 }
 
-- (HomeRouter *)routerHome{
+- (HomeRouter *) routerHome{
   return [TyphoonDefinition withClass:[HomeRouter class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(transitionHandler)
                                                 with:[self viewHome]];
+                          [definition injectProperty:@selector(transactionFactory)
+                                                with:[self.moduleFactoriesAssembly transactionFactory]];
                         }];
 }
 

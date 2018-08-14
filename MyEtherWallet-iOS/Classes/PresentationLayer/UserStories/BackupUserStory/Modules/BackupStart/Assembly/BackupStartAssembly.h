@@ -6,9 +6,9 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
-@import Typhoon;
+#import "ModuleAssemblyBase.h"
 @import RamblerTyphoonUtils.AssemblyCollector;
 
-@interface BackupStartAssembly : TyphoonAssembly <RamblerInitialAssembly>
+@interface BackupStartAssembly : ModuleAssemblyBase <RamblerInitialAssembly>
 
 @end

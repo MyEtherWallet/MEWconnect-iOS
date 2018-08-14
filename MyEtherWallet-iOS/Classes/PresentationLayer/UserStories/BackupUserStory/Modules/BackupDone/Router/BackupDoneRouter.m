@@ -6,7 +6,7 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
-@import ViperMcFlurry;
+@import ViperMcFlurryX;
 
 #import "BackupDoneRouter.h"
 
@@ -20,7 +20,7 @@ static NSString *const kBackupDoneToHomeUnwindSegueIdentifier = @"BackupDoneToHo
 
 - (void)unwindToHome {
   [[self.transitionHandler openModuleUsingSegue:kBackupDoneToHomeUnwindSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<HomeModuleInput> moduleInput) {
-    [moduleInput configuraBackupStatus];
+    [moduleInput configureBackupStatus];
     return nil;
   }];
 }

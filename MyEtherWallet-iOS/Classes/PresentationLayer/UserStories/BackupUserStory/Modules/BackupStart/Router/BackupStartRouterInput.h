@@ -8,6 +8,10 @@
 
 @import Foundation;
 
+@protocol SplashPasswordModuleOutput;
+@class AccountPlainObject;
+
 @protocol BackupStartRouterInput <NSObject>
-- (void) openWords;
+- (void) openSplashPasswordWithOutput:(id <SplashPasswordModuleOutput>)output account:(AccountPlainObject *)account;
+- (void) openWordsWithMnemonics:(NSArray <NSString *> *)mnemonics account:(AccountPlainObject *)account;
 @end

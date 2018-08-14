@@ -10,6 +10,7 @@
 
 @protocol StartViewOutput <NSObject>
 - (void) didTriggerViewReadyEvent;
+- (void) didTriggerViewWillAppearEvent;
 - (void) createNewWalletAction;
 - (void) restoreWallet;
 @end

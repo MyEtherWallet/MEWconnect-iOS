@@ -6,7 +6,7 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
-@import ViperMcFlurry;
+@import ViperMcFlurryX;
 
 #import "BackupWordsRouter.h"
 
@@ -18,9 +18,9 @@ static NSString *const kBackupWordsToBackupConfirmationSegueIdentifier = @"Backu
 
 #pragma mark - BackupWordsRouterInput
 
-- (void) openConfirmation {
+- (void) openConfirmationWithMnemonics:(NSArray<NSString *> *)mnemonics account:(AccountPlainObject *)account {
   [[self.transitionHandler openModuleUsingSegue:kBackupWordsToBackupConfirmationSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<BackupConfirmationModuleInput> moduleInput) {
-    [moduleInput configureModule];
+    [moduleInput configureModuleWithMnemonics:mnemonics account:account];
     return nil;
   }];
 }

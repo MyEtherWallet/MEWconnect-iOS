@@ -9,19 +9,27 @@
 #import "MEWConnectTransaction.h"
 #import "NSString+HexNSDecimalNumber.h"
 
+static NSString *const kMEWconnectTransactionChainId  = @"chainId";
+static NSString *const kMEWconnectTransactionData     = @"data";
+static NSString *const kMEWconnectTransactionGas      = @"gas";
+static NSString *const kMEWconnectTransactionGasPrice = @"gasPrice";
+static NSString *const kMEWconnectTransactionNonce    = @"nonce";
+static NSString *const kMEWconnectTransactionTo       = @"to";
+static NSString *const kMEWconnectTransactionValue    = @"value";
+
 @implementation MEWConnectTransaction
 
 + (instancetype)transactionWithJSONString:(NSString *)string {
   MEWConnectTransaction *transaction = [[[self class] alloc] init];
   NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
   NSDictionary *info = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-  transaction->_chainId   = info[@"chainId"];
-  transaction->_data      = info[@"data"];
-  transaction->_gasLimit  = info[@"gasLimit"];
-  transaction->_gasPrice  = info[@"gasPrice"];
-  transaction->_nonce     = info[@"nonce"];
-  transaction->_to        = info[@"to"];
-  transaction->_value     = info[@"value"];
+  transaction->_chainId   = info[kMEWconnectTransactionChainId];
+  transaction->_data      = info[kMEWconnectTransactionData];
+  transaction->_gas       = info[kMEWconnectTransactionGas];
+  transaction->_gasPrice  = info[kMEWconnectTransactionGasPrice];
+  transaction->_nonce     = info[kMEWconnectTransactionNonce];
+  transaction->_to        = info[kMEWconnectTransactionTo];
+  transaction->_value     = info[kMEWconnectTransactionValue];
   
   return transaction;
 }

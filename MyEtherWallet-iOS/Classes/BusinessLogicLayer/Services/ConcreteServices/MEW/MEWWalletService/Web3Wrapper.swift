@@ -202,7 +202,7 @@ class Web3Wrapper: NSObject {
     defer {Data.zero(&privateKey)}
     
     guard let gasPrice = BigUInt(transaction.gasPrice.stripHexPrefix(), radix: 16) else { return nil }
-    guard let gasLimit = BigUInt(transaction.gasLimit.stripHexPrefix(), radix: 16) else { return nil }
+    guard let gasLimit = BigUInt(transaction.gas.stripHexPrefix(), radix: 16) else { return nil }
     guard let value = BigUInt(transaction.value.stripHexPrefix(), radix: 16) else { return nil }
     guard let data = Data.fromHex(transaction.data) else { return nil }
     guard let nonce = BigUInt(transaction.nonce.stripHexPrefix(), radix: 16) else { return nil }

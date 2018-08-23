@@ -8,6 +8,7 @@
 
 @import WebRTC;
 @import UICKeyChainStore;
+@import AFNetworking.AFNetworkReachabilityManager;
 
 #import "ApplicationConstants.h"
 
@@ -36,18 +37,20 @@
 #import "KeychainServiceImplementation.h"
 #import "FiatPricesServiceImplementation.h"
 #import "SimplexServiceImplementation.h"
+#import "ReachabilityServiceImplementation.h"
 
 #import "OperationSchedulerImplementation.h"
 
 static NSString *const kConfigFileName          = @"ServicesConfig.plist";
 
 static NSString *const kSignallingServerURLKey  = @"API.SignallingServerURL";
+static NSString *const kReachabilityURLString   = @"API.ReachabilityURLString";
 
 @implementation ServiceComponentsAssembly
 
 #pragma mark - MEW
 
-- (id<MEWConnectFacade>) MEWConnectFacade {
+- (id <MEWConnectFacade>) MEWConnectFacade {
   return [TyphoonDefinition withClass:[MEWConnectFacadeImplementation class]
                         configuration:^(TyphoonDefinition *definition) {
                           definition.scope = TyphoonScopeSingleton;
@@ -76,7 +79,7 @@ static NSString *const kSignallingServerURLKey  = @"API.SignallingServerURL";
                         }];
 }
 
-- (id<MEWRTCService>)MEWRTCService {
+- (id <MEWRTCService>)MEWRTCService {
   return [TyphoonDefinition withClass:[MEWRTCServiceImplementation class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(peerConnectionFactory)
@@ -86,7 +89,7 @@ static NSString *const kSignallingServerURLKey  = @"API.SignallingServerURL";
                         }];
 }
 
-- (id<MEWwallet>) MEWwallet {
+- (id <MEWwallet>) MEWwallet {
   return [TyphoonDefinition withClass:[MEWWalletImplementation class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(wrapper)
@@ -104,14 +107,25 @@ static NSString *const kSignallingServerURLKey  = @"API.SignallingServerURL";
                         }];
 }
 
-- (id<MEWcrypto>) MEWcrypto {
+- (id <MEWcrypto>) MEWcrypto {
   return [TyphoonDefinition withClass:[MEWcryptoImplementation class]];
+}
+
+- (id <ReachabilityService>) reachabilityServiceWithDelegate:(id <ReachabilityServiceDelegate>)delegate {
+  return [TyphoonDefinition withClass:[ReachabilityServiceImplementation class]
+                        configuration:^(TyphoonDefinition *definition) {
+                          [definition useInitializer:@selector(initWithNetworkReachabilityManager:)
+                                          parameters:^(TyphoonMethod *initializer) {
+                                            [initializer injectParameterWith:[self networkReachabilityManager]];;
+                                          }];
+                          [definition injectProperty:@selector(delegate) with:delegate];
+                        }];
 }
 
 #pragma mark - Ethereum
 
 
-- (id<BlockchainNetworkService>) blockchainNetworkService {
+- (id <BlockchainNetworkService>) blockchainNetworkService {
   return [TyphoonDefinition withClass:[BlockchainNetworkServiceImplementation class]
                         configuration:^(TyphoonDefinition *definition) {
                         }];
@@ -131,7 +145,7 @@ static NSString *const kSignallingServerURLKey  = @"API.SignallingServerURL";
                         }];
 }
 
-- (id<TokensService>) tokensService {
+- (id <TokensService>) tokensService {
   return [TyphoonDefinition withClass:[TokensServiceImplementation class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(tokensOperationFactory)
@@ -141,7 +155,7 @@ static NSString *const kSignallingServerURLKey  = @"API.SignallingServerURL";
                         }];
 }
 
-- (id<FiatPricesService>) fiatPricesService {
+- (id <FiatPricesService>) fiatPricesService {
   return [TyphoonDefinition withClass:[FiatPricesServiceImplementation class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(fiatPricesOperationFactory)
@@ -151,7 +165,7 @@ static NSString *const kSignallingServerURLKey  = @"API.SignallingServerURL";
                         }];
 }
 
-- (id<SimplexService>) simplexService {
+- (id <SimplexService>) simplexService {
   return [TyphoonDefinition withClass:[SimplexServiceImplementation class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(simplexOperationFactory)
@@ -165,7 +179,7 @@ static NSString *const kSignallingServerURLKey  = @"API.SignallingServerURL";
 
 #pragma mark - Other Services
 
-- (id<CameraService>) cameraServiceWithDelegate:(id <CameraServiceDelegate>)delegate {
+- (id <CameraService>) cameraServiceWithDelegate:(id <CameraServiceDelegate>)delegate {
   return [TyphoonDefinition withClass:[CameraServiceImplementation class] configuration:^(TyphoonDefinition <AVCaptureMetadataOutputObjectsDelegate> *definition) {
     [definition useInitializer:@selector(initWithSession:captureMetadataOutput:mediaType:) parameters:^(TyphoonMethod *initializer) {
       [initializer injectParameterWith:[self captureSession]];
@@ -176,7 +190,7 @@ static NSString *const kSignallingServerURLKey  = @"API.SignallingServerURL";
   }];
 }
 
-- (id<KeychainService>)keychainService {
+- (id <KeychainService>)keychainService {
   return [TyphoonDefinition withClass:[KeychainServiceImplementation class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(keychainStore) with:[self keychainStore]];
@@ -220,6 +234,16 @@ static NSString *const kSignallingServerURLKey  = @"API.SignallingServerURL";
                         }];
 }
 
+- (AFNetworkReachabilityManager *) networkReachabilityManager {
+  return [TyphoonDefinition withClass:[AFNetworkReachabilityManager class]
+                        configuration:^(TyphoonDefinition *definition) {
+                          [definition useInitializer:@selector(managerForDomain:)
+                                          parameters:^(TyphoonMethod *initializer) {
+                                            [initializer injectParameterWith:TyphoonConfig(kReachabilityURLString)];
+                                          }];
+                        }];
+}
+
 #pragma mark - AVCapture
 
 - (AVCaptureSession *) captureSession {
@@ -232,7 +256,7 @@ static NSString *const kSignallingServerURLKey  = @"API.SignallingServerURL";
 
 #pragma mark - Config
 
-- (id)configurer {
+- (id) configurer {
   return [TyphoonDefinition withConfigName:kConfigFileName];
 }
 

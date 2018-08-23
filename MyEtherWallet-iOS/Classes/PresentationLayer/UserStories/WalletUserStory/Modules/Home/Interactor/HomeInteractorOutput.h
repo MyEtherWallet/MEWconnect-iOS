@@ -24,4 +24,6 @@
 - (void) tokensDidEndUpdating;
 - (void) networkDidChangedWithAccount;
 - (void) networkDidChangedWithoutAccount;
+- (void) internetConnectionIsReachable;
+- (void) internetConnectionIsUnreachable;
 @end

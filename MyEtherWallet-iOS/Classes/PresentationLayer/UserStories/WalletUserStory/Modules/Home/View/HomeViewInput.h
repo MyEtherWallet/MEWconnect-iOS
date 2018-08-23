@@ -19,9 +19,9 @@
 - (void) updateEthereumBalanceWithAccount:(AccountPlainObject *)account;
 - (void) updateWithTransactionBatch:(CacheTransactionBatch *)transactionBatch;
 - (void) updateWithTokensCount:(NSUInteger)tokensCount withTotalPrice:(NSDecimalNumber *)totalPrice;
-- (void) updateWithConnectionStatus:(BOOL)connected animated:(BOOL)animated;
 - (void) presentShareWithItems:(NSArray *)items;
 - (void) startAnimatingTokensRefreshing;
 - (void) stopAnimatingTokensRefreshing;
 - (void) presentNetworkSelection;
+- (void) updateStatusWithInternetConnection:(BOOL)internetConnection mewConnectConnection:(BOOL)mewConnectConnection animated:(BOOL)animated;
 @end

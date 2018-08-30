@@ -13,7 +13,5 @@
 @protocol MessageSignerViewOutput;
 
 @interface MessageSignerViewController : UIViewController <MessageSignerViewInput>
-
 @property (nonatomic, strong) id<MessageSignerViewOutput> output;
-
 @end

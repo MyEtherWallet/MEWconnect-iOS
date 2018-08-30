@@ -10,6 +10,6 @@
 
 @protocol ConfirmedTransactionViewInput <NSObject>
 
-- (void) setupInitialState;
+- (void) setupInitialStateWithDescription:(NSString *)description;
 
 @end

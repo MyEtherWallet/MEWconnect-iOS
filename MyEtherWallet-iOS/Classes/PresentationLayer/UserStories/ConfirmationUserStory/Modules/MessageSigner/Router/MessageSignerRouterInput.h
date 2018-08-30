@@ -8,6 +8,13 @@
 
 @import Foundation;
 
+@protocol SplashPasswordModuleOutput;
+@protocol ConfirmationStoryModuleOutput;
+@class AccountPlainObject;
+
 @protocol MessageSignerRouterInput <NSObject>
+- (void) openConfirmedMessageWithConfirmationDelegate:(id<ConfirmationStoryModuleOutput>)confirmationDelegate;
 - (void) close;
+- (void) openSplashPasswordWithAccount:(AccountPlainObject *)account moduleOutput:(id <SplashPasswordModuleOutput>)output;
+
 @end

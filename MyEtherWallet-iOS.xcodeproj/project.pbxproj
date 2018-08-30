@@ -231,6 +231,8 @@
 		5668E5132083E8290070A402 /* NavigationControllerFactoryImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E5122083E8290070A402 /* NavigationControllerFactoryImplementation.m */; };
 		5668E5142083E8290070A402 /* NavigationControllerFactoryImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E5122083E8290070A402 /* NavigationControllerFactoryImplementation.m */; };
 		5668E51B2083EE920070A402 /* ServiceComponentsAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E51A2083EE920070A402 /* ServiceComponentsAssembly.m */; };
+		566BD36321389478007EC803 /* MEWConnectMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 566BD36221389478007EC803 /* MEWConnectMessage.m */; };
+		566BD3642138947F007EC803 /* MEWConnectMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 566BD36221389478007EC803 /* MEWConnectMessage.m */; };
 		566D155F2107F9DE0020E4F3 /* AboutAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 067D6C62D62015D50442367C /* AboutAssembly.m */; };
 		566D15602107F9E20020E4F3 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DAD76F3C707A5A6B0AB9CF /* AboutViewController.m */; };
 		566D15612107F9E60020E4F3 /* AboutPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD4E433684E1D6237A7BBC0 /* AboutPresenter.m */; };
@@ -1334,6 +1336,8 @@
 		5668E52B2083F4F10070A402 /* release.tests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = release.tests.xcconfig; sourceTree = "<group>"; };
 		5668E52C2083F4F10070A402 /* release.app.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = release.app.xcconfig; sourceTree = "<group>"; };
 		5668E52D2083F5050070A402 /* common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = common.xcconfig; sourceTree = "<group>"; };
+		566BD36121389478007EC803 /* MEWConnectMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MEWConnectMessage.h; sourceTree = "<group>"; };
+		566BD36221389478007EC803 /* MEWConnectMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MEWConnectMessage.m; sourceTree = "<group>"; };
 		5677BB3720FA13860019E92D /* ModuleFactoriesAssembly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModuleFactoriesAssembly.h; sourceTree = "<group>"; };
 		5677BB3820FA13860019E92D /* ModuleFactoriesAssembly.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModuleFactoriesAssembly.m; sourceTree = "<group>"; };
 		5677BB4020FAB28C0019E92D /* UIView+LockFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+LockFrame.h"; sourceTree = "<group>"; };
@@ -1416,7 +1420,6 @@
 		56AE728120D711350047D51F /* MEWcryptoMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MEWcryptoMessage.h; sourceTree = "<group>"; };
 		56AE728220D711350047D51F /* MEWcryptoMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MEWcryptoMessage.m; sourceTree = "<group>"; };
 		56BCB37B208789FF009EF24B /* MyEtherWallet-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyEtherWallet-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
-		56BFD41B209B782C00951000 /* MessageSignerModuleOutput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageSignerModuleOutput.h; sourceTree = "<group>"; };
 		56BFD41D209BB7D400951000 /* MEWConnectTransaction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MEWConnectTransaction.h; sourceTree = "<group>"; };
 		56BFD41E209BB7D400951000 /* MEWConnectTransaction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MEWConnectTransaction.m; sourceTree = "<group>"; };
 		56BFD421209BB87A00951000 /* NSString+HexNSDecimalNumber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+HexNSDecimalNumber.h"; sourceTree = "<group>"; };
@@ -2823,7 +2826,6 @@
 			isa = PBXGroup;
 			children = (
 				6B8E5F6E76201FCF88CF35A0 /* MessageSignerModuleInput.h */,
-				56BFD41B209B782C00951000 /* MessageSignerModuleOutput.h */,
 				3BC5AB9779DC157FED6AC4DD /* MessageSignerPresenter.h */,
 				E7378ED00FE871D84A79F90A /* MessageSignerPresenter.m */,
 			);
@@ -4136,6 +4138,15 @@
 				5668E5282083F4E60070A402 /* appstore.uitests.xcconfig */,
 			);
 			path = AppStore;
+			sourceTree = "<group>";
+		};
+		566BD3602138945A007EC803 /* MEWConnectMessage */ = {
+			isa = PBXGroup;
+			children = (
+				566BD36121389478007EC803 /* MEWConnectMessage.h */,
+				566BD36221389478007EC803 /* MEWConnectMessage.m */,
+			);
+			path = MEWConnectMessage;
 			sourceTree = "<group>";
 		};
 		5677BB3620FA137E0019E92D /* ModuleFactoriesAssembly */ = {
@@ -6150,6 +6161,7 @@
 				56FB3A0120B35ED8007776C8 /* MEWConnectCommand */,
 				56FB3A0220B35EEE007776C8 /* MEWConnectResponse */,
 				56FB3A0320B35EF7007776C8 /* MEWConnectTransaction */,
+				566BD3602138945A007EC803 /* MEWConnectMessage */,
 			);
 			path = MEWConnect;
 			sourceTree = "<group>";
@@ -9212,6 +9224,7 @@
 				56E3E52D21016DB60014152D /* CheckboxButton+Blockies.swift in Sources */,
 				56E3E52E21016DB60014152D /* NSBundle+Version.m in Sources */,
 				56E3E52F21016DB60014152D /* BlockchainNetworkServiceImplementation.m in Sources */,
+				566BD3642138947F007EC803 /* MEWConnectMessage.m in Sources */,
 				56E3E53021016DB60014152D /* SystemInfrastructureAssembly.m in Sources */,
 				56E3E53121016DB60014152D /* MEWConnectConstants.m in Sources */,
 				56E3E53221016DB60014152D /* SimplexOrderBody.m in Sources */,
@@ -9567,6 +9580,7 @@
 				563C6AE620AF690A00E85B8B /* CheckboxButton+Blockies.swift in Sources */,
 				56F17AC420E23FF60010393C /* NSBundle+Version.m in Sources */,
 				564952C120E3DEE300CF2348 /* BlockchainNetworkServiceImplementation.m in Sources */,
+				566BD36321389478007EC803 /* MEWConnectMessage.m in Sources */,
 				5668E5012083E4D70070A402 /* SystemInfrastructureAssembly.m in Sources */,
 				56AC9449208FA77900E5BC2C /* MEWConnectConstants.m in Sources */,
 				56E14C1520ED16C900C41F83 /* SimplexOrderBody.m in Sources */,

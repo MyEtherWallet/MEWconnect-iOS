@@ -46,11 +46,24 @@ static NSString *const kHomeToStartUnwindSegueIdentifier    = @"HomeToStartUnwin
   }];
 }
 
-- (void) openMessageSignerWithMessage:(MEWConnectCommand *)command {
-  [[self.transitionHandler openModuleUsingSegue:kHomeToMessageSignerSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<MessageSignerModuleInput> moduleInput) {
-    [moduleInput configureModuleWithMessage:command];
-    return nil;
+- (id<ConfirmationNavigationModuleInput>)openMessageSignerWithMessage:(MEWConnectCommand *)command account:(AccountPlainObject *)account confirmationDelegate:(id<ConfirmationStoryModuleOutput>)confirmationDelegate {
+  id <RamblerViperModuleInput> originalModuleInput = nil;
+  RamblerViperOpenModulePromise *promise = [self promiseWithFactory:self.messageSignerFactory
+                                                withTransitionBlock:^(id<RamblerViperModuleTransitionHandlerProtocol> sourceModuleTransitionHandler, id<RamblerViperModuleTransitionHandlerProtocol> destinationModuleTransitionHandler) {
+                                                  UIViewController *fromViewController = (UIViewController *)sourceModuleTransitionHandler;
+                                                  UIViewController *toViewController = (UIViewController *)destinationModuleTransitionHandler;
+                                                  
+                                                  UINavigationController *fromNavigationController = [fromViewController navigationController];
+                                                  [fromNavigationController.visibleViewController presentViewController:toViewController animated:YES completion:nil];
+                                                } originalModuleInput:&originalModuleInput];
+  [promise thenChainUsingBlock:^id<ConfirmationStoryModuleOutput>(id<MessageSignerModuleInput> moduleInput) {
+    [moduleInput configureModuleWithMessage:command account:account];
+    return confirmationDelegate;
   }];
+  if ([originalModuleInput conformsToProtocol:@protocol(ConfirmationNavigationModuleInput)]) {
+    return (id <ConfirmationNavigationModuleInput>)originalModuleInput;
+  }
+  return nil;
 }
 
 - (id <ConfirmationNavigationModuleInput>) openTransactionSignerWithMessage:(MEWConnectCommand *)command account:(AccountPlainObject *)account confirmationDelegate:(id<ConfirmationStoryModuleOutput>)confirmationDelegate {

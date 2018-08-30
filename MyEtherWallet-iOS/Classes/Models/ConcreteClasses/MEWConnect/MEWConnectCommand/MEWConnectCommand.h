@@ -11,9 +11,11 @@
 #import "MEWConnectCommandTypes.h"
 
 @class MEWConnectTransaction;
+@class MEWConnectMessage;
 
 @interface MEWConnectCommand : NSObject
 @property (nonatomic) MEWConnectCommandType type;
 @property (nonatomic, strong) id data;
 - (MEWConnectTransaction *) transaction;
+- (MEWConnectMessage *) message;
 @end

@@ -14,6 +14,8 @@
 #import "SplashPasswordModuleOutput.h"
 #import "ConfirmationStoryModuleOutput.h"
 
+#import "ConfirmedTransactionModuleInput.h"
+
 static NSString *const kTransactionToDeclinedTransactionSegueIdentifier = @"TransactionToDeclinedTransactionSegueIdentifier";
 static NSString *const kTransactionToConfirmedTransactionSegueIdentifier = @"TransactionToConfirmedTransactionSegueIdentifier";
 static NSString *const kTransactionToSplashPasswordSegueIdentifier = @"TransactionToSplashPasswordSegueIdentifier";
@@ -23,7 +25,8 @@ static NSString *const kTransactionToSplashPasswordSegueIdentifier = @"Transacti
 #pragma mark - TransactionRouterInput
 
 - (void) openConfirmedTransactionWithConfirmationDelegate:(id<ConfirmationStoryModuleOutput>)confirmationDelegate {
-  [[self.transitionHandler openModuleUsingSegue:kTransactionToConfirmedTransactionSegueIdentifier] thenChainUsingBlock:^id<ConfirmationStoryModuleOutput>(id<RamblerViperModuleInput> moduleInput) {
+  [[self.transitionHandler openModuleUsingSegue:kTransactionToConfirmedTransactionSegueIdentifier] thenChainUsingBlock:^id<ConfirmationStoryModuleOutput>(id<ConfirmedTransactionModuleInput> moduleInput) {
+    [moduleInput configureModuleForTransaction];
     return confirmationDelegate;
   }];
 }

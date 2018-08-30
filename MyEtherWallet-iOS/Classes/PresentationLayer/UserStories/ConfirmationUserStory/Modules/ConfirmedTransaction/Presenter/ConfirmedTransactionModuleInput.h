@@ -10,7 +10,6 @@
 @import ViperMcFlurryX;
 
 @protocol ConfirmedTransactionModuleInput <RamblerViperModuleInput>
-
-- (void) configureModule;
-
+- (void) configureModuleForTransaction;
+- (void) configureModuleForMessage;
 @end

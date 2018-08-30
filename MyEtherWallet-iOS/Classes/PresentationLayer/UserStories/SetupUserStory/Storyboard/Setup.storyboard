@@ -31,7 +31,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="intro_mewconnect_logo" translatesAutoresizingMaskIntoConstraints="NO" id="YLW-t7-njx">
-                                                        <rect key="frame" x="37" y="100" width="274" height="92"/>
+                                                        <rect key="frame" x="40" y="100" width="289" height="92"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="by MyEtherWallet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgr-4b-rhX">
                                                         <rect key="frame" x="40" y="207" width="134" height="21"/>
@@ -51,8 +51,8 @@
                                                     <constraint firstItem="dKN-Rk-zZ5" firstAttribute="leading" secondItem="k4X-dr-mCo" secondAttribute="leading" constant="40" id="943-B7-SB4"/>
                                                     <constraint firstAttribute="trailing" secondItem="dKN-Rk-zZ5" secondAttribute="trailing" constant="40" id="FN3-4S-h1a"/>
                                                     <constraint firstAttribute="width" constant="375" id="JCt-Hu-Oae"/>
-                                                    <constraint firstItem="YLW-t7-njx" firstAttribute="leading" secondItem="k4X-dr-mCo" secondAttribute="leading" constant="37" id="Ks3-0v-8U2"/>
-                                                    <constraint firstItem="hgr-4b-rhX" firstAttribute="leading" secondItem="YLW-t7-njx" secondAttribute="leading" constant="3" id="d6q-yP-7OC"/>
+                                                    <constraint firstItem="YLW-t7-njx" firstAttribute="leading" secondItem="k4X-dr-mCo" secondAttribute="leading" constant="40" id="Ks3-0v-8U2"/>
+                                                    <constraint firstItem="hgr-4b-rhX" firstAttribute="leading" secondItem="YLW-t7-njx" secondAttribute="leading" id="d6q-yP-7OC"/>
                                                     <constraint firstItem="hgr-4b-rhX" firstAttribute="top" secondItem="YLW-t7-njx" secondAttribute="bottom" constant="15" id="fW0-g7-vMX"/>
                                                 </constraints>
                                                 <variation key="default">
@@ -210,7 +210,7 @@
                                 </connections>
                             </scrollView>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jWv-Df-5QC">
-                                <rect key="frame" x="87.5" y="100" width="200" height="200"/>
+                                <rect key="frame" x="87.5" y="102" width="200" height="200"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="pmO-Nb-qiq"/>
@@ -271,7 +271,7 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="2mb-ws-FXz" secondAttribute="bottom" id="1BB-f1-Exj"/>
                             <constraint firstItem="sCg-UF-gAk" firstAttribute="bottom" secondItem="p61-aI-WVD" secondAttribute="bottom" constant="26" id="2Ed-YZ-W6s"/>
-                            <constraint firstItem="YLW-t7-njx" firstAttribute="top" secondItem="sCg-UF-gAk" secondAttribute="top" constant="80" id="2cy-xg-9Bh"/>
+                            <constraint firstItem="YLW-t7-njx" firstAttribute="top" secondItem="sCg-UF-gAk" secondAttribute="top" constant="82" id="2cy-xg-9Bh"/>
                             <constraint firstAttribute="right" secondItem="xa7-gv-aDf" secondAttribute="right" id="4cZ-HB-CCS"/>
                             <constraint firstItem="4Zd-Zy-Eni" firstAttribute="centerX" secondItem="0Ai-uf-6Fu" secondAttribute="centerX" id="57d-md-Olz"/>
                             <constraint firstItem="p61-aI-WVD" firstAttribute="centerX" secondItem="0Ai-uf-6Fu" secondAttribute="centerX" id="Tdl-8k-ctP"/>
@@ -812,10 +812,10 @@ password again</string>
     </scenes>
     <resources>
         <image name="inline_small_chevron" width="6" height="10"/>
-        <image name="intro_mewconnect_logo" width="274" height="92"/>
+        <image name="intro_mewconnect_logo" width="289" height="36"/>
         <image name="onboarding_background" width="414" height="812"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fTS-Oo-qqM"/>
+        <segue reference="24Y-DY-ODr"/>
     </inferredMetricsTieBreakers>
 </document>

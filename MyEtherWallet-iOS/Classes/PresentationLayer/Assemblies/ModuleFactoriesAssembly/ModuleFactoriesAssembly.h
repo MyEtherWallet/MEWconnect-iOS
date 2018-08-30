@@ -16,4 +16,5 @@
 @property (nonatomic, strong, readonly) StoryboardsAssembly *storyboardsAssembly;
 - (RamblerViperModuleFactory *) homeFactory;
 - (RamblerViperModuleFactory *) transactionFactory;
+- (RamblerViperModuleFactory *) messageSignerFactory;
 @end

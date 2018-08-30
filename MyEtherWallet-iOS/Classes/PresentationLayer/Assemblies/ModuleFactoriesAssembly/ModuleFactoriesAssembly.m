@@ -11,8 +11,9 @@
 #import "ModuleFactoriesAssembly.h"
 #import "StoryboardsAssembly.h"
 
-static NSString *const kHomeViewControllerIdentifier        = @"HomeViewController";
-static NSString *const kTransactionViewControllerIdentifier = @"TransactionViewController";
+static NSString *const kHomeViewControllerIdentifier            = @"HomeViewController";
+static NSString *const kTransactionViewControllerIdentifier     = @"TransactionViewController";
+static NSString *const kMessageSignerViewControllerIdentifier   = @"MessageSignerViewController";
 
 @implementation ModuleFactoriesAssembly
 
@@ -34,6 +35,17 @@ static NSString *const kTransactionViewControllerIdentifier = @"TransactionViewC
                                           parameters:^(TyphoonMethod *initializer) {
                                             [initializer injectParameterWith:[self.storyboardsAssembly confirmationStoryboard]];
                                             [initializer injectParameterWith:kTransactionViewControllerIdentifier];
+                                          }];
+                        }];
+}
+
+- (RamblerViperModuleFactory *) messageSignerFactory {
+  return [TyphoonDefinition withClass:[RamblerViperModuleFactory class]
+                        configuration:^(TyphoonDefinition *definition) {
+                          [definition useInitializer:@selector(initWithStoryboard:andRestorationId:)
+                                          parameters:^(TyphoonMethod *initializer) {
+                                            [initializer injectParameterWith:[self.storyboardsAssembly confirmationStoryboard]];
+                                            [initializer injectParameterWith:kMessageSignerViewControllerIdentifier];
                                           }];
                         }];
 }

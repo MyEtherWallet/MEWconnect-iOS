@@ -88,6 +88,8 @@
                                                 with:[self viewHome]];
                           [definition injectProperty:@selector(transactionFactory)
                                                 with:[self.moduleFactoriesAssembly transactionFactory]];
+                          [definition injectProperty:@selector(messageSignerFactory)
+                                                with:[self.moduleFactoriesAssembly messageSignerFactory]];
                         }];
 }
 

@@ -36,6 +36,8 @@
                                                 with:[self presenterMessageSigner]];
                           [definition injectProperty:@selector(walletService)
                                                 with:[self.serviceComponents MEWwallet]];
+                          [definition injectProperty:@selector(connectFacade)
+                                                with:[self.serviceComponents MEWConnectFacade]];
                         }];
 }
 

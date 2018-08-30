@@ -34,7 +34,7 @@
 
 #pragma mark - ConfirmedTransactionViewInput
 
-- (void) setupInitialState {
+- (void) setupInitialStateWithDescription:(NSString *)description {
   if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
     self.titleTopOffsetConstraint.constant = 24.0;
   }
@@ -56,7 +56,7 @@
                                  NSForegroundColorAttributeName: self.descriptionLabel.textColor,
                                  NSParagraphStyleAttributeName: style,
                                  NSKernAttributeName: @(-0.01)};
-    self.descriptionLabel.attributedText = [[NSAttributedString alloc] initWithString:self.descriptionLabel.text attributes:attributes];
+    self.descriptionLabel.attributedText = [[NSAttributedString alloc] initWithString:description attributes:attributes];
   }
 }
 

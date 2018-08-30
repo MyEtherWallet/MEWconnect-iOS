@@ -274,6 +274,8 @@
 		56AC945B208FC21300E5BC2C /* MEWRTCConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 56AC945A208FC21300E5BC2C /* MEWRTCConstants.m */; };
 		56AE727F20D706610047D51F /* MEWcryptoImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56AE727E20D706610047D51F /* MEWcryptoImplementation.m */; };
 		56AE728320D711350047D51F /* MEWcryptoMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 56AE728220D711350047D51F /* MEWcryptoMessage.m */; };
+		56BDC2E2212F342700D7AE03 /* ApplicationIcon-Beta.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56BDC2DF212F342700D7AE03 /* ApplicationIcon-Beta.xcassets */; };
+		56BDC2E3212F342700D7AE03 /* ApplicationIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56BDC2E0212F342700D7AE03 /* ApplicationIcon.xcassets */; };
 		56BFD41F209BB7D400951000 /* MEWConnectTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BFD41E209BB7D400951000 /* MEWConnectTransaction.m */; };
 		56BFD423209BB87A00951000 /* NSString+HexNSDecimalNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BFD422209BB87A00951000 /* NSString+HexNSDecimalNumber.m */; };
 		56BFD425209BB8CB00951000 /* NSString+HexToDecimal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BFD424209BB8CB00951000 /* NSString+HexToDecimal.swift */; };
@@ -846,7 +848,6 @@
 		B6DD4E4FEF354C89A482CF6A /* ConfirmedTransactionAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4269D4156974450E4F43D5 /* ConfirmedTransactionAssembly.m */; };
 		B6E884657C163E2341CDE46D /* Pods_MyEtherWallet_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63C3500E2DF800223CA8934 /* Pods_MyEtherWallet_iOSUITests.framework */; };
 		B7C7C08C581BE1908BF5AE03 /* Pods_MEWconnect_MyEtherWallet_iOS_Beta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA8EA631AB8066826B0F7E8 /* Pods_MEWconnect_MyEtherWallet_iOS_Beta.framework */; };
-		B80F930D5EC13140E643A029 /* Pods_MEWconnect_MyEtherWallet_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42681991858E2AFCA7D0A2BF /* Pods_MEWconnect_MyEtherWallet_iOS.framework */; };
 		B83681BB9459A6C08ABBA212 /* BackupStartAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D83CE195EBBDA38420C38 /* BackupStartAssembly.m */; };
 		B97380417D4D48CEFBC3AD41 /* BuyEtherWebRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7866460D72C34FF931B4E2 /* BuyEtherWebRouter.m */; };
 		B9B3DACD03B86B5A8AFC950C /* DeclinedTransactionInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B619FD5CBEE97E87B364112 /* DeclinedTransactionInteractor.m */; };
@@ -1416,6 +1417,8 @@
 		56AE728120D711350047D51F /* MEWcryptoMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MEWcryptoMessage.h; sourceTree = "<group>"; };
 		56AE728220D711350047D51F /* MEWcryptoMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MEWcryptoMessage.m; sourceTree = "<group>"; };
 		56BCB37B208789FF009EF24B /* MyEtherWallet-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyEtherWallet-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
+		56BDC2DF212F342700D7AE03 /* ApplicationIcon-Beta.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "ApplicationIcon-Beta.xcassets"; sourceTree = "<group>"; };
+		56BDC2E0212F342700D7AE03 /* ApplicationIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ApplicationIcon.xcassets; sourceTree = "<group>"; };
 		56BFD41B209B782C00951000 /* MessageSignerModuleOutput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageSignerModuleOutput.h; sourceTree = "<group>"; };
 		56BFD41D209BB7D400951000 /* MEWConnectTransaction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MEWConnectTransaction.h; sourceTree = "<group>"; };
 		56BFD41E209BB7D400951000 /* MEWConnectTransaction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MEWConnectTransaction.m; sourceTree = "<group>"; };
@@ -2087,7 +2090,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0DF62A5D2ADA9A9D882B5582 /* Pods_MEWconnect_MyEtherWallet_iOS.framework in Frameworks */,
-				B80F930D5EC13140E643A029 /* Pods_MEWconnect_MyEtherWallet_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4823,6 +4825,15 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
+		56BDC2DE212F342700D7AE03 /* ApplicationIcon */ = {
+			isa = PBXGroup;
+			children = (
+				56BDC2DF212F342700D7AE03 /* ApplicationIcon-Beta.xcassets */,
+				56BDC2E0212F342700D7AE03 /* ApplicationIcon.xcassets */,
+			);
+			path = ApplicationIcon;
+			sourceTree = "<group>";
+		};
 		56BFD420209BB84800951000 /* NSString+HexNSDecimalNumber */ = {
 			isa = PBXGroup;
 			children = (
@@ -5392,6 +5403,7 @@
 		56FB390C20B19253007776C8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				56BDC2DE212F342700D7AE03 /* ApplicationIcon */,
 				560D772B20B4D3CF009A3D6D /* Localization */,
 				56FE2B7920817F1100DB39D5 /* Assets.xcassets */,
 				56E3E666210174A00014152D /* Assets-Beta.xcassets */,
@@ -8727,6 +8739,7 @@
 				56E3E668210175270014152D /* Assets-Beta.xcassets in Resources */,
 				56E3E64921016DB60014152D /* Localizable.stringsdict in Resources */,
 				56E3E64A21016DB60014152D /* MEWconnect.API.plist in Resources */,
+				56BDC2E2212F342700D7AE03 /* ApplicationIcon-Beta.xcassets in Resources */,
 				56E3E64B21016DB60014152D /* InfoNormalTableViewCell.xib in Resources */,
 				56E3E64C21016DB60014152D /* HomeTableViewCell.xib in Resources */,
 				56E3E64D21016DB60014152D /* HeadersConfig.plist in Resources */,
@@ -8760,6 +8773,7 @@
 				56FE2B7D20817F1100DB39D5 /* LaunchScreen.storyboard in Resources */,
 				56C7758A20DFEBCE00451EEF /* InfoDestructiveTableViewCell.xib in Resources */,
 				56C878B620BC199300343ADC /* HomeEmptyTableViewCell.xib in Resources */,
+				56BDC2E3212F342700D7AE03 /* ApplicationIcon.xcassets in Resources */,
 				56E3E6652101746F0014152D /* Assets.xcassets in Resources */,
 				56999848209517EB00D45153 /* Confirmation.storyboard in Resources */,
 				56A4EAA920B8BC440042A358 /* SplashPassword.storyboard in Resources */,

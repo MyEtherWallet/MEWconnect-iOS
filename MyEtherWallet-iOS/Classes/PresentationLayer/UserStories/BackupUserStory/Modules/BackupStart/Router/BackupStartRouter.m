@@ -23,7 +23,7 @@ static NSString *const kBackupStartToBackupWordsSegueIdentifier = @"BackupStartT
 
 - (void) openContextPasswordWithOutput:(id <ContextPasswordModuleOutput>)output account:(AccountPlainObject *)account {
   [[self.transitionHandler openModuleUsingSegue:kBackupStartToContextPasswordSegueIdentifier] thenChainUsingBlock:^id<ContextPasswordModuleOutput>(id<ContextPasswordModuleInput> moduleInput) {
-    [moduleInput configureModuleWithAccount:account];
+    [moduleInput configureModuleWithAccount:account type:ContextPasswordTypeBackup];
     return output;
   }];
 }

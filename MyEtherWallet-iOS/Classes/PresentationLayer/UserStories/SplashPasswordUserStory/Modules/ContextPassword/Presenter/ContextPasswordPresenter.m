@@ -13,18 +13,39 @@
 #import "ContextPasswordRouterInput.h"
 #import "ContextPasswordModuleOutput.h"
 
-@implementation ContextPasswordPresenter
+@implementation ContextPasswordPresenter {
+  ContextPasswordType _type;
+}
 
 #pragma mark - ContextPasswordModuleInput
 
-- (void) configureModuleWithAccount:(AccountPlainObject *)account {
+- (void) configureModuleWithAccount:(AccountPlainObject *)account type:(ContextPasswordType)type {
+  _type = type;
   [self.interactor configurateWithAccount:account];
 }
 
 #pragma mark - ContextPasswordViewOutput
 
 - (void) didTriggerViewReadyEvent {
-	[self.view setupInitialState];
+  NSString *title = nil;
+  switch (_type) {
+    case ContextPasswordTypeBackup: {
+      title = NSLocalizedString(@"Enter password to start", @"Context inout password. Backup");
+      break;
+    }
+    case ContextPasswordTypeMessage: {
+      title = NSLocalizedString(@"Enter password to sign", @"Context inout password. Sign message");
+      break;
+    }
+    case ContextPasswordTypeTransaction: {
+      title = NSLocalizedString(@"Enter password to confirm", @"Context inout password. Sign transaction");
+      break;
+    }
+      
+    default:
+      break;
+  }
+  [self.view setupInitialStateWithTitle:title];
 }
 
 - (void) cancelAction {

@@ -11,6 +11,12 @@
 
 @class AccountPlainObject;
 
+typedef NS_ENUM(short, ContextPasswordType) {
+  ContextPasswordTypeBackup       = 0,
+  ContextPasswordTypeTransaction  = 1,
+  ContextPasswordTypeMessage      = 2,
+};
+
 @protocol ContextPasswordModuleInput <RamblerViperModuleInput>
-- (void) configureModuleWithAccount:(AccountPlainObject *)account;
+- (void) configureModuleWithAccount:(AccountPlainObject *)account type:(ContextPasswordType)type;
 @end

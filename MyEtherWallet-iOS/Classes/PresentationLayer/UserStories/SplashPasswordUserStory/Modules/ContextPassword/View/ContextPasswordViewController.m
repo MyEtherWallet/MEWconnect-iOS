@@ -17,6 +17,7 @@ static CFTimeInterval const kContextPasswordShakeAnimationDuration = 0.05;
 static float const kContextPasswordShakeAnimationRepeatCount = 3.0;
 
 @interface ContextPasswordViewController () <UITextFieldDelegate>
+@property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) IBOutlet UITextField *passwordTextField;
 @property (nonatomic, weak) IBOutlet UIView *accessoryView;
 @end
@@ -65,7 +66,8 @@ static float const kContextPasswordShakeAnimationRepeatCount = 3.0;
 
 #pragma mark - ContextPasswordViewInput
 
-- (void) setupInitialState {
+- (void) setupInitialStateWithTitle:(NSString *)title {
+  self.titleLabel.text = title;
   [self _updatePrefferedContentSize];
 }
 

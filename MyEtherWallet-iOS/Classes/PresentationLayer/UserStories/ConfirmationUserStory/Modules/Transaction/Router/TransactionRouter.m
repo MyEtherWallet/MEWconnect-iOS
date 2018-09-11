@@ -43,7 +43,7 @@ static NSString *const kTransactionToContextPasswordSegueIdentifier = @"Transact
 
 - (void) openContextPasswordWithAccount:(AccountPlainObject *)account moduleOutput:(id<ContextPasswordModuleOutput>)output {
   [[self.transitionHandler openModuleUsingSegue:kTransactionToContextPasswordSegueIdentifier] thenChainUsingBlock:^id<ContextPasswordModuleOutput>(id<ContextPasswordModuleInput> moduleInput) {
-    [moduleInput configureModuleWithAccount:account];
+    [moduleInput configureModuleWithAccount:account type:ContextPasswordTypeTransaction];
     return output;
   }];
 }

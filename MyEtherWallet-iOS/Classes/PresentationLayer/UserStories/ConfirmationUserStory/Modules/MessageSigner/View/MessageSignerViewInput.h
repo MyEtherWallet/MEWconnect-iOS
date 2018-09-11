@@ -8,7 +8,9 @@
 
 @import Foundation;
 
+@class MEWConnectMessage;
+
 @protocol MessageSignerViewInput <NSObject>
 - (void) setupInitialState;
-- (void) updateMessage:(NSString *)message;
+- (void) updateWithMessage:(MEWConnectMessage *)message;
 @end

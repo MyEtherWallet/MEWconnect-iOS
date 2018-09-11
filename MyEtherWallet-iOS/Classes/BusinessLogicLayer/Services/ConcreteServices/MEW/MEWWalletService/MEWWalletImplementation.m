@@ -31,7 +31,7 @@
   return [self.wrapper validatePasswordWithPassword:password address:publicAddress network:network];
 }
 
-- (void) signMessage:(NSString *)message password:(NSString *)password publicAddress:(NSString *)publicAddress network:(BlockchainNetworkType)network completion:(MEWWalletDataCompletionBlock)completion {
+- (void) signMessage:(MEWConnectMessage *)message password:(NSString *)password publicAddress:(NSString *)publicAddress network:(BlockchainNetworkType)network completion:(MEWWalletDataCompletionBlock)completion {
   dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
   dispatch_async(queue, ^{
     id signedMessage = [self.wrapper signMessage:message password:password address:publicAddress network:network];

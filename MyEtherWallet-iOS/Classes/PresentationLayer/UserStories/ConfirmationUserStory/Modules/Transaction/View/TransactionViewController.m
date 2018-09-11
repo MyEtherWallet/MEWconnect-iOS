@@ -47,10 +47,6 @@
 	[self.output didTriggerViewReadyEvent];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-  [super viewDidAppear:animated];
-}
-
 - (UIStatusBarStyle) preferredStatusBarStyle {
   return UIStatusBarStyleLightContent;
 }

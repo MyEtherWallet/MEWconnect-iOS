@@ -14,8 +14,6 @@
 #import "HomeInteractorInput.h"
 #import "HomeRouterInput.h"
 
-#import "MessageSignerModuleOutput.h"
-
 #import "MEWConnectCommand.h"
 
 #import "ConfirmationNavigationModuleInput.h"
@@ -28,7 +26,7 @@ typedef NS_OPTIONS(short, HomeViewPresenterStatus) {
 };
 
 @interface HomePresenter () <ConfirmationStoryModuleOutput>
-@property (nonatomic, weak) id <ConfirmationNavigationModuleInput> transactionModuleInput;
+@property (nonatomic, weak) id <ConfirmationNavigationModuleInput> signModuleInput;
 @property (nonatomic) HomeViewPresenterStatus connectionStatus;
 @end
 
@@ -141,20 +139,20 @@ typedef NS_OPTIONS(short, HomeViewPresenterStatus) {
 
 #pragma mark - HomeInteractorOutput
 
-- (void) openMessageSignerWithMessage:(MEWConnectCommand *)command {
-  [self.router openMessageSignerWithMessage:command];
+- (void) openMessageSignerWithMessage:(MEWConnectCommand *)command account:(AccountPlainObject *)account {
+  @weakify(self);
+  [self _closePresentedSignModulesIfNeededWithCompletion:^{
+    @strongify(self);
+    self.signModuleInput = [self.router openMessageSignerWithMessage:command account:account confirmationDelegate:self];
+  }];
 }
 
 - (void) openTransactionSignerWithMessage:(MEWConnectCommand *)command account:(AccountPlainObject *)account {
-  if (self.transactionModuleInput) {
-    @weakify(self);
-    [self.transactionModuleInput closeWithCompletion:^{
-      @strongify(self);
-      self.transactionModuleInput = [self.router openTransactionSignerWithMessage:command account:account confirmationDelegate:self];
-    }];
-  } else {
-    self.transactionModuleInput = [self.router openTransactionSignerWithMessage:command account:account confirmationDelegate:self];
-  }
+  @weakify(self);
+  [self _closePresentedSignModulesIfNeededWithCompletion:^{
+    @strongify(self);
+    self.signModuleInput = [self.router openTransactionSignerWithMessage:command account:account confirmationDelegate:self];
+  }];
 }
 
 - (void) didUpdateTokens {
@@ -183,7 +181,7 @@ typedef NS_OPTIONS(short, HomeViewPresenterStatus) {
   }
   [self _refreshViewStatusAnimated:YES];
   if (!connected) {
-    [self.transactionModuleInput closeWithCompletion:nil];
+    [self.signModuleInput closeWithCompletion:nil];
   }
 }
 
@@ -218,11 +216,11 @@ typedef NS_OPTIONS(short, HomeViewPresenterStatus) {
 #pragma mark - ConfirmationStoryModuleOutput
 
 - (void) transactionDidSigned {
-  [self.transactionModuleInput closeWithCompletion:nil];
+  [self.signModuleInput closeWithCompletion:nil];
 }
 
 - (void) transactionDidRejected {
-  [self.transactionModuleInput closeWithCompletion:nil];
+  [self.signModuleInput closeWithCompletion:nil];
 }
 
 #pragma mark - Private
@@ -231,6 +229,16 @@ typedef NS_OPTIONS(short, HomeViewPresenterStatus) {
   [self.view updateStatusWithInternetConnection:(self.connectionStatus & HomeViewPresenterStatusInternetConnection) == HomeViewPresenterStatusInternetConnection
                            mewConnectConnection:(self.connectionStatus & HomeViewPresenterStatusMEWconnectConnection) == HomeViewPresenterStatusMEWconnectConnection
                                        animated:animated];
+}
+
+- (void) _closePresentedSignModulesIfNeededWithCompletion:(void(^)(void))completion {
+  if (self.signModuleInput) {
+    [self.signModuleInput closeWithCompletion:completion];
+  } else {
+    if (completion) {
+      completion();
+    }
+  }
 }
 
 @end

@@ -12,24 +12,30 @@
 #import "MessageSignerInteractorInput.h"
 #import "MessageSignerRouterInput.h"
 
+#import "SplashPasswordModuleOutput.h"
+
+@interface MessageSignerPresenter () <SplashPasswordModuleOutput>
+@end
+
 @implementation MessageSignerPresenter
 
 #pragma mark - MessageSignerModuleInput
 
-- (void) configureModuleWithMessage:(MEWConnectCommand *)message {
-  [self.interactor configurateWithMessage:message];
+- (void) configureModuleWithMessage:(MEWConnectCommand *)message account:(AccountPlainObject *)account {
+  [self.interactor configurateWithMessage:message account:account];
 }
 
 #pragma mark - MessageSignerViewOutput
 
 - (void) didTriggerViewReadyEvent {
-  NSString *message = [self.interactor obtainMessage];
-	[self.view setupInitialState];
-  [self.view updateMessage:message];
+  [self.view setupInitialState];
+  MEWConnectMessage *message = [self.interactor obtainMessage];
+  [self.view updateWithMessage:message];
 }
 
 - (void) signAction {
-  [self.interactor signMessage];
+  AccountPlainObject *account = [self.interactor obtainAccount];
+  [self.router openSplashPasswordWithAccount:account moduleOutput:self];
 }
 
 - (void) declineAction {
@@ -38,9 +44,18 @@
 
 #pragma mark - MessageSignerInteractorOutput
 
-- (void)messageDidSigned:(MEWConnectResponse *)response {
-  [self.moduleOutput messageDidSigned:response];
+- (void) messageDidSigned:(MEWConnectResponse *)response {
+  [self.router openConfirmedMessageWithConfirmationDelegate:self.moduleOutput];
+}
+
+- (void) messageDidFailure {
   [self.router close];
+}
+
+#pragma mark - SplashPasswordModuleOutput
+
+- (void) passwordDidEntered:(NSString *)password {
+  [self.interactor signMessageWithPassword:password];
 }
 
 @end

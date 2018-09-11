@@ -15,7 +15,7 @@
 
 @protocol HomeRouterInput <NSObject>
 - (void) openScanner;
-- (void) openMessageSignerWithMessage:(MEWConnectCommand *)command;
+- (id <ConfirmationNavigationModuleInput>) openMessageSignerWithMessage:(MEWConnectCommand *)command account:(AccountPlainObject *)account confirmationDelegate:(id <ConfirmationStoryModuleOutput>)confirmationDelegate;
 - (id <ConfirmationNavigationModuleInput>) openTransactionSignerWithMessage:(MEWConnectCommand *)command account:(AccountPlainObject *)account confirmationDelegate:(id <ConfirmationStoryModuleOutput>)confirmationDelegate;
 - (void) openBackupWithAccount:(AccountPlainObject *)account;
 - (void) openInfoWithAccount:(AccountPlainObject *)account;

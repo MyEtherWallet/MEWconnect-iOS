@@ -14,10 +14,7 @@ import Result
 private struct SignedMessageConstants {
   struct Fields {
     static let Address  = "address"
-    static let Msg      = "msg"
     static let Sig      = "sig"
-    static let Version  = "version"
-    static let Signer   = "signer"
   }
   struct Values {
     static let Version  = "3"
@@ -158,7 +155,11 @@ class Web3Wrapper: NSObject {
    - Returns: Signed message, that can be verified at https://www.myetherwallet.com/signmsg.html
    or **nil** if something goes wrong
    */
-  func signMessage(_ message: String, password: String, address: String, network: BlockchainNetworkType = .mainnet) -> [String: String]? {
+  func signMessage(_ message: MEWConnectMessage, password: String, address: String, network: BlockchainNetworkType = .mainnet) -> [String: String]? {
+    guard let data = message.message.data(using: .utf8) else { return nil }
+    guard let hashData = Web3.Utils.hashPersonalMessage(data) else { return nil }
+    if hashData != message.messageHash { return nil }
+    
     guard let encryptedKeydata = self.keychainService?.obtainKeydata(ofPublicAddress: address, from: network) else { return nil }
     guard let keydata = self.MEWcrypto?.decryptData(encryptedKeydata, withPassword: password) else { return nil }
     
@@ -167,17 +168,11 @@ class Web3Wrapper: NSObject {
     guard var privateKey = try? bip32Keystore.UNSAFE_getPrivateKeyData(password: password, account: account/*, prefixPath: HDNode.defaultPath*/) else { return nil }
     defer {Data.zero(&privateKey)}
     
-    guard let data = message.data(using: .utf8) else { return nil }
-    guard let hashData = Web3.Utils.hashPersonalMessage(data) else { return nil }
-    
     guard let signedData = SECP256K1.signForRecovery(hash: hashData, privateKey: privateKey, useExtraEntropy: false).serializedSignature else { return nil }
     let signedMessage = signedData.toHexString().addHexPrefix()
     var signature: [String: String] = [:]
     signature[SignedMessageConstants.Fields.Address]  = account.address
-    signature[SignedMessageConstants.Fields.Msg]      = message
     signature[SignedMessageConstants.Fields.Sig]      = signedMessage
-    signature[SignedMessageConstants.Fields.Version]  = SignedMessageConstants.Values.Version
-    signature[SignedMessageConstants.Fields.Signer]   = SignedMessageConstants.Values.Signer
     
     return signature
   }

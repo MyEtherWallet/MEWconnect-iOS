@@ -55,10 +55,20 @@ static NSUInteger kStartViewIconMinimumCorners  = 4;
 
 - (void) setupInitialState {
   [self _prepareDescriptions];
-  if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
-    [self.mewConnectLogo setImage:[UIImage imageNamed:@"intro_mewconnect_logo_40"]];
-    self.mewConnectLogoTopOffsetConstraint.constant = 56.0;
-    self.morphingIconContrainerTopOffsetConstraint.constant = -40.0;
+  switch ([UIScreen mainScreen].screenSizeType) {
+    case ScreenSizeTypeInches40: {
+      [self.mewConnectLogo setImage:[UIImage imageNamed:@"intro_mewconnect_logo_40"]];
+      self.mewConnectLogoTopOffsetConstraint.constant = 79.0;
+      self.morphingIconContrainerTopOffsetConstraint.constant = -40.0;
+      break;
+    }
+    case ScreenSizeTypeInches58: {
+      self.mewConnectLogoTopOffsetConstraint.constant = 79.0;
+      break;
+    }
+      
+    default:
+      break;
   }
   { //Create new wallet
     self.createNewWalletButton.layer.shadowColor = [UIColor blackColor].CGColor;

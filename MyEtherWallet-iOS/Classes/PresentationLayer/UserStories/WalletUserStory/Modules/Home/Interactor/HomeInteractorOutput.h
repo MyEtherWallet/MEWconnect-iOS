@@ -13,7 +13,7 @@
 @class AccountPlainObject;
 
 @protocol HomeInteractorOutput <NSObject>
-- (void) openMessageSignerWithMessage:(MEWConnectCommand *)command;
+- (void) openMessageSignerWithMessage:(MEWConnectCommand *)command account:(AccountPlainObject *)account;
 - (void) openTransactionSignerWithMessage:(MEWConnectCommand *)command account:(AccountPlainObject *)account;
 - (void) didProcessCacheTransaction:(CacheTransactionBatch *)transactionBatch;
 - (void) didUpdateTokens;

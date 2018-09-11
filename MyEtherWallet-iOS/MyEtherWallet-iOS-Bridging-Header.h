@@ -4,6 +4,7 @@
 
 #import "BlockchainNetworkTypes.h"
 #import "MEWConnectTransaction.h"
+#import "MEWConnectMessage.h"
 #import "UIColor+Application.h"
 #import "UIColor+Hex.h"
 #import "UIScreen+ScreenSizeType.h"

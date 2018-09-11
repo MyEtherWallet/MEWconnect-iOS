@@ -12,4 +12,5 @@
 
 @protocol MessageSignerInteractorOutput <NSObject>
 - (void) messageDidSigned:(MEWConnectResponse *)response;
+- (void) messageDidFailure;
 @end

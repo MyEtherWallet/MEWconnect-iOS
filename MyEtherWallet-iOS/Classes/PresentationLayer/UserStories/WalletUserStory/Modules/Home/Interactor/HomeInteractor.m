@@ -196,7 +196,7 @@
   MEWConnectCommand *command = notification.userInfo[kMEWConnectFacadeMessage];
   switch (command.type) {
     case MEWConnectCommandTypeSignMessage: {
-      [self.output openMessageSignerWithMessage:command];
+      [self.output openMessageSignerWithMessage:command account:self.account];
       break;
     }
     case MEWConnectCommandTypeSignTransaction: {

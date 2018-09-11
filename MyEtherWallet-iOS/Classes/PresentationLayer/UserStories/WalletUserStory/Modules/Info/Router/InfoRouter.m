@@ -48,7 +48,10 @@ static NSString *const kInfoToAboutSegueIdentifier = @"InfoToAboutSegueIdentifie
 }
 
 - (void) openPrivacyAndTerms {
-  //TODO
+  NSURL *url = [NSURL URLWithString:kPrivacyAndTermsURL];
+  if (url) {
+    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+  }
 }
 
 - (void) openUserGuide {

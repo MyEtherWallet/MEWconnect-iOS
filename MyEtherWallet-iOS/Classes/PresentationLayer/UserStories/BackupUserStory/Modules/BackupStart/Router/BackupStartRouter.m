@@ -10,20 +10,20 @@
 
 #import "BackupStartRouter.h"
 
-#import "SplashPasswordModuleInput.h"
-#import "SplashPasswordModuleOutput.h"
+#import "ContextPasswordModuleInput.h"
+#import "ContextPasswordModuleOutput.h"
 #import "BackupWordsModuleInput.h"
 
-static NSString *const kBackupStartToSplashPasswordSegueIdentifier = @"BackupStartToSplashPasswordSegueIdentifier";
+static NSString *const kBackupStartToContextPasswordSegueIdentifier = @"BackupStartToContextPasswordSegueIdentifier";
 static NSString *const kBackupStartToBackupWordsSegueIdentifier = @"BackupStartToBackupWordsSegueIdentifier";
 
 @implementation BackupStartRouter
 
 #pragma mark - BackupStartRouterInput
 
-- (void) openSplashPasswordWithOutput:(id <SplashPasswordModuleOutput>)output account:(AccountPlainObject *)account {
-  [[self.transitionHandler openModuleUsingSegue:kBackupStartToSplashPasswordSegueIdentifier] thenChainUsingBlock:^id<SplashPasswordModuleOutput>(id<SplashPasswordModuleInput> moduleInput) {
-    [moduleInput configureModuleWithAccount:account autoControl:YES];
+- (void) openContextPasswordWithOutput:(id <ContextPasswordModuleOutput>)output account:(AccountPlainObject *)account {
+  [[self.transitionHandler openModuleUsingSegue:kBackupStartToContextPasswordSegueIdentifier] thenChainUsingBlock:^id<ContextPasswordModuleOutput>(id<ContextPasswordModuleInput> moduleInput) {
+    [moduleInput configureModuleWithAccount:account];
     return output;
   }];
 }

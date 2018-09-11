@@ -10,15 +10,15 @@
 
 #import "TransactionRouter.h"
 
-#import "SplashPasswordModuleInput.h"
-#import "SplashPasswordModuleOutput.h"
+#import "ContextPasswordModuleInput.h"
+#import "ContextPasswordModuleOutput.h"
 #import "ConfirmationStoryModuleOutput.h"
 
 #import "ConfirmedTransactionModuleInput.h"
 
 static NSString *const kTransactionToDeclinedTransactionSegueIdentifier = @"TransactionToDeclinedTransactionSegueIdentifier";
 static NSString *const kTransactionToConfirmedTransactionSegueIdentifier = @"TransactionToConfirmedTransactionSegueIdentifier";
-static NSString *const kTransactionToSplashPasswordSegueIdentifier = @"TransactionToSplashPasswordSegueIdentifier";
+static NSString *const kTransactionToContextPasswordSegueIdentifier = @"TransactionToContextPasswordSegueIdentifier";
 
 @implementation TransactionRouter
 
@@ -41,9 +41,9 @@ static NSString *const kTransactionToSplashPasswordSegueIdentifier = @"Transacti
   [self.transitionHandler closeCurrentModule:YES];
 }
 
-- (void) openSplashPasswordWithAccount:(AccountPlainObject *)account moduleOutput:(id<SplashPasswordModuleOutput>)output {
-  [[self.transitionHandler openModuleUsingSegue:kTransactionToSplashPasswordSegueIdentifier] thenChainUsingBlock:^id<SplashPasswordModuleOutput>(id<SplashPasswordModuleInput> moduleInput) {
-    [moduleInput configureModuleWithAccount:account autoControl:YES];
+- (void) openContextPasswordWithAccount:(AccountPlainObject *)account moduleOutput:(id<ContextPasswordModuleOutput>)output {
+  [[self.transitionHandler openModuleUsingSegue:kTransactionToContextPasswordSegueIdentifier] thenChainUsingBlock:^id<ContextPasswordModuleOutput>(id<ContextPasswordModuleInput> moduleInput) {
+    [moduleInput configureModuleWithAccount:account];
     return output;
   }];
 }

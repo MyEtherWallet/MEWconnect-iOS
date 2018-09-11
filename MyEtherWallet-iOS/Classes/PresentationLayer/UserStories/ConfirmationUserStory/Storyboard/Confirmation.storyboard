@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.3.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dSU-dI-qOt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.13.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dSU-dI-qOt">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.9"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -133,17 +133,17 @@ transaction</string>
                         <outlet property="titleTopOffsetConstraint" destination="TQ0-xB-EoZ" id="8d4-zJ-5FZ"/>
                         <segue destination="V5h-zr-lHt" kind="show" identifier="TransactionToDeclinedTransactionSegueIdentifier" id="1xX-zz-QIs"/>
                         <segue destination="Osz-z3-Lpi" kind="show" identifier="TransactionToConfirmedTransactionSegueIdentifier" id="9FK-49-v55"/>
-                        <segue destination="Y4n-mg-mQJ" kind="presentation" identifier="TransactionToSplashPasswordSegueIdentifier" id="VgU-CY-Pdz"/>
+                        <segue destination="Y4n-mg-mQJ" kind="presentation" identifier="TransactionToContextPasswordSegueIdentifier" id="VgU-CY-Pdz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XE3-td-mbH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="996" y="-352"/>
         </scene>
-        <!--SplashPassword-->
+        <!--ContextPasswordViewController-->
         <scene sceneID="RQg-ff-kZQ">
             <objects>
-                <viewControllerPlaceholder storyboardName="SplashPassword" id="Y4n-mg-mQJ" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="SplashPassword" referencedIdentifier="ContextPasswordViewController" id="Y4n-mg-mQJ" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RjP-r8-snu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1765" y="75"/>
@@ -309,7 +309,7 @@ declined</string>
                         <outlet property="messageTextView" destination="xO2-g9-eXr" id="n4D-rF-7N1"/>
                         <outlet property="titleLabel" destination="ijp-ts-4OF" id="0Ls-sN-xfk"/>
                         <outlet property="titleTopOffsetConstraint" destination="MTd-Rc-a0i" id="JIn-Km-Qle"/>
-                        <segue destination="Y4n-mg-mQJ" kind="presentation" identifier="MessageToSplashPasswordSegueIdentifier" id="zTc-Aq-ZZx"/>
+                        <segue destination="Y4n-mg-mQJ" kind="presentation" identifier="MessageToContextPasswordSegueIdentifier" id="zTc-Aq-ZZx"/>
                         <segue destination="Osz-z3-Lpi" kind="show" identifier="MessageToConfirmedTransactionSegueIdentifier" id="yXB-lP-loE"/>
                     </connections>
                 </viewController>

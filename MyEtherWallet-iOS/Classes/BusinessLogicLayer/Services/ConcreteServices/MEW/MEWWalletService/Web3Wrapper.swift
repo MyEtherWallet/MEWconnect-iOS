@@ -203,11 +203,16 @@ class Web3Wrapper: NSObject {
     guard let nonce = BigUInt(transaction.nonce.stripHexPrefix(), radix: 16) else { return nil }
     let chainId = BigUInt(transaction.chainId.intValue)
     
-    guard let to = EthereumAddress(transaction.to) else { return nil }
+    var to = EthereumAddress(transaction.to)
+    if to == nil {
+      to = EthereumAddress.contractDeploymentAddress()
+    }
+    
+    if to == nil { return nil }
     
     var ethereumTransaction = EthereumTransaction(gasPrice: gasPrice,
                                                   gasLimit: gasLimit,
-                                                  to: to,
+                                                  to: to!,
                                                   value: value,
                                                   data: data)
     

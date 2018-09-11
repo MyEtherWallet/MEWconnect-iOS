@@ -28,5 +28,6 @@ static NSString   * const kMyEtherWalletComURL                = @"https://www.my
 static NSString   * const kKnowledgeBaseURL                   = @"https://myetherwallet.github.io/knowledge-base/";
 static NSString   * const kMyEtherWalletSupportEmail          = @"support@myetherwallet.com";
 static NSString   * const kUserGuideURL                       = @"https://kb.myetherwallet.com/getting-started/mew-connect-user-guide.html";
+static NSString   * const kPrivacyAndTermsURL                 = @"https://myetherwallet.com/privacy.html";
 
 #endif /* ApplicationConstants_h */

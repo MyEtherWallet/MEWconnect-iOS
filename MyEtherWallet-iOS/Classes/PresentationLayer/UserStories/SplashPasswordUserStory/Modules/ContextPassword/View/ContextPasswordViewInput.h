@@ -9,7 +9,7 @@
 @import Foundation;
 
 @protocol ContextPasswordViewInput <NSObject>
-- (void) setupInitialState;
+- (void) setupInitialStateWithTitle:(NSString *)title;
 - (void) shakeInput;
 - (void) prepareForDismiss;
 @end

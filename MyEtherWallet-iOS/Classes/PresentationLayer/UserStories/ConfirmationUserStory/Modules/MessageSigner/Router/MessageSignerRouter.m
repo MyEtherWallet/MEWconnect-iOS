@@ -35,7 +35,7 @@ static NSString *const kMessageToContextPasswordSegueIdentifier = @"MessageToCon
 
 - (void) openContextPasswordWithAccount:(AccountPlainObject *)account moduleOutput:(id<ContextPasswordModuleOutput>)output {
   [[self.transitionHandler openModuleUsingSegue:kMessageToContextPasswordSegueIdentifier] thenChainUsingBlock:^id<ContextPasswordModuleOutput>(id<ContextPasswordModuleInput> moduleInput) {
-    [moduleInput configureModuleWithAccount:account];
+    [moduleInput configureModuleWithAccount:account type:ContextPasswordTypeMessage];
     return output;
   }];
 }

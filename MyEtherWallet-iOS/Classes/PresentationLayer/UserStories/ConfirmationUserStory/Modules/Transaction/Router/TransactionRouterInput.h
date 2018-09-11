@@ -8,7 +8,7 @@
 
 @import Foundation;
 
-@protocol SplashPasswordModuleOutput;
+@protocol ContextPasswordModuleOutput;
 @protocol ConfirmationStoryModuleOutput;
 @class AccountPlainObject;
 
@@ -18,5 +18,5 @@
 - (void) openConfirmedTransactionWithConfirmationDelegate:(id<ConfirmationStoryModuleOutput>)confirmationDelegate;
 - (void) openDeclinedTransactionWithConfirmationDelegate:(id<ConfirmationStoryModuleOutput>)confirmationDelegate;
 - (void) close;
-- (void) openSplashPasswordWithAccount:(AccountPlainObject *)account moduleOutput:(id <SplashPasswordModuleOutput>)output;
+- (void) openContextPasswordWithAccount:(AccountPlainObject *)account moduleOutput:(id <ContextPasswordModuleOutput>)output;
 @end

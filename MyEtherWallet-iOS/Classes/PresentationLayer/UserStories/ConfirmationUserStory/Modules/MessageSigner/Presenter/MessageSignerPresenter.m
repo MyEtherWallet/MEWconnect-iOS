@@ -12,9 +12,9 @@
 #import "MessageSignerInteractorInput.h"
 #import "MessageSignerRouterInput.h"
 
-#import "SplashPasswordModuleOutput.h"
+#import "ContextPasswordModuleOutput.h"
 
-@interface MessageSignerPresenter () <SplashPasswordModuleOutput>
+@interface MessageSignerPresenter () <ContextPasswordModuleOutput>
 @end
 
 @implementation MessageSignerPresenter
@@ -35,7 +35,7 @@
 
 - (void) signAction {
   AccountPlainObject *account = [self.interactor obtainAccount];
-  [self.router openSplashPasswordWithAccount:account moduleOutput:self];
+  [self.router openContextPasswordWithAccount:account moduleOutput:self];
 }
 
 - (void) declineAction {
@@ -52,7 +52,7 @@
   [self.router close];
 }
 
-#pragma mark - SplashPasswordModuleOutput
+#pragma mark - ContextPasswordModuleOutput
 
 - (void) passwordDidEntered:(NSString *)password {
   [self.interactor signMessageWithPassword:password];

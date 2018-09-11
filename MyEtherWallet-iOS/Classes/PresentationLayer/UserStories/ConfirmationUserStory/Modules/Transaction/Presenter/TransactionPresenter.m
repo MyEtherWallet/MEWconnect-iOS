@@ -12,9 +12,9 @@
 #import "TransactionInteractorInput.h"
 #import "TransactionRouterInput.h"
 
-#import "SplashPasswordModuleOutput.h"
+#import "ContextPasswordModuleOutput.h"
 
-@interface TransactionPresenter () <SplashPasswordModuleOutput>
+@interface TransactionPresenter () <ContextPasswordModuleOutput>
 @end
 
 @implementation TransactionPresenter {
@@ -39,7 +39,7 @@
 
 - (void) signAction {
   AccountPlainObject *account = [self.interactor obtainAccount];
-  [self.router openSplashPasswordWithAccount:account moduleOutput:self];
+  [self.router openContextPasswordWithAccount:account moduleOutput:self];
 }
 
 - (void) declineAction {
@@ -62,7 +62,7 @@
   [self.router openConfirmedTransactionWithConfirmationDelegate:self.moduleOutput];
 }
 
-#pragma mark - SplashPasswordModuleOutput
+#pragma mark - ContextPasswordModuleOutput
 
 - (void) passwordDidEntered:(NSString *)password {
   [self.interactor signTransactionWithPassword:password];

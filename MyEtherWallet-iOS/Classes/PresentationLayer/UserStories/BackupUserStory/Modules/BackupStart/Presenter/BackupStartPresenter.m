@@ -12,9 +12,9 @@
 #import "BackupStartInteractorInput.h"
 #import "BackupStartRouterInput.h"
 
-#import "SplashPasswordModuleOutput.h"
+#import "ContextPasswordModuleOutput.h"
 
-@interface BackupStartPresenter () <SplashPasswordModuleOutput>
+@interface BackupStartPresenter () <ContextPasswordModuleOutput>
 @end
 
 @implementation BackupStartPresenter
@@ -33,7 +33,7 @@
 
 - (void) startAction {
   AccountPlainObject *account = [self.interactor obtainAccount];
-  [self.router openSplashPasswordWithOutput:self account:account];
+  [self.router openContextPasswordWithOutput:self account:account];
 }
 
 #pragma mark - BackupStartInteractorOutput
@@ -45,7 +45,7 @@
   });
 }
 
-#pragma mark - SplashPasswordModuleOutput
+#pragma mark - ContextPasswordModuleOutput
 
 - (void) passwordDidEntered:(NSString *)password {
   [self.interactor passwordDidEntered:password];

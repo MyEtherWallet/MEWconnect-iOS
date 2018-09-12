@@ -21,6 +21,7 @@
 #import "AccountPlainObject.h"
 #import "TokenModelObject.h"
 #import "FiatPriceModelObject.h"
+#import "NetworkPlainObject.h"
 
 #define DEBUG_TOKENS 1
 #if !DEBUG
@@ -29,12 +30,12 @@
 #endif
 
 #if DEBUG_TOKENS
-#import "NetworkPlainObject.h"
 static NSString *const kMEWDonateAddress = @"0xDECAF9CD2367cdbb726E904cD6397eDFcAe6068D";
 #endif
 
 static NSString *const TokensABI = @"[{\"constant\":true,\"inputs\":[{\"name\":\"_owner\",\"type\":\"address\"},{\"name\":\"name\",\"type\":\"bool\"},{\"name\":\"website\",\"type\":\"bool\"},{\"name\":\"email\",\"type\":\"bool\"},{\"name\":\"count\",\"type\":\"uint256\"}],\"name\":\"getAllBalance\",\"outputs\":[{\"name\":\"\",\"type\":\"bytes\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}]";
-static NSString *const TokensContractAddress = @"0xBE1ecF8e340F13071761e0EeF054d9A511e1Cb56";
+static NSString *const MainnetTokensContractAddress = @"0xBE1ecF8e340F13071761e0EeF054d9A511e1Cb56";
+static NSString *const RopstenTokensContractAddress = @"0xa23707C6f68B9e5630B2310db39F1Dfa119D46A4";
 
 @implementation TokensServiceImplementation
 
@@ -48,8 +49,15 @@ static NSString *const TokensContractAddress = @"0xBE1ecF8e340F13071761e0EeF054d
   }
 #endif
   
+  NSString *contractAddress = nil;
+  if ([account.fromNetwork network] == BlockchainNetworkTypeMainnet) {
+    contractAddress = MainnetTokensContractAddress;
+  } else {
+    contractAddress = RopstenTokensContractAddress;
+  }
+  
   TokensBody *body = [self obtainTokensBodyWithAccount:account
-                                     contractAddresses:@[TokensContractAddress]];
+                                     contractAddresses:@[contractAddress]];
 #if DEBUG_TOKENS
   account.publicAddress = originalPublicAddress;
 #endif

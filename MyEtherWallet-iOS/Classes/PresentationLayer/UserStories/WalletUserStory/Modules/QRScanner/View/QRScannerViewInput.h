@@ -12,10 +12,14 @@
 
 @protocol QRScannerViewInput <NSObject>
 
-- (void) setupInitialStateWithCaptureSession:(AVCaptureSession *)captureSession;
+- (void) setupInitialState;
+- (void) updateWithCaptureSession:(AVCaptureSession *)captureSession;
 - (void) animateVideoPreview;
 
 - (void) showLoading;
 - (void) showError;
 - (void) showSuccess;
+
+- (void) hideAccessWarning;
+- (void) showAccessWarning;
 @end

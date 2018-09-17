@@ -110,6 +110,10 @@
   [self.delegate scrollViewDidScroll:scrollView];
 }
 
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+  [self.delegate scrollViewWillEndDragging:scrollView withVelocity:velocity targetContentOffset:targetContentOffset];
+}
+
 #pragma mark - Private
 
 - (void) updateTableViewModel {

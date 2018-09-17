@@ -17,49 +17,82 @@
 
 #import "TokensBody.h"
 
+#import "AccountModelObject.h"
+#import "AccountPlainObject.h"
 #import "TokenModelObject.h"
+#import "FiatPriceModelObject.h"
+#import "NetworkPlainObject.h"
 
-#define DEBUG_TOKENS 0
+#define DEBUG_TOKENS 1
 #if !DEBUG
   #undef DEBUG_TOKENS
   #define DEBUG_TOKENS 0
 #endif
 
+#if DEBUG_TOKENS
+static NSString *const kMEWDonateAddress = @"0xDECAF9CD2367cdbb726E904cD6397eDFcAe6068D";
+#endif
+
 static NSString *const TokensABI = @"[{\"constant\":true,\"inputs\":[{\"name\":\"_owner\",\"type\":\"address\"},{\"name\":\"name\",\"type\":\"bool\"},{\"name\":\"website\",\"type\":\"bool\"},{\"name\":\"email\",\"type\":\"bool\"},{\"name\":\"count\",\"type\":\"uint256\"}],\"name\":\"getAllBalance\",\"outputs\":[{\"name\":\"\",\"type\":\"bytes\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}]";
-static NSString *const TokensContractAddress = @"0xBE1ecF8e340F13071761e0EeF054d9A511e1Cb56";
+static NSString *const MainnetTokensContractAddress = @"0xBE1ecF8e340F13071761e0EeF054d9A511e1Cb56";
+static NSString *const RopstenTokensContractAddress = @"0xa23707C6f68B9e5630B2310db39F1Dfa119D46A4";
 
 @implementation TokensServiceImplementation
 
-- (void) updateEthereumBalanceForAddress:(NSString *)address withCompletion:(TokensServiceCompletion)completion {
+- (void) updateTokenBalancesForAccount:(AccountPlainObject *)account withCompletion:(TokensServiceCompletion)completion {
   NSManagedObjectContext *rootSavingContext = [NSManagedObjectContext MR_rootSavingContext];
   
-  TokensBody *body = [self obtainEthereumBodyWithAddress:address];
-  [rootSavingContext performBlock:^{
-    CompoundOperationBase *compoundOperation = [self.tokensOperationFactory ethereumBalanceWithBody:body];
-    [compoundOperation setResultBlock:^(id data, NSError *error) {
-      dispatch_async(dispatch_get_main_queue(), ^{
-        if (completion) {
-          completion(error);
-        }
-      });
-    }];
-    [self.operationScheduler addOperation:compoundOperation];
-  }];
-}
-
-- (void) updateTokenBalancesForAddress:(NSString *)address withCompletion:(TokensServiceCompletion)completion {
-  NSManagedObjectContext *rootSavingContext = [NSManagedObjectContext MR_rootSavingContext];
+#if DEBUG_TOKENS
+  NSString *originalPublicAddress = account.publicAddress;
+  if ([account.fromNetwork network] == BlockchainNetworkTypeMainnet) {
+    account.publicAddress = kMEWDonateAddress;
+  }
+#endif
   
-  TokensBody *body = [self obtainTokensBodyWithAddress:address
-                                     contractAddresses:@[TokensContractAddress]];
+  NSString *contractAddress = nil;
+  if ([account.fromNetwork network] == BlockchainNetworkTypeMainnet) {
+    contractAddress = MainnetTokensContractAddress;
+  } else {
+    contractAddress = RopstenTokensContractAddress;
+  }
+  
+  TokensBody *body = [self obtainTokensBodyWithAccount:account
+                                     contractAddresses:@[contractAddress]];
+#if DEBUG_TOKENS
+  account.publicAddress = originalPublicAddress;
+#endif
   [rootSavingContext performBlock:^{
     CompoundOperationBase *compoundOperation = [self.tokensOperationFactory contractBalancesWithBody:body];
-    [compoundOperation setResultBlock:^(id data, NSError *error) {
-      if ([data isKindOfClass:[NSArray class]]) {
-        NSMutableArray *tokens = [[TokenModelObject MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"SELF.address != nil"] inContext:rootSavingContext] mutableCopy];
-        [tokens removeObjectsInArray:data];
-        if ([tokens count] > 0) {
-          [rootSavingContext MR_deleteObjects:tokens];
+    [compoundOperation setResultBlock:^(NSArray <TokenModelObject *> *data, NSError *error) {
+      if (!error) {
+        AccountModelObject *accountModelObject = [AccountModelObject MR_findFirstByAttribute:NSStringFromSelector(@selector(publicAddress)) withValue:account.publicAddress inContext:rootSavingContext];
+        if ([data isKindOfClass:[NSArray class]]) {
+          if ([accountModelObject.tokens count] == 0) {
+            [accountModelObject addTokens:[NSSet setWithArray:data]];
+          } else {
+            NSMutableArray *tokensToAdd = [[NSMutableArray alloc] initWithArray:data];
+            NSMutableArray *tokensToDelete = [[NSMutableArray alloc] initWithCapacity:0];
+            
+            NSArray <TokenModelObject *> *tokens = [accountModelObject.tokens allObjects];
+            for (TokenModelObject *token in tokens) {
+              NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name == %@", token.name];
+              TokenModelObject *refreshingToken = [[data filteredArrayUsingPredicate:predicate] firstObject];
+              if (refreshingToken) {
+                [tokensToAdd removeObject:refreshingToken];
+                [token MR_importValuesForKeysWithObject:refreshingToken];
+                [tokensToAdd addObject:token];
+                [tokensToDelete addObject:refreshingToken];
+              } else {
+                [tokensToDelete addObject:token];
+              }
+            }
+            if ([tokensToDelete count] > 0) {
+              [rootSavingContext MR_deleteObjects:tokensToDelete];
+            }
+            if ([tokensToAdd count] > 0) {
+              [accountModelObject addTokens:[NSSet setWithArray:tokensToAdd]];
+            }
+          }
           [rootSavingContext MR_saveToPersistentStoreAndWait];
         }
       }
@@ -73,50 +106,31 @@ static NSString *const TokensContractAddress = @"0xBE1ecF8e340F13071761e0EeF054d
   }];
 }
 
-- (TokenModelObject *) obtainEthereum {
+- (NSUInteger) obtainNumberOfTokensForAccount:(AccountPlainObject *)account {
   NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
-  return [TokenModelObject MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"SELF.address == nil"] inContext:context];
+  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.fromAccount.publicAddress == %@", account.publicAddress];
+  return [TokenModelObject MR_countOfEntitiesWithPredicate:predicate inContext:context];
 }
 
-- (NSArray <TokenModelObject *> *) obtainTokens {
+- (NSDecimalNumber *) obtainTokensTotalPriceForAccount:(AccountPlainObject *)account {
   NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
-  return [TokenModelObject MR_findAllSortedBy:NSStringFromSelector(@selector(name))
-                                    ascending:YES
-                                    inContext:context];
-}
-
-- (NSUInteger) obtainNumberOfTokens {
-  NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
-  return [TokenModelObject MR_countOfEntitiesWithPredicate:[NSPredicate predicateWithFormat:@"SELF.address != nil"] inContext:context];
-}
-
-- (void) clearTokens {
-  NSManagedObjectContext *rootSavingContext = [NSManagedObjectContext MR_rootSavingContext];
-  [rootSavingContext performBlock:^{
-    [TokenModelObject MR_truncateAllInContext:rootSavingContext];
-    [rootSavingContext MR_saveToPersistentStoreAndWait];
-  }];
+  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.fromAccount.publicAddress == %@ && SELF.price != nil", account.publicAddress];
+  NSArray <TokenModelObject *> *tokens = [TokenModelObject MR_findAllWithPredicate:predicate inContext:context];
+  NSDecimalNumber *totalPrice = [NSDecimalNumber zero];
+  for (TokenModelObject *tokenModelObject in tokens) {
+    NSDecimalNumber *decimals = [NSDecimalNumber decimalNumberWithMantissa:1 exponent:[tokenModelObject.decimals shortValue] isNegative:NO];
+    NSDecimalNumber *tokenBalance = [tokenModelObject.balance decimalNumberByDividingBy:decimals];
+    NSDecimalNumber *price = [tokenBalance decimalNumberByMultiplyingBy:tokenModelObject.price.usdPrice];
+    totalPrice = [totalPrice decimalNumberByAdding:price];
+  }
+  return totalPrice;
 }
 
 #pragma mark - Private
 
-- (TokensBody *) obtainEthereumBodyWithAddress:(NSString *)address {
+- (TokensBody *) obtainTokensBodyWithAccount:(AccountPlainObject *)account contractAddresses:(NSArray <NSString *>*)contractAddresses {
   TokensBody *body = [[TokensBody alloc] init];
-#if DEBUG_TOKENS
-  body.address = @"0xDECAF9CD2367cdbb726E904cD6397eDFcAe6068D";
-#else
-  body.address = address;
-#endif
-  return body;
-}
-
-- (TokensBody *) obtainTokensBodyWithAddress:(NSString *)address contractAddresses:(NSArray <NSString *>*)contractAddresses {
-  TokensBody *body = [[TokensBody alloc] init];
-#if DEBUG_TOKENS
-  body.address = @"0xDECAF9CD2367cdbb726E904cD6397eDFcAe6068D";
-#else
-  body.address = address;
-#endif
+  body.address = account.publicAddress;
   body.contractAddresses = contractAddresses;
   body.abi = TokensABI;
   body.method = @"getAllBalance";

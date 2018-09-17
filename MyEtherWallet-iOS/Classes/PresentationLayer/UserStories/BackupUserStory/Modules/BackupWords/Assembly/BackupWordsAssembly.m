@@ -6,7 +6,7 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
-@import ViperMcFlurry;
+@import ViperMcFlurryX;
 
 #import "BackupWordsAssembly.h"
 
@@ -34,8 +34,6 @@
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(output)
                                                 with:[self presenterBackupWords]];
-                          [definition injectProperty:@selector(cryptoService)
-                                                with:[self.serviceComponents MEWCrypto]];
                         }];
 }
 

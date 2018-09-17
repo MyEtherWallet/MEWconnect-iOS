@@ -7,9 +7,9 @@
 //
 
 @import Typhoon;
+@import RamblerTyphoonUtils.AssemblyCollector;
 
 #import "ResponseMappersFactory.h"
-#import <RamblerTyphoonUtils/AssemblyCollector.h>
 
 @interface ResponseMappersAssembly : TyphoonAssembly <ResponseMappersFactory, RamblerInitialAssembly>
 

@@ -8,8 +8,6 @@
 
 #import "MEWConnectConstants.h"
 
-NSString *const MEWConnectServiceSignallingServerURL      = @"https://35.160.138.139:3001";
-
 /* MEWConnect config keys */
 
 NSString *const kMEWConnectSocketConfigLog                = @"log";
@@ -34,6 +32,7 @@ NSString *const kMEWConnectSignalOffer                    = @"offer";
 NSString *const kMEWConnectSignalAnswer                   = @"answer";
 NSString *const kMEWConnectSignalError                    = @"error";
 NSString *const kMEWConnectSignalInvalidConnection        = @"InvalidConnection";
+NSString *const kMEWConnectSignalConfirmationFailed       = @"confirmationFailed";
 
 /* MEWConnect data keys */
 
@@ -53,5 +52,6 @@ NSString *const kMEWConnectEmitRTCConnected               = @"rtcConnected";
 
 NSString *const kMEWConnectMessageConnId                  = @"connId";
 NSString *const kMEWConnectMessageSigned                  = @"signed";
+NSString *const kMEWConnectMessageVersion                 = @"version";
 NSString *const kMEWConnectMessageData                    = @"data";
 NSString *const kMEWConnectMessageCont                    = @"cont";

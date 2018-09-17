@@ -65,7 +65,7 @@
     [self.presenter didTriggerViewReadyEvent];
 
     // then
-    OCMVerify([self.mockView setupInitialState]);
+    OCMVerify([self.mockView setupInitialStateWithBackButton:NO]);
 }
 
 #pragma mark - PasswordInteractorOutput tests

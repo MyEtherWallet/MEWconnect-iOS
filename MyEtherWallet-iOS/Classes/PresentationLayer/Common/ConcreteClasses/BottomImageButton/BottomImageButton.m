@@ -34,6 +34,8 @@
   CGSize size = CGSizeMake(ceilf(MAX(CGRectGetWidth(imageRect), CGRectGetWidth(titleRect))),
                            ceilf(CGRectGetHeight(imageRect) + CGRectGetHeight(titleRect)));
   size.height += self.imageEdgeInsets.top;
+  size.height += self.contentEdgeInsets.top + self.contentEdgeInsets.bottom;
+  size.width += self.contentEdgeInsets.left + self.contentEdgeInsets.right;
   return size;
 }
 

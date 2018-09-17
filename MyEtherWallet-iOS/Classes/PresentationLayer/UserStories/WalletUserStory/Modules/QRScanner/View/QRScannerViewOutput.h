@@ -14,4 +14,5 @@
 - (void) didTriggerViewDidAppear;
 - (void) didTriggerViewDidDisappear;
 - (void) closeAction;
+- (void) settingsAction;
 @end

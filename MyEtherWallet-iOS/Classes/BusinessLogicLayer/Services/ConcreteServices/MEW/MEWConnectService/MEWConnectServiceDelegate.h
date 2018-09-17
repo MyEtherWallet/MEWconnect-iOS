@@ -6,7 +6,7 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 @protocol MEWConnectService;
 
@@ -19,4 +19,5 @@
 - (void) MEWConnectDidReceiveError:(id <MEWConnectService>)mewConnect;
 - (void) MEWConnect:(id <MEWConnectService>)mewConnect didReceiveMessage:(MEWConnectCommand *)message;
 - (void) MEWConnectDidDisconnectedByTimeout:(id <MEWConnectService>)mewConnect;
+- (void) MEWConnectDidDisconnected:(id <MEWConnectService>)mewConnect;
 @end

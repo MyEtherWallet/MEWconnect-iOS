@@ -12,4 +12,6 @@
 - (void) didTriggerViewReadyEvent;
 - (void) restoreAction;
 - (void) closeAction;
+- (void) resetWalletAction;
+- (void) resetWalletConfirmedAction;
 @end

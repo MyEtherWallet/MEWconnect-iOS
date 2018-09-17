@@ -25,8 +25,8 @@
 	[self.view setupInitialState];
 }
 
-- (void)closeAction {
-  [self.router close];
+- (void) closeAction {
+  [self.moduleOutput transactionDidRejected];
 }
 
 #pragma mark - DeclinedTransactionInteractorOutput

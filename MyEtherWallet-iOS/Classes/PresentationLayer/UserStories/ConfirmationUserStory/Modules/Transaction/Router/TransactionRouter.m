@@ -6,30 +6,34 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
-@import ViperMcFlurry;
+@import ViperMcFlurryX;
 
 #import "TransactionRouter.h"
 
-#import "SplashPasswordModuleInput.h"
-#import "SplashPasswordModuleOutput.h"
+#import "ContextPasswordModuleInput.h"
+#import "ContextPasswordModuleOutput.h"
+#import "ConfirmationStoryModuleOutput.h"
+
+#import "ConfirmedTransactionModuleInput.h"
 
 static NSString *const kTransactionToDeclinedTransactionSegueIdentifier = @"TransactionToDeclinedTransactionSegueIdentifier";
 static NSString *const kTransactionToConfirmedTransactionSegueIdentifier = @"TransactionToConfirmedTransactionSegueIdentifier";
-static NSString *const kTransactionToSplashPasswordSegueIdentifier = @"TransactionToSplashPasswordSegueIdentifier";
+static NSString *const kTransactionToContextPasswordSegueIdentifier = @"TransactionToContextPasswordSegueIdentifier";
 
 @implementation TransactionRouter
 
 #pragma mark - TransactionRouterInput
 
-- (void) openConfirmedTransaction {
-  [[self.transitionHandler openModuleUsingSegue:kTransactionToConfirmedTransactionSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<RamblerViperModuleInput> moduleInput) {
-    return nil;
+- (void) openConfirmedTransactionWithConfirmationDelegate:(id<ConfirmationStoryModuleOutput>)confirmationDelegate {
+  [[self.transitionHandler openModuleUsingSegue:kTransactionToConfirmedTransactionSegueIdentifier] thenChainUsingBlock:^id<ConfirmationStoryModuleOutput>(id<ConfirmedTransactionModuleInput> moduleInput) {
+    [moduleInput configureModuleForTransaction];
+    return confirmationDelegate;
   }];
 }
 
-- (void) openDeclinedTransaction {
-  [[self.transitionHandler openModuleUsingSegue:kTransactionToDeclinedTransactionSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<RamblerViperModuleInput> moduleInput) {
-    return nil;
+- (void) openDeclinedTransactionWithConfirmationDelegate:(id<ConfirmationStoryModuleOutput>)confirmationDelegate {
+  [[self.transitionHandler openModuleUsingSegue:kTransactionToDeclinedTransactionSegueIdentifier] thenChainUsingBlock:^id<ConfirmationStoryModuleOutput>(id<RamblerViperModuleInput> moduleInput) {
+    return confirmationDelegate;
   }];
 }
 
@@ -37,9 +41,9 @@ static NSString *const kTransactionToSplashPasswordSegueIdentifier = @"Transacti
   [self.transitionHandler closeCurrentModule:YES];
 }
 
-- (void) openSplashPasswordWithOutput:(id <SplashPasswordModuleOutput>)output {
-  [[self.transitionHandler openModuleUsingSegue:kTransactionToSplashPasswordSegueIdentifier] thenChainUsingBlock:^id<SplashPasswordModuleOutput>(id<SplashPasswordModuleInput> moduleInput) {
-    [moduleInput configureModule];
+- (void) openContextPasswordWithAccount:(AccountPlainObject *)account moduleOutput:(id<ContextPasswordModuleOutput>)output {
+  [[self.transitionHandler openModuleUsingSegue:kTransactionToContextPasswordSegueIdentifier] thenChainUsingBlock:^id<ContextPasswordModuleOutput>(id<ContextPasswordModuleInput> moduleInput) {
+    [moduleInput configureModuleWithAccount:account type:ContextPasswordTypeTransaction];
     return output;
   }];
 }

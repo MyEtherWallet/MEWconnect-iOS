@@ -33,10 +33,13 @@ static CGFloat        kPasswordViewControllerWOCrackMeterVOffset  = 24.0;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *passwordDescriptionVOffsetConstraint;
 //Bar buttons
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *nextBarButtonItem;
+//Scroll view
+@property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
 @end
 
 @implementation PasswordViewController {
   PasswordScoreTheme _scoreTheme;
+  CGFloat _keyboardHeight;
 }
 
 #pragma mark - LifeCycle
@@ -47,9 +50,21 @@ static CGFloat        kPasswordViewControllerWOCrackMeterVOffset  = 24.0;
 	[self.output didTriggerViewReadyEvent];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void) viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
   [self.passwordTextField becomeFirstResponder];
+}
+
+- (void) viewDidDisappear:(BOOL)animated {
+  [super viewDidDisappear:animated];
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void) viewSafeAreaInsetsDidChange {
+  [super viewSafeAreaInsetsDidChange];
+  [self _updateScrollViewInsets];
 }
 
 #pragma mark - PasswordViewInput
@@ -207,6 +222,44 @@ static CGFloat        kPasswordViewControllerWOCrackMeterVOffset  = 24.0;
 
 - (IBAction) nextAction:(UIBarButtonItem *)sender {
   [self.output nextAction];
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+  [self.output nextAction];
+  return NO;
+}
+
+#pragma mark - Notifications
+
+- (void) keyboardWillShow:(NSNotification *)notification {
+  CGSize keyboardSize = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+  _keyboardHeight = keyboardSize.height;
+  [self _updateScrollViewInsets];
+}
+
+- (void) keyboardWillHide:(NSNotification *)notification {
+  _keyboardHeight = 0.0;
+  [self _updateScrollViewInsets];
+}
+
+#pragma mark - Private
+
+- (void) _updateScrollViewInsets {
+  UIEdgeInsets insets;
+  if (@available(iOS 11.0, *)) {
+    insets = self.scrollView.adjustedContentInset;
+  } else {
+    insets = self.scrollView.contentInset;
+  }
+  insets.bottom = _keyboardHeight;
+  
+  self.scrollView.contentInset = insets;
+  
+  UIEdgeInsets indicatorInset = self.scrollView.scrollIndicatorInsets;
+  indicatorInset.bottom = _keyboardHeight;
+  self.scrollView.scrollIndicatorInsets = indicatorInset;
 }
 
 @end

@@ -12,14 +12,18 @@
 
 #import "NewWalletInteractorOutput.h"
 
-#import "MEWCrypto.h"
-#import "TokensService.h"
+#import "MEWConnectFacade.h"
+#import "BlockchainNetworkService.h"
+#import "AccountsService.h"
+#import "Ponsomizer.h"
+
+#import "NetworkPlainObject.h"
+#import "AccountPlainObject.h"
 
 #import "UIImage+MEWBackground.h"
 #import "UIImage+MEWBackground.h"
 
 @interface NewWalletInteractor ()
-@property (nonatomic, strong) NSString *address;
 @end
 
 @implementation NewWalletInteractor
@@ -28,18 +32,26 @@
 
 - (void) createNewWalletWithPassword:(NSString *)password words:(NSArray<NSString *> *)words {
   @weakify(self);
-  [self.tokensService clearTokens];
-  [self.cryptoService createWalletWithPassword:password words:words completion:^(BOOL success, NSString *address) {
+  NetworkModelObject *networkModelObject = [self.blockchainNetworkService obtainActiveNetwork];
+  
+  NSArray *ignoringProperties = @[NSStringFromSelector(@selector(accounts))];
+  NetworkPlainObject *network = [self.ponsomizer convertObject:networkModelObject ignoringProperties:ignoringProperties];
+  
+  [self.accountsService createNewAccountInNetwork:network password:password words:words completion:^(AccountModelObject *accountModelObject) {
     @strongify(self);
+    
+    [self.connectFacade disconnect];
+    
+    NSArray *ignoringProperties = @[NSStringFromSelector(@selector(backedUp)),
+                                    NSStringFromSelector(@selector(fromNetwork)),
+                                    NSStringFromSelector(@selector(price)),
+                                    NSStringFromSelector(@selector(tokens))];
+    AccountPlainObject *account = [self.ponsomizer convertObject:accountModelObject ignoringProperties:ignoringProperties];
+    
     CGSize fullSize = [UIImage fullSize];
     CGSize cardSize = [UIImage cardSize];
-    [UIImage cacheImagesWithSeed:address fullSize:fullSize cardSize:cardSize];
-    self.address = address;
+    [UIImage cacheImagesWithSeed:account.publicAddress fullSize:fullSize cardSize:cardSize];
   }];
-}
-
-- (NSString *)obtainWalletAddress {
-  return self.address;
 }
 
 @end

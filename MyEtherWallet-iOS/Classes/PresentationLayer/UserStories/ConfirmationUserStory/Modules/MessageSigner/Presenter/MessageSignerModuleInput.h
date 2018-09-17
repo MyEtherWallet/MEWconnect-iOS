@@ -7,12 +7,13 @@
 //
 
 @import Foundation;
-@import ViperMcFlurry;
+@import ViperMcFlurryX;
 
 @class MEWConnectCommand;
+@class AccountPlainObject;
 
 @protocol MessageSignerModuleInput <RamblerViperModuleInput>
 
-- (void) configureModuleWithMessage:(MEWConnectCommand *)message;
+- (void) configureModuleWithMessage:(MEWConnectCommand *)message account:(AccountPlainObject *)account;
 
 @end

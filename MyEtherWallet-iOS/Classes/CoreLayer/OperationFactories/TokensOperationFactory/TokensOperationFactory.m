@@ -47,38 +47,10 @@
 
 #pragma mark - Operations creation
 
-- (CompoundOperationBase *) ethereumBalanceWithBody:(TokensBody *)body {
-  CompoundOperationBuilderConfig *config = [[CompoundOperationBuilderConfig alloc] init];
-  
-  config.requestConfigurationType = RequestConfigurationRestType;
-  config.requestMethod = kHTTPMethodPOST;
-  config.serviceName = kServiceNameETH;
-  
-  //  config.requestSigningType = RequestSigningDisabledType;
-  
-  config.responseDeserializationType = ResponseDeserializationJSONType;
-  
-  config.responseConvertingType = ResponseConvertingEthereumType;
-  
-  config.responseValidationType = ResponseValidationDisabledType;
-  
-  config.responseMappingType = ResponseMappingCoreDataType;
-  
-  config.mappingContext = @{kMappingContextModelClassKey : NSStringFromClass([TokenModelObject class])};
-  
-  NSData *bodyData = [self.bodyTransformer deriveDataFromBody:body];
-  NSDictionary *headers = [self.headersBuilder build];
-  RequestDataModel *inputData = [[RequestDataModel alloc] initWithHTTPHeaderFields:headers
-                                                                   queryParameters:nil
-                                                                          bodyData:bodyData];
-  config.inputQueueData = inputData;
-  return [self.networkOperationBuilder buildCompoundOperationWithConfig:config];
-}
-
 - (CompoundOperationBase *) contractBalancesWithBody:(TokensBody *)body {
   CompoundOperationBuilderConfig *config = [[CompoundOperationBuilderConfig alloc] init];
   
-  config.requestConfigurationType = RequestConfigurationRestType;
+  config.requestConfigurationType = RequestConfigurationMyEtherAPIType;
   config.requestMethod = kHTTPMethodPOST;
   config.serviceName = kServiceNameETH;
   

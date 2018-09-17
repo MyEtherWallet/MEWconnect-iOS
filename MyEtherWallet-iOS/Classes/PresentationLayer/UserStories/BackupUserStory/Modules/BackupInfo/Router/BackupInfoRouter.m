@@ -6,7 +6,7 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
-@import ViperMcFlurry;
+@import ViperMcFlurryX;
 
 #import "BackupInfoRouter.h"
 
@@ -18,9 +18,9 @@ static NSString *const kBackupInfoToBackupStartSegueIdentifier = @"BackupInfoToB
 
 #pragma mark - BackupInfoRouterInput
 
-- (void) openBackupStart {
+- (void) openBackupStartWithAccount:(AccountPlainObject *)account {
   [[self.transitionHandler openModuleUsingSegue:kBackupInfoToBackupStartSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<BackupStartModuleInput> moduleInput) {
-    [moduleInput configureModule];
+    [moduleInput configureModuleWithAccount:account];
     return nil;
   }];
 }

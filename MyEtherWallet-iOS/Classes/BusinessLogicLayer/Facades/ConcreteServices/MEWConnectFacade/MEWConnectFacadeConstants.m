@@ -16,5 +16,6 @@ NSString *const MEWConnectFacadeDidReceiveMessageNotification = @"MEWConnectFaca
 NSString *const kMEWConnectFacadeDisconnectReason             = @"reason";
 NSString *const kMEWConnectFacadeMessage                      = @"message";
 
+NSString *const kMEWConnectFacadeReasonClosed                 = @"closed";
 NSString *const kMEWConnectFacadeReasonTimeout                = @"timeout";
 NSString *const kMEWConnectFacadeReasonError                  = @"error";

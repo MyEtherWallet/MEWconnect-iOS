@@ -10,16 +10,21 @@
 
 #import "BackupConfirmationViewOutput.h"
 
-#import "BackupConfirmationSegmenteControl.h"
+#import "BackupConfirmationSegmentedControl.h"
 
 #import "BackupConfirmationQuiz.h"
 
+#import "UIScreen+ScreenSizeType.h"
+
 @interface BackupConfirmationViewController ()
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
-@property (nonatomic, strong) IBOutletCollection(UILabel) NSArray *questionTitleLabels;
-@property (nonatomic, strong) IBOutletCollection(BackupConfirmationSegmenteControl) NSArray *questionSegmentedControls;
+@property (nonatomic, strong) IBOutletCollection(UILabel) NSArray <UILabel *> *questionTitleLabels;
+@property (nonatomic, strong) IBOutletCollection(BackupConfirmationSegmentedControl) NSArray <BackupConfirmationSegmentedControl *> *questionSegmentedControls;
 @property (nonatomic, weak) IBOutlet UILabel *bewareLabel;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *finishButton;
+
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *titleTopOffsetConstraint;
+@property (nonatomic, strong) IBOutletCollection(NSLayoutConstraint) NSArray <NSLayoutConstraint *> *questionTitleToQuestionYOffsetConstraints;
 @end
 
 @implementation BackupConfirmationViewController
@@ -35,12 +40,28 @@
 #pragma mark - BackupConfirmationViewInput
 
 - (void) setupInitialStateWithQuiz:(BackupConfirmationQuiz *)quiz {
+  if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+    for (BackupConfirmationSegmentedControl *segmentedControl in self.questionSegmentedControls) {
+      segmentedControl.compact = YES;
+    }
+    self.titleTopOffsetConstraint.constant = 15.0;
+    for (NSLayoutConstraint *constraint in self.questionTitleToQuestionYOffsetConstraints) {
+      constraint.constant = 10.0;
+    }
+  }
   { //Title label
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
     style.lineSpacing = 0.0;
-    style.maximumLineHeight = 40.0;
-    style.minimumLineHeight = 40.0;
-    NSDictionary *attributes = @{NSFontAttributeName: self.titleLabel.font,
+    UIFont *font = self.titleLabel.font;
+    if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+      font = [font fontWithSize:36.0];
+      style.maximumLineHeight = 36.0;
+      style.minimumLineHeight = 36.0;
+    } else {
+      style.maximumLineHeight = 40.0;
+      style.minimumLineHeight = 40.0;
+    }
+    NSDictionary *attributes = @{NSFontAttributeName: font,
                                  NSForegroundColorAttributeName: self.titleLabel.textColor,
                                  NSParagraphStyleAttributeName: style,
                                  NSKernAttributeName: @(-0.3)};
@@ -68,7 +89,7 @@
     }
     NSArray *segmentedControls = [self.questionSegmentedControls sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(tag)) ascending:YES]]];
     NSInteger question = 0;
-    for (BackupConfirmationSegmenteControl *segmentedControl in segmentedControls) {
+    for (BackupConfirmationSegmentedControl *segmentedControl in segmentedControls) {
       for (NSInteger wordIdx = 0; wordIdx < quiz.questionSize; ++wordIdx) {
         NSInteger idx = question * quiz.questionSize + wordIdx;
         if (idx >= [quiz.questionWords count]) {
@@ -87,10 +108,10 @@
 
 #pragma mark - IBActions
 
-- (IBAction)answerSelected:(id)sender {
+- (IBAction)answerSelected:(UISegmentedControl *)sender {
   NSArray *segmentedControls = [self.questionSegmentedControls sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(tag)) ascending:YES]]];
   NSMutableArray *checkVector = [[NSMutableArray alloc] init];
-  for (BackupConfirmationSegmenteControl *segmentedControl in segmentedControls) {
+  for (BackupConfirmationSegmentedControl *segmentedControl in segmentedControls) {
     NSInteger idx = [segmentedControl selectedSegmentIndex];
     if (idx < 0) {
       return;

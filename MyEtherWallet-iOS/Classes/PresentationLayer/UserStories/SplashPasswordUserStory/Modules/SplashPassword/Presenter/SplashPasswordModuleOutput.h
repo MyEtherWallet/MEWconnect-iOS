@@ -7,8 +7,10 @@
 //
 
 @import Foundation;
-@import ViperMcFlurry;
+@import ViperMcFlurryX;
 
-@protocol SplashPasswordModuleOutput <RamblerViperModuleOutput>
-- (void) passwordDidEntered:(NSString *)password;
+#import "EnterPasswordProtocol.h"
+
+@protocol SplashPasswordModuleOutput <RamblerViperModuleOutput, EnterPasswordProtocol>
+
 @end

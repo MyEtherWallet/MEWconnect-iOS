@@ -8,9 +8,6 @@
 
 @import WebRTC;
 @import libextobjc.EXTScope;
-@import CocoaLumberjack;
-
-static const int ddLogLevel = DDLogLevelVerbose;
 
 #import "MEWRTCConstants.h"
 
@@ -25,12 +22,17 @@ static const int ddLogLevel = DDLogLevelVerbose;
 @implementation MEWRTCServiceImplementation
 @synthesize delegate = _delegate;
 
-- (void)connectWithOffer:(RTCSessionDescription *)offer {
+- (void) connectWithType:(NSString *)type andSdp:(NSString *)sdp {
+  [self disconnect];
+  
+  RTCSdpType sdpType = [RTCSessionDescription typeForString:type];
+  RTCSessionDescription *description = [[RTCSessionDescription alloc] initWithType:sdpType sdp:sdp];
+  
   self.peerConnection = [self.peerConnectionFactory peerConnectionWithConfiguration:[self _RTCConfigurationWithIceServers:nil]
                                                                         constraints:[self _RTCMediaConstraints]
                                                                            delegate:self];
   @weakify(self);
-  [self.peerConnection setRemoteDescription:offer completionHandler:^(NSError * _Nullable error) {
+  [self.peerConnection setRemoteDescription:description completionHandler:^(NSError * _Nullable error) {
     @strongify(self);
     if (error) {
       DDLogVerbose(@"MEWRTC Remote description error: %@", error);
@@ -42,6 +44,7 @@ static const int ddLogLevel = DDLogLevelVerbose;
 
 - (void) disconnect {
   [self.peerConnection close];
+  [self.dataChannel close];
   [self _clearConnection];
 }
 
@@ -76,17 +79,18 @@ static const int ddLogLevel = DDLogLevelVerbose;
 }
 
 - (void) _updateLocalDescription:(RTCSessionDescription *)localDescription {
+  @weakify(self);
   [self.peerConnection setLocalDescription:localDescription
                          completionHandler:^(NSError * _Nullable error) {
+                           @strongify(self);
                            if (error) {
                              DDLogVerbose(@"MEWRTC Local description error: %@", error);
+                           } else {
+                             NSString *answerType = [RTCSessionDescription stringForType:localDescription.type];
+                             NSString *answerSDP = localDescription.sdp;
+                             [self.delegate MEWRTCService:self didGenerateAnswerWithType:answerType sdp:answerSDP];
                            }
                          }];
-}
-
-/* peerConnection:didGenerateIceCandidate */
-- (void) _generatingIceServersDelayed {
-  [self.delegate MEWRTCService:self didGenerateAnswer:self.peerConnection.localDescription];
 }
 
 #pragma mark - Private
@@ -116,7 +120,6 @@ static const int ddLogLevel = DDLogLevelVerbose;
   self.peerConnection = nil;
   self.dataChannel.delegate = self;
   self.dataChannel = nil;
-  [NSObject cancelPreviousPerformRequestsWithTarget:self];
 }
                          
 #pragma mark - RTCPeerConnectionDelegate
@@ -158,8 +161,8 @@ static const int ddLogLevel = DDLogLevelVerbose;
       break;
     }
     case RTCIceConnectionStateConnected: {
-        self.dataChannel = [self.peerConnection dataChannelForLabel:MEWRTCDataChannelLabel configuration:[self _RTCDataChannelConfiguration]];
-        self.dataChannel.delegate = self;
+      self.dataChannel = [self.peerConnection dataChannelForLabel:MEWRTCDataChannelLabel configuration:[self _RTCDataChannelConfiguration]];
+      self.dataChannel.delegate = self;
       dispatch_async(dispatch_get_main_queue(), ^{
         [self.delegate MEWRTCServiceConnectionDidConnected:self];
       });
@@ -172,6 +175,9 @@ static const int ddLogLevel = DDLogLevelVerbose;
     case RTCIceConnectionStateDisconnected: {
       DDLogVerbose(@"RTC Ice connection state: DISCONNECTED");
       [self _clearConnection];
+      dispatch_async(dispatch_get_main_queue(), ^{
+        [self.delegate MEWRTCServiceConnectionDidDisconnected:self];
+      });
       break;
     }
     case RTCIceConnectionStateFailed: {
@@ -192,11 +198,6 @@ static const int ddLogLevel = DDLogLevelVerbose;
 
 /** New ice candidate has been found. */
 - (void)peerConnection:(RTCPeerConnection *)peerConnection didGenerateIceCandidate:(RTCIceCandidate *)candidate {
-  /* Waiting all ice candidates */
-  dispatch_async(dispatch_get_main_queue(), ^{
-    [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    [self performSelector:@selector(_generatingIceServersDelayed) withObject:nil afterDelay:0.2];
-  });
 }
 
 /** Called when a group of local Ice candidates have been removed. */

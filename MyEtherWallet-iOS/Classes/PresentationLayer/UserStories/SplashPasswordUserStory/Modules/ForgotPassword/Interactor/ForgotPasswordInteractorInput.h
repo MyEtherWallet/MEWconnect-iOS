@@ -8,6 +8,9 @@
 
 @import Foundation;
 
-@protocol ForgotPasswordInteractorInput <NSObject>
+@class AccountPlainObject;
 
+@protocol ForgotPasswordInteractorInput <NSObject>
+- (void) configurateWithAccount:(AccountPlainObject *)account;
+- (void) resetWallet;
 @end

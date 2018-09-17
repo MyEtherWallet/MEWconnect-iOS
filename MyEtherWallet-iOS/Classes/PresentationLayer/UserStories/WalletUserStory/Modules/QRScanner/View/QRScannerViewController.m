@@ -12,13 +12,16 @@
 
 #import "QRScannerViewOutput.h"
 
+#import "LinkedLabel.h"
+
 #import "UIColor+Application.h"
 #import "UIColor+Hex.h"
+#import "UIScreen+ScreenSizeType.h"
 
 static CFTimeInterval kQRScannerViewControllerOpacityAnimationDuration = 0.4;
 static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
 
-@interface QRScannerViewController () <AVCaptureMetadataOutputObjectsDelegate>
+@interface QRScannerViewController () <AVCaptureMetadataOutputObjectsDelegate, LinkedLabelDelegate>
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) IBOutlet UILabel *stepsDescriptionLabel;
 @property (nonatomic, weak) IBOutlet UIButton *closeButton;
@@ -37,7 +40,14 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
 
 @property (nonatomic, strong) AVCaptureVideoPreviewLayer *videoPreviewLayer;
 
+@property (nonatomic, weak) IBOutlet LinkedLabel *accessToCameraLabel;
+
 @property (nonatomic) NSInteger runningAnimations;
+
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *cameraContainerHeightConstraint;
+@property (nonatomic, strong) IBOutletCollection(NSLayoutConstraint) NSArray <NSLayoutConstraint *> *focusViewYOffsetConstraints;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *cameraToDescriptionYOffsetConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *descriptionRightOffsetConstraint;
 @end
 
 @implementation QRScannerViewController
@@ -85,7 +95,15 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
 
 #pragma mark - QRScannerViewInput
 
-- (void) setupInitialStateWithCaptureSession:(AVCaptureSession *)captureSession {
+- (void) setupInitialState {
+  if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+    self.cameraContainerHeightConstraint.constant = -19.0;
+    for (NSLayoutConstraint *constraint in self.focusViewYOffsetConstraints) {
+      constraint.constant = 18.0;
+    }
+    self.cameraToDescriptionYOffsetConstraint.constant = 17.0;
+    self.descriptionRightOffsetConstraint.constant = 20.0;
+  }
   [self _prepareStepsDescription];
   { //title label
     NSDictionary *attributes = @{NSFontAttributeName: self.titleLabel.font,
@@ -109,6 +127,37 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
     self.focusViewBL.layer.transform = CATransform3DMakeScale(1.0, -1.0, 1.0);
     self.focusViewBR.layer.transform = CATransform3DMakeScale(-1.0, -1.0, 1.0);
   }
+  { //Access to camera
+    NSString *text = NSLocalizedString(@"Please enable camera access for MEWconnect in Settings", @"QR Scanner. Access to camera warning");
+    NSArray <NSString *> *linkedParts = [NSLocalizedString(@"Settings", @"QR Scanner. Access to camera warning. Linked parts") componentsSeparatedByString:@"|"];
+    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+    style.lineSpacing = 5.0;
+    style.alignment = self.accessToCameraLabel.textAlignment;
+    NSDictionary *attributes = @{NSFontAttributeName: self.accessToCameraLabel.font,
+                                 NSForegroundColorAttributeName: self.accessToCameraLabel.textColor,
+                                 NSParagraphStyleAttributeName: style,
+                                 NSKernAttributeName: @(-0.01)};
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:text attributes:attributes];
+    for (NSString *part in linkedParts) {
+      NSRange range = [attributedString.string rangeOfString:part];
+      if (range.location != NSNotFound && range.length > 0) {
+        NSDictionary *linkAttributes = @{NSUnderlineColorAttributeName: [UIColor whiteColor],
+                                         NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle),
+                                         NSLinkAttributeName: [NSURL URLWithString:@"http://dummy.url"],
+                                         NSForegroundColorAttributeName: [UIColor whiteColor]};
+        [attributedString addAttributes:linkAttributes range:range];
+      }
+    }
+    
+    self.accessToCameraLabel.attributedText = attributedString;
+  }
+  [self _updatePrefferedContentSize];
+}
+
+- (void)updateWithCaptureSession:(AVCaptureSession *)captureSession {
+  if (self.videoPreviewLayer) {
+    [self.videoPreviewLayer removeFromSuperlayer];
+  }
   { //Video preview
     self.videoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:captureSession];
     [self.videoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
@@ -116,7 +165,6 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
     self.videoPreviewLayer.frame = self.cameraContainerView.bounds;
     self.videoPreviewLayer.opacity = 0.0;
   }
-  [self _updatePrefferedContentSize];
 }
 
 - (void)animateVideoPreview {
@@ -151,7 +199,7 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
     NSDictionary *attributes = @{NSForegroundColorAttributeName: self.statusInfoDescriptionLabel.textColor,
                                  NSFontAttributeName: self.statusInfoDescriptionLabel.font,
                                  NSParagraphStyleAttributeName: style};
-    NSString *text = NSLocalizedString(@"Please try again or use a different QR code.", @"QRScanner. Connection error description");
+    NSString *text = NSLocalizedString(@"Please try again or use a\ndifferent QR code.", @"QRScanner. Connection error description");
     self.statusInfoDescriptionLabel.attributedText = [[NSAttributedString alloc] initWithString:text attributes:attributes];
   }
   
@@ -206,6 +254,30 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
                    }];
 }
 
+- (void) hideAccessWarning {
+  if (!self.accessToCameraLabel.hidden) {
+    self.accessToCameraLabel.alpha = 1.0;
+    [UIView animateWithDuration:kQRScannerViewControllerFadeAnimationDuration
+                     animations:^{
+                       self.accessToCameraLabel.alpha = 0.0;
+                     } completion:^(BOOL finished) {
+                       self.accessToCameraLabel.hidden = YES;
+                     }];
+  }
+}
+
+- (void) showAccessWarning {
+  if (self.accessToCameraLabel.hidden) {
+    self.accessToCameraLabel.alpha = 0.0;
+    self.accessToCameraLabel.hidden = NO;
+    [UIView animateWithDuration:kQRScannerViewControllerFadeAnimationDuration
+                     animations:^{
+                       self.accessToCameraLabel.alpha = 1.0;
+                     } completion:^(BOOL finished) {
+                     }];
+  }
+}
+
 #pragma mark - IBActions
 
 - (IBAction) closeAction:(UIButton *)sender {
@@ -217,10 +289,10 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
 - (void) _prepareStepsDescription {
   NSString *step1 = NSLocalizedString(@"Go to MyEtherWallet.com on your computer and choose Send Ether and Tokens option.", @"QRScanner. Step 1");
   NSString *step1Semibolds = NSLocalizedString(@"MyEtherWallet.com|Send Ether|Tokens", @"QRScanner. Step 1. Semibolds");
-  NSString *step2 = NSLocalizedString(@"Select MEW Connect option on How would you like to access your wallet screen.", @"QRScanner. Step 2");
-  NSString *step2Semibolds = NSLocalizedString(@"MEW Connect|How would you like to access your wallet", @"QRScanner. Step 1. Semibolds");
-  NSString *step3 = NSLocalizedString(@"Click Access with MEW Connect and scan the QR code on the screen that will follow. ", @"QRScanner. Step 3");
-  NSString *step3Semibolds = NSLocalizedString(@"Access with MEW Connect", @"QRScanner. Step 1. Semibolds");
+  NSString *step2 = NSLocalizedString(@"Select MEWconnect option on How would you like to access your wallet screen.", @"QRScanner. Step 2");
+  NSString *step2Semibolds = NSLocalizedString(@"MEWconnect|How would you like to access your wallet", @"QRScanner. Step 1. Semibolds");
+  NSString *step3 = NSLocalizedString(@"Click Access with MEWconnect and scan the QR code on the screen that will follow. ", @"QRScanner. Step 3");
+  NSString *step3Semibolds = NSLocalizedString(@"Access with MEWconnect", @"QRScanner. Step 1. Semibolds");
   
   NSAttributedString *step1AttributedString = [self _prepareString:[step1 stringByAppendingString:@"\n"] stepNumber:1 semiboldParts:[step1Semibolds componentsSeparatedByString:@"|"]];
   NSAttributedString *step2AttributedString = [self _prepareString:[step2 stringByAppendingString:@"\n"] stepNumber:2 semiboldParts:[step2Semibolds componentsSeparatedByString:@"|"]];
@@ -242,13 +314,24 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
   style.headIndent = 24.0;
   style.lineSpacing = 2.0;
   style.paragraphSpacing = 20.0;
-  NSTextTab *zeroTab = [[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentNatural location:6.0 options:@{}];
+  
+  CGFloat zeroTabOffset = 6.0;
+  if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+    zeroTabOffset = 5.0;
+  }
+  NSTextTab *zeroTab = [[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentNatural location:zeroTabOffset options:@{}];
   NSTextTab *textTab = [[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentNatural location:24.0 options:@{}];
   style.tabStops = @[zeroTab, textTab];
+  CGFloat fontSize = 15.0;
+  CGFloat kern = -0.12;
+  if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+    fontSize = 13.0;
+    kern = -0.24;
+  }
   NSDictionary *attributes = @{NSForegroundColorAttributeName: [UIColor whiteColor],
-                               NSFontAttributeName: [UIFont systemFontOfSize:15.0],
+                               NSFontAttributeName: [UIFont systemFontOfSize:fontSize],
                                NSParagraphStyleAttributeName: style,
-                               NSKernAttributeName: @(-0.12)};
+                               NSKernAttributeName: @(kern)};
   NSString *finalString = [NSString stringWithFormat:@"\t%zd\t%@", stepNumber, string];
   NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:finalString attributes:attributes];
   //Change text color and font of "1"
@@ -263,7 +346,7 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
   for (NSString *semibold in semiboldParts) {
     NSRange range = [finalString rangeOfString:semibold];
     if (range.location != NSNotFound) {
-      [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15.0 weight:UIFontWeightSemibold] range:range];
+      [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:fontSize weight:UIFontWeightSemibold] range:range];
     }
   }
   [attributedString fixAttributesInRange:NSMakeRange(0, [attributedString length])];
@@ -272,12 +355,18 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
 
 - (void) _updatePrefferedContentSize {
   CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
-  CGRect bounds = self.view.window.bounds;
+  CGRect bounds = self.presentingViewController.view.window.bounds;
   CGSize size = bounds.size;
   size.height -= CGRectGetHeight(statusBarFrame);
   if (!CGSizeEqualToSize(self.preferredContentSize, size)) {
     self.preferredContentSize = size;
   }
+}
+
+#pragma mark - LinkedLabelDelegate
+
+- (void) linkedLabel:(LinkedLabel *)label didSelectURL:(NSURL *)url {
+  [self.output settingsAction];
 }
 
 @end

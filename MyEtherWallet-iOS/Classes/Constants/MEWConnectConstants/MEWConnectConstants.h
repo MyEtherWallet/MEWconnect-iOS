@@ -8,8 +8,6 @@
 
 @import Foundation;
 
-FOUNDATION_EXPORT NSString *const MEWConnectServiceSignallingServerURL;
-
 /* MEWConnect config keys */
 
 FOUNDATION_EXPORT NSString *const kMEWConnectSocketConfigLog;
@@ -34,6 +32,7 @@ FOUNDATION_EXPORT NSString *const kMEWConnectSignalOffer;
 FOUNDATION_EXPORT NSString *const kMEWConnectSignalAnswer;
 FOUNDATION_EXPORT NSString *const kMEWConnectSignalError;
 FOUNDATION_EXPORT NSString *const kMEWConnectSignalInvalidConnection;
+FOUNDATION_EXPORT NSString *const kMEWConnectSignalConfirmationFailed;
 
 /* MEWConnect data keys */
 
@@ -53,5 +52,6 @@ FOUNDATION_EXPORT NSString *const kMEWConnectEmitRTCConnected;
 
 FOUNDATION_EXPORT NSString *const kMEWConnectMessageConnId;
 FOUNDATION_EXPORT NSString *const kMEWConnectMessageSigned;
+FOUNDATION_EXPORT NSString *const kMEWConnectMessageVersion;
 FOUNDATION_EXPORT NSString *const kMEWConnectMessageData;
 FOUNDATION_EXPORT NSString *const kMEWConnectMessageCont;

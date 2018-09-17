@@ -7,13 +7,10 @@
 //
 
 @import libextobjc.EXTScope;
-@import CocoaLumberjack;
 
 #import "ResponseMappingOperation.h"
 
 #import "ResponseMapper.h"
-
-static const int ddLogLevel = DDLogLevelVerbose;
 
 @interface ResponseMappingOperation ()
 @property (nonatomic, strong) id<ResponseMapper> responseMapper;

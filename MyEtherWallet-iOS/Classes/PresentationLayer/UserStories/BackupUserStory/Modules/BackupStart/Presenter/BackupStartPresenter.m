@@ -12,11 +12,17 @@
 #import "BackupStartInteractorInput.h"
 #import "BackupStartRouterInput.h"
 
+#import "ContextPasswordModuleOutput.h"
+
+@interface BackupStartPresenter () <ContextPasswordModuleOutput>
+@end
+
 @implementation BackupStartPresenter
 
 #pragma mark - BackupStartModuleInput
 
-- (void) configureModule {
+- (void) configureModuleWithAccount:(AccountPlainObject *)account {
+  [self.interactor configurateWithAccount:account];
 }
 
 #pragma mark - BackupStartViewOutput
@@ -26,9 +32,23 @@
 }
 
 - (void) startAction {
-  [self.router openWords];
+  AccountPlainObject *account = [self.interactor obtainAccount];
+  [self.router openContextPasswordWithOutput:self account:account];
 }
 
 #pragma mark - BackupStartInteractorOutput
+
+- (void) mnemonicsDidReceived:(NSArray<NSString *> *)mnemonics {
+  dispatch_async(dispatch_get_main_queue(), ^{
+    AccountPlainObject *account = [self.interactor obtainAccount];
+    [self.router openWordsWithMnemonics:mnemonics account:account];
+  });
+}
+
+#pragma mark - ContextPasswordModuleOutput
+
+- (void) passwordDidEntered:(NSString *)password {
+  [self.interactor passwordDidEntered:password];
+}
 
 @end

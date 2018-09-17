@@ -14,17 +14,26 @@
 
 #import "SplashPasswordModuleOutput.h"
 
-@implementation SplashPasswordPresenter
+@implementation SplashPasswordPresenter {
+  BOOL _control;
+}
 
 #pragma mark - SplashPasswordModuleInput
 
-- (void) configureModule {
+- (void) configureModuleWithAccount:(AccountPlainObject *)account autoControl:(BOOL)autoControl {
+  _control = autoControl;
+  [self.interactor configurateWithAccount:account];
+}
+
+- (void) takeControlAfterLaunch {
+  _control = YES;
+  [self.view becomePasswordInputActive];
 }
 
 #pragma mark - SplashPasswordViewOutput
 
 - (void) didTriggerViewReadyEvent {
-	[self.view setupInitialState];
+	[self.view setupInitialStateWithAutoControl:_control];
 }
 
 - (void) doneActionWithPassword:(NSString *)password {
@@ -32,7 +41,8 @@
 }
 
 - (void) forgotPasswordAction {
-  [self.router openForgotPassword];
+  AccountPlainObject *account = [self.interactor obtainAccount];
+  [self.router openForgotPasswordWithAccount:account];
 }
 
 #pragma mark - SplashPasswordInteractorOutput
@@ -43,7 +53,7 @@
 }
 
 - (void) incorrectPassword {
-  
+  [self.view shakeInput];
 }
 
 @end

@@ -6,7 +6,7 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
-@import ViperMcFlurry;
+@import ViperMcFlurryX;
 
 #import "ServiceComponents.h"
 
@@ -34,8 +34,10 @@
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(output)
                                                 with:[self presenterMessageSigner]];
-                          [definition injectProperty:@selector(cryptoService)
-                                                with:[self.serviceComponents MEWCrypto]];
+                          [definition injectProperty:@selector(walletService)
+                                                with:[self.serviceComponents MEWwallet]];
+                          [definition injectProperty:@selector(connectFacade)
+                                                with:[self.serviceComponents MEWConnectFacade]];
                         }];
 }
 

@@ -12,6 +12,7 @@
 #import "BottomBackgroundedModalPresentationController.h"
 
 #import "ServiceComponents.h"
+#import "PonsomizerAssembly.h"
 
 @implementation PresentationControllerAssembly
 
@@ -53,9 +54,9 @@
                             [initializer injectParameterWith:presented];
                             [initializer injectParameterWith:presenting];
                           }];
-                          [definition injectProperty:@selector(cryptoService) with:[self.serviceComponents MEWCrypto]];
-                          [definition injectProperty:@selector(cornerRadius)
-                                                with:cornerRadius];
+                          [definition injectProperty:@selector(accountsService) with:[self.serviceComponents accountsService]];
+                          [definition injectProperty:@selector(ponsomizer) with:[self.ponsomizerAssembly ponsomizer]];
+                          [definition injectProperty:@selector(cornerRadius) with:cornerRadius];
                         }];
 }
 

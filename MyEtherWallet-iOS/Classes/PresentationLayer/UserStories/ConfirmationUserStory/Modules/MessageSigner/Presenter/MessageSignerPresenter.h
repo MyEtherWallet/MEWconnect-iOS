@@ -9,17 +9,15 @@
 #import "MessageSignerViewOutput.h"
 #import "MessageSignerInteractorOutput.h"
 #import "MessageSignerModuleInput.h"
-#import "MessageSignerModuleOutput.h"
+#import "ConfirmationStoryModuleOutput.h"
 
 @protocol MessageSignerViewInput;
 @protocol MessageSignerInteractorInput;
 @protocol MessageSignerRouterInput;
 
 @interface MessageSignerPresenter : NSObject <MessageSignerModuleInput, MessageSignerViewOutput, MessageSignerInteractorOutput>
-
 @property (nonatomic, weak) id<MessageSignerViewInput> view;
 @property (nonatomic, strong) id<MessageSignerInteractorInput> interactor;
 @property (nonatomic, strong) id<MessageSignerRouterInput> router;
-@property (nonatomic, weak) id<MessageSignerModuleOutput> moduleOutput;
-
+@property (nonatomic, weak) id <ConfirmationStoryModuleOutput> moduleOutput;
 @end

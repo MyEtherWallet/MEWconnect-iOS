@@ -6,14 +6,10 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
-@import CocoaLumberjack;
-
 #import "RequestConfigurationOperation.h"
 
 #import "RequestConfigurator.h"
 #import "RequestDataModel.h"
-
-static const int ddLogLevel = DDLogLevelVerbose;
 
 @interface RequestConfigurationOperation ()
 @property (nonatomic, strong) id<RequestConfigurator> requestConfigurator;

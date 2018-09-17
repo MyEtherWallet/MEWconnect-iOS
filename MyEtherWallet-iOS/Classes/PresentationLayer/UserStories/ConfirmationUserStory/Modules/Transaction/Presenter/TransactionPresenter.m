@@ -12,9 +12,9 @@
 #import "TransactionInteractorInput.h"
 #import "TransactionRouterInput.h"
 
-#import "SplashPasswordModuleOutput.h"
+#import "ContextPasswordModuleOutput.h"
 
-@interface TransactionPresenter () <SplashPasswordModuleOutput>
+@interface TransactionPresenter () <ContextPasswordModuleOutput>
 @end
 
 @implementation TransactionPresenter {
@@ -24,32 +24,34 @@
 
 #pragma mark - TransactionModuleInput
 
-- (void) configureModuleWithMessage:(MEWConnectCommand *)command {
-  [self.interactor configurateWithMessage:command];
+- (void) configureModuleWithMessage:(MEWConnectCommand *)command account:(AccountPlainObject *)account {
+  [self.interactor configurateWithMessage:command account:account];
 }
 
 #pragma mark - TransactionViewOutput
 
 - (void) didTriggerViewReadyEvent {
 	[self.view setupInitialState];
+  AccountPlainObject *account = [self.interactor obtainAccount];
   MEWConnectTransaction *transaction = [self.interactor obtainTransaction];
-  [self.view updateWithTransaction:transaction];
+  [self.view updateWithTransaction:transaction forAccount:account];
 }
 
 - (void) signAction {
-  [self.router openSplashPasswordWithOutput:self];
+  AccountPlainObject *account = [self.interactor obtainAccount];
+  [self.router openContextPasswordWithAccount:account moduleOutput:self];
 }
 
 - (void) declineAction {
-  [self.router openDeclinedTransaction];
+  [self.router openDeclinedTransactionWithConfirmationDelegate:self.moduleOutput];
 }
 
-- (void)confirmAddressAction:(BOOL)confirmed {
+- (void) confirmAddressAction:(BOOL)confirmed {
   _addressConfirmed = confirmed;
   [self.view enableSign:_addressConfirmed && _amountConfirmer];
 }
 
-- (void)confirmAmountAction:(BOOL)confirmed {
+- (void) confirmAmountAction:(BOOL)confirmed {
   _amountConfirmer = confirmed;
   [self.view enableSign:_addressConfirmed && _amountConfirmer];
 }
@@ -57,12 +59,12 @@
 #pragma mark - TransactionInteractorOutput
 
 - (void) transactionDidSigned:(MEWConnectResponse *)response {
-  [self.router openConfirmedTransaction];
+  [self.router openConfirmedTransactionWithConfirmationDelegate:self.moduleOutput];
 }
 
-#pragma mark - SplashPasswordModuleOutput
+#pragma mark - ContextPasswordModuleOutput
 
-- (void)passwordDidEntered:(NSString *)password {
+- (void) passwordDidEntered:(NSString *)password {
   [self.interactor signTransactionWithPassword:password];
 }
 

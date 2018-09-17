@@ -8,18 +8,24 @@
 
 @import Foundation;
 
+#import "BlockchainNetworkTypes.h"
+
 @class MEWConnectResponse;
+@class AccountPlainObject;
 @class TokenPlainObject;
 
 @protocol HomeInteractorInput <NSObject>
-- (void) configurateWithAddress:(NSString *)address;
-- (NSString *) obtainAddress;
+- (void) refreshAccount;
+- (AccountPlainObject *) obtainAccount;
+- (void) configurate;
 - (NSUInteger) obtainNumberOfTokens;
-- (BOOL) obtainBackupStatus;
-- (void) subscribe;
-- (void) unsubscribe;
+- (NSDecimalNumber *) obtainTotalPriceOfTokens;
+- (void) reloadData;
+- (void) refreshTokens;
 - (void) searchTokensWithTerm:(NSString *)term;
 - (void) disconnect;
 - (BOOL) isConnected;
-- (TokenPlainObject *) obtainEthereum;
+- (NSArray *) shareActivityItems;
+- (void) selectMainnetNetwork;
+- (void) selectRopstenNetwork;
 @end

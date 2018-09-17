@@ -8,41 +8,60 @@
 
 @import libextobjc.EXTScope;
 
+#import "MEWConnectFacade.h"
+#import "MEWwallet.h"
+
 #import "MessageSignerInteractor.h"
 
 #import "MessageSignerInteractorOutput.h"
 
+#import "AccountPlainObject.h"
+#import "NetworkPlainObject.h"
 #import "MEWConnectCommand.h"
 #import "MEWConnectResponse.h"
 
-#import "MEWCrypto.h"
-
 @interface MessageSignerInteractor ()
-@property (nonatomic, strong) MEWConnectCommand *message;
+@property (nonatomic, strong) MEWConnectCommand *command;
+@property (nonatomic, strong) MEWConnectMessage *message;
+@property (nonatomic, strong) AccountPlainObject *account;
 @end
 
 @implementation MessageSignerInteractor
 
 #pragma mark - MessageSignerInteractorInput
 
-- (void) configurateWithMessage:(MEWConnectCommand *)message {
-  self.message = message;
+- (void) configurateWithMessage:(MEWConnectCommand *)message account:(AccountPlainObject *)account {
+  self.command = message;
+  self.message = [message message];
+  self.account = account;
 }
 
-- (NSString *) obtainMessage {
-  return self.message.data;
+- (AccountPlainObject *)obtainAccount {
+  return self.account;
 }
 
-- (void) signMessage {
+- (MEWConnectMessage *) obtainMessage {
+  return self.message;
+}
+
+- (void) signMessageWithPassword:(NSString *)password {
   @weakify(self);
-  //TODO: Password
-  [self.cryptoService signMessage:self.message.data
-                         password:@""
-                       completion:^(id data) {
-                         @strongify(self);
-                         MEWConnectResponse *response = [MEWConnectResponse responseForCommand:self.message data:data];
-                         [self.output messageDidSigned:response];
-                       }];
+  if (self.message) {
+    [self.walletService signMessage:self.message
+                           password:password
+                      publicAddress:self.account.publicAddress
+                            network:[self.account.fromNetwork network]
+                         completion:^(id data) {
+                           @strongify(self);
+                           if (data) {
+                             MEWConnectResponse *response = [MEWConnectResponse responseForCommand:self.command data:data];
+                             [self.connectFacade sendMessage:response];
+                             [self.output messageDidSigned:response];
+                           } else {
+                             [self.output messageDidFailure];
+                           }
+                         }];
+  }
 }
 
 @end

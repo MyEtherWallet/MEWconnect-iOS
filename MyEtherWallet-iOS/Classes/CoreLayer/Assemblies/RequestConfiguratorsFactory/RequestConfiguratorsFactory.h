@@ -14,4 +14,5 @@
 
 @protocol RequestConfiguratorsFactory <NSObject>
 - (id<RequestConfigurator>) requestConfiguratorWithType:(NSNumber *)type;
+- (id<RequestConfigurator>) requestConfiguratorWithType:(NSNumber *)type url:(NSURL *)url;
 @end

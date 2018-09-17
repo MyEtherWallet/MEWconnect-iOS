@@ -9,10 +9,8 @@
 #import "BackupWordsInteractorInput.h"
 
 @protocol BackupWordsInteractorOutput;
-@protocol MEWCrypto;
 
 @interface BackupWordsInteractor : NSObject <BackupWordsInteractorInput>
 
 @property (nonatomic, weak) id<BackupWordsInteractorOutput> output;
-@property (nonatomic, strong) id <MEWCrypto> cryptoService;
 @end

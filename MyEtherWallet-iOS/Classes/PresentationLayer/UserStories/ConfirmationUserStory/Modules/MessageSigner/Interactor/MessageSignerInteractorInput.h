@@ -9,9 +9,12 @@
 @import Foundation;
 
 @class MEWConnectCommand;
+@class MEWConnectMessage;
+@class AccountPlainObject;
 
 @protocol MessageSignerInteractorInput <NSObject>
-- (void) configurateWithMessage:(MEWConnectCommand *)message;
-- (NSString *) obtainMessage;
-- (void) signMessage;
+- (void) configurateWithMessage:(MEWConnectCommand *)message account:(AccountPlainObject *)account;;
+- (MEWConnectMessage *) obtainMessage;
+- (AccountPlainObject *) obtainAccount;
+- (void) signMessageWithPassword:(NSString *)password;
 @end

@@ -18,6 +18,8 @@
     [aCoder encodeObject:self.decimals forKey:@"decimals"];
     [aCoder encodeObject:self.name forKey:@"name"];
     [aCoder encodeObject:self.symbol forKey:@"symbol"];
+    [aCoder encodeObject:self.fromAccount forKey:@"fromAccount"];
+    [aCoder encodeObject:self.price forKey:@"price"];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
@@ -29,6 +31,8 @@
         _decimals = [[aDecoder decodeObjectForKey:@"decimals"] copy];
         _name = [[aDecoder decodeObjectForKey:@"name"] copy];
         _symbol = [[aDecoder decodeObjectForKey:@"symbol"] copy];
+        _fromAccount = [[aDecoder decodeObjectForKey:@"fromAccount"] copy];
+        _price = [[aDecoder decodeObjectForKey:@"price"] copy];
     }
 
     return self;
@@ -44,6 +48,9 @@
     replica.decimals = self.decimals;
     replica.name = self.name;
     replica.symbol = self.symbol;
+
+    replica.fromAccount = self.fromAccount;
+    replica.price = self.price;
 
     return replica;
 }

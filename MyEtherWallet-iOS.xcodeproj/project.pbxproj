@@ -1153,6 +1153,7 @@
 		5606B34A210FDAC500576C28 /* ReachabilityServiceImplementation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReachabilityServiceImplementation.m; sourceTree = "<group>"; };
 		5606B34C210FDAD200576C28 /* ReachabilityServiceDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReachabilityServiceDelegate.h; sourceTree = "<group>"; };
 		5606B34D210FE22700576C28 /* ReachabilityService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReachabilityService.h; sourceTree = "<group>"; };
+		5609E98521515518005B780E /* application.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = application.xcconfig; sourceTree = "<group>"; };
 		560A866320E6539F00046B53 /* KeychainServiceImplementation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainServiceImplementation.h; sourceTree = "<group>"; };
 		560A866420E6539F00046B53 /* KeychainServiceImplementation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeychainServiceImplementation.m; sourceTree = "<group>"; };
 		560A866620E653A700046B53 /* KeychainService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainService.h; sourceTree = "<group>"; };
@@ -4237,6 +4238,7 @@
 		5668E51C2083F3EE0070A402 /* Configurations */ = {
 			isa = PBXGroup;
 			children = (
+				5609E98521515518005B780E /* application.xcconfig */,
 				5668E52D2083F5050070A402 /* common.xcconfig */,
 				56E3E6622101720C0014152D /* common.beta.xcconfig */,
 				5668E5212083F41A0070A402 /* Debug */,

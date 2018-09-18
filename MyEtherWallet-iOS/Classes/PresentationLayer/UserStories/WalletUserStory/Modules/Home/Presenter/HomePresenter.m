@@ -33,6 +33,7 @@ typedef NS_OPTIONS(short, HomeViewPresenterStatus) {
 @implementation HomePresenter {
   BOOL _viewVisible;
   BOOL _tokensRefreshing;
+  BOOL _transactionDidSigned;
 }
 
 #pragma mark - HomeModuleInput
@@ -78,6 +79,10 @@ typedef NS_OPTIONS(short, HomeViewPresenterStatus) {
 - (void) didTriggerViewWillAppear {
   _viewVisible = YES;
   [self _refreshViewStatusAnimated:NO];
+  if (_transactionDidSigned) {
+    [self.interactor requestRaterIfNeeded];
+    _transactionDidSigned = NO;
+  }
 }
 
 - (void) didTriggerViewDidDisappear {
@@ -216,6 +221,8 @@ typedef NS_OPTIONS(short, HomeViewPresenterStatus) {
 #pragma mark - ConfirmationStoryModuleOutput
 
 - (void) transactionDidSigned {
+  _transactionDidSigned = YES;
+  [self.interactor transactionDidSigned];
   [self.signModuleInput closeWithCompletion:nil];
 }
 

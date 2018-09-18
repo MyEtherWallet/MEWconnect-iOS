@@ -36,4 +36,12 @@
  Obtaining first launch date
  */
 - (NSString *) obtainFirstLaunchDate;
+/**
+ Saving rate status
+ */
+- (void) rateDidAsked;
+/**
+ Obtain rate status
+ */
+- (BOOL) obtainRateStatus;
 @end

@@ -22,6 +22,8 @@ static NSString *const kKeychainServiceSimplexUserIdField   = @"userId";
 static NSString *const kKeychainServiceSimplexDateField     = @"date";
 
 static NSString *const kKeychainServiceFirstLaunchField     = @"firstLaunch";
+static NSString *const kKeychainServiceRateAskedValue       = @"true";
+static NSString *const kKeychainServiceRateAskedField       = @"com.myetherwallet.rater.rateasked";
 
 @implementation KeychainServiceImplementation
 
@@ -118,6 +120,14 @@ static NSString *const kKeychainServiceFirstLaunchField     = @"firstLaunch";
 
 - (NSString *)obtainFirstLaunchDate {
   return [self.keychainStore stringForKey:kKeychainServiceFirstLaunchField];
+}
+
+- (void) rateDidAsked {
+  [self.keychainStore setString:kKeychainServiceRateAskedValue forKey:kKeychainServiceRateAskedField];
+}
+
+- (BOOL) obtainRateStatus {
+  return [self.keychainStore stringForKey:kKeychainServiceRateAskedField] != nil;
 }
 
 #pragma mark - Private

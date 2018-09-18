@@ -31,16 +31,24 @@
 
 #import "HomeInteractorOutput.h"
 
+static NSTimeInterval kHomeInteractorDefaultRefreshBalancesTime = 900.0;
+
 @interface HomeInteractor ()
+@property (nonatomic, strong) NSTimer *updateTimer;
 @property (nonatomic, strong) AccountPlainObject *account;
+@property (nonatomic) BOOL balanceUpdating;
+@property (nonatomic) BOOL tokensUpdating;
 @end
 
-@implementation HomeInteractor
+@implementation HomeInteractor {
+  BOOL _configured;
+}
 
 - (instancetype) init {
   self = [super init];
   if (self) {
     [self _subscribe];
+    [self _startTimer];
   }
   return self;
 }
@@ -48,6 +56,7 @@
 - (void) dealloc {
   [self disconnect];
   [self _unsubscribe];
+  [self _stopTimer];
 }
 
 #pragma mark - HomeInteractorInput
@@ -58,6 +67,7 @@
   }
   [self _reloadCacheRequest];
   [self reloadData];
+  _configured = YES;
 }
 
 - (void) reloadData {
@@ -65,32 +75,41 @@
     [self refreshAccount];
     return;
   }
+  [self _startTimer];
   @weakify(self);
-  [self.output tokensDidStartUpdating];
-  [self.accountsService updateBalanceForAccount:self.account
-                                withCompletion:^(NSError *error) {
-                                  if (!error) {
-                                    @strongify(self);
-                                    [self.output didUpdateEthereumBalance];
-                                    [self.fiatPricesService updatePriceForEthereumWithCompletion:^(NSError *error) {
-                                      [self refreshAccount];
-                                      [self.output didUpdateEthereumBalance];
-                                    }];
-                                  }
-                                }];
-  [self.tokensService updateTokenBalancesForAccount:self.account
-                                     withCompletion:^(NSError *error) {
-                                       if (!error) {
+  if (!self.balanceUpdating) {
+    self.balanceUpdating = YES;
+    [self.accountsService updateBalanceForAccount:self.account
+                                   withCompletion:^(NSError *error) {
+                                     @strongify(self);
+                                     if (!error) {
+                                       [self.output didUpdateEthereumBalance];
+                                       [self.fiatPricesService updatePriceForEthereumWithCompletion:^(NSError *error) {
+                                         [self refreshAccount];
+                                         [self.output didUpdateEthereumBalance];
+                                       }];
+                                     }
+                                     self.balanceUpdating = NO;
+                                   }];
+  }
+  if (!self.tokensUpdating) {
+    self.tokensUpdating = YES;
+    [self.output tokensDidStartUpdating];
+    [self.tokensService updateTokenBalancesForAccount:self.account
+                                       withCompletion:^(NSError *error) {
                                          @strongify(self);
-                                         [self.output didUpdateTokens];
-                                         [self.fiatPricesService updatePricesForTokensWithCompletion:^(NSError *error) {
-                                           [self.output didUpdateTokensBalance];
+                                         if (!error) {
+                                           [self.output didUpdateTokens];
+                                           [self.fiatPricesService updatePricesForTokensWithCompletion:^(NSError *error) {
+                                             [self.output didUpdateTokensBalance];
+                                             [self.output tokensDidEndUpdating];
+                                           }];
+                                         } else {
                                            [self.output tokensDidEndUpdating];
-                                         }];
-                                       } else {
-                                         [self.output tokensDidEndUpdating];
-                                       }
-                                     }];
+                                         }
+                                         self.tokensUpdating = NO;
+                                       }];
+  }
 }
 
 - (void) refreshAccount {
@@ -143,20 +162,24 @@
 
 - (void) refreshTokens {
   @weakify(self);
-  [self.output tokensDidStartUpdating];
-  [self.tokensService updateTokenBalancesForAccount:self.account
-                                     withCompletion:^(NSError *error) {
-                                       if (!error) {
+  if (!self.tokensUpdating) {
+    self.tokensUpdating = YES;
+    [self.output tokensDidStartUpdating];
+    [self.tokensService updateTokenBalancesForAccount:self.account
+                                       withCompletion:^(NSError *error) {
                                          @strongify(self);
-                                         [self.output didUpdateTokens];
-                                         [self.fiatPricesService updatePricesForTokensWithCompletion:^(NSError *error) {
-                                           [self.output didUpdateTokensBalance];
+                                         if (!error) {
+                                           [self.output didUpdateTokens];
+                                           [self.fiatPricesService updatePricesForTokensWithCompletion:^(NSError *error) {
+                                             [self.output didUpdateTokensBalance];
+                                             [self.output tokensDidEndUpdating];
+                                           }];
+                                         } else {
                                            [self.output tokensDidEndUpdating];
-                                         }];
-                                       } else {
-                                         [self.output tokensDidEndUpdating];
-                                       }
-                                     }];
+                                         }
+                                         self.tokensUpdating = NO;
+                                       }];
+  }
 }
 
 - (void)selectMainnetNetwork {
@@ -240,10 +263,32 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(MEWConnectDidConnect:) name:MEWConnectFacadeDidConnectNotification object:self.connectFacade];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(MEWConnectDidDisconnect:) name:MEWConnectFacadeDidDisconnectNotification object:self.connectFacade];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(MEWConnectDidReceiveMessage:) name:MEWConnectFacadeDidReceiveMessageNotification object:self.connectFacade];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_applicationDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
 }
 
 - (void) _unsubscribe {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void) _startTimer {
+  [self _stopTimer];
+  self.updateTimer = [NSTimer timerWithTimeInterval:kHomeInteractorDefaultRefreshBalancesTime target:self selector:@selector(reloadData) userInfo:nil repeats:YES];
+  [[NSRunLoop mainRunLoop] addTimer:self.updateTimer forMode:NSRunLoopCommonModes];
+}
+
+- (void) _stopTimer {
+  if (self.updateTimer) {
+    [self.updateTimer invalidate];
+    self.updateTimer = nil;
+  }
+}
+
+#pragma mark - Notifications
+
+- (void) _applicationDidBecomeActive:(NSNotification *)notification {
+  if (_configured) {
+    [self reloadData];
+  }
 }
 
 #pragma mark - ReachabilityServiceDelegate

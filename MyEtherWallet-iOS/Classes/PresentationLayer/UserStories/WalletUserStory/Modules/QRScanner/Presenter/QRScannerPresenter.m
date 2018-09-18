@@ -12,6 +12,10 @@
 #import "QRScannerInteractorInput.h"
 #import "QRScannerRouterInput.h"
 
+#import "ApplicationConstants.h"
+
+#import "NSBundle+Version.h"
+
 @implementation QRScannerPresenter {
   BOOL _accessGranted;
   BOOL _viewAppeared;
@@ -53,6 +57,13 @@
 
 - (void) settingsAction {
   [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString] options:@{} completionHandler:nil];
+}
+
+- (void) contactSupportAction {
+  NSString *version = [[NSBundle mainBundle] applicationVersion];
+  NSString *subject = [NSString stringWithFormat:@"MEWconnect iOS v.%@ connection issue", version];
+  NSArray *recipients = @[kMyEtherWalletSupportEmail];
+  [self.view presentMailComposeWithSubject:subject recipients:recipients];
 }
 
 #pragma mark - QRScannerInteractorOutput

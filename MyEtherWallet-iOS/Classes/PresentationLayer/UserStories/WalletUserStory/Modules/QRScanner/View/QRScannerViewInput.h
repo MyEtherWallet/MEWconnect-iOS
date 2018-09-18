@@ -22,4 +22,6 @@
 
 - (void) hideAccessWarning;
 - (void) showAccessWarning;
+
+- (void) presentMailComposeWithSubject:(NSString *)subject recipients:(NSArray <NSString *> *)recipients;
 @end

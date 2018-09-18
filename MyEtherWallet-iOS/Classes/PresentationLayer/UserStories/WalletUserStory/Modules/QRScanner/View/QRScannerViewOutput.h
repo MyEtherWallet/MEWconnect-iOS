@@ -15,4 +15,5 @@
 - (void) didTriggerViewDidDisappear;
 - (void) closeAction;
 - (void) settingsAction;
+- (void) contactSupportAction;
 @end

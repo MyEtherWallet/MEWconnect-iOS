@@ -38,6 +38,7 @@
 #import "FiatPricesServiceImplementation.h"
 #import "SimplexServiceImplementation.h"
 #import "ReachabilityServiceImplementation.h"
+#import "RateServiceImplementation.h"
 
 #import "OperationSchedulerImplementation.h"
 
@@ -195,6 +196,16 @@ static NSString *const kReachabilityURLString   = @"API.ReachabilityURLString";
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(keychainStore) with:[self keychainStore]];
                           [definition injectProperty:@selector(dateFormatter) with:[self dateFormatter]];
+                        }];
+}
+
+- (id<RateService>) rateService {
+  return [TyphoonDefinition withClass:[RateServiceImplementation class]
+                        configuration:^(TyphoonDefinition *definition) {
+                          [definition injectProperty:@selector(userDefaults)
+                                                with:[self.systemInfrastructureAssembly userDefaults]];
+                          [definition injectProperty:@selector(keychainService)
+                                                with:[self keychainService]];
                         }];
 }
 

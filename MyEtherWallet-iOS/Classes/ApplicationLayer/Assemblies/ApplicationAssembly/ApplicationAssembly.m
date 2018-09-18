@@ -20,6 +20,7 @@
 #import "ApplicationConfiguratorImplementation.h"
 #import "ThirdPartiesConfiguratorImplementation.h"
 #import "CoreDataConfiguratorImplementation.h"
+#import "CrashCatcherConfiguratorImplementation.h"
 
 #import "ApplicationAssembly.h"
 
@@ -48,6 +49,8 @@
                                                 with:[self cleanStartRouter]];
                           [definition injectProperty:@selector(coreDataConfigurator)
                                                 with:[self coreDataConfigurator]];
+                          [definition injectProperty:@selector(crashCatcherConfigurator)
+                                                with:[self crashCatcherConfigurator]];
                           definition.scope = TyphoonScopeSingleton;
                         }];
 }
@@ -71,6 +74,14 @@
                                                 with:[self.systemInfrastructureAssembly fileManager]];
                           [definition injectProperty:@selector(keychainService)
                                                 with:[self.serviceComponents keychainService]];
+                        }];
+}
+
+- (id <CrashCatcherConfigurator>) crashCatcherConfigurator {
+  return [TyphoonDefinition withClass:[CrashCatcherConfiguratorImplementation class]
+                        configuration:^(TyphoonDefinition *definition) {
+                          [definition injectProperty:@selector(rateService)
+                                                with:[self.serviceComponents rateService]];
                         }];
 }
 

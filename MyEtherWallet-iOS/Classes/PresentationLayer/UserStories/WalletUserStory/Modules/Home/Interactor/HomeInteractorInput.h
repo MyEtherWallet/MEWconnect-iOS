@@ -28,4 +28,6 @@
 - (NSArray *) shareActivityItems;
 - (void) selectMainnetNetwork;
 - (void) selectRopstenNetwork;
+- (void) transactionDidSigned;
+- (void) requestRaterIfNeeded;
 @end

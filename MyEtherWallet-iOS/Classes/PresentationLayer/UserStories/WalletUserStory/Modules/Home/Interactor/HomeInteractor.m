@@ -20,6 +20,7 @@
 #import "AccountsService.h"
 #import "FiatPricesService.h"
 #import "ReachabilityServiceDelegate.h"
+#import "RateService.h"
 
 #import "CacheRequest.h"
 #import "CacheTracker.h"
@@ -180,6 +181,14 @@
       [self.output networkDidChangedWithoutAccount];
     }
   }
+}
+
+- (void) transactionDidSigned {
+  [self.rateService transactionSigned];
+}
+
+- (void) requestRaterIfNeeded {
+  [self.rateService requestReviewIfNeeded];
 }
 
 #pragma mark - Notifications

@@ -152,6 +152,9 @@
 		560D773A20B5A258009A3D6D /* BackupConfirmationQuiz.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D773920B5A258009A3D6D /* BackupConfirmationQuiz.m */; };
 		561840B820CC8CE1004BEB7E /* MEWcryptoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 561840B720CC8CE1004BEB7E /* MEWcryptoTests.m */; };
 		561840C620CD2AD5004BEB7E /* RamblerTyphoonUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 561840C520CD2AD5004BEB7E /* RamblerTyphoonUtils.framework */; };
+		56191EA821504C35000BF97F /* CrashCatcherConfiguratorImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56191EA721504C35000BF97F /* CrashCatcherConfiguratorImplementation.m */; };
+		56191EA921504C39000BF97F /* CrashCatcherConfiguratorImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56191EA721504C35000BF97F /* CrashCatcherConfiguratorImplementation.m */; };
+		56191EAE215052FD000BF97F /* RateServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56191EAD215052FD000BF97F /* RateServiceImplementation.m */; };
 		5627B6F6210A81B7009787F7 /* EthereumResponseValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5627B6F5210A81B7009787F7 /* EthereumResponseValidator.m */; };
 		5627B6F7210A8282009787F7 /* EthereumResponseValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5627B6F5210A81B7009787F7 /* EthereumResponseValidator.m */; };
 		5627B6F9210B5260009787F7 /* AboutAssemblyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5627B6F8210B525F009787F7 /* AboutAssemblyTests.m */; };
@@ -1150,6 +1153,7 @@
 		5606B34A210FDAC500576C28 /* ReachabilityServiceImplementation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReachabilityServiceImplementation.m; sourceTree = "<group>"; };
 		5606B34C210FDAD200576C28 /* ReachabilityServiceDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReachabilityServiceDelegate.h; sourceTree = "<group>"; };
 		5606B34D210FE22700576C28 /* ReachabilityService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReachabilityService.h; sourceTree = "<group>"; };
+		5609E98521515518005B780E /* application.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = application.xcconfig; sourceTree = "<group>"; };
 		560A866320E6539F00046B53 /* KeychainServiceImplementation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainServiceImplementation.h; sourceTree = "<group>"; };
 		560A866420E6539F00046B53 /* KeychainServiceImplementation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeychainServiceImplementation.m; sourceTree = "<group>"; };
 		560A866620E653A700046B53 /* KeychainService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainService.h; sourceTree = "<group>"; };
@@ -1223,6 +1227,12 @@
 		561840B720CC8CE1004BEB7E /* MEWcryptoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MEWcryptoTests.m; path = MEWcrypto/MEWcryptoTests.m; sourceTree = "<group>"; };
 		561840BE20CCA0BA004BEB7E /* RamblerTyphoonUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RamblerTyphoonUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		561840C520CD2AD5004BEB7E /* RamblerTyphoonUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RamblerTyphoonUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		56191EA521504C2B000BF97F /* CrashCatcherConfigurator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CrashCatcherConfigurator.h; sourceTree = "<group>"; };
+		56191EA621504C35000BF97F /* CrashCatcherConfiguratorImplementation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CrashCatcherConfiguratorImplementation.h; sourceTree = "<group>"; };
+		56191EA721504C35000BF97F /* CrashCatcherConfiguratorImplementation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CrashCatcherConfiguratorImplementation.m; sourceTree = "<group>"; };
+		56191EAB215052F1000BF97F /* RateService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RateService.h; sourceTree = "<group>"; };
+		56191EAC215052FD000BF97F /* RateServiceImplementation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RateServiceImplementation.h; sourceTree = "<group>"; };
+		56191EAD215052FD000BF97F /* RateServiceImplementation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RateServiceImplementation.m; sourceTree = "<group>"; };
 		5627B6F4210A81B7009787F7 /* EthereumResponseValidator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EthereumResponseValidator.h; sourceTree = "<group>"; };
 		5627B6F5210A81B7009787F7 /* EthereumResponseValidator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EthereumResponseValidator.m; sourceTree = "<group>"; };
 		5627B6F8210B525F009787F7 /* AboutAssemblyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutAssemblyTests.m; sourceTree = "<group>"; };
@@ -3628,6 +3638,26 @@
 			path = ConfirmationStoryModuleOutput;
 			sourceTree = "<group>";
 		};
+		56191EA021504B90000BF97F /* CrashCatcherConfigurator */ = {
+			isa = PBXGroup;
+			children = (
+				56191EA521504C2B000BF97F /* CrashCatcherConfigurator.h */,
+				56191EA621504C35000BF97F /* CrashCatcherConfiguratorImplementation.h */,
+				56191EA721504C35000BF97F /* CrashCatcherConfiguratorImplementation.m */,
+			);
+			path = CrashCatcherConfigurator;
+			sourceTree = "<group>";
+		};
+		56191EAA215052D8000BF97F /* RateService */ = {
+			isa = PBXGroup;
+			children = (
+				56191EAB215052F1000BF97F /* RateService.h */,
+				56191EAC215052FD000BF97F /* RateServiceImplementation.h */,
+				56191EAD215052FD000BF97F /* RateServiceImplementation.m */,
+			);
+			path = RateService;
+			sourceTree = "<group>";
+		};
 		5627B6F3210A81A8009787F7 /* EthereumResponseValidator */ = {
 			isa = PBXGroup;
 			children = (
@@ -3995,6 +4025,7 @@
 				560D76F120B48468009A3D6D /* FetchedResultsController */,
 				5668E4F72083DC290070A402 /* ApplicationConfigurator */,
 				5668E4F22083DC120070A402 /* ThirdPartiesConfigurator */,
+				56191EA021504B90000BF97F /* CrashCatcherConfigurator */,
 				565FFA4A2081836E00755B6C /* LaunchSystem */,
 			);
 			path = ApplicationLayer;
@@ -4207,6 +4238,7 @@
 		5668E51C2083F3EE0070A402 /* Configurations */ = {
 			isa = PBXGroup;
 			children = (
+				5609E98521515518005B780E /* application.xcconfig */,
 				5668E52D2083F5050070A402 /* common.xcconfig */,
 				56E3E6622101720C0014152D /* common.beta.xcconfig */,
 				5668E5212083F41A0070A402 /* Debug */,
@@ -4842,6 +4874,7 @@
 		56AC9435208F76DF00E5BC2C /* ConcreteServices */ = {
 			isa = PBXGroup;
 			children = (
+				56191EAA215052D8000BF97F /* RateService */,
 				5606B348210FDA9900576C28 /* ReachabilityService */,
 				56E14BDA20EBC82C00C41F83 /* SimplexService */,
 				56E14BB620E979AA00C41F83 /* FiatPricesService */,
@@ -9446,6 +9479,7 @@
 				56E3E52821016DB60014152D /* StartRouter.m in Sources */,
 				56E3E52921016DB60014152D /* NetworkOperation.m in Sources */,
 				56E3E52A21016DB60014152D /* ManyResponseObjectFormatter.m in Sources */,
+				56191EA921504C39000BF97F /* CrashCatcherConfiguratorImplementation.m in Sources */,
 				56E3E52B21016DB60014152D /* UIColor+Hex.m in Sources */,
 				5662E2512147FEB300A3C77E /* ContextPasswordRouter.m in Sources */,
 				56E3E52C21016DB60014152D /* ModuleAssemblyBase.m in Sources */,
@@ -9782,6 +9816,7 @@
 				56AC9457208FACBA00E5BC2C /* NSData+Hexadecimal.m in Sources */,
 				9545B03A6FC04B1766AA60BF /* StartPresenter.m in Sources */,
 				56E14BBF20E97B3C00C41F83 /* FiatPricesQuery.m in Sources */,
+				56191EAE215052FD000BF97F /* RateServiceImplementation.m in Sources */,
 				5668E5132083E8290070A402 /* NavigationControllerFactoryImplementation.m in Sources */,
 				56FB391720B1A0B7007776C8 /* TokensServiceImplementation.m in Sources */,
 				560CB022209B6CB200BFF59C /* MEWConnectResponse.m in Sources */,
@@ -9810,6 +9845,7 @@
 				563DF37E20986B7200F740FF /* UIColor+Hex.m in Sources */,
 				5668E4E52083D95F0070A402 /* ModuleAssemblyBase.m in Sources */,
 				563C6AE620AF690A00E85B8B /* CheckboxButton+Blockies.swift in Sources */,
+				56191EA821504C35000BF97F /* CrashCatcherConfiguratorImplementation.m in Sources */,
 				56F17AC420E23FF60010393C /* NSBundle+Version.m in Sources */,
 				564952C120E3DEE300CF2348 /* BlockchainNetworkServiceImplementation.m in Sources */,
 				566BD36321389478007EC803 /* MEWConnectMessage.m in Sources */,

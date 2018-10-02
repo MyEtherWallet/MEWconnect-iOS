@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.3.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ngK-1K-Lfe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ngK-1K-Lfe">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -288,7 +288,7 @@ with MyEtherWallet</string>
                                         </constraints>
                                     </view>
                                     <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oQD-eg-yVi">
-                                        <rect key="frame" x="0.0" y="22" width="375" height="118.5"/>
+                                        <rect key="frame" x="0.0" y="22" width="375" height="156.5"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scan_error_icon" translatesAutoresizingMaskIntoConstraints="NO" id="MkQ-nq-Hgt">
                                                 <rect key="frame" x="165.5" y="0.0" width="44" height="44"/>
@@ -305,6 +305,15 @@ with MyEtherWallet</string>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6g-jh-5zW">
+                                                <rect key="frame" x="131" y="126.5" width="113" height="30"/>
+                                                <state key="normal" title="Contact support">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="contactSupport:" destination="EmZ-Sq-cvZ" eventType="touchUpInside" id="RRJ-Uc-06i"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -312,10 +321,12 @@ with MyEtherWallet</string>
                                             <constraint firstItem="ZKV-Fk-dcp" firstAttribute="centerX" secondItem="oQD-eg-yVi" secondAttribute="centerX" id="HoF-MI-jHw"/>
                                             <constraint firstItem="ZKV-Fk-dcp" firstAttribute="top" secondItem="MkQ-nq-Hgt" secondAttribute="bottom" constant="22" id="LjL-PB-xXI"/>
                                             <constraint firstItem="MkQ-nq-Hgt" firstAttribute="bottom" secondItem="oQD-eg-yVi" secondAttribute="top" constant="44" id="N9Z-CD-GuF"/>
+                                            <constraint firstItem="K6g-jh-5zW" firstAttribute="centerX" secondItem="oQD-eg-yVi" secondAttribute="centerX" id="PF6-ti-cyg"/>
                                             <constraint firstAttribute="right" relation="greaterThanOrEqual" secondItem="VaY-pi-Wp8" secondAttribute="right" constant="16" id="QgE-PD-bch"/>
+                                            <constraint firstAttribute="bottom" secondItem="K6g-jh-5zW" secondAttribute="bottom" id="XDg-Gg-1au"/>
                                             <constraint firstItem="VaY-pi-Wp8" firstAttribute="centerX" secondItem="oQD-eg-yVi" secondAttribute="centerX" id="dwl-mP-PAx"/>
+                                            <constraint firstItem="K6g-jh-5zW" firstAttribute="top" secondItem="VaY-pi-Wp8" secondAttribute="bottom" constant="8" id="kHm-ZP-JFz"/>
                                             <constraint firstItem="MkQ-nq-Hgt" firstAttribute="centerX" secondItem="oQD-eg-yVi" secondAttribute="centerX" id="rQf-Fl-we9"/>
-                                            <constraint firstAttribute="bottom" secondItem="VaY-pi-Wp8" secondAttribute="bottom" id="wAq-mO-eYY"/>
                                             <constraint firstItem="VaY-pi-Wp8" firstAttribute="top" secondItem="ZKV-Fk-dcp" secondAttribute="bottom" constant="8" id="xKv-lS-1S9"/>
                                         </constraints>
                                     </view>
@@ -378,6 +389,7 @@ with MyEtherWallet</string>
                         <outlet property="loadingActivity" destination="pg1-km-Qx3" id="6i1-l7-ZhB"/>
                         <outlet property="loadingContainerView" destination="J3R-dv-EsU" id="ugo-rt-hhZ"/>
                         <outlet property="statusContainerView" destination="oQD-eg-yVi" id="lDG-GF-osO"/>
+                        <outlet property="statusInfoContactSupportButton" destination="K6g-jh-5zW" id="LEJ-AK-M6A"/>
                         <outlet property="statusInfoDescriptionLabel" destination="VaY-pi-Wp8" id="be7-tc-7xj"/>
                         <outlet property="statusInfoIconImageView" destination="MkQ-nq-Hgt" id="18J-7e-H4v"/>
                         <outlet property="statusInfoTitleLabel" destination="ZKV-Fk-dcp" id="Rzf-Hi-4MO"/>

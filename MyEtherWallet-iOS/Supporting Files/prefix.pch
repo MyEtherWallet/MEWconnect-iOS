@@ -1,7 +1,9 @@
 @import CocoaLumberjack;
 
 #if DEBUG
+#   define NSLog(...) NSLog(__VA_ARGS__)
 static const int ddLogLevel = DDLogLevelVerbose;
 #else
+#   define NSLog(...)
 static const int ddLogLevel = DDLogLevelWarning;
 #endif

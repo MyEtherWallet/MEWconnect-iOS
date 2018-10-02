@@ -12,10 +12,12 @@
 #import "ApplicationConfigurator.h"
 #import "ThirdPartiesConfigurator.h"
 #import "CoreDataConfigurator.h"
+#import "CrashCatcherConfigurator.h"
 
 @implementation CleanLaunchAppDelegate
 
 - (BOOL) application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  [self.crashCatcherConfigurator configurate];
   [self.thirdPartiesConfigurator configurate];
   [self.coreDataConfigurator setupCoreDataStack];
   [self.applicationConfigurator configureInitialSettings];

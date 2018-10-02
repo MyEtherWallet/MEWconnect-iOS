@@ -66,10 +66,12 @@
                                                 with:[self.ponsomizerAssembly ponsomizer]];
                           [definition injectProperty:@selector(reachabilityService)
                                                 with:[self.serviceComponents reachabilityServiceWithDelegate:[self interactorHome]]];
+                          [definition injectProperty:@selector(rateService)
+                                                with:[self.serviceComponents rateService]];
                         }];
 }
 
-- (HomePresenter *) presenterHome{
+- (HomePresenter *) presenterHome {
   return [TyphoonDefinition withClass:[HomePresenter class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(view)
@@ -81,7 +83,7 @@
                         }];
 }
 
-- (HomeRouter *) routerHome{
+- (HomeRouter *) routerHome {
   return [TyphoonDefinition withClass:[HomeRouter class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(transitionHandler)

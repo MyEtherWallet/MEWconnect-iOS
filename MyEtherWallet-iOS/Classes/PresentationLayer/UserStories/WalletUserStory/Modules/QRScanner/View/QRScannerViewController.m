@@ -7,6 +7,7 @@
 //
 
 @import AVFoundation;
+@import MessageUI;
 
 #import "QRScannerViewController.h"
 
@@ -18,10 +19,12 @@
 #import "UIColor+Hex.h"
 #import "UIScreen+ScreenSizeType.h"
 
+#import "UIView+LockFrame.h"
+
 static CFTimeInterval kQRScannerViewControllerOpacityAnimationDuration = 0.4;
 static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
 
-@interface QRScannerViewController () <AVCaptureMetadataOutputObjectsDelegate, LinkedLabelDelegate>
+@interface QRScannerViewController () <AVCaptureMetadataOutputObjectsDelegate, LinkedLabelDelegate, MFMailComposeViewControllerDelegate>
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) IBOutlet UILabel *stepsDescriptionLabel;
 @property (nonatomic, weak) IBOutlet UIButton *closeButton;
@@ -37,6 +40,7 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
 @property (nonatomic, weak) IBOutlet UIImageView *statusInfoIconImageView;
 @property (nonatomic, weak) IBOutlet UILabel *statusInfoTitleLabel;
 @property (nonatomic, weak) IBOutlet UILabel *statusInfoDescriptionLabel;
+@property (nonatomic, weak) IBOutlet UIButton *statusInfoContactSupportButton;
 
 @property (nonatomic, strong) AVCaptureVideoPreviewLayer *videoPreviewLayer;
 
@@ -68,6 +72,7 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
 - (void) viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   [self.output didTriggerViewDidAppear];
+  self.view.lockFrame = YES;
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -103,6 +108,17 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
     }
     self.cameraToDescriptionYOffsetConstraint.constant = 17.0;
     self.descriptionRightOffsetConstraint.constant = 20.0;
+  }
+  if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40 ||
+      ![MFMailComposeViewController canSendMail]) {
+    [self.statusInfoContactSupportButton removeFromSuperview];
+    [self.statusInfoDescriptionLabel.bottomAnchor constraintEqualToAnchor:self.statusInfoDescriptionLabel.superview.bottomAnchor].active = YES;
+  } else {
+    NSDictionary *attributes = @{NSFontAttributeName: self.statusInfoContactSupportButton.titleLabel.font,
+                                 NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)};
+    NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Contact support", @"QRScanner. Connect error. Contact support")
+                                                                          attributes:attributes];
+    [self.statusInfoContactSupportButton setAttributedTitle:attributedTitle forState:UIControlStateNormal];
   }
   [self _prepareStepsDescription];
   { //title label
@@ -192,6 +208,7 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
 - (void) showError {
   self.statusInfoIconImageView.image = [UIImage imageNamed:@"scan_error_icon"];
   self.statusInfoTitleLabel.text = NSLocalizedString(@"Something went wrong", @"QRScanner. Connection error title");
+  self.statusInfoContactSupportButton.hidden = NO;
   {
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
     style.alignment = NSTextAlignmentCenter;
@@ -209,6 +226,7 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
                      self.stepsDescriptionLabel.alpha = 0.0;
                      self.loadingContainerView.alpha = 0.0;
                      self.statusContainerView.alpha = 1.0;
+                     self.statusInfoContactSupportButton.alpha = 1.0;
                    } completion:^(BOOL finished) {
                      --self.runningAnimations;
                      if (self.runningAnimations == 0) {
@@ -220,6 +238,7 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
 - (void) showSuccess {
   self.statusInfoIconImageView.image = [UIImage imageNamed:@"scan_success_icon"];
   self.statusInfoTitleLabel.text = NSLocalizedString(@"Connected to MyEtherWallet", @"QRScanner. Connection success title");
+  self.statusInfoContactSupportButton.hidden = YES;
   {
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
     style.alignment = NSTextAlignmentCenter;
@@ -278,10 +297,30 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
   }
 }
 
+- (void) presentMailComposeWithSubject:(NSString *)subject recipients:(NSArray <NSString *> *)recipients {
+  if ([MFMailComposeViewController canSendMail]) {
+    MFMailComposeViewController *mailComposeViewController = [[MFMailComposeViewController alloc] init];
+    [mailComposeViewController setSubject:subject];
+    [mailComposeViewController setToRecipients:recipients];
+    mailComposeViewController.mailComposeDelegate = self;
+    [self presentViewController:mailComposeViewController animated:YES completion:nil];
+  } else {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", @"Info screen. Contact")
+                                                                   message:NSLocalizedString(@"Can't send email", @"Info screen. Contact")
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"Info screen. Contact") style:UIAlertActionStyleDefault handler:nil]];
+    [self presentViewController:alert animated:YES completion:nil];
+  }
+}
+
 #pragma mark - IBActions
 
 - (IBAction) closeAction:(UIButton *)sender {
   [self.output closeAction];
+}
+
+- (IBAction) contactSupport:(UIButton *)sender {
+  [self.output contactSupportAction];
 }
 
 #pragma mark - Private
@@ -367,6 +406,12 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
 
 - (void) linkedLabel:(LinkedLabel *)label didSelectURL:(NSURL *)url {
   [self.output settingsAction];
+}
+
+#pragma mark - MFMailComposeViewControllerDelegate
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(nullable NSError *)error {
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

@@ -82,13 +82,11 @@
   @weakify(self);
   [self.peerConnection setLocalDescription:localDescription
                          completionHandler:^(NSError * _Nullable error) {
-                           @strongify(self);
                            if (error) {
+                             @strongify(self);
                              DDLogVerbose(@"MEWRTC Local description error: %@", error);
-                           } else {
-                             NSString *answerType = [RTCSessionDescription stringForType:localDescription.type];
-                             NSString *answerSDP = localDescription.sdp;
-                             [self.delegate MEWRTCService:self didGenerateAnswerWithType:answerType sdp:answerSDP];
+                             [self disconnect];
+                             [self.delegate MEWRTCServiceConnectionDidFailed:self];
                            }
                          }];
 }
@@ -183,6 +181,7 @@
     case RTCIceConnectionStateFailed: {
       DDLogVerbose(@"RTC Ice connection state: FAILED");
       dispatch_async(dispatch_get_main_queue(), ^{
+        [self disconnect];
         [self.delegate MEWRTCServiceConnectionDidFailed:self];
       });
       break;
@@ -194,6 +193,29 @@
 
 /** Called any time the IceGatheringState changes. */
 - (void)peerConnection:(RTCPeerConnection *)peerConnection didChangeIceGatheringState:(RTCIceGatheringState)newState {
+  switch (newState) {
+    case RTCIceGatheringStateNew: {
+      DDLogVerbose(@"RTC Ice gathering state: NEW");
+      break;
+    }
+    case RTCIceGatheringStateGathering: {
+      DDLogVerbose(@"RTC Ice gathering state: GATHERING");
+      break;
+    }
+    case RTCIceGatheringStateComplete: {
+      DDLogVerbose(@"RTC Ice gathering state: COMPLETE");
+      RTCSessionDescription *localDescription = self.peerConnection.localDescription;
+      NSString *answerType = [RTCSessionDescription stringForType:localDescription.type];
+      NSString *answerSDP = localDescription.sdp;
+      dispatch_async(dispatch_get_main_queue(), ^{
+        [self.delegate MEWRTCService:self didGenerateAnswerWithType:answerType sdp:answerSDP];
+      });
+      break;
+    }
+      
+    default:
+      break;
+  }
 }
 
 /** New ice candidate has been found. */

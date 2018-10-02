@@ -39,7 +39,7 @@ abstract_target 'MEWconnect' do
   pod 'M13Checkbox', :git => 'https://github.com/Foboz/M13Checkbox.git'
   pod 'DZNWebViewController', :git => 'https://github.com/Foboz/DZNWebViewController.git'
   pod 'UITextView+Placeholder', '~> 1.2.0'
-  pod 'CHIPageControl/Chimayo'
+  pod 'CHIPageControl/Chimayo', '= 0.1.6'
   
   # Ethereum
   pod 'web3swift', :git => 'https://github.com/Foboz/web3swift.git'

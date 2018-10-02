@@ -198,7 +198,7 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
 }
 
 - (void) _emit:(NSString *)emit message:(id)message {
-  DDLogVerbose(@"MEWConnect: emit message: %@ (%@)", emit, message);
+  DDLogVerbose(@"MEWConnect: emit message: %@", emit);
   SocketIOClient *client = [self.socketManager defaultSocket];
   [client emit:emit with:@[message]];
   [self _createTimeoutTimer];

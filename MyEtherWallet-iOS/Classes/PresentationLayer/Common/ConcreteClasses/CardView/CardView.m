@@ -55,14 +55,6 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
   return self;
 }
 
-- (instancetype)init {
-  self = [super init];
-  if (self) {
-    [self _commonInit];
-  }
-  return self;
-}
-
 - (void)awakeFromNib {
   [super awakeFromNib];
   [self _commonInit];

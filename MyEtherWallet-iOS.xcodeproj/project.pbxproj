@@ -708,6 +708,7 @@
 		56E684A420A5F7250058AA38 /* InlineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E684A320A5F7250058AA38 /* InlineButton.m */; };
 		56E684A820A61AFC0058AA38 /* HomeStretchyHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E684A720A61AFC0058AA38 /* HomeStretchyHeader.m */; };
 		56F17AC420E23FF60010393C /* NSBundle+Version.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F17AC320E23FF60010393C /* NSBundle+Version.m */; };
+		56F3EF672163F95E00C40804 /* MEWconnectServiceStateMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F3EF662163F95E00C40804 /* MEWconnectServiceStateMachine.m */; };
 		56FB38EE20AF9211007776C8 /* LinkedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB38ED20AF9211007776C8 /* LinkedLabel.m */; };
 		56FB38F720B092C3007776C8 /* MEWConnectFacadeImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB38F620B092C3007776C8 /* MEWConnectFacadeImplementation.m */; };
 		56FB38FC20B09E6F007776C8 /* MEWConnectFacadeConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB38FB20B09E6F007776C8 /* MEWConnectFacadeConstants.m */; };
@@ -1323,6 +1324,7 @@
 		56428A8220F96AE80049E8BC /* MEWconnect.API.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = MEWconnect.API.plist; sourceTree = "<group>"; };
 		56428A8420F96C880049E8BC /* HeadersConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = HeadersConfig.plist; sourceTree = "<group>"; };
 		56428A8620F96DE80049E8BC /* ServicesConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ServicesConfig.plist; sourceTree = "<group>"; };
+		56432BBA2163BD310047DB5E /* MEWconnectServiceStateMachineTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MEWconnectServiceStateMachineTypes.h; sourceTree = "<group>"; };
 		5643879620A492240017790F /* UIColor+RandSeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+RandSeed.swift"; sourceTree = "<group>"; };
 		5643879920A492570017790F /* String+RandSeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+RandSeed.swift"; sourceTree = "<group>"; };
 		5643879C20A492F90017790F /* Character+ASCIIValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+ASCIIValue.swift"; sourceTree = "<group>"; };
@@ -1577,6 +1579,8 @@
 		56E9318D904D4BF58E4D563B /* BuyEtherNavigationRouter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BuyEtherNavigationRouter.h; sourceTree = "<group>"; };
 		56F17AC220E23FF60010393C /* NSBundle+Version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSBundle+Version.h"; sourceTree = "<group>"; };
 		56F17AC320E23FF60010393C /* NSBundle+Version.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+Version.m"; sourceTree = "<group>"; };
+		56F3EF652163F95E00C40804 /* MEWconnectServiceStateMachine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MEWconnectServiceStateMachine.h; sourceTree = "<group>"; };
+		56F3EF662163F95E00C40804 /* MEWconnectServiceStateMachine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MEWconnectServiceStateMachine.m; sourceTree = "<group>"; };
 		56FB38EC20AF9211007776C8 /* LinkedLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LinkedLabel.h; sourceTree = "<group>"; };
 		56FB38ED20AF9211007776C8 /* LinkedLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LinkedLabel.m; sourceTree = "<group>"; };
 		56FB38F220B092A7007776C8 /* MEWConnectFacade.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MEWConnectFacade.h; sourceTree = "<group>"; };
@@ -4896,6 +4900,9 @@
 				56AC943B208F771600E5BC2C /* MEWConnectServiceImplementation.h */,
 				56AC943C208F771600E5BC2C /* MEWConnectServiceImplementation.m */,
 				56FB38F820B095FF007776C8 /* MEWConnectServiceTypes.h */,
+				56432BBA2163BD310047DB5E /* MEWconnectServiceStateMachineTypes.h */,
+				56F3EF652163F95E00C40804 /* MEWconnectServiceStateMachine.h */,
+				56F3EF662163F95E00C40804 /* MEWconnectServiceStateMachine.m */,
 			);
 			path = MEWConnectService;
 			sourceTree = "<group>";
@@ -10061,6 +10068,7 @@
 				56E14C0020EC06E200C41F83 /* SimplexMappingProvider.m in Sources */,
 				A39D3E3D0B23DA6C0306F774 /* BackupWordsRouter.m in Sources */,
 				563CF30120EFAD8A005467AE /* BuyEtherHistoryEmptyTableViewCell.m in Sources */,
+				56F3EF672163F95E00C40804 /* MEWconnectServiceStateMachine.m in Sources */,
 				30FAFE2FAB76ABF95C9DF392 /* BackupConfirmationAssembly.m in Sources */,
 				CCFC0575BB50C7E834628489 /* BackupConfirmationViewController.m in Sources */,
 				F592C64842F3C8DB2FE294ED /* BackupConfirmationPresenter.m in Sources */,

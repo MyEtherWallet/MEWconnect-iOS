@@ -111,7 +111,9 @@ static NSTimeInterval kQRScannerInteractorAutocloseInterval = 2.0;
     [self.output mewConnectDidFail];
     [cameraService startReading];
   } else {
+#if !DEBUG
     AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+#endif
     [cameraService stopReading];
     [self.output mewConnectInProgress];
   }

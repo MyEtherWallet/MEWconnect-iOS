@@ -29,6 +29,8 @@
 #import "MEWcrypto.h"
 #import "MEWcryptoMessage.h"
 
+#import "MEWconnectServiceStateMachine.h"
+
 #import "MEWConnectServiceImplementation.h"
 
 #import "MEWConnectCommand.h"
@@ -76,6 +78,7 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
   if (self.connectionStatus != MEWConnectStatusDisconnected) {
     [self _disconnect];
   }
+  [self.stateMachine reset];
   NSArray *params = [data componentsSeparatedByString:@"_"];
   if ([params count] < 3) {
     return NO;
@@ -94,7 +97,9 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
   self.socketManager = [[SocketManager alloc] initWithSocketURL:self.signallingServerURL config:[self _socketConfig]];
   SocketIOClient *client = [self.socketManager defaultSocket];
   [self _defineSignalsWithSocketClient:client];
-  [client connect];
+  if ([self.stateMachine applySocketConnecting]) {
+    [client connect];
+  }
   [self _createTimeoutTimer];
   self.connectionStatus = MEWConnectStatusConnecting;
   return YES;
@@ -102,12 +107,10 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
 
 - (void) disconnect {
   [self _disconnect];
-  if ([self.delegate respondsToSelector:@selector(MEWConnectDidDisconnected:)]) {
-    dispatch_async(dispatch_get_main_queue(), ^{
-      self.connectionStatus = MEWConnectStatusDisconnected;
-      [self.delegate MEWConnectDidDisconnected:self];
-    });
-  }
+  dispatch_async(dispatch_get_main_queue(), ^{
+    self.connectionStatus = MEWConnectStatusDisconnected;
+    [self.delegate MEWConnectDidDisconnected:self];
+  });
 }
 
 - (BOOL) sendMessage:(id)message {
@@ -205,9 +208,14 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
 }
 
 - (void) _timeout {
-  [self _disconnect];
-  if ([self.delegate respondsToSelector:@selector(MEWConnectDidDisconnectedByTimeout:)]) {
-    [self.delegate MEWConnectDidDisconnectedByTimeout:self];
+  if ([self.stateMachine applyTryTurn]) {
+    [self _sendTryTurn];
+  } else {
+    [self.stateMachine applyFailed];
+    dispatch_async(dispatch_get_main_queue(), ^{
+      [self _disconnect];
+      [self.delegate MEWConnectDidDisconnectedByTimeout:self];
+    });
   }
 }
 
@@ -248,45 +256,60 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
 #pragma mark - Signals
 
 - (void) _signalConnect:(NSArray *)data {
+  [self.stateMachine applySocketConnected];
+  [self.stateMachine applyMEWConnecting];
   DDLogVerbose(@"MEWConnect: connected");
 }
 
 - (void) _signalHandshake:(NSArray *)data {
   DDLogVerbose(@"MEWConnect: handshake");
   
-  NSData *toSignHashData = [self.MEWcrypto hashPersonalMessage:[self.privateKey dataUsingEncoding:NSUTF8StringEncoding]];
-  NSData *privateKeyData = [self.privateKey parseHexData];
-  NSData *signedData = [toSignHashData signWithPrivateKeyData:privateKeyData];
-  NSString *signedMessage = [signedData hexadecimalString];
-  if (signedMessage) {
-    NSData *currentSchemaVersionData = [kMEWConnectCurrentSchemaVersion dataUsingEncoding:NSUTF8StringEncoding];
-    MEWcryptoMessage *cryptoMessage = [self.MEWcrypto encryptMessage:currentSchemaVersionData];
-    NSDictionary *message = @{kMEWConnectMessageSigned: signedMessage,
-                              kMEWConnectMessageConnId: self.connectionId,
-                              kMEWConnectMessageVersion: [cryptoMessage representation] ?: @""};
-    [self _emit:kMEWConnectEmitSignature message:message];
+  if ([self.stateMachine applyMEWHandshake]) {
+    NSData *toSignHashData = [self.MEWcrypto hashPersonalMessage:[self.privateKey dataUsingEncoding:NSUTF8StringEncoding]];
+    NSData *privateKeyData = [self.privateKey parseHexData];
+    NSData *signedData = [toSignHashData signWithPrivateKeyData:privateKeyData];
+    NSString *signedMessage = [signedData hexadecimalString];
+    if (signedMessage) {
+      NSData *currentSchemaVersionData = [kMEWConnectCurrentSchemaVersion dataUsingEncoding:NSUTF8StringEncoding];
+      MEWcryptoMessage *cryptoMessage = [self.MEWcrypto encryptMessage:currentSchemaVersionData];
+      NSDictionary *message = @{kMEWConnectMessageSigned: signedMessage,
+                                kMEWConnectMessageConnId: self.connectionId,
+                                kMEWConnectMessageVersion: [cryptoMessage representation] ?: @""};
+      [self _emit:kMEWConnectEmitSignature message:message];
+    }
   }
 }
 
 - (void) _signalOffer:(NSArray *)data {
   DDLogVerbose(@"MEWConnect: offer");
-  NSDictionary *messageRepresentation = [data firstObject][@"data"];
-  MEWcryptoMessage *message = [MEWcryptoMessage messageWithRepresentation:messageRepresentation];
-  NSData *decryptedMessage = [self.MEWcrypto decryptMessage:message];
-  if (decryptedMessage) {
-    NSError *error = nil;
-    NSDictionary *offer = [NSJSONSerialization JSONObjectWithData:decryptedMessage
-                                                           options:0
-                                                             error:&error];
+  
+  if ([self.stateMachine applyMEWRTCOfferReceived]) {
+    NSDictionary *messageRepresentation = [data firstObject][@"data"];
+    MEWcryptoMessage *message = [MEWcryptoMessage messageWithRepresentation:messageRepresentation];
+    NSData *decryptedMessage = [self.MEWcrypto decryptMessage:message];
+    if (decryptedMessage) {
+      NSError *error = nil;
+      NSDictionary *offer = [NSJSONSerialization JSONObjectWithData:decryptedMessage
+                                                            options:0
+                                                              error:&error];
 #if DEBUG
-    DDLogError(@"JSON Parse error: %@", [error localizedDescription]);
+      DDLogError(@"JSON Parse error: %@", [error localizedDescription]);
 #endif
-    NSString *offerType = offer[kMEWConnectSocketType];
-    NSString *offerSdp = offer[kMEWConnectSocketSDP];
-    if (offerType && offerSdp) {
-      dispatch_async(dispatch_get_main_queue(), ^{
-        [self.rtcService connectWithType:offerType andSdp:offerSdp];
-      });
+      NSString *offerType = offer[kMEWConnectSocketType];
+      NSString *offerSdp = offer[kMEWConnectSocketSDP];
+      if (offerType && offerSdp) {
+        if ([self.stateMachine applyMEWRTCRemoteUpdated]) {
+          dispatch_async(dispatch_get_main_queue(), ^{
+            [self.rtcService connectWithType:offerType andSdp:offerSdp];
+          });
+        }
+      } else {
+        [self.stateMachine applyFailed];
+        dispatch_async(dispatch_get_main_queue(), ^{
+          [self _disconnect];
+          [self.delegate MEWConnectDidReceiveError:self];
+        });
+      }
     }
   }
 }
@@ -297,9 +320,7 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
 - (void) _signalError:(NSArray *)data {
   dispatch_async(dispatch_get_main_queue(), ^{
     [self _disconnect];
-    if ([self.delegate respondsToSelector:@selector(MEWConnectDidReceiveError:)]) {
-      [self.delegate MEWConnectDidReceiveError:self];
-    }
+    [self.delegate MEWConnectDidReceiveError:self];
   });
   DDLogVerbose(@"MEWConnect: error (%@)", data);
 }
@@ -307,9 +328,7 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
 - (void) _signalConfirmationError:(NSArray *)data {
   dispatch_async(dispatch_get_main_queue(), ^{
     [self _disconnect];
-    if ([self.delegate respondsToSelector:@selector(MEWConnectDidReceiveError:)]) {
-      [self.delegate MEWConnectDidReceiveError:self];
-    }
+    [self.delegate MEWConnectDidReceiveError:self];
   });
   DDLogVerbose(@"MEWConnect: confirmation failed (%@)", data);
 }
@@ -346,40 +365,82 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
 
 #pragma mark - MEWRTCServiceDelegate
 
+- (void) MEWRTCServiceDidUpdateRemoteDescription:(id<MEWRTCService>)rtcService {
+  if ([self.stateMachine applyMEWRTCAnswerPreparing]) {
+    [rtcService prepareAnswer];
+  }
+}
+
+- (void) MEWRTCService:(id<MEWRTCService>)rtcService didPrepareAnswer:(RTCSessionDescription *)answer {
+  if ([self.stateMachine applyMEWRTCLocalUpdated]) {
+    [rtcService updateLocalDescriptionWithAnswer:answer];
+  }
+}
+
 - (void) MEWRTCService:(id<MEWRTCService>)rtcService didGenerateAnswerWithType:(NSString *)type sdp:(NSString *)sdp {
-  [self _sendAnswerWithType:type andSdp:sdp];
+  if ([self.stateMachine applyMEWRTCAnswerPrepared]) {
+    [self _sendAnswerWithType:type andSdp:sdp];
+  }
 }
 
 - (void) MEWRTCServiceConnectionDidFailed:(id<MEWRTCService>)rtcService {
-  [self _sendTryTurn];
-}
-
-- (void) MEWRTCServiceConnectionDidConnected:(id<MEWRTCService>)rtcService {
-  [self _sendConnected];
-}
-
-- (void) MEWRTCServiceConnectionDidDisconnected:(id<MEWRTCService>)rtcService {
-  if ([self.delegate respondsToSelector:@selector(MEWConnectDidDisconnected:)]) {
+  if ([self.stateMachine applyTryTurn]) {
+    [self _sendTryTurn];
+  } else {
+    [self.stateMachine applyFailed];
     dispatch_async(dispatch_get_main_queue(), ^{
-      self.connectionStatus = MEWConnectStatusDisconnected;
-      [self.delegate MEWConnectDidDisconnected:self];
+      [self _disconnect];
+      [self.delegate MEWConnectDidReceiveError:self];
     });
   }
 }
 
+- (void) MEWRTCServiceConnectionDidConnected:(id<MEWRTCService>)rtcService {
+  if ([self.stateMachine applyMEWRTCConnected]) {
+    if ([self.stateMachine applyMEWRTCDataChannelConnecting]) {
+      [rtcService openDataChannel];
+    }
+    [self _sendConnected];
+  }
+}
+
+- (void) MEWRTCServiceConnectionDidDisconnected:(id<MEWRTCService>)rtcService {
+  dispatch_async(dispatch_get_main_queue(), ^{
+    self.connectionStatus = MEWConnectStatusDisconnected;
+    [self.delegate MEWConnectDidDisconnected:self];
+  });
+}
+
+- (void)MEWRTCServiceDataChannelConnecting:(id<MEWRTCService>)rtcService {
+  [self.stateMachine applyMEWRTCDataChannelConnecting];
+}
+
 - (void) MEWRTCServiceDataChannelDidOpen:(id<MEWRTCService>)rtcService {
-  if ([self.delegate respondsToSelector:@selector(MEWConnectDidConnected:)]) {
+  if ([self.stateMachine applyMEWRTCDataChannelOpened]) {
     dispatch_async(dispatch_get_main_queue(), ^{
-      self.connectionStatus = MEWConnectStatusConnected;
-      [self _cancelTimeoutTimer];
-      [self.delegate MEWConnectDidConnected:self];
-      [self.socketManager disconnect];
-      self.socketManager = nil;
+      if ([self.stateMachine applySocketClosed]) {
+        [self.socketManager disconnect];
+        self.socketManager = nil;
+      }
+      if (!self.stateMachine.final) {
+        if ([self.stateMachine applyConnected]) {
+          self.connectionStatus = MEWConnectStatusConnected;
+          [self _cancelTimeoutTimer];
+          [self.delegate MEWConnectDidConnected:self];
+        }
+      }
     });
   }
 }
 
 - (void) MEWRTCService:(id<MEWRTCService>)rtcService didReceiveMessage:(NSDictionary *)message {
+  if (!self.stateMachine.final) {
+    if ([self.stateMachine applyConnected]) {
+      self.connectionStatus = MEWConnectStatusConnected;
+      [self _cancelTimeoutTimer];
+      [self.delegate MEWConnectDidConnected:self];
+    }
+  }
   MEWcryptoMessage *cryptoMessage = [MEWcryptoMessage messageWithRepresentation:message];
   NSData *decryptedMessage = [self.MEWcrypto decryptMessage:cryptoMessage];
   if (!decryptedMessage) {
@@ -406,12 +467,8 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
   if (error) {
     DDLogVerbose(@"%@", error);
   } else {
-    @weakify(self);
     dispatch_async(dispatch_get_main_queue(), ^{
-      @strongify(self);
-      if ([self.delegate respondsToSelector:@selector(MEWConnect:didReceiveMessage:)]) {
-        [self.delegate MEWConnect:self didReceiveMessage:command];
-      }
+      [self.delegate MEWConnect:self didReceiveMessage:command];
     });
   }
 }

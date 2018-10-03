@@ -13,13 +13,17 @@
 
 #import "MEWRTCServiceImplementation.h"
 
+static NSTimeInterval MEWRTCServiceImplementationIceGatheringStateCompleteTimeout  = 1.0;
+
 @interface MEWRTCServiceImplementation () <RTCPeerConnectionDelegate, RTCDataChannelDelegate>
 @property (nonatomic, strong) RTCPeerConnectionFactory *peerConnectionFactory;
 @property (nonatomic, strong) RTCPeerConnection *peerConnection;
 @property (nonatomic, strong) RTCDataChannel *dataChannel;
 @end
 
-@implementation MEWRTCServiceImplementation
+@implementation MEWRTCServiceImplementation {
+  NSTimer *_gatheringTimeout;
+}
 @synthesize delegate = _delegate;
 
 - (void) connectWithType:(NSString *)type andSdp:(NSString *)sdp {
@@ -37,12 +41,58 @@
     if (error) {
       DDLogVerbose(@"MEWRTC Remote description error: %@", error);
     } else {
-      [self _prepareAnswer];
+      [self.delegate MEWRTCServiceDidUpdateRemoteDescription:self];
     }
   }];
 }
 
+- (void) prepareAnswer {
+  @weakify(self);
+  [self.peerConnection answerForConstraints:[self _RTCMediaConstraints]
+                          completionHandler:^(RTCSessionDescription * _Nullable sdp, NSError * _Nullable error) {
+                            @strongify(self);
+                            if (error) {
+                              DDLogVerbose(@"MEWRTC Answer error: %@", error);
+                              dispatch_async(dispatch_get_main_queue(), ^{
+                                [self disconnect];
+                                [self.delegate MEWRTCServiceConnectionDidFailed:self];
+                              });
+                            } else if (!sdp) {
+                              DDLogVerbose(@"MEWRTC Answer undefined behaviour");
+                              dispatch_async(dispatch_get_main_queue(), ^{
+                                [self disconnect];
+                                [self.delegate MEWRTCServiceConnectionDidFailed:self];
+                              });
+                            } else {
+                              [self.delegate MEWRTCService:self didPrepareAnswer:sdp];
+                            }
+                          }];
+}
+
+- (void) updateLocalDescriptionWithAnswer:(RTCSessionDescription *)answer {
+  @weakify(self);
+  [self.peerConnection setLocalDescription:answer
+                         completionHandler:^(NSError * _Nullable error) {
+                           if (error) {
+                             @strongify(self);
+                             DDLogVerbose(@"MEWRTC Local description error: %@", error);
+                             dispatch_async(dispatch_get_main_queue(), ^{
+                               [self disconnect];
+                               [self.delegate MEWRTCServiceConnectionDidFailed:self];
+                             });
+                           }
+                         }];
+}
+
+- (void) openDataChannel {
+  self.dataChannel = [self.peerConnection dataChannelForLabel:MEWRTCDataChannelLabel configuration:[self _RTCDataChannelConfiguration]];
+  self.dataChannel.delegate = self;
+  [self dataChannelDidChangeState:self.dataChannel];
+}
+
 - (void) disconnect {
+  [_gatheringTimeout invalidate];
+  _gatheringTimeout = nil;
   [self.peerConnection close];
   [self.dataChannel close];
   [self _clearConnection];
@@ -59,36 +109,6 @@
     }
   }
   return NO;
-}
-
-#pragma mark - Private communicating
-
-- (void) _prepareAnswer {
-  @weakify(self);
-  [self.peerConnection answerForConstraints:[self _RTCMediaConstraints]
-                          completionHandler:^(RTCSessionDescription * _Nullable sdp, NSError * _Nullable error) {
-                            @strongify(self);
-                            if (error) {
-                              DDLogVerbose(@"MEWRTC Answer error: %@", error);
-                            } else if (!sdp) {
-                              DDLogVerbose(@"MEWRTC Answer undefined behaviour");
-                            } else {
-                              [self _updateLocalDescription:sdp];
-                            }
-                          }];
-}
-
-- (void) _updateLocalDescription:(RTCSessionDescription *)localDescription {
-  @weakify(self);
-  [self.peerConnection setLocalDescription:localDescription
-                         completionHandler:^(NSError * _Nullable error) {
-                           if (error) {
-                             @strongify(self);
-                             DDLogVerbose(@"MEWRTC Local description error: %@", error);
-                             [self disconnect];
-                             [self.delegate MEWRTCServiceConnectionDidFailed:self];
-                           }
-                         }];
 }
 
 #pragma mark - Private
@@ -116,14 +136,57 @@
 
 - (void) _clearConnection {
   self.peerConnection = nil;
-  self.dataChannel.delegate = self;
+  self.dataChannel.delegate = nil;
   self.dataChannel = nil;
+}
+
+- (void) _generateAnswer:(BOOL)forceWhileGathering {
+  if (self.peerConnection &&
+      self.peerConnection.iceConnectionState != RTCIceConnectionStateFailed &&
+      self.peerConnection.iceConnectionState != RTCIceConnectionStateConnected &&
+      (forceWhileGathering || self.peerConnection.iceGatheringState == RTCIceGatheringStateComplete)) {
+        RTCSessionDescription *localDescription = self.peerConnection.localDescription;
+        NSString *answerType = [RTCSessionDescription stringForType:localDescription.type];
+        NSString *answerSDP = localDescription.sdp;
+        dispatch_async(dispatch_get_main_queue(), ^{
+          [self.delegate MEWRTCService:self didGenerateAnswerWithType:answerType sdp:answerSDP];
+        });
+  }
 }
                          
 #pragma mark - RTCPeerConnectionDelegate
 
 /** Called when the SignalingState changed. */
 - (void)peerConnection:(RTCPeerConnection *)peerConnection didChangeSignalingState:(RTCSignalingState)stateChanged {
+  switch (stateChanged) {
+    case RTCSignalingStateHaveRemoteOffer: {
+      DDLogVerbose(@"RTC Signaling state: REMOTE OFFER");
+      break;
+    }
+    case RTCSignalingStateHaveRemotePrAnswer: {
+      DDLogVerbose(@"RTC Signaling state: REMOTE PR ANSWER");
+      break;
+    }
+    case RTCSignalingStateHaveLocalPrAnswer: {
+      DDLogVerbose(@"RTC Signaling state: LOCAL PR ANSWER");
+      break;
+    }
+    case RTCSignalingStateHaveLocalOffer: {
+      DDLogVerbose(@"RTC Signaling state: LOCAL OFFER");
+      break;
+    }
+    case RTCSignalingStateStable: {
+      DDLogVerbose(@"RTC Signaling state: STABLE");
+      break;
+    }
+    case RTCSignalingStateClosed: {
+      DDLogVerbose(@"RTC Signaling state: CLOSED");
+      break;
+    }
+      
+    default:
+      break;
+  }
 }
 
 /** Called when media is received on a new stream from remote peer. */
@@ -159,8 +222,7 @@
       break;
     }
     case RTCIceConnectionStateConnected: {
-      self.dataChannel = [self.peerConnection dataChannelForLabel:MEWRTCDataChannelLabel configuration:[self _RTCDataChannelConfiguration]];
-      self.dataChannel.delegate = self;
+      DDLogVerbose(@"RTC Ice connection state: CONNECTED");
       dispatch_async(dispatch_get_main_queue(), ^{
         [self.delegate MEWRTCServiceConnectionDidConnected:self];
       });
@@ -200,16 +262,21 @@
     }
     case RTCIceGatheringStateGathering: {
       DDLogVerbose(@"RTC Ice gathering state: GATHERING");
+      @weakify(self);
+      _gatheringTimeout = [NSTimer timerWithTimeInterval:MEWRTCServiceImplementationIceGatheringStateCompleteTimeout
+                                                 repeats:NO
+                                                   block:^(NSTimer * _Nonnull timer) {
+                                                     @strongify(self);
+                                                     [self _generateAnswer:YES];
+                                                   }];
+      [[NSRunLoop mainRunLoop] addTimer:_gatheringTimeout forMode:NSRunLoopCommonModes];
       break;
     }
     case RTCIceGatheringStateComplete: {
+      [_gatheringTimeout invalidate];
+      _gatheringTimeout = nil;
       DDLogVerbose(@"RTC Ice gathering state: COMPLETE");
-      RTCSessionDescription *localDescription = self.peerConnection.localDescription;
-      NSString *answerType = [RTCSessionDescription stringForType:localDescription.type];
-      NSString *answerSDP = localDescription.sdp;
-      dispatch_async(dispatch_get_main_queue(), ^{
-        [self.delegate MEWRTCService:self didGenerateAnswerWithType:answerType sdp:answerSDP];
-      });
+      [self _generateAnswer:NO];
       break;
     }
       
@@ -236,6 +303,7 @@
 - (void)dataChannelDidChangeState:(RTCDataChannel *)dataChannel {
   switch (dataChannel.readyState) {
     case RTCDataChannelStateConnecting: {
+      [self.delegate MEWRTCServiceDataChannelConnecting:self];
       DDLogVerbose(@"RTC Data Channel connecting");
       break;
     }

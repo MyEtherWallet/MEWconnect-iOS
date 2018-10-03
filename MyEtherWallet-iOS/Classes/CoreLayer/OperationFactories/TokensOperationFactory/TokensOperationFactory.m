@@ -54,13 +54,11 @@
   config.requestMethod = kHTTPMethodPOST;
   config.serviceName = kServiceNameETH;
   
-//  config.requestSigningType = RequestSigningDisabledType;
-  
   config.responseDeserializationType = ResponseDeserializationJSONType;
   
   config.responseConvertingType = ResponseConvertingTokensType;
   
-  config.responseValidationType = ResponseValidationDisabledType;
+  config.responseValidationType = ResponseValidationTokensType;
   
   config.responseMappingType = ResponseMappingCoreDataType;
   

@@ -25,6 +25,7 @@
 #import "PonsomizerAssembly.h"
 
 #import "MEWConnectServiceImplementation.h"
+#import "MEWconnectServiceStateMachine.h"
 #import "MEWRTCServiceImplementation.h"
 #import "MEWcryptoImplementation.h"
 #import "MEWWalletImplementation.h"
@@ -73,6 +74,8 @@ static NSString *const kReachabilityURLString   = @"API.ReachabilityURLString";
                                                 with:[self MEWRTCService]];
                           [definition injectProperty:@selector(MEWcrypto)
                                                 with:[self MEWcrypto]];
+                          [definition injectProperty:@selector(stateMachine)
+                                                with:[self MEWconnectServiceStateMachine]];
                           [definition injectProperty:@selector(delegate)
                                                 with:[self MEWConnectFacade]];
                           [definition injectProperty:@selector(signallingServerURL)
@@ -110,6 +113,10 @@ static NSString *const kReachabilityURLString   = @"API.ReachabilityURLString";
 
 - (id <MEWcrypto>) MEWcrypto {
   return [TyphoonDefinition withClass:[MEWcryptoImplementation class]];
+}
+
+- (MEWconnectServiceStateMachine *) MEWconnectServiceStateMachine {
+  return [TyphoonDefinition withClass:[MEWconnectServiceStateMachine class]];
 }
 
 - (id <ReachabilityService>) reachabilityServiceWithDelegate:(id <ReachabilityServiceDelegate>)delegate {

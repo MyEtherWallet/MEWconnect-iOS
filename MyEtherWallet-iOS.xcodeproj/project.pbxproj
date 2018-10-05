@@ -214,6 +214,7 @@
 		564387A020A4932A0017790F /* UIColor+HSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5643879F20A4932A0017790F /* UIColor+HSL.swift */; };
 		564387A320A496290017790F /* Array+UInt32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564387A220A496290017790F /* Array+UInt32.swift */; };
 		564387A620A4A9820017790F /* CGPoint+RandSeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564387A520A4A9820017790F /* CGPoint+RandSeed.swift */; };
+		5645258B2164C63A004D23C4 /* TokensResponseValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5645258A2164C63A004D23C4 /* TokensResponseValidator.m */; };
 		564952C120E3DEE300CF2348 /* BlockchainNetworkServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 564952C020E3DEE300CF2348 /* BlockchainNetworkServiceImplementation.m */; };
 		564952FB20E3F20D00CF2348 /* AccountsServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 564952FA20E3F20D00CF2348 /* AccountsServiceImplementation.m */; };
 		565FFA4F2081838F00755B6C /* TyphoonAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 565FFA4E2081838F00755B6C /* TyphoonAppDelegate.m */; };
@@ -708,6 +709,7 @@
 		56E684A420A5F7250058AA38 /* InlineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E684A320A5F7250058AA38 /* InlineButton.m */; };
 		56E684A820A61AFC0058AA38 /* HomeStretchyHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E684A720A61AFC0058AA38 /* HomeStretchyHeader.m */; };
 		56F17AC420E23FF60010393C /* NSBundle+Version.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F17AC320E23FF60010393C /* NSBundle+Version.m */; };
+		56F3EF672163F95E00C40804 /* MEWconnectServiceStateMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F3EF662163F95E00C40804 /* MEWconnectServiceStateMachine.m */; };
 		56FB38EE20AF9211007776C8 /* LinkedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB38ED20AF9211007776C8 /* LinkedLabel.m */; };
 		56FB38F720B092C3007776C8 /* MEWConnectFacadeImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB38F620B092C3007776C8 /* MEWConnectFacadeImplementation.m */; };
 		56FB38FC20B09E6F007776C8 /* MEWConnectFacadeConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB38FB20B09E6F007776C8 /* MEWConnectFacadeConstants.m */; };
@@ -1323,12 +1325,15 @@
 		56428A8220F96AE80049E8BC /* MEWconnect.API.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = MEWconnect.API.plist; sourceTree = "<group>"; };
 		56428A8420F96C880049E8BC /* HeadersConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = HeadersConfig.plist; sourceTree = "<group>"; };
 		56428A8620F96DE80049E8BC /* ServicesConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ServicesConfig.plist; sourceTree = "<group>"; };
+		56432BBA2163BD310047DB5E /* MEWconnectServiceStateMachineTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MEWconnectServiceStateMachineTypes.h; sourceTree = "<group>"; };
 		5643879620A492240017790F /* UIColor+RandSeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+RandSeed.swift"; sourceTree = "<group>"; };
 		5643879920A492570017790F /* String+RandSeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+RandSeed.swift"; sourceTree = "<group>"; };
 		5643879C20A492F90017790F /* Character+ASCIIValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+ASCIIValue.swift"; sourceTree = "<group>"; };
 		5643879F20A4932A0017790F /* UIColor+HSL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+HSL.swift"; sourceTree = "<group>"; };
 		564387A220A496290017790F /* Array+UInt32.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+UInt32.swift"; sourceTree = "<group>"; };
 		564387A520A4A9820017790F /* CGPoint+RandSeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+RandSeed.swift"; sourceTree = "<group>"; };
+		564525892164C63A004D23C4 /* TokensResponseValidator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TokensResponseValidator.h; sourceTree = "<group>"; };
+		5645258A2164C63A004D23C4 /* TokensResponseValidator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TokensResponseValidator.m; sourceTree = "<group>"; };
 		564952BE20E3DEDA00CF2348 /* BlockchainNetworkService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockchainNetworkService.h; sourceTree = "<group>"; };
 		564952BF20E3DEE300CF2348 /* BlockchainNetworkServiceImplementation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockchainNetworkServiceImplementation.h; sourceTree = "<group>"; };
 		564952C020E3DEE300CF2348 /* BlockchainNetworkServiceImplementation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlockchainNetworkServiceImplementation.m; sourceTree = "<group>"; };
@@ -1577,6 +1582,8 @@
 		56E9318D904D4BF58E4D563B /* BuyEtherNavigationRouter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BuyEtherNavigationRouter.h; sourceTree = "<group>"; };
 		56F17AC220E23FF60010393C /* NSBundle+Version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSBundle+Version.h"; sourceTree = "<group>"; };
 		56F17AC320E23FF60010393C /* NSBundle+Version.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+Version.m"; sourceTree = "<group>"; };
+		56F3EF652163F95E00C40804 /* MEWconnectServiceStateMachine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MEWconnectServiceStateMachine.h; sourceTree = "<group>"; };
+		56F3EF662163F95E00C40804 /* MEWconnectServiceStateMachine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MEWconnectServiceStateMachine.m; sourceTree = "<group>"; };
 		56FB38EC20AF9211007776C8 /* LinkedLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LinkedLabel.h; sourceTree = "<group>"; };
 		56FB38ED20AF9211007776C8 /* LinkedLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LinkedLabel.m; sourceTree = "<group>"; };
 		56FB38F220B092A7007776C8 /* MEWConnectFacade.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MEWConnectFacade.h; sourceTree = "<group>"; };
@@ -3996,6 +4003,15 @@
 			path = "CGPoint+RandSeed";
 			sourceTree = "<group>";
 		};
+		564525882164C628004D23C4 /* TokensResponseValidator */ = {
+			isa = PBXGroup;
+			children = (
+				564525892164C63A004D23C4 /* TokensResponseValidator.h */,
+				5645258A2164C63A004D23C4 /* TokensResponseValidator.m */,
+			);
+			path = TokensResponseValidator;
+			sourceTree = "<group>";
+		};
 		564952BD20E3DEB700CF2348 /* BlockchainNetworkService */ = {
 			isa = PBXGroup;
 			children = (
@@ -4896,6 +4912,9 @@
 				56AC943B208F771600E5BC2C /* MEWConnectServiceImplementation.h */,
 				56AC943C208F771600E5BC2C /* MEWConnectServiceImplementation.m */,
 				56FB38F820B095FF007776C8 /* MEWConnectServiceTypes.h */,
+				56432BBA2163BD310047DB5E /* MEWconnectServiceStateMachineTypes.h */,
+				56F3EF652163F95E00C40804 /* MEWconnectServiceStateMachine.h */,
+				56F3EF662163F95E00C40804 /* MEWconnectServiceStateMachine.m */,
 			);
 			path = MEWConnectService;
 			sourceTree = "<group>";
@@ -6132,6 +6151,7 @@
 		56FB39BC20B23124007776C8 /* ConcreteClasses */ = {
 			isa = PBXGroup;
 			children = (
+				564525882164C628004D23C4 /* TokensResponseValidator */,
 				5627B6F3210A81A8009787F7 /* EthereumResponseValidator */,
 				56E14C0520EC0D4100C41F83 /* SimplexResponseValidator */,
 				56E14BCD20E99C8400C41F83 /* FiatPricesResponseValidator */,
@@ -9941,6 +9961,7 @@
 				56E14BE720EBCE8A00C41F83 /* SimplexQueryTransformer.m in Sources */,
 				563CF2D720EFAAD6005467AE /* AccountPlainObject.m in Sources */,
 				56FB39FF20B35B33007776C8 /* OperationFactoriesAssembly.m in Sources */,
+				5645258B2164C63A004D23C4 /* TokensResponseValidator.m in Sources */,
 				563DF38520986F8500F740FF /* PasswordTextField.m in Sources */,
 				56E14BF020EBCF3400C41F83 /* SimplexHeadersBuilder.m in Sources */,
 				56A4EAA420B826A50042A358 /* NSCharacterSet+WNS.m in Sources */,
@@ -10061,6 +10082,7 @@
 				56E14C0020EC06E200C41F83 /* SimplexMappingProvider.m in Sources */,
 				A39D3E3D0B23DA6C0306F774 /* BackupWordsRouter.m in Sources */,
 				563CF30120EFAD8A005467AE /* BuyEtherHistoryEmptyTableViewCell.m in Sources */,
+				56F3EF672163F95E00C40804 /* MEWconnectServiceStateMachine.m in Sources */,
 				30FAFE2FAB76ABF95C9DF392 /* BackupConfirmationAssembly.m in Sources */,
 				CCFC0575BB50C7E834628489 /* BackupConfirmationViewController.m in Sources */,
 				F592C64842F3C8DB2FE294ED /* BackupConfirmationPresenter.m in Sources */,

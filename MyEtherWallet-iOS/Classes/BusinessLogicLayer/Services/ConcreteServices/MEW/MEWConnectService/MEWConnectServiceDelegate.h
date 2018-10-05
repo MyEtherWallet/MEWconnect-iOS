@@ -14,7 +14,6 @@
 @class MEWConnectCommand;
 
 @protocol MEWConnectServiceDelegate <NSObject>
-@optional
 - (void) MEWConnectDidConnected:(id <MEWConnectService>)mewConnect;
 - (void) MEWConnectDidReceiveError:(id <MEWConnectService>)mewConnect;
 - (void) MEWConnect:(id <MEWConnectService>)mewConnect didReceiveMessage:(MEWConnectCommand *)message;

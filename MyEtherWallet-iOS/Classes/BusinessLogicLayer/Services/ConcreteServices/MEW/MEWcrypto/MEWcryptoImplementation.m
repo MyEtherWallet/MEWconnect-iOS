@@ -13,6 +13,10 @@
 #import "NSData+Hexadecimal.h"
 #import "NSString+HexData.h"
 
+#if DEBUG
+#define DEBUG_CRYPTO  0
+#endif
+
 static int const MEWcryptoConnectionPublicKeySize   = 65;
 static int const MEWcryptoConnectionPrivateKeySize  = 32;
 
@@ -118,6 +122,7 @@ static NSString *const kMEWcryptoHashPersonalMessagePrefixFormat = @"\x19""Ether
     free(hmac);
   }
   
+#if DEBUG_CRYPTO
   DDLogVerbose(@"privateKey: %@", [self.connectionPrivateKey hexadecimalString]);
   DDLogVerbose(@"publicKey: %@", [self.connectionPublicKey hexadecimalString]);
   DDLogVerbose(@"ephemPrivateKey: %@", [ephemPrivateKeyData hexadecimalString]);
@@ -127,6 +132,7 @@ static NSString *const kMEWcryptoHashPersonalMessagePrefixFormat = @"\x19""Ether
   DDLogVerbose(@"ivData: %@", [ivData hexadecimalString]);
   DDLogVerbose(@"cipherData: %@", [cipherData hexadecimalString]);
   DDLogVerbose(@"mac: %@", [macData hexadecimalString]);
+#endif
 
   MEWcryptoMessage *cryptoMessage = [MEWcryptoMessage messageWithIV:ivData
                                                      ephemPublicKey:ephemPublicKeyData

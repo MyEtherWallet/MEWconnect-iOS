@@ -93,8 +93,8 @@ static NSTimeInterval MEWRTCServiceImplementationIceGatheringStateCompleteTimeou
 - (void) disconnect {
   [_gatheringTimeout invalidate];
   _gatheringTimeout = nil;
-  [self.peerConnection close];
   [self.dataChannel close];
+  [self.peerConnection close];
   [self _clearConnection];
 }
 
@@ -214,7 +214,9 @@ static NSTimeInterval MEWRTCServiceImplementationIceGatheringStateCompleteTimeou
     }
     case RTCIceConnectionStateClosed: {
       DDLogVerbose(@"RTC Ice connection state: CLOSED");
-      [self _clearConnection];
+      dispatch_async(dispatch_get_main_queue(), ^{
+        [self disconnect];
+      });
       break;
     }
     case RTCIceConnectionStateCompleted: {
@@ -234,8 +236,8 @@ static NSTimeInterval MEWRTCServiceImplementationIceGatheringStateCompleteTimeou
     }
     case RTCIceConnectionStateDisconnected: {
       DDLogVerbose(@"RTC Ice connection state: DISCONNECTED");
-      [self _clearConnection];
       dispatch_async(dispatch_get_main_queue(), ^{
+        [self disconnect];
         [self.delegate MEWRTCServiceConnectionDidDisconnected:self];
       });
       break;

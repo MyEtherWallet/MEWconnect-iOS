@@ -129,7 +129,7 @@ static NSString *const kMEWDonateAddress = @"0xDECAF9CD2367cdbb726E904cD6397eDFc
 }
 
 - (void) accountBackedUp:(AccountPlainObject *)account {
-  [self.keychainService removeEntropyOfPublicAddress:account.publicAddress fromNetwork:[account.fromNetwork network]];
+//  [self.keychainService removeEntropyOfPublicAddress:account.publicAddress fromNetwork:[account.fromNetwork network]];
   NSManagedObjectContext *rootSavingContext = [NSManagedObjectContext MR_rootSavingContext];
   [rootSavingContext performBlockAndWait:^{
     AccountModelObject *accountModelObject = [AccountModelObject MR_findFirstByAttribute:NSStringFromSelector(@selector(publicAddress)) withValue:account.publicAddress inContext:rootSavingContext];

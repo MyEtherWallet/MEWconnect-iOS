@@ -126,8 +126,8 @@ typedef NS_OPTIONS(short, HomeViewPresenterStatus) {
 }
 
 - (void) shareAction {
-  NSArray *items = [self.interactor shareActivityItems];
-  [self.view presentShareWithItems:items];
+  AccountPlainObject *account = [self.interactor obtainAccount];
+  [self.router openShareWithAccount:account];
 }
 
 - (void) networkAction {

@@ -156,10 +156,6 @@ static NSTimeInterval kHomeInteractorDefaultRefreshBalancesTime = 900.0;
   return [self.connectFacade connectionStatus] == MEWConnectStatusConnected;
 }
 
-- (NSArray *) shareActivityItems {
-  return @[self.account.publicAddress];
-}
-
 - (void) refreshTokens {
   @weakify(self);
   if (!self.tokensUpdating) {

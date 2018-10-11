@@ -218,11 +218,6 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
   }
 }
 
-- (void) presentShareWithItems:(NSArray *)items {
-  UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:items applicationActivities:nil];
-  [self presentViewController:activityController animated:YES completion:nil];
-}
-
 - (void) startAnimatingTokensRefreshing {
   self.headerView.refreshButton.rotation = YES;
 }

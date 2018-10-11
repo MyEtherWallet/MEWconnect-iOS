@@ -56,6 +56,7 @@
 		235C5B92B3D2D778591269BF /* QRScannerAssemblyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BA2B6733D94174908CD81C /* QRScannerAssemblyTests.m */; };
 		25976212577886BC56433121 /* QRScannerAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 3769858708FA853EBEE605C3 /* QRScannerAssembly.m */; };
 		259A9814766150D9B26B7844 /* BuyEtherHistoryViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 523984EAFFDB1A1152D7AF74 /* BuyEtherHistoryViewControllerTests.m */; };
+		25B5D80933B7D569D44737E7 /* ShareRouterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C0F46052299D3FF10B71B78 /* ShareRouterTests.m */; };
 		25E617B7CC0D07D3C8619264 /* BackupInfoRouterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FFEF1ED758EDDCE8DD21F346 /* BackupInfoRouterTests.m */; };
 		265DC5BD2ADEBDDDD22CD3B3 /* AboutInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF488F3DD448529EA6DC29E /* AboutInteractor.m */; };
 		2689189E455FF2B2D6B5A7D9 /* ContextPasswordPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = CB76491F839CCAFDCAAFDD52 /* ContextPasswordPresenter.m */; };
@@ -98,6 +99,7 @@
 		45D205AE04D6D2EDD6B8A9D5 /* ContextPasswordAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA7058E611E406A1AA22703 /* ContextPasswordAssembly.m */; };
 		48775C9BF345F555A704F7AC /* PasswordAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 3052260BD4626E1DB0B731C9 /* PasswordAssembly.m */; };
 		48B66505CA8AAF7A58CD82B9 /* NewWalletPresenterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8AA11CD1BE40C9ED67787F /* NewWalletPresenterTests.m */; };
+		4948CDEFDEFE6F3F2399A5D8 /* SharePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 127146FC72DB05CDC698DDD9 /* SharePresenter.m */; };
 		49CF7B0BFFB0ED4E73184D1C /* SplashPasswordInteractorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 599C9B76298246215B8EA192 /* SplashPasswordInteractorTests.m */; };
 		49D57D4B9B90BE2E0D07CEB5 /* PasswordPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C6D7B839C103712A77B7F4 /* PasswordPresenter.m */; };
 		4A11049EB4BA67C879510715 /* QRScannerViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A37457032A3EB89DEF24E10E /* QRScannerViewControllerTests.m */; };
@@ -165,6 +167,14 @@
 		5627B712210B5E15009787F7 /* PropertyAnimatorsAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 5627B711210B5E15009787F7 /* PropertyAnimatorsAssembly.m */; };
 		5627B714210B60CE009787F7 /* PropertyAnimatorsAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 5627B711210B5E15009787F7 /* PropertyAnimatorsAssembly.m */; };
 		5629AEEABED9B97DBBCA7D51 /* BackupStartViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3632CF7A5B7F967934023AC0 /* BackupStartViewControllerTests.m */; };
+		56307A8A216EC63400282602 /* ShareAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DFB3A8A29658A337BA0F97 /* ShareAssembly.m */; };
+		56307A8B216EC63400282602 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6549CAA905CBF0B3F89E4233 /* ShareViewController.m */; };
+		56307A8C216EC63400282602 /* SharePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 127146FC72DB05CDC698DDD9 /* SharePresenter.m */; };
+		56307A8D216EC63400282602 /* ShareInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E51288AB632D0D5D2269C08 /* ShareInteractor.m */; };
+		56307A8E216EC63400282602 /* ShareRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = EEDF7C85D95A6C97F101A5C7 /* ShareRouter.m */; };
+		56307A90216EC77700282602 /* Shared.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56307A8F216EC77700282602 /* Shared.xcassets */; };
+		56307A94216F61AF00282602 /* UIScreen+AnimateBrightness.m in Sources */ = {isa = PBXBuildFile; fileRef = 56307A93216F61AF00282602 /* UIScreen+AnimateBrightness.m */; };
+		56307A95216F623C00282602 /* UIScreen+AnimateBrightness.m in Sources */ = {isa = PBXBuildFile; fileRef = 56307A93216F61AF00282602 /* UIScreen+AnimateBrightness.m */; };
 		563C6AD820AC696300E85B8B /* MEWSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 563C6AD720AC696300E85B8B /* MEWSearchBar.m */; };
 		563C6AE320AF122000E85B8B /* CheckboxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563C6AE220AF122000E85B8B /* CheckboxButton.swift */; };
 		563C6AE620AF690A00E85B8B /* CheckboxButton+Blockies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563C6AE520AF690A00E85B8B /* CheckboxButton+Blockies.swift */; };
@@ -824,8 +834,10 @@
 		7C8EB252FBCFFDC9C8C0A6CF /* ConfirmPasswordPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = E06EF4FC27EA9AECBABAEA4B /* ConfirmPasswordPresenter.m */; };
 		7CD4D8349C636C9982158EE2 /* BuyEtherWebAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 7530E81B4FB49B75557FB3C2 /* BuyEtherWebAssembly.m */; };
 		7D99509495D4CDED1E18B858 /* BuyEtherWebRouterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 86489DD27063C24648A3F2D9 /* BuyEtherWebRouterTests.m */; };
+		8014EF435C1C9A3047235193 /* ShareInteractorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E78C2E61D6C8BFB65FE36B /* ShareInteractorTests.m */; };
 		801A5FF6A47B5842C7851F9D /* ForgotPasswordRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 745352AB102BEF9F4099DFEA /* ForgotPasswordRouter.m */; };
 		8088F68B4E83232E1F76EA6D /* BackupWordsInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = B250F0EF6E71D5C27F0AE19E /* BackupWordsInteractor.m */; };
+		811B7A588FF030822E16DE52 /* ShareInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E51288AB632D0D5D2269C08 /* ShareInteractor.m */; };
 		8254AAD910611123A558EC0D /* InfoPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB4EBD0C7EF91E88C258A5E /* InfoPresenter.m */; };
 		832F5172B4F35A1CA1FB4653 /* InfoRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 777B7C1F7DEC57609D0B7D68 /* InfoRouter.m */; };
 		862B842D2EB36D56EC72602F /* SplashPasswordAssemblyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8FDF9E64198482A233372C /* SplashPasswordAssemblyTests.m */; };
@@ -868,6 +880,7 @@
 		AFDE8EED4FD1C618C0BD78A1 /* SplashPasswordAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EA5ADA3732EA483B70B87C /* SplashPasswordAssembly.m */; };
 		B04DB1B9AD0D63952532E700 /* HomeRouterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D84A7FB46FD4EE8B838F7C02 /* HomeRouterTests.m */; };
 		B13A70C242EA0F3A9E1BD342 /* DeclinedTransactionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 018CD1E1F9B1246D39CB4BF9 /* DeclinedTransactionViewController.m */; };
+		B1CEB08D3068750D7B81F6F2 /* ShareAssemblyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A01E4320A227109439580D /* ShareAssemblyTests.m */; };
 		B21D0A67967BA053A25D4C5A /* ConfirmationNavigationInteractorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FBD0978920C92F0DCFD908 /* ConfirmationNavigationInteractorTests.m */; };
 		B2D3ECC135CE03B800D97407 /* BackupWordsPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C5C61E96B2F1334292024C /* BackupWordsPresenter.m */; };
 		B51F5762D15F086521565D93 /* AboutAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 067D6C62D62015D50442367C /* AboutAssembly.m */; };
@@ -899,6 +912,7 @@
 		CFAE33710664647D130E8662 /* ConfirmationNavigationPresenterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D59B8DA82B65D6A8A831B9 /* ConfirmationNavigationPresenterTests.m */; };
 		D2144009EF379EB804F2A23A /* BackupInfoAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = C623641EDB8D1AB70465606A /* BackupInfoAssembly.m */; };
 		D3B34E197FDF63BE561E6D4C /* MessageSignerPresenterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E153217D27CFAADDB6B20682 /* MessageSignerPresenterTests.m */; };
+		D44842697FE39A671DFA133E /* ShareRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = EEDF7C85D95A6C97F101A5C7 /* ShareRouter.m */; };
 		D5153E13EE46AE2DD97DE88C /* RestoreWalletAssemblyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 888A7C0FF4F78F4853C8AC7D /* RestoreWalletAssemblyTests.m */; };
 		D5793D1E507610D0FFC818BD /* BackupInfoPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = B36294E51EE6EA30F1A623BE /* BackupInfoPresenter.m */; };
 		D613E39CAD7A19EA13E70438 /* QRScannerPresenterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F7821BAD78C5760E99E26C /* QRScannerPresenterTests.m */; };
@@ -908,6 +922,7 @@
 		D8D15D7272BE0BAFB3D73206 /* BuyEtherAmountViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9100F1562C25C01960F83EB /* BuyEtherAmountViewControllerTests.m */; };
 		D8F63615756FC3CF5F64F745 /* RestoreWalletPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = D313732E7465E0EC13FD5915 /* RestoreWalletPresenter.m */; };
 		D9D754DAE5ADEDE854FC750F /* HomeRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1964AC5C3634BFC5E30471 /* HomeRouter.m */; };
+		DA7395FE3DA6AE645E755112 /* SharePresenterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16569F6D23CD4A2B3AF5598F /* SharePresenterTests.m */; };
 		DCEF50B29F279C56027F4FEA /* BackupWordsInteractorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 922DE9F5016B5C5F2D0A3305 /* BackupWordsInteractorTests.m */; };
 		E1962880F8EF83692DE15244 /* SettingsPresenterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8917E8B618A84445E2211D4 /* SettingsPresenterTests.m */; };
 		E382C859C6675B6E524BDC87 /* NewWalletAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D636DCB86E2833A9F98A3AD /* NewWalletAssembly.m */; };
@@ -915,6 +930,7 @@
 		E6F2123D66DC40EC37DE62B1 /* BackupInfoPresenterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FE6F63BA03AC2921BD8A55C8 /* BackupInfoPresenterTests.m */; };
 		E734FB2A06F7D6E28F813C4A /* BuyEtherHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565935FC5198CFB42639DA1E /* BuyEtherHistoryViewController.m */; };
 		E7B15407EB27619550D2FC3F /* ConfirmedTransactionInteractorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 125F6FA67971EEA178932C9E /* ConfirmedTransactionInteractorTests.m */; };
+		E9E09CC6A742353CAD0F60FB /* ShareViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 452B7D2FEEBB6BA8D26495C7 /* ShareViewControllerTests.m */; };
 		EA0EFB4E115E73BC1B98904C /* BuyEtherNavigationRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F910C8CC283FEA75480826F /* BuyEtherNavigationRouter.m */; };
 		EA36650C452FF14AEA63AC24 /* BuyEtherWebPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F874AB48E5F30E4011B5DBC3 /* BuyEtherWebPresenter.m */; };
 		EA8204AC2210D75975DCD2F5 /* ConfirmationNavigationPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 26280180FB77127773AA4F11 /* ConfirmationNavigationPresenter.m */; };
@@ -924,6 +940,8 @@
 		EE773E901ADEDD4ECF600760 /* SettingsRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 165E42E6BEFBFE71A1C7BBD4 /* SettingsRouter.m */; };
 		EFF1B135C57BD1034056F8DE /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A53C7A8A371F90CE150A9 /* StartViewController.m */; };
 		F3BEB5996A9106BD0DE22462 /* NewWalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D5D390AB77CB9DB1DE78D51 /* NewWalletViewController.m */; };
+		F3EFC4DF1B60ECEF3AB6079A /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6549CAA905CBF0B3F89E4233 /* ShareViewController.m */; };
+		F44AF94F63C70216178E5084 /* ShareAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DFB3A8A29658A337BA0F97 /* ShareAssembly.m */; };
 		F56BA5669B8973DB2B861843 /* BackupDoneInteractorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E9629DE819FA5324BECC2913 /* BackupDoneInteractorTests.m */; };
 		F592C64842F3C8DB2FE294ED /* BackupConfirmationPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F156435ECD7C5978F852A39 /* BackupConfirmationPresenter.m */; };
 		F6D29640959D3D03944DBE7D /* BuyEtherAmountRouterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A02E10E5B397E3AF0A37281 /* BuyEtherAmountRouterTests.m */; };
@@ -995,10 +1013,12 @@
 		0F21F55B6F6C8C6775F4CE10 /* ContextPasswordRouterInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ContextPasswordRouterInput.h; sourceTree = "<group>"; };
 		101884EBBDDA4631EC6180C2 /* SettingsPresenter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SettingsPresenter.h; sourceTree = "<group>"; };
 		10704F14617B1B50992AA214 /* QRScannerRouter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = QRScannerRouter.m; sourceTree = "<group>"; };
+		10DFB3A8A29658A337BA0F97 /* ShareAssembly.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ShareAssembly.m; sourceTree = "<group>"; };
 		1110F3D154655B85356D0D34 /* SettingsAssemblyTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SettingsAssemblyTests.m; sourceTree = "<group>"; };
 		11BC1BBEDE8EA3D17C7BE276 /* NewWalletInteractorOutput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = NewWalletInteractorOutput.h; sourceTree = "<group>"; };
 		125F6FA67971EEA178932C9E /* ConfirmedTransactionInteractorTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ConfirmedTransactionInteractorTests.m; sourceTree = "<group>"; };
 		126637081DA90E01D64DA17E /* InfoViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
+		127146FC72DB05CDC698DDD9 /* SharePresenter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SharePresenter.m; sourceTree = "<group>"; };
 		12BB5221424E3976A13FDAF7 /* DeclinedTransactionAssembly_Testable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = DeclinedTransactionAssembly_Testable.h; sourceTree = "<group>"; };
 		132EF5EAC78F2F7053A6917A /* BuyEtherHistoryRouterTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BuyEtherHistoryRouterTests.m; sourceTree = "<group>"; };
 		13D11463DB98175D51D6810F /* SplashPasswordModuleInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SplashPasswordModuleInput.h; sourceTree = "<group>"; };
@@ -1008,6 +1028,7 @@
 		157FE28D61B3D3750D3E2BF6 /* ForgotPasswordAssemblyTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ForgotPasswordAssemblyTests.m; sourceTree = "<group>"; };
 		15BCC84ADA1F21A4EB3BD953 /* BackupDoneInteractor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BackupDoneInteractor.m; sourceTree = "<group>"; };
 		15DAD76F3C707A5A6B0AB9CF /* AboutViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		16569F6D23CD4A2B3AF5598F /* SharePresenterTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SharePresenterTests.m; sourceTree = "<group>"; };
 		165E42E6BEFBFE71A1C7BBD4 /* SettingsRouter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SettingsRouter.m; sourceTree = "<group>"; };
 		16BC680E7D85EEA4DA382372 /* ConfirmedTransactionViewInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ConfirmedTransactionViewInput.h; sourceTree = "<group>"; };
 		16C52D45BAF6526BEC667F75 /* HomePresenter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HomePresenter.h; sourceTree = "<group>"; };
@@ -1022,6 +1043,7 @@
 		1AFF7A10CAAFCED510F00E8D /* MessageSignerRouterInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MessageSignerRouterInput.h; sourceTree = "<group>"; };
 		1B7C0B8BCCB953F98BF38B46 /* SplashPasswordViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SplashPasswordViewController.m; sourceTree = "<group>"; };
 		1B85D08EABE4776959E5A415 /* InfoInteractor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = InfoInteractor.m; sourceTree = "<group>"; };
+		1C0F46052299D3FF10B71B78 /* ShareRouterTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ShareRouterTests.m; sourceTree = "<group>"; };
 		1C469E896852666A2C64CED9 /* BuyEtherNavigationRouterTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BuyEtherNavigationRouterTests.m; sourceTree = "<group>"; };
 		1CDD047163265F2219DB9330 /* RestoreWalletModuleInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RestoreWalletModuleInput.h; sourceTree = "<group>"; };
 		1DCFE3BAFF7EEC4E746F3EBF /* SplashPasswordInteractor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SplashPasswordInteractor.m; sourceTree = "<group>"; };
@@ -1069,6 +1091,7 @@
 		2E20D2B2091666B8A0FF6F0B /* ConfirmationNavigationModuleInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ConfirmationNavigationModuleInput.h; sourceTree = "<group>"; };
 		2EAA85993B3CEFC123FB53D3 /* BackupStartInteractorTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BackupStartInteractorTests.m; sourceTree = "<group>"; };
 		2EBCB54B07A642E6336325CB /* PasswordPresenter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PasswordPresenter.h; sourceTree = "<group>"; };
+		2EE75E396C7CA6639AB130B1 /* ShareViewInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ShareViewInput.h; sourceTree = "<group>"; };
 		2F41C36FB6BC8B9DBE454BED /* ConfirmedTransactionRouterInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ConfirmedTransactionRouterInput.h; sourceTree = "<group>"; };
 		2F6632B6471F659AA9876BF6 /* BackupInfoViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BackupInfoViewController.m; sourceTree = "<group>"; };
 		2F89B6553116D079A8A8BE82 /* DeclinedTransactionInteractor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = DeclinedTransactionInteractor.h; sourceTree = "<group>"; };
@@ -1122,8 +1145,10 @@
 		429A91FADBC8437782C0E9C6 /* InfoAssembly.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = InfoAssembly.h; sourceTree = "<group>"; };
 		42DE71492569077D3F9CF2AE /* BackupWordsAssembly.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BackupWordsAssembly.h; sourceTree = "<group>"; };
 		4303EE5F3C9B7D7F82123EE5 /* BackupDoneInteractor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BackupDoneInteractor.h; sourceTree = "<group>"; };
+		4415B9E78E059F38EB53A817 /* ShareInteractor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ShareInteractor.h; sourceTree = "<group>"; };
 		44A457FDE982F50B57EE4323 /* MessageSignerInteractor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MessageSignerInteractor.m; sourceTree = "<group>"; };
 		44ACBD2C6E01FDE8DC858848 /* ConfirmPasswordPresenterTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ConfirmPasswordPresenterTests.m; sourceTree = "<group>"; };
+		452B7D2FEEBB6BA8D26495C7 /* ShareViewControllerTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ShareViewControllerTests.m; sourceTree = "<group>"; };
 		4587C5C90B809460AEFF1E57 /* ForgotPasswordInteractor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordInteractor.h; sourceTree = "<group>"; };
 		4628C0BAA77FC844BA528355 /* InfoAssembly.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = InfoAssembly.m; sourceTree = "<group>"; };
 		472AE456B3C9BE29BA42CF1D /* ContextPasswordPresenter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ContextPasswordPresenter.h; sourceTree = "<group>"; };
@@ -1136,11 +1161,13 @@
 		49D5232F4E8E211EB6651BEE /* QRScannerModuleInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = QRScannerModuleInput.h; sourceTree = "<group>"; };
 		49E25473B847DFA074D8A45F /* BackupConfirmationRouter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BackupConfirmationRouter.m; sourceTree = "<group>"; };
 		4A180B7DF0178BBA221D9D87 /* ContextPasswordAssembly.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ContextPasswordAssembly.h; sourceTree = "<group>"; };
+		4A6F0E54306C92A9DF040D9A /* ShareViewOutput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ShareViewOutput.h; sourceTree = "<group>"; };
 		4C8344D66F6FE2D51586BA34 /* RestoreWalletInteractorTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RestoreWalletInteractorTests.m; sourceTree = "<group>"; };
 		4CF8DD7DF880E904E14CAC7C /* ContextPasswordInteractorTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ContextPasswordInteractorTests.m; sourceTree = "<group>"; };
 		4D5E4B8379656716703EA74C /* StartRouter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = StartRouter.h; sourceTree = "<group>"; };
 		4EA8EA631AB8066826B0F7E8 /* Pods_MEWconnect_MyEtherWallet_iOS_Beta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MEWconnect_MyEtherWallet_iOS_Beta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F3FCE8A4C03F212E0A52768 /* ConfirmPasswordAssembly.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ConfirmPasswordAssembly.m; sourceTree = "<group>"; };
+		4FCDE88F259FA12CDB7D9AA6 /* ShareViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
 		504098B8E8A6CFE0373554CD /* BuyEtherNavigationPresenterTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BuyEtherNavigationPresenterTests.m; sourceTree = "<group>"; };
 		50772656B75793A9C655DF85 /* Pods_MyEtherWallet_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyEtherWallet_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5091428889762ADEF364A1C0 /* TransactionInteractor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TransactionInteractor.m; sourceTree = "<group>"; };
@@ -1245,6 +1272,9 @@
 		5627B710210B5E15009787F7 /* PropertyAnimatorsAssembly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PropertyAnimatorsAssembly.h; sourceTree = "<group>"; };
 		5627B711210B5E15009787F7 /* PropertyAnimatorsAssembly.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PropertyAnimatorsAssembly.m; sourceTree = "<group>"; };
 		5627B713210B6037009787F7 /* PropertyAnimatorsFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PropertyAnimatorsFactory.h; sourceTree = "<group>"; };
+		56307A8F216EC77700282602 /* Shared.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Shared.xcassets; sourceTree = "<group>"; };
+		56307A92216F61AF00282602 /* UIScreen+AnimateBrightness.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScreen+AnimateBrightness.h"; sourceTree = "<group>"; };
+		56307A93216F61AF00282602 /* UIScreen+AnimateBrightness.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScreen+AnimateBrightness.m"; sourceTree = "<group>"; };
 		563C6AD620AC696300E85B8B /* MEWSearchBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MEWSearchBar.h; sourceTree = "<group>"; };
 		563C6AD720AC696300E85B8B /* MEWSearchBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MEWSearchBar.m; sourceTree = "<group>"; };
 		563C6AE220AF122000E85B8B /* CheckboxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxButton.swift; sourceTree = "<group>"; };
@@ -1773,12 +1803,15 @@
 		6302F5F75E81007E17AFB95E /* MessageSignerViewControllerTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MessageSignerViewControllerTests.m; sourceTree = "<group>"; };
 		638FC6001B7B3B152737B788 /* HomeAssembly.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HomeAssembly.m; sourceTree = "<group>"; };
 		648DA9311F8825F5AB34A5DE /* DeclinedTransactionPresenter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = DeclinedTransactionPresenter.h; sourceTree = "<group>"; };
+		64A6CD3E61B5BDCACDCF099A /* ShareRouterInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ShareRouterInput.h; sourceTree = "<group>"; };
 		6515976CE21D61D2AA9AD348 /* BuyEtherHistoryInteractorInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BuyEtherHistoryInteractorInput.h; sourceTree = "<group>"; };
+		6549CAA905CBF0B3F89E4233 /* ShareViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
 		659B041CF2812AB80D90C014 /* BackupWordsRouterInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BackupWordsRouterInput.h; sourceTree = "<group>"; };
 		662D369C7D7EF3C79B848623 /* TransactionViewOutput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TransactionViewOutput.h; sourceTree = "<group>"; };
 		6650E1013997B8E0A7206FC7 /* HomeInteractorTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HomeInteractorTests.m; sourceTree = "<group>"; };
 		66C146259578DAEB115671CB /* ConfirmationNavigationViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ConfirmationNavigationViewController.h; sourceTree = "<group>"; };
 		683E8F3B0035BFE651D67160 /* QRScannerViewOutput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = QRScannerViewOutput.h; sourceTree = "<group>"; };
+		6935F9C5FD28B770EF33796A /* ShareRouter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ShareRouter.h; sourceTree = "<group>"; };
 		697F6514256FAF8BE3C583AD /* BackupStartAssemblyTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BackupStartAssemblyTests.m; sourceTree = "<group>"; };
 		6A2BA58178562788106B7820 /* ForgotPasswordViewOutput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordViewOutput.h; sourceTree = "<group>"; };
 		6B8E5F6E76201FCF88CF35A0 /* MessageSignerModuleInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MessageSignerModuleInput.h; sourceTree = "<group>"; };
@@ -1909,6 +1942,7 @@
 		9DEB0B91F0BB04C592103F14 /* BuyEtherHistoryPresenterTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BuyEtherHistoryPresenterTests.m; sourceTree = "<group>"; };
 		9DEF74034DBEA36B30ABEA20 /* BackupStartPresenterTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BackupStartPresenterTests.m; sourceTree = "<group>"; };
 		9E3E3A5555D4B0F411E43454 /* QRScannerAssembly.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = QRScannerAssembly.h; sourceTree = "<group>"; };
+		9E51288AB632D0D5D2269C08 /* ShareInteractor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ShareInteractor.m; sourceTree = "<group>"; };
 		9EEB96B2E6146F0653C13C21 /* NewWalletInteractor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = NewWalletInteractor.h; sourceTree = "<group>"; };
 		9EF33BD879996338B9D56BAE /* ForgotPasswordViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordViewController.h; sourceTree = "<group>"; };
 		9F5D1A2BAF054815AED4C84A /* BackupWordsInteractor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BackupWordsInteractor.h; sourceTree = "<group>"; };
@@ -1925,6 +1959,7 @@
 		A3E7FD110132CC65ED1CEE32 /* BackupDoneRouterTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BackupDoneRouterTests.m; sourceTree = "<group>"; };
 		A441584390CE0D8F1190FCBE /* ForgotPasswordViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ForgotPasswordViewController.m; sourceTree = "<group>"; };
 		A4F58F0CC060B63FB2CF69E9 /* SettingsRouter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SettingsRouter.h; sourceTree = "<group>"; };
+		A5331C5F2243D624C896EC8E /* ShareModuleInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ShareModuleInput.h; sourceTree = "<group>"; };
 		A583CAB4844299475C527407 /* AboutRouter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AboutRouter.h; sourceTree = "<group>"; };
 		A63C3500E2DF800223CA8934 /* Pods_MyEtherWallet_iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyEtherWallet_iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A66B16471EF9F0105D1D89B2 /* SplashPasswordPresenter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SplashPasswordPresenter.h; sourceTree = "<group>"; };
@@ -1936,6 +1971,7 @@
 		A93ADA61F5DD41279CA1382E /* BuyEtherWebAssembly.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BuyEtherWebAssembly.h; sourceTree = "<group>"; };
 		A9A156D3B1B02F7501A1A0A5 /* ConfirmationNavigationViewControllerTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ConfirmationNavigationViewControllerTests.m; sourceTree = "<group>"; };
 		AA6DF4713EBC024BD47A9633 /* QRScannerViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = QRScannerViewController.m; sourceTree = "<group>"; };
+		AAF500170FA8158A9FFC40BD /* ShareInteractorInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ShareInteractorInput.h; sourceTree = "<group>"; };
 		ABD4E433684E1D6237A7BBC0 /* AboutPresenter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = AboutPresenter.m; sourceTree = "<group>"; };
 		ABD7D60CA05AAC656ECB2E7F /* BuyEtherWebPresenter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BuyEtherWebPresenter.h; sourceTree = "<group>"; };
 		ABFB997E7D9C743FA5E82EFA /* PasswordViewControllerTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PasswordViewControllerTests.m; sourceTree = "<group>"; };
@@ -1966,7 +2002,9 @@
 		B4E50B68098131486EA86837 /* ConfirmPasswordViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ConfirmPasswordViewController.m; sourceTree = "<group>"; };
 		B513AD833B947ED1F0861692 /* ForgotPasswordInteractorOutput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordInteractorOutput.h; sourceTree = "<group>"; };
 		B6027BD5AEE9FF353DAE7B9D /* BackupStartPresenter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BackupStartPresenter.m; sourceTree = "<group>"; };
+		B6499448478F334CFBAD76CD /* ShareInteractorOutput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ShareInteractorOutput.h; sourceTree = "<group>"; };
 		B6756038585659B6BA1B6A02 /* SplashPasswordRouter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SplashPasswordRouter.m; sourceTree = "<group>"; };
+		B6A01E4320A227109439580D /* ShareAssemblyTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ShareAssemblyTests.m; sourceTree = "<group>"; };
 		B6F2F8C3388333F6C6BD04D7 /* ConfirmationNavigationRouterInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ConfirmationNavigationRouterInput.h; sourceTree = "<group>"; };
 		B7BF3FD8C737A9E878E889BB /* InfoModuleInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = InfoModuleInput.h; sourceTree = "<group>"; };
 		B7FA9D2D087EA7608B115729 /* ForgotPasswordPresenter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordPresenter.h; sourceTree = "<group>"; };
@@ -1975,6 +2013,7 @@
 		B99F0A26C8A6293318B51BB6 /* BuyEtherHistoryInteractor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BuyEtherHistoryInteractor.m; sourceTree = "<group>"; };
 		B9A41EFFF0DC09FF448C5640 /* NewWalletRouterInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = NewWalletRouterInput.h; sourceTree = "<group>"; };
 		B9A486DE5AA56BD73CD2AFAC /* HomeRouter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HomeRouter.h; sourceTree = "<group>"; };
+		B9B925A48372C0A547A2B736 /* ShareAssembly_Testable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ShareAssembly_Testable.h; sourceTree = "<group>"; };
 		BB599622D6371B458574E14B /* SettingsViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		BBA7BEE4A0C4389B7534C061 /* BackupStartPresenter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BackupStartPresenter.h; sourceTree = "<group>"; };
 		BCBA3306A8191BFD0D946513 /* BackupDonePresenterTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BackupDonePresenterTests.m; sourceTree = "<group>"; };
@@ -1982,6 +2021,7 @@
 		BDD3984EBD56D7A83665984C /* ConfirmedTransactionInteractor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ConfirmedTransactionInteractor.h; sourceTree = "<group>"; };
 		BDF317771E7269050BC4A6C7 /* NewWalletViewInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = NewWalletViewInput.h; sourceTree = "<group>"; };
 		BDF6A49B42F2C44517E2837B /* RestoreWalletInteractor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RestoreWalletInteractor.m; sourceTree = "<group>"; };
+		BEBDC89F0A2EE9ED22971E2D /* ShareAssembly.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ShareAssembly.h; sourceTree = "<group>"; };
 		BEEEBF0785A8D1FA818AA045 /* DeclinedTransactionInteractorTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = DeclinedTransactionInteractorTests.m; sourceTree = "<group>"; };
 		BEF93F23BBE0800E26664CDA /* AboutPresenter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AboutPresenter.h; sourceTree = "<group>"; };
 		BF39C635CDC57567ED1CA0D9 /* TransactionRouterInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TransactionRouterInput.h; sourceTree = "<group>"; };
@@ -1996,9 +2036,11 @@
 		C3DEC10486790B03C3C02599 /* BuyEtherAmountViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BuyEtherAmountViewController.m; sourceTree = "<group>"; };
 		C623641EDB8D1AB70465606A /* BackupInfoAssembly.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BackupInfoAssembly.m; sourceTree = "<group>"; };
 		C6744BFB93AEA720C20D614F /* StartInteractorOutput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = StartInteractorOutput.h; sourceTree = "<group>"; };
+		C6E78C2E61D6C8BFB65FE36B /* ShareInteractorTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ShareInteractorTests.m; sourceTree = "<group>"; };
 		C8543CF28FDEF28B99ACF306 /* BackupInfoInteractor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BackupInfoInteractor.h; sourceTree = "<group>"; };
 		C9100F1562C25C01960F83EB /* BuyEtherAmountViewControllerTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BuyEtherAmountViewControllerTests.m; sourceTree = "<group>"; };
 		C9481B5EB28F8887E473EF8A /* BackupWordsViewOutput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BackupWordsViewOutput.h; sourceTree = "<group>"; };
+		C956F9DBD8DCB174F1499B5B /* SharePresenter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SharePresenter.h; sourceTree = "<group>"; };
 		C95C7A53524C8FE90192C70D /* InfoViewControllerTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = InfoViewControllerTests.m; sourceTree = "<group>"; };
 		CA12B5039BED5D38878D8AF8 /* QRScannerViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = QRScannerViewController.h; sourceTree = "<group>"; };
 		CA25B4B1B52A39E96D2E52AB /* BackupWordsAssembly.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BackupWordsAssembly.m; sourceTree = "<group>"; };
@@ -2100,6 +2142,7 @@
 		EE5C0E2D9D35EE16E7F75BD8 /* Pods-MEWconnect-MyEtherWallet-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MEWconnect-MyEtherWallet-iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MEWconnect-MyEtherWallet-iOSTests/Pods-MEWconnect-MyEtherWallet-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		EE5D61D0B5D5664738A84EB3 /* HomeModuleInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HomeModuleInput.h; sourceTree = "<group>"; };
 		EE810896D9A3AF0320C62484 /* PasswordInteractorInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PasswordInteractorInput.h; sourceTree = "<group>"; };
+		EEDF7C85D95A6C97F101A5C7 /* ShareRouter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ShareRouter.m; sourceTree = "<group>"; };
 		EEEB2409B5ED92E50A320DE4 /* MessageSignerViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MessageSignerViewController.m; sourceTree = "<group>"; };
 		EF8775BF150BD26616411FE3 /* BackupDoneAssembly.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BackupDoneAssembly.h; sourceTree = "<group>"; };
 		EFCD69A3D859BD6D251E2833 /* RestoreWalletViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RestoreWalletViewController.h; sourceTree = "<group>"; };
@@ -2217,6 +2260,14 @@
 				E153217D27CFAADDB6B20682 /* MessageSignerPresenterTests.m */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		05E7E7C8E7D2AB1E7E90345A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				452B7D2FEEBB6BA8D26495C7 /* ShareViewControllerTests.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		05FD2DC198E557D3EFA96647 /* Router */ = {
@@ -2349,6 +2400,15 @@
 				8781BB1CCB445088FBD04636 /* BuyEtherWebViewController.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		0F8B4CFC691EE019C7DE7E09 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				B6A01E4320A227109439580D /* ShareAssemblyTests.m */,
+				B9B925A48372C0A547A2B736 /* ShareAssembly_Testable.h */,
+			);
+			path = Assembly;
 			sourceTree = "<group>";
 		};
 		10E2AFECF8EB95635713B35C /* ContextPassword */ = {
@@ -2630,6 +2690,14 @@
 				F73FBB40910AD792476FC844 /* ContextPasswordViewControllerTests.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		2B36EA51550A478A63CBF6FF /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				16569F6D23CD4A2B3AF5598F /* SharePresenterTests.m */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		2BB0A462BA77A6FA213D79F2 /* Interactor */ = {
@@ -3694,6 +3762,15 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
+		56307A91216F619E00282602 /* UIScreen+AnimateBrightness */ = {
+			isa = PBXGroup;
+			children = (
+				56307A92216F61AF00282602 /* UIScreen+AnimateBrightness.h */,
+				56307A93216F61AF00282602 /* UIScreen+AnimateBrightness.m */,
+			);
+			path = "UIScreen+AnimateBrightness";
+			sourceTree = "<group>";
+		};
 		56351B5820A33E6D00C28DAF /* UIColor+RandSeed */ = {
 			isa = PBXGroup;
 			children = (
@@ -4327,6 +4404,7 @@
 		5677BB4420FD0A150019E92D /* UIScreen */ = {
 			isa = PBXGroup;
 			children = (
+				56307A91216F619E00282602 /* UIScreen+AnimateBrightness */,
 				5677BB4920FD0BFD0019E92D /* UIScreen+ScreenScaleType */,
 				5677BB4520FD0A1C0019E92D /* UIScreen+ScreenSizeType */,
 			);
@@ -4466,6 +4544,7 @@
 				EA5DD9EF8D3B90B2040E7B4E /* Home */,
 				DE76E3B61FBE61E31961F210 /* Info */,
 				F7F9643258F8C7AAFE3F7EB7 /* About */,
+				A99F2F998BBDD21CA87F01F3 /* Share */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -5616,6 +5695,7 @@
 				560D772B20B4D3CF009A3D6D /* Localization */,
 				56FE2B7920817F1100DB39D5 /* Assets.xcassets */,
 				56E3E666210174A00014152D /* Assets-Beta.xcassets */,
+				56307A8F216EC77700282602 /* Shared.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -6624,6 +6704,7 @@
 				1DF54165D409C9DAB646F3C4 /* ConfirmationNavigation */,
 				CE893054BAB3FFAD7F00C312 /* About */,
 				7B9CF05A3FD1D7FC7606D7E4 /* ContextPassword */,
+				BC75E911D49F8BBA62880062 /* Share */,
 			);
 			path = "MyEtherWallet-iOSTests";
 			sourceTree = "<group>";
@@ -6727,6 +6808,16 @@
 				09DE127DE4DB0B484F57897B /* BuyEtherHistoryAssembly.m */,
 			);
 			path = Assembly;
+			sourceTree = "<group>";
+		};
+		5D4D95EF6F4F94EAB015285A /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A5331C5F2243D624C896EC8E /* ShareModuleInput.h */,
+				C956F9DBD8DCB174F1499B5B /* SharePresenter.h */,
+				127146FC72DB05CDC698DDD9 /* SharePresenter.m */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		5E962D9F376D3AE4FB9B2D52 /* BuyEtherWeb */ = {
@@ -7135,6 +7226,16 @@
 				2D636DCB86E2833A9F98A3AD /* NewWalletAssembly.m */,
 			);
 			path = Assembly;
+			sourceTree = "<group>";
+		};
+		7ECBD07D8023EC7FB618DFA3 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				64A6CD3E61B5BDCACDCF099A /* ShareRouterInput.h */,
+				6935F9C5FD28B770EF33796A /* ShareRouter.h */,
+				EEDF7C85D95A6C97F101A5C7 /* ShareRouter.m */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		8117F117AC697FF5DE40D0A7 /* Router */ = {
@@ -7567,6 +7668,18 @@
 			path = Assembly;
 			sourceTree = "<group>";
 		};
+		A99F2F998BBDD21CA87F01F3 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				F7EF8D17ECA1208C022A3852 /* Assembly */,
+				E3600A6EC7484913FF1F84A4 /* View */,
+				5D4D95EF6F4F94EAB015285A /* Presenter */,
+				C9CBA6A8C2AE9FFC36C338C8 /* Interactor */,
+				7ECBD07D8023EC7FB618DFA3 /* Router */,
+			);
+			path = Share;
+			sourceTree = "<group>";
+		};
 		A9BA6EB00F1FCD11AD4D9F1E /* Start */ = {
 			isa = PBXGroup;
 			children = (
@@ -7648,6 +7761,14 @@
 				A4833BB8EA4EB7F7D13BCD4B /* Router */,
 			);
 			path = Password;
+			sourceTree = "<group>";
+		};
+		AFDA345FF722439930083B47 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				1C0F46052299D3FF10B71B78 /* ShareRouterTests.m */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		B05A0E8A3AAC329EE7C78F0E /* Presenter */ = {
@@ -7797,6 +7918,18 @@
 				24FAF2EC5CEAE0A0E901286A /* BackupDoneViewControllerTests.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		BC75E911D49F8BBA62880062 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				0F8B4CFC691EE019C7DE7E09 /* Assembly */,
+				05E7E7C8E7D2AB1E7E90345A /* View */,
+				2B36EA51550A478A63CBF6FF /* Presenter */,
+				E80C0DCC52D56101CC8E7A9B /* Interactor */,
+				AFDA345FF722439930083B47 /* Router */,
+			);
+			path = Share;
 			sourceTree = "<group>";
 		};
 		BE1D320AD272CA7F50A6DB0E /* View */ = {
@@ -7989,6 +8122,17 @@
 				563DF38220986F7400F740FF /* Common */,
 			);
 			path = PresentationLayer;
+			sourceTree = "<group>";
+		};
+		C9CBA6A8C2AE9FFC36C338C8 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				AAF500170FA8158A9FFC40BD /* ShareInteractorInput.h */,
+				B6499448478F334CFBAD76CD /* ShareInteractorOutput.h */,
+				4415B9E78E059F38EB53A817 /* ShareInteractor.h */,
+				9E51288AB632D0D5D2269C08 /* ShareInteractor.m */,
+			);
+			path = Interactor;
 			sourceTree = "<group>";
 		};
 		C9F181FA8BFD1C4E7A08D4CC /* Presenter */ = {
@@ -8458,6 +8602,17 @@
 			path = BackupStart;
 			sourceTree = "<group>";
 		};
+		E3600A6EC7484913FF1F84A4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2EE75E396C7CA6639AB130B1 /* ShareViewInput.h */,
+				4A6F0E54306C92A9DF040D9A /* ShareViewOutput.h */,
+				4FCDE88F259FA12CDB7D9AA6 /* ShareViewController.h */,
+				6549CAA905CBF0B3F89E4233 /* ShareViewController.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		E52C5D94D2106A61BE00F879 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -8516,6 +8671,14 @@
 				5E9DFA439A8965987C8E2D53 /* Pods-MEWconnect-MyEtherWallet-iOS-MyEtherWallet-iOSTests.appstore.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		E80C0DCC52D56101CC8E7A9B /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				C6E78C2E61D6C8BFB65FE36B /* ShareInteractorTests.m */,
+			);
+			path = Interactor;
 			sourceTree = "<group>";
 		};
 		E8259641DE519E253906FD09 /* Router */ = {
@@ -8707,6 +8870,15 @@
 				C00C01BEF7A4B19C3D61D70F /* SplashPasswordPresenterTests.m */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		F7EF8D17ECA1208C022A3852 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				BEBDC89F0A2EE9ED22971E2D /* ShareAssembly.h */,
+				10DFB3A8A29658A337BA0F97 /* ShareAssembly.m */,
+			);
+			path = Assembly;
 			sourceTree = "<group>";
 		};
 		F7F9643258F8C7AAFE3F7EB7 /* About */ = {
@@ -9051,6 +9223,7 @@
 				56E3E6652101746F0014152D /* Assets.xcassets in Resources */,
 				56999848209517EB00D45153 /* Confirmation.storyboard in Resources */,
 				56A4EAA920B8BC440042A358 /* SplashPassword.storyboard in Resources */,
+				56307A90216EC77700282602 /* Shared.xcassets in Resources */,
 				56428A8720F96DE80049E8BC /* ServicesConfig.plist in Resources */,
 				563CF2FA20EFAD65005467AE /* BuyEtherHistoryItemTableViewCell.xib in Resources */,
 				56FE2B7820817F1100DB39D5 /* Main.storyboard in Resources */,
@@ -9476,6 +9649,7 @@
 				56E3E51221016DB60014152D /* NavigationControllerFactoryImplementation.m in Sources */,
 				56E3E51321016DB60014152D /* TokensServiceImplementation.m in Sources */,
 				56E3E51421016DB60014152D /* MEWConnectResponse.m in Sources */,
+				56307A8D216EC63400282602 /* ShareInteractor.m in Sources */,
 				56E3E51521016DB60014152D /* MEWConnectServiceImplementation.m in Sources */,
 				56E3E51621016DB60014152D /* OperationDebugDescriptionFormatter.m in Sources */,
 				56E3E51721016DB60014152D /* TyphoonAppDelegate.m in Sources */,
@@ -9561,6 +9735,7 @@
 				56E3E55E21016DB60014152D /* InfoDataDisplayManager.m in Sources */,
 				56E3E55F21016DB60014152D /* MEWconnect.xcdatamodeld in Sources */,
 				56E3E56021016DB60014152D /* InlineButton.m in Sources */,
+				56307A8E216EC63400282602 /* ShareRouter.m in Sources */,
 				56E3E56121016DB60014152D /* FiatPricesOperationFactory.m in Sources */,
 				56E3E56221016DB60014152D /* AccountsBody.m in Sources */,
 				56E3E56321016DB60014152D /* BordlessNavigationBar.m in Sources */,
@@ -9610,6 +9785,8 @@
 				56E3E58E21016DB60014152D /* NetworkCompoundOperationBuilder.m in Sources */,
 				56E3E58F21016DB60014152D /* BuyEtherHistoryCellObjectBuilder.m in Sources */,
 				56E3E59021016DB60014152D /* ResponseMappersAssembly.m in Sources */,
+				56307A95216F623C00282602 /* UIScreen+AnimateBrightness.m in Sources */,
+				56307A8B216EC63400282602 /* ShareViewController.m in Sources */,
 				56E3E59121016DB60014152D /* TransactionAssembly.m in Sources */,
 				56E3E59221016DB60014152D /* HomeDataDisplayManager.m in Sources */,
 				56E3E59321016DB60014152D /* TransactionViewController.m in Sources */,
@@ -9684,6 +9861,7 @@
 				56E3E5D621016DB60014152D /* MessageSignerViewController.m in Sources */,
 				56E3E5D721016DB60014152D /* RequestDataModel.m in Sources */,
 				56E3E5D821016DB60014152D /* MessageSignerPresenter.m in Sources */,
+				56307A8C216EC63400282602 /* SharePresenter.m in Sources */,
 				56E3E5D921016DB60014152D /* SimplexOrder.m in Sources */,
 				56E3E5DA21016DB60014152D /* BuyEtherHistoryItemTableViewCell.m in Sources */,
 				56E3E5DB21016DB60014152D /* MessageSignerInteractor.m in Sources */,
@@ -9771,6 +9949,7 @@
 				56E3E62B21016DB60014152D /* BuyEtherAmountInteractor.m in Sources */,
 				56E3E62C21016DB60014152D /* BuyEtherAmountRouter.m in Sources */,
 				56E3E62D21016DB60014152D /* BuyEtherHistoryAssembly.m in Sources */,
+				56307A8A216EC63400282602 /* ShareAssembly.m in Sources */,
 				566D15612107F9E60020E4F3 /* AboutPresenter.m in Sources */,
 				56E3E62E21016DB60014152D /* BuyEtherHistoryViewController.m in Sources */,
 				56E3E62F21016DB60014152D /* BuyEtherHistoryPresenter.m in Sources */,
@@ -9891,6 +10070,7 @@
 				5606B34B210FDAC500576C28 /* ReachabilityServiceImplementation.m in Sources */,
 				56428A7C20F9345E0049E8BC /* KeychainHistoryItemModel.m in Sources */,
 				C68E10A4E1B3A9BF240DD0D5 /* NewWalletRouter.m in Sources */,
+				56307A94216F61AF00282602 /* UIScreen+AnimateBrightness.m in Sources */,
 				4B880994DD0B5F9B4F44203F /* RestoreWalletAssembly.m in Sources */,
 				56C878BA20BC1A3300343ADC /* HomeEmptyTableViewCellObject.m in Sources */,
 				563CF2DA20EFAAD6005467AE /* PurchaseHistoryPlainObject.m in Sources */,
@@ -10158,6 +10338,11 @@
 				2689189E455FF2B2D6B5A7D9 /* ContextPasswordPresenter.m in Sources */,
 				6A550118F06E02155D94AD52 /* ContextPasswordInteractor.m in Sources */,
 				533F41FFC2FA32AB99424976 /* ContextPasswordRouter.m in Sources */,
+				F44AF94F63C70216178E5084 /* ShareAssembly.m in Sources */,
+				F3EFC4DF1B60ECEF3AB6079A /* ShareViewController.m in Sources */,
+				4948CDEFDEFE6F3F2399A5D8 /* SharePresenter.m in Sources */,
+				811B7A588FF030822E16DE52 /* ShareInteractor.m in Sources */,
+				D44842697FE39A671DFA133E /* ShareRouter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10312,6 +10497,11 @@
 				AD661694835484D7E66A3BE9 /* ContextPasswordPresenterTests.m in Sources */,
 				586114FE00B401F49B84D1B2 /* ContextPasswordInteractorTests.m in Sources */,
 				9C57B1014606FC21BEA9F6D0 /* ContextPasswordRouterTests.m in Sources */,
+				B1CEB08D3068750D7B81F6F2 /* ShareAssemblyTests.m in Sources */,
+				E9E09CC6A742353CAD0F60FB /* ShareViewControllerTests.m in Sources */,
+				DA7395FE3DA6AE645E755112 /* SharePresenterTests.m in Sources */,
+				8014EF435C1C9A3047235193 /* ShareInteractorTests.m in Sources */,
+				25B5D80933B7D569D44737E7 /* ShareRouterTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

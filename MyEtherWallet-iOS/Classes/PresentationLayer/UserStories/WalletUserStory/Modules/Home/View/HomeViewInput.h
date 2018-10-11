@@ -19,7 +19,6 @@
 - (void) updateEthereumBalanceWithAccount:(AccountPlainObject *)account;
 - (void) updateWithTransactionBatch:(CacheTransactionBatch *)transactionBatch;
 - (void) updateWithTokensCount:(NSUInteger)tokensCount withTotalPrice:(NSDecimalNumber *)totalPrice;
-- (void) presentShareWithItems:(NSArray *)items;
 - (void) startAnimatingTokensRefreshing;
 - (void) stopAnimatingTokensRefreshing;
 - (void) presentNetworkSelection;

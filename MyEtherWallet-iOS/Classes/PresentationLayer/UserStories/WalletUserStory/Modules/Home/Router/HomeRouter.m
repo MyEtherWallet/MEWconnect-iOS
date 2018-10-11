@@ -18,6 +18,7 @@
 #import "BuyEtherAmountModuleInput.h"
 #import "ConfirmationNavigationModuleInput.h"
 #import "StartModuleInput.h"
+#import "ShareModuleInput.h"
 
 #import "ConfirmationStoryModuleOutput.h"
 
@@ -28,6 +29,7 @@ static NSString *const kHomeToBackupInfoSegueIdentifier     = @"HomeToBackupInfo
 static NSString *const kHomeToInfoSegueIdentifier           = @"HomeToInfoSegueIdentifier";
 static NSString *const kHomeToBuyEtherSegueIdentifier       = @"HomeToBuyEtherSegueIdentifier";
 static NSString *const kHomeToStartUnwindSegueIdentifier    = @"HomeToStartUnwindSegueIdentifier";
+static NSString *const kHomeToShareSegueIdentifier          = @"HomeToShareSegueIdentifier";
 
 @implementation HomeRouter
 
@@ -42,6 +44,13 @@ static NSString *const kHomeToStartUnwindSegueIdentifier    = @"HomeToStartUnwin
 
 - (void) openScanner {
   [[self.transitionHandler openModuleUsingSegue:kHomeToScannerSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<RamblerViperModuleInput> moduleInput) {
+    return nil;
+  }];
+}
+
+- (void) openShareWithAccount:(AccountPlainObject *)account {
+  [[self.transitionHandler openModuleUsingSegue:kHomeToShareSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<ShareModuleInput> moduleInput) {
+    [moduleInput configureModuleWithAccount:account];
     return nil;
   }];
 }

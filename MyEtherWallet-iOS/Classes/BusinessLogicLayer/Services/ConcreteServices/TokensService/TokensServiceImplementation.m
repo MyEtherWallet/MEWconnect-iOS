@@ -34,7 +34,7 @@ static NSString *const kMEWDonateAddress = @"0xDECAF9CD2367cdbb726E904cD6397eDFc
 #endif
 
 static NSString *const TokensABI = @"[{\"constant\":true,\"inputs\":[{\"name\":\"_owner\",\"type\":\"address\"},{\"name\":\"name\",\"type\":\"bool\"},{\"name\":\"website\",\"type\":\"bool\"},{\"name\":\"email\",\"type\":\"bool\"},{\"name\":\"count\",\"type\":\"uint256\"}],\"name\":\"getAllBalance\",\"outputs\":[{\"name\":\"\",\"type\":\"bytes\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}]";
-static NSString *const MainnetTokensContractAddress = @"0xBE1ecF8e340F13071761e0EeF054d9A511e1Cb56";
+static NSString *const MainnetTokensContractAddress = @"0xdAFf2b3BdC710EB33A847CCb30A24789c0Ef9c5b";
 static NSString *const RopstenTokensContractAddress = @"0xa23707C6f68B9e5630B2310db39F1Dfa119D46A4";
 
 @implementation TokensServiceImplementation

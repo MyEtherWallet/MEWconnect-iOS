@@ -722,6 +722,12 @@
 		56E684A820A61AFC0058AA38 /* HomeStretchyHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E684A720A61AFC0058AA38 /* HomeStretchyHeader.m */; };
 		56E9D3652170ADF10004AC61 /* CardViewSeedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E9D3642170ADF10004AC61 /* CardViewSeedButton.m */; };
 		56E9D3662170ADF50004AC61 /* CardViewSeedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E9D3642170ADF10004AC61 /* CardViewSeedButton.m */; };
+		56E9D3742170C4260004AC61 /* peep_connection_success.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56E9D3712170C4250004AC61 /* peep_connection_success.caf */; };
+		56E9D3752170C4260004AC61 /* peep_connection_success.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56E9D3712170C4250004AC61 /* peep_connection_success.caf */; };
+		56E9D3762170C4260004AC61 /* peep_connection_failed.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56E9D3722170C4250004AC61 /* peep_connection_failed.caf */; };
+		56E9D3772170C4260004AC61 /* peep_connection_failed.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56E9D3722170C4250004AC61 /* peep_connection_failed.caf */; };
+		56E9D3782170C4260004AC61 /* peep_connection_started.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56E9D3732170C4260004AC61 /* peep_connection_started.caf */; };
+		56E9D3792170C4260004AC61 /* peep_connection_started.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56E9D3732170C4260004AC61 /* peep_connection_started.caf */; };
 		56F17AC420E23FF60010393C /* NSBundle+Version.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F17AC320E23FF60010393C /* NSBundle+Version.m */; };
 		56F3EF672163F95E00C40804 /* MEWconnectServiceStateMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F3EF662163F95E00C40804 /* MEWconnectServiceStateMachine.m */; };
 		56FB38EE20AF9211007776C8 /* LinkedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB38ED20AF9211007776C8 /* LinkedLabel.m */; };
@@ -1618,6 +1624,9 @@
 		56E9318D904D4BF58E4D563B /* BuyEtherNavigationRouter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BuyEtherNavigationRouter.h; sourceTree = "<group>"; };
 		56E9D3632170ADF10004AC61 /* CardViewSeedButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardViewSeedButton.h; sourceTree = "<group>"; };
 		56E9D3642170ADF10004AC61 /* CardViewSeedButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardViewSeedButton.m; sourceTree = "<group>"; };
+		56E9D3712170C4250004AC61 /* peep_connection_success.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = peep_connection_success.caf; sourceTree = "<group>"; };
+		56E9D3722170C4250004AC61 /* peep_connection_failed.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = peep_connection_failed.caf; sourceTree = "<group>"; };
+		56E9D3732170C4260004AC61 /* peep_connection_started.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = peep_connection_started.caf; sourceTree = "<group>"; };
 		56F17AC220E23FF60010393C /* NSBundle+Version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSBundle+Version.h"; sourceTree = "<group>"; };
 		56F17AC320E23FF60010393C /* NSBundle+Version.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+Version.m"; sourceTree = "<group>"; };
 		56F3EF652163F95E00C40804 /* MEWconnectServiceStateMachine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MEWconnectServiceStateMachine.h; sourceTree = "<group>"; };
@@ -5631,6 +5640,16 @@
 			path = CardViewSeedButton;
 			sourceTree = "<group>";
 		};
+		56E9D3672170BCFD0004AC61 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				56E9D3722170C4250004AC61 /* peep_connection_failed.caf */,
+				56E9D3732170C4260004AC61 /* peep_connection_started.caf */,
+				56E9D3712170C4250004AC61 /* peep_connection_success.caf */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		56F17AC020E23FDE0010393C /* NSBundle */ = {
 			isa = PBXGroup;
 			children = (
@@ -5719,6 +5738,7 @@
 		56FB390C20B19253007776C8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				56E9D3672170BCFD0004AC61 /* Sounds */,
 				56BDC2DE212F342700D7AE03 /* ApplicationIcon */,
 				560D772B20B4D3CF009A3D6D /* Localization */,
 				56FE2B7920817F1100DB39D5 /* Assets.xcassets */,
@@ -9209,6 +9229,7 @@
 				56E3E64521016DB60014152D /* Backup.storyboard in Resources */,
 				56E3E64621016DB60014152D /* BuyEther.storyboard in Resources */,
 				56E3E64721016DB60014152D /* BuyEtherHistoryEmptyTableViewCell.xib in Resources */,
+				56E9D3792170C4260004AC61 /* peep_connection_started.caf in Resources */,
 				56E3E64821016DB60014152D /* InfoEmptyTableViewCell.xib in Resources */,
 				56E3E668210175270014152D /* Assets-Beta.xcassets in Resources */,
 				56E3E64921016DB60014152D /* Localizable.stringsdict in Resources */,
@@ -9221,10 +9242,12 @@
 				56E3E64F21016DB60014152D /* InfoDestructiveTableViewCell.xib in Resources */,
 				56E3E65021016DB60014152D /* HomeEmptyTableViewCell.xib in Resources */,
 				56E3E65E21016E060014152D /* Assets.xcassets in Resources */,
+				56E9D3752170C4260004AC61 /* peep_connection_success.caf in Resources */,
 				56E3E65121016DB60014152D /* Confirmation.storyboard in Resources */,
 				56E3E65221016DB60014152D /* SplashPassword.storyboard in Resources */,
 				56E3E65321016DB60014152D /* ServicesConfig.plist in Resources */,
 				56E3E65521016DB60014152D /* BuyEtherHistoryItemTableViewCell.xib in Resources */,
+				56E9D3772170C4260004AC61 /* peep_connection_failed.caf in Resources */,
 				56E3E65621016DB60014152D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -9238,6 +9261,7 @@
 				560D773220B4F0C1009A3D6D /* Backup.storyboard in Resources */,
 				56E14BD920EA838400C41F83 /* BuyEther.storyboard in Resources */,
 				563CF30220EFAD8A005467AE /* BuyEtherHistoryEmptyTableViewCell.xib in Resources */,
+				56E9D3782170C4260004AC61 /* peep_connection_started.caf in Resources */,
 				56A29C9F20E0627200D05FF1 /* InfoEmptyTableViewCell.xib in Resources */,
 				560D772D20B4D3E0009A3D6D /* Localizable.stringsdict in Resources */,
 				56428A8320F96AE90049E8BC /* MEWconnect.API.plist in Resources */,
@@ -9250,10 +9274,12 @@
 				56BDC2E3212F342700D7AE03 /* ApplicationIcon.xcassets in Resources */,
 				56E3E6652101746F0014152D /* Assets.xcassets in Resources */,
 				56999848209517EB00D45153 /* Confirmation.storyboard in Resources */,
+				56E9D3742170C4260004AC61 /* peep_connection_success.caf in Resources */,
 				56A4EAA920B8BC440042A358 /* SplashPassword.storyboard in Resources */,
 				56307A90216EC77700282602 /* Shared.xcassets in Resources */,
 				56428A8720F96DE80049E8BC /* ServicesConfig.plist in Resources */,
 				563CF2FA20EFAD65005467AE /* BuyEtherHistoryItemTableViewCell.xib in Resources */,
+				56E9D3762170C4260004AC61 /* peep_connection_failed.caf in Resources */,
 				56FE2B7820817F1100DB39D5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

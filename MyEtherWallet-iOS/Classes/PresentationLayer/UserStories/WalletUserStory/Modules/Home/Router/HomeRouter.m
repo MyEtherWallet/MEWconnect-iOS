@@ -19,6 +19,7 @@
 #import "ConfirmationNavigationModuleInput.h"
 #import "StartModuleInput.h"
 #import "ShareModuleInput.h"
+#import "QRScannerModuleInput.h"
 
 #import "ConfirmationStoryModuleOutput.h"
 
@@ -43,7 +44,8 @@ static NSString *const kHomeToShareSegueIdentifier          = @"HomeToShareSegue
 }
 
 - (void) openScanner {
-  [[self.transitionHandler openModuleUsingSegue:kHomeToScannerSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<RamblerViperModuleInput> moduleInput) {
+  [[self.transitionHandler openModuleUsingSegue:kHomeToScannerSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<QRScannerModuleInput> moduleInput) {
+    [moduleInput configureModule];
     return nil;
   }];
 }

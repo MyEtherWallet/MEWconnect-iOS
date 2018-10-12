@@ -24,6 +24,7 @@
 #pragma mark - QRScannerModuleInput
 
 - (void) configureModule {
+  [self.interactor configure];
 }
 
 #pragma mark - QRScannerViewOutput

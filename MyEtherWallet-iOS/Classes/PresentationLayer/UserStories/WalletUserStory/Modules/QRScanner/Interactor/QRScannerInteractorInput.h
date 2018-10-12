@@ -11,6 +11,7 @@
 @class AVCaptureSession;
 
 @protocol QRScannerInteractorInput <NSObject>
+- (void) configure;
 - (void) checkAccess;
 - (AVCaptureSession *) obtainCaptureSession;
 - (void) startReading;

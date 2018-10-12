@@ -720,6 +720,8 @@
 		56E684A020A5D4E40058AA38 /* NSNumberFormatter+USD.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E6849F20A5D4E40058AA38 /* NSNumberFormatter+USD.m */; };
 		56E684A420A5F7250058AA38 /* InlineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E684A320A5F7250058AA38 /* InlineButton.m */; };
 		56E684A820A61AFC0058AA38 /* HomeStretchyHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E684A720A61AFC0058AA38 /* HomeStretchyHeader.m */; };
+		56E9D3652170ADF10004AC61 /* CardViewSeedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E9D3642170ADF10004AC61 /* CardViewSeedButton.m */; };
+		56E9D3662170ADF50004AC61 /* CardViewSeedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E9D3642170ADF10004AC61 /* CardViewSeedButton.m */; };
 		56F17AC420E23FF60010393C /* NSBundle+Version.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F17AC320E23FF60010393C /* NSBundle+Version.m */; };
 		56F3EF672163F95E00C40804 /* MEWconnectServiceStateMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F3EF662163F95E00C40804 /* MEWconnectServiceStateMachine.m */; };
 		56FB38EE20AF9211007776C8 /* LinkedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB38ED20AF9211007776C8 /* LinkedLabel.m */; };
@@ -1614,6 +1616,8 @@
 		56E684A620A61AFC0058AA38 /* HomeStretchyHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeStretchyHeader.h; sourceTree = "<group>"; };
 		56E684A720A61AFC0058AA38 /* HomeStretchyHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeStretchyHeader.m; sourceTree = "<group>"; };
 		56E9318D904D4BF58E4D563B /* BuyEtherNavigationRouter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BuyEtherNavigationRouter.h; sourceTree = "<group>"; };
+		56E9D3632170ADF10004AC61 /* CardViewSeedButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardViewSeedButton.h; sourceTree = "<group>"; };
+		56E9D3642170ADF10004AC61 /* CardViewSeedButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardViewSeedButton.m; sourceTree = "<group>"; };
 		56F17AC220E23FF60010393C /* NSBundle+Version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSBundle+Version.h"; sourceTree = "<group>"; };
 		56F17AC320E23FF60010393C /* NSBundle+Version.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+Version.m"; sourceTree = "<group>"; };
 		56F3EF652163F95E00C40804 /* MEWconnectServiceStateMachine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MEWconnectServiceStateMachine.h; sourceTree = "<group>"; };
@@ -5150,6 +5154,7 @@
 		56BFD42820A1D68000951000 /* CardView */ = {
 			isa = PBXGroup;
 			children = (
+				56E9D3622170ADE50004AC61 /* CardViewSeedButton */,
 				56BFD42920A1D68C00951000 /* CardViewBackground */,
 				56C45E9B20A35A00001261A2 /* CardView.h */,
 				56C45E9C20A35A00001261A2 /* CardView.m */,
@@ -5615,6 +5620,15 @@
 				56E684A720A61AFC0058AA38 /* HomeStretchyHeader.m */,
 			);
 			path = HomeStretchyHeader;
+			sourceTree = "<group>";
+		};
+		56E9D3622170ADE50004AC61 /* CardViewSeedButton */ = {
+			isa = PBXGroup;
+			children = (
+				56E9D3632170ADF10004AC61 /* CardViewSeedButton.h */,
+				56E9D3642170ADF10004AC61 /* CardViewSeedButton.m */,
+			);
+			path = CardViewSeedButton;
 			sourceTree = "<group>";
 		};
 		56F17AC020E23FDE0010393C /* NSBundle */ = {
@@ -9878,6 +9892,7 @@
 				56307A8C216EC63400282602 /* SharePresenter.m in Sources */,
 				56E3E5D921016DB60014152D /* SimplexOrder.m in Sources */,
 				56E3E5DA21016DB60014152D /* BuyEtherHistoryItemTableViewCell.m in Sources */,
+				56E9D3662170ADF50004AC61 /* CardViewSeedButton.m in Sources */,
 				56E3E5DB21016DB60014152D /* MessageSignerInteractor.m in Sources */,
 				56E3E5DC21016DB60014152D /* MessageSignerRouter.m in Sources */,
 				56E3E5DD21016DB60014152D /* _AccountPlainObject.m in Sources */,
@@ -10130,6 +10145,7 @@
 				560D76F020B48296009A3D6D /* PonsomizerAssembly.m in Sources */,
 				5FEF304FAB4A717221A0C324 /* HomeAssembly.m in Sources */,
 				56E14BF820EBCFAD00C41F83 /* SimplexQuoteBody.m in Sources */,
+				56E9D3652170ADF10004AC61 /* CardViewSeedButton.m in Sources */,
 				3E29FA4D9347F0A161AF1AB8 /* HomeViewController.m in Sources */,
 				563CF2EB20EFAB3D005467AE /* BuyEtherHistoryDataDisplayManager.m in Sources */,
 				56FB39F320B3586C007776C8 /* QueryTransformerBase.m in Sources */,

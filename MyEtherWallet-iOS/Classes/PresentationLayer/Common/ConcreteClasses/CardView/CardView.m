@@ -9,6 +9,7 @@
 @import TTTAttributedLabel;
 
 #import "CardView.h"
+#import "CardViewSeedButton.h"
 #import "UIImage+MEWBackground.h"
 #import "NSAttributedString+CustomEllipsis.h"
 #import "NSNumberFormatter+Ethereum.h"
@@ -35,7 +36,7 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
 @property (nonatomic, weak) UILabel *balanceLabel;
 @property (nonatomic, weak) UILabel *usdBalanceLabel;
 @property (nonatomic, weak) UILabel *ethereumTitleLabel;
-@property (nonatomic, weak) UILabel *seedLabel;
+@property (nonatomic, weak) UIButton *seedLabelButton;
 @property (nonatomic, weak) UIView *backupViewWarning;
 @property (nonatomic, weak) UIView *backupViewOk;
 @end
@@ -116,7 +117,7 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
   
   NSAttributedString *attributedSeedString = [[NSAttributedString alloc] initWithString:seed attributes:attributes];
   CGSize maxSize = CGSizeMake(0.0, CGFLOAT_MAX);
-  UIImage *shareIcon = [UIImage imageNamed:@"card_share_icon"];
+  UIImage *shareIcon = [self.seedLabelButton imageForState:UIControlStateNormal];
   maxSize.width = [self intrinsicContentSize].width;
   maxSize.width -= kCardViewDefaultOffset; //left offset
   maxSize.width -= shareIcon.size.width + 16.0; //share icon
@@ -125,7 +126,7 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
     attributedSeedString = [attributedSeedString truncatedAttributedStringWithCustomEllipsis:ellipsis maxSize:maxSize truncationPosition:6];
   }
   
-  self.seedLabel.attributedText = attributedSeedString;
+  [self.seedLabelButton setAttributedTitle:attributedSeedString forState:UIControlStateNormal];
 }
 
 /* 0.5679 ETH */
@@ -352,43 +353,21 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
     ethereumTitleLabel.attributedText = [[NSAttributedString alloc] initWithString:title attributes:attributes];
     self.ethereumTitleLabel = ethereumTitleLabel;
   }
-  { //Seed label
-    UILabel *seedLabel = [[UILabel alloc] init];
-    seedLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [self addSubview:seedLabel];
+  { //Seed label + Share
+    UIButton *seedLabelButton = [CardViewSeedButton seedButton];
+    [seedLabelButton addTarget:self action:@selector(shareAction:) forControlEvents:UIControlEventTouchUpInside];
+    seedLabelButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSubview:seedLabelButton];
     CGFloat verticalOffset = 0.0;
     if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
       verticalOffset = 2.0;
     } else {
       verticalOffset = -1.0;
     }
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:seedLabel attribute:NSLayoutAttributeLeft
-                                                     relatedBy:NSLayoutRelationEqual
-                                                        toItem:self.balanceLabel attribute:NSLayoutAttributeLeft
-                                                    multiplier:1.0 constant:0.0]];
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:seedLabel attribute:NSLayoutAttributeTop
-                                                     relatedBy:NSLayoutRelationEqual
-                                                        toItem:self.ethereumTitleLabel attribute:NSLayoutAttributeBottom
-                                                    multiplier:1.0 constant:verticalOffset]];
-    self.seedLabel = seedLabel;
-  }
-  { //Share button
-    UIButton *shareButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [shareButton addTarget:self action:@selector(shareAction:) forControlEvents:UIControlEventTouchUpInside];
-    shareButton.tintColor = [UIColor whiteColor];
-    [shareButton setImage:[UIImage imageNamed:@"card_share_icon"] forState:UIControlStateNormal];
-    [shareButton setContentEdgeInsets:UIEdgeInsetsMake(4.0, 12.0, 4.0, 4.0)];
-    shareButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [shareButton setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
-    [self addSubview:shareButton];
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:shareButton attribute:NSLayoutAttributeCenterY
-                                                     relatedBy:NSLayoutRelationEqual
-                                                        toItem:self.seedLabel attribute:NSLayoutAttributeCenterY
-                                                    multiplier:1.0 constant:0.0]];
-    NSDictionary *metrics = @{@"ROFFSET": @(kCardViewDefaultOffset)};
-    NSDictionary *views = @{@"seed": self.seedLabel,
-                            @"share": shareButton};
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[seed][share]-(ROFFSET)-|" options:NSLayoutFormatDirectionLeftToRight metrics:metrics views:views]];
+    [seedLabelButton.leftAnchor constraintEqualToAnchor:self.balanceLabel.leftAnchor].active = YES;
+    [seedLabelButton.topAnchor constraintEqualToAnchor:self.ethereumTitleLabel.bottomAnchor constant:verticalOffset].active = YES;
+    [seedLabelButton.rightAnchor constraintEqualToAnchor:seedLabelButton.superview.rightAnchor constant:kCardViewDefaultOffset].active = YES;
+    self.seedLabelButton = seedLabelButton;
   }
   { //Warning view
     UIView *backupWarningView = [self _prepareBackupWarningView];

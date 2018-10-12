@@ -209,6 +209,7 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
 
 - (void) _timeout {
   if ([self.stateMachine applyTryTurn]) {
+    [self.rtcService disconnect];
     [self _sendTryTurn];
   } else {
     [self.stateMachine applyFailed];

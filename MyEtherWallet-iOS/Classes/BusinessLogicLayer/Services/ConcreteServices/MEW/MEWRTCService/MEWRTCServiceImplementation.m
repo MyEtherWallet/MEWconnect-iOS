@@ -145,11 +145,13 @@ static NSTimeInterval MEWRTCServiceImplementationIceGatheringStateCompleteTimeou
       self.peerConnection.iceConnectionState != RTCIceConnectionStateFailed &&
       self.peerConnection.iceConnectionState != RTCIceConnectionStateConnected &&
       (forceWhileGathering || self.peerConnection.iceGatheringState == RTCIceGatheringStateComplete)) {
-        RTCSessionDescription *localDescription = self.peerConnection.localDescription;
-        NSString *answerType = [RTCSessionDescription stringForType:localDescription.type];
-        NSString *answerSDP = localDescription.sdp;
         dispatch_async(dispatch_get_main_queue(), ^{
-          [self.delegate MEWRTCService:self didGenerateAnswerWithType:answerType sdp:answerSDP];
+          RTCSessionDescription *localDescription = self.peerConnection.localDescription;
+          NSString *answerType = [RTCSessionDescription stringForType:localDescription.type];
+          NSString *answerSDP = localDescription.sdp;
+          if (answerSDP && answerType) {
+            [self.delegate MEWRTCService:self didGenerateAnswerWithType:answerType sdp:answerSDP];
+          }
         });
   }
 }

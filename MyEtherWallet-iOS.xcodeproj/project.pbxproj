@@ -227,6 +227,8 @@
 		5645258B2164C63A004D23C4 /* TokensResponseValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5645258A2164C63A004D23C4 /* TokensResponseValidator.m */; };
 		564952C120E3DEE300CF2348 /* BlockchainNetworkServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 564952C020E3DEE300CF2348 /* BlockchainNetworkServiceImplementation.m */; };
 		564952FB20E3F20D00CF2348 /* AccountsServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 564952FA20E3F20D00CF2348 /* AccountsServiceImplementation.m */; };
+		5649CC27216FF1320009D982 /* CacheTransactionSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5649CC26216FF1320009D982 /* CacheTransactionSection.m */; };
+		5649CC28217002840009D982 /* CacheTransactionSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5649CC26216FF1320009D982 /* CacheTransactionSection.m */; };
 		565FFA4F2081838F00755B6C /* TyphoonAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 565FFA4E2081838F00755B6C /* TyphoonAppDelegate.m */; };
 		5662E24D2147FEAA00A3C77E /* ContextPasswordAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA7058E611E406A1AA22703 /* ContextPasswordAssembly.m */; };
 		5662E24E2147FEAD00A3C77E /* ContextPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B6EBBF7ADB10AF3DF0DFCD /* ContextPasswordViewController.m */; };
@@ -1371,6 +1373,8 @@
 		564952F820E3F20400CF2348 /* AccountsService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountsService.h; sourceTree = "<group>"; };
 		564952F920E3F20D00CF2348 /* AccountsServiceImplementation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountsServiceImplementation.h; sourceTree = "<group>"; };
 		564952FA20E3F20D00CF2348 /* AccountsServiceImplementation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountsServiceImplementation.m; sourceTree = "<group>"; };
+		5649CC25216FF1320009D982 /* CacheTransactionSection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CacheTransactionSection.h; sourceTree = "<group>"; };
+		5649CC26216FF1320009D982 /* CacheTransactionSection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CacheTransactionSection.m; sourceTree = "<group>"; };
 		565935FC5198CFB42639DA1E /* BuyEtherHistoryViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BuyEtherHistoryViewController.m; sourceTree = "<group>"; };
 		565FFA4D2081838F00755B6C /* TyphoonAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TyphoonAppDelegate.h; sourceTree = "<group>"; };
 		565FFA4E2081838F00755B6C /* TyphoonAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TyphoonAppDelegate.m; sourceTree = "<group>"; };
@@ -3477,6 +3481,7 @@
 		560D76F120B48468009A3D6D /* FetchedResultsController */ = {
 			isa = PBXGroup;
 			children = (
+				5649CC24216FF1280009D982 /* CacheTransactionSection */,
 				560D76F520B4847E009A3D6D /* CacheTracker */,
 				560D76F420B4847A009A3D6D /* CacheRequest */,
 				560D76F320B48474009A3D6D /* CacheTransaction */,
@@ -4108,6 +4113,15 @@
 				564952FA20E3F20D00CF2348 /* AccountsServiceImplementation.m */,
 			);
 			path = AccountsService;
+			sourceTree = "<group>";
+		};
+		5649CC24216FF1280009D982 /* CacheTransactionSection */ = {
+			isa = PBXGroup;
+			children = (
+				5649CC25216FF1320009D982 /* CacheTransactionSection.h */,
+				5649CC26216FF1320009D982 /* CacheTransactionSection.m */,
+			);
+			path = CacheTransactionSection;
 			sourceTree = "<group>";
 		};
 		565FFA492081836800755B6C /* ApplicationLayer */ = {
@@ -9909,6 +9923,7 @@
 				56E3E60521016DB60014152D /* BackupConfirmationInteractor.m in Sources */,
 				56E3E60621016DB60014152D /* BackupConfirmationRouter.m in Sources */,
 				56E3E60721016DB60014152D /* BackupDoneAssembly.m in Sources */,
+				5649CC28217002840009D982 /* CacheTransactionSection.m in Sources */,
 				56E3E60821016DB60014152D /* BackupConfirmationQuiz.m in Sources */,
 				56E3E60921016DB60014152D /* BackupDoneViewController.m in Sources */,
 				56E3E60A21016DB60014152D /* UIScreen+ScreenScaleType.m in Sources */,
@@ -10139,6 +10154,7 @@
 				56FB3A1A20B391B4007776C8 /* TokensBody.m in Sources */,
 				560CB009209B453600BFF59C /* NSString+RCFCapitalization.m in Sources */,
 				56E14BE720EBCE8A00C41F83 /* SimplexQueryTransformer.m in Sources */,
+				5649CC27216FF1320009D982 /* CacheTransactionSection.m in Sources */,
 				563CF2D720EFAAD6005467AE /* AccountPlainObject.m in Sources */,
 				56FB39FF20B35B33007776C8 /* OperationFactoriesAssembly.m in Sources */,
 				5645258B2164C63A004D23C4 /* TokensResponseValidator.m in Sources */,

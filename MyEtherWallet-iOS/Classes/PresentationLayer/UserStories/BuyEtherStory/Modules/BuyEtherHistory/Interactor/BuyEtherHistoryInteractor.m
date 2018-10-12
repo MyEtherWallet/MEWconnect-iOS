@@ -37,7 +37,8 @@
   CacheRequest *request = [CacheRequest requestWithPredicate:predicate
                                              sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(date)) ascending:NO]]
                                                  objectClass:[PurchaseHistoryModelObject class]
-                                                 filterValue:nil];
+                                                 filterValue:nil
+                                          ignoringProperties:@[NSStringFromSelector(@selector(fromAccount))]];
   [self.cacheTracker setupWithCacheRequest:request];
   CacheTransactionBatch *initialBatch = [self.cacheTracker obtainTransactionBatchFromCurrentCache];
   [self.output didProcessCacheTransactionBatch:initialBatch];

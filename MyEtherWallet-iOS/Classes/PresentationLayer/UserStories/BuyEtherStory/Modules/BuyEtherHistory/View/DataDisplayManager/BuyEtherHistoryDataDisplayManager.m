@@ -44,44 +44,29 @@
     }
   }
   
+  for (CacheTransaction *transaction in transactionBatch.deleteTransactions) {
+    NSIndexPath *removeIndexPath = [NSIndexPath indexPathForRow:transaction.oldIndexPath.row inSection:0];
+    [self.tableViewModel removeObjectAtIndexPath:removeIndexPath];
+  }
+  
   for (CacheTransaction *transaction in transactionBatch.insertTransactions) {
     BuyEtherHistoryItemTableViewCellObject *cellObject = [self.cellObjectBuilder buildCellObjectForHistoryItem:transaction.object];
-    
     NSUInteger updatedRow = transaction.updatedIndexPath.row;
-    [self.tableViewModel insertObject:cellObject
-                                atRow:updatedRow
-                            inSection:0];
-  }
-  
-  for (CacheTransaction *transaction in transactionBatch.updateTransactions) {
-    BuyEtherHistoryItemTableViewCellObject *cellObject = [self.cellObjectBuilder buildCellObjectForHistoryItem:transaction.object];
-    NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:transaction.oldIndexPath.row
-                                                   inSection:0];
-    [self.tableViewModel removeObjectAtIndexPath:oldIndexPath];
-    [self.tableViewModel insertObject:cellObject
-                                atRow:transaction.updatedIndexPath.row
-                            inSection:0];
-  }
-  
-  NSMutableArray *removeIndexPaths = [NSMutableArray array];
-  for (CacheTransaction *transaction in transactionBatch.deleteTransactions) {
-    NSIndexPath *removeIndexPath = [NSIndexPath indexPathForRow:transaction.oldIndexPath.row
-                                                      inSection:0];
-    [removeIndexPaths addObject:removeIndexPath];
-  }
-  for (NSInteger i = [removeIndexPaths count] - 1; i >= 0; --i) {
-    NSIndexPath *indexPath = removeIndexPaths[i];
-    [self.tableViewModel removeObjectAtIndexPath:indexPath];
+    [self.tableViewModel insertObject:cellObject atRow:updatedRow inSection:0];
   }
   
   for (CacheTransaction *transaction in transactionBatch.moveTransactions) {
     BuyEtherHistoryItemTableViewCellObject *cellObject = [self.cellObjectBuilder buildCellObjectForHistoryItem:transaction.object];
-    NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:transaction.oldIndexPath.row
-                                                   inSection:0];
+    NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:transaction.oldIndexPath.row inSection:0];
     [self.tableViewModel removeObjectAtIndexPath:oldIndexPath];
-    [self.tableViewModel insertObject:cellObject
-                                atRow:transaction.updatedIndexPath.row
-                            inSection:0];
+    [self.tableViewModel insertObject:cellObject atRow:transaction.updatedIndexPath.row inSection:0];
+  }
+  
+  for (CacheTransaction *transaction in transactionBatch.updateTransactions) {
+    BuyEtherHistoryItemTableViewCellObject *cellObject = [self.cellObjectBuilder buildCellObjectForHistoryItem:transaction.object];
+    NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:transaction.oldIndexPath.row inSection:0];
+    [self.tableViewModel removeObjectAtIndexPath:oldIndexPath];
+    [self.tableViewModel insertObject:cellObject atRow:transaction.updatedIndexPath.row inSection:0];
   }
   
   [self.animator updateWithTransactionBatch:transactionBatch];

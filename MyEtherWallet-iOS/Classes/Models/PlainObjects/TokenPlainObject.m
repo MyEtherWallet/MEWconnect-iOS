@@ -30,4 +30,19 @@
   return _amountString;
 }
 
+- (BOOL) isEqualToToken:(TokenPlainObject *)token {
+  return [self.symbol isEqualToString:token.symbol];
+}
+
+- (BOOL) isEqual:(id)object {
+  if ([object isKindOfClass:[TokenPlainObject class]]) {
+    return [self isEqualToToken:(TokenPlainObject *)object];
+  }
+  return [super isEqual:object];
+}
+
+- (NSUInteger) hash {
+  return [self.symbol hash];
+}
+
 @end

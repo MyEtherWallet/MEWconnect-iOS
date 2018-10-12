@@ -139,10 +139,10 @@ static NSTimeInterval kHomeInteractorDefaultRefreshBalancesTime = 900.0;
 
 - (void) searchTokensWithTerm:(NSString *)term {
   if ([term length] > 0) {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(SELF.name contains[cd] %@ || SELF.symbol contains[cd] %@) && SELF.address != nil", term, term];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(SELF.name contains[cd] %@ || SELF.symbol contains[cd] %@) && SELF.address != nil && SELF.fromAccount.publicAddress == %@", term, term, self.account.publicAddress];
     [self.cacheTracker filterResultsWithPredicate:predicate];
   } else {
-    [self.cacheTracker filterResultsWithPredicate:[NSPredicate predicateWithFormat:@"SELF.address != nil"]];
+    [self.cacheTracker filterResultsWithPredicate:[NSPredicate predicateWithFormat:@"SELF.address != nil && SELF.fromAccount.publicAddress == %@", self.account.publicAddress]];
   }
   CacheTransactionBatch *searchBatch = [self.cacheTracker obtainTransactionBatchFromCurrentCache];
   [self.output didProcessCacheTransaction:searchBatch];
@@ -249,7 +249,8 @@ static NSTimeInterval kHomeInteractorDefaultRefreshBalancesTime = 900.0;
   CacheRequest *request = [CacheRequest requestWithPredicate:[NSPredicate predicateWithFormat:@"SELF.fromAccount.publicAddress == %@", self.account.publicAddress]
                                              sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(name)) ascending:YES]]
                                                  objectClass:[TokenModelObject class]
-                                                 filterValue:nil];
+                                                 filterValue:nil
+                                          ignoringProperties:@[NSStringFromSelector(@selector(fromAccount))]];
   [self.cacheTracker setupWithCacheRequest:request];
   CacheTransactionBatch *initialBatch = [self.cacheTracker obtainTransactionBatchFromCurrentCache];
   [self.output didProcessCacheTransaction:initialBatch];

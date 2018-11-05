@@ -7,9 +7,11 @@
 //
 
 import Foundation
-import web3swift
+import Web3swift
 import BigInt
-import Result
+import secp256k1_swift
+import EthereumAddress
+import EthereumABI
 
 private struct SignedMessageConstants {
   struct Fields {
@@ -268,15 +270,15 @@ class Web3Wrapper: NSObject {
   }
   
   static func contractRequest(forAddress address: String, contractAddresses: [String], abi: String, method: String, options: [AnyObject] = [], transactionFields:[String]) -> Data? {
-    guard let contract = ContractV2.init(abi) else { return nil }
-    
+    guard let contract = EthereumContract.init(abi) else { return nil }
+
     var methodParameters = [address] as [AnyObject]
     methodParameters += options
-    
+
     var options = Web3Options.defaultOptions()
     guard let fromAddress = EthereumAddress(address) else { return nil }
     options.from = fromAddress
-    
+
     var requests:[JSONRPCrequest] = []
 
     if contractAddresses.count > 1 {
@@ -303,28 +305,31 @@ class Web3Wrapper: NSObject {
       return jsonData
     }
   }
-  
+
   static func erc20TokensTransaction(forAddress address: String, contractAddresses: [String]) -> Data? {
     let abi = Web3.Utils.erc20ABI
     let fields = TransactionParametersField.allValues.map { $0.rawValue }
     return contractRequest(forAddress: address, contractAddresses: contractAddresses, abi: abi, method: "balanceOf", transactionFields: fields)
   }
-  
+
   func bip39Words() -> [String] {
     return BIP39Language.english.words
   }
-  
+
   func recoveryMnemonicsWords(password: String, account: AccountPlainObject) -> [String]? {
     guard let encryptedEntropy = self.keychainService?.obtainEntropy(ofAccount: account) else { return nil }
     guard let entropy = self.MEWcrypto?.decryptData(encryptedEntropy, withPassword: password) else { return nil }
     guard let mnemonics = BIP39.generateMnemonicsFromEntropy(entropy: entropy) else { return nil }
     return mnemonics.components(separatedBy: " ")
   }
-  
+
   //MARK: - Private
-  
-  private static func request(from: EthereumAddress, contract: ContractV2, contractAddress: EthereumAddress, method: String, parameters: [AnyObject], options: Web3Options, transactionFields:[String]) -> JSONRPCrequest? {
-    guard let transaction = contract.method(method, parameters: parameters, options: options) else { return nil }
+
+  private static func request(from: EthereumAddress, contract: EthereumContract, contractAddress: EthereumAddress, method: String, parameters: [AnyObject], options: Web3Options, transactionFields:[String]) -> JSONRPCrequest? {
+    guard var transaction = contract.method(method, parameters: parameters) else { return nil }
+    if let toAddress = options.to {
+      transaction.to = toAddress
+    }
     guard var txParams = transaction.encodeAsDictionary(from: from) else { return nil }
     for (name, _) in Mirror(reflecting: txParams).children {
       guard let name = name else { continue }

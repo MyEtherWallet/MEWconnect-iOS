@@ -6,7 +6,7 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
-@import secp256k1_ios;
+@import secp256k1_swift;
 
 #import "NSData+SECP256K1.h"
 

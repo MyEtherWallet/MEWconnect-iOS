@@ -20,17 +20,23 @@
 #import "StartModuleInput.h"
 #import "ShareModuleInput.h"
 #import "QRScannerModuleInput.h"
+#import "ContextPasswordModuleInput.h"
+#import "RestoreSeedModuleInput.h"
 
 #import "ConfirmationStoryModuleOutput.h"
+#import "ContextPasswordModuleOutput.h"
+#import "RestoreSeedModuleOutput.h"
 
-static NSString *const kHomeToScannerSegueIdentifier        = @"HomeToScannerSegueIdentifier";
-static NSString *const kHomeToMessageSignerSegueIdentifier  = @"HomeToMessageSignerSegueIdentifier";
-static NSString *const kHomeToTransactionSegueIdentifier    = @"HomeToTransactionSegueIdentifier";
-static NSString *const kHomeToBackupInfoSegueIdentifier     = @"HomeToBackupInfoSegueIdentifier";
-static NSString *const kHomeToInfoSegueIdentifier           = @"HomeToInfoSegueIdentifier";
-static NSString *const kHomeToBuyEtherSegueIdentifier       = @"HomeToBuyEtherSegueIdentifier";
-static NSString *const kHomeToStartUnwindSegueIdentifier    = @"HomeToStartUnwindSegueIdentifier";
-static NSString *const kHomeToShareSegueIdentifier          = @"HomeToShareSegueIdentifier";
+static NSString *const kHomeToScannerSegueIdentifier          = @"HomeToScannerSegueIdentifier";
+static NSString *const kHomeToMessageSignerSegueIdentifier    = @"HomeToMessageSignerSegueIdentifier";
+static NSString *const kHomeToTransactionSegueIdentifier      = @"HomeToTransactionSegueIdentifier";
+static NSString *const kHomeToBackupInfoSegueIdentifier       = @"HomeToBackupInfoSegueIdentifier";
+static NSString *const kHomeToInfoSegueIdentifier             = @"HomeToInfoSegueIdentifier";
+static NSString *const kHomeToBuyEtherSegueIdentifier         = @"HomeToBuyEtherSegueIdentifier";
+static NSString *const kHomeToStartUnwindSegueIdentifier      = @"HomeToStartUnwindSegueIdentifier";
+static NSString *const kHomeToShareSegueIdentifier            = @"HomeToShareSegueIdentifier";
+static NSString *const kHomeToContextPasswordSegueIdentifier  = @"HomeToContextPasswordSegueIdentifier";
+static NSString *const kHomeToRestoreSeedSegueIdentifier      = @"HomeToRestoreSeedSegueIdentifier";
 
 @implementation HomeRouter
 
@@ -50,14 +56,28 @@ static NSString *const kHomeToShareSegueIdentifier          = @"HomeToShareSegue
   }];
 }
 
-- (void) openShareWithAccount:(AccountPlainObject *)account {
+- (void) openShareWithMasterToken:(MasterTokenPlainObject *)masterToken {
   [[self.transitionHandler openModuleUsingSegue:kHomeToShareSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<ShareModuleInput> moduleInput) {
-    [moduleInput configureModuleWithAccount:account];
+    [moduleInput configureModuleWithMasterToken:masterToken];
     return nil;
   }];
 }
 
-- (id<ConfirmationNavigationModuleInput>)openMessageSignerWithMessage:(MEWConnectCommand *)command account:(AccountPlainObject *)account confirmationDelegate:(id<ConfirmationStoryModuleOutput>)confirmationDelegate {
+- (void)openContextPasswordWithOutput:(id<ContextPasswordModuleOutput>)output account:(AccountPlainObject *)account {
+  [[self.transitionHandler openModuleUsingSegue:kHomeToContextPasswordSegueIdentifier] thenChainUsingBlock:^id<ContextPasswordModuleOutput>(id<ContextPasswordModuleInput> moduleInput) {
+    [moduleInput configureModuleWithAccount:account type:ContextPasswordTypeBackup];
+    return output;
+  }];
+}
+
+- (void) openRestoreSeedWithAccount:(AccountPlainObject *)account password:(NSString *)password moduleOutput:(id <RestoreSeedModuleOutput>)output {
+  [[self.transitionHandler openModuleUsingSegue:kHomeToRestoreSeedSegueIdentifier] thenChainUsingBlock:^id<RestoreSeedModuleOutput>(id<RestoreSeedModuleInput> moduleInput) {
+    [moduleInput configureModuleWithAccount:account password:password];
+    return output;
+  }];
+}
+
+- (id<ConfirmationNavigationModuleInput>)openMessageSignerWithMessage:(MEWConnectCommand *)command masterToken:(MasterTokenPlainObject *)masterToken confirmationDelegate:(id<ConfirmationStoryModuleOutput>)confirmationDelegate {
   id <RamblerViperModuleInput> originalModuleInput = nil;
   RamblerViperOpenModulePromise *promise = [self promiseWithFactory:self.messageSignerFactory
                                                 withTransitionBlock:^(id<RamblerViperModuleTransitionHandlerProtocol> sourceModuleTransitionHandler, id<RamblerViperModuleTransitionHandlerProtocol> destinationModuleTransitionHandler) {
@@ -68,7 +88,7 @@ static NSString *const kHomeToShareSegueIdentifier          = @"HomeToShareSegue
                                                   [fromNavigationController.visibleViewController presentViewController:toViewController animated:YES completion:nil];
                                                 } originalModuleInput:&originalModuleInput];
   [promise thenChainUsingBlock:^id<ConfirmationStoryModuleOutput>(id<MessageSignerModuleInput> moduleInput) {
-    [moduleInput configureModuleWithMessage:command account:account];
+    [moduleInput configureModuleWithMessage:command masterToken:masterToken];
     return confirmationDelegate;
   }];
   if ([originalModuleInput conformsToProtocol:@protocol(ConfirmationNavigationModuleInput)]) {
@@ -77,7 +97,7 @@ static NSString *const kHomeToShareSegueIdentifier          = @"HomeToShareSegue
   return nil;
 }
 
-- (id <ConfirmationNavigationModuleInput>) openTransactionSignerWithMessage:(MEWConnectCommand *)command account:(AccountPlainObject *)account confirmationDelegate:(id<ConfirmationStoryModuleOutput>)confirmationDelegate {
+- (id <ConfirmationNavigationModuleInput>) openTransactionSignerWithMessage:(MEWConnectCommand *)command masterToken:(MasterTokenPlainObject *)masterToken confirmationDelegate:(id<ConfirmationStoryModuleOutput>)confirmationDelegate {
   id <RamblerViperModuleInput> originalModuleInput = nil;
   RamblerViperOpenModulePromise *promise = [self promiseWithFactory:self.transactionFactory
                                                 withTransitionBlock:^(id<RamblerViperModuleTransitionHandlerProtocol> sourceModuleTransitionHandler, id<RamblerViperModuleTransitionHandlerProtocol> destinationModuleTransitionHandler) {
@@ -88,7 +108,7 @@ static NSString *const kHomeToShareSegueIdentifier          = @"HomeToShareSegue
                                                   [fromNavigationController.visibleViewController presentViewController:toViewController animated:YES completion:nil];
                                                 } originalModuleInput:&originalModuleInput];
   [promise thenChainUsingBlock:^id<ConfirmationStoryModuleOutput>(id<TransactionModuleInput> moduleInput) {
-    [moduleInput configureModuleWithMessage:command account:account];
+    [moduleInput configureModuleWithMessage:command masterToken:masterToken];
     return confirmationDelegate;
   }];
   if ([originalModuleInput conformsToProtocol:@protocol(ConfirmationNavigationModuleInput)]) {
@@ -104,16 +124,16 @@ static NSString *const kHomeToShareSegueIdentifier          = @"HomeToShareSegue
   }];
 }
 
-- (void) openInfoWithAccount:(AccountPlainObject *)account {
+- (void) openInfo {
   [[self.transitionHandler openModuleUsingSegue:kHomeToInfoSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<InfoModuleInput> moduleInput) {
-    [moduleInput configureModuleWithAccount:account];
+    [moduleInput configureModule];
     return nil;
   }];
 }
 
-- (void) openBuyEtherWithAccount:(AccountPlainObject *)account {
+- (void) openBuyEtherWithMasterToken:(MasterTokenPlainObject *)masterToken {
   [[self.transitionHandler openModuleUsingSegue:kHomeToBuyEtherSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<BuyEtherAmountModuleInput> moduleInput) {
-    [moduleInput configureModuleWithAccount:account];
+    [moduleInput configureModuleWithMasterToken:masterToken];
     return nil;
   }];
 }

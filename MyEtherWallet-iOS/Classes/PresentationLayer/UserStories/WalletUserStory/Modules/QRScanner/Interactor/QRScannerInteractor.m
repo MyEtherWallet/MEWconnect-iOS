@@ -93,7 +93,7 @@ static NSString *const kQRScannerInteractorConnectionSoundExtension   = @"caf";
 
 #pragma mark - Notifications
 
-- (void) MEWConnectDidConnect:(NSNotification *)notification {
+- (void) MEWConnectDidConnect:(__unused NSNotification *)notification {
   [self _playSound:self.connectionSuccessSoundID];
   [self.output mewConnectDidConnected];
   [self.cameraService stopReading];
@@ -102,7 +102,7 @@ static NSString *const kQRScannerInteractorConnectionSoundExtension   = @"caf";
   [[NSRunLoop mainRunLoop] addTimer:_closeTimer forMode:NSRunLoopCommonModes];
 }
 
-- (void) MEWConnectDidDisconnect:(NSNotification *)notification {
+- (void) MEWConnectDidDisconnect:(__unused NSNotification *)notification {
   [self _playSound:self.connectionFailedSoundID];
   [self.output mewConnectDidFail];
   [self.cameraService startReading];
@@ -110,7 +110,7 @@ static NSString *const kQRScannerInteractorConnectionSoundExtension   = @"caf";
 
 #pragma mark - Private
 
-- (void) _autoclose:(NSTimer *)timer {
+- (void) _autoclose:(__unused NSTimer *)timer {
   [self disconnectIfNeeded];
   [self cancelAutocloseIfNeeded];
   [self.output closeScanner];
@@ -161,11 +161,11 @@ static NSString *const kQRScannerInteractorConnectionSoundExtension   = @"caf";
 
 #pragma mark - CameraServiceDelegate
 
-- (void)cameraServiceDidStartReading:(id<CameraService>)cameraService {
+- (void)cameraServiceDidStartReading:(__unused id<CameraService>)cameraService {
   [self.output readingStarted];
 }
 
-- (void)cameraServiceDidStopReading:(id<CameraService>)cameraService {
+- (void)cameraServiceDidStopReading:(__unused id<CameraService>)cameraService {
   
 }
 

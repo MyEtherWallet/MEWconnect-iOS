@@ -22,7 +22,7 @@
   return YES;
 }
 
-+ (CGFloat)heightForObject:(id)object atIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView {
++ (CGFloat)heightForObject:(__unused id)object atIndexPath:(__unused NSIndexPath *)indexPath tableView:(UITableView *)tableView {
   if (@available(iOS 11.0, *)) {
     return CGRectGetHeight(tableView.frame) - tableView.adjustedContentInset.top;
   } else {

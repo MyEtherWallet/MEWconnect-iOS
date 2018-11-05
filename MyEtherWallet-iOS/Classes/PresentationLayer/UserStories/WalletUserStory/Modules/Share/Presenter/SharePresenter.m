@@ -25,8 +25,8 @@ static NSTimeInterval const kSharePresenterBrightnessAnimationDuration      = 0.
 
 #pragma mark - ShareModuleInput
 
-- (void) configureModuleWithAccount:(AccountPlainObject *)account {
-  [self.interactor configureWithAccount:account];
+- (void) configureModuleWithMasterToken:(MasterTokenPlainObject *)masterToken {
+  [self.interactor configureWithMasterToken:masterToken];
 }
 
 - (void)didTriggerViewWillAppearEvent {
@@ -67,7 +67,7 @@ static NSTimeInterval const kSharePresenterBrightnessAnimationDuration      = 0.
 
 #pragma mark - Private
 
-- (void) _applicationDidBecomeActive:(NSNotification *)notification {
+- (void) _applicationDidBecomeActive:(__unused NSNotification *)notification {
   if (!_willEnterForeground && !_willDisappear) {
     _originalBrightness = [[UIScreen mainScreen] animateBrightnessTo:1.0 withDuration:kSharePresenterBrightnessAnimationDuration];
   } else {
@@ -75,12 +75,12 @@ static NSTimeInterval const kSharePresenterBrightnessAnimationDuration      = 0.
   }
 }
 
-- (void) _applicationWillEnterForeground:(NSNotification *)notification {
+- (void) _applicationWillEnterForeground:(__unused NSNotification *)notification {
   _willEnterForeground = YES;
   _originalBrightness = [[UIScreen mainScreen] animateBrightnessTo:1.0 withDuration:kSharePresenterBrightnessAnimationDuration];
 }
 
-- (void) _applicationWillResignActive:(NSNotification *)notification {
+- (void) _applicationWillResignActive:(__unused NSNotification *)notification {
   [[UIScreen mainScreen] animateBrightnessTo:_originalBrightness withDuration:kSharePresenterBrightnessFastAnimationDuration];
 }
 

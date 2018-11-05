@@ -11,8 +11,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class AccountModelObject;
+@class NetworkModelObject;
 @class FiatPriceModelObject;
+@class PurchaseHistoryModelObject;
 
 @interface TokenModelObjectID : NSManagedObjectID {}
 @end
@@ -37,9 +38,27 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, nullable) NSString* symbol;
 
-@property (nonatomic, strong, nullable) AccountModelObject *fromAccount;
+@property (nonatomic, strong, nullable) NetworkModelObject *fromNetwork;
 
 @property (nonatomic, strong, nullable) FiatPriceModelObject *price;
+
+@property (nonatomic, strong, nullable) NSOrderedSet<PurchaseHistoryModelObject*> *purchaseHistory;
+- (nullable NSMutableOrderedSet<PurchaseHistoryModelObject*>*)purchaseHistorySet;
+
+@end
+
+@interface _TokenModelObject (PurchaseHistoryCoreDataGeneratedAccessors)
+- (void)addPurchaseHistory:(NSOrderedSet<PurchaseHistoryModelObject*>*)value_;
+- (void)removePurchaseHistory:(NSOrderedSet<PurchaseHistoryModelObject*>*)value_;
+- (void)addPurchaseHistoryObject:(PurchaseHistoryModelObject*)value_;
+- (void)removePurchaseHistoryObject:(PurchaseHistoryModelObject*)value_;
+
+- (void)insertObject:(PurchaseHistoryModelObject*)value inPurchaseHistoryAtIndex:(NSUInteger)idx;
+- (void)removeObjectFromPurchaseHistoryAtIndex:(NSUInteger)idx;
+- (void)insertPurchaseHistory:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
+- (void)removePurchaseHistoryAtIndexes:(NSIndexSet *)indexes;
+- (void)replaceObjectInPurchaseHistoryAtIndex:(NSUInteger)idx withObject:(PurchaseHistoryModelObject*)value;
+- (void)replacePurchaseHistoryAtIndexes:(NSIndexSet *)indexes withPurchaseHistory:(NSArray *)values;
 
 @end
 
@@ -63,11 +82,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSString*)primitiveSymbol;
 - (void)setPrimitiveSymbol:(nullable NSString*)value;
 
-- (AccountModelObject*)primitiveFromAccount;
-- (void)setPrimitiveFromAccount:(AccountModelObject*)value;
+- (NetworkModelObject*)primitiveFromNetwork;
+- (void)setPrimitiveFromNetwork:(NetworkModelObject*)value;
 
 - (FiatPriceModelObject*)primitivePrice;
 - (void)setPrimitivePrice:(FiatPriceModelObject*)value;
+
+- (NSMutableOrderedSet<PurchaseHistoryModelObject*>*)primitivePurchaseHistory;
+- (void)setPrimitivePurchaseHistory:(NSMutableOrderedSet<PurchaseHistoryModelObject*>*)value;
 
 @end
 
@@ -80,8 +102,9 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface TokenModelObjectRelationships: NSObject
-+ (NSString *)fromAccount;
++ (NSString *)fromNetwork;
 + (NSString *)price;
++ (NSString *)purchaseHistory;
 @end
 
 NS_ASSUME_NONNULL_END

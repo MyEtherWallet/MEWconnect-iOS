@@ -37,7 +37,7 @@
   [self.interactor tryRestore];
 }
 
-- (void)textDidChangedAction:(NSString *)text {
+- (void) textDidChangedAction:(NSString *)text {
   [self.interactor checkMnemonics:text];
 }
 

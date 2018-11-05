@@ -15,6 +15,7 @@ typedef NS_ENUM(short, ContextPasswordType) {
   ContextPasswordTypeBackup       = 0,
   ContextPasswordTypeTransaction  = 1,
   ContextPasswordTypeMessage      = 2,
+  ContextPasswordTypeGenerate     = 3,
 };
 
 @protocol ContextPasswordModuleInput <RamblerViperModuleInput>

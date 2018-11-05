@@ -18,7 +18,7 @@
 
 #import "MEWConnectTransaction.h"
 #import "NetworkPlainObject.h"
-#import "AccountPlainObject.h"
+#import "MasterTokenPlainObject.h"
 #import "FiatPricePlainObject.h"
 
 #import "NSNumberFormatter+Ethereum.h"
@@ -85,13 +85,13 @@
   }
 }
 
-- (void) updateWithTransaction:(MEWConnectTransaction *)transaction forAccount:(AccountPlainObject *)account {
-  NSNumberFormatter *formatter = [NSNumberFormatter ethereumFormatterWithNetwork:[account.fromNetwork network]];
+- (void) updateWithTransaction:(MEWConnectTransaction *)transaction forMasterToken:(MasterTokenPlainObject *)masterToken {
+  NSNumberFormatter *formatter = [NSNumberFormatter ethereumFormatterWithNetwork:[masterToken.fromNetwork network]];
   NSDecimalNumber *ethAmount = [transaction decimalValue];
   NSString *amount = [formatter stringFromNumber:ethAmount];
   
   NSString *usdAmount = nil;
-  NSDecimalNumber *usdPrice = account.price.usdPrice;
+  NSDecimalNumber *usdPrice = masterToken.price.usdPrice;
   if (usdPrice) {
     NSNumberFormatter *usdFormatter = [NSNumberFormatter usdFormatter];
     NSDecimalNumber *usd = [ethAmount decimalNumberByMultiplyingBy:usdPrice];
@@ -120,11 +120,11 @@
 
 #pragma mark - IBActions
 
-- (IBAction) confirmAction:(id)sender {
+- (IBAction) confirmAction:(__unused id)sender {
   [self.output signAction];
 }
 
-- (IBAction) declineAction:(id)sender {
+- (IBAction) declineAction:(__unused id)sender {
   [self.output declineAction];
 }
 

@@ -14,7 +14,6 @@
 @protocol KeychainService;
 
 @interface AccountsServiceImplementation : NSObject <AccountsService>
-@property (nonatomic, strong) AccountsOperationFactory *accountsOperationFactory;
 @property (nonatomic, strong) id <OperationScheduler> operationScheduler;
 @property (nonatomic, strong) id <MEWwallet> MEWwallet;
 @property (nonatomic, strong) id <KeychainService> keychainService;

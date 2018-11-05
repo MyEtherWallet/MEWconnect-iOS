@@ -83,77 +83,21 @@
 	[self setPrimitiveChainID:@(value_)];
 }
 
-@dynamic accounts;
+@dynamic fromAccount;
 
-- (NSMutableOrderedSet<AccountModelObject*>*)accountsSet {
-	[self willAccessValueForKey:@"accounts"];
+@dynamic master;
 
-	NSMutableOrderedSet<AccountModelObject*> *result = (NSMutableOrderedSet<AccountModelObject*>*)[self mutableOrderedSetValueForKey:@"accounts"];
+@dynamic tokens;
 
-	[self didAccessValueForKey:@"accounts"];
+- (NSMutableSet<TokenModelObject*>*)tokensSet {
+	[self willAccessValueForKey:@"tokens"];
+
+	NSMutableSet<TokenModelObject*> *result = (NSMutableSet<TokenModelObject*>*)[self mutableSetValueForKey:@"tokens"];
+
+	[self didAccessValueForKey:@"tokens"];
 	return result;
 }
 
-@end
-
-@implementation _NetworkModelObject (AccountsCoreDataGeneratedAccessors)
-- (void)addAccounts:(NSOrderedSet<AccountModelObject*>*)value_ {
-	[self.accountsSet unionOrderedSet:value_];
-}
-- (void)removeAccounts:(NSOrderedSet<AccountModelObject*>*)value_ {
-	[self.accountsSet minusOrderedSet:value_];
-}
-- (void)addAccountsObject:(AccountModelObject*)value_ {
-	[self.accountsSet addObject:value_];
-}
-- (void)removeAccountsObject:(AccountModelObject*)value_ {
-	[self.accountsSet removeObject:value_];
-}
-- (void)insertObject:(AccountModelObject*)value inAccountsAtIndex:(NSUInteger)idx {
-    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
-    [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"accounts"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self accounts] ?: [NSOrderedSet orderedSet]];
-    [tmpOrderedSet insertObject:value atIndex:idx];
-    [self setPrimitiveValue:tmpOrderedSet forKey:@"accounts"];
-    [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"accounts"];
-}
-- (void)removeObjectFromAccountsAtIndex:(NSUInteger)idx {
-    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
-    [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"accounts"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self accounts] ?: [NSOrderedSet orderedSet]];
-    [tmpOrderedSet removeObjectAtIndex:idx];
-    [self setPrimitiveValue:tmpOrderedSet forKey:@"accounts"];
-    [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"accounts"];
-}
-- (void)insertAccounts:(NSArray *)value atIndexes:(NSIndexSet *)indexes {
-    [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"accounts"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self accounts] ?: [NSOrderedSet orderedSet]];
-    [tmpOrderedSet insertObjects:value atIndexes:indexes];
-    [self setPrimitiveValue:tmpOrderedSet forKey:@"accounts"];
-    [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"accounts"];
-}
-- (void)removeAccountsAtIndexes:(NSIndexSet *)indexes {
-    [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"accounts"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self accounts] ?: [NSOrderedSet orderedSet]];
-    [tmpOrderedSet removeObjectsAtIndexes:indexes];
-    [self setPrimitiveValue:tmpOrderedSet forKey:@"accounts"];
-    [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"accounts"];
-}
-- (void)replaceObjectInAccountsAtIndex:(NSUInteger)idx withObject:(AccountModelObject*)value {
-    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
-    [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"accounts"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self accounts] ?: [NSOrderedSet orderedSet]];
-    [tmpOrderedSet replaceObjectAtIndex:idx withObject:value];
-    [self setPrimitiveValue:tmpOrderedSet forKey:@"accounts"];
-    [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"accounts"];
-}
-- (void)replaceAccountsAtIndexes:(NSIndexSet *)indexes withAccounts:(NSArray *)value {
-    [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"accounts"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self accounts] ?: [NSOrderedSet orderedSet]];
-    [tmpOrderedSet replaceObjectsAtIndexes:indexes withObjects:value];
-    [self setPrimitiveValue:tmpOrderedSet forKey:@"accounts"];
-    [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"accounts"];
-}
 @end
 
 @implementation NetworkModelObjectAttributes 
@@ -166,8 +110,14 @@
 @end
 
 @implementation NetworkModelObjectRelationships 
-+ (NSString *)accounts {
-	return @"accounts";
++ (NSString *)fromAccount {
+	return @"fromAccount";
+}
++ (NSString *)master {
+	return @"master";
+}
++ (NSString *)tokens {
+	return @"tokens";
 }
 @end
 

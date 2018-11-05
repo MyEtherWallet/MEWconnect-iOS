@@ -49,9 +49,7 @@ static NSInteger const kSplashPasswordLogoImageViewTag          = 1;
 - (void)openInitialScreen {
   AccountModelObject *accountModelObject = [self.accountsService obtainActiveAccount];
   
-  NSArray *ignoringProperties = @[NSStringFromSelector(@selector(tokens)),
-                                  NSStringFromSelector(@selector(active)),
-                                  NSStringFromSelector(@selector(accounts))];
+  NSArray *ignoringProperties = @[NSStringFromSelector(@selector(networks))];
   AccountPlainObject *account = [self.ponsomizer convertObject:accountModelObject ignoringProperties:ignoringProperties];
   UINavigationController *navigationController = nil;
   if (accountModelObject) {
@@ -143,12 +141,12 @@ static NSInteger const kSplashPasswordLogoImageViewTag          = 1;
                                                                 widthConstraint.constant = 16.0 * logoImageView.image.size.width;
                                                                 [launchViewController.view layoutIfNeeded];
                                                               }];
-                              } completion:^(BOOL finished) {
+                              } completion:^(__unused BOOL finished) {
                                 
                               }];
     
   }];
-  [animator addCompletion:^(UIViewAnimatingPosition finalPosition) {
+  [animator addCompletion:^(__unused UIViewAnimatingPosition finalPosition) {
     if (completion) {
       completion();
     }

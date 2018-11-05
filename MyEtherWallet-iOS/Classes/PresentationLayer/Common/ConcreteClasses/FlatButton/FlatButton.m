@@ -131,8 +131,7 @@
                          self.titleLabel.alpha = 0.0;
                          self.activityIndicatorView.alpha = 1.0;
                          self.titleLabel.lockAlpha = YES;
-                       } completion:^(BOOL finished) {
-                       }];
+                       } completion:nil];
     } else {
       [UIView animateWithDuration:0.3
                             delay:0.0
@@ -141,7 +140,7 @@
                          self.titleLabel.lockAlpha = NO;
                          self.titleLabel.alpha = 1.0;
                          self.activityIndicatorView.alpha = 0.0;
-                       } completion:^(BOOL finished) {
+                       } completion:^(__unused BOOL finished) {
                          [self.activityIndicatorView removeFromSuperview];
                          self.userInteractionEnabled = YES;
                        }];

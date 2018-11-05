@@ -10,7 +10,7 @@
 
 @implementation SimplexResponseConverterImplementation
 
-- (id)convertFromResponse:(id)response error:(NSError *__autoreleasing *)error {
+- (id)convertFromResponse:(id)response error:(__unused NSError *__autoreleasing *)error {
   return response;
 }
 

@@ -20,8 +20,7 @@
 
 #pragma mark - InfoModuleInput
 
-- (void) configureModuleWithAccount:(AccountPlainObject *)account {
-  [self.interactor configurateWithAccount:account];
+- (void) configureModule {
 }
 
 #pragma mark - InfoViewOutput

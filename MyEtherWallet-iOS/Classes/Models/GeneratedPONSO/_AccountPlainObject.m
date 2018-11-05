@@ -15,13 +15,9 @@
 
     [aCoder encodeObject:self.active forKey:@"active"];
     [aCoder encodeObject:self.backedUp forKey:@"backedUp"];
-    [aCoder encodeObject:self.balance forKey:@"balance"];
-    [aCoder encodeObject:self.decimals forKey:@"decimals"];
-    [aCoder encodeObject:self.publicAddress forKey:@"publicAddress"];
-    [aCoder encodeObject:self.fromNetwork forKey:@"fromNetwork"];
-    [aCoder encodeObject:self.price forKey:@"price"];
-    [aCoder encodeObject:self.purchaseHistory forKey:@"purchaseHistory"];
-    [aCoder encodeObject:self.tokens forKey:@"tokens"];
+    [aCoder encodeObject:self.name forKey:@"name"];
+    [aCoder encodeObject:self.uid forKey:@"uid"];
+    [aCoder encodeObject:self.networks forKey:@"networks"];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
@@ -30,13 +26,9 @@
 
         _active = [[aDecoder decodeObjectForKey:@"active"] copy];
         _backedUp = [[aDecoder decodeObjectForKey:@"backedUp"] copy];
-        _balance = [[aDecoder decodeObjectForKey:@"balance"] copy];
-        _decimals = [[aDecoder decodeObjectForKey:@"decimals"] copy];
-        _publicAddress = [[aDecoder decodeObjectForKey:@"publicAddress"] copy];
-        _fromNetwork = [[aDecoder decodeObjectForKey:@"fromNetwork"] copy];
-        _price = [[aDecoder decodeObjectForKey:@"price"] copy];
-        _purchaseHistory = [[aDecoder decodeObjectForKey:@"purchaseHistory"] copy];
-        _tokens = [[aDecoder decodeObjectForKey:@"tokens"] copy];
+        _name = [[aDecoder decodeObjectForKey:@"name"] copy];
+        _uid = [[aDecoder decodeObjectForKey:@"uid"] copy];
+        _networks = [[aDecoder decodeObjectForKey:@"networks"] copy];
     }
 
     return self;
@@ -49,14 +41,10 @@
 
     replica.active = self.active;
     replica.backedUp = self.backedUp;
-    replica.balance = self.balance;
-    replica.decimals = self.decimals;
-    replica.publicAddress = self.publicAddress;
+    replica.name = self.name;
+    replica.uid = self.uid;
 
-    replica.fromNetwork = self.fromNetwork;
-    replica.price = self.price;
-    replica.purchaseHistory = self.purchaseHistory;
-    replica.tokens = self.tokens;
+    replica.networks = self.networks;
 
     return replica;
 }

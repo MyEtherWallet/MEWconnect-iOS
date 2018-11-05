@@ -86,11 +86,11 @@ static float const kSplashPasswordShakeAnimationRepeatCount = 3.0;
 
 #pragma mark - IBActions
 
-- (IBAction) passwordDidChanged:(UITextField *)sender {
+- (IBAction) passwordDidChanged:(__unused UITextField *)sender {
   
 }
 
-- (IBAction) forgotPasswordAction:(UIButton *)sender {
+- (IBAction) forgotPasswordAction:(__unused UIButton *)sender {
   [self.output forgotPasswordAction];
 }
 

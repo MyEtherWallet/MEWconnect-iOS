@@ -7,8 +7,9 @@
 
 @import Foundation;
 
-@class AccountPlainObject;
+@class NetworkPlainObject;
 @class FiatPricePlainObject;
+@class PurchaseHistoryPlainObject;
 
 @interface _TokenPlainObject : NSObject <NSCoding, NSCopying>
 
@@ -18,8 +19,10 @@
 @property (nonatomic, copy, readwrite) NSString *name;
 @property (nonatomic, copy, readwrite) NSString *symbol;
 
-@property (nonatomic, copy, readwrite) AccountPlainObject *fromAccount;
+@property (nonatomic, copy, readwrite) NetworkPlainObject *fromNetwork;
 
 @property (nonatomic, copy, readwrite) FiatPricePlainObject *price;
+
+@property (nonatomic, copy, readwrite) NSSet<PurchaseHistoryPlainObject *> *purchaseHistory;
 
 @end

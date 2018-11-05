@@ -101,7 +101,7 @@
 
 #pragma mark - IBActions
 
-- (IBAction) startAction:(id)sender {
+- (IBAction) startAction:(__unused id)sender {
   [self.output startAction];
 }
 

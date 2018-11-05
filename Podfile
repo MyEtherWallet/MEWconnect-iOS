@@ -5,7 +5,7 @@ inhibit_all_warnings!
 
 abstract_target 'MEWconnect' do
   # VIPER
-  pod 'Typhoon', '3.5.1'
+  pod 'Typhoon'#, '3.5.1'
   
   # Navigation
   pod 'ViperMcFlurryX', :git => 'https://github.com/Foboz/ViperMcFlurryX.git'

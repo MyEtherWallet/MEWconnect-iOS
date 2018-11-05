@@ -42,6 +42,8 @@
                                                 with:[self presenterContextPassword]];
                           [definition injectProperty:@selector(accountsService)
                                                 with:[self.serviceComponents accountsService]];
+                          [definition injectProperty:@selector(walletService)
+                                                with:[self.serviceComponents MEWwallet]];
                           [definition injectProperty:@selector(ponsomizer)
                                                 with:[self.ponsomizerAssembly ponsomizer]];
                         }];

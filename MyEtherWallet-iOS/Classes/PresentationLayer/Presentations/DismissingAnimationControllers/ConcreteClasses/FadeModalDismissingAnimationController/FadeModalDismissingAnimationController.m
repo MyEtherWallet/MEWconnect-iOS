@@ -12,7 +12,7 @@
 
 #pragma mark - UIViewControllerAnimatedTransitioning
 
-- (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext {
+- (NSTimeInterval)transitionDuration:(__unused id <UIViewControllerContextTransitioning>)transitionContext {
   return 0.3;
 }
 
@@ -38,7 +38,7 @@
                       options:options
                    animations:^{
                      dismissedViewSnapshot.alpha = 0.0;
-                   } completion:^(BOOL finished) {
+                   } completion:^(__unused BOOL finished) {
                      [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
                      [toViewController setNeedsStatusBarAppearanceUpdate];
                      [fromViewController endAppearanceTransition];

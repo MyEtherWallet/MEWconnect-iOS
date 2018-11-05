@@ -15,6 +15,9 @@
 - (NSDecimalNumber *)amount {
   if (!_amount) {
     NSDecimalNumber *decimals = [NSDecimalNumber decimalNumberWithMantissa:1 exponent:[self.decimals shortValue] isNegative:NO];
+    if ([decimals compare:[NSDecimalNumber zero]] == NSOrderedSame) {
+      decimals = [NSDecimalNumber one];
+    }
     NSDecimalNumber *tokenBalance = [self.balance decimalNumberByDividingBy:decimals];
     _amount = tokenBalance;
   }

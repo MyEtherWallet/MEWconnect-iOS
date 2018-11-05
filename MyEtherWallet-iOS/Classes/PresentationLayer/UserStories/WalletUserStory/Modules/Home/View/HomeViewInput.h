@@ -10,13 +10,13 @@
 
 @class CacheTransactionBatch;
 
-@class AccountPlainObject;
+@class MasterTokenPlainObject;
 @class TokenPlainObject;
 
 @protocol HomeViewInput <NSObject>
 - (void) setupInitialStateWithNumberOfTokens:(NSUInteger)tokensCount totalPrice:(NSDecimalNumber *)totalPrice;
-- (void) updateWithAccount:(AccountPlainObject *)account;
-- (void) updateEthereumBalanceWithAccount:(AccountPlainObject *)account;
+- (void) updateWithMasterToken:(MasterTokenPlainObject *)masterToken;
+- (void) updateBalanceWithMasterToken:(MasterTokenPlainObject *)masterToken;
 - (void) updateWithTransactionBatch:(CacheTransactionBatch *)transactionBatch;
 - (void) updateWithTokensCount:(NSUInteger)tokensCount withTotalPrice:(NSDecimalNumber *)totalPrice;
 - (void) startAnimatingTokensRefreshing;

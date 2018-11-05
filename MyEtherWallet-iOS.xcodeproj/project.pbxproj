@@ -37,6 +37,7 @@
 		0CCB8D53CDAA78CAE620C1FB /* ForgotPasswordPresenterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FB9FC9E2299555A58D985D0B /* ForgotPasswordPresenterTests.m */; };
 		0DF62A5D2ADA9A9D882B5582 /* Pods_MEWconnect_MyEtherWallet_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42681991858E2AFCA7D0A2BF /* Pods_MEWconnect_MyEtherWallet_iOS.framework */; };
 		0EAB1B3BAE104F2ED13AFBDA /* BackupDonePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = B09B136F402D65EFE52F21A2 /* BackupDonePresenter.m */; };
+		0F50E3850C787F2834BD9A06 /* RestoreSeedAssemblyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 220F455C1253BA45232C6F8C /* RestoreSeedAssemblyTests.m */; };
 		10DC5C17C1A92CD39162B5A9 /* PasswordRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 515D2B05CC2A2949F2A326C1 /* PasswordRouter.m */; };
 		1188B19E148E0E631C68A394 /* BuyEtherHistoryAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 09DE127DE4DB0B484F57897B /* BuyEtherHistoryAssembly.m */; };
 		1293C4C148E4801F0EDC3393 /* BackupDoneRouterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E7FD110132CC65ED1CEE32 /* BackupDoneRouterTests.m */; };
@@ -73,6 +74,7 @@
 		2CDE7A980F538C53DBA4CBF5 /* ConfirmPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E50B68098131486EA86837 /* ConfirmPasswordViewController.m */; };
 		2E810B5E7531EEF7C3526F6B /* ConfirmedTransactionRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = E07D240F2163D0D7E4B4A890 /* ConfirmedTransactionRouter.m */; };
 		2EECE31C4CE07345BC160881 /* QRScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6DF4713EBC024BD47A9633 /* QRScannerViewController.m */; };
+		303F5BB9745526591D7597EA /* RestoreSeedRouterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E22BA1D744E066F1CF99D54 /* RestoreSeedRouterTests.m */; };
 		305F1DD38D91054D4017098F /* BuyEtherNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4070D379FDB1D7066F98D90A /* BuyEtherNavigationController.m */; };
 		30DC9DBB091E3BE7E7290791 /* BuyEtherWebInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = B948CA3B34B98B84617A893C /* BuyEtherWebInteractor.m */; };
 		30FAFE2FAB76ABF95C9DF392 /* BackupConfirmationAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED096F14790973481EC27D6 /* BackupConfirmationAssembly.m */; };
@@ -88,6 +90,7 @@
 		3BBADB73833FE4F61E032A06 /* MessageSignerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEEB2409B5ED92E50A320DE4 /* MessageSignerViewController.m */; };
 		3DFC34FF9EF2077E7C5721C8 /* BackupInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F6632B6471F659AA9876BF6 /* BackupInfoViewController.m */; };
 		3E29FA4D9347F0A161AF1AB8 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4007C2D3B18C19016A6DF7D4 /* HomeViewController.m */; };
+		3EE8B398B93C36A58AA62C29 /* RestoreSeedViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B0B7BB828C45B380DC0439 /* RestoreSeedViewControllerTests.m */; };
 		3F52E643054014364E0A587E /* ContextPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B6EBBF7ADB10AF3DF0DFCD /* ContextPasswordViewController.m */; };
 		4035D9E6AF43317EB2C0C35B /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DAD76F3C707A5A6B0AB9CF /* AboutViewController.m */; };
 		42A97C7D9CB513E8FF224DA0 /* DeclinedTransactionInteractorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BEEEBF0785A8D1FA818AA045 /* DeclinedTransactionInteractorTests.m */; };
@@ -123,10 +126,7 @@
 		5606B34E210FE2A700576C28 /* ReachabilityServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5606B34A210FDAC500576C28 /* ReachabilityServiceImplementation.m */; };
 		560A866520E6539F00046B53 /* KeychainServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 560A866420E6539F00046B53 /* KeychainServiceImplementation.m */; };
 		560A866F20E65C5F00046B53 /* CoreDataConfiguratorImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 560A866E20E65C5F00046B53 /* CoreDataConfiguratorImplementation.m */; };
-		560A867520E681E700046B53 /* KeychainItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 560A867420E681E700046B53 /* KeychainItemModel.m */; };
-		560A867920E6EF9600046B53 /* AccountsBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 560A867820E6EF9600046B53 /* AccountsBody.m */; };
-		560A867D20E6F0C700046B53 /* AccountsOperationFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 560A867C20E6F0C700046B53 /* AccountsOperationFactory.m */; };
-		560A868120E6F40F00046B53 /* BalanceBodyTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 560A868020E6F40F00046B53 /* BalanceBodyTransformer.m */; };
+		560A867520E681E700046B53 /* KeychainNetworkModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 560A867420E681E700046B53 /* KeychainNetworkModel.m */; };
 		560CAFF2209B0EC500BFF59C /* Web3Wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560CAFF1209B0EC500BFF59C /* Web3Wrapper.swift */; };
 		560CAFFF209B428500BFF59C /* MEWConnectCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 560CAFFE209B428500BFF59C /* MEWConnectCommand.m */; };
 		560CB005209B44A500BFF59C /* MEWMappingProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 560CB004209B44A500BFF59C /* MEWMappingProvider.m */; };
@@ -167,6 +167,7 @@
 		5627B712210B5E15009787F7 /* PropertyAnimatorsAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 5627B711210B5E15009787F7 /* PropertyAnimatorsAssembly.m */; };
 		5627B714210B60CE009787F7 /* PropertyAnimatorsAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 5627B711210B5E15009787F7 /* PropertyAnimatorsAssembly.m */; };
 		5629AEEABED9B97DBBCA7D51 /* BackupStartViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3632CF7A5B7F967934023AC0 /* BackupStartViewControllerTests.m */; };
+		562DEFB7507802E60DDB1C47 /* RestoreSeedPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F273D5A6DDADB66552B02EA8 /* RestoreSeedPresenter.m */; };
 		56307A8A216EC63400282602 /* ShareAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DFB3A8A29658A337BA0F97 /* ShareAssembly.m */; };
 		56307A8B216EC63400282602 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6549CAA905CBF0B3F89E4233 /* ShareViewController.m */; };
 		56307A8C216EC63400282602 /* SharePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 127146FC72DB05CDC698DDD9 /* SharePresenter.m */; };
@@ -175,29 +176,17 @@
 		56307A90216EC77700282602 /* Shared.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56307A8F216EC77700282602 /* Shared.xcassets */; };
 		56307A94216F61AF00282602 /* UIScreen+AnimateBrightness.m in Sources */ = {isa = PBXBuildFile; fileRef = 56307A93216F61AF00282602 /* UIScreen+AnimateBrightness.m */; };
 		56307A95216F623C00282602 /* UIScreen+AnimateBrightness.m in Sources */ = {isa = PBXBuildFile; fileRef = 56307A93216F61AF00282602 /* UIScreen+AnimateBrightness.m */; };
+		56335F7D2187662200C07E2B /* KeychainServiceConstantsV1.m in Sources */ = {isa = PBXBuildFile; fileRef = 56335F7C2187662200C07E2B /* KeychainServiceConstantsV1.m */; };
+		56335F7E2187662200C07E2B /* KeychainServiceConstantsV1.m in Sources */ = {isa = PBXBuildFile; fileRef = 56335F7C2187662200C07E2B /* KeychainServiceConstantsV1.m */; };
+		56335F812187663600C07E2B /* KeychainServiceConstantsV2.m in Sources */ = {isa = PBXBuildFile; fileRef = 56335F802187663600C07E2B /* KeychainServiceConstantsV2.m */; };
+		56335F822187663600C07E2B /* KeychainServiceConstantsV2.m in Sources */ = {isa = PBXBuildFile; fileRef = 56335F802187663600C07E2B /* KeychainServiceConstantsV2.m */; };
+		56335F852187664000C07E2B /* KeychainServiceSharedConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 56335F842187664000C07E2B /* KeychainServiceSharedConstants.m */; };
+		56335F862187664000C07E2B /* KeychainServiceSharedConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 56335F842187664000C07E2B /* KeychainServiceSharedConstants.m */; };
+		56335F8B2187BBC300C07E2B /* KeychainAccountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56335F8A2187BBC300C07E2B /* KeychainAccountModel.m */; };
+		56335F8C2187BBC300C07E2B /* KeychainAccountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56335F8A2187BBC300C07E2B /* KeychainAccountModel.m */; };
 		563C6AD820AC696300E85B8B /* MEWSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 563C6AD720AC696300E85B8B /* MEWSearchBar.m */; };
 		563C6AE320AF122000E85B8B /* CheckboxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563C6AE220AF122000E85B8B /* CheckboxButton.swift */; };
 		563C6AE620AF690A00E85B8B /* CheckboxButton+Blockies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563C6AE520AF690A00E85B8B /* CheckboxButton+Blockies.swift */; };
-		563CF2D220EFAAD6005467AE /* AccountModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2A820EFAAD5005467AE /* AccountModelObject.m */; };
-		563CF2D320EFAAD6005467AE /* FiatPriceModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2AA20EFAAD5005467AE /* FiatPriceModelObject.m */; };
-		563CF2D420EFAAD6005467AE /* NetworkModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2AC20EFAAD5005467AE /* NetworkModelObject.m */; };
-		563CF2D520EFAAD6005467AE /* PurchaseHistoryModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2AE20EFAAD5005467AE /* PurchaseHistoryModelObject.m */; };
-		563CF2D620EFAAD6005467AE /* TokenModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2B020EFAAD5005467AE /* TokenModelObject.m */; };
-		563CF2D720EFAAD6005467AE /* AccountPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2B320EFAAD5005467AE /* AccountPlainObject.m */; };
-		563CF2D820EFAAD6005467AE /* FiatPricePlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2B520EFAAD5005467AE /* FiatPricePlainObject.m */; };
-		563CF2D920EFAAD6005467AE /* NetworkPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2B720EFAAD5005467AE /* NetworkPlainObject.m */; };
-		563CF2DA20EFAAD6005467AE /* PurchaseHistoryPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2B920EFAAD5005467AE /* PurchaseHistoryPlainObject.m */; };
-		563CF2DB20EFAAD6005467AE /* TokenPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2BB20EFAAD5005467AE /* TokenPlainObject.m */; };
-		563CF2DC20EFAAD6005467AE /* _AccountPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2BE20EFAAD6005467AE /* _AccountPlainObject.m */; };
-		563CF2DD20EFAAD6005467AE /* _FiatPricePlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2C020EFAAD6005467AE /* _FiatPricePlainObject.m */; };
-		563CF2DE20EFAAD6005467AE /* _NetworkPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2C220EFAAD6005467AE /* _NetworkPlainObject.m */; };
-		563CF2DF20EFAAD6005467AE /* _PurchaseHistoryPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2C420EFAAD6005467AE /* _PurchaseHistoryPlainObject.m */; };
-		563CF2E020EFAAD6005467AE /* _TokenPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2C620EFAAD6005467AE /* _TokenPlainObject.m */; };
-		563CF2E120EFAAD6005467AE /* _AccountModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2C920EFAAD6005467AE /* _AccountModelObject.m */; };
-		563CF2E220EFAAD6005467AE /* _FiatPriceModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2CB20EFAAD6005467AE /* _FiatPriceModelObject.m */; };
-		563CF2E320EFAAD6005467AE /* _NetworkModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2CD20EFAAD6005467AE /* _NetworkModelObject.m */; };
-		563CF2E420EFAAD6005467AE /* _PurchaseHistoryModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2CF20EFAAD6005467AE /* _PurchaseHistoryModelObject.m */; };
-		563CF2E520EFAAD6005467AE /* _TokenModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2D120EFAAD6005467AE /* _TokenModelObject.m */; };
 		563CF2EB20EFAB3D005467AE /* BuyEtherHistoryDataDisplayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2EA20EFAB3D005467AE /* BuyEtherHistoryDataDisplayManager.m */; };
 		563CF2F020EFAD37005467AE /* BuyEtherHistoryEmptyTableViewCellObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2EF20EFAD37005467AE /* BuyEtherHistoryEmptyTableViewCellObject.m */; };
 		563CF2F320EFAD3F005467AE /* BuyEtherHistoryItemTableViewCellObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2F220EFAD3F005467AE /* BuyEtherHistoryItemTableViewCellObject.m */; };
@@ -270,8 +259,58 @@
 		5677BB6020FE9FC70019E92D /* UIView+LockAlpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677BB5F20FE9FC70019E92D /* UIView+LockAlpha.m */; };
 		5677BB6420FEA5D30019E92D /* RotationButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677BB6320FEA5D30019E92D /* RotationButton.m */; };
 		5677BB742100A8260019E92D /* UIBezierPath+Morphing.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677BB732100A8260019E92D /* UIBezierPath+Morphing.m */; };
+		5677C5862181226500477ACD /* _AccountModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C5542181226400477ACD /* _AccountModelObject.m */; };
+		5677C5872181226500477ACD /* _AccountModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C5542181226400477ACD /* _AccountModelObject.m */; };
+		5677C5882181226500477ACD /* _FiatPriceModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C5562181226400477ACD /* _FiatPriceModelObject.m */; };
+		5677C5892181226500477ACD /* _FiatPriceModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C5562181226400477ACD /* _FiatPriceModelObject.m */; };
+		5677C58A2181226500477ACD /* _MasterTokenModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C5582181226400477ACD /* _MasterTokenModelObject.m */; };
+		5677C58B2181226500477ACD /* _MasterTokenModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C5582181226400477ACD /* _MasterTokenModelObject.m */; };
+		5677C58C2181226500477ACD /* _NetworkModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C55A2181226400477ACD /* _NetworkModelObject.m */; };
+		5677C58D2181226500477ACD /* _NetworkModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C55A2181226400477ACD /* _NetworkModelObject.m */; };
+		5677C58E2181226500477ACD /* _PurchaseHistoryModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C55C2181226400477ACD /* _PurchaseHistoryModelObject.m */; };
+		5677C58F2181226500477ACD /* _PurchaseHistoryModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C55C2181226400477ACD /* _PurchaseHistoryModelObject.m */; };
+		5677C5902181226500477ACD /* _TokenModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C55E2181226400477ACD /* _TokenModelObject.m */; };
+		5677C5912181226500477ACD /* _TokenModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C55E2181226400477ACD /* _TokenModelObject.m */; };
+		5677C5922181226500477ACD /* AccountPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C5612181226400477ACD /* AccountPlainObject.m */; };
+		5677C5932181226500477ACD /* AccountPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C5612181226400477ACD /* AccountPlainObject.m */; };
+		5677C5942181226500477ACD /* FiatPricePlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C5632181226400477ACD /* FiatPricePlainObject.m */; };
+		5677C5952181226500477ACD /* FiatPricePlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C5632181226400477ACD /* FiatPricePlainObject.m */; };
+		5677C5962181226500477ACD /* MasterTokenPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C5652181226400477ACD /* MasterTokenPlainObject.m */; };
+		5677C5972181226500477ACD /* MasterTokenPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C5652181226400477ACD /* MasterTokenPlainObject.m */; };
+		5677C5982181226500477ACD /* NetworkPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C5672181226400477ACD /* NetworkPlainObject.m */; };
+		5677C5992181226500477ACD /* NetworkPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C5672181226400477ACD /* NetworkPlainObject.m */; };
+		5677C59A2181226500477ACD /* PurchaseHistoryPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C5692181226400477ACD /* PurchaseHistoryPlainObject.m */; };
+		5677C59B2181226500477ACD /* PurchaseHistoryPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C5692181226400477ACD /* PurchaseHistoryPlainObject.m */; };
+		5677C59C2181226500477ACD /* TokenPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C56B2181226400477ACD /* TokenPlainObject.m */; };
+		5677C59D2181226500477ACD /* TokenPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C56B2181226400477ACD /* TokenPlainObject.m */; };
+		5677C59E2181226500477ACD /* AccountModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C56E2181226400477ACD /* AccountModelObject.m */; };
+		5677C59F2181226500477ACD /* AccountModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C56E2181226400477ACD /* AccountModelObject.m */; };
+		5677C5A02181226500477ACD /* FiatPriceModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C5702181226400477ACD /* FiatPriceModelObject.m */; };
+		5677C5A12181226500477ACD /* FiatPriceModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C5702181226400477ACD /* FiatPriceModelObject.m */; };
+		5677C5A22181226500477ACD /* MasterTokenModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C5722181226400477ACD /* MasterTokenModelObject.m */; };
+		5677C5A32181226500477ACD /* MasterTokenModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C5722181226400477ACD /* MasterTokenModelObject.m */; };
+		5677C5A42181226500477ACD /* NetworkModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C5742181226400477ACD /* NetworkModelObject.m */; };
+		5677C5A52181226500477ACD /* NetworkModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C5742181226400477ACD /* NetworkModelObject.m */; };
+		5677C5A62181226500477ACD /* PurchaseHistoryModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C5762181226400477ACD /* PurchaseHistoryModelObject.m */; };
+		5677C5A72181226500477ACD /* PurchaseHistoryModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C5762181226400477ACD /* PurchaseHistoryModelObject.m */; };
+		5677C5A82181226500477ACD /* TokenModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C5782181226400477ACD /* TokenModelObject.m */; };
+		5677C5A92181226500477ACD /* TokenModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C5782181226400477ACD /* TokenModelObject.m */; };
+		5677C5AA2181226500477ACD /* _AccountPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C57B2181226500477ACD /* _AccountPlainObject.m */; };
+		5677C5AB2181226500477ACD /* _AccountPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C57B2181226500477ACD /* _AccountPlainObject.m */; };
+		5677C5AC2181226500477ACD /* _FiatPricePlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C57D2181226500477ACD /* _FiatPricePlainObject.m */; };
+		5677C5AD2181226500477ACD /* _FiatPricePlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C57D2181226500477ACD /* _FiatPricePlainObject.m */; };
+		5677C5AE2181226500477ACD /* _MasterTokenPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C57F2181226500477ACD /* _MasterTokenPlainObject.m */; };
+		5677C5AF2181226500477ACD /* _MasterTokenPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C57F2181226500477ACD /* _MasterTokenPlainObject.m */; };
+		5677C5B02181226500477ACD /* _NetworkPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C5812181226500477ACD /* _NetworkPlainObject.m */; };
+		5677C5B12181226500477ACD /* _NetworkPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C5812181226500477ACD /* _NetworkPlainObject.m */; };
+		5677C5B22181226500477ACD /* _PurchaseHistoryPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C5832181226500477ACD /* _PurchaseHistoryPlainObject.m */; };
+		5677C5B32181226500477ACD /* _PurchaseHistoryPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C5832181226500477ACD /* _PurchaseHistoryPlainObject.m */; };
+		5677C5B42181226500477ACD /* _TokenPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C5852181226500477ACD /* _TokenPlainObject.m */; };
+		5677C5B52181226500477ACD /* _TokenPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C5852181226500477ACD /* _TokenPlainObject.m */; };
 		5685FE162099F9A4008C75A1 /* FlatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5685FE152099F9A4008C75A1 /* FlatButton.m */; };
 		5689111F20EE6511001552D4 /* SimplexPaymentQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 5689111E20EE6511001552D4 /* SimplexPaymentQuery.m */; };
+		56947CDA2186465700336F4B /* MasterTokenBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 56947CD92186465700336F4B /* MasterTokenBody.m */; };
+		56947CDB2186465700336F4B /* MasterTokenBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 56947CD92186465700336F4B /* MasterTokenBody.m */; };
 		5695A95A2B5CED358C015C0D /* DeclinedTransactionRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = DD110C7B23B316FCBDF56162 /* DeclinedTransactionRouter.m */; };
 		5699983C2095141100D45153 /* Setup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5699983B2095141100D45153 /* Setup.storyboard */; };
 		56999846209517D500D45153 /* Wallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56999845209517D500D45153 /* Wallet.storyboard */; };
@@ -329,6 +368,10 @@
 		56C878B620BC199300343ADC /* HomeEmptyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56C878B420BC199300343ADC /* HomeEmptyTableViewCell.xib */; };
 		56C878BA20BC1A3300343ADC /* HomeEmptyTableViewCellObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C878B920BC1A3300343ADC /* HomeEmptyTableViewCellObject.m */; };
 		56CF0A9420D87F550029F841 /* NSArray+Data.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CF0A9320D87F550029F841 /* NSArray+Data.m */; };
+		56D85B7B217FAD3200B474C6 /* MigrationServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D85B7A217FAD3200B474C6 /* MigrationServiceImplementation.m */; };
+		56D85B7C217FAD3200B474C6 /* MigrationServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D85B7A217FAD3200B474C6 /* MigrationServiceImplementation.m */; };
+		56D85B7F217FB42600B474C6 /* MigrationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D85B7E217FB42600B474C6 /* MigrationManager.m */; };
+		56D85B80217FB42600B474C6 /* MigrationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D85B7E217FB42600B474C6 /* MigrationManager.m */; };
 		56DE4E0C20A9E61F001A2C19 /* BottomImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DE4E0B20A9E61F001A2C19 /* BottomImageButton.m */; };
 		56E14BBA20E979CD00C41F83 /* FiatPricesServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E14BB920E979CD00C41F83 /* FiatPricesServiceImplementation.m */; };
 		56E14BBF20E97B3C00C41F83 /* FiatPricesQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E14BBE20E97B3C00C41F83 /* FiatPricesQuery.m */; };
@@ -354,14 +397,11 @@
 		56E14C1520ED16C900C41F83 /* SimplexOrderBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E14C1420ED16C900C41F83 /* SimplexOrderBody.m */; };
 		56E14C1920ED298100C41F83 /* SimplexOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E14C1820ED298100C41F83 /* SimplexOrder.m */; };
 		56E3E4EC21016DB60014152D /* CleanLaunchRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E4EF2083DAC90070A402 /* CleanLaunchRouter.m */; };
-		56E3E4ED21016DB60014152D /* NetworkModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2AC20EFAAD5005467AE /* NetworkModelObject.m */; };
 		56E3E4EE21016DB60014152D /* TokensResponseConverterImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB3A1D20B43FE6007776C8 /* TokensResponseConverterImplementation.m */; };
-		56E3E4EF21016DB60014152D /* AccountModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2A820EFAAD5005467AE /* AccountModelObject.m */; };
 		56E3E4F021016DB60014152D /* ServiceComponentsAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E51A2083EE920070A402 /* ServiceComponentsAssembly.m */; };
 		56E3E4F121016DB60014152D /* ResponseValidatorsAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB39B920B22D7B007776C8 /* ResponseValidatorsAssembly.m */; };
 		56E3E4F221016DB60014152D /* ContractRequestDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB39D520B249E9007776C8 /* ContractRequestDataModel.m */; };
 		56E3E4F321016DB60014152D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FE2B7F20817F1100DB39D5 /* main.m */; };
-		56E3E4F421016DB60014152D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FE2B7120817F1100DB39D5 /* AppDelegate.m */; };
 		56E3E4F521016DB60014152D /* NSString+HexData.m in Sources */ = {isa = PBXBuildFile; fileRef = 56AC944D208FAB1000E5BC2C /* NSString+HexData.m */; };
 		56E3E4F621016DB60014152D /* HomeTableViewCellObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D770E20B49522009A3D6D /* HomeTableViewCellObject.m */; };
 		56E3E4F721016DB60014152D /* PresentationControllerAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A4EAC720B8C5EC0042A358 /* PresentationControllerAssembly.m */; };
@@ -377,14 +417,13 @@
 		56E3E50121016DB60014152D /* ApplicationConfiguratorImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E4F92083DC300070A402 /* ApplicationConfiguratorImplementation.m */; };
 		56E3E50221016DB60014152D /* StartAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = E4895971AAFB3D42D11BB1BF /* StartAssembly.m */; };
 		56E3E50321016DB60014152D /* CoreDataConfiguratorImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 560A866E20E65C5F00046B53 /* CoreDataConfiguratorImplementation.m */; };
-		56E3E50421016DB60014152D /* BalanceBodyTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 560A868020E6F40F00046B53 /* BalanceBodyTransformer.m */; };
 		56E3E50521016DB60014152D /* UIBezierPath+Morphing.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677BB732100A8260019E92D /* UIBezierPath+Morphing.m */; };
 		56E3E50621016DB60014152D /* KeychainServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 560A866420E6539F00046B53 /* KeychainServiceImplementation.m */; };
 		56E3E50721016DB60014152D /* SimplexQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E14BF320EBCFA000C41F83 /* SimplexQuery.m */; };
 		56E3E50821016DB60014152D /* MEWConnectFacadeImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB38F620B092C3007776C8 /* MEWConnectFacadeImplementation.m */; };
 		56E3E50921016DB60014152D /* CacheRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D76FD20B48498009A3D6D /* CacheRequest.m */; };
 		56E3E50A21016DB60014152D /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A53C7A8A371F90CE150A9 /* StartViewController.m */; };
-		56E3E50B21016DB60014152D /* KeychainItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 560A867420E681E700046B53 /* KeychainItemModel.m */; };
+		56E3E50B21016DB60014152D /* KeychainNetworkModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 560A867420E681E700046B53 /* KeychainNetworkModel.m */; };
 		56E3E50C21016DB60014152D /* CleanLaunchAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E4E92083DA190070A402 /* CleanLaunchAppDelegate.m */; };
 		56E3E50D21016DB60014152D /* UIColor+RandSeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5643879620A492240017790F /* UIColor+RandSeed.swift */; };
 		56E3E50E21016DB60014152D /* StoryboardsAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 5668E50B2083E7280070A402 /* StoryboardsAssembly.m */; };
@@ -427,7 +466,6 @@
 		56E3E53321016DB60014152D /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 563DF38020986B7900F740FF /* UIImage+Color.m */; };
 		56E3E53421016DB60014152D /* MEWRTCConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 56AC945A208FC21300E5BC2C /* MEWRTCConstants.m */; };
 		56E3E53521016DB60014152D /* LinkedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB38ED20AF9211007776C8 /* LinkedLabel.m */; };
-		56E3E53621016DB60014152D /* FiatPricePlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2B520EFAAD5005467AE /* FiatPricePlainObject.m */; };
 		56E3E53721016DB60014152D /* NewWalletAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D636DCB86E2833A9F98A3AD /* NewWalletAssembly.m */; };
 		56E3E53821016DB60014152D /* ResponseDeserializationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB399B20B22939007776C8 /* ResponseDeserializationOperation.m */; };
 		56E3E53921016DB60014152D /* NSString+HexToDecimal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BFD424209BB8CB00951000 /* NSString+HexToDecimal.swift */; };
@@ -443,8 +481,6 @@
 		56E3E54321016DB60014152D /* NewWalletRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 877C1D5E65B364E2324BE931 /* NewWalletRouter.m */; };
 		56E3E54421016DB60014152D /* RestoreWalletAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF9731ED39AE5361664B047 /* RestoreWalletAssembly.m */; };
 		56E3E54521016DB60014152D /* HomeEmptyTableViewCellObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C878B920BC1A3300343ADC /* HomeEmptyTableViewCellObject.m */; };
-		56E3E54621016DB60014152D /* PurchaseHistoryPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2B920EFAAD5005467AE /* PurchaseHistoryPlainObject.m */; };
-		56E3E54721016DB60014152D /* _TokenModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2D120EFAAD6005467AE /* _TokenModelObject.m */; };
 		56E3E54821016DB60014152D /* BottomImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DE4E0B20A9E61F001A2C19 /* BottomImageButton.m */; };
 		56E3E54921016DB60014152D /* RestoreWalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D5AB1E48F29852FE5841E2 /* RestoreWalletViewController.m */; };
 		56E3E54A21016DB60014152D /* CameraServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB390020B0B589007776C8 /* CameraServiceImplementation.m */; };
@@ -453,7 +489,6 @@
 		56E3E54D21016DB60014152D /* HeadersBuilderBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB39E420B35766007776C8 /* HeadersBuilderBase.m */; };
 		56E3E54E21016DB60014152D /* RestoreWalletPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = D313732E7465E0EC13FD5915 /* RestoreWalletPresenter.m */; };
 		56E3E54F21016DB60014152D /* NSAttributedString+CustomEllipsis.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E6849720A4FE340058AA38 /* NSAttributedString+CustomEllipsis.m */; };
-		56E3E55021016DB60014152D /* _PurchaseHistoryModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2CF20EFAAD6005467AE /* _PurchaseHistoryModelObject.m */; };
 		56E3E55121016DB60014152D /* RESTRequestConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB39D920B31874007776C8 /* RESTRequestConfigurator.m */; };
 		56E3E55221016DB60014152D /* AsyncOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB392720B1A3F7007776C8 /* AsyncOperation.m */; };
 		56E3E55321016DB60014152D /* RestoreWalletInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = BDF6A49B42F2C44517E2837B /* RestoreWalletInteractor.m */; };
@@ -471,16 +506,13 @@
 		56E3E55F21016DB60014152D /* MEWconnect.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 56FB3A2D20B45741007776C8 /* MEWconnect.xcdatamodeld */; };
 		56E3E56021016DB60014152D /* InlineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E684A320A5F7250058AA38 /* InlineButton.m */; };
 		56E3E56121016DB60014152D /* FiatPricesOperationFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E14BC220E97C8400C41F83 /* FiatPricesOperationFactory.m */; };
-		56E3E56221016DB60014152D /* AccountsBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 560A867820E6EF9600046B53 /* AccountsBody.m */; };
 		56E3E56321016DB60014152D /* BordlessNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 563DF3912098AF0500F740FF /* BordlessNavigationBar.m */; };
 		56E3E56421016DB60014152D /* MEWConnectCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 560CAFFE209B428500BFF59C /* MEWConnectCommand.m */; };
 		56E3E56521016DB60014152D /* TokensOperationFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB394820B1A8CC007776C8 /* TokensOperationFactory.m */; };
 		56E3E56621016DB60014152D /* PasswordRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 515D2B05CC2A2949F2A326C1 /* PasswordRouter.m */; };
 		56E3E56721016DB60014152D /* HomeEmptyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C878B320BC199300343ADC /* HomeEmptyTableViewCell.m */; };
-		56E3E56821016DB60014152D /* _PurchaseHistoryPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2C420EFAAD6005467AE /* _PurchaseHistoryPlainObject.m */; };
 		56E3E56921016DB60014152D /* NSNumberFormatter+TokenPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E14BD320EA687700C41F83 /* NSNumberFormatter+TokenPrice.m */; };
 		56E3E56A21016DB60014152D /* UIImage+RandSeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FB3A2220B441C8007776C8 /* UIImage+RandSeed.swift */; };
-		56E3E56B21016DB60014152D /* _NetworkPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2C220EFAAD6005467AE /* _NetworkPlainObject.m */; };
 		56E3E56C21016DB60014152D /* PonsomizerAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D76EF20B48296009A3D6D /* PonsomizerAssembly.m */; };
 		56E3E56D21016DB60014152D /* HomeAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 638FC6001B7B3B152737B788 /* HomeAssembly.m */; };
 		56E3E56E21016DB60014152D /* SimplexQuoteBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E14BF720EBCFAD00C41F83 /* SimplexQuoteBody.m */; };
@@ -489,7 +521,6 @@
 		56E3E57121016DB60014152D /* QueryTransformerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB39F220B3586C007776C8 /* QueryTransformerBase.m */; };
 		56E3E57221016DB60014152D /* MEWSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 563C6AD720AC696300E85B8B /* MEWSearchBar.m */; };
 		56E3E57321016DB60014152D /* HomePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4862E32C35521FB6A5C04492 /* HomePresenter.m */; };
-		56E3E57421016DB60014152D /* PurchaseHistoryModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2AE20EFAAD5005467AE /* PurchaseHistoryModelObject.m */; };
 		56E3E57521016DB60014152D /* SimplexResponseConverterImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E14C0320EC0C8700C41F83 /* SimplexResponseConverterImplementation.m */; };
 		56E3E57621016DB60014152D /* SimplexQuote.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E14C0C20EC0DD600C41F83 /* SimplexQuote.m */; };
 		56E3E57721016DB60014152D /* HomeInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C1C7F6C635F6F763A7266 /* HomeInteractor.m */; };
@@ -508,7 +539,6 @@
 		56E3E58421016DB60014152D /* TokensBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB3A1920B391B4007776C8 /* TokensBody.m */; };
 		56E3E58521016DB60014152D /* NSString+RCFCapitalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 560CB008209B453600BFF59C /* NSString+RCFCapitalization.m */; };
 		56E3E58621016DB60014152D /* SimplexQueryTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E14BE620EBCE8A00C41F83 /* SimplexQueryTransformer.m */; };
-		56E3E58721016DB60014152D /* AccountPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2B320EFAAD5005467AE /* AccountPlainObject.m */; };
 		56E3E58821016DB60014152D /* OperationFactoriesAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB39FE20B35B33007776C8 /* OperationFactoriesAssembly.m */; };
 		56E3E58921016DB60014152D /* PasswordTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 563DF38420986F8500F740FF /* PasswordTextField.m */; };
 		56E3E58A21016DB60014152D /* SimplexHeadersBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E14BEF20EBCF3400C41F83 /* SimplexHeadersBuilder.m */; };
@@ -524,7 +554,6 @@
 		56E3E59421016DB60014152D /* SimplexStatusQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 56428A7F20F93DF90049E8BC /* SimplexStatusQuery.m */; };
 		56E3E59521016DB60014152D /* TransactionPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = E86FAAC41765670FF148E3E6 /* TransactionPresenter.m */; };
 		56E3E59621016DB60014152D /* JSONResponseDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB399320B22878007776C8 /* JSONResponseDeserializer.m */; };
-		56E3E59721016DB60014152D /* TokenPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2BB20EFAAD5005467AE /* TokenPlainObject.m */; };
 		56E3E59821016DB60014152D /* NSNumberFormatter+USD.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E6849F20A5D4E40058AA38 /* NSNumberFormatter+USD.m */; };
 		56E3E59921016DB60014152D /* FetchedResultsControllerAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D771920B495DE009A3D6D /* FetchedResultsControllerAssembly.m */; };
 		56E3E59A21016DB60014152D /* TransactionInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5091428889762ADEF364A1C0 /* TransactionInteractor.m */; };
@@ -540,7 +569,6 @@
 		56E3E5A421016DB60014152D /* NSNumberFormatter+Ethereum.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E6849B20A5092C0058AA38 /* NSNumberFormatter+Ethereum.m */; };
 		56E3E5A521016DB60014152D /* DeclinedTransactionPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 81EFEFC639DF6DF795FAFE2C /* DeclinedTransactionPresenter.m */; };
 		56E3E5A621016DB60014152D /* ServerResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB398520B226C9007776C8 /* ServerResponseModel.m */; };
-		56E3E5A721016DB60014152D /* FiatPriceModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2AA20EFAAD5005467AE /* FiatPriceModelObject.m */; };
 		56E3E5A821016DB60014152D /* HomeTableViewAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D772420B49927009A3D6D /* HomeTableViewAnimator.m */; };
 		56E3E5A921016DB60014152D /* HomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D771120B49535009A3D6D /* HomeTableViewCell.m */; };
 		56E3E5AA21016DB60014152D /* BackupConfirmationSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D773520B58C93009A3D6D /* BackupConfirmationSegmentedControl.m */; };
@@ -551,7 +579,7 @@
 		56E3E5AF21016DB60014152D /* BuyEtherHistoryTableViewAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF30920EFB235005467AE /* BuyEtherHistoryTableViewAnimator.m */; };
 		56E3E5B021016DB60014152D /* ManagedObjectMappingProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB3A5220B47037007776C8 /* ManagedObjectMappingProvider.m */; };
 		56E3E5B121016DB60014152D /* FlatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5685FE152099F9A4008C75A1 /* FlatButton.m */; };
-		56E3E5B221016DB60014152D /* ContractsBodyTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB39FA20B359F9007776C8 /* ContractsBodyTransformer.m */; };
+		56E3E5B221016DB60014152D /* TokensBodyTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB39FA20B359F9007776C8 /* TokensBodyTransformer.m */; };
 		56E3E5B321016DB60014152D /* NetworkClientsAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB397B20B224AC007776C8 /* NetworkClientsAssembly.m */; };
 		56E3E5B421016DB60014152D /* OperationChainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB395C20B1AEC7007776C8 /* OperationChainer.m */; };
 		56E3E5B521016DB60014152D /* OperationBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB394320B1A6D0007776C8 /* OperationBuffer.m */; };
@@ -572,7 +600,6 @@
 		56E3E5C421016DB60014152D /* SettingsRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 165E42E6BEFBFE71A1C7BBD4 /* SettingsRouter.m */; };
 		56E3E5C521016DB60014152D /* String+RandSeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5643879920A492570017790F /* String+RandSeed.swift */; };
 		56E3E5C621016DB60014152D /* ConfirmPasswordAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3FCE8A4C03F212E0A52768 /* ConfirmPasswordAssembly.m */; };
-		56E3E5C721016DB60014152D /* AccountsOperationFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 560A867C20E6F0C700046B53 /* AccountsOperationFactory.m */; };
 		56E3E5C821016DB60014152D /* CacheTrackerImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D770120B484AE009A3D6D /* CacheTrackerImplementation.m */; };
 		56E3E5C921016DB60014152D /* ConfirmPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E50B68098131486EA86837 /* ConfirmPasswordViewController.m */; };
 		56E3E5CA21016DB60014152D /* BottomModalPresentationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A4EACE20B8C6B00042A358 /* BottomModalPresentationController.m */; };
@@ -581,12 +608,10 @@
 		56E3E5CD21016DB60014152D /* EthereumResponseConverterImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C878AF20BB873900343ADC /* EthereumResponseConverterImplementation.m */; };
 		56E3E5CE21016DB60014152D /* ResponseConverterOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB39AD20B22BF6007776C8 /* ResponseConverterOperation.m */; };
 		56E3E5CF21016DB60014152D /* BodyTransformerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB39EF20B35862007776C8 /* BodyTransformerBase.m */; };
-		56E3E5D021016DB60014152D /* NetworkPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2B720EFAAD5005467AE /* NetworkPlainObject.m */; };
 		56E3E5D121016DB60014152D /* ConfirmPasswordInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = F7BD97263E0A4FD60F5D12F3 /* ConfirmPasswordInteractor.m */; };
 		56E3E5D221016DB60014152D /* ManyResponseValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB39C320B23143007776C8 /* ManyResponseValidator.m */; };
 		56E3E5D321016DB60014152D /* ConfirmPasswordRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 79866F9298E7EA3AC115DF7B /* ConfirmPasswordRouter.m */; };
 		56E3E5D421016DB60014152D /* MessageSignerAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 953C5EC918F08A440433F5FC /* MessageSignerAssembly.m */; };
-		56E3E5D521016DB60014152D /* _FiatPricePlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2C020EFAAD6005467AE /* _FiatPricePlainObject.m */; };
 		56E3E5D621016DB60014152D /* MessageSignerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEEB2409B5ED92E50A320DE4 /* MessageSignerViewController.m */; };
 		56E3E5D721016DB60014152D /* RequestDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB396820B22091007776C8 /* RequestDataModel.m */; };
 		56E3E5D821016DB60014152D /* MessageSignerPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = E7378ED00FE871D84A79F90A /* MessageSignerPresenter.m */; };
@@ -594,7 +619,6 @@
 		56E3E5DA21016DB60014152D /* BuyEtherHistoryItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2F720EFAD65005467AE /* BuyEtherHistoryItemTableViewCell.m */; };
 		56E3E5DB21016DB60014152D /* MessageSignerInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A457FDE982F50B57EE4323 /* MessageSignerInteractor.m */; };
 		56E3E5DC21016DB60014152D /* MessageSignerRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = DE11DB14265201485DBE15F1 /* MessageSignerRouter.m */; };
-		56E3E5DD21016DB60014152D /* _AccountPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2BE20EFAAD6005467AE /* _AccountPlainObject.m */; };
 		56E3E5DE21016DB60014152D /* MEWConnectTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BFD41E209BB7D400951000 /* MEWConnectTransaction.m */; };
 		56E3E5DF21016DB60014152D /* CommonNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB39DD20B31931007776C8 /* CommonNetworkClient.m */; };
 		56E3E5E021016DB60014152D /* ConfirmedTransactionAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4269D4156974450E4F43D5 /* ConfirmedTransactionAssembly.m */; };
@@ -642,7 +666,6 @@
 		56E3E60A21016DB60014152D /* UIScreen+ScreenScaleType.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677BB4E20FD0C190019E92D /* UIScreen+ScreenScaleType.m */; };
 		56E3E60B21016DB60014152D /* BackupDonePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = B09B136F402D65EFE52F21A2 /* BackupDonePresenter.m */; };
 		56E3E60C21016DB60014152D /* BackupDoneInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BCC84ADA1F21A4EB3BD953 /* BackupDoneInteractor.m */; };
-		56E3E60D21016DB60014152D /* _FiatPriceModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2CB20EFAAD6005467AE /* _FiatPriceModelObject.m */; };
 		56E3E60E21016DB60014152D /* BackupDoneRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8894473D90C1A6C93DAB964A /* BackupDoneRouter.m */; };
 		56E3E60F21016DB60014152D /* SplashPasswordAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EA5ADA3732EA483B70B87C /* SplashPasswordAssembly.m */; };
 		56E3E61021016DB60014152D /* InfoDestructiveTableViewCellObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C7757F20DFEBB900451EEF /* InfoDestructiveTableViewCellObject.m */; };
@@ -651,11 +674,9 @@
 		56E3E61321016DB60014152D /* SplashPasswordPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0DACBE3EACB94253861E96 /* SplashPasswordPresenter.m */; };
 		56E3E61421016DB60014152D /* TransitioningDelegateAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A4EAAE20B8BE920042A358 /* TransitioningDelegateAssembly.m */; };
 		56E3E61521016DB60014152D /* SplashPasswordInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DCFE3BAFF7EEC4E746F3EBF /* SplashPasswordInteractor.m */; };
-		56E3E61621016DB60014152D /* _AccountModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2C920EFAAD6005467AE /* _AccountModelObject.m */; };
 		56E3E61721016DB60014152D /* StatusButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C878AA20BB6F8100343ADC /* StatusButton.m */; };
 		56E3E61821016DB60014152D /* SimplexServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E14BDD20EBC84500C41F83 /* SimplexServiceImplementation.m */; };
 		56E3E61921016DB60014152D /* AccountsServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 564952FA20E3F20D00CF2348 /* AccountsServiceImplementation.m */; };
-		56E3E61A21016DB60014152D /* _TokenPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2C620EFAAD6005467AE /* _TokenPlainObject.m */; };
 		56E3E61B21016DB60014152D /* SplashPasswordRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = B6756038585659B6BA1B6A02 /* SplashPasswordRouter.m */; };
 		56E3E61C21016DB60014152D /* ForgotPasswordAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AD5E93E2F918844127F0D5B /* ForgotPasswordAssembly.m */; };
 		56E3E61D21016DB60014152D /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A441584390CE0D8F1190FCBE /* ForgotPasswordViewController.m */; };
@@ -663,11 +684,9 @@
 		56E3E61F21016DB60014152D /* ForgotPasswordInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 86CDA224381BE2DC880B93B1 /* ForgotPasswordInteractor.m */; };
 		56E3E62021016DB60014152D /* ForgotPasswordRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 745352AB102BEF9F4099DFEA /* ForgotPasswordRouter.m */; };
 		56E3E62121016DB60014152D /* InfoAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 4628C0BAA77FC844BA528355 /* InfoAssembly.m */; };
-		56E3E62221016DB60014152D /* TokenModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2B020EFAAD5005467AE /* TokenModelObject.m */; };
 		56E3E62321016DB60014152D /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2673BA0FCE2148F0248EB6B5 /* InfoViewController.m */; };
 		56E3E62421016DB60014152D /* InfoPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB4EBD0C7EF91E88C258A5E /* InfoPresenter.m */; };
 		56E3E62521016DB60014152D /* InfoInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B85D08EABE4776959E5A415 /* InfoInteractor.m */; };
-		56E3E62621016DB60014152D /* _NetworkModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF2CD20EFAAD6005467AE /* _NetworkModelObject.m */; };
 		56E3E62721016DB60014152D /* InfoRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 777B7C1F7DEC57609D0B7D68 /* InfoRouter.m */; };
 		56E3E62821016DB60014152D /* BuyEtherAmountAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 9770D70CAC0077E63DBAEA37 /* BuyEtherAmountAssembly.m */; };
 		56E3E62921016DB60014152D /* BuyEtherAmountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DEC10486790B03C3C02599 /* BuyEtherAmountViewController.m */; };
@@ -730,6 +749,10 @@
 		56E9D3792170C4260004AC61 /* peep_connection_started.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56E9D3732170C4260004AC61 /* peep_connection_started.caf */; };
 		56F17AC420E23FF60010393C /* NSBundle+Version.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F17AC320E23FF60010393C /* NSBundle+Version.m */; };
 		56F3EF672163F95E00C40804 /* MEWconnectServiceStateMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F3EF662163F95E00C40804 /* MEWconnectServiceStateMachine.m */; };
+		56F8EAA22183B7F90010274B /* MappingModel_v_1_to_2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 56F8EAA12183B7F90010274B /* MappingModel_v_1_to_2.xcmappingmodel */; };
+		56F8EAA32183B7F90010274B /* MappingModel_v_1_to_2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 56F8EAA12183B7F90010274B /* MappingModel_v_1_to_2.xcmappingmodel */; };
+		56F8EAA72183BDFE0010274B /* AccountToAccountV2Policy.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F8EAA62183BDFE0010274B /* AccountToAccountV2Policy.m */; };
+		56F8EAA82183BDFE0010274B /* AccountToAccountV2Policy.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F8EAA62183BDFE0010274B /* AccountToAccountV2Policy.m */; };
 		56FB38EE20AF9211007776C8 /* LinkedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB38ED20AF9211007776C8 /* LinkedLabel.m */; };
 		56FB38F720B092C3007776C8 /* MEWConnectFacadeImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB38F620B092C3007776C8 /* MEWConnectFacadeImplementation.m */; };
 		56FB38FC20B09E6F007776C8 /* MEWConnectFacadeConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB38FB20B09E6F007776C8 /* MEWConnectFacadeConstants.m */; };
@@ -769,7 +792,7 @@
 		56FB39E520B35766007776C8 /* HeadersBuilderBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB39E420B35766007776C8 /* HeadersBuilderBase.m */; };
 		56FB39F020B35862007776C8 /* BodyTransformerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB39EF20B35862007776C8 /* BodyTransformerBase.m */; };
 		56FB39F320B3586C007776C8 /* QueryTransformerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB39F220B3586C007776C8 /* QueryTransformerBase.m */; };
-		56FB39FB20B359F9007776C8 /* ContractsBodyTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB39FA20B359F9007776C8 /* ContractsBodyTransformer.m */; };
+		56FB39FB20B359F9007776C8 /* TokensBodyTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB39FA20B359F9007776C8 /* TokensBodyTransformer.m */; };
 		56FB39FF20B35B33007776C8 /* OperationFactoriesAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB39FE20B35B33007776C8 /* OperationFactoriesAssembly.m */; };
 		56FB3A1A20B391B4007776C8 /* TokensBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB3A1920B391B4007776C8 /* TokensBody.m */; };
 		56FB3A1E20B43FE6007776C8 /* TokensResponseConverterImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB3A1D20B43FE6007776C8 /* TokensResponseConverterImplementation.m */; };
@@ -781,7 +804,6 @@
 		56FB3A5320B47037007776C8 /* ManagedObjectMappingProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB3A5220B47037007776C8 /* ManagedObjectMappingProvider.m */; };
 		56FB3A5920B470DD007776C8 /* EntityNameFormatterImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB3A5820B470DD007776C8 /* EntityNameFormatterImplementation.m */; };
 		56FB3A6120B471B0007776C8 /* ManyResponseObjectFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FB3A6020B471B0007776C8 /* ManyResponseObjectFormatter.m */; };
-		56FE2B7220817F1100DB39D5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FE2B7120817F1100DB39D5 /* AppDelegate.m */; };
 		56FE2B7820817F1100DB39D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56FE2B7620817F1100DB39D5 /* Main.storyboard */; };
 		56FE2B7D20817F1100DB39D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56FE2B7B20817F1100DB39D5 /* LaunchScreen.storyboard */; };
 		56FE2B8020817F1100DB39D5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FE2B7F20817F1100DB39D5 /* main.m */; };
@@ -854,9 +876,11 @@
 		869C8341929A12E9ABC3A664 /* BackupDoneAssemblyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CC419CB724DCD31D49501284 /* BackupDoneAssemblyTests.m */; };
 		87F2A65AA0B29769A37E6AC5 /* TransactionViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4881520C760669F0444CA9 /* TransactionViewControllerTests.m */; };
 		8ADED5E6C407D3EB936115B6 /* NewWalletPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = D905F04DFDEB151B54272982 /* NewWalletPresenter.m */; };
+		8E5475167E0D8DD0FBB5B179 /* RestoreSeedRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = DA14E09AB27781606300BEC2 /* RestoreSeedRouter.m */; };
 		919ACBC210E6A20889590BE2 /* ConfirmedTransactionAssemblyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59E9E985891C1CAF4AAD52 /* ConfirmedTransactionAssemblyTests.m */; };
 		94065063B55AB8E8E72FD743 /* BuyEtherHistoryRouterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 132EF5EAC78F2F7053A6917A /* BuyEtherHistoryRouterTests.m */; };
 		9545B03A6FC04B1766AA60BF /* StartPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DFDABFD867A022B744A51B /* StartPresenter.m */; };
+		95AC28C33E90E6CB75236EB0 /* RestoreSeedInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = C9368A0F94EE82312A81713E /* RestoreSeedInteractor.m */; };
 		9700C1C0B67BA5FE28F90ECF /* TransactionAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA85C86451C1F0990FDA10A /* TransactionAssembly.m */; };
 		9802AA6716A921197A8E3688 /* BuyEtherAmountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DEC10486790B03C3C02599 /* BuyEtherAmountViewController.m */; };
 		99FEBCDD9E3E8A7F12CDAC63 /* RestoreWalletInteractorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8344D66F6FE2D51586BA34 /* RestoreWalletInteractorTests.m */; };
@@ -908,6 +932,7 @@
 		BE9AC54E86B6574586BD56C5 /* BuyEtherNavigationAssemblyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 902CBA12ACBD895E7125D453 /* BuyEtherNavigationAssemblyTests.m */; };
 		BF2128604CBBEF13B8D53D92 /* BuyEtherWebViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A84E1AF8E18F852FB9AE756D /* BuyEtherWebViewControllerTests.m */; };
 		BFE229932CEED582B99472F2 /* SplashPasswordRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = B6756038585659B6BA1B6A02 /* SplashPasswordRouter.m */; };
+		C08E074E489B751B4028F47D /* RestoreSeedPresenterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 225F2D921CF51DB246FB5AC9 /* RestoreSeedPresenterTests.m */; };
 		C1AFA42E0D53228036CF8247 /* BackupConfirmationAssemblyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE132C9B5A78A9628382DD6 /* BackupConfirmationAssemblyTests.m */; };
 		C1E40ADDC31A90446D7E54FB /* BackupStartPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = B6027BD5AEE9FF353DAE7B9D /* BackupStartPresenter.m */; };
 		C334927E7011645B8BD78F46 /* AboutPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD4E433684E1D6237A7BBC0 /* AboutPresenter.m */; };
@@ -924,6 +949,7 @@
 		D3B34E197FDF63BE561E6D4C /* MessageSignerPresenterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E153217D27CFAADDB6B20682 /* MessageSignerPresenterTests.m */; };
 		D44842697FE39A671DFA133E /* ShareRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = EEDF7C85D95A6C97F101A5C7 /* ShareRouter.m */; };
 		D5153E13EE46AE2DD97DE88C /* RestoreWalletAssemblyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 888A7C0FF4F78F4853C8AC7D /* RestoreWalletAssemblyTests.m */; };
+		D53B551AA05314C408DBA847 /* RestoreSeedInteractorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA2925906827DA9CCEB3FC /* RestoreSeedInteractorTests.m */; };
 		D5793D1E507610D0FFC818BD /* BackupInfoPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = B36294E51EE6EA30F1A623BE /* BackupInfoPresenter.m */; };
 		D613E39CAD7A19EA13E70438 /* QRScannerPresenterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F7821BAD78C5760E99E26C /* QRScannerPresenterTests.m */; };
 		D662DF1921045993E18984A1 /* NewWalletRouterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CC85349EC13F80EA486B4E5F /* NewWalletRouterTests.m */; };
@@ -934,6 +960,7 @@
 		D9D754DAE5ADEDE854FC750F /* HomeRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1964AC5C3634BFC5E30471 /* HomeRouter.m */; };
 		DA7395FE3DA6AE645E755112 /* SharePresenterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16569F6D23CD4A2B3AF5598F /* SharePresenterTests.m */; };
 		DCEF50B29F279C56027F4FEA /* BackupWordsInteractorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 922DE9F5016B5C5F2D0A3305 /* BackupWordsInteractorTests.m */; };
+		DF0D46B9486CD04C5E2DD220 /* RestoreSeedAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A0B21D76E1EA6CE0078EB3D /* RestoreSeedAssembly.m */; };
 		E1962880F8EF83692DE15244 /* SettingsPresenterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8917E8B618A84445E2211D4 /* SettingsPresenterTests.m */; };
 		E382C859C6675B6E524BDC87 /* NewWalletAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D636DCB86E2833A9F98A3AD /* NewWalletAssembly.m */; };
 		E4D73EFB8247540168118E8E /* InfoInteractorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF26F578BC500D996EB488B /* InfoInteractorTests.m */; };
@@ -954,6 +981,7 @@
 		F44AF94F63C70216178E5084 /* ShareAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DFB3A8A29658A337BA0F97 /* ShareAssembly.m */; };
 		F56BA5669B8973DB2B861843 /* BackupDoneInteractorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E9629DE819FA5324BECC2913 /* BackupDoneInteractorTests.m */; };
 		F592C64842F3C8DB2FE294ED /* BackupConfirmationPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F156435ECD7C5978F852A39 /* BackupConfirmationPresenter.m */; };
+		F5E3B1945D11158D6038D9A5 /* RestoreSeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C465A08A4DF1754938D19F4C /* RestoreSeedViewController.m */; };
 		F6D29640959D3D03944DBE7D /* BuyEtherAmountRouterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A02E10E5B397E3AF0A37281 /* BuyEtherAmountRouterTests.m */; };
 		F7F33DF5E1C656CB88DEF517 /* PasswordInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = E33D7FF98C5BD97131D58FF7 /* PasswordInteractor.m */; };
 		F8ABADF0ED242675D0168F2D /* NewWalletAssemblyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E18D0A084B8D8EDBFEEE51CA /* NewWalletAssemblyTests.m */; };
@@ -1056,6 +1084,7 @@
 		1C0F46052299D3FF10B71B78 /* ShareRouterTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ShareRouterTests.m; sourceTree = "<group>"; };
 		1C469E896852666A2C64CED9 /* BuyEtherNavigationRouterTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BuyEtherNavigationRouterTests.m; sourceTree = "<group>"; };
 		1CDD047163265F2219DB9330 /* RestoreWalletModuleInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RestoreWalletModuleInput.h; sourceTree = "<group>"; };
+		1DAB2A7857952022D09D33FD /* RestoreSeedInteractorOutput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RestoreSeedInteractorOutput.h; sourceTree = "<group>"; };
 		1DCFE3BAFF7EEC4E746F3EBF /* SplashPasswordInteractor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SplashPasswordInteractor.m; sourceTree = "<group>"; };
 		1E9498D20276734A2C72594D /* ContextPasswordInteractor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ContextPasswordInteractor.m; sourceTree = "<group>"; };
 		1EAE07A834138BF5E990A2DC /* QRScannerInteractorOutput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = QRScannerInteractorOutput.h; sourceTree = "<group>"; };
@@ -1067,6 +1096,8 @@
 		2009358AAEABD61518537775 /* InfoInteractor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = InfoInteractor.h; sourceTree = "<group>"; };
 		210B6C5A488EF6A8D605F6CD /* BuyEtherAmountAssembly_Testable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BuyEtherAmountAssembly_Testable.h; sourceTree = "<group>"; };
 		2124BCCE07E21340083612D2 /* BuyEtherWebViewInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BuyEtherWebViewInput.h; sourceTree = "<group>"; };
+		220F455C1253BA45232C6F8C /* RestoreSeedAssemblyTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RestoreSeedAssemblyTests.m; sourceTree = "<group>"; };
+		225F2D921CF51DB246FB5AC9 /* RestoreSeedPresenterTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RestoreSeedPresenterTests.m; sourceTree = "<group>"; };
 		22B6352F56A3E722B69F7748 /* ContextPasswordInteractorOutput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ContextPasswordInteractorOutput.h; sourceTree = "<group>"; };
 		22DCFD55520AB5E4268B81DF /* QRScannerInteractorInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = QRScannerInteractorInput.h; sourceTree = "<group>"; };
 		238069D651D77E7B2CA5A751 /* BuyEtherHistoryPresenter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BuyEtherHistoryPresenter.m; sourceTree = "<group>"; };
@@ -1094,6 +1125,7 @@
 		2BF488F3DD448529EA6DC29E /* AboutInteractor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = AboutInteractor.m; sourceTree = "<group>"; };
 		2C301E01EFD84BD9E0DCABC8 /* BuyEtherWebRouterInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BuyEtherWebRouterInput.h; sourceTree = "<group>"; };
 		2C3EEB8367B738A0C1CFBFB9 /* Pods-MEWconnect-MyEtherWallet-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MEWconnect-MyEtherWallet-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MEWconnect-MyEtherWallet-iOS/Pods-MEWconnect-MyEtherWallet-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		2C94F28024E6DBFA3853EA60 /* RestoreSeedAssembly.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RestoreSeedAssembly.h; sourceTree = "<group>"; };
 		2CEE8BDFD43A006394AE926D /* SplashPasswordRouterTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SplashPasswordRouterTests.m; sourceTree = "<group>"; };
 		2D2C6DC4BA23012CDDE75026 /* RestoreWalletViewControllerTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RestoreWalletViewControllerTests.m; sourceTree = "<group>"; };
 		2D636DCB86E2833A9F98A3AD /* NewWalletAssembly.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = NewWalletAssembly.m; sourceTree = "<group>"; };
@@ -1113,8 +1145,10 @@
 		308060365E84A72C7F95F4FC /* StartAssemblyTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = StartAssemblyTests.m; sourceTree = "<group>"; };
 		308EA7593A99718C9D9B32D2 /* HomePresenterTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HomePresenterTests.m; sourceTree = "<group>"; };
 		30ABE733EBDD54D9B1E62587 /* BuyEtherAmountInteractor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BuyEtherAmountInteractor.h; sourceTree = "<group>"; };
+		31F4B2A9AF5866DBE3413D3E /* RestoreSeedRouter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RestoreSeedRouter.h; sourceTree = "<group>"; };
 		3257A914759D6780C38D41F9 /* BackupWordsViewControllerTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BackupWordsViewControllerTests.m; sourceTree = "<group>"; };
 		329B7E19952EEA1A0EC7844A /* ConfirmationNavigationPresenter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ConfirmationNavigationPresenter.h; sourceTree = "<group>"; };
+		32DA2925906827DA9CCEB3FC /* RestoreSeedInteractorTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RestoreSeedInteractorTests.m; sourceTree = "<group>"; };
 		32DBD999CED3CA2E544F793F /* RestoreWalletInteractorInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RestoreWalletInteractorInput.h; sourceTree = "<group>"; };
 		341F557D198F502E6ED551CB /* BuyEtherNavigationModuleInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BuyEtherNavigationModuleInput.h; sourceTree = "<group>"; };
 		3428AEA2D53881B1B0BD2ED0 /* BuyEtherAmountViewInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BuyEtherAmountViewInput.h; sourceTree = "<group>"; };
@@ -1185,6 +1219,7 @@
 		515D2B05CC2A2949F2A326C1 /* PasswordRouter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PasswordRouter.m; sourceTree = "<group>"; };
 		51E74F1346EADB6459C4EF97 /* BackupConfirmationInteractorInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BackupConfirmationInteractorInput.h; sourceTree = "<group>"; };
 		523984EAFFDB1A1152D7AF74 /* BuyEtherHistoryViewControllerTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BuyEtherHistoryViewControllerTests.m; sourceTree = "<group>"; };
+		5364085F3BBCAFCA550EEA1E /* RestoreSeedViewOutput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RestoreSeedViewOutput.h; sourceTree = "<group>"; };
 		53C68AE5401EEBB54AC40EEC /* ConfirmationNavigationAssembly.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ConfirmationNavigationAssembly.m; sourceTree = "<group>"; };
 		54A82E0249F20A62A3D82E3B /* BackupWordsModuleInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BackupWordsModuleInput.h; sourceTree = "<group>"; };
 		554943B399B4156055E2AE24 /* BuyEtherNavigationRouterInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BuyEtherNavigationRouterInput.h; sourceTree = "<group>"; };
@@ -1199,14 +1234,8 @@
 		560A866D20E65C5F00046B53 /* CoreDataConfiguratorImplementation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataConfiguratorImplementation.h; sourceTree = "<group>"; };
 		560A866E20E65C5F00046B53 /* CoreDataConfiguratorImplementation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataConfiguratorImplementation.m; sourceTree = "<group>"; };
 		560A867020E65C6400046B53 /* CoreDataConfigurator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataConfigurator.h; sourceTree = "<group>"; };
-		560A867320E681E700046B53 /* KeychainItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainItemModel.h; sourceTree = "<group>"; };
-		560A867420E681E700046B53 /* KeychainItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeychainItemModel.m; sourceTree = "<group>"; };
-		560A867720E6EF9600046B53 /* AccountsBody.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountsBody.h; sourceTree = "<group>"; };
-		560A867820E6EF9600046B53 /* AccountsBody.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountsBody.m; sourceTree = "<group>"; };
-		560A867B20E6F0C700046B53 /* AccountsOperationFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountsOperationFactory.h; sourceTree = "<group>"; };
-		560A867C20E6F0C700046B53 /* AccountsOperationFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountsOperationFactory.m; sourceTree = "<group>"; };
-		560A867F20E6F40F00046B53 /* BalanceBodyTransformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BalanceBodyTransformer.h; sourceTree = "<group>"; };
-		560A868020E6F40F00046B53 /* BalanceBodyTransformer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BalanceBodyTransformer.m; sourceTree = "<group>"; };
+		560A867320E681E700046B53 /* KeychainNetworkModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainNetworkModel.h; sourceTree = "<group>"; };
+		560A867420E681E700046B53 /* KeychainNetworkModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeychainNetworkModel.m; sourceTree = "<group>"; };
 		560CAFF1209B0EC500BFF59C /* Web3Wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Web3Wrapper.swift; sourceTree = "<group>"; };
 		560CAFFD209B428500BFF59C /* MEWConnectCommand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MEWConnectCommand.h; sourceTree = "<group>"; };
 		560CAFFE209B428500BFF59C /* MEWConnectCommand.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MEWConnectCommand.m; sourceTree = "<group>"; };
@@ -1272,6 +1301,7 @@
 		56191EAB215052F1000BF97F /* RateService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RateService.h; sourceTree = "<group>"; };
 		56191EAC215052FD000BF97F /* RateServiceImplementation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RateServiceImplementation.h; sourceTree = "<group>"; };
 		56191EAD215052FD000BF97F /* RateServiceImplementation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RateServiceImplementation.m; sourceTree = "<group>"; };
+		561F2F43218F1CC5003EC319 /* RestoreSeedModuleOutput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RestoreSeedModuleOutput.h; sourceTree = "<group>"; };
 		5627B6F4210A81B7009787F7 /* EthereumResponseValidator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EthereumResponseValidator.h; sourceTree = "<group>"; };
 		5627B6F5210A81B7009787F7 /* EthereumResponseValidator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EthereumResponseValidator.m; sourceTree = "<group>"; };
 		5627B6F8210B525F009787F7 /* AboutAssemblyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutAssemblyTests.m; sourceTree = "<group>"; };
@@ -1285,50 +1315,19 @@
 		56307A8F216EC77700282602 /* Shared.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Shared.xcassets; sourceTree = "<group>"; };
 		56307A92216F61AF00282602 /* UIScreen+AnimateBrightness.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScreen+AnimateBrightness.h"; sourceTree = "<group>"; };
 		56307A93216F61AF00282602 /* UIScreen+AnimateBrightness.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScreen+AnimateBrightness.m"; sourceTree = "<group>"; };
+		56335F7B2187662200C07E2B /* KeychainServiceConstantsV1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainServiceConstantsV1.h; sourceTree = "<group>"; };
+		56335F7C2187662200C07E2B /* KeychainServiceConstantsV1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeychainServiceConstantsV1.m; sourceTree = "<group>"; };
+		56335F7F2187663600C07E2B /* KeychainServiceConstantsV2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainServiceConstantsV2.h; sourceTree = "<group>"; };
+		56335F802187663600C07E2B /* KeychainServiceConstantsV2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeychainServiceConstantsV2.m; sourceTree = "<group>"; };
+		56335F832187664000C07E2B /* KeychainServiceSharedConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainServiceSharedConstants.h; sourceTree = "<group>"; };
+		56335F842187664000C07E2B /* KeychainServiceSharedConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeychainServiceSharedConstants.m; sourceTree = "<group>"; };
+		56335F8721876B1700C07E2B /* KeychainService+Protected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KeychainService+Protected.h"; sourceTree = "<group>"; };
+		56335F892187BBC300C07E2B /* KeychainAccountModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainAccountModel.h; sourceTree = "<group>"; };
+		56335F8A2187BBC300C07E2B /* KeychainAccountModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeychainAccountModel.m; sourceTree = "<group>"; };
 		563C6AD620AC696300E85B8B /* MEWSearchBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MEWSearchBar.h; sourceTree = "<group>"; };
 		563C6AD720AC696300E85B8B /* MEWSearchBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MEWSearchBar.m; sourceTree = "<group>"; };
 		563C6AE220AF122000E85B8B /* CheckboxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxButton.swift; sourceTree = "<group>"; };
 		563C6AE520AF690A00E85B8B /* CheckboxButton+Blockies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CheckboxButton+Blockies.swift"; sourceTree = "<group>"; };
-		563CF2A720EFAAD5005467AE /* AccountModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountModelObject.h; sourceTree = "<group>"; };
-		563CF2A820EFAAD5005467AE /* AccountModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountModelObject.m; sourceTree = "<group>"; };
-		563CF2A920EFAAD5005467AE /* FiatPriceModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiatPriceModelObject.h; sourceTree = "<group>"; };
-		563CF2AA20EFAAD5005467AE /* FiatPriceModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiatPriceModelObject.m; sourceTree = "<group>"; };
-		563CF2AB20EFAAD5005467AE /* NetworkModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkModelObject.h; sourceTree = "<group>"; };
-		563CF2AC20EFAAD5005467AE /* NetworkModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkModelObject.m; sourceTree = "<group>"; };
-		563CF2AD20EFAAD5005467AE /* PurchaseHistoryModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseHistoryModelObject.h; sourceTree = "<group>"; };
-		563CF2AE20EFAAD5005467AE /* PurchaseHistoryModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchaseHistoryModelObject.m; sourceTree = "<group>"; };
-		563CF2AF20EFAAD5005467AE /* TokenModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TokenModelObject.h; sourceTree = "<group>"; };
-		563CF2B020EFAAD5005467AE /* TokenModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TokenModelObject.m; sourceTree = "<group>"; };
-		563CF2B220EFAAD5005467AE /* AccountPlainObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountPlainObject.h; sourceTree = "<group>"; };
-		563CF2B320EFAAD5005467AE /* AccountPlainObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountPlainObject.m; sourceTree = "<group>"; };
-		563CF2B420EFAAD5005467AE /* FiatPricePlainObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiatPricePlainObject.h; sourceTree = "<group>"; };
-		563CF2B520EFAAD5005467AE /* FiatPricePlainObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiatPricePlainObject.m; sourceTree = "<group>"; };
-		563CF2B620EFAAD5005467AE /* NetworkPlainObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkPlainObject.h; sourceTree = "<group>"; };
-		563CF2B720EFAAD5005467AE /* NetworkPlainObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkPlainObject.m; sourceTree = "<group>"; };
-		563CF2B820EFAAD5005467AE /* PurchaseHistoryPlainObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseHistoryPlainObject.h; sourceTree = "<group>"; };
-		563CF2B920EFAAD5005467AE /* PurchaseHistoryPlainObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchaseHistoryPlainObject.m; sourceTree = "<group>"; };
-		563CF2BA20EFAAD5005467AE /* TokenPlainObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TokenPlainObject.h; sourceTree = "<group>"; };
-		563CF2BB20EFAAD5005467AE /* TokenPlainObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TokenPlainObject.m; sourceTree = "<group>"; };
-		563CF2BD20EFAAD6005467AE /* _AccountPlainObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _AccountPlainObject.h; sourceTree = "<group>"; };
-		563CF2BE20EFAAD6005467AE /* _AccountPlainObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _AccountPlainObject.m; sourceTree = "<group>"; };
-		563CF2BF20EFAAD6005467AE /* _FiatPricePlainObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _FiatPricePlainObject.h; sourceTree = "<group>"; };
-		563CF2C020EFAAD6005467AE /* _FiatPricePlainObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _FiatPricePlainObject.m; sourceTree = "<group>"; };
-		563CF2C120EFAAD6005467AE /* _NetworkPlainObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _NetworkPlainObject.h; sourceTree = "<group>"; };
-		563CF2C220EFAAD6005467AE /* _NetworkPlainObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _NetworkPlainObject.m; sourceTree = "<group>"; };
-		563CF2C320EFAAD6005467AE /* _PurchaseHistoryPlainObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _PurchaseHistoryPlainObject.h; sourceTree = "<group>"; };
-		563CF2C420EFAAD6005467AE /* _PurchaseHistoryPlainObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _PurchaseHistoryPlainObject.m; sourceTree = "<group>"; };
-		563CF2C520EFAAD6005467AE /* _TokenPlainObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _TokenPlainObject.h; sourceTree = "<group>"; };
-		563CF2C620EFAAD6005467AE /* _TokenPlainObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _TokenPlainObject.m; sourceTree = "<group>"; };
-		563CF2C820EFAAD6005467AE /* _AccountModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _AccountModelObject.h; sourceTree = "<group>"; };
-		563CF2C920EFAAD6005467AE /* _AccountModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _AccountModelObject.m; sourceTree = "<group>"; };
-		563CF2CA20EFAAD6005467AE /* _FiatPriceModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _FiatPriceModelObject.h; sourceTree = "<group>"; };
-		563CF2CB20EFAAD6005467AE /* _FiatPriceModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _FiatPriceModelObject.m; sourceTree = "<group>"; };
-		563CF2CC20EFAAD6005467AE /* _NetworkModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _NetworkModelObject.h; sourceTree = "<group>"; };
-		563CF2CD20EFAAD6005467AE /* _NetworkModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _NetworkModelObject.m; sourceTree = "<group>"; };
-		563CF2CE20EFAAD6005467AE /* _PurchaseHistoryModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _PurchaseHistoryModelObject.h; sourceTree = "<group>"; };
-		563CF2CF20EFAAD6005467AE /* _PurchaseHistoryModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _PurchaseHistoryModelObject.m; sourceTree = "<group>"; };
-		563CF2D020EFAAD6005467AE /* _TokenModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _TokenModelObject.h; sourceTree = "<group>"; };
-		563CF2D120EFAAD6005467AE /* _TokenModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _TokenModelObject.m; sourceTree = "<group>"; };
 		563CF2E920EFAB3D005467AE /* BuyEtherHistoryDataDisplayManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuyEtherHistoryDataDisplayManager.h; sourceTree = "<group>"; };
 		563CF2EA20EFAB3D005467AE /* BuyEtherHistoryDataDisplayManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuyEtherHistoryDataDisplayManager.m; sourceTree = "<group>"; };
 		563CF2EE20EFAD37005467AE /* BuyEtherHistoryEmptyTableViewCellObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuyEtherHistoryEmptyTableViewCellObject.h; sourceTree = "<group>"; };
@@ -1425,6 +1424,7 @@
 		5668E52D2083F5050070A402 /* common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = common.xcconfig; sourceTree = "<group>"; };
 		566BD36121389478007EC803 /* MEWConnectMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MEWConnectMessage.h; sourceTree = "<group>"; };
 		566BD36221389478007EC803 /* MEWConnectMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MEWConnectMessage.m; sourceTree = "<group>"; };
+		566EE4CEDBB6E248148BF5EE /* RestoreSeedViewInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RestoreSeedViewInput.h; sourceTree = "<group>"; };
 		5677BB3720FA13860019E92D /* ModuleFactoriesAssembly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModuleFactoriesAssembly.h; sourceTree = "<group>"; };
 		5677BB3820FA13860019E92D /* ModuleFactoriesAssembly.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModuleFactoriesAssembly.m; sourceTree = "<group>"; };
 		5677BB4020FAB28C0019E92D /* UIView+LockFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+LockFrame.h"; sourceTree = "<group>"; };
@@ -1439,10 +1439,60 @@
 		5677BB6320FEA5D30019E92D /* RotationButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RotationButton.m; sourceTree = "<group>"; };
 		5677BB722100A8260019E92D /* UIBezierPath+Morphing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+Morphing.h"; sourceTree = "<group>"; };
 		5677BB732100A8260019E92D /* UIBezierPath+Morphing.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+Morphing.m"; sourceTree = "<group>"; };
+		5677C5532181226400477ACD /* _AccountModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _AccountModelObject.h; sourceTree = "<group>"; };
+		5677C5542181226400477ACD /* _AccountModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _AccountModelObject.m; sourceTree = "<group>"; };
+		5677C5552181226400477ACD /* _FiatPriceModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _FiatPriceModelObject.h; sourceTree = "<group>"; };
+		5677C5562181226400477ACD /* _FiatPriceModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _FiatPriceModelObject.m; sourceTree = "<group>"; };
+		5677C5572181226400477ACD /* _MasterTokenModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _MasterTokenModelObject.h; sourceTree = "<group>"; };
+		5677C5582181226400477ACD /* _MasterTokenModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _MasterTokenModelObject.m; sourceTree = "<group>"; };
+		5677C5592181226400477ACD /* _NetworkModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _NetworkModelObject.h; sourceTree = "<group>"; };
+		5677C55A2181226400477ACD /* _NetworkModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _NetworkModelObject.m; sourceTree = "<group>"; };
+		5677C55B2181226400477ACD /* _PurchaseHistoryModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _PurchaseHistoryModelObject.h; sourceTree = "<group>"; };
+		5677C55C2181226400477ACD /* _PurchaseHistoryModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _PurchaseHistoryModelObject.m; sourceTree = "<group>"; };
+		5677C55D2181226400477ACD /* _TokenModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _TokenModelObject.h; sourceTree = "<group>"; };
+		5677C55E2181226400477ACD /* _TokenModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _TokenModelObject.m; sourceTree = "<group>"; };
+		5677C5602181226400477ACD /* AccountPlainObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountPlainObject.h; sourceTree = "<group>"; };
+		5677C5612181226400477ACD /* AccountPlainObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountPlainObject.m; sourceTree = "<group>"; };
+		5677C5622181226400477ACD /* FiatPricePlainObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiatPricePlainObject.h; sourceTree = "<group>"; };
+		5677C5632181226400477ACD /* FiatPricePlainObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiatPricePlainObject.m; sourceTree = "<group>"; };
+		5677C5642181226400477ACD /* MasterTokenPlainObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterTokenPlainObject.h; sourceTree = "<group>"; };
+		5677C5652181226400477ACD /* MasterTokenPlainObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterTokenPlainObject.m; sourceTree = "<group>"; };
+		5677C5662181226400477ACD /* NetworkPlainObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkPlainObject.h; sourceTree = "<group>"; };
+		5677C5672181226400477ACD /* NetworkPlainObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkPlainObject.m; sourceTree = "<group>"; };
+		5677C5682181226400477ACD /* PurchaseHistoryPlainObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseHistoryPlainObject.h; sourceTree = "<group>"; };
+		5677C5692181226400477ACD /* PurchaseHistoryPlainObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchaseHistoryPlainObject.m; sourceTree = "<group>"; };
+		5677C56A2181226400477ACD /* TokenPlainObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TokenPlainObject.h; sourceTree = "<group>"; };
+		5677C56B2181226400477ACD /* TokenPlainObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TokenPlainObject.m; sourceTree = "<group>"; };
+		5677C56D2181226400477ACD /* AccountModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountModelObject.h; sourceTree = "<group>"; };
+		5677C56E2181226400477ACD /* AccountModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountModelObject.m; sourceTree = "<group>"; };
+		5677C56F2181226400477ACD /* FiatPriceModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiatPriceModelObject.h; sourceTree = "<group>"; };
+		5677C5702181226400477ACD /* FiatPriceModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiatPriceModelObject.m; sourceTree = "<group>"; };
+		5677C5712181226400477ACD /* MasterTokenModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterTokenModelObject.h; sourceTree = "<group>"; };
+		5677C5722181226400477ACD /* MasterTokenModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterTokenModelObject.m; sourceTree = "<group>"; };
+		5677C5732181226400477ACD /* NetworkModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkModelObject.h; sourceTree = "<group>"; };
+		5677C5742181226400477ACD /* NetworkModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkModelObject.m; sourceTree = "<group>"; };
+		5677C5752181226400477ACD /* PurchaseHistoryModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseHistoryModelObject.h; sourceTree = "<group>"; };
+		5677C5762181226400477ACD /* PurchaseHistoryModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchaseHistoryModelObject.m; sourceTree = "<group>"; };
+		5677C5772181226400477ACD /* TokenModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TokenModelObject.h; sourceTree = "<group>"; };
+		5677C5782181226400477ACD /* TokenModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TokenModelObject.m; sourceTree = "<group>"; };
+		5677C57A2181226500477ACD /* _AccountPlainObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _AccountPlainObject.h; sourceTree = "<group>"; };
+		5677C57B2181226500477ACD /* _AccountPlainObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _AccountPlainObject.m; sourceTree = "<group>"; };
+		5677C57C2181226500477ACD /* _FiatPricePlainObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _FiatPricePlainObject.h; sourceTree = "<group>"; };
+		5677C57D2181226500477ACD /* _FiatPricePlainObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _FiatPricePlainObject.m; sourceTree = "<group>"; };
+		5677C57E2181226500477ACD /* _MasterTokenPlainObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _MasterTokenPlainObject.h; sourceTree = "<group>"; };
+		5677C57F2181226500477ACD /* _MasterTokenPlainObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _MasterTokenPlainObject.m; sourceTree = "<group>"; };
+		5677C5802181226500477ACD /* _NetworkPlainObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _NetworkPlainObject.h; sourceTree = "<group>"; };
+		5677C5812181226500477ACD /* _NetworkPlainObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _NetworkPlainObject.m; sourceTree = "<group>"; };
+		5677C5822181226500477ACD /* _PurchaseHistoryPlainObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _PurchaseHistoryPlainObject.h; sourceTree = "<group>"; };
+		5677C5832181226500477ACD /* _PurchaseHistoryPlainObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _PurchaseHistoryPlainObject.m; sourceTree = "<group>"; };
+		5677C5842181226500477ACD /* _TokenPlainObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _TokenPlainObject.h; sourceTree = "<group>"; };
+		5677C5852181226500477ACD /* _TokenPlainObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _TokenPlainObject.m; sourceTree = "<group>"; };
 		5685FE142099F9A4008C75A1 /* FlatButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlatButton.h; sourceTree = "<group>"; };
 		5685FE152099F9A4008C75A1 /* FlatButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlatButton.m; sourceTree = "<group>"; };
 		5689111D20EE6511001552D4 /* SimplexPaymentQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimplexPaymentQuery.h; sourceTree = "<group>"; };
 		5689111E20EE6511001552D4 /* SimplexPaymentQuery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimplexPaymentQuery.m; sourceTree = "<group>"; };
+		56947CD82186465700336F4B /* MasterTokenBody.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterTokenBody.h; sourceTree = "<group>"; };
+		56947CD92186465700336F4B /* MasterTokenBody.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterTokenBody.m; sourceTree = "<group>"; };
 		5699983B2095141100D45153 /* Setup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setup.storyboard; sourceTree = "<group>"; };
 		56999845209517D500D45153 /* Wallet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Wallet.storyboard; sourceTree = "<group>"; };
 		56999847209517EB00D45153 /* Confirmation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Confirmation.storyboard; sourceTree = "<group>"; };
@@ -1554,6 +1604,12 @@
 		56C878B920BC1A3300343ADC /* HomeEmptyTableViewCellObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeEmptyTableViewCellObject.m; sourceTree = "<group>"; };
 		56CF0A9220D87F550029F841 /* NSArray+Data.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+Data.h"; sourceTree = "<group>"; };
 		56CF0A9320D87F550029F841 /* NSArray+Data.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Data.m"; sourceTree = "<group>"; };
+		56D85B6F217F70A200B474C6 /* MEWconnect.v.2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MEWconnect.v.2.xcdatamodel; sourceTree = "<group>"; };
+		56D85B78217FAD2500B474C6 /* MigrationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MigrationService.h; sourceTree = "<group>"; };
+		56D85B79217FAD3200B474C6 /* MigrationServiceImplementation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MigrationServiceImplementation.h; sourceTree = "<group>"; };
+		56D85B7A217FAD3200B474C6 /* MigrationServiceImplementation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MigrationServiceImplementation.m; sourceTree = "<group>"; };
+		56D85B7D217FB42600B474C6 /* MigrationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MigrationManager.h; sourceTree = "<group>"; };
+		56D85B7E217FB42600B474C6 /* MigrationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MigrationManager.m; sourceTree = "<group>"; };
 		56DE4E0A20A9E61F001A2C19 /* BottomImageButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BottomImageButton.h; sourceTree = "<group>"; };
 		56DE4E0B20A9E61F001A2C19 /* BottomImageButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BottomImageButton.m; sourceTree = "<group>"; };
 		56E14BB720E979BD00C41F83 /* FiatPricesService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FiatPricesService.h; sourceTree = "<group>"; };
@@ -1631,6 +1687,9 @@
 		56F17AC320E23FF60010393C /* NSBundle+Version.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+Version.m"; sourceTree = "<group>"; };
 		56F3EF652163F95E00C40804 /* MEWconnectServiceStateMachine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MEWconnectServiceStateMachine.h; sourceTree = "<group>"; };
 		56F3EF662163F95E00C40804 /* MEWconnectServiceStateMachine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MEWconnectServiceStateMachine.m; sourceTree = "<group>"; };
+		56F8EAA12183B7F90010274B /* MappingModel_v_1_to_2.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = MappingModel_v_1_to_2.xcmappingmodel; sourceTree = "<group>"; };
+		56F8EAA52183BDFE0010274B /* AccountToAccountV2Policy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountToAccountV2Policy.h; sourceTree = "<group>"; };
+		56F8EAA62183BDFE0010274B /* AccountToAccountV2Policy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountToAccountV2Policy.m; sourceTree = "<group>"; };
 		56FB38EC20AF9211007776C8 /* LinkedLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LinkedLabel.h; sourceTree = "<group>"; };
 		56FB38ED20AF9211007776C8 /* LinkedLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LinkedLabel.m; sourceTree = "<group>"; };
 		56FB38F220B092A7007776C8 /* MEWConnectFacade.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MEWConnectFacade.h; sourceTree = "<group>"; };
@@ -1741,8 +1800,8 @@
 		56FB39EF20B35862007776C8 /* BodyTransformerBase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BodyTransformerBase.m; sourceTree = "<group>"; };
 		56FB39F120B3586C007776C8 /* QueryTransformerBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QueryTransformerBase.h; sourceTree = "<group>"; };
 		56FB39F220B3586C007776C8 /* QueryTransformerBase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QueryTransformerBase.m; sourceTree = "<group>"; };
-		56FB39F920B359F9007776C8 /* ContractsBodyTransformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContractsBodyTransformer.h; sourceTree = "<group>"; };
-		56FB39FA20B359F9007776C8 /* ContractsBodyTransformer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContractsBodyTransformer.m; sourceTree = "<group>"; };
+		56FB39F920B359F9007776C8 /* TokensBodyTransformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TokensBodyTransformer.h; sourceTree = "<group>"; };
+		56FB39FA20B359F9007776C8 /* TokensBodyTransformer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TokensBodyTransformer.m; sourceTree = "<group>"; };
 		56FB39FD20B35B33007776C8 /* OperationFactoriesAssembly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OperationFactoriesAssembly.h; sourceTree = "<group>"; };
 		56FB39FE20B35B33007776C8 /* OperationFactoriesAssembly.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OperationFactoriesAssembly.m; sourceTree = "<group>"; };
 		56FB3A1820B391B4007776C8 /* TokensBody.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TokensBody.h; sourceTree = "<group>"; };
@@ -1773,8 +1832,6 @@
 		56FB3A5F20B471B0007776C8 /* ManyResponseObjectFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ManyResponseObjectFormatter.h; sourceTree = "<group>"; };
 		56FB3A6020B471B0007776C8 /* ManyResponseObjectFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ManyResponseObjectFormatter.m; sourceTree = "<group>"; };
 		56FE2B6D20817F1100DB39D5 /* MyEtherWallet-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MyEtherWallet-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		56FE2B7020817F1100DB39D5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		56FE2B7120817F1100DB39D5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		56FE2B7720817F1100DB39D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		56FE2B7920817F1100DB39D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		56FE2B7C20817F1100DB39D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -1800,6 +1857,7 @@
 		59FE0E01B039D09A800DDCFB /* PasswordInteractorOutput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PasswordInteractorOutput.h; sourceTree = "<group>"; };
 		5A34FC3DB1BAE92C1FD8CF45 /* ConfirmPasswordRouterInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ConfirmPasswordRouterInput.h; sourceTree = "<group>"; };
 		5A63BF5FFC8A9F6B17144F28 /* BuyEtherNavigationViewControllerTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BuyEtherNavigationViewControllerTests.m; sourceTree = "<group>"; };
+		5ACBE5AF8AFA5A955CD7C9F9 /* RestoreSeedAssembly_Testable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RestoreSeedAssembly_Testable.h; sourceTree = "<group>"; };
 		5B619FD5CBEE97E87B364112 /* DeclinedTransactionInteractor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = DeclinedTransactionInteractor.m; sourceTree = "<group>"; };
 		5B97E4130E38E8C88F3A07B2 /* BackupInfoRouterInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BackupInfoRouterInput.h; sourceTree = "<group>"; };
 		5BC48850154BB9A42EDDEB76 /* AboutRouter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = AboutRouter.m; sourceTree = "<group>"; };
@@ -1808,6 +1866,7 @@
 		5C7567862445CB826C97B4D5 /* SettingsInteractorOutput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SettingsInteractorOutput.h; sourceTree = "<group>"; };
 		5C7862C777D6AB8018DFB260 /* SettingsViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		5E10BB3B12FC4EEF8C78785D /* BackupWordsRouterTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BackupWordsRouterTests.m; sourceTree = "<group>"; };
+		5E22BA1D744E066F1CF99D54 /* RestoreSeedRouterTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RestoreSeedRouterTests.m; sourceTree = "<group>"; };
 		5E88E6EE3FEDD37AC45942FB /* StartRouter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = StartRouter.m; sourceTree = "<group>"; };
 		5E9DFA439A8965987C8E2D53 /* Pods-MEWconnect-MyEtherWallet-iOS-MyEtherWallet-iOSTests.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MEWconnect-MyEtherWallet-iOS-MyEtherWallet-iOSTests.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-MEWconnect-MyEtherWallet-iOS-MyEtherWallet-iOSTests/Pods-MEWconnect-MyEtherWallet-iOS-MyEtherWallet-iOSTests.appstore.xcconfig"; sourceTree = "<group>"; };
 		5F6A5DB4B25CE2D036FEC396 /* BuyEtherAmountRouterInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BuyEtherAmountRouterInput.h; sourceTree = "<group>"; };
@@ -1844,6 +1903,7 @@
 		6F43C2BB785CA5036FF6E596 /* Pods-MyEtherWallet-iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyEtherWallet-iOSUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyEtherWallet-iOSUITests/Pods-MyEtherWallet-iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		701E7E0B8090BA0C4F25602B /* BackupDoneRouter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BackupDoneRouter.h; sourceTree = "<group>"; };
 		71577AABEFA02EB5B24AF46D /* InfoInteractorOutput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = InfoInteractorOutput.h; sourceTree = "<group>"; };
+		72DB23C45E0D8499C848F508 /* RestoreSeedRouterInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RestoreSeedRouterInput.h; sourceTree = "<group>"; };
 		73C94C174F163D8E5F4A0F1D /* BuyEtherNavigationPresenter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BuyEtherNavigationPresenter.m; sourceTree = "<group>"; };
 		745352AB102BEF9F4099DFEA /* ForgotPasswordRouter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ForgotPasswordRouter.m; sourceTree = "<group>"; };
 		7453C30344F9B08E593BAEB3 /* RestoreWalletRouter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RestoreWalletRouter.h; sourceTree = "<group>"; };
@@ -1858,6 +1918,7 @@
 		79866F9298E7EA3AC115DF7B /* ConfirmPasswordRouter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ConfirmPasswordRouter.m; sourceTree = "<group>"; };
 		799DDFFF318501FE4678D822 /* BackupConfirmationViewInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BackupConfirmationViewInput.h; sourceTree = "<group>"; };
 		79C33B94DD9246480178E285 /* ConfirmedTransactionPresenterTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ConfirmedTransactionPresenterTests.m; sourceTree = "<group>"; };
+		7A0B21D76E1EA6CE0078EB3D /* RestoreSeedAssembly.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RestoreSeedAssembly.m; sourceTree = "<group>"; };
 		7AE132C9B5A78A9628382DD6 /* BackupConfirmationAssemblyTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BackupConfirmationAssemblyTests.m; sourceTree = "<group>"; };
 		7AEC9881F8C31ACA3128783E /* DeclinedTransactionViewControllerTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = DeclinedTransactionViewControllerTests.m; sourceTree = "<group>"; };
 		7B18B154093DB864A938E749 /* DeclinedTransactionViewInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = DeclinedTransactionViewInput.h; sourceTree = "<group>"; };
@@ -1970,6 +2031,7 @@
 		A199D0E848B3FD7B43858C7A /* PasswordAssemblyTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PasswordAssemblyTests.m; sourceTree = "<group>"; };
 		A1A0642C2E3A65ABADE3C778 /* ForgotPasswordInteractorInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordInteractorInput.h; sourceTree = "<group>"; };
 		A1D59B8DA82B65D6A8A831B9 /* ConfirmationNavigationPresenterTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ConfirmationNavigationPresenterTests.m; sourceTree = "<group>"; };
+		A2516369A9B7E6CDB8C7801F /* RestoreSeedInteractorInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RestoreSeedInteractorInput.h; sourceTree = "<group>"; };
 		A2E11B36A36C8A12033CF344 /* StartInteractor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = StartInteractor.h; sourceTree = "<group>"; };
 		A315FE0BEFF7B8FA7E148602 /* BackupInfoAssemblyTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BackupInfoAssemblyTests.m; sourceTree = "<group>"; };
 		A37457032A3EB89DEF24E10E /* QRScannerViewControllerTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = QRScannerViewControllerTests.m; sourceTree = "<group>"; };
@@ -2023,6 +2085,7 @@
 		B6756038585659B6BA1B6A02 /* SplashPasswordRouter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SplashPasswordRouter.m; sourceTree = "<group>"; };
 		B6A01E4320A227109439580D /* ShareAssemblyTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ShareAssemblyTests.m; sourceTree = "<group>"; };
 		B6F2F8C3388333F6C6BD04D7 /* ConfirmationNavigationRouterInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ConfirmationNavigationRouterInput.h; sourceTree = "<group>"; };
+		B7701159569A5109E6D287F9 /* RestoreSeedModuleInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RestoreSeedModuleInput.h; sourceTree = "<group>"; };
 		B7BF3FD8C737A9E878E889BB /* InfoModuleInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = InfoModuleInput.h; sourceTree = "<group>"; };
 		B7FA9D2D087EA7608B115729 /* ForgotPasswordPresenter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordPresenter.h; sourceTree = "<group>"; };
 		B7FC430FC2799F68893A58CB /* QRScannerAssembly_Testable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = QRScannerAssembly_Testable.h; sourceTree = "<group>"; };
@@ -2051,13 +2114,16 @@
 		C1F7821BAD78C5760E99E26C /* QRScannerPresenterTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = QRScannerPresenterTests.m; sourceTree = "<group>"; };
 		C201DF93422CB9F7AB397BA0 /* BackupInfoRouter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BackupInfoRouter.h; sourceTree = "<group>"; };
 		C3DEC10486790B03C3C02599 /* BuyEtherAmountViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BuyEtherAmountViewController.m; sourceTree = "<group>"; };
+		C465A08A4DF1754938D19F4C /* RestoreSeedViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RestoreSeedViewController.m; sourceTree = "<group>"; };
 		C623641EDB8D1AB70465606A /* BackupInfoAssembly.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BackupInfoAssembly.m; sourceTree = "<group>"; };
 		C6744BFB93AEA720C20D614F /* StartInteractorOutput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = StartInteractorOutput.h; sourceTree = "<group>"; };
 		C6E78C2E61D6C8BFB65FE36B /* ShareInteractorTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ShareInteractorTests.m; sourceTree = "<group>"; };
 		C8543CF28FDEF28B99ACF306 /* BackupInfoInteractor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BackupInfoInteractor.h; sourceTree = "<group>"; };
 		C9100F1562C25C01960F83EB /* BuyEtherAmountViewControllerTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BuyEtherAmountViewControllerTests.m; sourceTree = "<group>"; };
+		C9368A0F94EE82312A81713E /* RestoreSeedInteractor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RestoreSeedInteractor.m; sourceTree = "<group>"; };
 		C9481B5EB28F8887E473EF8A /* BackupWordsViewOutput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BackupWordsViewOutput.h; sourceTree = "<group>"; };
 		C956F9DBD8DCB174F1499B5B /* SharePresenter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SharePresenter.h; sourceTree = "<group>"; };
+		C95AF3BC10B1C7ADF5E1A2CD /* RestoreSeedInteractor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RestoreSeedInteractor.h; sourceTree = "<group>"; };
 		C95C7A53524C8FE90192C70D /* InfoViewControllerTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = InfoViewControllerTests.m; sourceTree = "<group>"; };
 		CA12B5039BED5D38878D8AF8 /* QRScannerViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = QRScannerViewController.h; sourceTree = "<group>"; };
 		CA25B4B1B52A39E96D2E52AB /* BackupWordsAssembly.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BackupWordsAssembly.m; sourceTree = "<group>"; };
@@ -2090,6 +2156,7 @@
 		D316092F5618DC02FB587D47 /* ConfirmedTransactionPresenter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ConfirmedTransactionPresenter.h; sourceTree = "<group>"; };
 		D3326E53AB959B9C5B5E008E /* InfoAssembly_Testable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = InfoAssembly_Testable.h; sourceTree = "<group>"; };
 		D419BE5027F5F02C6E083B41 /* SettingsViewInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SettingsViewInput.h; sourceTree = "<group>"; };
+		D5B0B7BB828C45B380DC0439 /* RestoreSeedViewControllerTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RestoreSeedViewControllerTests.m; sourceTree = "<group>"; };
 		D62B98088A6460F358412CDF /* Pods-MEWconnect-MyEtherWallet-iOS-MyEtherWallet-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MEWconnect-MyEtherWallet-iOS-MyEtherWallet-iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MEWconnect-MyEtherWallet-iOS-MyEtherWallet-iOSTests/Pods-MEWconnect-MyEtherWallet-iOS-MyEtherWallet-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		D6394EEEE95F5CF3087FFD29 /* BuyEtherAmountModuleInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BuyEtherAmountModuleInput.h; sourceTree = "<group>"; };
 		D64E0F1F07E9A635852977C9 /* PasswordInteractorTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PasswordInteractorTests.m; sourceTree = "<group>"; };
@@ -2101,6 +2168,7 @@
 		D97F1D3B2BA2C64C64EA19D6 /* SettingsInteractorInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SettingsInteractorInput.h; sourceTree = "<group>"; };
 		D9EBDD30EE83CF4AA2B36551 /* BuyEtherHistoryInteractor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BuyEtherHistoryInteractor.h; sourceTree = "<group>"; };
 		D9F1DD7331BEACC9598E865D /* DeclinedTransactionAssembly.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = DeclinedTransactionAssembly.m; sourceTree = "<group>"; };
+		DA14E09AB27781606300BEC2 /* RestoreSeedRouter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RestoreSeedRouter.m; sourceTree = "<group>"; };
 		DA3FF272181D58AFE0AF7544 /* NewWalletInteractorInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = NewWalletInteractorInput.h; sourceTree = "<group>"; };
 		DAAC174F21B3E04A4219AE53 /* ConfirmationNavigationViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ConfirmationNavigationViewController.m; sourceTree = "<group>"; };
 		DB75CECCCB7BAB70B863FD0F /* BuyEtherAmountViewOutput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BuyEtherAmountViewOutput.h; sourceTree = "<group>"; };
@@ -2137,6 +2205,7 @@
 		E792423074C72A2AD56A2D46 /* ContextPasswordModuleInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ContextPasswordModuleInput.h; sourceTree = "<group>"; };
 		E83F8285362C6A508EFC11C1 /* AboutAssembly_Testable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AboutAssembly_Testable.h; sourceTree = "<group>"; };
 		E84F979AF05A8D14E8D1BDE5 /* BuyEtherAmountPresenter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BuyEtherAmountPresenter.m; sourceTree = "<group>"; };
+		E856A66533294E66502EB95D /* RestoreSeedPresenter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RestoreSeedPresenter.h; sourceTree = "<group>"; };
 		E86FAAC41765670FF148E3E6 /* TransactionPresenter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TransactionPresenter.m; sourceTree = "<group>"; };
 		E8CB8841160EDDDEBB786E13 /* BuyEtherAmountInteractorTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BuyEtherAmountInteractorTests.m; sourceTree = "<group>"; };
 		E8F97F5BAAA949B69A665EDE /* BackupInfoViewOutput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BackupInfoViewOutput.h; sourceTree = "<group>"; };
@@ -2150,6 +2219,7 @@
 		EC8FDF9E64198482A233372C /* SplashPasswordAssemblyTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SplashPasswordAssemblyTests.m; sourceTree = "<group>"; };
 		ECD10F6B11037F2CBAC53412 /* TransactionViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TransactionViewController.h; sourceTree = "<group>"; };
 		ECEE12FC429631AF0DB0B373 /* ContextPasswordRouter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ContextPasswordRouter.m; sourceTree = "<group>"; };
+		ED0BD687358A18C0F06C6467 /* RestoreSeedViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RestoreSeedViewController.h; sourceTree = "<group>"; };
 		ED0D1B490317456852335F5D /* BackupStartRouterInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BackupStartRouterInput.h; sourceTree = "<group>"; };
 		ED785BFB86E65AF56434D230 /* BackupStartRouter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BackupStartRouter.m; sourceTree = "<group>"; };
 		ED97F521F6038DFD349EA242 /* MessageSignerInteractorTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MessageSignerInteractorTests.m; sourceTree = "<group>"; };
@@ -2170,6 +2240,7 @@
 		F1511E518DE7A9C1EC0E157C /* BuyEtherHistoryPresenter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BuyEtherHistoryPresenter.h; sourceTree = "<group>"; };
 		F1FBD0978920C92F0DCFD908 /* ConfirmationNavigationInteractorTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ConfirmationNavigationInteractorTests.m; sourceTree = "<group>"; };
 		F240931A50C13E5A097815E6 /* DeclinedTransactionViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = DeclinedTransactionViewController.h; sourceTree = "<group>"; };
+		F273D5A6DDADB66552B02EA8 /* RestoreSeedPresenter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RestoreSeedPresenter.m; sourceTree = "<group>"; };
 		F295E58C783B4F5FFE051EF5 /* AboutRouterInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AboutRouterInput.h; sourceTree = "<group>"; };
 		F30E495392611F7AF4A60C3B /* BackupConfirmationInteractorTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BackupConfirmationInteractorTests.m; sourceTree = "<group>"; };
 		F40A7C1F26A16F67EB693815 /* ConfirmationNavigationViewOutput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ConfirmationNavigationViewOutput.h; sourceTree = "<group>"; };
@@ -2341,6 +2412,18 @@
 				FE8B5684B7E2BF9E2DC22C3D /* TransactionAssembly_Testable.h */,
 			);
 			path = Assembly;
+			sourceTree = "<group>";
+		};
+		0BE089735409D1DF3F228BF1 /* RestoreSeed */ = {
+			isa = PBXGroup;
+			children = (
+				95487E22B3D566E6A6AB587D /* Assembly */,
+				7F25FA998BEA578E957B561D /* View */,
+				47E6753AD5F5FA5F87C43910 /* Presenter */,
+				B972533574068BE292582B66 /* Interactor */,
+				1672C16BF78EBEADE4235A79 /* Router */,
+			);
+			path = RestoreSeed;
 			sourceTree = "<group>";
 		};
 		0C51759878746440D1A1B4B9 /* Router */ = {
@@ -2545,6 +2628,16 @@
 				5BDE1D07958F405CCFD7D11B /* ConfirmPasswordViewControllerTests.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1672C16BF78EBEADE4235A79 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				72DB23C45E0D8499C848F508 /* RestoreSeedRouterInput.h */,
+				31F4B2A9AF5866DBE3413D3E /* RestoreSeedRouter.h */,
+				DA14E09AB27781606300BEC2 /* RestoreSeedRouter.m */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		173A93F0590241FD320629F2 /* Home */ = {
@@ -3043,12 +3136,32 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		47E6753AD5F5FA5F87C43910 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				B7701159569A5109E6D287F9 /* RestoreSeedModuleInput.h */,
+				561F2F43218F1CC5003EC319 /* RestoreSeedModuleOutput.h */,
+				E856A66533294E66502EB95D /* RestoreSeedPresenter.h */,
+				F273D5A6DDADB66552B02EA8 /* RestoreSeedPresenter.m */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		4924B99FE496DD929C31F0C5 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
 				F1FBD0978920C92F0DCFD908 /* ConfirmationNavigationInteractorTests.m */,
 			);
 			path = Interactor;
+			sourceTree = "<group>";
+		};
+		4AF61AD5C05B0F66EA4E141F /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				220F455C1253BA45232C6F8C /* RestoreSeedAssemblyTests.m */,
+				5ACBE5AF8AFA5A955CD7C9F9 /* RestoreSeedAssembly_Testable.h */,
+			);
+			path = Assembly;
 			sourceTree = "<group>";
 		};
 		4BC6D4DF0CD7CF3FCEFBB9F3 /* QRScanner */ = {
@@ -3242,7 +3355,9 @@
 		560A866220E6539200046B53 /* KeychainService */ = {
 			isa = PBXGroup;
 			children = (
+				56335F6A2187655900C07E2B /* Constants */,
 				560A866620E653A700046B53 /* KeychainService.h */,
+				56335F8721876B1700C07E2B /* KeychainService+Protected.h */,
 				560A866320E6539F00046B53 /* KeychainServiceImplementation.h */,
 				560A866420E6539F00046B53 /* KeychainServiceImplementation.m */,
 			);
@@ -3268,53 +3383,27 @@
 			path = MEWcryptoMessage;
 			sourceTree = "<group>";
 		};
-		560A867220E681CF00046B53 /* KeychainItemModel */ = {
+		560A867220E681CF00046B53 /* KeychainNetworkModel */ = {
 			isa = PBXGroup;
 			children = (
-				560A867320E681E700046B53 /* KeychainItemModel.h */,
-				560A867420E681E700046B53 /* KeychainItemModel.m */,
+				560A867320E681E700046B53 /* KeychainNetworkModel.h */,
+				560A867420E681E700046B53 /* KeychainNetworkModel.m */,
 			);
-			path = KeychainItemModel;
-			sourceTree = "<group>";
-		};
-		560A867620E6EF8B00046B53 /* AccountsBody */ = {
-			isa = PBXGroup;
-			children = (
-				560A867720E6EF9600046B53 /* AccountsBody.h */,
-				560A867820E6EF9600046B53 /* AccountsBody.m */,
-			);
-			path = AccountsBody;
-			sourceTree = "<group>";
-		};
-		560A867A20E6F0B400046B53 /* AccountsOperationFactory */ = {
-			isa = PBXGroup;
-			children = (
-				560A867B20E6F0C700046B53 /* AccountsOperationFactory.h */,
-				560A867C20E6F0C700046B53 /* AccountsOperationFactory.m */,
-			);
-			path = AccountsOperationFactory;
-			sourceTree = "<group>";
-		};
-		560A867E20E6F40100046B53 /* BalanceBodyTransformer */ = {
-			isa = PBXGroup;
-			children = (
-				560A867F20E6F40F00046B53 /* BalanceBodyTransformer.h */,
-				560A868020E6F40F00046B53 /* BalanceBodyTransformer.m */,
-			);
-			path = BalanceBodyTransformer;
+			path = KeychainNetworkModel;
 			sourceTree = "<group>";
 		};
 		560CAFFC209B426A00BFF59C /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				560D76E820B481F3009A3D6D /* Ponsomizer */,
-				563CF2C720EFAAD6005467AE /* GeneratedMO */,
-				563CF2BC20EFAAD6005467AE /* GeneratedPONSO */,
-				563CF2A620EFAAD5005467AE /* ManagedObjects */,
-				563CF2B120EFAAD5005467AE /* PlainObjects */,
+				56D85B70217F746900B474C6 /* CoreDataMappingModel */,
 				56FB3A2C20B45726007776C8 /* CoreDataModel */,
 				560CB024209B6CEA00BFF59C /* ConcreteClasses */,
 				560CB023209B6CD000BFF59C /* Enumerators */,
+				5677C5522181226400477ACD /* GeneratedMO */,
+				5677C5792181226500477ACD /* GeneratedPONSO */,
+				5677C56C2181226400477ACD /* ManagedObjects */,
+				5677C55F2181226400477ACD /* PlainObjects */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -3789,6 +3878,28 @@
 			path = "UIScreen+AnimateBrightness";
 			sourceTree = "<group>";
 		};
+		56335F6A2187655900C07E2B /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				56335F832187664000C07E2B /* KeychainServiceSharedConstants.h */,
+				56335F842187664000C07E2B /* KeychainServiceSharedConstants.m */,
+				56335F7B2187662200C07E2B /* KeychainServiceConstantsV1.h */,
+				56335F7C2187662200C07E2B /* KeychainServiceConstantsV1.m */,
+				56335F7F2187663600C07E2B /* KeychainServiceConstantsV2.h */,
+				56335F802187663600C07E2B /* KeychainServiceConstantsV2.m */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		56335F882187BBAF00C07E2B /* KeychainAccountModel */ = {
+			isa = PBXGroup;
+			children = (
+				56335F892187BBC300C07E2B /* KeychainAccountModel.h */,
+				56335F8A2187BBC300C07E2B /* KeychainAccountModel.m */,
+			);
+			path = KeychainAccountModel;
+			sourceTree = "<group>";
+		};
 		56351B5820A33E6D00C28DAF /* UIColor+RandSeed */ = {
 			isa = PBXGroup;
 			children = (
@@ -3820,74 +3931,6 @@
 				563C6AE520AF690A00E85B8B /* CheckboxButton+Blockies.swift */,
 			);
 			path = "CheckboxButton+Blockies";
-			sourceTree = "<group>";
-		};
-		563CF2A620EFAAD5005467AE /* ManagedObjects */ = {
-			isa = PBXGroup;
-			children = (
-				563CF2A720EFAAD5005467AE /* AccountModelObject.h */,
-				563CF2A820EFAAD5005467AE /* AccountModelObject.m */,
-				563CF2A920EFAAD5005467AE /* FiatPriceModelObject.h */,
-				563CF2AA20EFAAD5005467AE /* FiatPriceModelObject.m */,
-				563CF2AB20EFAAD5005467AE /* NetworkModelObject.h */,
-				563CF2AC20EFAAD5005467AE /* NetworkModelObject.m */,
-				563CF2AD20EFAAD5005467AE /* PurchaseHistoryModelObject.h */,
-				563CF2AE20EFAAD5005467AE /* PurchaseHistoryModelObject.m */,
-				563CF2AF20EFAAD5005467AE /* TokenModelObject.h */,
-				563CF2B020EFAAD5005467AE /* TokenModelObject.m */,
-			);
-			path = ManagedObjects;
-			sourceTree = "<group>";
-		};
-		563CF2B120EFAAD5005467AE /* PlainObjects */ = {
-			isa = PBXGroup;
-			children = (
-				563CF2B220EFAAD5005467AE /* AccountPlainObject.h */,
-				563CF2B320EFAAD5005467AE /* AccountPlainObject.m */,
-				563CF2B420EFAAD5005467AE /* FiatPricePlainObject.h */,
-				563CF2B520EFAAD5005467AE /* FiatPricePlainObject.m */,
-				563CF2B620EFAAD5005467AE /* NetworkPlainObject.h */,
-				563CF2B720EFAAD5005467AE /* NetworkPlainObject.m */,
-				563CF2B820EFAAD5005467AE /* PurchaseHistoryPlainObject.h */,
-				563CF2B920EFAAD5005467AE /* PurchaseHistoryPlainObject.m */,
-				563CF2BA20EFAAD5005467AE /* TokenPlainObject.h */,
-				563CF2BB20EFAAD5005467AE /* TokenPlainObject.m */,
-			);
-			path = PlainObjects;
-			sourceTree = "<group>";
-		};
-		563CF2BC20EFAAD6005467AE /* GeneratedPONSO */ = {
-			isa = PBXGroup;
-			children = (
-				563CF2BD20EFAAD6005467AE /* _AccountPlainObject.h */,
-				563CF2BE20EFAAD6005467AE /* _AccountPlainObject.m */,
-				563CF2BF20EFAAD6005467AE /* _FiatPricePlainObject.h */,
-				563CF2C020EFAAD6005467AE /* _FiatPricePlainObject.m */,
-				563CF2C120EFAAD6005467AE /* _NetworkPlainObject.h */,
-				563CF2C220EFAAD6005467AE /* _NetworkPlainObject.m */,
-				563CF2C320EFAAD6005467AE /* _PurchaseHistoryPlainObject.h */,
-				563CF2C420EFAAD6005467AE /* _PurchaseHistoryPlainObject.m */,
-				563CF2C520EFAAD6005467AE /* _TokenPlainObject.h */,
-				563CF2C620EFAAD6005467AE /* _TokenPlainObject.m */,
-			);
-			path = GeneratedPONSO;
-			sourceTree = "<group>";
-		};
-		563CF2C720EFAAD6005467AE /* GeneratedMO */ = {
-			isa = PBXGroup;
-			children = (
-				563CF2C820EFAAD6005467AE /* _AccountModelObject.h */,
-				563CF2C920EFAAD6005467AE /* _AccountModelObject.m */,
-				563CF2CA20EFAAD6005467AE /* _FiatPriceModelObject.h */,
-				563CF2CB20EFAAD6005467AE /* _FiatPriceModelObject.m */,
-				563CF2CC20EFAAD6005467AE /* _NetworkModelObject.h */,
-				563CF2CD20EFAAD6005467AE /* _NetworkModelObject.m */,
-				563CF2CE20EFAAD6005467AE /* _PurchaseHistoryModelObject.h */,
-				563CF2CF20EFAAD6005467AE /* _PurchaseHistoryModelObject.m */,
-				563CF2D020EFAAD6005467AE /* _TokenModelObject.h */,
-				563CF2D120EFAAD6005467AE /* _TokenModelObject.m */,
-			);
-			path = GeneratedMO;
 			sourceTree = "<group>";
 		};
 		563CF2E620EFAB07005467AE /* Cells */ = {
@@ -4507,6 +4550,82 @@
 			path = "UIBezierPath+Morphing";
 			sourceTree = "<group>";
 		};
+		5677C5522181226400477ACD /* GeneratedMO */ = {
+			isa = PBXGroup;
+			children = (
+				5677C5532181226400477ACD /* _AccountModelObject.h */,
+				5677C5542181226400477ACD /* _AccountModelObject.m */,
+				5677C5552181226400477ACD /* _FiatPriceModelObject.h */,
+				5677C5562181226400477ACD /* _FiatPriceModelObject.m */,
+				5677C5572181226400477ACD /* _MasterTokenModelObject.h */,
+				5677C5582181226400477ACD /* _MasterTokenModelObject.m */,
+				5677C5592181226400477ACD /* _NetworkModelObject.h */,
+				5677C55A2181226400477ACD /* _NetworkModelObject.m */,
+				5677C55B2181226400477ACD /* _PurchaseHistoryModelObject.h */,
+				5677C55C2181226400477ACD /* _PurchaseHistoryModelObject.m */,
+				5677C55D2181226400477ACD /* _TokenModelObject.h */,
+				5677C55E2181226400477ACD /* _TokenModelObject.m */,
+			);
+			path = GeneratedMO;
+			sourceTree = "<group>";
+		};
+		5677C55F2181226400477ACD /* PlainObjects */ = {
+			isa = PBXGroup;
+			children = (
+				5677C5602181226400477ACD /* AccountPlainObject.h */,
+				5677C5612181226400477ACD /* AccountPlainObject.m */,
+				5677C5622181226400477ACD /* FiatPricePlainObject.h */,
+				5677C5632181226400477ACD /* FiatPricePlainObject.m */,
+				5677C5642181226400477ACD /* MasterTokenPlainObject.h */,
+				5677C5652181226400477ACD /* MasterTokenPlainObject.m */,
+				5677C5662181226400477ACD /* NetworkPlainObject.h */,
+				5677C5672181226400477ACD /* NetworkPlainObject.m */,
+				5677C5682181226400477ACD /* PurchaseHistoryPlainObject.h */,
+				5677C5692181226400477ACD /* PurchaseHistoryPlainObject.m */,
+				5677C56A2181226400477ACD /* TokenPlainObject.h */,
+				5677C56B2181226400477ACD /* TokenPlainObject.m */,
+			);
+			path = PlainObjects;
+			sourceTree = "<group>";
+		};
+		5677C56C2181226400477ACD /* ManagedObjects */ = {
+			isa = PBXGroup;
+			children = (
+				5677C56D2181226400477ACD /* AccountModelObject.h */,
+				5677C56E2181226400477ACD /* AccountModelObject.m */,
+				5677C56F2181226400477ACD /* FiatPriceModelObject.h */,
+				5677C5702181226400477ACD /* FiatPriceModelObject.m */,
+				5677C5712181226400477ACD /* MasterTokenModelObject.h */,
+				5677C5722181226400477ACD /* MasterTokenModelObject.m */,
+				5677C5732181226400477ACD /* NetworkModelObject.h */,
+				5677C5742181226400477ACD /* NetworkModelObject.m */,
+				5677C5752181226400477ACD /* PurchaseHistoryModelObject.h */,
+				5677C5762181226400477ACD /* PurchaseHistoryModelObject.m */,
+				5677C5772181226400477ACD /* TokenModelObject.h */,
+				5677C5782181226400477ACD /* TokenModelObject.m */,
+			);
+			path = ManagedObjects;
+			sourceTree = "<group>";
+		};
+		5677C5792181226500477ACD /* GeneratedPONSO */ = {
+			isa = PBXGroup;
+			children = (
+				5677C57A2181226500477ACD /* _AccountPlainObject.h */,
+				5677C57B2181226500477ACD /* _AccountPlainObject.m */,
+				5677C57C2181226500477ACD /* _FiatPricePlainObject.h */,
+				5677C57D2181226500477ACD /* _FiatPricePlainObject.m */,
+				5677C57E2181226500477ACD /* _MasterTokenPlainObject.h */,
+				5677C57F2181226500477ACD /* _MasterTokenPlainObject.m */,
+				5677C5802181226500477ACD /* _NetworkPlainObject.h */,
+				5677C5812181226500477ACD /* _NetworkPlainObject.m */,
+				5677C5822181226500477ACD /* _PurchaseHistoryPlainObject.h */,
+				5677C5832181226500477ACD /* _PurchaseHistoryPlainObject.m */,
+				5677C5842181226500477ACD /* _TokenPlainObject.h */,
+				5677C5852181226500477ACD /* _TokenPlainObject.m */,
+			);
+			path = GeneratedPONSO;
+			sourceTree = "<group>";
+		};
 		5685FE132099F996008C75A1 /* FlatButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -4525,6 +4644,15 @@
 			path = SimplexPaymentQuery;
 			sourceTree = "<group>";
 		};
+		56947CD72186464400336F4B /* MasterTokenBody */ = {
+			isa = PBXGroup;
+			children = (
+				56947CD82186465700336F4B /* MasterTokenBody.h */,
+				56947CD92186465700336F4B /* MasterTokenBody.m */,
+			);
+			path = MasterTokenBody;
+			sourceTree = "<group>";
+		};
 		56999838209513E300D45153 /* SetupUserStory */ = {
 			isa = PBXGroup;
 			children = (
@@ -4541,6 +4669,7 @@
 				FD0620DE83A2C291EE990C03 /* ConfirmPassword */,
 				322875EE20A2A59F22F4B407 /* NewWallet */,
 				ECE563A5803E4B00B6D24E41 /* RestoreWallet */,
+				0BE089735409D1DF3F228BF1 /* RestoreSeed */,
 				A9BA6EB00F1FCD11AD4D9F1E /* Start */,
 			);
 			path = Modules;
@@ -4996,6 +5125,7 @@
 		56AC9435208F76DF00E5BC2C /* ConcreteServices */ = {
 			isa = PBXGroup;
 			children = (
+				56D85B77217FAD1300B474C6 /* MigrationService */,
 				56191EAA215052D8000BF97F /* RateService */,
 				5606B348210FDA9900576C28 /* ReachabilityService */,
 				56E14BDA20EBC82C00C41F83 /* SimplexService */,
@@ -5125,8 +5255,9 @@
 		56AE728020D711190047D51F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				56335F882187BBAF00C07E2B /* KeychainAccountModel */,
+				560A867220E681CF00046B53 /* KeychainNetworkModel */,
 				56428A7920F9344F0049E8BC /* KeychainHistoryItemModel */,
-				560A867220E681CF00046B53 /* KeychainItemModel */,
 				560A867120E681C400046B53 /* MEWcryptoMessage */,
 			);
 			path = Models;
@@ -5308,6 +5439,27 @@
 				56CF0A9320D87F550029F841 /* NSArray+Data.m */,
 			);
 			path = "NSArray+Data";
+			sourceTree = "<group>";
+		};
+		56D85B70217F746900B474C6 /* CoreDataMappingModel */ = {
+			isa = PBXGroup;
+			children = (
+				56F8EAA42183BDCC0010274B /* CustomPolicies */,
+				56F8EAA12183B7F90010274B /* MappingModel_v_1_to_2.xcmappingmodel */,
+			);
+			path = CoreDataMappingModel;
+			sourceTree = "<group>";
+		};
+		56D85B77217FAD1300B474C6 /* MigrationService */ = {
+			isa = PBXGroup;
+			children = (
+				56D85B78217FAD2500B474C6 /* MigrationService.h */,
+				56D85B79217FAD3200B474C6 /* MigrationServiceImplementation.h */,
+				56D85B7A217FAD3200B474C6 /* MigrationServiceImplementation.m */,
+				56D85B7D217FB42600B474C6 /* MigrationManager.h */,
+				56D85B7E217FB42600B474C6 /* MigrationManager.m */,
+			);
+			path = MigrationService;
 			sourceTree = "<group>";
 		};
 		56DE4E0920A9E60D001A2C19 /* BottomImageButton */ = {
@@ -5667,6 +5819,15 @@
 			path = "NSBundle+Version";
 			sourceTree = "<group>";
 		};
+		56F8EAA42183BDCC0010274B /* CustomPolicies */ = {
+			isa = PBXGroup;
+			children = (
+				56F8EAA52183BDFE0010274B /* AccountToAccountV2Policy.h */,
+				56F8EAA62183BDFE0010274B /* AccountToAccountV2Policy.m */,
+			);
+			path = CustomPolicies;
+			sourceTree = "<group>";
+		};
 		56FB38EB20AF9204007776C8 /* LinkedLabel */ = {
 			isa = PBXGroup;
 			children = (
@@ -5925,7 +6086,6 @@
 			children = (
 				56E14BE020EBCCA800C41F83 /* SimplexOperationFactory */,
 				56E14BC020E97C7900C41F83 /* FiatPricesOperationFactory */,
-				560A867A20E6F0B400046B53 /* AccountsOperationFactory */,
 				56FB394620B1A8C5007776C8 /* TokensOperationFactory */,
 			);
 			path = OperationFactories;
@@ -6442,7 +6602,6 @@
 			isa = PBXGroup;
 			children = (
 				56E14BE820EBCED000C41F83 /* SimplexBodyTransformer */,
-				560A867E20E6F40100046B53 /* BalanceBodyTransformer */,
 				56FB39F820B359D4007776C8 /* ContractsBodyTransformer */,
 			);
 			path = ConcreteClasses;
@@ -6478,8 +6637,8 @@
 		56FB39F820B359D4007776C8 /* ContractsBodyTransformer */ = {
 			isa = PBXGroup;
 			children = (
-				56FB39F920B359F9007776C8 /* ContractsBodyTransformer.h */,
-				56FB39FA20B359F9007776C8 /* ContractsBodyTransformer.m */,
+				56FB39F920B359F9007776C8 /* TokensBodyTransformer.h */,
+				56FB39FA20B359F9007776C8 /* TokensBodyTransformer.m */,
 			);
 			path = ContractsBodyTransformer;
 			sourceTree = "<group>";
@@ -6537,8 +6696,8 @@
 			children = (
 				56E14C1220ED16C000C41F83 /* SimplexOrderBody */,
 				56E14BF520EBCFA400C41F83 /* SimplexQuoteBody */,
-				560A867620E6EF8B00046B53 /* AccountsBody */,
 				56FB3A1720B3919F007776C8 /* TokensBody */,
+				56947CD72186464400336F4B /* MasterTokenBody */,
 			);
 			path = ObjectBodies;
 			sourceTree = "<group>";
@@ -6710,8 +6869,6 @@
 				E231517D48028349E7BBFE05 /* Classes */,
 				56FE2BA22081816200DB39D5 /* Supporting Files */,
 				56FB390C20B19253007776C8 /* Resources */,
-				56FE2B7020817F1100DB39D5 /* AppDelegate.h */,
-				56FE2B7120817F1100DB39D5 /* AppDelegate.m */,
 				56FE2B7B20817F1100DB39D5 /* LaunchScreen.storyboard */,
 				56FE2B7620817F1100DB39D5 /* Main.storyboard */,
 				56BCB37B208789FF009EF24B /* MyEtherWallet-iOS-Bridging-Header.h */,
@@ -6753,6 +6910,7 @@
 				CE893054BAB3FFAD7F00C312 /* About */,
 				7B9CF05A3FD1D7FC7606D7E4 /* ContextPassword */,
 				BC75E911D49F8BBA62880062 /* Share */,
+				63406A1FB2A446DE3EFF164B /* RestoreSeed */,
 			);
 			path = "MyEtherWallet-iOSTests";
 			sourceTree = "<group>";
@@ -6962,6 +7120,18 @@
 				B6756038585659B6BA1B6A02 /* SplashPasswordRouter.m */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		63406A1FB2A446DE3EFF164B /* RestoreSeed */ = {
+			isa = PBXGroup;
+			children = (
+				4AF61AD5C05B0F66EA4E141F /* Assembly */,
+				DA56B507D553D6CE901F5C5A /* View */,
+				D8E6A8836EE399728C9CF713 /* Presenter */,
+				7E0A905845CE31AD475B8C12 /* Interactor */,
+				B881049823B57F0F8905DEA0 /* Router */,
+			);
+			path = RestoreSeed;
 			sourceTree = "<group>";
 		};
 		63BC2304FED9DA8EABB9712B /* Router */ = {
@@ -7267,6 +7437,14 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
+		7E0A905845CE31AD475B8C12 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				32DA2925906827DA9CCEB3FC /* RestoreSeedInteractorTests.m */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
 		7E859D130D8F72208CCCF7A6 /* Assembly */ = {
 			isa = PBXGroup;
 			children = (
@@ -7284,6 +7462,17 @@
 				EEDF7C85D95A6C97F101A5C7 /* ShareRouter.m */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		7F25FA998BEA578E957B561D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				566EE4CEDBB6E248148BF5EE /* RestoreSeedViewInput.h */,
+				5364085F3BBCAFCA550EEA1E /* RestoreSeedViewOutput.h */,
+				ED0BD687358A18C0F06C6467 /* RestoreSeedViewController.h */,
+				C465A08A4DF1754938D19F4C /* RestoreSeedViewController.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		8117F117AC697FF5DE40D0A7 /* Router */ = {
@@ -7568,6 +7757,15 @@
 			children = (
 				E5F681B99B890000304285D3 /* SplashPasswordAssembly.h */,
 				74EA5ADA3732EA483B70B87C /* SplashPasswordAssembly.m */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		95487E22B3D566E6A6AB587D /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				2C94F28024E6DBFA3853EA60 /* RestoreSeedAssembly.h */,
+				7A0B21D76E1EA6CE0078EB3D /* RestoreSeedAssembly.m */,
 			);
 			path = Assembly;
 			sourceTree = "<group>";
@@ -7919,6 +8117,25 @@
 				6CF317FB3DD874C3E8983F05 /* BuyEtherHistoryAssembly_Testable.h */,
 			);
 			path = Assembly;
+			sourceTree = "<group>";
+		};
+		B881049823B57F0F8905DEA0 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				5E22BA1D744E066F1CF99D54 /* RestoreSeedRouterTests.m */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		B972533574068BE292582B66 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				A2516369A9B7E6CDB8C7801F /* RestoreSeedInteractorInput.h */,
+				1DAB2A7857952022D09D33FD /* RestoreSeedInteractorOutput.h */,
+				C95AF3BC10B1C7ADF5E1A2CD /* RestoreSeedInteractor.h */,
+				C9368A0F94EE82312A81713E /* RestoreSeedInteractor.m */,
+			);
+			path = Interactor;
 			sourceTree = "<group>";
 		};
 		B9A30E4A342FCCD2EB7949C6 /* Presenter */ = {
@@ -8494,6 +8711,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		D8E6A8836EE399728C9CF713 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				225F2D921CF51DB246FB5AC9 /* RestoreSeedPresenterTests.m */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		D942DD0CDDBDE145C8473227 /* Assembly */ = {
 			isa = PBXGroup;
 			children = (
@@ -8522,6 +8747,14 @@
 				F1D25EE310A975D4079EB005 /* Router */,
 			);
 			path = BackupInfo;
+			sourceTree = "<group>";
+		};
+		DA56B507D553D6CE901F5C5A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D5B0B7BB828C45B380DC0439 /* RestoreSeedViewControllerTests.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		DB16840E8DFC87C1B5189946 /* Interactor */ = {
@@ -9166,7 +9399,7 @@
 		56FE2B6520817F1100DB39D5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "MyEtherWallet, Inc.";
 				TargetAttributes = {
 					56E3E4E921016DB60014152D = {
@@ -9660,16 +9893,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				56E3E4EC21016DB60014152D /* CleanLaunchRouter.m in Sources */,
-				56E3E4ED21016DB60014152D /* NetworkModelObject.m in Sources */,
 				5662E24D2147FEAA00A3C77E /* ContextPasswordAssembly.m in Sources */,
 				56E3E4EE21016DB60014152D /* TokensResponseConverterImplementation.m in Sources */,
-				56E3E4EF21016DB60014152D /* AccountModelObject.m in Sources */,
 				56E3E4F021016DB60014152D /* ServiceComponentsAssembly.m in Sources */,
 				56E3E4F121016DB60014152D /* ResponseValidatorsAssembly.m in Sources */,
 				56E3E4F221016DB60014152D /* ContractRequestDataModel.m in Sources */,
+				5677C5892181226500477ACD /* _FiatPriceModelObject.m in Sources */,
 				56E3E4F321016DB60014152D /* main.m in Sources */,
-				56E3E4F421016DB60014152D /* AppDelegate.m in Sources */,
 				56E3E4F521016DB60014152D /* NSString+HexData.m in Sources */,
+				56335F7E2187662200C07E2B /* KeychainServiceConstantsV1.m in Sources */,
 				56E3E4F621016DB60014152D /* HomeTableViewCellObject.m in Sources */,
 				56A4FAC321485D2D00E7B022 /* ContextPasswordInputAccessoryView.m in Sources */,
 				56E3E4F721016DB60014152D /* PresentationControllerAssembly.m in Sources */,
@@ -9683,16 +9915,16 @@
 				56E3E4FF21016DB60014152D /* CardView.m in Sources */,
 				56E3E50021016DB60014152D /* NSData+SECP256K1.m in Sources */,
 				56E3E50121016DB60014152D /* ApplicationConfiguratorImplementation.m in Sources */,
+				56D85B7C217FAD3200B474C6 /* MigrationServiceImplementation.m in Sources */,
 				56E3E50221016DB60014152D /* StartAssembly.m in Sources */,
 				56E3E50321016DB60014152D /* CoreDataConfiguratorImplementation.m in Sources */,
-				56E3E50421016DB60014152D /* BalanceBodyTransformer.m in Sources */,
 				56E3E50521016DB60014152D /* UIBezierPath+Morphing.m in Sources */,
 				56E3E50621016DB60014152D /* KeychainServiceImplementation.m in Sources */,
 				56E3E50721016DB60014152D /* SimplexQuery.m in Sources */,
 				56E3E50821016DB60014152D /* MEWConnectFacadeImplementation.m in Sources */,
 				56E3E50921016DB60014152D /* CacheRequest.m in Sources */,
 				56E3E50A21016DB60014152D /* StartViewController.m in Sources */,
-				56E3E50B21016DB60014152D /* KeychainItemModel.m in Sources */,
+				56E3E50B21016DB60014152D /* KeychainNetworkModel.m in Sources */,
 				56E3E50C21016DB60014152D /* CleanLaunchAppDelegate.m in Sources */,
 				56E3E50D21016DB60014152D /* UIColor+RandSeed.swift in Sources */,
 				56E3E50E21016DB60014152D /* StoryboardsAssembly.m in Sources */,
@@ -9704,6 +9936,7 @@
 				56E3E51321016DB60014152D /* TokensServiceImplementation.m in Sources */,
 				56E3E51421016DB60014152D /* MEWConnectResponse.m in Sources */,
 				56307A8D216EC63400282602 /* ShareInteractor.m in Sources */,
+				56D85B80217FB42600B474C6 /* MigrationManager.m in Sources */,
 				56E3E51521016DB60014152D /* MEWConnectServiceImplementation.m in Sources */,
 				56E3E51621016DB60014152D /* OperationDebugDescriptionFormatter.m in Sources */,
 				56E3E51721016DB60014152D /* TyphoonAppDelegate.m in Sources */,
@@ -9737,13 +9970,13 @@
 				56E3E52F21016DB60014152D /* BlockchainNetworkServiceImplementation.m in Sources */,
 				566BD3642138947F007EC803 /* MEWConnectMessage.m in Sources */,
 				56A4FABB214813C700E7B022 /* FadeModalDismissingAnimationController.m in Sources */,
+				56947CDB2186465700336F4B /* MasterTokenBody.m in Sources */,
 				56E3E53021016DB60014152D /* SystemInfrastructureAssembly.m in Sources */,
 				56E3E53121016DB60014152D /* MEWConnectConstants.m in Sources */,
 				56E3E53221016DB60014152D /* SimplexOrderBody.m in Sources */,
 				56E3E53321016DB60014152D /* UIImage+Color.m in Sources */,
 				56E3E53421016DB60014152D /* MEWRTCConstants.m in Sources */,
 				56E3E53521016DB60014152D /* LinkedLabel.m in Sources */,
-				56E3E53621016DB60014152D /* FiatPricePlainObject.m in Sources */,
 				56E3E53721016DB60014152D /* NewWalletAssembly.m in Sources */,
 				56E3E53821016DB60014152D /* ResponseDeserializationOperation.m in Sources */,
 				56E3E53921016DB60014152D /* NSString+HexToDecimal.swift in Sources */,
@@ -9761,17 +9994,15 @@
 				566D155F2107F9DE0020E4F3 /* AboutAssembly.m in Sources */,
 				56E3E54421016DB60014152D /* RestoreWalletAssembly.m in Sources */,
 				56E3E54521016DB60014152D /* HomeEmptyTableViewCellObject.m in Sources */,
-				56E3E54621016DB60014152D /* PurchaseHistoryPlainObject.m in Sources */,
-				56E3E54721016DB60014152D /* _TokenModelObject.m in Sources */,
 				56E3E54821016DB60014152D /* BottomImageButton.m in Sources */,
 				56E3E54921016DB60014152D /* RestoreWalletViewController.m in Sources */,
 				56E3E54A21016DB60014152D /* CameraServiceImplementation.m in Sources */,
 				56E3E54B21016DB60014152D /* NSArray+Data.m in Sources */,
 				56E3E54C21016DB60014152D /* HomeCellObjectBuilder.m in Sources */,
+				5677C5952181226500477ACD /* FiatPricePlainObject.m in Sources */,
 				56E3E54D21016DB60014152D /* HeadersBuilderBase.m in Sources */,
 				56E3E54E21016DB60014152D /* RestoreWalletPresenter.m in Sources */,
 				56E3E54F21016DB60014152D /* NSAttributedString+CustomEllipsis.m in Sources */,
-				56E3E55021016DB60014152D /* _PurchaseHistoryModelObject.m in Sources */,
 				56E3E55121016DB60014152D /* RESTRequestConfigurator.m in Sources */,
 				56E3E55221016DB60014152D /* AsyncOperation.m in Sources */,
 				56E3E55321016DB60014152D /* RestoreWalletInteractor.m in Sources */,
@@ -9779,29 +10010,30 @@
 				56E3E55521016DB60014152D /* FiatPricesResponseValidator.m in Sources */,
 				56E3E55621016DB60014152D /* PasswordAssembly.m in Sources */,
 				566D15602107F9E20020E4F3 /* AboutViewController.m in Sources */,
+				5677C5A92181226500477ACD /* TokenModelObject.m in Sources */,
 				56E3E55721016DB60014152D /* PasswordViewController.m in Sources */,
 				56E3E55821016DB60014152D /* BottomModalPresentingAnimationController.m in Sources */,
 				56E3E55921016DB60014152D /* ResponseValidationOperation.m in Sources */,
 				56E3E55A21016DB60014152D /* PasswordPresenter.m in Sources */,
 				56E3E55B21016DB60014152D /* InfoNormalTableViewCellObject.m in Sources */,
+				56F8EAA82183BDFE0010274B /* AccountToAccountV2Policy.m in Sources */,
 				56E3E55C21016DB60014152D /* PasswordInteractor.m in Sources */,
 				56E3E55D21016DB60014152D /* SimplexMapper.m in Sources */,
 				56E3E55E21016DB60014152D /* InfoDataDisplayManager.m in Sources */,
+				56335F822187663600C07E2B /* KeychainServiceConstantsV2.m in Sources */,
 				56E3E55F21016DB60014152D /* MEWconnect.xcdatamodeld in Sources */,
 				56E3E56021016DB60014152D /* InlineButton.m in Sources */,
 				56307A8E216EC63400282602 /* ShareRouter.m in Sources */,
 				56E3E56121016DB60014152D /* FiatPricesOperationFactory.m in Sources */,
-				56E3E56221016DB60014152D /* AccountsBody.m in Sources */,
+				5677C5972181226500477ACD /* MasterTokenPlainObject.m in Sources */,
 				56E3E56321016DB60014152D /* BordlessNavigationBar.m in Sources */,
 				56E3E56421016DB60014152D /* MEWConnectCommand.m in Sources */,
 				56E3E56521016DB60014152D /* TokensOperationFactory.m in Sources */,
 				56E3E56621016DB60014152D /* PasswordRouter.m in Sources */,
 				56E3E56721016DB60014152D /* HomeEmptyTableViewCell.m in Sources */,
-				56E3E56821016DB60014152D /* _PurchaseHistoryPlainObject.m in Sources */,
 				56E3E56921016DB60014152D /* NSNumberFormatter+TokenPrice.m in Sources */,
 				5627B6F7210A8282009787F7 /* EthereumResponseValidator.m in Sources */,
 				56E3E56A21016DB60014152D /* UIImage+RandSeed.swift in Sources */,
-				56E3E56B21016DB60014152D /* _NetworkPlainObject.m in Sources */,
 				56E3E56C21016DB60014152D /* PonsomizerAssembly.m in Sources */,
 				56E3E56D21016DB60014152D /* HomeAssembly.m in Sources */,
 				56E3E56E21016DB60014152D /* SimplexQuoteBody.m in Sources */,
@@ -9810,7 +10042,6 @@
 				56E3E57121016DB60014152D /* QueryTransformerBase.m in Sources */,
 				56E3E57221016DB60014152D /* MEWSearchBar.m in Sources */,
 				56E3E57321016DB60014152D /* HomePresenter.m in Sources */,
-				56E3E57421016DB60014152D /* PurchaseHistoryModelObject.m in Sources */,
 				56E3E57521016DB60014152D /* SimplexResponseConverterImplementation.m in Sources */,
 				56E3E57621016DB60014152D /* SimplexQuote.m in Sources */,
 				56E3E57721016DB60014152D /* HomeInteractor.m in Sources */,
@@ -9825,11 +10056,11 @@
 				56E3E58021016DB60014152D /* SingleResponseValidator.m in Sources */,
 				56E3E58121016DB60014152D /* OperationSchedulerImplementation.m in Sources */,
 				56E3E58221016DB60014152D /* QRScannerRouter.m in Sources */,
+				5677C5B32181226500477ACD /* _PurchaseHistoryPlainObject.m in Sources */,
 				56E3E58321016DB60014152D /* CheckboxButton.swift in Sources */,
 				56E3E58421016DB60014152D /* TokensBody.m in Sources */,
 				56E3E58521016DB60014152D /* NSString+RCFCapitalization.m in Sources */,
 				56E3E58621016DB60014152D /* SimplexQueryTransformer.m in Sources */,
-				56E3E58721016DB60014152D /* AccountPlainObject.m in Sources */,
 				56E3E58821016DB60014152D /* OperationFactoriesAssembly.m in Sources */,
 				56E3E58921016DB60014152D /* PasswordTextField.m in Sources */,
 				56E3E58A21016DB60014152D /* SimplexHeadersBuilder.m in Sources */,
@@ -9838,6 +10069,7 @@
 				56E3E58D21016DB60014152D /* String+HexPrefix.swift in Sources */,
 				56E3E58E21016DB60014152D /* NetworkCompoundOperationBuilder.m in Sources */,
 				56E3E58F21016DB60014152D /* BuyEtherHistoryCellObjectBuilder.m in Sources */,
+				5677C5AF2181226500477ACD /* _MasterTokenPlainObject.m in Sources */,
 				56E3E59021016DB60014152D /* ResponseMappersAssembly.m in Sources */,
 				56307A95216F623C00282602 /* UIScreen+AnimateBrightness.m in Sources */,
 				56307A8B216EC63400282602 /* ShareViewController.m in Sources */,
@@ -9847,7 +10079,6 @@
 				56E3E59421016DB60014152D /* SimplexStatusQuery.m in Sources */,
 				56E3E59521016DB60014152D /* TransactionPresenter.m in Sources */,
 				56E3E59621016DB60014152D /* JSONResponseDeserializer.m in Sources */,
-				56E3E59721016DB60014152D /* TokenPlainObject.m in Sources */,
 				56E3E59821016DB60014152D /* NSNumberFormatter+USD.m in Sources */,
 				56E3E59921016DB60014152D /* FetchedResultsControllerAssembly.m in Sources */,
 				56E3E59A21016DB60014152D /* TransactionInteractor.m in Sources */,
@@ -9863,18 +10094,21 @@
 				56E3E5A421016DB60014152D /* NSNumberFormatter+Ethereum.m in Sources */,
 				56E3E5A521016DB60014152D /* DeclinedTransactionPresenter.m in Sources */,
 				56E3E5A621016DB60014152D /* ServerResponseModel.m in Sources */,
-				56E3E5A721016DB60014152D /* FiatPriceModelObject.m in Sources */,
 				56E3E5A821016DB60014152D /* HomeTableViewAnimator.m in Sources */,
 				56E3E5A921016DB60014152D /* HomeTableViewCell.m in Sources */,
 				56E3E5AA21016DB60014152D /* BackupConfirmationSegmentedControl.m in Sources */,
 				56E3E5AB21016DB60014152D /* TypingAnimationLabel.m in Sources */,
+				5677C58B2181226500477ACD /* _MasterTokenModelObject.m in Sources */,
 				56E3E5AC21016DB60014152D /* CacheTransaction.m in Sources */,
 				56E3E5AD21016DB60014152D /* DeclinedTransactionInteractor.m in Sources */,
+				5677C5A52181226500477ACD /* NetworkModelObject.m in Sources */,
+				56335F8C2187BBC300C07E2B /* KeychainAccountModel.m in Sources */,
 				56E3E5AE21016DB60014152D /* DeclinedTransactionRouter.m in Sources */,
 				56E3E5AF21016DB60014152D /* BuyEtherHistoryTableViewAnimator.m in Sources */,
 				56E3E5B021016DB60014152D /* ManagedObjectMappingProvider.m in Sources */,
+				5677C59F2181226500477ACD /* AccountModelObject.m in Sources */,
 				56E3E5B121016DB60014152D /* FlatButton.m in Sources */,
-				56E3E5B221016DB60014152D /* ContractsBodyTransformer.m in Sources */,
+				56E3E5B221016DB60014152D /* TokensBodyTransformer.m in Sources */,
 				56E3E5B321016DB60014152D /* NetworkClientsAssembly.m in Sources */,
 				56E3E5B421016DB60014152D /* OperationChainer.m in Sources */,
 				56E3E5B521016DB60014152D /* OperationBuffer.m in Sources */,
@@ -9888,6 +10122,7 @@
 				56E3E5BC21016DB60014152D /* SettingsAssembly.m in Sources */,
 				56E3E5BD21016DB60014152D /* MEWConnectResponseMapper.m in Sources */,
 				56E3E5BE21016DB60014152D /* UIColor+Application.m in Sources */,
+				5677C59B2181226500477ACD /* PurchaseHistoryPlainObject.m in Sources */,
 				56E3E5BF21016DB60014152D /* InfoNormalTableViewCell.m in Sources */,
 				56E3E5C021016DB60014152D /* SettingsViewController.m in Sources */,
 				56E3E5C121016DB60014152D /* SettingsPresenter.m in Sources */,
@@ -9895,8 +10130,8 @@
 				56E3E5C321016DB60014152D /* CompoundOperationDebugDescriptionFormatter.m in Sources */,
 				56E3E5C421016DB60014152D /* SettingsRouter.m in Sources */,
 				56E3E5C521016DB60014152D /* String+RandSeed.swift in Sources */,
+				5677C5AD2181226500477ACD /* _FiatPricePlainObject.m in Sources */,
 				56E3E5C621016DB60014152D /* ConfirmPasswordAssembly.m in Sources */,
-				56E3E5C721016DB60014152D /* AccountsOperationFactory.m in Sources */,
 				56E3E5C821016DB60014152D /* CacheTrackerImplementation.m in Sources */,
 				56E3E5C921016DB60014152D /* ConfirmPasswordViewController.m in Sources */,
 				56E3E5CA21016DB60014152D /* BottomModalPresentationController.m in Sources */,
@@ -9906,12 +10141,11 @@
 				56E3E5CD21016DB60014152D /* EthereumResponseConverterImplementation.m in Sources */,
 				56E3E5CE21016DB60014152D /* ResponseConverterOperation.m in Sources */,
 				56E3E5CF21016DB60014152D /* BodyTransformerBase.m in Sources */,
-				56E3E5D021016DB60014152D /* NetworkPlainObject.m in Sources */,
 				56E3E5D121016DB60014152D /* ConfirmPasswordInteractor.m in Sources */,
 				56E3E5D221016DB60014152D /* ManyResponseValidator.m in Sources */,
 				56E3E5D321016DB60014152D /* ConfirmPasswordRouter.m in Sources */,
 				56E3E5D421016DB60014152D /* MessageSignerAssembly.m in Sources */,
-				56E3E5D521016DB60014152D /* _FiatPricePlainObject.m in Sources */,
+				5677C5B52181226500477ACD /* _TokenPlainObject.m in Sources */,
 				56E3E5D621016DB60014152D /* MessageSignerViewController.m in Sources */,
 				56E3E5D721016DB60014152D /* RequestDataModel.m in Sources */,
 				56E3E5D821016DB60014152D /* MessageSignerPresenter.m in Sources */,
@@ -9921,8 +10155,8 @@
 				56E9D3662170ADF50004AC61 /* CardViewSeedButton.m in Sources */,
 				56E3E5DB21016DB60014152D /* MessageSignerInteractor.m in Sources */,
 				56E3E5DC21016DB60014152D /* MessageSignerRouter.m in Sources */,
-				56E3E5DD21016DB60014152D /* _AccountPlainObject.m in Sources */,
 				56E3E5DE21016DB60014152D /* MEWConnectTransaction.m in Sources */,
+				5677C5A72181226500477ACD /* PurchaseHistoryModelObject.m in Sources */,
 				56E3E5DF21016DB60014152D /* CommonNetworkClient.m in Sources */,
 				56E3E5E021016DB60014152D /* ConfirmedTransactionAssembly.m in Sources */,
 				56E3E5E121016DB60014152D /* CompoundOperationBase.m in Sources */,
@@ -9936,12 +10170,16 @@
 				56E3E5E921016DB60014152D /* BackupInfoAssembly.m in Sources */,
 				56E3E5EA21016DB60014152D /* BackupInfoViewController.m in Sources */,
 				56E3E5EB21016DB60014152D /* BackupInfoPresenter.m in Sources */,
+				5677C5932181226500477ACD /* AccountPlainObject.m in Sources */,
 				56E3E5EC21016DB60014152D /* BackupInfoInteractor.m in Sources */,
 				56E3E5ED21016DB60014152D /* SimplexOperationFactory.m in Sources */,
 				56E3E5EE21016DB60014152D /* InfoCellObjectBuilder.m in Sources */,
+				5677C58D2181226500477ACD /* _NetworkModelObject.m in Sources */,
+				56F8EAA32183B7F90010274B /* MappingModel_v_1_to_2.xcmappingmodel in Sources */,
 				56E3E5EF21016DB60014152D /* AccessoryTableViewAction.m in Sources */,
 				56E3E5F021016DB60014152D /* BackupInfoRouter.m in Sources */,
 				56E3E5F121016DB60014152D /* BackupStartAssembly.m in Sources */,
+				5677C58F2181226500477ACD /* _PurchaseHistoryModelObject.m in Sources */,
 				56E3E5F221016DB60014152D /* BackupStartViewController.m in Sources */,
 				56E3E5F321016DB60014152D /* BuyEtherHistoryEmptyTableViewCellObject.m in Sources */,
 				56E3E5F421016DB60014152D /* SimplexPaymentQuery.m in Sources */,
@@ -9961,18 +10199,22 @@
 				56E3E60221016DB60014152D /* BackupConfirmationViewController.m in Sources */,
 				56E3E60321016DB60014152D /* BackupConfirmationPresenter.m in Sources */,
 				56E3E60421016DB60014152D /* FiatPricesServiceImplementation.m in Sources */,
+				5677C5A12181226500477ACD /* FiatPriceModelObject.m in Sources */,
 				56E3E60521016DB60014152D /* BackupConfirmationInteractor.m in Sources */,
 				56E3E60621016DB60014152D /* BackupConfirmationRouter.m in Sources */,
 				56E3E60721016DB60014152D /* BackupDoneAssembly.m in Sources */,
 				5649CC28217002840009D982 /* CacheTransactionSection.m in Sources */,
+				5677C5A32181226500477ACD /* MasterTokenModelObject.m in Sources */,
 				56E3E60821016DB60014152D /* BackupConfirmationQuiz.m in Sources */,
+				5677C5992181226500477ACD /* NetworkPlainObject.m in Sources */,
 				56E3E60921016DB60014152D /* BackupDoneViewController.m in Sources */,
+				5677C5AB2181226500477ACD /* _AccountPlainObject.m in Sources */,
 				56E3E60A21016DB60014152D /* UIScreen+ScreenScaleType.m in Sources */,
 				56E3E60B21016DB60014152D /* BackupDonePresenter.m in Sources */,
 				56E3E60C21016DB60014152D /* BackupDoneInteractor.m in Sources */,
-				56E3E60D21016DB60014152D /* _FiatPriceModelObject.m in Sources */,
 				56E3E60E21016DB60014152D /* BackupDoneRouter.m in Sources */,
 				56E3E60F21016DB60014152D /* SplashPasswordAssembly.m in Sources */,
+				56335F862187664000C07E2B /* KeychainServiceSharedConstants.m in Sources */,
 				56E3E61021016DB60014152D /* InfoDestructiveTableViewCellObject.m in Sources */,
 				5627B714210B60CE009787F7 /* PropertyAnimatorsAssembly.m in Sources */,
 				56E3E61121016DB60014152D /* SplashPasswordViewController.m in Sources */,
@@ -9980,11 +10222,9 @@
 				56E3E61321016DB60014152D /* SplashPasswordPresenter.m in Sources */,
 				56E3E61421016DB60014152D /* TransitioningDelegateAssembly.m in Sources */,
 				56E3E61521016DB60014152D /* SplashPasswordInteractor.m in Sources */,
-				56E3E61621016DB60014152D /* _AccountModelObject.m in Sources */,
 				56E3E61721016DB60014152D /* StatusButton.m in Sources */,
 				56E3E61821016DB60014152D /* SimplexServiceImplementation.m in Sources */,
 				56E3E61921016DB60014152D /* AccountsServiceImplementation.m in Sources */,
-				56E3E61A21016DB60014152D /* _TokenPlainObject.m in Sources */,
 				56E3E61B21016DB60014152D /* SplashPasswordRouter.m in Sources */,
 				56E3E61C21016DB60014152D /* ForgotPasswordAssembly.m in Sources */,
 				56E3E61D21016DB60014152D /* ForgotPasswordViewController.m in Sources */,
@@ -9992,12 +10232,10 @@
 				56E3E61F21016DB60014152D /* ForgotPasswordInteractor.m in Sources */,
 				56E3E62021016DB60014152D /* ForgotPasswordRouter.m in Sources */,
 				56E3E62121016DB60014152D /* InfoAssembly.m in Sources */,
-				56E3E62221016DB60014152D /* TokenModelObject.m in Sources */,
 				56E3E62321016DB60014152D /* InfoViewController.m in Sources */,
 				56E3E62421016DB60014152D /* InfoPresenter.m in Sources */,
 				56E3E62521016DB60014152D /* InfoInteractor.m in Sources */,
 				56A4FABA214813C500E7B022 /* FadeModalPresentingAnimationController.m in Sources */,
-				56E3E62621016DB60014152D /* _NetworkModelObject.m in Sources */,
 				56E3E62721016DB60014152D /* InfoRouter.m in Sources */,
 				56E3E62821016DB60014152D /* BuyEtherAmountAssembly.m in Sources */,
 				56E3E62921016DB60014152D /* BuyEtherAmountViewController.m in Sources */,
@@ -10008,12 +10246,14 @@
 				56307A8A216EC63400282602 /* ShareAssembly.m in Sources */,
 				566D15612107F9E60020E4F3 /* AboutPresenter.m in Sources */,
 				56E3E62E21016DB60014152D /* BuyEtherHistoryViewController.m in Sources */,
+				5677C5912181226500477ACD /* _TokenModelObject.m in Sources */,
 				56E3E62F21016DB60014152D /* BuyEtherHistoryPresenter.m in Sources */,
 				56E3E63021016DB60014152D /* BuyEtherHistoryInteractor.m in Sources */,
 				56E3E63121016DB60014152D /* BuyEtherHistoryRouter.m in Sources */,
 				56E3E63221016DB60014152D /* BuyEtherNavigationAssembly.m in Sources */,
 				56E3E63321016DB60014152D /* BuyEtherNavigationController.m in Sources */,
 				56E3E63421016DB60014152D /* BuyEtherNavigationPresenter.m in Sources */,
+				5677C59D2181226500477ACD /* TokenPlainObject.m in Sources */,
 				56E3E63521016DB60014152D /* UIView+LockFrame.m in Sources */,
 				56E3E63621016DB60014152D /* BuyEtherNavigationRouter.m in Sources */,
 				56E3E63721016DB60014152D /* BuyEtherWebAssembly.m in Sources */,
@@ -10024,6 +10264,8 @@
 				56E3E63C21016DB60014152D /* ConfirmationNavigationAssembly.m in Sources */,
 				56E3E63D21016DB60014152D /* ConfirmationNavigationViewController.m in Sources */,
 				56E3E63E21016DB60014152D /* ConfirmationNavigationPresenter.m in Sources */,
+				5677C5B12181226500477ACD /* _NetworkPlainObject.m in Sources */,
+				5677C5872181226500477ACD /* _AccountModelObject.m in Sources */,
 				56E3E63F21016DB60014152D /* ConfirmationNavigationRouter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -10033,19 +10275,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				5668E4F02083DAC90070A402 /* CleanLaunchRouter.m in Sources */,
-				563CF2D420EFAAD6005467AE /* NetworkModelObject.m in Sources */,
+				5677C5A42181226500477ACD /* NetworkModelObject.m in Sources */,
 				56FB3A1E20B43FE6007776C8 /* TokensResponseConverterImplementation.m in Sources */,
-				563CF2D220EFAAD6005467AE /* AccountModelObject.m in Sources */,
 				5668E51B2083EE920070A402 /* ServiceComponentsAssembly.m in Sources */,
 				56FB39BA20B22D7B007776C8 /* ResponseValidatorsAssembly.m in Sources */,
 				56FB39D620B249E9007776C8 /* ContractRequestDataModel.m in Sources */,
 				56FE2B8020817F1100DB39D5 /* main.m in Sources */,
-				56FE2B7220817F1100DB39D5 /* AppDelegate.m in Sources */,
 				56AC944E208FAB1000E5BC2C /* NSString+HexData.m in Sources */,
 				560D770F20B49522009A3D6D /* HomeTableViewCellObject.m in Sources */,
 				56A4EAC820B8C5EC0042A358 /* PresentationControllerAssembly.m in Sources */,
 				56A4FAC121485C6D00E7B022 /* ContextPasswordInputAccessoryView.m in Sources */,
 				56AE728320D711350047D51F /* MEWcryptoMessage.m in Sources */,
+				56335F7D2187662200C07E2B /* KeychainServiceConstantsV1.m in Sources */,
 				56FB398F20B227EC007776C8 /* ResponseDeserializersAssembly.m in Sources */,
 				56FB39A320B22A47007776C8 /* ResponseConverterAssembly.m in Sources */,
 				563CF2F320EFAD3F005467AE /* BuyEtherHistoryItemTableViewCellObject.m in Sources */,
@@ -10057,18 +10298,20 @@
 				5668E4FA2083DC300070A402 /* ApplicationConfiguratorImplementation.m in Sources */,
 				72A2267B34B867AC64D35523 /* StartAssembly.m in Sources */,
 				560A866F20E65C5F00046B53 /* CoreDataConfiguratorImplementation.m in Sources */,
-				560A868120E6F40F00046B53 /* BalanceBodyTransformer.m in Sources */,
 				5677BB742100A8260019E92D /* UIBezierPath+Morphing.m in Sources */,
 				560A866520E6539F00046B53 /* KeychainServiceImplementation.m in Sources */,
 				56E14BF420EBCFA000C41F83 /* SimplexQuery.m in Sources */,
+				56335F852187664000C07E2B /* KeychainServiceSharedConstants.m in Sources */,
 				56FB38F720B092C3007776C8 /* MEWConnectFacadeImplementation.m in Sources */,
 				560D76FE20B48498009A3D6D /* CacheRequest.m in Sources */,
 				EFF1B135C57BD1034056F8DE /* StartViewController.m in Sources */,
-				560A867520E681E700046B53 /* KeychainItemModel.m in Sources */,
+				560A867520E681E700046B53 /* KeychainNetworkModel.m in Sources */,
+				56F8EAA22183B7F90010274B /* MappingModel_v_1_to_2.xcmappingmodel in Sources */,
 				5668E4EA2083DA190070A402 /* CleanLaunchAppDelegate.m in Sources */,
 				5643879720A492240017790F /* UIColor+RandSeed.swift in Sources */,
 				5668E50C2083E7280070A402 /* StoryboardsAssembly.m in Sources */,
 				56AC9457208FACBA00E5BC2C /* NSData+Hexadecimal.m in Sources */,
+				5677C5942181226500477ACD /* FiatPricePlainObject.m in Sources */,
 				9545B03A6FC04B1766AA60BF /* StartPresenter.m in Sources */,
 				56E14BBF20E97B3C00C41F83 /* FiatPricesQuery.m in Sources */,
 				56191EAE215052FD000BF97F /* RateServiceImplementation.m in Sources */,
@@ -10091,6 +10334,7 @@
 				56FB39A820B22B3B007776C8 /* ResponseConverterImplementation.m in Sources */,
 				56A4EAA020B5D22A0042A358 /* HomeTableView.m in Sources */,
 				56A4EAD320B9A25A0042A358 /* BottomBackgroundedModalPresentationController.m in Sources */,
+				5677C58C2181226500477ACD /* _NetworkModelObject.m in Sources */,
 				56FB3A4F20B46FB1007776C8 /* ManagedObjectMapper.m in Sources */,
 				56E14BC820E97ED200C41F83 /* FiatPricesQueryTransformer.m in Sources */,
 				569E51CA20D946B000883583 /* NSData+ArrayBuffer.m in Sources */,
@@ -10102,7 +10346,10 @@
 				563C6AE620AF690A00E85B8B /* CheckboxButton+Blockies.swift in Sources */,
 				56191EA821504C35000BF97F /* CrashCatcherConfiguratorImplementation.m in Sources */,
 				56F17AC420E23FF60010393C /* NSBundle+Version.m in Sources */,
+				56D85B7F217FB42600B474C6 /* MigrationManager.m in Sources */,
 				564952C120E3DEE300CF2348 /* BlockchainNetworkServiceImplementation.m in Sources */,
+				5677C5862181226500477ACD /* _AccountModelObject.m in Sources */,
+				5677C5B02181226500477ACD /* _NetworkPlainObject.m in Sources */,
 				566BD36321389478007EC803 /* MEWConnectMessage.m in Sources */,
 				5668E5012083E4D70070A402 /* SystemInfrastructureAssembly.m in Sources */,
 				56AC9449208FA77900E5BC2C /* MEWConnectConstants.m in Sources */,
@@ -10111,7 +10358,6 @@
 				56AC945B208FC21300E5BC2C /* MEWRTCConstants.m in Sources */,
 				56A4FAB92148138D00E7B022 /* FadeModalDismissingAnimationController.m in Sources */,
 				56FB38EE20AF9211007776C8 /* LinkedLabel.m in Sources */,
-				563CF2D820EFAAD6005467AE /* FiatPricePlainObject.m in Sources */,
 				E382C859C6675B6E524BDC87 /* NewWalletAssembly.m in Sources */,
 				56FB399C20B22939007776C8 /* ResponseDeserializationOperation.m in Sources */,
 				56BFD425209BB8CB00951000 /* NSString+HexToDecimal.swift in Sources */,
@@ -10129,17 +10375,16 @@
 				56307A94216F61AF00282602 /* UIScreen+AnimateBrightness.m in Sources */,
 				4B880994DD0B5F9B4F44203F /* RestoreWalletAssembly.m in Sources */,
 				56C878BA20BC1A3300343ADC /* HomeEmptyTableViewCellObject.m in Sources */,
-				563CF2DA20EFAAD6005467AE /* PurchaseHistoryPlainObject.m in Sources */,
-				563CF2E520EFAAD6005467AE /* _TokenModelObject.m in Sources */,
 				56DE4E0C20A9E61F001A2C19 /* BottomImageButton.m in Sources */,
 				15EE3D506AA2D21334803200 /* RestoreWalletViewController.m in Sources */,
 				56FB390120B0B589007776C8 /* CameraServiceImplementation.m in Sources */,
 				56CF0A9420D87F550029F841 /* NSArray+Data.m in Sources */,
+				56F8EAA72183BDFE0010274B /* AccountToAccountV2Policy.m in Sources */,
 				560D770C20B4950C009A3D6D /* HomeCellObjectBuilder.m in Sources */,
 				56FB39E520B35766007776C8 /* HeadersBuilderBase.m in Sources */,
 				D8F63615756FC3CF5F64F745 /* RestoreWalletPresenter.m in Sources */,
 				56E6849820A4FE340058AA38 /* NSAttributedString+CustomEllipsis.m in Sources */,
-				563CF2E420EFAAD6005467AE /* _PurchaseHistoryModelObject.m in Sources */,
+				5677C5AE2181226500477ACD /* _MasterTokenPlainObject.m in Sources */,
 				56FB39DA20B31874007776C8 /* RESTRequestConfigurator.m in Sources */,
 				56FB392820B1A3F7007776C8 /* AsyncOperation.m in Sources */,
 				F8D31D7A5F793F249A5F0FE5 /* RestoreWalletInteractor.m in Sources */,
@@ -10155,20 +10400,19 @@
 				56E14BFC20EC05CA00C41F83 /* SimplexMapper.m in Sources */,
 				56C7757020DFEB3C00451EEF /* InfoDataDisplayManager.m in Sources */,
 				56FB3A2F20B45741007776C8 /* MEWconnect.xcdatamodeld in Sources */,
+				5677C5A62181226500477ACD /* PurchaseHistoryModelObject.m in Sources */,
 				56E684A420A5F7250058AA38 /* InlineButton.m in Sources */,
 				56E14BC320E97C8400C41F83 /* FiatPricesOperationFactory.m in Sources */,
-				560A867920E6EF9600046B53 /* AccountsBody.m in Sources */,
 				563DF3922098AF0500F740FF /* BordlessNavigationBar.m in Sources */,
 				560CAFFF209B428500BFF59C /* MEWConnectCommand.m in Sources */,
 				56FB394920B1A8CC007776C8 /* TokensOperationFactory.m in Sources */,
 				10DC5C17C1A92CD39162B5A9 /* PasswordRouter.m in Sources */,
 				56C878B520BC199300343ADC /* HomeEmptyTableViewCell.m in Sources */,
-				563CF2DF20EFAAD6005467AE /* _PurchaseHistoryPlainObject.m in Sources */,
 				56E14BD420EA687700C41F83 /* NSNumberFormatter+TokenPrice.m in Sources */,
 				56FB3A2320B441C8007776C8 /* UIImage+RandSeed.swift in Sources */,
-				563CF2DE20EFAAD6005467AE /* _NetworkPlainObject.m in Sources */,
 				5627B6F6210A81B7009787F7 /* EthereumResponseValidator.m in Sources */,
 				560D76F020B48296009A3D6D /* PonsomizerAssembly.m in Sources */,
+				5677C5A82181226500477ACD /* TokenModelObject.m in Sources */,
 				5FEF304FAB4A717221A0C324 /* HomeAssembly.m in Sources */,
 				56E14BF820EBCFAD00C41F83 /* SimplexQuoteBody.m in Sources */,
 				56E9D3652170ADF10004AC61 /* CardViewSeedButton.m in Sources */,
@@ -10177,7 +10421,6 @@
 				56FB39F320B3586C007776C8 /* QueryTransformerBase.m in Sources */,
 				563C6AD820AC696300E85B8B /* MEWSearchBar.m in Sources */,
 				4BECCB3B960C486BF2D02A9C /* HomePresenter.m in Sources */,
-				563CF2D520EFAAD6005467AE /* PurchaseHistoryModelObject.m in Sources */,
 				56E14C0420EC0C8700C41F83 /* SimplexResponseConverterImplementation.m in Sources */,
 				56E14C0D20EC0DD600C41F83 /* SimplexQuote.m in Sources */,
 				44AC20E9EB75F0CC836027E1 /* HomeInteractor.m in Sources */,
@@ -10189,15 +10432,16 @@
 				564387A320A496290017790F /* Array+UInt32.swift in Sources */,
 				67CD1448F27E95D6917799B2 /* QRScannerPresenter.m in Sources */,
 				6032F005DDCDCFECB265AEBF /* QRScannerInteractor.m in Sources */,
+				5677C59E2181226500477ACD /* AccountModelObject.m in Sources */,
 				56FB39C120B2313E007776C8 /* SingleResponseValidator.m in Sources */,
 				56FB391D20B1A228007776C8 /* OperationSchedulerImplementation.m in Sources */,
+				5677C5B42181226500477ACD /* _TokenPlainObject.m in Sources */,
 				0200A429F6FF43815C7B2AFD /* QRScannerRouter.m in Sources */,
 				563C6AE320AF122000E85B8B /* CheckboxButton.swift in Sources */,
 				56FB3A1A20B391B4007776C8 /* TokensBody.m in Sources */,
 				560CB009209B453600BFF59C /* NSString+RCFCapitalization.m in Sources */,
 				56E14BE720EBCE8A00C41F83 /* SimplexQueryTransformer.m in Sources */,
 				5649CC27216FF1320009D982 /* CacheTransactionSection.m in Sources */,
-				563CF2D720EFAAD6005467AE /* AccountPlainObject.m in Sources */,
 				56FB39FF20B35B33007776C8 /* OperationFactoriesAssembly.m in Sources */,
 				5645258B2164C63A004D23C4 /* TokensResponseValidator.m in Sources */,
 				563DF38520986F8500F740FF /* PasswordTextField.m in Sources */,
@@ -10214,7 +10458,6 @@
 				56428A8020F93DF90049E8BC /* SimplexStatusQuery.m in Sources */,
 				5CCAC59021B5F77D54E50DDD /* TransactionPresenter.m in Sources */,
 				56FB399420B22878007776C8 /* JSONResponseDeserializer.m in Sources */,
-				563CF2DB20EFAAD6005467AE /* TokenPlainObject.m in Sources */,
 				56E684A020A5D4E40058AA38 /* NSNumberFormatter+USD.m in Sources */,
 				560D771A20B495DE009A3D6D /* FetchedResultsControllerAssembly.m in Sources */,
 				67E3B80B702FB1A5CBC91D10 /* TransactionInteractor.m in Sources */,
@@ -10225,23 +10468,26 @@
 				56FB3A5920B470DD007776C8 /* EntityNameFormatterImplementation.m in Sources */,
 				56BFD423209BB87A00951000 /* NSString+HexNSDecimalNumber.m in Sources */,
 				60FB3D00ACA2D174F3CFD75C /* TransactionRouter.m in Sources */,
+				5677C5A02181226500477ACD /* FiatPriceModelObject.m in Sources */,
 				445C96567AC59C1F02F888A9 /* DeclinedTransactionAssembly.m in Sources */,
 				B13A70C242EA0F3A9E1BD342 /* DeclinedTransactionViewController.m in Sources */,
 				56E6849C20A5092C0058AA38 /* NSNumberFormatter+Ethereum.m in Sources */,
+				5677C5962181226500477ACD /* MasterTokenPlainObject.m in Sources */,
 				9C68410123433AEA8C27D94A /* DeclinedTransactionPresenter.m in Sources */,
 				56FB398620B226C9007776C8 /* ServerResponseModel.m in Sources */,
-				563CF2D320EFAAD6005467AE /* FiatPriceModelObject.m in Sources */,
 				560D772520B49927009A3D6D /* HomeTableViewAnimator.m in Sources */,
 				560D771320B49535009A3D6D /* HomeTableViewCell.m in Sources */,
 				560D773620B58C93009A3D6D /* BackupConfirmationSegmentedControl.m in Sources */,
+				56947CDA2186465700336F4B /* MasterTokenBody.m in Sources */,
 				563DF39620990E6600F740FF /* TypingAnimationLabel.m in Sources */,
 				560D76FB20B48490009A3D6D /* CacheTransaction.m in Sources */,
 				B9B3DACD03B86B5A8AFC950C /* DeclinedTransactionInteractor.m in Sources */,
 				5695A95A2B5CED358C015C0D /* DeclinedTransactionRouter.m in Sources */,
 				563CF30A20EFB235005467AE /* BuyEtherHistoryTableViewAnimator.m in Sources */,
+				5677C59C2181226500477ACD /* TokenPlainObject.m in Sources */,
 				56FB3A5320B47037007776C8 /* ManagedObjectMappingProvider.m in Sources */,
 				5685FE162099F9A4008C75A1 /* FlatButton.m in Sources */,
-				56FB39FB20B359F9007776C8 /* ContractsBodyTransformer.m in Sources */,
+				56FB39FB20B359F9007776C8 /* TokensBodyTransformer.m in Sources */,
 				56FB397C20B224AC007776C8 /* NetworkClientsAssembly.m in Sources */,
 				56FB395D20B1AEC7007776C8 /* OperationChainer.m in Sources */,
 				56FB394420B1A6D0007776C8 /* OperationBuffer.m in Sources */,
@@ -10262,7 +10508,6 @@
 				EE773E901ADEDD4ECF600760 /* SettingsRouter.m in Sources */,
 				5643879A20A492570017790F /* String+RandSeed.swift in Sources */,
 				787E3E34CA8334AE03D0C71F /* ConfirmPasswordAssembly.m in Sources */,
-				560A867D20E6F0C700046B53 /* AccountsOperationFactory.m in Sources */,
 				560D770220B484AE009A3D6D /* CacheTrackerImplementation.m in Sources */,
 				2CDE7A980F538C53DBA4CBF5 /* ConfirmPasswordViewController.m in Sources */,
 				56A4EACF20B8C6B00042A358 /* BottomModalPresentationController.m in Sources */,
@@ -10271,24 +10516,25 @@
 				56C878B020BB873900343ADC /* EthereumResponseConverterImplementation.m in Sources */,
 				56FB39AE20B22BF6007776C8 /* ResponseConverterOperation.m in Sources */,
 				56FB39F020B35862007776C8 /* BodyTransformerBase.m in Sources */,
-				563CF2D920EFAAD6005467AE /* NetworkPlainObject.m in Sources */,
 				7879FEAD66BF19CB8B3E2E9C /* ConfirmPasswordInteractor.m in Sources */,
 				56FB39C420B23143007776C8 /* ManyResponseValidator.m in Sources */,
 				2AEB8DA7B32B3CA7AA47C202 /* ConfirmPasswordRouter.m in Sources */,
 				3AFFA21DF27C931992B4A54C /* MessageSignerAssembly.m in Sources */,
-				563CF2DD20EFAAD6005467AE /* _FiatPricePlainObject.m in Sources */,
 				3BBADB73833FE4F61E032A06 /* MessageSignerViewController.m in Sources */,
 				56FB396920B22091007776C8 /* RequestDataModel.m in Sources */,
 				9EA12B8253010D67DED815C9 /* MessageSignerPresenter.m in Sources */,
 				56E14C1920ED298100C41F83 /* SimplexOrder.m in Sources */,
 				563CF2F920EFAD65005467AE /* BuyEtherHistoryItemTableViewCell.m in Sources */,
+				5677C5B22181226500477ACD /* _PurchaseHistoryPlainObject.m in Sources */,
 				72485618E7E8DF04CFBF2AA4 /* MessageSignerInteractor.m in Sources */,
 				F97A9F3E04DFE53FBEB8DD88 /* MessageSignerRouter.m in Sources */,
-				563CF2DC20EFAAD6005467AE /* _AccountPlainObject.m in Sources */,
 				56BFD41F209BB7D400951000 /* MEWConnectTransaction.m in Sources */,
 				56FB39DE20B31931007776C8 /* CommonNetworkClient.m in Sources */,
+				5677C5982181226500477ACD /* NetworkPlainObject.m in Sources */,
+				5677C58E2181226500477ACD /* _PurchaseHistoryModelObject.m in Sources */,
 				B6DD4E4FEF354C89A482CF6A /* ConfirmedTransactionAssembly.m in Sources */,
 				56FB392220B1A2BD007776C8 /* CompoundOperationBase.m in Sources */,
+				5677C5AA2181226500477ACD /* _AccountPlainObject.m in Sources */,
 				FB1FDDD66CC21DAAB101AB72 /* ConfirmedTransactionViewController.m in Sources */,
 				792EFA6A1C92F889FAAA59CF /* ConfirmedTransactionPresenter.m in Sources */,
 				27B323C95CB315D3717C322D /* ConfirmedTransactionInteractor.m in Sources */,
@@ -10332,8 +10578,9 @@
 				455E984869FF61535DEF1FE7 /* BackupDoneViewController.m in Sources */,
 				5677BB4F20FD0C190019E92D /* UIScreen+ScreenScaleType.m in Sources */,
 				0EAB1B3BAE104F2ED13AFBDA /* BackupDonePresenter.m in Sources */,
+				5677C5882181226500477ACD /* _FiatPriceModelObject.m in Sources */,
 				291642C66A4CCAB3EC91FE67 /* BackupDoneInteractor.m in Sources */,
-				563CF2E220EFAAD6005467AE /* _FiatPriceModelObject.m in Sources */,
+				5677C59A2181226500477ACD /* PurchaseHistoryPlainObject.m in Sources */,
 				669C06D658A079AB650AD485 /* BackupDoneRouter.m in Sources */,
 				AFDE8EED4FD1C618C0BD78A1 /* SplashPasswordAssembly.m in Sources */,
 				56C7758020DFEBB900451EEF /* InfoDestructiveTableViewCellObject.m in Sources */,
@@ -10343,11 +10590,10 @@
 				56A4EAAF20B8BE920042A358 /* TransitioningDelegateAssembly.m in Sources */,
 				5627B712210B5E15009787F7 /* PropertyAnimatorsAssembly.m in Sources */,
 				64D2C7DAAAB7CCA5EE92428C /* SplashPasswordInteractor.m in Sources */,
-				563CF2E120EFAAD6005467AE /* _AccountModelObject.m in Sources */,
+				56D85B7B217FAD3200B474C6 /* MigrationServiceImplementation.m in Sources */,
 				56C878AB20BB6F8100343ADC /* StatusButton.m in Sources */,
 				56E14BDE20EBC84500C41F83 /* SimplexServiceImplementation.m in Sources */,
 				564952FB20E3F20D00CF2348 /* AccountsServiceImplementation.m in Sources */,
-				563CF2E020EFAAD6005467AE /* _TokenPlainObject.m in Sources */,
 				BFE229932CEED582B99472F2 /* SplashPasswordRouter.m in Sources */,
 				0300F8A0DC179B5B8E58E3EC /* ForgotPasswordAssembly.m in Sources */,
 				A423000337866A1DB124671A /* ForgotPasswordViewController.m in Sources */,
@@ -10355,16 +10601,16 @@
 				773DCB9854C8B5804DD87712 /* ForgotPasswordInteractor.m in Sources */,
 				801A5FF6A47B5842C7851F9D /* ForgotPasswordRouter.m in Sources */,
 				4A803C38B488BA0A74A44FF4 /* InfoAssembly.m in Sources */,
-				563CF2D620EFAAD6005467AE /* TokenModelObject.m in Sources */,
 				695B3A2C9A8FC59839A0B89D /* InfoViewController.m in Sources */,
 				8254AAD910611123A558EC0D /* InfoPresenter.m in Sources */,
 				202C8F6B4A7D85BD8046E59F /* InfoInteractor.m in Sources */,
-				563CF2E320EFAAD6005467AE /* _NetworkModelObject.m in Sources */,
 				832F5172B4F35A1CA1FB4653 /* InfoRouter.m in Sources */,
 				12C5912C4ED7EA669EA3326B /* BuyEtherAmountAssembly.m in Sources */,
 				9802AA6716A921197A8E3688 /* BuyEtherAmountViewController.m in Sources */,
 				1EF453B24AD43CAD23B43051 /* BuyEtherAmountPresenter.m in Sources */,
 				5C11FB249B0F3CDE7C466126 /* BuyEtherAmountInteractor.m in Sources */,
+				56335F812187663600C07E2B /* KeychainServiceConstantsV2.m in Sources */,
+				5677C5902181226500477ACD /* _TokenModelObject.m in Sources */,
 				59FC874B1EE56C844A9D5681 /* BuyEtherAmountRouter.m in Sources */,
 				1188B19E148E0E631C68A394 /* BuyEtherHistoryAssembly.m in Sources */,
 				E734FB2A06F7D6E28F813C4A /* BuyEtherHistoryViewController.m in Sources */,
@@ -10374,7 +10620,9 @@
 				349DD734BAC8FF695B47B2D4 /* BuyEtherHistoryRouter.m in Sources */,
 				BB637F92D100EA257CAE4408 /* BuyEtherNavigationAssembly.m in Sources */,
 				305F1DD38D91054D4017098F /* BuyEtherNavigationController.m in Sources */,
+				5677C5A22181226500477ACD /* MasterTokenModelObject.m in Sources */,
 				A30F16618E51D57E2E24EEFA /* BuyEtherNavigationPresenter.m in Sources */,
+				5677C58A2181226500477ACD /* _MasterTokenModelObject.m in Sources */,
 				5677BB4220FAB28C0019E92D /* UIView+LockFrame.m in Sources */,
 				EA0EFB4E115E73BC1B98904C /* BuyEtherNavigationRouter.m in Sources */,
 				7CD4D8349C636C9982158EE2 /* BuyEtherWebAssembly.m in Sources */,
@@ -10394,13 +10642,21 @@
 				45D205AE04D6D2EDD6B8A9D5 /* ContextPasswordAssembly.m in Sources */,
 				3F52E643054014364E0A587E /* ContextPasswordViewController.m in Sources */,
 				2689189E455FF2B2D6B5A7D9 /* ContextPasswordPresenter.m in Sources */,
+				5677C5AC2181226500477ACD /* _FiatPricePlainObject.m in Sources */,
 				6A550118F06E02155D94AD52 /* ContextPasswordInteractor.m in Sources */,
 				533F41FFC2FA32AB99424976 /* ContextPasswordRouter.m in Sources */,
 				F44AF94F63C70216178E5084 /* ShareAssembly.m in Sources */,
 				F3EFC4DF1B60ECEF3AB6079A /* ShareViewController.m in Sources */,
+				5677C5922181226500477ACD /* AccountPlainObject.m in Sources */,
 				4948CDEFDEFE6F3F2399A5D8 /* SharePresenter.m in Sources */,
 				811B7A588FF030822E16DE52 /* ShareInteractor.m in Sources */,
 				D44842697FE39A671DFA133E /* ShareRouter.m in Sources */,
+				56335F8B2187BBC300C07E2B /* KeychainAccountModel.m in Sources */,
+				DF0D46B9486CD04C5E2DD220 /* RestoreSeedAssembly.m in Sources */,
+				F5E3B1945D11158D6038D9A5 /* RestoreSeedViewController.m in Sources */,
+				562DEFB7507802E60DDB1C47 /* RestoreSeedPresenter.m in Sources */,
+				95AC28C33E90E6CB75236EB0 /* RestoreSeedInteractor.m in Sources */,
+				8E5475167E0D8DD0FBB5B179 /* RestoreSeedRouter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10560,6 +10816,11 @@
 				DA7395FE3DA6AE645E755112 /* SharePresenterTests.m in Sources */,
 				8014EF435C1C9A3047235193 /* ShareInteractorTests.m in Sources */,
 				25B5D80933B7D569D44737E7 /* ShareRouterTests.m in Sources */,
+				0F50E3850C787F2834BD9A06 /* RestoreSeedAssemblyTests.m in Sources */,
+				3EE8B398B93C36A58AA62C29 /* RestoreSeedViewControllerTests.m in Sources */,
+				C08E074E489B751B4028F47D /* RestoreSeedPresenterTests.m in Sources */,
+				D53B551AA05314C408DBA847 /* RestoreSeedInteractorTests.m in Sources */,
+				303F5BB9745526591D7597EA /* RestoreSeedRouterTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10672,6 +10933,8 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "MyEtherWallet-iOS/Supporting Files/prefix.pch";
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
 				INFOPLIST_FILE = "MyEtherWallet-iOS/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -10689,7 +10952,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5E9DFA439A8965987C8E2D53 /* Pods-MEWconnect-MyEtherWallet-iOS-MyEtherWallet-iOSTests.appstore.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -10959,6 +11222,8 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "MyEtherWallet-iOS/Supporting Files/prefix.pch";
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
 				INFOPLIST_FILE = "MyEtherWallet-iOS/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -10988,6 +11253,8 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "MyEtherWallet-iOS/Supporting Files/prefix.pch";
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
 				INFOPLIST_FILE = "MyEtherWallet-iOS/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -11005,7 +11272,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 07DF82019A108691F7CBCB64 /* Pods-MEWconnect-MyEtherWallet-iOS-MyEtherWallet-iOSTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -11030,7 +11297,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D62B98088A6460F358412CDF /* Pods-MEWconnect-MyEtherWallet-iOS-MyEtherWallet-iOSTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -11152,9 +11419,10 @@
 		56FB3A2D20B45741007776C8 /* MEWconnect.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				56D85B6F217F70A200B474C6 /* MEWconnect.v.2.xcdatamodel */,
 				56FB3A2E20B45741007776C8 /* MEWconnect.xcdatamodel */,
 			);
-			currentVersion = 56FB3A2E20B45741007776C8 /* MEWconnect.xcdatamodel */;
+			currentVersion = 56D85B6F217F70A200B474C6 /* MEWconnect.v.2.xcdatamodel */;
 			path = MEWconnect.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

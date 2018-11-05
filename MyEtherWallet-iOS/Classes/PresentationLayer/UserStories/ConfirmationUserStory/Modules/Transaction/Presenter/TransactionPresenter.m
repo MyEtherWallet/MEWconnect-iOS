@@ -24,17 +24,17 @@
 
 #pragma mark - TransactionModuleInput
 
-- (void) configureModuleWithMessage:(MEWConnectCommand *)command account:(AccountPlainObject *)account {
-  [self.interactor configurateWithMessage:command account:account];
+- (void) configureModuleWithMessage:(MEWConnectCommand *)command masterToken:(MasterTokenPlainObject *)masterToken {
+  [self.interactor configurateWithMessage:command masterToken:masterToken];
 }
 
 #pragma mark - TransactionViewOutput
 
 - (void) didTriggerViewReadyEvent {
 	[self.view setupInitialState];
-  AccountPlainObject *account = [self.interactor obtainAccount];
+  MasterTokenPlainObject *masterToken = [self.interactor obtainMasterToken];
   MEWConnectTransaction *transaction = [self.interactor obtainTransaction];
-  [self.view updateWithTransaction:transaction forAccount:account];
+  [self.view updateWithTransaction:transaction forMasterToken:masterToken];
 }
 
 - (void) signAction {
@@ -58,7 +58,7 @@
 
 #pragma mark - TransactionInteractorOutput
 
-- (void) transactionDidSigned:(MEWConnectResponse *)response {
+- (void) transactionDidSigned:(__unused MEWConnectResponse *)response {
   [self.router openConfirmedTransactionWithConfirmationDelegate:self.moduleOutput];
 }
 

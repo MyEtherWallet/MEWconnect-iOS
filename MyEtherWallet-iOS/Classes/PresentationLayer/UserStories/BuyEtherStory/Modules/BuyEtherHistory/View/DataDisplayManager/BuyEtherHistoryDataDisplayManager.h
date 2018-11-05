@@ -18,5 +18,5 @@
 @property (nonatomic, strong) BuyEtherHistoryCellObjectBuilder *cellObjectBuilder;
 @property (nonatomic, weak) BuyEtherHistoryTableViewAnimator *animator;
 - (void)configureDataDisplayManagerWithAnimator:(BuyEtherHistoryTableViewAnimator *)animator;
-- (void)updateDataDisplayManagerWithTransactionBatch:(CacheTransactionBatch *)transactionBatch empty:(BOOL)empty;
+- (void)updateDataDisplayManagerWithTransactionBatch:(CacheTransactionBatch *)transactionBatch;
 @end

@@ -13,7 +13,7 @@
 #import "SimplexService.h"
 
 @interface BuyEtherWebInteractor ()
-@property (nonatomic, strong) AccountPlainObject *account;
+@property (nonatomic, strong) MasterTokenPlainObject *masterToken;
 @property (nonatomic, strong) SimplexOrder *order;
 @end
 
@@ -21,13 +21,13 @@
 
 #pragma mark - BuyEtherWebInteractorInput
 
-- (void) configurateWithOrder:(SimplexOrder *)order account:(AccountPlainObject *)account {
-  _account = account;
+- (void) configurateWithOrder:(SimplexOrder *)order masterToken:(MasterTokenPlainObject *)masterToken {
+  _masterToken = masterToken;
   _order = order;
 }
 
 - (NSURLRequest *) obtainInitialRequest {
-  return [self.simplexService obtainRequestWithOrder:self.order forAccount:self.account];
+  return [self.simplexService obtainRequestWithOrder:self.order forMasterToken:self.masterToken];
 }
 
 @end

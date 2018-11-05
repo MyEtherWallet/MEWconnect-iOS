@@ -46,7 +46,7 @@
   [attributedText enumerateAttribute:NSParagraphStyleAttributeName
                              inRange:NSMakeRange(0, [attributedText length])
                              options:0
-                          usingBlock:^(NSParagraphStyle * _Nullable value, NSRange range, BOOL * _Nonnull stop) {
+                          usingBlock:^(NSParagraphStyle * _Nullable value, __unused NSRange range, BOOL * _Nonnull stop) {
                             self.textContainer.lineBreakMode = value.lineBreakMode;
                             *stop = YES;
                           }];
@@ -54,7 +54,7 @@
   [attributedText enumerateAttribute:NSLinkAttributeName
                              inRange:NSMakeRange(0, [attributedText length])
                              options:0
-                          usingBlock:^(id  _Nullable value, NSRange range, BOOL * _Nonnull stop) {
+                          usingBlock:^(id  _Nullable value, NSRange range, __unused BOOL * _Nonnull stop) {
                             if (range.length > 0 && value) {
                               [ranges addObject:[NSValue valueWithRange:range]];
                             }
@@ -81,7 +81,7 @@
     NSRange linkRange = [rangeValue rangeValue];
     if (NSLocationInRange(indexOfCharacter, linkRange)) {
       @weakify(self);
-      [self.attributedText enumerateAttribute:NSLinkAttributeName inRange:linkRange options:0 usingBlock:^(id  _Nullable value, NSRange range, BOOL * _Nonnull stop) {
+      [self.attributedText enumerateAttribute:NSLinkAttributeName inRange:linkRange options:0 usingBlock:^(id _Nullable value, __unused NSRange range, __unused BOOL * _Nonnull stop) {
         @strongify(self);
         [self.delegate linkedLabel:self didSelectURL:value];
       }];
@@ -90,7 +90,7 @@
 }
 
 //HACK: iOS 11 don't allow to change foreground color of linked attribute
-- (void)drawTextInRect:(CGRect)rect
+- (void)drawTextInRect:(__unused CGRect)rect
 {
   CGRect textRect = [self textRectForBounds:self.bounds limitedToNumberOfLines:self.numberOfLines];
   NSMutableAttributedString *attributedString = [self.attributedText mutableCopy];

@@ -14,7 +14,6 @@
 - (void)encodeWithCoder:(NSCoder *)aCoder {
 
     [aCoder encodeObject:self.usdPrice forKey:@"usdPrice"];
-    [aCoder encodeObject:self.fromAccount forKey:@"fromAccount"];
     [aCoder encodeObject:self.fromToken forKey:@"fromToken"];
 }
 
@@ -23,7 +22,6 @@
     if (self != nil) {
 
         _usdPrice = [[aDecoder decodeObjectForKey:@"usdPrice"] copy];
-        _fromAccount = [[aDecoder decodeObjectForKey:@"fromAccount"] copy];
         _fromToken = [[aDecoder decodeObjectForKey:@"fromToken"] copy];
     }
 
@@ -37,7 +35,6 @@
 
     replica.usdPrice = self.usdPrice;
 
-    replica.fromAccount = self.fromAccount;
     replica.fromToken = self.fromToken;
 
     return replica;

@@ -8,11 +8,11 @@
 
 @import UIKit;
 
-@protocol AccountsService;
+@protocol BlockchainNetworkService;
 @protocol Ponsomizer;
 
 @interface BottomBackgroundedModalPresentationController : UIPresentationController
-@property (nonatomic, strong) id <AccountsService> accountsService;
+@property (nonatomic, strong) id <BlockchainNetworkService> networkService;
 @property (nonatomic, strong) id <Ponsomizer> ponsomizer;
 @property (nonatomic) CGFloat cornerRadius;
 @end

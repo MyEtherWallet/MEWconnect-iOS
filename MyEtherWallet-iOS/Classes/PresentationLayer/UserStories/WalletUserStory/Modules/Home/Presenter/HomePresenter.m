@@ -18,6 +18,8 @@
 
 #import "ConfirmationNavigationModuleInput.h"
 #import "ConfirmationStoryModuleOutput.h"
+#import "ContextPasswordModuleOutput.h"
+#import "RestoreSeedModuleOutput.h"
 
 typedef NS_OPTIONS(short, HomeViewPresenterStatus) {
   HomeViewPresenterStatusUnknown              =   0 << 0,
@@ -25,7 +27,7 @@ typedef NS_OPTIONS(short, HomeViewPresenterStatus) {
   HomeViewPresenterStatusMEWconnectConnection =   1 << 1,
 };
 
-@interface HomePresenter () <ConfirmationStoryModuleOutput>
+@interface HomePresenter () <ConfirmationStoryModuleOutput, ContextPasswordModuleOutput, RestoreSeedModuleOutput>
 @property (nonatomic, weak) id <ConfirmationNavigationModuleInput> signModuleInput;
 @property (nonatomic) HomeViewPresenterStatus connectionStatus;
 @end
@@ -39,20 +41,20 @@ typedef NS_OPTIONS(short, HomeViewPresenterStatus) {
 #pragma mark - HomeModuleInput
 
 - (void) configureModule {
-  [self.interactor refreshAccount];
+  [self.interactor refreshMasterToken];
   [self.interactor configurate];
 }
 
 - (void) configureBackupStatus {
-  [self.interactor refreshAccount];
-  AccountPlainObject *account = [self.interactor obtainAccount];
-  [self.view updateWithAccount:account];
+  [self.interactor refreshMasterToken];
+  MasterTokenPlainObject *masterToken = [self.interactor obtainMasterToken];
+  [self.view updateWithMasterToken:masterToken];
 }
 
 - (void) configureAfterChangingNetwork {
-  [self.interactor refreshAccount];
-  AccountPlainObject *account = [self.interactor obtainAccount];
-  [self.view updateWithAccount:account];
+  [self.interactor refreshMasterToken];
+  MasterTokenPlainObject *masterToken = [self.interactor obtainMasterToken];
+  [self.view updateWithMasterToken:masterToken];
   
   NSUInteger count = [self.interactor obtainNumberOfTokens];
   NSDecimalNumber *tokensPrice = [self.interactor obtainTotalPriceOfTokens];
@@ -67,8 +69,8 @@ typedef NS_OPTIONS(short, HomeViewPresenterStatus) {
   NSUInteger count = [self.interactor obtainNumberOfTokens];
   NSDecimalNumber *tokensPrice = [self.interactor obtainTotalPriceOfTokens];
   [self.view setupInitialStateWithNumberOfTokens:count totalPrice:tokensPrice];
-  AccountPlainObject *account = [self.interactor obtainAccount];
-  [self.view updateWithAccount:account];
+  MasterTokenPlainObject *masterToken = [self.interactor obtainMasterToken];
+  [self.view updateWithMasterToken:masterToken];
   
   [self _refreshViewStatusAnimated:NO];
   if (_tokensRefreshing) {
@@ -112,13 +114,12 @@ typedef NS_OPTIONS(short, HomeViewPresenterStatus) {
 }
 
 - (void) infoAction {
-  AccountPlainObject *account = [self.interactor obtainAccount];
-  [self.router openInfoWithAccount:account];
+  [self.router openInfo];
 }
 
 - (void) buyEtherAction {
-  AccountPlainObject *account = [self.interactor obtainAccount];
-  [self.router openBuyEtherWithAccount:account];
+  MasterTokenPlainObject *masterToken = [self.interactor obtainMasterToken];
+  [self.router openBuyEtherWithMasterToken:masterToken];
 }
 
 - (void) refreshTokensAction {
@@ -126,8 +127,8 @@ typedef NS_OPTIONS(short, HomeViewPresenterStatus) {
 }
 
 - (void) shareAction {
-  AccountPlainObject *account = [self.interactor obtainAccount];
-  [self.router openShareWithAccount:account];
+  MasterTokenPlainObject *masterToken = [self.interactor obtainMasterToken];
+  [self.router openShareWithMasterToken:masterToken];
 }
 
 - (void) networkAction {
@@ -144,19 +145,19 @@ typedef NS_OPTIONS(short, HomeViewPresenterStatus) {
 
 #pragma mark - HomeInteractorOutput
 
-- (void) openMessageSignerWithMessage:(MEWConnectCommand *)command account:(AccountPlainObject *)account {
+- (void) openMessageSignerWithMessage:(MEWConnectCommand *)command masterToken:(MasterTokenPlainObject *)masterToken {
   @weakify(self);
   [self _closePresentedSignModulesIfNeededWithCompletion:^{
     @strongify(self);
-    self.signModuleInput = [self.router openMessageSignerWithMessage:command account:account confirmationDelegate:self];
+    self.signModuleInput = [self.router openMessageSignerWithMessage:command masterToken:masterToken confirmationDelegate:self];
   }];
 }
 
-- (void) openTransactionSignerWithMessage:(MEWConnectCommand *)command account:(AccountPlainObject *)account {
+- (void) openTransactionSignerWithMessage:(MEWConnectCommand *)command masterToken:(MasterTokenPlainObject *)masterToken {
   @weakify(self);
   [self _closePresentedSignModulesIfNeededWithCompletion:^{
     @strongify(self);
-    self.signModuleInput = [self.router openTransactionSignerWithMessage:command account:account confirmationDelegate:self];
+    self.signModuleInput = [self.router openTransactionSignerWithMessage:command masterToken:masterToken confirmationDelegate:self];
   }];
 }
 
@@ -173,8 +174,8 @@ typedef NS_OPTIONS(short, HomeViewPresenterStatus) {
 }
 
 - (void) didUpdateEthereumBalance {
-  AccountPlainObject *account = [self.interactor obtainAccount];
-  [self.view updateEthereumBalanceWithAccount:account];
+  MasterTokenPlainObject *masterToken = [self.interactor obtainMasterToken];
+  [self.view updateBalanceWithMasterToken:masterToken];
 }
 
 - (void) mewConnectionStatusChanged {
@@ -200,11 +201,7 @@ typedef NS_OPTIONS(short, HomeViewPresenterStatus) {
   [self.view stopAnimatingTokensRefreshing];
 }
 
-- (void) networkDidChangedWithoutAccount {
-  [self.router unwindToStart];
-}
-
-- (void) networkDidChangedWithAccount {
+- (void) networkDidChanged {
   [self configureAfterChangingNetwork];
 }
 
@@ -218,6 +215,16 @@ typedef NS_OPTIONS(short, HomeViewPresenterStatus) {
   [self _refreshViewStatusAnimated:_viewVisible];
 }
 
+- (void) passwordIsNeededWithAccount:(AccountPlainObject *)account {
+  [self.router openContextPasswordWithOutput:self account:account];
+}
+
+- (void)seedIsNeededWithAccount:(AccountPlainObject *)account password:(NSString *)password {
+  dispatch_async(dispatch_get_main_queue(), ^{
+    [self.router openRestoreSeedWithAccount:account password:password moduleOutput:self];
+  });
+}
+
 #pragma mark - ConfirmationStoryModuleOutput
 
 - (void) transactionDidSigned {
@@ -228,6 +235,18 @@ typedef NS_OPTIONS(short, HomeViewPresenterStatus) {
 
 - (void) transactionDidRejected {
   [self.signModuleInput closeWithCompletion:nil];
+}
+
+#pragma mark - ContextPasswordModuleOutput
+
+- (void) passwordDidEntered:(NSString *)password {
+  [self.interactor generateMissedKeysWithPassword:password];
+}
+
+#pragma mark - RestoreSeedModuleOutput
+
+- (void)mnemonicsDidRestoredWithPassword:(NSString *)password {
+  [self.interactor generateMissedKeysWithPassword:password];
 }
 
 #pragma mark - Private

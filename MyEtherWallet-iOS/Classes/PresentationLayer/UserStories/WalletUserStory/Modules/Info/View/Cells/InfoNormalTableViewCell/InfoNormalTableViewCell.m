@@ -24,7 +24,7 @@ static CGFloat const kInfoNormalTableViewCellCompactHeight  = 44.0;
   return YES;
 }
 
-+ (CGFloat)heightForObject:(InfoNormalTableViewCellObject *)object atIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView {
++ (CGFloat)heightForObject:(InfoNormalTableViewCellObject *)object atIndexPath:(__unused NSIndexPath *)indexPath tableView:(__unused UITableView *)tableView {
   if (object.compact) {
     return kInfoNormalTableViewCellCompactHeight;
   } else {

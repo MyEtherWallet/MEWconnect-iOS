@@ -12,9 +12,11 @@
 
 #import "MEWConnectFacadeConstants.h"
 
-#import "AccountsService.h"
+#import "BlockchainNetworkService.h"
 #import "Ponsomizer.h"
-#import "AccountPlainObject.h"
+
+#import "NetworkPlainObject.h"
+#import "MasterTokenPlainObject.h"
 
 #import "MEWConnectService.h"
 #import "MEWConnectServiceDelegate.h"
@@ -47,17 +49,18 @@
 
 #pragma mark - MEWConnectServiceDelegate
 
-- (void) MEWConnect:(id <MEWConnectService>)mewConnect didReceiveMessage:(MEWConnectCommand *)message {
+- (void) MEWConnect:(__unused id <MEWConnectService>)mewConnect didReceiveMessage:(MEWConnectCommand *)message {
   switch (message.type) {
     case MEWConnectCommandTypeGetAddress: {
-      AccountModelObject *accountModelObject = [self.accountsService obtainActiveAccount];
+      NetworkModelObject *networkModelObject = [self.networkService obtainActiveNetwork];
       
-      NSArray *ignoringProperties = @[NSStringFromSelector(@selector(backedUp)),
+      NSArray *ignoringProperties = @[NSStringFromSelector(@selector(fromAccount)),
+                                      NSStringFromSelector(@selector(tokens)),
                                       NSStringFromSelector(@selector(fromNetwork)),
                                       NSStringFromSelector(@selector(price)),
-                                      NSStringFromSelector(@selector(tokens))];
-      AccountPlainObject *account = [self.ponsomizer convertObject:accountModelObject ignoringProperties:ignoringProperties];
-      MEWConnectResponse *response = [MEWConnectResponse responseForCommand:message data:account.publicAddress];
+                                      NSStringFromSelector(@selector(purchaseHistory))];
+      NetworkPlainObject *network = [self.ponsomizer convertObject:networkModelObject ignoringProperties:ignoringProperties];
+      MEWConnectResponse *response = [MEWConnectResponse responseForCommand:message data:network.master.address];
       [self.connectService sendMessage:response];
       break;
     }
@@ -76,7 +79,7 @@
   }
 }
 
-- (void) MEWConnectDidConnected:(id <MEWConnectService>)mewConnect {
+- (void) MEWConnectDidConnected:(__unused id <MEWConnectService>)mewConnect {
   self.application.idleTimerDisabled = YES;
   NSNotificationQueue *queue = [NSNotificationQueue defaultQueue];
   NSNotification *notification = [NSNotification notificationWithName:MEWConnectFacadeDidConnectNotification
@@ -85,7 +88,7 @@
   [queue enqueueNotification:notification postingStyle:NSPostNow coalesceMask:NSNotificationCoalescingOnSender|NSNotificationCoalescingOnName forModes:@[NSDefaultRunLoopMode]];
 }
 
-- (void) MEWConnectDidDisconnected:(id<MEWConnectService>)mewConnect {
+- (void) MEWConnectDidDisconnected:(__unused id<MEWConnectService>)mewConnect {
   self.application.idleTimerDisabled = NO;
   NSNotificationQueue *queue = [NSNotificationQueue defaultQueue];
   NSNotification *notification = [NSNotification notificationWithName:MEWConnectFacadeDidDisconnectNotification
@@ -94,7 +97,7 @@
   [queue enqueueNotification:notification postingStyle:NSPostNow coalesceMask:NSNotificationCoalescingOnSender|NSNotificationCoalescingOnName forModes:@[NSDefaultRunLoopMode]];
 }
 
-- (void) MEWConnectDidDisconnectedByTimeout:(id <MEWConnectService>)mewConnect {
+- (void) MEWConnectDidDisconnectedByTimeout:(__unused id <MEWConnectService>)mewConnect {
   self.application.idleTimerDisabled = NO;
   NSNotificationQueue *queue = [NSNotificationQueue defaultQueue];
   NSNotification *notification = [NSNotification notificationWithName:MEWConnectFacadeDidDisconnectNotification
@@ -103,7 +106,7 @@
   [queue enqueueNotification:notification postingStyle:NSPostNow coalesceMask:NSNotificationCoalescingOnSender|NSNotificationCoalescingOnName forModes:@[NSDefaultRunLoopMode]];
 }
 
-- (void) MEWConnectDidReceiveError:(id <MEWConnectService>)mewConnect {
+- (void) MEWConnectDidReceiveError:(__unused id <MEWConnectService>)mewConnect {
   self.application.idleTimerDisabled = NO;
   NSNotificationQueue *queue = [NSNotificationQueue defaultQueue];
   NSNotification *notification = [NSNotification notificationWithName:MEWConnectFacadeDidDisconnectNotification

@@ -94,7 +94,7 @@
 
 #pragma mark - IBActions
 
-- (IBAction) startUsingAction:(id)sender {
+- (IBAction) startUsingAction:(__unused id)sender {
   [self.output startUsingAction];
 }
 
@@ -135,12 +135,12 @@
                      options:UIViewAnimationOptionTransitionCrossDissolve
                   animations:^{
                     label.attributedText = attributedString;
-                  } completion:^(BOOL finished) {
+                  } completion:^(__unused BOOL finished) {
                     completion(attributedString);
                   }];
 }
 
-- (void)typingAnimationLabelDidFinishAnimation:(TypingAnimationLabel *)label {
+- (void)typingAnimationLabelDidFinishAnimation:(__unused TypingAnimationLabel *)label {
   [UIView animateWithDuration:0.3
                    animations:^{
                      self.startUsingButton.alpha = 1.0;

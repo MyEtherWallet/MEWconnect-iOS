@@ -23,7 +23,7 @@ static CGFloat const kInfoDestructiveTableViewCellHeight = 56.0;
   return YES;
 }
 
-+ (CGFloat)heightForObject:(id)object atIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView {
++ (CGFloat)heightForObject:(__unused id)object atIndexPath:(__unused NSIndexPath *)indexPath tableView:(__unused UITableView *)tableView {
   return kInfoDestructiveTableViewCellHeight;
 }
 

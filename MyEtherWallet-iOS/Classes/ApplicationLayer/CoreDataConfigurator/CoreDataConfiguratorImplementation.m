@@ -10,12 +10,16 @@
 
 #import "ApplicationConstants.h"
 
+#import "Ponsomizer.h"
+
 #import "KeychainService.h"
-#import "KeychainItemModel.h"
+#import "KeychainAccountModel.h"
+#import "KeychainNetworkModel.h"
 #import "KeychainHistoryItemModel.h"
 
-#import "NetworkModelObject.h"
 #import "AccountModelObject.h"
+#import "NetworkModelObject.h"
+#import "MasterTokenModelObject.h"
 #import "PurchaseHistoryModelObject.h"
 
 #import "BlockchainNetworkTypes.h"
@@ -70,31 +74,66 @@
 - (void) _restoreCoreDataStructure {
   NSManagedObjectContext *rootSavingContext = [NSManagedObjectContext MR_rootSavingContext];
   [rootSavingContext performBlockAndWait:^{
-    NSArray *networkModels = [NetworkModelObject MR_findAllInContext:rootSavingContext];
-    if ([networkModels count] == 0) {
-      NSArray <KeychainItemModel *> *storedItems = [self.keychainService obtainStoredItems];
+    NSArray <AccountModelObject *> *accountModels = [AccountModelObject MR_findAllInContext:rootSavingContext];
+    if ([accountModels count] == 0) {
+      NSArray <KeychainAccountModel *> *storedItems = [self.keychainService obtainStoredItems];
+      if ([storedItems count] == 0) {
+        return;
+      }
       
-      for (KeychainItemModel *keychainItem in storedItems) {
-        NetworkModelObject *networkModelObject = [NetworkModelObject MR_findFirstOrCreateByAttribute:NSStringFromSelector(@selector(chainID)) withValue:@(keychainItem.network) inContext:rootSavingContext];
-        AccountModelObject *accountModelObject = [AccountModelObject MR_findFirstOrCreateByAttribute:NSStringFromSelector(@selector(publicAddress)) withValue:keychainItem.publicAddress inContext:rootSavingContext];
+      for (KeychainAccountModel *keychainItem in storedItems) {
+        AccountModelObject *accountModelObject = [AccountModelObject MR_findFirstOrCreateByAttribute:NSStringFromSelector(@selector(uid)) withValue:keychainItem.uid inContext:rootSavingContext];
         accountModelObject.backedUp = @(keychainItem.backedUp);
-        [networkModelObject addAccountsObject:accountModelObject];
+        accountModelObject.name = @"Account";
         
-        NSArray <KeychainHistoryItemModel *> *purchaseHistory = [self.keychainService obtainSimplexHistoryOfPublicAddress:keychainItem.publicAddress fromNetwork:keychainItem.network];
-        for (KeychainHistoryItemModel *purchaseHistoryItem in purchaseHistory) {
-          PurchaseHistoryModelObject *historyModelObject = [PurchaseHistoryModelObject MR_createEntityInContext:rootSavingContext];
-          historyModelObject.date = purchaseHistoryItem.date;
-          historyModelObject.userId = purchaseHistoryItem.userId;
-          [accountModelObject addPurchaseHistoryObject:historyModelObject];
+        for (KeychainNetworkModel *keychainNetworkItem in keychainItem.networks) {
+          NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.master.address = %@", keychainNetworkItem.address];
+          NSSet <NetworkModelObject *> *networks = [accountModelObject.networks filteredSetUsingPredicate:predicate];
+          if ([networks count] > 0) {
+            continue;
+          }
+          
+          NetworkModelObject *networkModelObject = [NetworkModelObject MR_createEntityInContext:rootSavingContext];
+          networkModelObject.chainID = @(keychainNetworkItem.chainID);
+          
+          MasterTokenModelObject *masterTokenModelObject = [MasterTokenModelObject MR_createEntityInContext:rootSavingContext];
+          masterTokenModelObject.address = keychainNetworkItem.address;
+          masterTokenModelObject.name = NSStringNameFromBlockchainNetworkType(keychainNetworkItem.chainID);
+          masterTokenModelObject.symbol = NSStringCurrencySymbolFromBlockchainNetworkType(keychainNetworkItem.chainID);
+          
+          networkModelObject.master = masterTokenModelObject;
+          [accountModelObject addNetworksObject:networkModelObject];
+          
+          NSArray *ignoringProperties = @[NSStringFromSelector(@selector(purchaseHistory)),
+                                          NSStringFromSelector(@selector(price)),
+                                          NSStringFromSelector(@selector(tokens)),
+                                          NSStringFromSelector(@selector(networks))];
+          MasterTokenPlainObject *masterToken = [self.ponsomizer convertObject:masterTokenModelObject ignoringProperties:ignoringProperties];
+          
+          NSArray <KeychainHistoryItemModel *> *purchaseHistory = [self.keychainService obtainPurchaseHistoryOfMasterToken:masterToken];
+          for (KeychainHistoryItemModel *purchaseHistoryItem in purchaseHistory) {
+            PurchaseHistoryModelObject *historyModelObject = [PurchaseHistoryModelObject MR_createEntityInContext:rootSavingContext];
+            historyModelObject.date = purchaseHistoryItem.date;
+            historyModelObject.userId = purchaseHistoryItem.userId;
+            [masterTokenModelObject addPurchaseHistoryObject:historyModelObject];
+          }
+
         }
       }
-      NSArray <NetworkModelObject *> *allNetworks = [NetworkModelObject MR_findAllInContext:rootSavingContext];
-      for (NetworkModelObject *network in allNetworks) {
-        ((AccountModelObject *)[network.accounts firstObject]).active = @YES;
+      
+      AccountModelObject *accountModelObject = [AccountModelObject MR_findFirstInContext:rootSavingContext];
+      NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.chainID = %d", BlockchainNetworkTypeMainnet];
+      NetworkModelObject *networkModelObject = [[accountModelObject.networks filteredSetUsingPredicate:predicate] anyObject];
+      if (!networkModelObject) {
+        networkModelObject = [accountModelObject.networks anyObject];
       }
-      NetworkModelObject *mainnetModelObject = [NetworkModelObject MR_findFirstOrCreateByAttribute:NSStringFromSelector(@selector(chainID)) withValue:@(BlockchainNetworkTypeMainnet) inContext:rootSavingContext];
-      mainnetModelObject.active = @YES;
-      [rootSavingContext MR_saveToPersistentStoreAndWait];
+      
+      accountModelObject.active = @YES;
+      networkModelObject.active = @YES;
+      
+      if ([rootSavingContext hasChanges]) {
+        [rootSavingContext MR_saveToPersistentStoreAndWait];
+      }
     }
   }];
 }

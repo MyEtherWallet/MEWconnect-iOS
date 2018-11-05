@@ -9,10 +9,10 @@
 @import Foundation;
 
 @class SimplexOrder;
-@class AccountPlainObject;
+@class MasterTokenPlainObject;
 
 @protocol BuyEtherAmountRouterInput <NSObject>
-- (void) openBuyEtherWebWithOrder:(SimplexOrder *)order account:(AccountPlainObject *)account;
-- (void) openBuyEtherHistoryForAccount:(AccountPlainObject *)account;
+- (void) openBuyEtherWebWithOrder:(SimplexOrder *)order masterToken:(MasterTokenPlainObject *)masterToken;
+- (void) openBuyEtherHistoryForMasterToken:(MasterTokenPlainObject *)masterToken;
 - (void) close;
 @end

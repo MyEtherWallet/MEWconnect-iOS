@@ -10,10 +10,8 @@
 @import ViperMcFlurryX;
 
 @class SimplexOrder;
-@class AccountPlainObject;
+@class MasterTokenPlainObject;
 
 @protocol BuyEtherWebModuleInput <RamblerViperModuleInput>
-
-- (void) configureModuleWithOrder:(SimplexOrder *)order forAccount:(AccountPlainObject *)account;
-
+- (void) configureModuleWithOrder:(SimplexOrder *)order forMasterToken:(MasterTokenPlainObject *)masterToken;
 @end

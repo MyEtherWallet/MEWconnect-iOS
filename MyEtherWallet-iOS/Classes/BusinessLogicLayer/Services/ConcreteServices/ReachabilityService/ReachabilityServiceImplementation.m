@@ -41,11 +41,11 @@
 
 #pragma mark - Notification
 
-- (void) _applicationDidBecomeActive:(NSNotification *)notification {
+- (void) _applicationDidBecomeActive:(__unused NSNotification *)notification {
   [self.reachabilityManager startMonitoring];
 }
 
-- (void) _applicationWillResignActive:(NSNotification *)notification {
+- (void) _applicationWillResignActive:(__unused NSNotification *)notification {
   [self.reachabilityManager stopMonitoring];
 }
 @end

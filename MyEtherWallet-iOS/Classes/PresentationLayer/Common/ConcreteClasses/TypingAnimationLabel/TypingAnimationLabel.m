@@ -73,13 +73,13 @@ static NSTimeInterval kTypingAnimationDefaultCaretBlinkingTime  = 0.25;
 
 #pragma mark - Timers
                       
-- (void) _typeTick:(NSTimer *)timer {
+- (void) _typeTick:(__unused NSTimer *)timer {
   [self _addNextCharacter];
   [self _updateCaretPosition:_currentAttributedString];
   //update caret
 }
 
-- (void) _delayTick:(NSTimer *)timer {
+- (void) _delayTick:(__unused NSTimer *)timer {
   if ([self.delegate respondsToSelector:@selector(typingAnimationLabel:performCustomAnimationWithCompletionHandler:)]) {
     @weakify(self);
     [self.delegate typingAnimationLabel:self performCustomAnimationWithCompletionHandler:^(NSAttributedString *updatedAttributedString) {
@@ -274,7 +274,7 @@ static NSTimeInterval kTypingAnimationDefaultCaretBlinkingTime  = 0.25;
       [text enumerateAttribute:NSFontAttributeName
                        inRange:range
                        options:0
-                    usingBlock:^(id  _Nullable value, NSRange range, BOOL * _Nonnull stop) {
+                    usingBlock:^(id _Nullable value, __unused NSRange range, BOOL * _Nonnull stop) {
                       font = value;
                       *stop = YES;
                     }];

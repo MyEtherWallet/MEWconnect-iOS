@@ -9,10 +9,10 @@
 @import Foundation;
 @import ViperMcFlurryX;
 
-@class AccountPlainObject;
+@class MasterTokenPlainObject;
 
 @protocol BuyEtherAmountModuleInput <RamblerViperModuleInput>
 
-- (void) configureModuleWithAccount:(AccountPlainObject *)account;
+- (void) configureModuleWithMasterToken:(MasterTokenPlainObject *)masterToken;
 
 @end

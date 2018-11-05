@@ -809,6 +809,116 @@ password again</string>
             </objects>
             <point key="canvasLocation" x="604" y="-611"/>
         </scene>
+        <!--Restore Seed View Controller-->
+        <scene sceneID="cWb-8b-4PO">
+            <objects>
+                <viewController id="Nh4-zl-0iX" customClass="RestoreSeedViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nWm-c5-sF9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="VXD-6W-osV">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dbp-pr-I97">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="340.66666666666669"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your MEWconnect backup passphrase to generate Ropsten testnet keys." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eex-Bj-WyE">
+                                                <rect key="frame" x="24" y="27" width="366" height="71.666666666666671"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <color key="textColor" red="0.023529411760000001" green="0.30196078430000001" blue="0.83921568629999999" alpha="1" colorSpace="deviceRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="always" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="LWC-R4-xak">
+                                                <rect key="frame" x="24" y="111.66666666666666" width="366" height="219.99999999999997"/>
+                                                <color key="backgroundColor" red="0.92156862750000001" green="0.94509803920000002" blue="0.98823529409999999" alpha="1" colorSpace="deviceRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="220" id="Fqa-d8-59V"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits" spellCheckingType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="Nh4-zl-0iX" id="Hh2-Lu-cAt"/>
+                                                </connections>
+                                            </textView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="LWC-R4-xak" firstAttribute="right" secondItem="Eex-Bj-WyE" secondAttribute="right" id="4qf-qi-WRh"/>
+                                            <constraint firstItem="LWC-R4-xak" firstAttribute="left" secondItem="Eex-Bj-WyE" secondAttribute="left" id="Osx-ui-Kmg"/>
+                                            <constraint firstItem="Eex-Bj-WyE" firstAttribute="top" secondItem="dbp-pr-I97" secondAttribute="top" constant="27" id="PCh-CV-aEf"/>
+                                            <constraint firstItem="LWC-R4-xak" firstAttribute="top" secondItem="Eex-Bj-WyE" secondAttribute="bottom" constant="13" id="Zmf-jH-jYI"/>
+                                            <constraint firstAttribute="trailing" secondItem="Eex-Bj-WyE" secondAttribute="trailing" constant="24" id="rZu-KO-eov"/>
+                                            <constraint firstItem="Eex-Bj-WyE" firstAttribute="leading" secondItem="dbp-pr-I97" secondAttribute="leading" constant="24" id="reP-f2-rGY"/>
+                                            <constraint firstAttribute="bottom" secondItem="LWC-R4-xak" secondAttribute="bottom" constant="9" id="tLD-YA-pV7"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="dbp-pr-I97" firstAttribute="width" secondItem="VXD-6W-osV" secondAttribute="width" id="4TE-HR-qsa"/>
+                                    <constraint firstAttribute="trailing" secondItem="dbp-pr-I97" secondAttribute="trailing" id="87W-Y6-XwT"/>
+                                    <constraint firstAttribute="bottom" secondItem="dbp-pr-I97" secondAttribute="bottom" id="P9R-1T-PB6"/>
+                                    <constraint firstItem="dbp-pr-I97" firstAttribute="leading" secondItem="VXD-6W-osV" secondAttribute="leading" id="keZ-Sg-XEN"/>
+                                    <constraint firstItem="dbp-pr-I97" firstAttribute="top" secondItem="VXD-6W-osV" secondAttribute="top" id="pvh-VZ-cuZ"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="VXD-6W-osV" firstAttribute="leading" secondItem="nWm-c5-sF9" secondAttribute="leading" id="5D8-hx-K8I"/>
+                            <constraint firstItem="J7S-Bf-2O1" firstAttribute="bottom" secondItem="VXD-6W-osV" secondAttribute="bottom" id="HvR-97-WCx"/>
+                            <constraint firstItem="VXD-6W-osV" firstAttribute="top" secondItem="nWm-c5-sF9" secondAttribute="top" id="U3w-zC-pqe"/>
+                            <constraint firstAttribute="trailing" secondItem="VXD-6W-osV" secondAttribute="trailing" id="wKM-m7-W5Z"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="J7S-Bf-2O1"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="sgr-Pp-xGg">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="bsw-CU-bir">
+                            <connections>
+                                <action selector="cancelAction:" destination="Nh4-zl-0iX" id="okV-mF-yqG"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Next" style="done" id="vfO-ti-l81">
+                            <connections>
+                                <action selector="nextAction:" destination="Nh4-zl-0iX" id="zyF-Dz-bMs"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mnemonicsTextView" destination="LWC-R4-xak" id="q4a-RI-gQe"/>
+                        <outlet property="mnemonicsTextViewHeightConstraint" destination="Fqa-d8-59V" id="ui4-CN-0EN"/>
+                        <outlet property="nextButton" destination="vfO-ti-l81" id="jLi-FY-Ap9"/>
+                        <outlet property="scrollView" destination="VXD-6W-osV" id="m3S-Xc-vlj"/>
+                        <outlet property="titleLabel" destination="Eex-Bj-WyE" id="qfr-dS-vf5"/>
+                        <outlet property="titleTopOffsetConstraint" destination="PCh-CV-aEf" id="rRY-YJ-XTJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cey-U7-0ya" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1325" y="-1308"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="heo-UX-UaK">
+            <objects>
+                <navigationController storyboardIdentifier="RestoreSeedViewController" id="6Gf-WC-IKR" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="UFx-e6-fNz" customClass="BordlessNavigationBar">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Nh4-zl-0iX" kind="relationship" relationship="rootViewController" id="JRx-Pz-7lC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5cz-NB-hOL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="603" y="-1308"/>
+        </scene>
     </scenes>
     <resources>
         <image name="inline_small_chevron" width="6" height="10"/>

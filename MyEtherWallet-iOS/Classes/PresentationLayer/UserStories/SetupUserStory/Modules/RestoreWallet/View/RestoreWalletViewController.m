@@ -111,7 +111,7 @@
   @weakify(self);
   [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Ok", @"")
                                             style:UIAlertActionStyleDefault
-                                          handler:^(UIAlertAction * _Nonnull action) {
+                                          handler:^(__unused UIAlertAction * _Nonnull action) {
                                             @strongify(self);
                                             [self.mnemonicsTextView becomeFirstResponder];
                                           }]];
@@ -120,11 +120,11 @@
 
 #pragma mark - IBActions
 
-- (IBAction) cancelAction:(id)sender {
+- (IBAction) cancelAction:(__unused id)sender {
   [self.output cancelAction];
 }
 
-- (IBAction) nextAction:(id)sender {
+- (IBAction) nextAction:(__unused id)sender {
   [self.output nextAction];
 }
 
@@ -154,7 +154,7 @@
   [self _updateScrollViewInsets];
 }
 
-- (void) keyboardWillHide:(NSNotification *)notification {
+- (void) keyboardWillHide:(__unused NSNotification *)notification {
   _keyboardHeight = 0.0;
   [self _updateScrollViewInsets];
 }

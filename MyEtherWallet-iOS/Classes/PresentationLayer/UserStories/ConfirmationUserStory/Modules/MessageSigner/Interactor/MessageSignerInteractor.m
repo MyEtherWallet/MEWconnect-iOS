@@ -15,7 +15,7 @@
 
 #import "MessageSignerInteractorOutput.h"
 
-#import "AccountPlainObject.h"
+#import "MasterTokenPlainObject.h"
 #import "NetworkPlainObject.h"
 #import "MEWConnectCommand.h"
 #import "MEWConnectResponse.h"
@@ -23,21 +23,21 @@
 @interface MessageSignerInteractor ()
 @property (nonatomic, strong) MEWConnectCommand *command;
 @property (nonatomic, strong) MEWConnectMessage *message;
-@property (nonatomic, strong) AccountPlainObject *account;
+@property (nonatomic, strong) MasterTokenPlainObject *masterToken;
 @end
 
 @implementation MessageSignerInteractor
 
 #pragma mark - MessageSignerInteractorInput
 
-- (void) configurateWithMessage:(MEWConnectCommand *)message account:(AccountPlainObject *)account {
+- (void) configurateWithMessage:(MEWConnectCommand *)message masterToken:(MasterTokenPlainObject *)masterToken {
   self.command = message;
   self.message = [message message];
-  self.account = account;
+  self.masterToken = masterToken;
 }
 
-- (AccountPlainObject *)obtainAccount {
-  return self.account;
+- (AccountPlainObject *) obtainAccount {
+  return self.masterToken.fromNetworkMaster.fromAccount;
 }
 
 - (MEWConnectMessage *) obtainMessage {
@@ -45,12 +45,11 @@
 }
 
 - (void) signMessageWithPassword:(NSString *)password {
-  @weakify(self);
   if (self.message) {
+    @weakify(self);
     [self.walletService signMessage:self.message
                            password:password
-                      publicAddress:self.account.publicAddress
-                            network:[self.account.fromNetwork network]
+                        masterToken:self.masterToken
                          completion:^(id data) {
                            @strongify(self);
                            if (data) {

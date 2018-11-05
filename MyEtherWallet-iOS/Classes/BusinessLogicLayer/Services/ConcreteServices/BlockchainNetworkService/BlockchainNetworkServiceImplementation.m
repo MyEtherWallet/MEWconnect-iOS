@@ -8,9 +8,14 @@
 
 @import MagicalRecord;
 
-#import "NetworkModelObject.h"
-
 #import "BlockchainNetworkServiceImplementation.h"
+
+#import "AccountModelObject.h"
+#import "NetworkModelObject.h"
+#import "MasterTokenModelObject.h"
+
+#import "AccountPlainObject.h"
+#import "NetworkPlainObject.h"
 
 #import "BlockchainNetworkTypes.h"
 
@@ -18,28 +23,50 @@
 
 - (NetworkModelObject *) obtainActiveNetwork {
   NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
-  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.active = YES"];
+  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.active = YES && SELF.fromAccount.active = YES"];
   NetworkModelObject *network = [NetworkModelObject MR_findFirstWithPredicate:predicate inContext:context];
   return network;
 }
 
-- (BOOL) selectNetwork:(BlockchainNetworkType)network {
+- (void)selectNetwork:(NetworkPlainObject *)network inAccount:(AccountPlainObject *)account {
+  NSParameterAssert(network);
+  NSParameterAssert(account);
   NSManagedObjectContext *rootSavingContext = [NSManagedObjectContext MR_rootSavingContext];
-  __block BOOL alreadySelected = NO;
   [rootSavingContext performBlockAndWait:^{
-    NetworkModelObject *networkModelObject = [NetworkModelObject MR_findFirstOrCreateByAttribute:NSStringFromSelector(@selector(chainID)) withValue:@(network) inContext:rootSavingContext];
-    if ([networkModelObject.active boolValue]) {
-      alreadySelected = YES;
-    } else {
-      NSArray *allNetwork = [NetworkModelObject MR_findAllInContext:rootSavingContext];
-      for (NetworkModelObject *networkMO in allNetwork) {
-        networkMO.active = @NO;
+    AccountModelObject *accountModelObject = [AccountModelObject MR_findFirstByAttribute:NSStringFromSelector(@selector(uid)) withValue:account.uid inContext:rootSavingContext];
+    for (NetworkModelObject *networkModelObject in accountModelObject.networks) {
+      if ([networkModelObject.chainID isEqual:network.chainID]) {
+        networkModelObject.active = @YES;
+      } else {
+        networkModelObject.active = @NO;
       }
     }
-    networkModelObject.active = @YES;
-    [rootSavingContext MR_saveToPersistentStoreAndWait];
+    if ([rootSavingContext hasChanges]) {
+      [rootSavingContext MR_saveToPersistentStoreAndWait];
+    }
   }];
-  return !alreadySelected;
+}
+
+- (NetworkModelObject *) createNetworkWithChainID:(NSInteger)chainID inAccount:(AccountPlainObject *)account {
+  __block NetworkModelObject *createdNetwork = nil;
+  NSManagedObjectContext *rootSavingContext = [NSManagedObjectContext MR_rootSavingContext];
+  [rootSavingContext performBlockAndWait:^{
+    AccountModelObject *accountModelObject = [AccountModelObject MR_findFirstByAttribute:NSStringFromSelector(@selector(uid)) withValue:account.uid inContext:rootSavingContext];
+    
+    NetworkModelObject *networkModelObject = [NetworkModelObject MR_createEntityInContext:rootSavingContext];
+    networkModelObject.chainID = @(chainID);
+    
+    MasterTokenModelObject *masterTokenModelObject = [MasterTokenModelObject MR_createEntityInContext:rootSavingContext];
+    masterTokenModelObject.name = NSStringNameFromBlockchainNetworkType(chainID);
+    masterTokenModelObject.symbol = NSStringCurrencySymbolFromBlockchainNetworkType(chainID);
+    
+    masterTokenModelObject.fromNetworkMaster = networkModelObject;
+    [accountModelObject addNetworksObject:networkModelObject];
+    [rootSavingContext MR_saveToPersistentStoreAndWait];
+    
+    createdNetwork = [[NSManagedObjectContext MR_defaultContext] objectWithID:networkModelObject.objectID];
+  }];
+  return createdNetwork;
 }
 
 @end

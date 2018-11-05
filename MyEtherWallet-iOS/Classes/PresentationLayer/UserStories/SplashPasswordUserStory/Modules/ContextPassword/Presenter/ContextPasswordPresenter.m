@@ -41,6 +41,10 @@
       title = NSLocalizedString(@"Enter password to confirm", @"Context inout password. Sign transaction");
       break;
     }
+    case ContextPasswordTypeGenerate: {
+      title = NSLocalizedString(@"Enter password to generate", @"Context inout password. Generate new private key");
+      break;
+    }
       
     default:
       break;

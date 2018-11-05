@@ -15,6 +15,7 @@
 #import "ConfirmationStoryModuleOutput.h"
 
 #import "ConfirmedTransactionModuleInput.h"
+#import "DeclinedTransactionModuleInput.h"
 
 static NSString *const kTransactionToDeclinedTransactionSegueIdentifier = @"TransactionToDeclinedTransactionSegueIdentifier";
 static NSString *const kTransactionToConfirmedTransactionSegueIdentifier = @"TransactionToConfirmedTransactionSegueIdentifier";
@@ -32,7 +33,8 @@ static NSString *const kTransactionToContextPasswordSegueIdentifier = @"Transact
 }
 
 - (void) openDeclinedTransactionWithConfirmationDelegate:(id<ConfirmationStoryModuleOutput>)confirmationDelegate {
-  [[self.transitionHandler openModuleUsingSegue:kTransactionToDeclinedTransactionSegueIdentifier] thenChainUsingBlock:^id<ConfirmationStoryModuleOutput>(id<RamblerViperModuleInput> moduleInput) {
+  [[self.transitionHandler openModuleUsingSegue:kTransactionToDeclinedTransactionSegueIdentifier] thenChainUsingBlock:^id<ConfirmationStoryModuleOutput>(id<DeclinedTransactionModuleInput> moduleInput) {
+    [moduleInput configureModule];
     return confirmationDelegate;
   }];
 }

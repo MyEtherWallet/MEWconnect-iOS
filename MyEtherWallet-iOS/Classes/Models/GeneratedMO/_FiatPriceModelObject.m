@@ -34,17 +34,6 @@
 
 @dynamic usdPrice;
 
-@dynamic fromAccount;
-
-- (NSMutableSet<AccountModelObject*>*)fromAccountSet {
-	[self willAccessValueForKey:@"fromAccount"];
-
-	NSMutableSet<AccountModelObject*> *result = (NSMutableSet<AccountModelObject*>*)[self mutableSetValueForKey:@"fromAccount"];
-
-	[self didAccessValueForKey:@"fromAccount"];
-	return result;
-}
-
 @dynamic fromToken;
 
 - (NSMutableSet<TokenModelObject*>*)fromTokenSet {
@@ -65,9 +54,6 @@
 @end
 
 @implementation FiatPriceModelObjectRelationships 
-+ (NSString *)fromAccount {
-	return @"fromAccount";
-}
 + (NSString *)fromToken {
 	return @"fromToken";
 }

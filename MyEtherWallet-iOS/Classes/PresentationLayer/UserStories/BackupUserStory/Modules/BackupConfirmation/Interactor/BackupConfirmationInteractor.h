@@ -10,8 +10,10 @@
 
 @protocol BackupConfirmationInteractorOutput;
 @protocol AccountsService;
+@protocol MEWwallet;
 
 @interface BackupConfirmationInteractor : NSObject <BackupConfirmationInteractorInput>
 @property (nonatomic, weak) id<BackupConfirmationInteractorOutput> output;
 @property (nonatomic, strong) id <AccountsService> accountsService;
+@property (nonatomic, strong) id <MEWwallet> walletService;
 @end

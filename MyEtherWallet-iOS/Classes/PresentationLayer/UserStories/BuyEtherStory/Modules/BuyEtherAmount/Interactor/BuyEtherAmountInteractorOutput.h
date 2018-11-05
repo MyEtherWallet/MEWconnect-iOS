@@ -9,11 +9,11 @@
 @import Foundation;
 
 @class SimplexOrder;
-@class AccountPlainObject;
+@class MasterTokenPlainObject;
 
 @protocol BuyEtherAmountInteractorOutput <NSObject>
 - (void) updateInputPriceWithEnteredAmount:(NSString *)enteredAmount convertedAmount:(NSDecimalNumber *)convertedAmount;
-- (void) orderDidCreated:(SimplexOrder *)order forAccount:(AccountPlainObject *)account;
+- (void) orderDidCreated:(SimplexOrder *)order forMasterToken:(MasterTokenPlainObject *)masterToken;
 - (void) minimumAmountDidReached:(BOOL)minimumAmountReached;
 - (void) loadingDidStart;
 - (void) loadingDidEnd;

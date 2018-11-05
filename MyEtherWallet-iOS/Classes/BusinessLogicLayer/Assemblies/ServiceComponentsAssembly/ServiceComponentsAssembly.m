@@ -40,8 +40,11 @@
 #import "SimplexServiceImplementation.h"
 #import "ReachabilityServiceImplementation.h"
 #import "RateServiceImplementation.h"
+#import "MigrationServiceImplementation.h"
 
 #import "OperationSchedulerImplementation.h"
+
+#import "MigrationManager.h"
 
 static NSString *const kConfigFileName          = @"ServicesConfig.plist";
 
@@ -57,7 +60,7 @@ static NSString *const kReachabilityURLString   = @"API.ReachabilityURLString";
                         configuration:^(TyphoonDefinition *definition) {
                           definition.scope = TyphoonScopeSingleton;
                           [definition injectProperty:@selector(connectService) with:[self MEWConnectService]];
-                          [definition injectProperty:@selector(accountsService) with:[self accountsService]];
+                          [definition injectProperty:@selector(networkService) with:[self blockchainNetworkService]];
                           [definition injectProperty:@selector(ponsomizer) with:[self.ponsomizerAssembly ponsomizer]];
                           [definition injectProperty:@selector(application) with:[self.systemInfrastructureAssembly application]];
                         }];
@@ -98,6 +101,12 @@ static NSString *const kReachabilityURLString   = @"API.ReachabilityURLString";
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(wrapper)
                                                 with:[self web3Wrapper]];
+                          [definition injectProperty:@selector(keychainService)
+                                                with:[self keychainService]];
+                          [definition injectProperty:@selector(ponsomizer)
+                                                with:[self.ponsomizerAssembly ponsomizer]];
+                          [definition injectProperty:@selector(networkService)
+                                                with:[self blockchainNetworkService]];
                         }];
 }
 
@@ -134,16 +143,12 @@ static NSString *const kReachabilityURLString   = @"API.ReachabilityURLString";
 
 
 - (id <BlockchainNetworkService>) blockchainNetworkService {
-  return [TyphoonDefinition withClass:[BlockchainNetworkServiceImplementation class]
-                        configuration:^(TyphoonDefinition *definition) {
-                        }];
+  return [TyphoonDefinition withClass:[BlockchainNetworkServiceImplementation class]];
 }
 
 - (id <AccountsService>) accountsService {
   return [TyphoonDefinition withClass:[AccountsServiceImplementation class]
                         configuration:^(TyphoonDefinition *definition) {
-                          [definition injectProperty:@selector(accountsOperationFactory)
-                                                with:[self.operationFactoriesAssembly accountsOperationFactory]];
                           [definition injectProperty:@selector(operationScheduler)
                                                 with:[self operationScheduler]];
                           [definition injectProperty:@selector(MEWwallet)
@@ -216,6 +221,18 @@ static NSString *const kReachabilityURLString   = @"API.ReachabilityURLString";
                         }];
 }
 
+- (id<MigrationService>) migrationService {
+  return [TyphoonDefinition withClass:[MigrationServiceImplementation class]
+                        configuration:^(TyphoonDefinition *definition) {
+                          [definition injectProperty:@selector(fileManager)
+                                                with:[self.systemInfrastructureAssembly fileManager]];
+                          [definition injectProperty:@selector(migrationManager)
+                                                with:[self migrationManager]];
+                          [definition injectProperty:@selector(keychainService)
+                                                with:[self keychainService]];
+                        }];
+}
+
 #pragma mark - Helpers
 
 - (RTCPeerConnectionFactory *) peerConnectionFactory {
@@ -259,6 +276,16 @@ static NSString *const kReachabilityURLString   = @"API.ReachabilityURLString";
                                           parameters:^(TyphoonMethod *initializer) {
                                             [initializer injectParameterWith:TyphoonConfig(kReachabilityURLString)];
                                           }];
+                        }];
+}
+
+- (MigrationManager *) migrationManager {
+  return [TyphoonDefinition withClass:[MigrationManager class]
+                        configuration:^(TyphoonDefinition *definition) {
+                          [definition injectProperty:@selector(delegate)
+                                                with:[self migrationService]];
+                          [definition injectProperty:@selector(fileManager)
+                                                with:[self.systemInfrastructureAssembly fileManager]];
                         }];
 }
 

@@ -93,11 +93,11 @@
 
 #pragma mark - IBActions
 
-- (IBAction) cancelAction:(id)sender {
+- (IBAction) cancelAction:(__unused id)sender {
   [self.output cancelAction];
 }
 
-- (IBAction) startAction:(id)sender {
+- (IBAction) startAction:(__unused id)sender {
   [self.output startAction];
 }
 

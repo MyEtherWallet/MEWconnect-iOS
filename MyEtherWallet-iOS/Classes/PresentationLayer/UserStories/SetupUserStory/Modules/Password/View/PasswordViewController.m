@@ -122,8 +122,7 @@ static CGFloat        kPasswordViewControllerWOCrackMeterVOffset  = 24.0;
                      self.crackMeterProgress.alpha = 1.0;
                      self.crackMeterLabel.alpha = 1.0;
                      [self.view layoutIfNeeded];
-                   } completion:^(BOOL finished) {
-                   }];
+                   } completion:nil];
 }
 
 - (void) hideCrackMeter {
@@ -216,17 +215,17 @@ static CGFloat        kPasswordViewControllerWOCrackMeterVOffset  = 24.0;
   [self.output passwordDidChanged:sender.text];
 }
 
-- (IBAction) cancelAction:(UIBarButtonItem *)sender {
+- (IBAction) cancelAction:(__unused UIBarButtonItem *)sender {
   [self.output cancelAction];
 }
 
-- (IBAction) nextAction:(UIBarButtonItem *)sender {
+- (IBAction) nextAction:(__unused UIBarButtonItem *)sender {
   [self.output nextAction];
 }
 
 #pragma mark - UITextFieldDelegate
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+- (BOOL)textFieldShouldReturn:(__unused UITextField *)textField {
   [self.output nextAction];
   return NO;
 }
@@ -239,7 +238,7 @@ static CGFloat        kPasswordViewControllerWOCrackMeterVOffset  = 24.0;
   [self _updateScrollViewInsets];
 }
 
-- (void) keyboardWillHide:(NSNotification *)notification {
+- (void) keyboardWillHide:(__unused NSNotification *)notification {
   _keyboardHeight = 0.0;
   [self _updateScrollViewInsets];
 }

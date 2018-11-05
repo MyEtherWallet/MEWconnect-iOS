@@ -10,7 +10,7 @@
 
 @implementation FadeModalPresentingAnimationController
 
-- (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext {
+- (NSTimeInterval)transitionDuration:(__unused id <UIViewControllerContextTransitioning>)transitionContext {
   return 0.3;
 }
 
@@ -41,7 +41,7 @@
                       options:options
                    animations:^{
                      presentedViewSnapshot.alpha = 1.0;
-                   } completion:^(BOOL finished) {
+                   } completion:^(__unused BOOL finished) {
                      presentedView.hidden = NO;
                      [presentedViewSnapshot removeFromSuperview];
                      [transitionContext completeTransition:YES];

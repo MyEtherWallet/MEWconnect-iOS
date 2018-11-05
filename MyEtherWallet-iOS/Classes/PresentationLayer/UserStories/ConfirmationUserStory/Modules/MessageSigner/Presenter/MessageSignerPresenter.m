@@ -21,8 +21,8 @@
 
 #pragma mark - MessageSignerModuleInput
 
-- (void) configureModuleWithMessage:(MEWConnectCommand *)message account:(AccountPlainObject *)account {
-  [self.interactor configurateWithMessage:message account:account];
+- (void) configureModuleWithMessage:(MEWConnectCommand *)message masterToken:(MasterTokenPlainObject *)masterToken {
+  [self.interactor configurateWithMessage:message masterToken:masterToken];
 }
 
 #pragma mark - MessageSignerViewOutput
@@ -44,7 +44,7 @@
 
 #pragma mark - MessageSignerInteractorOutput
 
-- (void) messageDidSigned:(MEWConnectResponse *)response {
+- (void) messageDidSigned:(__unused MEWConnectResponse *)response {
   [self.router openConfirmedMessageWithConfirmationDelegate:self.moduleOutput];
 }
 

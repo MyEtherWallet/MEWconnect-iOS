@@ -8,106 +8,161 @@
 
 @import UICKeyChainStore;
 
-#import "KeychainItemModel.h"
+#import "KeychainService+Protected.h"
+
+#import "KeychainServiceSharedConstants.h"
+#import "KeychainServiceConstantsV2.h"
+
+#import "KeychainAccountModel.h"
+#import "KeychainNetworkModel.h"
 #import "KeychainHistoryItemModel.h"
 
 #import "KeychainServiceImplementation.h"
 
-static NSString *const kKeychainServiceItemFormat           = @"%@_%d";
-static NSString *const kKeychainServiceKeydataField         = @"keydata";
-static NSString *const kKeychainServiceEntropyField         = @"entropy";
-static NSString *const kKeychainServiceSimplexHistoryField  = @"history";
+#import "AccountPlainObject.h"
+#import "NetworkPlainObject.h"
+#import "MasterTokenPlainObject.h"
 
-static NSString *const kKeychainServiceSimplexUserIdField   = @"userId";
-static NSString *const kKeychainServiceSimplexDateField     = @"date";
-
-static NSString *const kKeychainServiceFirstLaunchField     = @"firstLaunch";
-static NSString *const kKeychainServiceRateAskedValue       = @"true";
-static NSString *const kKeychainServiceRateAskedField       = @"com.myetherwallet.rater.rateasked";
+@interface KeychainServiceImplementation () <KeychainServiceProtected>
+@end
 
 @implementation KeychainServiceImplementation
 
-- (NSArray<KeychainItemModel *> *) obtainStoredItems {
+- (NSArray<KeychainAccountModel *> *) obtainStoredItems {
   NSArray *keys = [self.keychainStore allKeys];
   NSMutableArray *itemModels = [[NSMutableArray alloc] initWithCapacity:[keys count]];
   for (NSString *key in keys) {
-    NSArray *items = [key componentsSeparatedByString:@"_"];
-    if ([items count] == 2) {
-      NSString *publicAddress = [items firstObject];
-      BlockchainNetworkType network = [[items lastObject] integerValue];
-      NSDictionary *item = [self _obtainItemWithKey:key];
-      BOOL backedUp = (item[kKeychainServiceEntropyField] == nil);
-      KeychainItemModel *itemModel = [KeychainItemModel itemModelWithPublicAddress:publicAddress fromNetwork:network isBackedUp:backedUp];
-      [itemModels addObject:itemModel];
+    if ([key hasPrefix:kKeychainServiceV2ItemPrefix]) {
+      NSArray <NSString *> *components = [key componentsSeparatedByString:@"_"];
+      if ([components count] != 2) {
+        continue;
+      }
+      NSString *uid = [components lastObject];
+      
+      NSString *itemKey = [self _keyForUID:uid];
+      NSDictionary *item = [self _obtainItemWithKey:itemKey];
+      NSMutableArray <NSString *> *networks = [[item allKeys] mutableCopy];
+      NSPredicate *predicate = [NSPredicate predicateWithFormat:@"NOT (SELF beginsWith[c] %@)", kKeychainServiceV2HistoryPrefix];
+      [networks filterUsingPredicate:predicate];
+      [networks removeObject:kKeychainServiceEntropyField];
+      
+      NSMutableArray <KeychainNetworkModel *> *networkModels = [[NSMutableArray alloc] initWithCapacity:0];
+      for (NSString *networkKey in networks) {
+        NSArray <NSString *> *networkComponents = [networkKey componentsSeparatedByString:@"_"];
+        NSString *address = [networkComponents firstObject];
+        NSInteger chainID = [[networkComponents lastObject] integerValue];
+        KeychainNetworkModel *networkModel = [KeychainNetworkModel itemModelWithAddress:address chainID:chainID];
+        [networkModels addObject:networkModel];
+      }
+      
+      BOOL backedUp = [item[kKeychainServiceBackupField] boolValue];
+      KeychainAccountModel *accountModel = [KeychainAccountModel itemWithUID:uid backedUp:backedUp networks:[networkModels copy]];
+      [itemModels addObject:accountModel];
     }
   }
   return [itemModels copy];
 }
 
-- (void) saveKeydata:(NSData *)keydata ofPublicAddress:(NSString *)publicAddress fromNetwork:(BlockchainNetworkType)network {
-  NSString *key = [NSString stringWithFormat:kKeychainServiceItemFormat, publicAddress, network];
-  NSMutableDictionary *item = [[self _obtainItemWithKey:key] mutableCopy];
-  item[kKeychainServiceKeydataField] = keydata;
-  [self _storeItem:item withKey:key];
-}
-
-- (void) saveEntropy:(NSData *)entropyData ofPublicAddress:(NSString *)publicAddress fromNetwork:(BlockchainNetworkType)network {
-  NSString *key = [NSString stringWithFormat:kKeychainServiceItemFormat, publicAddress, network];
-  NSMutableDictionary *item = [[self _obtainItemWithKey:key] mutableCopy];
-  item[kKeychainServiceEntropyField] = entropyData;
-  [self _storeItem:item withKey:key];
-}
-
-- (void) saveSimplexUserId:(NSString *)userId ofPublicAddress:(NSString *)publicAddress fromNetwork:(BlockchainNetworkType)network {
-  NSString *key = [NSString stringWithFormat:kKeychainServiceItemFormat, publicAddress, network];
-  NSMutableDictionary *item = [[self _obtainItemWithKey:key] mutableCopy];
-  NSMutableArray *history = [item[kKeychainServiceSimplexHistoryField] mutableCopy];
-  if (!history) {
-    history = [[NSMutableArray alloc] initWithCapacity:1];
+- (void) saveKeydata:(NSData *)keydata forAddress:(NSString *)address ofAccount:(AccountPlainObject *)account inChainID:(NSInteger)chainID {
+  NSString *key = [self _keyForUID:account.uid];
+  NSString *keydataKey = [self _keyForAddress:address chainID:chainID];
+  @synchronized (self) {
+    NSMutableDictionary *item = [[self _obtainItemWithKey:key] mutableCopy];
+    item[keydataKey] = keydata;
+    [self _storeItem:item withKey:key];
   }
-  NSDictionary *historyItem = @{kKeychainServiceSimplexUserIdField: userId,
-                                kKeychainServiceSimplexDateField: [NSDate date]};
-  [history addObject:historyItem];
-  item[kKeychainServiceSimplexHistoryField] = history;
-  [self _storeItem:item withKey:key];
 }
 
-- (NSData *) obtainKeydataOfPublicAddress:(NSString *)publicAddress fromNetwork:(BlockchainNetworkType)network {
-  NSString *key = [NSString stringWithFormat:kKeychainServiceItemFormat, publicAddress, network];
+- (void) saveEntropy:(NSData *)entropyData ofAccount:(AccountPlainObject *)account {
+  NSString *key = [self _keyForUID:account.uid];
+  @synchronized (self) {
+    NSMutableDictionary *item = [[self _obtainItemWithKey:key] mutableCopy];
+    item[kKeychainServiceEntropyField] = entropyData;
+    [self _storeItem:item withKey:key];
+  }
+}
+
+- (void) savePurchaseUserId:(NSString *)userId forMasterToken:(MasterTokenPlainObject *)token {
+  NSString *key = [self _keyForUID:token.fromNetworkMaster.fromAccount.uid];
+  @synchronized (self) {
+    NSMutableDictionary *item = [[self _obtainItemWithKey:key] mutableCopy];
+    NSString *historyKey = [self _historyKeyForAddress:token.address chainID:[token.fromNetworkMaster network]];
+    NSMutableArray *history = [item[historyKey] mutableCopy];
+    if (!history) {
+      history = [[NSMutableArray alloc] initWithCapacity:1];
+    }
+    NSDictionary *historyItem = @{kKeychainServicePurchaseUserIdField: userId,
+                                  kKeychainServicePurchaseDateField: [NSDate date]};
+    [history addObject:historyItem];
+    item[historyKey] = history;
+    [self _storeItem:item withKey:key];
+  }
+}
+
+- (void) saveBackupStatus:(BOOL)backup forAccount:(AccountPlainObject *)account {
+  NSString *key = [self _keyForUID:account.uid];
+  @synchronized (self) {
+    NSMutableDictionary *item = [[self _obtainItemWithKey:key] mutableCopy];
+    item[kKeychainServiceBackupField] = @(backup);
+    [self _storeItem:item withKey:key];
+  }
+}
+
+- (NSData *) obtainKeydataOfMasterToken:(MasterTokenPlainObject *)token ofAccount:(AccountPlainObject *)account inChainID:(NSInteger)chainID {
+  NSString *key = [self _keyForUID:account.uid];
   NSDictionary *item = [self _obtainItemWithKey:key];
-  return item[kKeychainServiceKeydataField];
+  NSString *keydataKey = [self _keyForAddress:token.address chainID:chainID];
+  return item[keydataKey];
 }
 
-- (NSData *) obtainEntropyOfPublicAddress:(NSString *)publicAddress fromNetwork:(BlockchainNetworkType)network {
-  NSString *key = [NSString stringWithFormat:kKeychainServiceItemFormat, publicAddress, network];
+- (NSData *) obtainEntropyOfAccount:(AccountPlainObject *)account {
+  NSString *key = [self _keyForUID:account.uid];
   NSDictionary *item = [self _obtainItemWithKey:key];
   return item[kKeychainServiceEntropyField];
 }
 
-- (NSArray<KeychainHistoryItemModel *> *) obtainSimplexHistoryOfPublicAddress:(NSString *)publicAddress fromNetwork:(BlockchainNetworkType)network {
-  NSString *key = [NSString stringWithFormat:kKeychainServiceItemFormat, publicAddress, network];
-  NSDictionary *item = [self _obtainItemWithKey:key];
-  NSArray <NSDictionary *> *history = item[kKeychainServiceSimplexHistoryField];
+- (NSArray <KeychainHistoryItemModel *> *) obtainPurchaseHistoryOfMasterToken:(MasterTokenPlainObject *)token {
+  NSString *key = [self _keyForUID:token.fromNetworkMaster.fromAccount.uid];
+  NSDictionary *item = nil;
+  @synchronized (self) {
+    item = [self _obtainItemWithKey:key];
+  }
+  NSString *historyKey = [self _historyKeyForAddress:token.address chainID:[token.fromNetworkMaster network]];
+  NSArray <NSDictionary *> *history = item[historyKey];
   NSMutableArray <KeychainHistoryItemModel *> *historyItems = [[NSMutableArray alloc] initWithCapacity:[history count]];
   for (NSDictionary *historyItem in history) {
-    NSString *userId = historyItem[kKeychainServiceSimplexUserIdField];
-    NSDate *date = historyItem[kKeychainServiceSimplexDateField];
+    NSString *userId = historyItem[kKeychainServicePurchaseUserIdField];
+    NSDate *date = historyItem[kKeychainServicePurchaseDateField];
     KeychainHistoryItemModel *historyItemModel = [KeychainHistoryItemModel historyItemModelWithUserId:userId date:date];
     [historyItems addObject:historyItemModel];
   }
+  
   return [historyItems copy];
 }
 
-- (void) removeKeydataOfPublicAddress:(NSString *)publicAddress fromNetwork:(BlockchainNetworkType)network {
-  NSString *key = [NSString stringWithFormat:kKeychainServiceItemFormat, publicAddress, network];
-  [self _removeItemWithKey:key];
+- (BOOL)obtainBackupStatusForAccount:(AccountPlainObject *)account {
+  NSString *key = [self _keyForUID:account.uid];
+  NSMutableDictionary *item = [[self _obtainItemWithKey:key] mutableCopy];
+  return [item[kKeychainServiceBackupField] boolValue];
 }
 
-- (void) removeEntropyOfPublicAddress:(NSString *)publicAddress fromNetwork:(BlockchainNetworkType)network {
-  NSString *key = [NSString stringWithFormat:kKeychainServiceItemFormat, publicAddress, network];
-  NSMutableDictionary *item = [[self _obtainItemWithKey:key] mutableCopy];
-  [item removeObjectForKey:kKeychainServiceEntropyField];
-  [self _storeItem:item withKey:key];
+- (void) removeDataOfAccount:(AccountPlainObject *)account {
+  NSArray <NSString *> *keys = [self.keychainStore allKeys];
+  for (NSString *key in keys) {
+    if ([key hasSuffix:account.uid]) {
+      [self _removeItemWithKey:key];
+    }
+  }
+}
+
+- (void) resetKeychain {
+  NSArray <NSString *> *keys = [self.keychainStore allKeys];
+  NSArray *ignoringKeys = @[kKeychainServiceRateAskedField, /*kKeychainServiceVersionField,*/ kKeychainServiceFirstLaunchField];
+  for (NSString *key in keys) {
+    if (![ignoringKeys containsObject:key]) {
+      [self _removeItemWithKey:key];
+    }
+  }
 }
 
 - (void) saveFirstLaunchDate {
@@ -130,7 +185,15 @@ static NSString *const kKeychainServiceRateAskedField       = @"com.myetherwalle
   return [self.keychainStore stringForKey:kKeychainServiceRateAskedField] != nil;
 }
 
-#pragma mark - Private
+#pragma mark - Protected
+
+#pragma mark - KeychainServiceProtected
+
+- (NSString *) _keyForUID:(NSString *)uid {
+  NSParameterAssert(uid);
+  NSString *key = [NSString stringWithFormat:kKeychainServiceV2ItemFormat, uid];
+  return key;
+}
 
 - (NSDictionary *) _obtainItemWithKey:(NSString *)key {
   NSData *itemData = [self.keychainStore dataForKey:key];
@@ -146,8 +209,40 @@ static NSString *const kKeychainServiceRateAskedField       = @"com.myetherwalle
   [self.keychainStore setData:itemData forKey:key];
 }
 
+- (NSInteger) _obtainKeychainVersion {
+  NSDictionary *item = [self _obtainItemWithKey:kKeychainServiceVersionField];
+  NSNumber *version = item[kKeychainServiceCurrentKeychainVersionField];
+  return MAX([version integerValue], 1);
+}
+
+- (void) _storeKeychainVersion:(NSInteger)version {
+  NSMutableDictionary *item = [[self _obtainItemWithKey:kKeychainServiceVersionField] mutableCopy];
+  item[kKeychainServiceCurrentKeychainVersionField] = @(version);
+  [self _storeItem:item withKey:kKeychainServiceVersionField];
+}
+
+- (NSArray *) _obtainRawKeys {
+  NSMutableArray <NSString *> *keys = [[self.keychainStore allKeys] mutableCopy];
+  NSArray *ignoringKeys = @[kKeychainServiceRateAskedField, kKeychainServiceVersionField, kKeychainServiceFirstLaunchField];
+  [keys removeObjectsInArray:ignoringKeys];
+  return [keys copy];
+}
+
 - (void) _removeItemWithKey:(NSString *)key {
-  [self.keychainStore removeItemForKey:key];
+  NSError *error = nil;
+  if (![self.keychainStore removeItemForKey:key error:&error]) {
+    NSLog(@"Keychain error: %@", error);
+  }
+}
+
+- (NSString *) _keyForAddress:(NSString *)address chainID:(NSInteger)chainID {
+  NSString *key = [NSString stringWithFormat:kKeychainServiceV2KeyFormat, address, [@(chainID) stringValue]];
+  return key;
+}
+
+- (NSString *) _historyKeyForAddress:(NSString *)address chainID:(NSInteger)chainID {
+  NSString *key = [NSString stringWithFormat:kKeychainServiceV2HistoryKeyFormat, address, [@(chainID) stringValue]];
+  return key;
 }
 
 @end

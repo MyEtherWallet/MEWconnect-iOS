@@ -43,6 +43,8 @@
                                                 with:[self.ponsomizerAssembly ponsomizer]];
                           [definition injectProperty:@selector(connectFacade)
                                                 with:[self.serviceComponents MEWConnectFacade]];
+                          [definition injectProperty:@selector(mewWallet)
+                                                with:[self.serviceComponents MEWwallet]];
                         }];
 }
 

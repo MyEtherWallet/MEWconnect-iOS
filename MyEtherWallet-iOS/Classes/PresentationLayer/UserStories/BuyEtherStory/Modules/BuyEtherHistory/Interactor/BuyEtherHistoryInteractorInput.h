@@ -8,8 +8,8 @@
 
 @import Foundation;
 
-@class AccountPlainObject;
+@class MasterTokenPlainObject;
 
 @protocol BuyEtherHistoryInteractorInput <NSObject>
-- (void) configureWithAccount:(AccountPlainObject *)account;
+- (void) configureWithMasterToken:(MasterTokenPlainObject *)masterToken;
 @end

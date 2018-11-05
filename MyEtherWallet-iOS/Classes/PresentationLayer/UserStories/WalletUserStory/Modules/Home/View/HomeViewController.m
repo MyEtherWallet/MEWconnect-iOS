@@ -14,8 +14,10 @@
 
 #import "HomeDataDisplayManager.h"
 
-#import "AccountPlainObject.h"
+#import "MasterTokenPlainObject.h"
 #import "NetworkPlainObject.h"
+#import "AccountPlainObject.h"
+
 #import "TokenPlainObject.h"
 #import "FiatPricePlainObject.h"
 
@@ -168,21 +170,26 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
   [self.dataDisplayManager updateDataDisplayManagerWithTransactionBatch:transactionBatch maximumCount:_numberOfTokens];
 }
 
-- (void)updateWithAccount:(AccountPlainObject *)account {
-  BlockchainNetworkType networkType = [account.fromNetwork network];
+- (void) updateWithMasterToken:(MasterTokenPlainObject *)masterToken {
+  NetworkPlainObject *network = masterToken.fromNetworkMaster;
+  AccountPlainObject *account = network.fromAccount;
+  
+  BlockchainNetworkType networkType = [network network];
   [self.headerView.networkButton setTitle:NSStringFromBlockchainNetworkType(networkType) forState:UIControlStateNormal];
-  [self.headerView.cardView updateWithSeed:account.publicAddress];
+  [self.headerView.cardView updateWithSeed:masterToken.address];
   
   [self.headerView refreshContentIfNeeded];
   
   self.headerView.cardView.backedUp = [account.backedUp boolValue];
-  [self updateEthereumBalanceWithAccount:account];
+  [self updateBalanceWithMasterToken:masterToken];
 }
 
-- (void)updateEthereumBalanceWithAccount:(AccountPlainObject *)account {
-  [self.headerView.cardView updateEthPrice:account.price.usdPrice];
+- (void) updateBalanceWithMasterToken:(MasterTokenPlainObject *)masterToken {
+  NetworkPlainObject *network = masterToken.fromNetworkMaster;
   
-  NSNumberFormatter *ethereumFormatter = [NSNumberFormatter ethereumFormatterWithNetwork:[account.fromNetwork network]];
+  [self.headerView.cardView updateEthPrice:masterToken.price.usdPrice];
+  
+  NSNumberFormatter *ethereumFormatter = [NSNumberFormatter ethereumFormatterWithNetwork:[network network]];
   switch ([UIScreen mainScreen].screenSizeType) {
     case ScreenSizeTypeInches40: { ethereumFormatter.maximumSignificantDigits = 9; break; }
     case ScreenSizeTypeInches58:
@@ -192,8 +199,8 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
       break;
   }
   
-  NSDecimalNumber *balance = account.balance;
-  [self.headerView.cardView updateBalance:balance network:[account.fromNetwork network]];
+  NSDecimalNumber *balance = masterToken.amount;
+  [self.headerView.cardView updateBalance:balance network:[network network]];
   self.headerView.titleBalanceLabel.text = [ethereumFormatter stringFromNumber:balance];
 }
 
@@ -228,13 +235,19 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
 
 - (void)presentNetworkSelection {
   UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Select network", @"Wallet. Network selection") message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-  [alert addAction:[UIAlertAction actionWithTitle:@"Main Ethereum network" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+  [alert addAction:[UIAlertAction actionWithTitle:@"Main Ethereum network"
+                                            style:UIAlertActionStyleDefault
+                                          handler:^(__unused UIAlertAction * _Nonnull action) {
     [self.output mainnetAction];
   }]];
-  [alert addAction:[UIAlertAction actionWithTitle:@"Ropsten Test network" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+  [alert addAction:[UIAlertAction actionWithTitle:@"Ropsten Test network"
+                                            style:UIAlertActionStyleDefault
+                                          handler:^(__unused UIAlertAction * _Nonnull action) {
     [self.output ropstenAction];
   }]];
-  [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"Wallet. Network selection. Cancel") style:UIAlertActionStyleCancel handler:nil]];
+  [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"Wallet. Network selection. Cancel")
+                                            style:UIAlertActionStyleCancel
+                                          handler:nil]];
   [self presentViewController:alert animated:YES completion:nil];
 }
 
@@ -283,7 +296,7 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
       self.connectButtonBottomConstraint.constant = kHomeViewControllerBottomDefaultOffset;
       if (animated) {
         self.statusView.alpha = 1.0;
-        [self.animator addCompletion:^(UIViewAnimatingPosition finalPosition) {
+        [self.animator addCompletion:^(__unused UIViewAnimatingPosition finalPosition) {
           @strongify(self);
           self.statusView.alpha = 0.0;
           self.statusView.hidden = YES;
@@ -325,7 +338,7 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
         @strongify(self);
         self.disconnectButton.alpha = 0.0;
       }];
-      [self.animator addCompletion:^(UIViewAnimatingPosition finalPosition) {
+      [self.animator addCompletion:^(__unused UIViewAnimatingPosition finalPosition) {
         @strongify(self);
         self.disconnectButton.hidden = YES;
         self.disconnectButton.alpha = 1.0;
@@ -345,7 +358,7 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
       @strongify(self);
       [self.view layoutIfNeeded];
     }];
-    [self.animator addCompletion:^(UIViewAnimatingPosition finalPosition) {
+    [self.animator addCompletion:^(__unused UIViewAnimatingPosition finalPosition) {
       @strongify(self);
       [self _updateTableViewInsets];
     }];
@@ -373,40 +386,40 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
 
 #pragma mark - IBActions
 
-- (IBAction) connectAction:(id)sender {
+- (IBAction) connectAction:(__unused id)sender {
   [self.output connectAction];
 }
 
-- (IBAction) disconnectAction:(id)sender {
+- (IBAction) disconnectAction:(__unused id)sender {
   [self.output disconnectAction];
 }
 
-- (IBAction) infoAction:(id)sender {
+- (IBAction) infoAction:(__unused id)sender {
   [self.output infoAction];
 }
 
-- (IBAction) buyEtherAction:(id)sender {
+- (IBAction) buyEtherAction:(__unused id)sender {
   [self.output buyEtherAction];
 }
 
-- (IBAction) refreshTokensAction:(id)sender {
+- (IBAction) refreshTokensAction:(__unused id)sender {
   [self.output refreshTokensAction];
 }
 
-- (IBAction) networkAction:(id)sender {
+- (IBAction) networkAction:(__unused id)sender {
   [self.output networkAction];
 }
 
-- (IBAction) unwindToHome:(UIStoryboardSegue *)sender {}
+- (IBAction) unwindToHome:(__unused UIStoryboardSegue *)sender {}
 
 #pragma mark - GSKStretchyHeaderViewStretchDelegate
 
-- (void) stretchyHeaderView:(GSKStretchyHeaderView *)headerView didChangeStretchFactor:(CGFloat)stretchFactor {
+- (void) stretchyHeaderView:(__unused GSKStretchyHeaderView *)headerView didChangeStretchFactor:(__unused CGFloat)stretchFactor {
 }
 
 #pragma mark - HomeStretchyHeaderDelegate
 
-- (void) homeStretchyHeaderRequirinUpdateStatusBarStyle:(HomeStretchyHeader *)strethyHeader {
+- (void) homeStretchyHeaderRequirinUpdateStatusBarStyle:(__unused HomeStretchyHeader *)strethyHeader {
   [UIView animateWithDuration:kHomeStretchyHeaderFadeDuration animations:^{
     [self setNeedsStatusBarAppearanceUpdate];
   }];
@@ -431,7 +444,7 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
   self.tableView.scrollIndicatorInsets = indicatorInset;
 }
 
-- (void) scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+- (void) scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(__unused CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
   CGFloat fullSize = self.headerView.maximumContentHeight - self.headerView.minimumContentHeight;
   if ((*targetContentOffset).y < -self.headerView.minimumContentHeight) {
     if ((*targetContentOffset).y < -self.headerView.maximumContentHeight + fullSize * 0.65) {
@@ -444,21 +457,21 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
 
 #pragma mark - CardViewDelegate
 
-- (void) cardViewDidTouchShareButton:(CardView *)cardView {
+- (void) cardViewDidTouchShareButton:(__unused CardView *)cardView {
   [self.output shareAction];
 }
 
-- (void) cardViewDidTouchBackupButton:(CardView *)cardView {
+- (void) cardViewDidTouchBackupButton:(__unused CardView *)cardView {
   [self.output backupAction];
 }
 
-- (void) cardViewDidTouchBackupStatusButton:(CardView *)cardView {
+- (void) cardViewDidTouchBackupStatusButton:(__unused CardView *)cardView {
   
 }
 
 #pragma mark - UISearchBarDelegate
 
-- (BOOL) searchBarShouldBeginEditing:(UISearchBar *)searchBar {
+- (BOOL) searchBarShouldBeginEditing:(__unused UISearchBar *)searchBar {
   if ((self.tableView.contentOffset.y + self.headerView.minimumContentHeight) < 0.0) {
     CGPoint newContentOffset = CGPointMake(0.0, -self.headerView.minimumContentHeight);
     [self.tableView setContentOffset:newContentOffset animated:YES];
@@ -466,7 +479,7 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
   return YES;
 }
 
-- (void) searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+- (void) searchBar:(__unused UISearchBar *)searchBar textDidChange:(NSString *)searchText {
   [self.output searchTermDidChanged:searchText];
 }
 
@@ -478,7 +491,7 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
   [self _updateTableViewInsets];
 }
 
-- (void) keyboardWillHide:(NSNotification *)notification {
+- (void) keyboardWillHide:(__unused NSNotification *)notification {
   _keyboardHeight = 0.0;
   [self _updateTableViewInsets];
 }

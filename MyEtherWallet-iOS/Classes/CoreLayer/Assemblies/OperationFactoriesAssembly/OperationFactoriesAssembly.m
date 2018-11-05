@@ -16,15 +16,13 @@
 #import "SimplexQueryTransformer.h"
 
 #import "BodyTransformerBase.h"
-#import "ContractsBodyTransformer.h"
-#import "BalanceBodyTransformer.h"
+#import "TokensBodyTransformer.h"
 #import "SimplexBodyTransformer.h"
 
 #import "HeadersBuilderBase.h"
 #import "SimplexHeadersBuilder.h"
 
 #import "TokensOperationFactory.h"
-#import "AccountsOperationFactory.h"
 #import "FiatPricesOperationFactory.h"
 #import "SimplexOperationFactory.h"
 
@@ -42,19 +40,6 @@ static NSString *const kAdditionalHeadersKey  = @"Headers";
                                             [initializer injectParameterWith:[self networkOperationBuilder]];
                                             [initializer injectParameterWith:[self tokensQueryTransformer]];
                                             [initializer injectParameterWith:[self contractsBodyTransformer]];
-                                            [initializer injectParameterWith:[self headersBuilder]];
-                                          }];
-                        }];
-}
-
-- (AccountsOperationFactory *) accountsOperationFactory {
-  return [TyphoonDefinition withClass:[AccountsOperationFactory class]
-                        configuration:^(TyphoonDefinition *definition) {
-                          [definition useInitializer:@selector(initWithBuilder:queryTransformer:bodyTransformer:headersBuilder:)
-                                          parameters:^(TyphoonMethod *initializer) {
-                                            [initializer injectParameterWith:[self networkOperationBuilder]];
-                                            [initializer injectParameterWith:[self accountsQueryTransformer]];
-                                            [initializer injectParameterWith:[self balanceBodyTransformer]];
                                             [initializer injectParameterWith:[self headersBuilder]];
                                           }];
                         }];
@@ -135,12 +120,8 @@ static NSString *const kAdditionalHeadersKey  = @"Headers";
 
 #pragma mark - Body Transformers
 
-- (ContractsBodyTransformer *) contractsBodyTransformer {
-  return [TyphoonDefinition withClass:[ContractsBodyTransformer class]];
-}
-
-- (BalanceBodyTransformer *) balanceBodyTransformer {
-  return [TyphoonDefinition withClass:[BalanceBodyTransformer class]];
+- (TokensBodyTransformer *) contractsBodyTransformer {
+  return [TyphoonDefinition withClass:[TokensBodyTransformer class]];
 }
 
 - (BodyTransformerBase *) fiatPricesBodyTransformer {

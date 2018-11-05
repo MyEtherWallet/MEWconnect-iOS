@@ -35,7 +35,7 @@
   }];
 }
 
-- (UIPresentationController *) bottomModalControllerForPresented:(UIViewController *)presented presenting:(UIViewController *)presenting source:(UIViewController *)source cornerRadius:(NSNumber *)cornerRadius {
+- (UIPresentationController *) bottomModalControllerForPresented:(UIViewController *)presented presenting:(UIViewController *)presenting source:(__unused UIViewController *)source cornerRadius:(NSNumber *)cornerRadius {
   return [TyphoonDefinition withClass:[BottomModalPresentationController class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition useInitializer:@selector(initWithPresentedViewController:presentingViewController:) parameters:^(TyphoonMethod *initializer) {
@@ -47,14 +47,14 @@
                         }];
 }
 
-- (UIPresentationController *) bottomBackgroundedModalControllerForPresented:(UIViewController *)presented presenting:(UIViewController *)presenting source:(UIViewController *)source cornerRadiur:(NSNumber *)cornerRadius {
+- (UIPresentationController *) bottomBackgroundedModalControllerForPresented:(UIViewController *)presented presenting:(UIViewController *)presenting source:(__unused UIViewController *)source cornerRadiur:(NSNumber *)cornerRadius {
   return [TyphoonDefinition withClass:[BottomBackgroundedModalPresentationController class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition useInitializer:@selector(initWithPresentedViewController:presentingViewController:) parameters:^(TyphoonMethod *initializer) {
                             [initializer injectParameterWith:presented];
                             [initializer injectParameterWith:presenting];
                           }];
-                          [definition injectProperty:@selector(accountsService) with:[self.serviceComponents accountsService]];
+                          [definition injectProperty:@selector(networkService) with:[self.serviceComponents blockchainNetworkService]];
                           [definition injectProperty:@selector(ponsomizer) with:[self.ponsomizerAssembly ponsomizer]];
                           [definition injectProperty:@selector(cornerRadius) with:cornerRadius];
                         }];

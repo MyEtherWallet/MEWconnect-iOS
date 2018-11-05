@@ -13,5 +13,5 @@
 
 @interface BackupStartInteractor : NSObject <BackupStartInteractorInput>
 @property (nonatomic, weak) id<BackupStartInteractorOutput> output;
-@property (nonatomic, strong) id <AccountsService> accountsService;
+@property (nonatomic, strong) id <MEWwallet> walletService;
 @end

@@ -161,7 +161,7 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
                                                              size:CGSizeMake(20.0, 28.0)
                                                      cornerRadius:8.0
                                                           corners:UIRectCornerTopLeft|UIRectCornerTopRight]
-                                          resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 10.0, 0.0, 10.0)];
+                                          resizableImageWithCapInsets:UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)];
     [self.statusBackgroundImageView setImage:disconnectBackgroundImage];
   }
 }
@@ -261,7 +261,7 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
                                                      size:CGSizeMake(20.0, 28.0)
                                              cornerRadius:8.0
                                                   corners:UIRectCornerTopLeft|UIRectCornerTopRight]
-                                  resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 10.0, 0.0, 10.0)];
+                                  resizableImageWithCapInsets:UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)];
       self.statusView.hidden = NO;
       self.statusView.alpha = 1.0;
       if (animated) {
@@ -312,7 +312,7 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
                                                    size:CGSizeMake(20.0, 28.0)
                                            cornerRadius:8.0
                                                 corners:UIRectCornerTopLeft|UIRectCornerTopRight]
-                                resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 10.0, 0.0, 10.0)];
+                                resizableImageWithCapInsets:UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)];
     if (animated) {
       [UIView transitionWithView:self.statusBackgroundImageView
                         duration:self.animator.duration
@@ -379,7 +379,7 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
                                                            size:CGSizeMake(20.0, 28.0)
                                                    cornerRadius:8.0
                                                         corners:UIRectCornerTopLeft|UIRectCornerTopRight]
-                                        resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 10.0, 0.0, 10.0)];
+                                        resizableImageWithCapInsets:UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)];
   [self.statusBackgroundImageView setImage:disconnectBackgroundImage];
   self.statusBottomContraint.constant = 0.0;
 }

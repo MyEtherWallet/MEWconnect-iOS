@@ -24,7 +24,6 @@
 static CGFloat kCardViewSmallOffset             = 6.0;
 static CGFloat kCardViewEthereumTitleTopOffset  = 87.0;
 
-CGFloat const kCardViewBlinkDefaultAlpha        = 0.6;
 CGFloat const kCardViewDefaultShadowOpacity     = 0.2;
 CGFloat const kCardViewDefaultCornerRadius      = 16.0;
 CGFloat const kCardViewDefaultOffset            = 16.0;
@@ -269,22 +268,6 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[background]|" options:NSLayoutFormatDirectionLeftToRight metrics:nil views:views]];
     self.backgroundImageView = backgroundImageView;
   }
-  { //Blink
-    UIImageView *blinkImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"card_blink"]];
-    blinkImageView.alpha = kCardViewBlinkDefaultAlpha;
-    blinkImageView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.backgroundImageView addSubview:blinkImageView];
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.backgroundImageView attribute:NSLayoutAttributeCenterX
-                                                     relatedBy:NSLayoutRelationEqual
-                                                        toItem:blinkImageView attribute:NSLayoutAttributeCenterX
-                                                    multiplier:1.0 constant:-50.0]];
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.backgroundImageView attribute:NSLayoutAttributeCenterY
-                                                     relatedBy:NSLayoutRelationEqual
-                                                        toItem:blinkImageView attribute:NSLayoutAttributeCenterY
-                                                    multiplier:1.0 constant:25.0]];
-    _blinkImageView = blinkImageView;
-    [self _addMotionEffect:blinkImageView];
-  }
   { //Balance
     UILabel *balanceLabel = [[UILabel alloc] init];
     balanceLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -443,23 +426,6 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
       self.usdBalanceLabel.hidden = NO;
     }
   }
-}
-
-/* Parallax motion effect */
-- (void) _addMotionEffect:(UIView *)view {
-  CGFloat hAmount = [self intrinsicContentSize].width;
-  CGFloat vAmount = [self intrinsicContentSize].height;
-  UIInterpolatingMotionEffect *horizontal = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
-  horizontal.minimumRelativeValue = @(hAmount);
-  horizontal.maximumRelativeValue = @(-hAmount);
-  
-  UIInterpolatingMotionEffect *vertical = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
-  vertical.minimumRelativeValue = @(vAmount);
-  vertical.maximumRelativeValue = @(-vAmount);
-  
-  UIMotionEffectGroup *group = [[UIMotionEffectGroup alloc] init];
-  group.motionEffects = @[horizontal, vertical];
-  [view addMotionEffect:group];
 }
 
 - (UIView *) _prepareBackupWarningView {

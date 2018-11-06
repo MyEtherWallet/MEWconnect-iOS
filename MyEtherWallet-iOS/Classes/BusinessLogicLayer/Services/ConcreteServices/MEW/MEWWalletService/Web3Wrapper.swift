@@ -270,7 +270,7 @@ class Web3Wrapper: NSObject {
   }
   
   static func contractRequest(forAddress address: String, contractAddresses: [String], abi: String, method: String, options: [AnyObject] = [], transactionFields:[String]) -> Data? {
-    guard let contract = EthereumContract.init(abi) else { return nil }
+    guard var contract = EthereumContract.init(abi) else { return nil }
 
     var methodParameters = [address] as [AnyObject]
     methodParameters += options
@@ -284,7 +284,7 @@ class Web3Wrapper: NSObject {
     if contractAddresses.count > 1 {
       for contractAddress in contractAddresses {
         guard let ethContractAddress = EthereumAddress(contractAddress) else { return nil }
-        options.to = ethContractAddress
+        contract.address = ethContractAddress
         guard let request = request(from: fromAddress, contract: contract, contractAddress: ethContractAddress, method: method, parameters: methodParameters, options: options, transactionFields: transactionFields) else {
           continue
         }
@@ -297,7 +297,7 @@ class Web3Wrapper: NSObject {
         return nil
       }
       guard let ethContractAddress = EthereumAddress(contractAddress) else { return nil }
-      options.to = ethContractAddress
+      contract.address = ethContractAddress
       guard let request = request(from: fromAddress, contract: contract, contractAddress: ethContractAddress, method: method, parameters: methodParameters, options: options, transactionFields: transactionFields) else {
         return nil
       }

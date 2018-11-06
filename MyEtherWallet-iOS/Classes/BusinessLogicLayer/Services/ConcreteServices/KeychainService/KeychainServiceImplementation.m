@@ -42,7 +42,8 @@
       NSString *itemKey = [self _keyForUID:uid];
       NSDictionary *item = [self _obtainItemWithKey:itemKey];
       NSMutableArray <NSString *> *networks = [[item allKeys] mutableCopy];
-      NSPredicate *predicate = [NSPredicate predicateWithFormat:@"NOT (SELF beginsWith[c] %@)", kKeychainServiceV2HistoryPrefix];
+      NSPredicate *predicate = [NSPredicate predicateWithFormat:@"NOT (SELF beginsWith[c] %@ || SELF  beginsWith[c] %@)",
+                                kKeychainServiceV2HistoryPrefix, kKeychainServiceBackupField];
       [networks filterUsingPredicate:predicate];
       [networks removeObject:kKeychainServiceEntropyField];
       

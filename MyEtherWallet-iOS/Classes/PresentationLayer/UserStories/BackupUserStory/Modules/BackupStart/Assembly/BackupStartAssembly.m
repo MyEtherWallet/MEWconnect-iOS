@@ -34,8 +34,8 @@
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(output)
                                                 with:[self presenterBackupStart]];
-                          [definition injectProperty:@selector(accountsService)
-                                                with:[self.serviceComponents accountsService]];
+                          [definition injectProperty:@selector(walletService)
+                                                with:[self.serviceComponents MEWwallet]];
                         }];
 }
 

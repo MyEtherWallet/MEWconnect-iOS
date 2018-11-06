@@ -10,10 +10,11 @@
 
 @class MEWConnectCommand;
 @class MEWConnectMessage;
+@class MasterTokenPlainObject;
 @class AccountPlainObject;
 
 @protocol MessageSignerInteractorInput <NSObject>
-- (void) configurateWithMessage:(MEWConnectCommand *)message account:(AccountPlainObject *)account;;
+- (void) configurateWithMessage:(MEWConnectCommand *)message masterToken:(MasterTokenPlainObject *)masterToken;
 - (MEWConnectMessage *) obtainMessage;
 - (AccountPlainObject *) obtainAccount;
 - (void) signMessageWithPassword:(NSString *)password;

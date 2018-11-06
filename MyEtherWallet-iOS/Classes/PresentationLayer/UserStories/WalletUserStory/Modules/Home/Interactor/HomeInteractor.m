@@ -21,23 +21,36 @@
 #import "FiatPricesService.h"
 #import "ReachabilityServiceDelegate.h"
 #import "RateService.h"
+#import "MEWwallet.h"
 
 #import "CacheRequest.h"
 #import "CacheTracker.h"
 
-#import "NetworkPlainObject.h"
 #import "AccountPlainObject.h"
+#import "NetworkPlainObject.h"
+#import "MasterTokenPlainObject.h"
 #import "TokenModelObject.h"
 
 #import "HomeInteractorOutput.h"
+
+typedef NS_OPTIONS(short, HomeInteractorUpdatingStatus) {
+  HomeInteractorUpdatingStatusIdle              = 0 << 0, //0b00000
+  HomeInteractorUpdatingStatusBalance           = 1 << 0, //0b00001
+  HomeInteractorUpdatingStatusTokens            = 1 << 1, //0b00010
+  HomeInteractorUpdatingStatusBalanceUpdating   = 1 << 2, //0b00100
+  HomeInteractorUpdatingStatusTokensUpdating    = 1 << 3, //0b01000
+  HomeInteractorUpdatingStatusBalanceReset      = 3 << 0, //0b00011
+  HomeInteractorUpdatingStatusTokensReset       = 3 << 2, //0b01100
+  HomeInteractorUpdatingStatusAnyUpdating       = 3 << 2, //0b01100
+  HomeInteractorUpdatingStatusFiatUpdating      = 1 << 4, //0b10000
+};
 
 static NSTimeInterval kHomeInteractorDefaultRefreshBalancesTime = 900.0;
 
 @interface HomeInteractor ()
 @property (nonatomic, strong) NSTimer *updateTimer;
-@property (nonatomic, strong) AccountPlainObject *account;
-@property (nonatomic) BOOL balanceUpdating;
-@property (nonatomic) BOOL tokensUpdating;
+@property (nonatomic, strong) MasterTokenPlainObject *masterToken;
+@property (nonatomic) HomeInteractorUpdatingStatus updatingStatus;
 @end
 
 @implementation HomeInteractor {
@@ -62,8 +75,8 @@ static NSTimeInterval kHomeInteractorDefaultRefreshBalancesTime = 900.0;
 #pragma mark - HomeInteractorInput
 
 - (void) configurate {
-  if (!self.account) {
-    [self refreshAccount];
+  if (!self.masterToken) {
+    [self refreshMasterToken];
   }
   [self _reloadCacheRequest];
   [self reloadData];
@@ -71,78 +84,53 @@ static NSTimeInterval kHomeInteractorDefaultRefreshBalancesTime = 900.0;
 }
 
 - (void) reloadData {
-  if (!self.account) {
-    [self refreshAccount];
+  if (!self.masterToken) {
+    [self refreshMasterToken];
     return;
   }
   [self _startTimer];
-  @weakify(self);
-  if (!self.balanceUpdating) {
-    self.balanceUpdating = YES;
-    [self.accountsService updateBalanceForAccount:self.account
-                                   withCompletion:^(NSError *error) {
-                                     @strongify(self);
-                                     if (!error) {
-                                       [self.output didUpdateEthereumBalance];
-                                       [self.fiatPricesService updatePriceForEthereumWithCompletion:^(NSError *error) {
-                                         [self refreshAccount];
-                                         [self.output didUpdateEthereumBalance];
-                                       }];
-                                     }
-                                     self.balanceUpdating = NO;
-                                   }];
-  }
-  if (!self.tokensUpdating) {
-    self.tokensUpdating = YES;
-    [self.output tokensDidStartUpdating];
-    [self.tokensService updateTokenBalancesForAccount:self.account
-                                       withCompletion:^(NSError *error) {
-                                         @strongify(self);
-                                         if (!error) {
-                                           [self.output didUpdateTokens];
-                                           [self.fiatPricesService updatePricesForTokensWithCompletion:^(NSError *error) {
-                                             [self.output didUpdateTokensBalance];
-                                             [self.output tokensDidEndUpdating];
-                                           }];
-                                         } else {
-                                           [self.output tokensDidEndUpdating];
-                                         }
-                                         self.tokensUpdating = NO;
-                                       }];
-  }
+  [self _updateMasterBalance];
+  [self _updateTokensBalance];
 }
 
-- (void) refreshAccount {
-  AccountModelObject *accountModelObject = [self.accountsService obtainActiveAccount];
+- (void) refreshMasterToken {
+  MasterTokenModelObject *masterTokenModelObject = [self.tokensService obtainActiveMasterToken];
   NSArray *ignoringProperties = @[NSStringFromSelector(@selector(tokens)),
-                                  NSStringFromSelector(@selector(active)),
-                                  NSStringFromSelector(@selector(accounts))];
-  AccountPlainObject *account = [self.ponsomizer convertObject:accountModelObject ignoringProperties:ignoringProperties];
-  BOOL refreshCacheRequest = self.account && ![account isEqualToAccount:self.account];
-  self.account = account;
+                                  NSStringFromSelector(@selector(purchaseHistory))];
+  MasterTokenPlainObject *masterToken = [self.ponsomizer convertObject:masterTokenModelObject ignoringProperties:ignoringProperties];
+  BOOL refreshCacheRequest = self.masterToken && !([masterToken isEqualToMasterToken:self.masterToken]);
+  self.masterToken = masterToken;
   if (refreshCacheRequest) {
     [self _reloadCacheRequest];
   }
 }
 
-- (AccountPlainObject *) obtainAccount {
-  return self.account;
+- (AccountPlainObject *)obtainAccount {
+  return self.masterToken.fromNetworkMaster.fromAccount;
+}
+
+- (NetworkPlainObject *)obtainNetwork {
+  return self.masterToken.fromNetworkMaster;
+}
+
+- (MasterTokenPlainObject *)obtainMasterToken {
+  return self.masterToken;
 }
 
 - (NSUInteger) obtainNumberOfTokens {
-  return [self.tokensService obtainNumberOfTokensForAccount:self.account];
+  return [self.tokensService obtainNumberOfTokensOfMasterToken:[self obtainMasterToken]];
 }
 
 - (NSDecimalNumber *) obtainTotalPriceOfTokens {
-  return [self.tokensService obtainTokensTotalPriceForAccount:self.account];
+  return [self.tokensService obtainTokensTotalPriceOfMasterToken:[self obtainMasterToken]];
 }
 
 - (void) searchTokensWithTerm:(NSString *)term {
   if ([term length] > 0) {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(SELF.name contains[cd] %@ || SELF.symbol contains[cd] %@) && SELF.address != nil && SELF.fromAccount.publicAddress == %@", term, term, self.account.publicAddress];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(SELF.name contains[cd] %@ || SELF.symbol contains[cd] %@) && SELF.address != nil && SELF.fromNetwork.master.address == %@", term, term, [self obtainMasterToken].address];
     [self.cacheTracker filterResultsWithPredicate:predicate];
   } else {
-    [self.cacheTracker filterResultsWithPredicate:[NSPredicate predicateWithFormat:@"SELF.address != nil && SELF.fromAccount.publicAddress == %@", self.account.publicAddress]];
+    [self.cacheTracker filterResultsWithPredicate:[NSPredicate predicateWithFormat:@"SELF.address != nil && SELF.fromNetwork.master.address == %@", [self obtainMasterToken].address]];
   }
   CacheTransactionBatch *searchBatch = [self.cacheTracker obtainTransactionBatchFromCurrentCache];
   [self.output didProcessCacheTransaction:searchBatch];
@@ -157,48 +145,59 @@ static NSTimeInterval kHomeInteractorDefaultRefreshBalancesTime = 900.0;
 }
 
 - (void) refreshTokens {
-  @weakify(self);
-  if (!self.tokensUpdating) {
-    self.tokensUpdating = YES;
-    [self.output tokensDidStartUpdating];
-    [self.tokensService updateTokenBalancesForAccount:self.account
-                                       withCompletion:^(NSError *error) {
-                                         @strongify(self);
-                                         if (!error) {
-                                           [self.output didUpdateTokens];
-                                           [self.fiatPricesService updatePricesForTokensWithCompletion:^(NSError *error) {
-                                             [self.output didUpdateTokensBalance];
-                                             [self.output tokensDidEndUpdating];
-                                           }];
-                                         } else {
-                                           [self.output tokensDidEndUpdating];
-                                         }
-                                         self.tokensUpdating = NO;
-                                       }];
-  }
+  [self _updateTokensBalance];
 }
 
 - (void)selectMainnetNetwork {
-  BOOL selected = [self.blockchainNetworkService selectNetwork:BlockchainNetworkTypeMainnet];
-  if (selected) {
-    AccountModelObject *accountModelObject = [self.accountsService obtainActiveAccount];
-    if (accountModelObject) {
-      [self.output networkDidChangedWithAccount];
-    } else {
-      [self.output networkDidChangedWithoutAccount];
-    }
+  AccountModelObject *accountModelObject = [self.accountsService obtainAccountWithAccount:[self obtainAccount]];
+  NSArray <NSString *> *ignoringProperties = @[NSStringFromSelector(@selector(master)),
+                                               NSStringFromSelector(@selector(fromAccount)),
+                                               NSStringFromSelector(@selector(tokens))];
+  AccountPlainObject *account = [self.ponsomizer convertObject:accountModelObject ignoringProperties:ignoringProperties];
+  
+  NetworkPlainObject *network = [account networkForNetworkType:BlockchainNetworkTypeMainnet];
+  if (network && ![network.active boolValue]) {
+    [self.blockchainNetworkService selectNetwork:network inAccount:account];
+    [self.output networkDidChanged];
   }
 }
 
-- (void)selectRopstenNetwork {
-  BOOL selected = [self.blockchainNetworkService selectNetwork:BlockchainNetworkTypeRopsten];
-  if (selected) {
-    AccountModelObject *accountModelObject = [self.accountsService obtainActiveAccount];
-    if (accountModelObject) {
-      [self.output networkDidChangedWithAccount];
-    } else {
-      [self.output networkDidChangedWithoutAccount];
-    }
+- (void) selectRopstenNetwork {
+  AccountModelObject *accountModelObject = [self.accountsService obtainAccountWithAccount:[self obtainAccount]];
+  NSArray <NSString *> *ignoringProperties = @[NSStringFromSelector(@selector(master)),
+                                               NSStringFromSelector(@selector(fromAccount)),
+                                               NSStringFromSelector(@selector(tokens))];
+  AccountPlainObject *account = [self.ponsomizer convertObject:accountModelObject ignoringProperties:ignoringProperties];
+  NetworkPlainObject *network = [account networkForNetworkType:BlockchainNetworkTypeRopsten];
+  if (!network) {
+    [self.output passwordIsNeededWithAccount:account];
+  } else if (![network.active boolValue]) {
+    [self.blockchainNetworkService selectNetwork:network inAccount:account];
+    [self.output networkDidChanged];
+  }
+}
+
+- (void) generateMissedKeysWithPassword:(NSString *)password {
+  AccountModelObject *accountModelObject = [self.accountsService obtainAccountWithAccount:[self obtainAccount]];
+  NSArray <NSString *> *ignoringProperties = @[NSStringFromSelector(@selector(fromAccount)),
+                                               NSStringFromSelector(@selector(tokens)),
+                                               NSStringFromSelector(@selector(price)),
+                                               NSStringFromSelector(@selector(purchaseHistory))];
+  AccountPlainObject *account = [self.ponsomizer convertObject:accountModelObject ignoringProperties:ignoringProperties];
+  if ([self.walletService isSeedAvailableForAccount:account]) {
+    NSSet *chainIDs = [NSSet setWithObjects:@(BlockchainNetworkTypeRopsten), nil];
+    
+    @weakify(self);
+    [self.walletService createKeysWithChainIDs:chainIDs
+                                    forAccount:account
+                                  withPassword:password
+                                 mnemonicWords:nil
+                                    completion:^(__unused BOOL success) {
+                                      @strongify(self);
+                                      [self selectRopstenNetwork];
+                                    }];
+  } else {
+    [self.output seedIsNeededWithAccount:account password:password];
   }
 }
 
@@ -212,11 +211,11 @@ static NSTimeInterval kHomeInteractorDefaultRefreshBalancesTime = 900.0;
 
 #pragma mark - Notifications
 
-- (void) MEWConnectDidConnect:(NSNotification *)notification {
+- (void) MEWConnectDidConnect:(__unused NSNotification *)notification {
   [self.output mewConnectionStatusChanged];
 }
 
-- (void) MEWConnectDidDisconnect:(NSNotification *)notification {
+- (void) MEWConnectDidDisconnect:(__unused NSNotification *)notification {
   [self.output mewConnectionStatusChanged];
 }
 
@@ -224,11 +223,11 @@ static NSTimeInterval kHomeInteractorDefaultRefreshBalancesTime = 900.0;
   MEWConnectCommand *command = notification.userInfo[kMEWConnectFacadeMessage];
   switch (command.type) {
     case MEWConnectCommandTypeSignMessage: {
-      [self.output openMessageSignerWithMessage:command account:self.account];
+      [self.output openMessageSignerWithMessage:command masterToken:[self obtainMasterToken]];
       break;
     }
     case MEWConnectCommandTypeSignTransaction: {
-      [self.output openTransactionSignerWithMessage:command account:self.account];
+      [self.output openTransactionSignerWithMessage:command masterToken:[self obtainMasterToken]];
       break;
     }
       
@@ -246,7 +245,7 @@ static NSTimeInterval kHomeInteractorDefaultRefreshBalancesTime = 900.0;
 #pragma mark - Private
 
 - (void) _reloadCacheRequest {
-  CacheRequest *request = [CacheRequest requestWithPredicate:[NSPredicate predicateWithFormat:@"SELF.fromAccount.publicAddress == %@", self.account.publicAddress]
+  CacheRequest *request = [CacheRequest requestWithPredicate:[NSPredicate predicateWithFormat:@"SELF.address != nil && SELF.fromNetwork.master.address == %@", [self obtainMasterToken].address]
                                              sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(name)) ascending:YES]]
                                                  objectClass:[TokenModelObject class]
                                                  filterValue:nil
@@ -280,9 +279,72 @@ static NSTimeInterval kHomeInteractorDefaultRefreshBalancesTime = 900.0;
   }
 }
 
+- (void) _updateMasterBalance {
+  if ((self.updatingStatus & HomeInteractorUpdatingStatusBalance) != HomeInteractorUpdatingStatusBalance) {
+    self.updatingStatus |= HomeInteractorUpdatingStatusBalance;
+    self.updatingStatus |= HomeInteractorUpdatingStatusBalanceUpdating;
+    @weakify(self);
+    [self.tokensService updateBalanceOfMasterToken:[self obtainMasterToken]
+                                    withCompletion:^(NSError *error) {
+                                      @strongify(self);
+                                      if (!error) {
+                                        self.updatingStatus &= ~HomeInteractorUpdatingStatusBalanceUpdating;
+                                        [self.output didUpdateEthereumBalance];
+                                        if ((self.updatingStatus & HomeInteractorUpdatingStatusAnyUpdating) == HomeInteractorUpdatingStatusIdle) {
+                                          [self _updateFiatPrices];
+                                        }
+                                      } else {
+                                        self.updatingStatus &= ~HomeInteractorUpdatingStatusBalanceReset;
+                                      }
+                                    }];
+  }
+}
+
+- (void) _updateTokensBalance {
+  if ((self.updatingStatus & HomeInteractorUpdatingStatusTokens) != HomeInteractorUpdatingStatusTokens) {
+    self.updatingStatus |= HomeInteractorUpdatingStatusTokens;
+    self.updatingStatus |= HomeInteractorUpdatingStatusTokensUpdating;
+    [self.output tokensDidStartUpdating];
+    @weakify(self);
+    [self.tokensService updateTokenBalancesOfMasterToken:[self obtainMasterToken]
+                                          withCompletion:^(NSError *error) {
+                                            @strongify(self);
+                                            if (!error) {
+                                              self.updatingStatus &= ~HomeInteractorUpdatingStatusTokensUpdating;
+                                              [self.output didUpdateTokens];
+                                              if ((self.updatingStatus & HomeInteractorUpdatingStatusAnyUpdating) == HomeInteractorUpdatingStatusIdle) {
+                                                [self _updateFiatPrices];
+                                              }
+                                            } else {
+                                              self.updatingStatus &= ~HomeInteractorUpdatingStatusTokensReset;
+                                              [self.output tokensDidEndUpdating];
+                                            }
+                                          }];
+  }
+}
+
+- (void) _updateFiatPrices {
+  @weakify(self);
+  self.updatingStatus |= HomeInteractorUpdatingStatusFiatUpdating;
+  [self.fiatPricesService updateFiatPricesWithCompletion:^(__unused NSError *error) {
+    @strongify(self);
+    self.updatingStatus &= ~HomeInteractorUpdatingStatusFiatUpdating;
+    if ((self.updatingStatus & HomeInteractorUpdatingStatusBalance) == HomeInteractorUpdatingStatusBalance) {
+      [self refreshMasterToken];
+      [self.output didUpdateEthereumBalance];
+    }
+    if ((self.updatingStatus & HomeInteractorUpdatingStatusTokens) == HomeInteractorUpdatingStatusTokens) {
+      [self.output didUpdateTokensBalance];
+      [self.output tokensDidEndUpdating];
+    }
+    self.updatingStatus = HomeInteractorUpdatingStatusIdle;
+  }];
+
+}
+
 #pragma mark - Notifications
 
-- (void) _applicationDidBecomeActive:(NSNotification *)notification {
+- (void) _applicationDidBecomeActive:(__unused NSNotification *)notification {
   if (_configured) {
     [self reloadData];
   }

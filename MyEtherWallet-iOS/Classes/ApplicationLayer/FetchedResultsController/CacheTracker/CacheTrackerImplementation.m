@@ -158,11 +158,11 @@
 
 #pragma mark - NSFetchedResultsControllerDelegate
 
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+- (void)controllerWillChangeContent:(__unused NSFetchedResultsController *)controller {
   self.transactionBatch = [CacheTransactionBatch new];
 }
 
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(NSManagedObject *)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)changeType newIndexPath:(NSIndexPath *)newIndexPath {
+- (void)controller:(__unused NSFetchedResultsController *)controller didChangeObject:(NSManagedObject *)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)changeType newIndexPath:(NSIndexPath *)newIndexPath {
   NSArray *ignoringProperties = self.cacheRequest.ignoringProperties;
   id plainObject = [self.ponsomizer convertObject:anObject ignoringProperties:ignoringProperties];
   if (self.preparationBlock) {
@@ -182,7 +182,7 @@
   [self.transactionBatch addTransaction:transaction];
 }
 
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+- (void)controllerDidChangeContent:(__unused NSFetchedResultsController *)controller {
   if ([self.transactionBatch isEmpty]) {
     return;
   }

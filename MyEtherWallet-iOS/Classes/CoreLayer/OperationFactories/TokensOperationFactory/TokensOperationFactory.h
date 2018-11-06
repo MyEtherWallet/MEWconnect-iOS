@@ -8,6 +8,8 @@
 
 @import Foundation;
 
+#import "BlockchainNetworkTypes.h"
+
 @class CompoundOperationBase;
 @class NetworkCompoundOperationBuilder;
 
@@ -16,6 +18,7 @@
 @protocol HeadersBuilder;
 
 @class TokensBody;
+@class MasterTokenBody;
 
 @interface TokensOperationFactory : NSObject
 - (instancetype)initWithBuilder:(NetworkCompoundOperationBuilder *)builder
@@ -23,4 +26,5 @@
                 bodyTransformer:(id<BodyTransformer>)bodyTransformer
                  headersBuilder:(id<HeadersBuilder>)headersBuilder;
 - (CompoundOperationBase *) contractBalancesWithBody:(TokensBody *)body;
+- (CompoundOperationBase *) ethereumBalanceWithBody:(MasterTokenBody *)body inNetwork:(BlockchainNetworkType)network;
 @end

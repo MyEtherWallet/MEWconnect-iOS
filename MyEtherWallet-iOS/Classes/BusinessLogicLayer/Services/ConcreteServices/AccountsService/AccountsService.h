@@ -16,14 +16,10 @@ typedef void(^AccountsServiceCompletionBlock)(NSError *error);
 typedef void(^AccountsServiceCreateCompletionBlock)(AccountModelObject *accountModelObject);
 
 @protocol AccountsService <NSObject>
+- (AccountModelObject *) obtainAccountWithAccount:(AccountPlainObject *)account;
 - (AccountModelObject *) obtainActiveAccount;
-- (NSArray <AccountModelObject *> *) obtainAccountsOfActiveNetwork;
-- (void) updateBalanceForAccount:(AccountPlainObject *)account withCompletion:(AccountsServiceCompletionBlock)completion;
-//Account managing
-- (void) createNewAccountInNetwork:(NetworkPlainObject *)network password:(NSString *)password words:(NSArray <NSString *> *)words completion:(AccountsServiceCreateCompletionBlock)completion;
-- (BOOL) validatePassword:(NSString *)password forAccount:(AccountPlainObject *)account;
-- (NSArray <NSString *> *) recoveryMnemonicsWordsForAccount:(AccountPlainObject *)account password:(NSString *)password;
+- (AccountModelObject *) obtainOrCreateActiveAccount;
+- (void) resetAccounts;
 - (void) accountBackedUp:(AccountPlainObject *)account;
-- (NSArray <NSString *> *) bip32MnemonicsWords;
 - (void) deleteAccount:(AccountPlainObject *)account;
 @end

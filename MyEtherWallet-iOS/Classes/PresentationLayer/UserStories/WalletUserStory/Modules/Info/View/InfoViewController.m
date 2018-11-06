@@ -94,12 +94,16 @@
   UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"⚠️\nWarning: you can lose your account and funds forever", @"Info screen. Reset wallet alert")
                                                                  message:NSLocalizedString(@"Don't reset if you didn't make a backup, as there will be no way to restore your account after that. Resetting wallet will remove all keys saved in the local vault and bring you back to the app's start screen.", @"Info screen. Reset wallet alert")
                                                           preferredStyle:UIAlertControllerStyleAlert];
-  [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"Info screen. Reset wallet alert") style:UIAlertActionStyleCancel handler:nil]];
+  [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"Info screen. Reset wallet alert")
+                                            style:UIAlertActionStyleCancel
+                                          handler:nil]];
   @weakify(self);
-  [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Reset wallet", @"Info screen. Reset wallet alert") style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-    @strongify(self);
-    [self.output resetWalletConfirmedAction];
-  }]];
+  [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Reset wallet", @"Info screen. Reset wallet alert")
+                                            style:UIAlertActionStyleDestructive
+                                          handler:^(__unused UIAlertAction * _Nonnull action) {
+                                            @strongify(self);
+                                            [self.output resetWalletConfirmedAction];
+                                          }]];
   [self presentViewController:alert animated:YES completion:nil];
 }
 
@@ -121,11 +125,11 @@
 
 #pragma mark - IBActions
 
-- (IBAction) closeAction:(id)sender {
+- (IBAction) closeAction:(__unused id)sender {
   [self.output closeAction];
 }
 
-- (IBAction) resetWalletAction:(id)sender {
+- (IBAction) resetWalletAction:(__unused id)sender {
   [self.output resetWalletAction];
 }
 
@@ -174,7 +178,7 @@
 
 #pragma mark - MFMailComposeViewControllerDelegate
 
-- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(nullable NSError *)error {
+- (void)mailComposeController:(__unused MFMailComposeViewController *)controller didFinishWithResult:(__unused MFMailComposeResult)result error:(nullable __unused NSError *)error {
   [self dismissViewControllerAnimated:YES completion:nil];
 }
 

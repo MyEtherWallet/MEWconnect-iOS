@@ -52,21 +52,21 @@
 
 #pragma mark - DataDisplayManager methods
 
-- (id<UITableViewDataSource>)dataSourceForTableView:(UITableView *)tableView {
+- (id<UITableViewDataSource>)dataSourceForTableView:(__unused UITableView *)tableView {
   if (!self.tableViewModel) {
     [self updateTableViewModel];
   }
   return self.tableViewModel;
 }
 
-- (id<UITableViewDelegate>)delegateForTableView:(UITableView *)tableView withBaseDelegate:(id<UITableViewDelegate>)baseTableViewDelegate {
+- (id<UITableViewDelegate>)delegateForTableView:(__unused UITableView *)tableView withBaseDelegate:(__unused id<UITableViewDelegate>)baseTableViewDelegate {
   if (!self.tableViewActions) {
     [self setupTableViewActions];
   }
   return [self.tableViewActions forwardingTo:self];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+- (CGFloat)tableView:(__unused UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
   if (section == 0) {
     return 19.0;
   } else {
@@ -74,7 +74,7 @@
   }
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+- (UIView *)tableView:(__unused UITableView *)tableView viewForHeaderInSection:(__unused NSInteger)section {
   return [[UIView alloc] init];
 }
 
@@ -91,7 +91,7 @@
   
   @weakify(self);
   [self.tableViewActions attachToClass:[InfoNormalTableViewCellObject class]
-                              tapBlock:^BOOL(InfoNormalTableViewCellObject *object, id target, NSIndexPath *indexPath) {
+                              tapBlock:^BOOL(InfoNormalTableViewCellObject *object, __unused id target, __unused NSIndexPath *indexPath) {
                                 @strongify(self);
                                 switch (object.type) {
                                   case InfoNormalTableViewCellObjectTypeContact: {
@@ -124,7 +124,7 @@
                                 return YES;
                               }];
   [self.tableViewActions attachToClass:[InfoDestructiveTableViewCellObject class]
-                              tapBlock:^BOOL(InfoDestructiveTableViewCellObject *object, id target, NSIndexPath *indexPath) {
+                              tapBlock:^BOOL(__unused InfoDestructiveTableViewCellObject *object, __unused id target, __unused NSIndexPath *indexPath) {
                                 @strongify(self);
                                 [self.delegate didTapResetWallet];
                                 return YES;

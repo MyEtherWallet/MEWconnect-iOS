@@ -10,23 +10,19 @@
 
 #import "InfoInteractorOutput.h"
 
-#import "BlockchainNetworkService.h"
 #import "AccountsService.h"
+#import "KeychainService.h"
 
 @interface InfoInteractor ()
-@property (nonatomic, strong) AccountPlainObject *account;
 @end
 
 @implementation InfoInteractor
 
 #pragma mark - InfoInteractorInput
 
-- (void) configurateWithAccount:(AccountPlainObject *)account {
-  _account = account;
-}
-
 - (void) resetWallet {
-  [self.accountsService deleteAccount:self.account];
+  [self.accountsService resetAccounts];
+  [self.keychainService resetKeychain];
 }
 
 @end

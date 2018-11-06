@@ -40,7 +40,7 @@
   NSMutableURLRequest *mutableRequest = [NSMutableURLRequest requestWithURL:finalURL];
   [mutableRequest setHTTPMethod:method];
   
-  [requestDataModel.HTTPHeaderFields enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString * _Nonnull obj, BOOL * _Nonnull stop) {
+  [requestDataModel.HTTPHeaderFields enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString * _Nonnull obj, __unused BOOL * _Nonnull stop) {
     [mutableRequest setValue:obj forHTTPHeaderField:key];
   }];
   

@@ -150,23 +150,23 @@
   [self.output didEnterSymbolAction:symbol];
 }
 
-- (IBAction) switchConvertingAction:(UIButton *)sender {
+- (IBAction) switchConvertingAction:(__unused UIButton *)sender {
   [self.output switchConvertingAction];
 }
 
-- (IBAction) padBackspaceAction:(UIButton *)sender {
+- (IBAction) padBackspaceAction:(__unused UIButton *)sender {
   [self.output eraseSymbolAction];
 }
 
-- (IBAction) closeAction:(id)sender {
+- (IBAction) closeAction:(__unused id)sender {
   [self.output closeAction];
 }
 
-- (IBAction) historyAction:(id)sender {
+- (IBAction) historyAction:(__unused id)sender {
   [self.output historyAction];
 }
 
-- (IBAction) buyAction:(id)sender {
+- (IBAction) buyAction:(__unused id)sender {
   [self.output buyAction];
 }
 

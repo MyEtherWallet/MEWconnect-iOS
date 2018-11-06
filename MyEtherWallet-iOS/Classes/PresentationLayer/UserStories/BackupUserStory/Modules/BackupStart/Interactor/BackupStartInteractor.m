@@ -12,7 +12,7 @@
 
 #import "BackupStartInteractorOutput.h"
 
-#import "AccountsService.h"
+#import "MEWwallet.h"
 
 #import "AccountPlainObject.h"
 
@@ -29,7 +29,7 @@
 }
 
 - (void) passwordDidEntered:(NSString *)password {
-  NSArray *mnemonics = [self.accountsService recoveryMnemonicsWordsForAccount:self.account password:password];
+  NSArray *mnemonics = [self.walletService recoveryMnemonicsWordsWithPassword:password ofAccount:self.account];
   [self.output mnemonicsDidReceived:mnemonics];
 }
 

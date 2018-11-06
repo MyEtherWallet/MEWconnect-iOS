@@ -24,16 +24,16 @@ static NSString *const kBuyEtherAmountToBuyEtherHistorySegueIdentifier  = @"BuyE
   [self.transitionHandler closeCurrentModule:YES];
 }
 
-- (void) openBuyEtherWebWithOrder:(SimplexOrder *)order account:(AccountPlainObject *)account {
+- (void) openBuyEtherWebWithOrder:(SimplexOrder *)order masterToken:(MasterTokenPlainObject *)masterToken {
   [[self.transitionHandler openModuleUsingSegue:kBuyEtherAmountToBuyEtherWebSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<BuyEtherWebModuleInput> moduleInput) {
-    [moduleInput configureModuleWithOrder:order forAccount:account];
+    [moduleInput configureModuleWithOrder:order forMasterToken:masterToken];
     return nil;
   }];
 }
 
-- (void) openBuyEtherHistoryForAccount:(AccountPlainObject *)account {
+- (void) openBuyEtherHistoryForMasterToken:(MasterTokenPlainObject *)masterToken {
   [[self.transitionHandler openModuleUsingSegue:kBuyEtherAmountToBuyEtherHistorySegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<BuyEtherHistoryModuleInput> moduleInput) {
-    [moduleInput configureModuleWithAccount:account];
+    [moduleInput configureModuleWithMasterToken:masterToken];
     return nil;
   }];
 }

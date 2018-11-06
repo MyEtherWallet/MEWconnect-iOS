@@ -10,3 +10,6 @@
 #import "UIScreen+ScreenSizeType.h"
 #import "MEWcrypto.h"
 #import "KeychainService.h"
+
+#import "MasterTokenPlainObject.h"
+#import "AccountPlainObject.h"

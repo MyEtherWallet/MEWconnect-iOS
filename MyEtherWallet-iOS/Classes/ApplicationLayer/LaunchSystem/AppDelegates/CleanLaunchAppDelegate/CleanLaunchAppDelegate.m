@@ -11,14 +11,28 @@
 #import "CleanLaunchRouter.h"
 #import "ApplicationConfigurator.h"
 #import "ThirdPartiesConfigurator.h"
+#import "MigrationService.h"
 #import "CoreDataConfigurator.h"
 #import "CrashCatcherConfigurator.h"
 
 @implementation CleanLaunchAppDelegate
 
-- (BOOL) application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL) application:(__unused UIApplication *)application didFinishLaunchingWithOptions:(__unused NSDictionary *)launchOptions {
   [self.crashCatcherConfigurator configurate];
   [self.thirdPartiesConfigurator configurate];
+  if ([self.migrationService isMigrationNeeded]) {
+    NSError *error = nil;
+    [self.migrationService migrate:&error];
+    if (error) {
+      NSLog(@"%@", error);
+    }
+  } else if ([self.migrationService isMigrationNeededForKeychain]) {
+    NSError *error = nil;
+    [self.migrationService migratekeychain:&error];
+    if (error) {
+      NSLog(@"%@", error);
+    }
+  }
   [self.coreDataConfigurator setupCoreDataStack];
   [self.applicationConfigurator configureInitialSettings];
   [self.applicationConfigurator configurateAppearance];
@@ -26,7 +40,7 @@
   return YES;
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application {
+- (void)applicationWillTerminate:(__unused UIApplication *)application {
   [self.thirdPartiesConfigurator cleanup];
 }
 

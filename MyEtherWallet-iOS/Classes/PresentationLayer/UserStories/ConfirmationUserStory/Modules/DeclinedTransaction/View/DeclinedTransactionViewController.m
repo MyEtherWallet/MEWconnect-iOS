@@ -80,14 +80,14 @@
 
 #pragma mark - IBActions
 
-- (IBAction) closeAction:(id)sender {
+- (IBAction) closeAction:(__unused id)sender {
   [self.output closeAction];
 }
 
 #pragma mark - LinkedLabelDelegate
 
-- (void)linkedLabel:(LinkedLabel *)label didSelectURL:(NSURL *)url {
-  
+- (void)linkedLabel:(__unused LinkedLabel *)label didSelectURL:(__unused NSURL *)url {
+  //TODO
 }
 
 @end

@@ -8,10 +8,15 @@
 
 @import Foundation;
 
-@class KeychainItemModel;
+#import "BlockchainNetworkTypes.h"
+
+@class KeychainAccountModel;
 @class KeychainHistoryItemModel;
 
-#import "BlockchainNetworkTypes.h"
+@class AccountPlainObject;
+@class MasterTokenPlainObject;
+
+NS_ASSUME_NONNULL_BEGIN
 
 @protocol KeychainService <NSObject>
 /**
@@ -19,15 +24,20 @@
  
  @returns Array of @b KeychainItemModel
  */
-- (NSArray <KeychainItemModel *> *) obtainStoredItems;
-- (void) saveKeydata:(NSData *)keydata ofPublicAddress:(NSString *)publicAddress fromNetwork:(BlockchainNetworkType)network;
-- (void) saveEntropy:(NSData *)entropyData ofPublicAddress:(NSString *)publicAddress fromNetwork:(BlockchainNetworkType)network;
-- (void) saveSimplexUserId:(NSString *)userId ofPublicAddress:(NSString *)publicAddress fromNetwork:(BlockchainNetworkType)network;
-- (NSData *) obtainKeydataOfPublicAddress:(NSString *)publicAddress fromNetwork:(BlockchainNetworkType)network;
-- (NSData *) obtainEntropyOfPublicAddress:(NSString *)publicAddress fromNetwork:(BlockchainNetworkType)network;
-- (NSArray <KeychainHistoryItemModel *> *) obtainSimplexHistoryOfPublicAddress:(NSString *)publicAddress fromNetwork:(BlockchainNetworkType)network;
-- (void) removeKeydataOfPublicAddress:(NSString *)publicAddress fromNetwork:(BlockchainNetworkType)network;
-- (void) removeEntropyOfPublicAddress:(NSString *)publicAddress fromNetwork:(BlockchainNetworkType)network;
+- (NSArray <KeychainAccountModel *> * _Nullable) obtainStoredItems;
+//Save
+- (void) saveKeydata:(NSData *)keydata forAddress:(NSString *)address ofAccount:(AccountPlainObject *)account inChainID:(NSInteger)chainID;
+- (void) saveEntropy:(NSData *)entropyData ofAccount:(AccountPlainObject *)account;
+- (void) saveBackupStatus:(BOOL)backup forAccount:(AccountPlainObject *)account;
+- (void) savePurchaseUserId:(NSString *)userId forMasterToken:(MasterTokenPlainObject *)token;
+//Obtain
+- (NSData * _Nullable) obtainKeydataOfMasterToken:(MasterTokenPlainObject *)token ofAccount:(AccountPlainObject *)account inChainID:(NSInteger)chainID;
+- (NSData * _Nullable) obtainEntropyOfAccount:(AccountPlainObject *)account;
+- (NSArray <KeychainHistoryItemModel *> * _Nullable) obtainPurchaseHistoryOfMasterToken:(MasterTokenPlainObject *)token;
+- (BOOL) obtainBackupStatusForAccount:(AccountPlainObject *)account;
+//Delete
+- (void) removeDataOfAccount:(AccountPlainObject *)account;
+- (void) resetKeychain;
 /**
  Saving first launch date, if needed
  */
@@ -35,7 +45,7 @@
 /**
  Obtaining first launch date
  */
-- (NSString *) obtainFirstLaunchDate;
+- (NSString * _Nullable) obtainFirstLaunchDate;
 /**
  Saving rate status
  */
@@ -45,3 +55,5 @@
  */
 - (BOOL) obtainRateStatus;
 @end
+
+NS_ASSUME_NONNULL_END

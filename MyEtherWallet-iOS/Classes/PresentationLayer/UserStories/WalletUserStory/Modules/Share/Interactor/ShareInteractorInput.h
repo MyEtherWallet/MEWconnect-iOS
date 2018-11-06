@@ -8,10 +8,10 @@
 
 @import Foundation;
 
-@class AccountPlainObject;
+@class MasterTokenPlainObject;
 
 @protocol ShareInteractorInput <NSObject>
-- (void) configureWithAccount:(AccountPlainObject *)account;
+- (void) configureWithMasterToken:(MasterTokenPlainObject *)masterToken;
 - (NSString *) obtainPublicAddress;
 - (UIImage *) obtainQRCode;
 - (void) copyAddress;

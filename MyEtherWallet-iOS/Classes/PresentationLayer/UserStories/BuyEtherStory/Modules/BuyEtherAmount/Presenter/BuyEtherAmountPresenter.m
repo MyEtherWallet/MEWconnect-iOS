@@ -16,8 +16,8 @@
 
 #pragma mark - BuyEtherAmountModuleInput
 
-- (void) configureModuleWithAccount:(AccountPlainObject *)account {
-  [self.interactor configurateWithAccount:account];
+- (void) configureModuleWithMasterToken:(MasterTokenPlainObject *)masterToken {
+  [self.interactor configurateWithMasterToken:masterToken];
 }
 
 #pragma mark - BuyEtherAmountViewOutput
@@ -44,8 +44,8 @@
 }
 
 - (void) historyAction {
-  AccountPlainObject *account = [self.interactor obtainAccount];
-  [self.router openBuyEtherHistoryForAccount:account];
+  MasterTokenPlainObject *masterToken = [self.interactor obtainMasterToken];
+  [self.router openBuyEtherHistoryForMasterToken:masterToken];
 }
 
 - (void) buyAction {
@@ -67,8 +67,8 @@
   [self.view updateWithEnteredAmount:enteredAmount convertedAmount:convertedAmount];
 }
 
-- (void)orderDidCreated:(SimplexOrder *)order forAccount:(AccountPlainObject *)account {
-  [self.router openBuyEtherWebWithOrder:order account:account];
+- (void)orderDidCreated:(SimplexOrder *)order forMasterToken:(MasterTokenPlainObject *)masterToken {
+  [self.router openBuyEtherWebWithOrder:order masterToken:masterToken];
 }
 
 - (void) minimumAmountDidReached:(BOOL)minimumAmountReached {

@@ -22,6 +22,7 @@
 @protocol FiatPricesService;
 @protocol ReachabilityService;
 @protocol RateService;
+@protocol MEWwallet;
 
 @interface HomeInteractor : NSObject <HomeInteractorInput, CacheTrackerDelegate, ReachabilityServiceDelegate>
 @property (nonatomic, weak) id<HomeInteractorOutput> output;
@@ -34,4 +35,5 @@
 @property (nonatomic, strong) id <FiatPricesService> fiatPricesService;
 @property (nonatomic, strong) id <ReachabilityService> reachabilityService;
 @property (nonatomic, strong) id <RateService> rateService;
+@property (nonatomic, strong) id <MEWwallet> walletService;
 @end

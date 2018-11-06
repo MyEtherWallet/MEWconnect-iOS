@@ -93,7 +93,7 @@
 
 #pragma mark - IBActions
 
-- (IBAction) doneAction:(id)sender {
+- (IBAction) doneAction:(__unused id)sender {
   [self.output doneAction];
 }
 

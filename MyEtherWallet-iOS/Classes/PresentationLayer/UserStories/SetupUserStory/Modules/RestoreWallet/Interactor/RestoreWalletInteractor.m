@@ -15,9 +15,6 @@
 #import "ApplicationConstants.h"
 #import "NSCharacterSet+WNS.h"
 
-@interface RestoreWalletInteractor ()
-@end
-
 @implementation RestoreWalletInteractor {
   NSCharacterSet *_separatorCharactorSet;
   NSArray <NSString *> *_words;

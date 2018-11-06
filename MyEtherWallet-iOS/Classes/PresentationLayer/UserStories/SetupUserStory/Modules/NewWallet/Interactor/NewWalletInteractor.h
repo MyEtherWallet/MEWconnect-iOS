@@ -9,16 +9,18 @@
 #import "NewWalletInteractorInput.h"
 
 @protocol NewWalletInteractorOutput;
-@protocol BlockchainNetworkService;
 @protocol AccountsService;
+@protocol BlockchainNetworkService;
+@protocol MEWwallet;
 @protocol Ponsomizer;
 @protocol MEWConnectFacade;
 
 @interface NewWalletInteractor : NSObject <NewWalletInteractorInput>
 
 @property (nonatomic, weak) id<NewWalletInteractorOutput> output;
-@property (nonatomic, strong) id <BlockchainNetworkService> blockchainNetworkService;
 @property (nonatomic, strong) id <AccountsService> accountsService;
+@property (nonatomic, strong) id <BlockchainNetworkService> blockchainNetworkService;
+@property (nonatomic, strong) id <MEWwallet> mewWallet;
 @property (nonatomic, strong) id <Ponsomizer> ponsomizer;
 @property (nonatomic, strong) id <MEWConnectFacade> connectFacade;
 @end

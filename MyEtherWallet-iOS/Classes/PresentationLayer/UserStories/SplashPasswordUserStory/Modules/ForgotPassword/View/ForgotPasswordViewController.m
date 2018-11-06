@@ -83,9 +83,13 @@
   UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"⚠️\nWarning: you can lose your account and funds forever", @"Forgot password screen. Reset wallet alert")
                                                                  message:NSLocalizedString(@"Don't reset if you didn't make a backup, as there will be no way to restore your account after that. Resetting wallet will remove all keys saved in the local vault and bring you back to the app's start screen.", @"Forgot password screen. Reset wallet alert")
                                                           preferredStyle:UIAlertControllerStyleAlert];
-  [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"Forgot password screen. Reset wallet alert") style:UIAlertActionStyleCancel handler:nil]];
+  [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"Forgot password screen. Reset wallet alert")
+                                            style:UIAlertActionStyleCancel
+                                          handler:nil]];
   @weakify(self);
-  [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Reset wallet", @"Forgot password screen. Reset wallet alert") style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+  [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Reset wallet", @"Forgot password screen. Reset wallet alert")
+                                            style:UIAlertActionStyleDestructive
+                                          handler:^(__unused UIAlertAction * _Nonnull action) {
     @strongify(self);
     [self.output resetWalletConfirmedAction];
   }]];
@@ -94,15 +98,15 @@
 
 #pragma mark - IBActions
 
-- (IBAction) restoreAction:(UIButton *)sender {
+- (IBAction) restoreAction:(__unused UIButton *)sender {
   [self.output restoreAction];
 }
 
-- (IBAction) closeAction:(UIButton *)sender {
+- (IBAction) closeAction:(__unused UIButton *)sender {
   [self.output closeAction];
 }
 
-- (IBAction) resetWallet:(UIButton *)sender {
+- (IBAction) resetWallet:(__unused UIButton *)sender {
   [self.output resetWalletAction];
 }
 

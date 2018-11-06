@@ -10,10 +10,12 @@
 
 @protocol SplashPasswordInteractorOutput;
 @protocol AccountsService;
+@protocol MEWwallet;
 @protocol Ponsomizer;
 
 @interface SplashPasswordInteractor : NSObject <SplashPasswordInteractorInput>
 @property (nonatomic, weak) id <SplashPasswordInteractorOutput> output;
 @property (nonatomic, strong) id <AccountsService> accountsService;
+@property (nonatomic, strong) id <MEWwallet> walletService;
 @property (nonatomic, strong) id <Ponsomizer> ponsomizer;
 @end

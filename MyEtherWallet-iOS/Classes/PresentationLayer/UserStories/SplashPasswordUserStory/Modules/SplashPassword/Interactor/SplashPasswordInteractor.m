@@ -9,6 +9,7 @@
 #import "SplashPasswordInteractor.h"
 
 #import "AccountsService.h"
+#import "MEWwallet.h"
 #import "Ponsomizer.h"
 
 #import "NetworkPlainObject.h"
@@ -33,7 +34,7 @@
 }
 
 - (void)checkPassword:(NSString *)password {
-  BOOL validated = [self.accountsService validatePassword:password forAccount:self.account];
+  BOOL validated = [self.walletService validatePassword:password account:self.account];
   if (validated) {
     [self.output correctPassword:password];
   } else {

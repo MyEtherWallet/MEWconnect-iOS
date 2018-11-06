@@ -11,6 +11,7 @@
 #import "BackupConfirmationInteractorOutput.h"
 
 #import "AccountsService.h"
+#import "MEWwallet.h"
 
 #import "BackupConfirmationQuiz.h"
 
@@ -31,7 +32,7 @@
 
 - (BackupConfirmationQuiz *) obtainRecoveryQuiz {
   if (!_quiz) {
-    NSArray *allWords = [self.accountsService bip32MnemonicsWords];
+    NSArray *allWords = [self.walletService obtainBIP32Words];
     _quiz = [[BackupConfirmationQuiz alloc] initWithWords:allWords
                                              correctWords:self.mnemonics
                                                  quizSize:4

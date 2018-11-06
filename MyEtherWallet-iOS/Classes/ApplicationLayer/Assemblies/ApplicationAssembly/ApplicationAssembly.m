@@ -47,6 +47,8 @@
                                                 with:[self thirdPartiesConfigurator]];
                           [definition injectProperty:@selector(cleanStartRouter)
                                                 with:[self cleanStartRouter]];
+                          [definition injectProperty:@selector(migrationService)
+                                                with:[self.serviceComponents migrationService]];
                           [definition injectProperty:@selector(coreDataConfigurator)
                                                 with:[self coreDataConfigurator]];
                           [definition injectProperty:@selector(crashCatcherConfigurator)
@@ -74,6 +76,8 @@
                                                 with:[self.systemInfrastructureAssembly fileManager]];
                           [definition injectProperty:@selector(keychainService)
                                                 with:[self.serviceComponents keychainService]];
+                          [definition injectProperty:@selector(ponsomizer)
+                                                with:[self.ponsomizerAssembly ponsomizer]];
                         }];
 }
 

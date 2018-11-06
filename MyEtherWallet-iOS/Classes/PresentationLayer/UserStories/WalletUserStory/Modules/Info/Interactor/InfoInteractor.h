@@ -10,9 +10,10 @@
 
 @protocol InfoInteractorOutput;
 @protocol AccountsService;
-@protocol BlockchainNetworkService;
+@protocol KeychainService;
 
 @interface InfoInteractor : NSObject <InfoInteractorInput>
 @property (nonatomic, weak) id<InfoInteractorOutput> output;
 @property (nonatomic, strong) id <AccountsService> accountsService;
+@property (nonatomic, strong) id <KeychainService> keychainService;
 @end

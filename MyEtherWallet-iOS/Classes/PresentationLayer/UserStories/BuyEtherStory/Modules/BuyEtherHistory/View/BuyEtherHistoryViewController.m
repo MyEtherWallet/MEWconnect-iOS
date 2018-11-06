@@ -31,11 +31,11 @@
                                                          withBaseDelegate:self.dataDisplayManager];
   self.tableViewAnimator.tableView = self.tableView;
   [self.dataDisplayManager configureDataDisplayManagerWithAnimator:self.tableViewAnimator];
-  [self.dataDisplayManager updateDataDisplayManagerWithTransactionBatch:nil empty:YES];
+  [self.dataDisplayManager updateDataDisplayManagerWithTransactionBatch:nil];
 }
 
 - (void) updateWithCacheTransaction:(CacheTransactionBatch *)cacheTransactionBatch {
-  [self.dataDisplayManager updateDataDisplayManagerWithTransactionBatch:cacheTransactionBatch empty:NO];
+  [self.dataDisplayManager updateDataDisplayManagerWithTransactionBatch:cacheTransactionBatch];
 }
 
 @end

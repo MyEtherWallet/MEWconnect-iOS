@@ -44,7 +44,7 @@
 
 #pragma mark - NSNotifications
 
-- (void) _userDidTakeScreenshort:(NSNotification *)notification {
+- (void) _userDidTakeScreenshort:(__unused NSNotification *)notification {
   [self.output userDidTakeScreenshot];
 }
 

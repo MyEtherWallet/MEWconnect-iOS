@@ -10,9 +10,12 @@
 
 #import "BlockchainNetworkTypes.h"
 
+@class AccountPlainObject;
+@class NetworkPlainObject;
 @class NetworkModelObject;
 
 @protocol BlockchainNetworkService <NSObject>
 - (NetworkModelObject *) obtainActiveNetwork;
-- (BOOL) selectNetwork:(BlockchainNetworkType)network;
+- (void) selectNetwork:(NetworkPlainObject *)network inAccount:(AccountPlainObject *)account;
+- (NetworkModelObject *) createNetworkWithChainID:(NSInteger)chainID inAccount:(AccountPlainObject *)account;
 @end

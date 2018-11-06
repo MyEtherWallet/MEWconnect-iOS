@@ -62,7 +62,7 @@
                      @"signMessage" : @(MEWConnectCommandTypeSignMessage),
                      @"text"        : @(MEWConnectCommandTypeText)};
   }
-  return ^id(NSString *key, NSString *value) {
+  return ^id(__unused NSString *key, NSString *value) {
     NSNumber *type = commandTypes[value] ?: @(MEWConnectCommandTypeUnknown);
     return type;
   };

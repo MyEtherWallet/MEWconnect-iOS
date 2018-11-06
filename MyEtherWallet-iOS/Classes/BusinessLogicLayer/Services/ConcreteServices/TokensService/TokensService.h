@@ -8,12 +8,15 @@
 
 @import Foundation;
 
-@class AccountPlainObject;
+@class MasterTokenModelObject;
+@class MasterTokenPlainObject;
 
 typedef void(^TokensServiceCompletion)(NSError *error);
 
 @protocol TokensService <NSObject>
-- (void) updateTokenBalancesForAccount:(AccountPlainObject *)account withCompletion:(TokensServiceCompletion)completion;
-- (NSUInteger) obtainNumberOfTokensForAccount:(AccountPlainObject *)account;
-- (NSDecimalNumber *) obtainTokensTotalPriceForAccount:(AccountPlainObject *)account;
+- (void) updateBalanceOfMasterToken:(MasterTokenPlainObject *)masterToken withCompletion:(TokensServiceCompletion)completion;
+- (void) updateTokenBalancesOfMasterToken:(MasterTokenPlainObject *)masterToken withCompletion:(TokensServiceCompletion)completion;
+- (NSUInteger) obtainNumberOfTokensOfMasterToken:(MasterTokenPlainObject *)masterToken;
+- (NSDecimalNumber *) obtainTokensTotalPriceOfMasterToken:(MasterTokenPlainObject *)masterToken;
+- (MasterTokenModelObject *) obtainActiveMasterToken;
 @end

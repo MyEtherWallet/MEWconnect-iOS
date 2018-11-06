@@ -10,7 +10,7 @@
 
 @implementation ResponseConverterImplementation
 
-- (NSDictionary *)convertFromResponse:(NSDictionary *)dictionary error:(NSError *__autoreleasing *)error {
+- (NSDictionary *)convertFromResponse:(NSDictionary *)dictionary error:(__unused NSError *__autoreleasing *)error {
   return dictionary;
 }
 

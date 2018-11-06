@@ -11,7 +11,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class AccountModelObject;
 @class TokenModelObject;
 
 @interface FiatPriceModelObjectID : NSManagedObjectID {}
@@ -25,19 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, nullable) NSDecimalNumber* usdPrice;
 
-@property (nonatomic, strong, nullable) NSSet<AccountModelObject*> *fromAccount;
-- (nullable NSMutableSet<AccountModelObject*>*)fromAccountSet;
-
 @property (nonatomic, strong, nullable) NSSet<TokenModelObject*> *fromToken;
 - (nullable NSMutableSet<TokenModelObject*>*)fromTokenSet;
-
-@end
-
-@interface _FiatPriceModelObject (FromAccountCoreDataGeneratedAccessors)
-- (void)addFromAccount:(NSSet<AccountModelObject*>*)value_;
-- (void)removeFromAccount:(NSSet<AccountModelObject*>*)value_;
-- (void)addFromAccountObject:(AccountModelObject*)value_;
-- (void)removeFromAccountObject:(AccountModelObject*)value_;
 
 @end
 
@@ -54,9 +42,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSDecimalNumber*)primitiveUsdPrice;
 - (void)setPrimitiveUsdPrice:(nullable NSDecimalNumber*)value;
 
-- (NSMutableSet<AccountModelObject*>*)primitiveFromAccount;
-- (void)setPrimitiveFromAccount:(NSMutableSet<AccountModelObject*>*)value;
-
 - (NSMutableSet<TokenModelObject*>*)primitiveFromToken;
 - (void)setPrimitiveFromToken:(NSMutableSet<TokenModelObject*>*)value;
 
@@ -67,7 +52,6 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface FiatPriceModelObjectRelationships: NSObject
-+ (NSString *)fromAccount;
 + (NSString *)fromToken;
 @end
 

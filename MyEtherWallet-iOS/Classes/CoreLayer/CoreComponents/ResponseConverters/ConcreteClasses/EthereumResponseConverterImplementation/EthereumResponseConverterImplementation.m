@@ -21,7 +21,7 @@ static NSString *const kEthereumResponseId        = @"id";
 
 @implementation EthereumResponseConverterImplementation
 
-- (id)convertFromResponse:(id)response error:(NSError *__autoreleasing *)error {
+- (id)convertFromResponse:(id)response error:(__unused NSError *__autoreleasing *)error {
   NSDecimalNumber *balance = [response[kEthereumResponseResult] decimalNumberFromHexRepresentation];
   /* It's safe to use directly from response, because of validator */
   NSDictionary *converted = @{kEthereumResponseAddress: response[kEthereumResponseId],

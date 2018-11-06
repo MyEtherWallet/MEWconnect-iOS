@@ -41,7 +41,7 @@ static NSString *const kRotationButtonAnimationKey  = @"animation.rotate";
 
 #pragma mark - CAAnimationDelegate
 
-- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+- (void)animationDidStop:(__unused CAAnimation *)anim finished:(__unused BOOL)flag
 {
   if (self.rotation) {
     [self _addRotateAnimation];

@@ -10,17 +10,25 @@
 
 #import "BlockchainNetworkTypes.h"
 
+@class AccountPlainObject;
+@class NetworkPlainObject;
+@class MasterTokenPlainObject;
+
 @class MEWConnectTransaction;
 @class MEWConnectMessage;
 
+typedef void(^MEWwalletCreateCompletionBlock)(BOOL success);
 typedef void(^MEWWalletCompletionBlock)(BOOL success, NSString *address);
 typedef void(^MEWWalletDataCompletionBlock)(id data);
 
 @protocol MEWwallet <NSObject>
-- (void) createWalletWithPassword:(NSString *)password words:(NSArray <NSString *> *)words network:(BlockchainNetworkType)network completion:(MEWWalletCompletionBlock)completion;
-- (NSString *) validatePassword:(NSString *)password publicAddress:(NSString *)publicAddress network:(BlockchainNetworkType)network;
-- (void) signMessage:(MEWConnectMessage *)message password:(NSString *)password publicAddress:(NSString *)publicAddress network:(BlockchainNetworkType)network completion:(MEWWalletDataCompletionBlock)completion;
-- (void) signTransaction:(MEWConnectTransaction *)transaction password:(NSString *)password publicAddress:(NSString *)publicAddress network:(BlockchainNetworkType)network completion:(MEWWalletDataCompletionBlock)completion;
-- (NSArray <NSString *> *) recoveryMnemonicsWordsWithPassword:(NSString *)password publicAddress:(NSString *)publicAddress network:(BlockchainNetworkType)network;
+- (void) createWalletWithPassword:(NSString *)password mnemonicWords:(NSArray <NSString *> *)mnemonicWords account:(AccountPlainObject *)account;
+- (void) createKeysWithChainIDs:(NSSet <NSNumber *> *)chainIDs forAccount:(AccountPlainObject *)account withPassword:(NSString *)password mnemonicWords:(NSArray <NSString *> *)mnemonicWords completion:(MEWwalletCreateCompletionBlock)completion;
+- (BOOL) validatePassword:(NSString *)password account:(AccountPlainObject *)account;
+- (void) signMessage:(MEWConnectMessage *)message password:(NSString *)password masterToken:(MasterTokenPlainObject *)masterToken completion:(MEWWalletDataCompletionBlock)completion;
+- (void) signTransaction:(MEWConnectTransaction *)transaction password:(NSString *)password masterToken:(MasterTokenPlainObject *)masterToken completion:(MEWWalletDataCompletionBlock)completion;
+- (BOOL) isSeedAvailableForAccount:(AccountPlainObject *)account;
+- (BOOL) validateSeedWithWords:(NSArray <NSString *> *)words withNetwork:(NetworkPlainObject *)network;
+- (NSArray <NSString *> *) recoveryMnemonicsWordsWithPassword:(NSString *)password ofAccount:(AccountPlainObject *)account;
 - (NSArray <NSString *> *) obtainBIP32Words;
 @end

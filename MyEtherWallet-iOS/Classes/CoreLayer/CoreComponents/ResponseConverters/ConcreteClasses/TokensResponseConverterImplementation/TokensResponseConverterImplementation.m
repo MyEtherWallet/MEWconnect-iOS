@@ -13,7 +13,7 @@ static NSString *const kTokensResultKey = @"result";
 
 @implementation TokensResponseConverterImplementation
 
-- (id)convertFromResponse:(id)response error:(NSError *__autoreleasing *)error {
+- (id)convertFromResponse:(id)response error:(__unused NSError *__autoreleasing *)error {
   if ([response isKindOfClass:[NSArray class]]) {
     NSMutableArray *convertedResponse = [[NSMutableArray alloc] initWithCapacity:[(NSArray *)response count]];
     for (NSDictionary *request in response) {

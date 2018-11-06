@@ -200,7 +200,7 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
     self.stepsDescriptionLabel.alpha = 0.0;
     self.statusContainerView.alpha = 0.0;
     self.loadingContainerView.alpha = 1.0;
-  } completion:^(BOOL finished) {
+  } completion:^(__unused BOOL finished) {
     --self.runningAnimations;
   }];
 }
@@ -227,7 +227,7 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
                      self.loadingContainerView.alpha = 0.0;
                      self.statusContainerView.alpha = 1.0;
                      self.statusInfoContactSupportButton.alpha = 1.0;
-                   } completion:^(BOOL finished) {
+                   } completion:^(__unused BOOL finished) {
                      --self.runningAnimations;
                      if (self.runningAnimations == 0) {
                        [self.loadingActivity stopAnimating];
@@ -265,7 +265,7 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
                    animations:^{
                      self.loadingContainerView.alpha = 0.0;
                      self.statusContainerView.alpha = 1.0;
-                   } completion:^(BOOL finished) {
+                   } completion:^(__unused BOOL finished) {
                      --self.runningAnimations;
                      if (self.runningAnimations == 0) {
                        [self.loadingActivity stopAnimating];
@@ -279,7 +279,7 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
     [UIView animateWithDuration:kQRScannerViewControllerFadeAnimationDuration
                      animations:^{
                        self.accessToCameraLabel.alpha = 0.0;
-                     } completion:^(BOOL finished) {
+                     } completion:^(__unused BOOL finished) {
                        self.accessToCameraLabel.hidden = YES;
                      }];
   }
@@ -292,8 +292,7 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
     [UIView animateWithDuration:kQRScannerViewControllerFadeAnimationDuration
                      animations:^{
                        self.accessToCameraLabel.alpha = 1.0;
-                     } completion:^(BOOL finished) {
-                     }];
+                     } completion:nil];
   }
 }
 
@@ -315,11 +314,11 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
 
 #pragma mark - IBActions
 
-- (IBAction) closeAction:(UIButton *)sender {
+- (IBAction) closeAction:(__unused UIButton *)sender {
   [self.output closeAction];
 }
 
-- (IBAction) contactSupport:(UIButton *)sender {
+- (IBAction) contactSupport:(__unused UIButton *)sender {
   [self.output contactSupportAction];
 }
 
@@ -404,13 +403,13 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
 
 #pragma mark - LinkedLabelDelegate
 
-- (void) linkedLabel:(LinkedLabel *)label didSelectURL:(NSURL *)url {
+- (void) linkedLabel:(__unused LinkedLabel *)label didSelectURL:(__unused NSURL *)url {
   [self.output settingsAction];
 }
 
 #pragma mark - MFMailComposeViewControllerDelegate
 
-- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(nullable NSError *)error {
+- (void)mailComposeController:(__unused MFMailComposeViewController *)controller didFinishWithResult:(__unused MFMailComposeResult)result error:(nullable __unused NSError *)error {
   [self dismissViewControllerAnimated:YES completion:nil];
 }
 

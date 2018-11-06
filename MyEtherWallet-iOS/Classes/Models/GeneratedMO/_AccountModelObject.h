@@ -12,9 +12,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class NetworkModelObject;
-@class FiatPriceModelObject;
-@class PurchaseHistoryModelObject;
-@class TokenModelObject;
 
 @interface AccountModelObjectID : NSManagedObjectID {}
 @end
@@ -37,48 +34,20 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)backedUpValue;
 - (void)setBackedUpValue:(BOOL)value_;
 
-@property (nonatomic, strong, nullable) NSDecimalNumber* balance;
+@property (nonatomic, strong, nullable) NSString* name;
 
-@property (nonatomic, strong, nullable) NSNumber* decimals;
+@property (nonatomic, strong, nullable) NSString* uid;
 
-@property (atomic) int16_t decimalsValue;
-- (int16_t)decimalsValue;
-- (void)setDecimalsValue:(int16_t)value_;
-
-@property (nonatomic, strong, nullable) NSString* publicAddress;
-
-@property (nonatomic, strong, nullable) NetworkModelObject *fromNetwork;
-
-@property (nonatomic, strong, nullable) FiatPriceModelObject *price;
-
-@property (nonatomic, strong, nullable) NSOrderedSet<PurchaseHistoryModelObject*> *purchaseHistory;
-- (nullable NSMutableOrderedSet<PurchaseHistoryModelObject*>*)purchaseHistorySet;
-
-@property (nonatomic, strong, nullable) NSSet<TokenModelObject*> *tokens;
-- (nullable NSMutableSet<TokenModelObject*>*)tokensSet;
+@property (nonatomic, strong, nullable) NSSet<NetworkModelObject*> *networks;
+- (nullable NSMutableSet<NetworkModelObject*>*)networksSet;
 
 @end
 
-@interface _AccountModelObject (PurchaseHistoryCoreDataGeneratedAccessors)
-- (void)addPurchaseHistory:(NSOrderedSet<PurchaseHistoryModelObject*>*)value_;
-- (void)removePurchaseHistory:(NSOrderedSet<PurchaseHistoryModelObject*>*)value_;
-- (void)addPurchaseHistoryObject:(PurchaseHistoryModelObject*)value_;
-- (void)removePurchaseHistoryObject:(PurchaseHistoryModelObject*)value_;
-
-- (void)insertObject:(PurchaseHistoryModelObject*)value inPurchaseHistoryAtIndex:(NSUInteger)idx;
-- (void)removeObjectFromPurchaseHistoryAtIndex:(NSUInteger)idx;
-- (void)insertPurchaseHistory:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
-- (void)removePurchaseHistoryAtIndexes:(NSIndexSet *)indexes;
-- (void)replaceObjectInPurchaseHistoryAtIndex:(NSUInteger)idx withObject:(PurchaseHistoryModelObject*)value;
-- (void)replacePurchaseHistoryAtIndexes:(NSIndexSet *)indexes withPurchaseHistory:(NSArray *)values;
-
-@end
-
-@interface _AccountModelObject (TokensCoreDataGeneratedAccessors)
-- (void)addTokens:(NSSet<TokenModelObject*>*)value_;
-- (void)removeTokens:(NSSet<TokenModelObject*>*)value_;
-- (void)addTokensObject:(TokenModelObject*)value_;
-- (void)removeTokensObject:(TokenModelObject*)value_;
+@interface _AccountModelObject (NetworksCoreDataGeneratedAccessors)
+- (void)addNetworks:(NSSet<NetworkModelObject*>*)value_;
+- (void)removeNetworks:(NSSet<NetworkModelObject*>*)value_;
+- (void)addNetworksObject:(NetworkModelObject*)value_;
+- (void)removeNetworksObject:(NetworkModelObject*)value_;
 
 @end
 
@@ -96,45 +65,26 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)primitiveBackedUpValue;
 - (void)setPrimitiveBackedUpValue:(BOOL)value_;
 
-- (nullable NSDecimalNumber*)primitiveBalance;
-- (void)setPrimitiveBalance:(nullable NSDecimalNumber*)value;
+- (nullable NSString*)primitiveName;
+- (void)setPrimitiveName:(nullable NSString*)value;
 
-- (nullable NSNumber*)primitiveDecimals;
-- (void)setPrimitiveDecimals:(nullable NSNumber*)value;
+- (nullable NSString*)primitiveUid;
+- (void)setPrimitiveUid:(nullable NSString*)value;
 
-- (int16_t)primitiveDecimalsValue;
-- (void)setPrimitiveDecimalsValue:(int16_t)value_;
-
-- (nullable NSString*)primitivePublicAddress;
-- (void)setPrimitivePublicAddress:(nullable NSString*)value;
-
-- (NetworkModelObject*)primitiveFromNetwork;
-- (void)setPrimitiveFromNetwork:(NetworkModelObject*)value;
-
-- (FiatPriceModelObject*)primitivePrice;
-- (void)setPrimitivePrice:(FiatPriceModelObject*)value;
-
-- (NSMutableOrderedSet<PurchaseHistoryModelObject*>*)primitivePurchaseHistory;
-- (void)setPrimitivePurchaseHistory:(NSMutableOrderedSet<PurchaseHistoryModelObject*>*)value;
-
-- (NSMutableSet<TokenModelObject*>*)primitiveTokens;
-- (void)setPrimitiveTokens:(NSMutableSet<TokenModelObject*>*)value;
+- (NSMutableSet<NetworkModelObject*>*)primitiveNetworks;
+- (void)setPrimitiveNetworks:(NSMutableSet<NetworkModelObject*>*)value;
 
 @end
 
 @interface AccountModelObjectAttributes: NSObject 
 + (NSString *)active;
 + (NSString *)backedUp;
-+ (NSString *)balance;
-+ (NSString *)decimals;
-+ (NSString *)publicAddress;
++ (NSString *)name;
++ (NSString *)uid;
 @end
 
 @interface AccountModelObjectRelationships: NSObject
-+ (NSString *)fromNetwork;
-+ (NSString *)price;
-+ (NSString *)purchaseHistory;
-+ (NSString *)tokens;
++ (NSString *)networks;
 @end
 
 NS_ASSUME_NONNULL_END

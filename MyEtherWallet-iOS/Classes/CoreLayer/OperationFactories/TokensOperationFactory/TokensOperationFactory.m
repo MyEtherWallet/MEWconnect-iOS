@@ -19,6 +19,7 @@
 #import "RequestDataModel.h"
 
 #import "TokenModelObject.h"
+#import "MasterTokenModelObject.h"
 
 @interface TokensOperationFactory ()
 @property (nonatomic, strong) NetworkCompoundOperationBuilder *networkOperationBuilder;
@@ -46,6 +47,45 @@
 }
 
 #pragma mark - Operations creation
+
+- (CompoundOperationBase *) ethereumBalanceWithBody:(MasterTokenBody *)body inNetwork:(BlockchainNetworkType)network {
+  CompoundOperationBuilderConfig *config = [[CompoundOperationBuilderConfig alloc] init];
+  
+  config.requestConfigurationType = RequestConfigurationMyEtherAPIType;
+  config.requestMethod = kHTTPMethodPOST;
+  switch (network) {
+    case BlockchainNetworkTypeMainnet: {
+      config.serviceName = kServiceNameETH;
+      break;
+    }
+    case BlockchainNetworkTypeRopsten: {
+      config.serviceName = kServiceNameROP;
+      break;
+    }
+    default: {
+      config.serviceName = kServiceNameETH;
+      break;
+    }
+  }
+  
+  config.responseDeserializationType = ResponseDeserializationJSONType;
+  
+  config.responseConvertingType = ResponseConvertingEthereumType;
+  
+  config.responseValidationType = ResponseValidationEthereumType;
+  
+  config.responseMappingType = ResponseMappingCoreDataType;
+  
+  config.mappingContext = @{kMappingContextModelClassKey : NSStringFromClass([MasterTokenModelObject class])};
+  
+  NSData *bodyData = [self.bodyTransformer deriveDataFromBody:body];
+  NSDictionary *headers = [self.headersBuilder build];
+  RequestDataModel *inputData = [[RequestDataModel alloc] initWithHTTPHeaderFields:headers
+                                                                   queryParameters:nil
+                                                                          bodyData:bodyData];
+  config.inputQueueData = inputData;
+  return [self.networkOperationBuilder buildCompoundOperationWithConfig:config];
+}
 
 - (CompoundOperationBase *) contractBalancesWithBody:(TokensBody *)body {
   CompoundOperationBuilderConfig *config = [[CompoundOperationBuilderConfig alloc] init];

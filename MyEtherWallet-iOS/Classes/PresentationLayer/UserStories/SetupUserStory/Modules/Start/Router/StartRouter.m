@@ -12,6 +12,7 @@
 
 #import "HomeModuleInput.h"
 #import "RestoreWalletModuleInput.h"
+#import "PasswordModuleInput.h"
 
 static NSString *const kStartToPasswordSegueIdentifier        = @"StartToPasswordSegueIdentifier";
 static NSString *const kStartToHomeSegueIdentifier            = @"StartToHomeSegueIdentifier";
@@ -22,7 +23,8 @@ static NSString *const kStartToRestoreWalletSegueIdentifier   = @"StartToRestore
 #pragma mark - StartRouterInput
 
 - (void) openCreateNewWallet {
-  [[self.transitionHandler openModuleUsingSegue:kStartToPasswordSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<RamblerViperModuleInput> moduleInput) {
+  [[self.transitionHandler openModuleUsingSegue:kStartToPasswordSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<PasswordModuleInput> moduleInput) {
+    [moduleInput configureModule];
     return nil;
   }];
 }

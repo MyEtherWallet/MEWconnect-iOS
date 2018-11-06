@@ -5,7 +5,7 @@ inhibit_all_warnings!
 
 abstract_target 'MEWconnect' do
   # VIPER
-  pod 'Typhoon', '3.5.1'
+  pod 'Typhoon', '4.0.7'
   
   # Navigation
   pod 'ViperMcFlurryX', :git => 'https://github.com/Foboz/ViperMcFlurryX.git'
@@ -15,7 +15,7 @@ abstract_target 'MEWconnect' do
   pod 'Socket.IO-Client-Swift'
   
   # Other
-  pod 'libextobjc', '~> 0.4'
+  pod 'libextobjc', :git => 'https://github.com/jspahrsummers/libextobjc.git'
   pod 'RamblerAppDelegateProxy', '0.0.3'
   pod 'zxcvbn-ios'
   
@@ -42,7 +42,7 @@ abstract_target 'MEWconnect' do
   pod 'CHIPageControl/Chimayo', '= 0.1.6'
   
   # Ethereum
-  pod 'web3swift', :git => 'https://github.com/Foboz/web3swift.git'
+  pod 'web3swift', :git => 'https://github.com/Foboz/web3swift.git', :branch => 'v200_mew'
   pod 'GoogleWebRTC'
   
   # Cryptographic

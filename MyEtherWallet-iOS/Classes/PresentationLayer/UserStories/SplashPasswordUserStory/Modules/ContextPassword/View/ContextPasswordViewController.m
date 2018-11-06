@@ -93,13 +93,9 @@ static float const kContextPasswordShakeAnimationRepeatCount = 3.0;
   return NO;
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField reason:(UITextFieldDidEndEditingReason)reason {
-  
-}
-
 #pragma mark - IBActions
 
-- (IBAction) cancelAction:(UIButton *)sender {
+- (IBAction) cancelAction:(__unused UIButton *)sender {
   [self.output cancelAction];
 }
 

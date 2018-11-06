@@ -11,10 +11,10 @@
 #import "BlockchainNetworkTypes.h"
 #import "SimplexServiceCurrencyTypes.h"
 
-@class AccountPlainObject;
+@class MasterTokenPlainObject;
 
 @protocol BuyEtherAmountInteractorInput <NSObject>
-- (void) configurateWithAccount:(AccountPlainObject *)account;
+- (void) configurateWithMasterToken:(MasterTokenPlainObject *)masterToken;
 - (void) appendSymbol:(NSString *)symbol;
 - (void) eraseSymbol;
 - (void) switchConverting;
@@ -22,6 +22,6 @@
 - (NSString *) obtainEnteredAmount;
 - (NSDecimalNumber *) obtainConvertedAmount;
 - (void) prepareQuote;
-- (AccountPlainObject *) obtainAccount;
+- (MasterTokenPlainObject *) obtainMasterToken;
 - (NSDecimalNumber *) obtainMinimumAmount;
 @end

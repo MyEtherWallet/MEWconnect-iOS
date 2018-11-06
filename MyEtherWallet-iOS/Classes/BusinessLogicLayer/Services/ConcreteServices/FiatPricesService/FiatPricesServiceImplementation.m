@@ -15,9 +15,10 @@
 
 #import "FiatPricesQuery.h"
 
-#import "AccountModelObject.h"
+#import "NetworkModelObject.h"
 #import "TokenModelObject.h"
 #import "FiatPriceModelObject.h"
+#import "MasterTokenModelObject.h"
 
 #import "FiatPricesServiceImplementation.h"
 
@@ -31,40 +32,13 @@ static NSString *const FiatPricesEthereumSymbol = @"ETH";
 
 @implementation FiatPricesServiceImplementation
 
-- (void) updatePriceForEthereumWithCompletion:(FiatPricesServiceCompletion)completion {
+- (void) updateFiatPricesWithCompletion:(FiatPricesServiceCompletion)completion {
   NSManagedObjectContext *rootSavingContext = [NSManagedObjectContext MR_rootSavingContext];
   
-  FiatPricesQuery *query = [self _obtainEthereumQuery];
+  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.fromAccount.active == YES && SELF.active == YES"];
+  NetworkModelObject *networkModelObject = [NetworkModelObject MR_findFirstWithPredicate:predicate inContext:rootSavingContext];
   
-  [rootSavingContext performBlock:^{
-    CompoundOperationBase *compoundOperation = [self.fiatPricesOperationFactory fiatPricesWithQuery:query];
-    [compoundOperation setResultBlock:^(id data, NSError *error) {
-      if (!error) {
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.fromAccount.@count == 0 && SELF.fromToken.@count == 0"];
-        NSArray <FiatPriceModelObject *> *ghostsFiatPrices = [FiatPriceModelObject MR_findAllWithPredicate:predicate inContext:rootSavingContext];
-        if ([ghostsFiatPrices count] > 0) {
-          [rootSavingContext MR_deleteObjects:ghostsFiatPrices];
-          [rootSavingContext MR_saveToPersistentStoreAndWait];
-        }
-      }
-      
-      dispatch_async(dispatch_get_main_queue(), ^{
-        if (completion) {
-          completion(error);
-        }
-      });
-    }];
-    [self.operationScheduler addOperation:compoundOperation];
-  }];
-}
-
-- (void) updatePricesForTokensWithCompletion:(FiatPricesServiceCompletion)completion {
-  NSManagedObjectContext *rootSavingContext = [NSManagedObjectContext MR_rootSavingContext];
-  
-  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.fromNetwork.active == YES && SELF.active == YES"];
-  AccountModelObject *accountModelObject = [AccountModelObject MR_findFirstWithPredicate:predicate inContext:rootSavingContext];
-  
-  FiatPricesQuery *query = [self _obtainTokensQueryWithAccount:accountModelObject];
+  FiatPricesQuery *query = [self _obtainTokensQueryWithNetwork:networkModelObject];
   if (!query) {
     dispatch_async(dispatch_get_main_queue(), ^{
       if (completion) {
@@ -76,9 +50,9 @@ static NSString *const FiatPricesEthereumSymbol = @"ETH";
   
   [rootSavingContext performBlock:^{
     CompoundOperationBase *compoundOperation = [self.fiatPricesOperationFactory fiatPricesWithQuery:query];
-    [compoundOperation setResultBlock:^(id data, NSError *error) {
+    [compoundOperation setResultBlock:^(__unused id data, NSError *error) {
       if (!error) {
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.fromAccount.@count == 0 && SELF.fromToken.@count == 0"];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.fromToken.@count == 0"];
         NSArray <FiatPriceModelObject *> *ghostsFiatPrices = [FiatPriceModelObject MR_findAllWithPredicate:predicate inContext:rootSavingContext];
         if ([ghostsFiatPrices count] > 0) {
           [rootSavingContext MR_deleteObjects:ghostsFiatPrices];
@@ -97,13 +71,17 @@ static NSString *const FiatPricesEthereumSymbol = @"ETH";
 
 #pragma mark - Private
 
-- (FiatPricesQuery *) _obtainTokensQueryWithAccount:(AccountModelObject *)account {
-  NSArray *symbols = [account.tokens valueForKeyPath:NSStringFromSelector(@selector(symbol))];
+- (FiatPricesQuery *) _obtainTokensQueryWithNetwork:(NetworkModelObject *)networkModelObject {
+  NSSet <NSString *> *symbols = [networkModelObject.tokens valueForKeyPath:NSStringFromSelector(@selector(symbol))];
+  NSString *masterSymbol = networkModelObject.master.symbol;
+  if (masterSymbol) {
+    symbols = [symbols setByAddingObject:masterSymbol];
+  }
   if ([symbols count] == 0) {
     return nil;
   }
-  NSMutableSet *tokensSet = [[NSMutableSet alloc] init];
-  [tokensSet addObjectsFromArray:symbols];
+  NSMutableSet <NSString *> *tokensSet = [[NSMutableSet alloc] init];
+  [tokensSet unionSet:symbols];
   
   FiatPricesQuery *query = [[FiatPricesQuery alloc] init];
   query.symbols = [tokensSet copy];

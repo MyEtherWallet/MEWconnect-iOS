@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class AccountModelObject;
+@class TokenModelObject;
 
 @interface PurchaseHistoryModelObjectID : NSManagedObjectID {}
 @end
@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, nullable) NSString* userId;
 
-@property (nonatomic, strong, nullable) AccountModelObject *fromAccount;
+@property (nonatomic, strong, nullable) TokenModelObject *fromToken;
 
 @end
 
@@ -67,8 +67,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSString*)primitiveUserId;
 - (void)setPrimitiveUserId:(nullable NSString*)value;
 
-- (AccountModelObject*)primitiveFromAccount;
-- (void)setPrimitiveFromAccount:(AccountModelObject*)value;
+- (TokenModelObject*)primitiveFromToken;
+- (void)setPrimitiveFromToken:(TokenModelObject*)value;
 
 @end
 
@@ -81,7 +81,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface PurchaseHistoryModelObjectRelationships: NSObject
-+ (NSString *)fromAccount;
++ (NSString *)fromToken;
 @end
 
 NS_ASSUME_NONNULL_END

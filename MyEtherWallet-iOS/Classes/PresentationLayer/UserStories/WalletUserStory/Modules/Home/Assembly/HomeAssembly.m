@@ -68,6 +68,8 @@
                                                 with:[self.serviceComponents reachabilityServiceWithDelegate:[self interactorHome]]];
                           [definition injectProperty:@selector(rateService)
                                                 with:[self.serviceComponents rateService]];
+                          [definition injectProperty:@selector(walletService)
+                                                with:[self.serviceComponents MEWwallet]];
                         }];
 }
 

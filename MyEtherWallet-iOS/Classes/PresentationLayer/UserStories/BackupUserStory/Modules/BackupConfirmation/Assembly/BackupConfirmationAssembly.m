@@ -36,6 +36,8 @@
                                                 with:[self presenterBackupConfirmation]];
                           [definition injectProperty:@selector(accountsService)
                                                 with:[self.serviceComponents accountsService]];
+                          [definition injectProperty:@selector(walletService)
+                                                with:[self.serviceComponents MEWwallet]];
                         }];
 }
 

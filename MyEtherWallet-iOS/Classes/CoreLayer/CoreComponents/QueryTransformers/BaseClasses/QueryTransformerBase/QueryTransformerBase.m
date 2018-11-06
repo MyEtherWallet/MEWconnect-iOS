@@ -10,7 +10,7 @@
 
 @implementation QueryTransformerBase
 
-- (NSDictionary *)deriveUrlParametersFromQuery:(id)query {
+- (NSDictionary *)deriveUrlParametersFromQuery:(__unused id)query {
   return nil;
 }
 

@@ -86,7 +86,16 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
     _backgroundImage = [patternImage renderBackgroundWithSeed:seed size:fullSize logo:NO];
   }
   UIImage *cardImage = [UIImage cachedBackgroundWithSeed:seed size:cardSize logo:YES];
-  self.backgroundImageView.image = cardImage;
+  if (self.backgroundImageView.image && cardImage) {
+    [UIView transitionWithView:self.backgroundImageView
+                      duration:0.3
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+                      self.backgroundImageView.image = cardImage;
+                    } completion:nil];
+  } else {
+    self.backgroundImageView.image = cardImage;
+  }
   if (!self.backgroundImageView.image) {
     if (!patternImage) {
       patternImage = [UIImage imageWithSeed:seed size:fullSize];
@@ -609,15 +618,15 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
 
 #pragma mark - IBActions
 
-- (void) shareAction:(UIButton *)sender {
+- (void) shareAction:(__unused UIButton *)sender {
   [self.delegate cardViewDidTouchShareButton:self];
 }
 
-- (void) backupAction:(UIButton *)sender {
+- (void) backupAction:(__unused UIButton *)sender {
   [self.delegate cardViewDidTouchBackupButton:self];
 }
 
-- (void) backupStatusAction:(UIButton *)sender {
+- (void) backupStatusAction:(__unused UIButton *)sender {
   [self.delegate cardViewDidTouchBackupStatusButton:self];
 }
 

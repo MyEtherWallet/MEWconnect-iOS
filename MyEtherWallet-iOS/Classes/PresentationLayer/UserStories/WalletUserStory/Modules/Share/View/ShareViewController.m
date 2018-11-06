@@ -134,15 +134,15 @@
 
 #pragma mark - IBActions
 
-- (IBAction) closeAction:(id)sender {
+- (IBAction) closeAction:(__unused id)sender {
   [self.output closeAction];
 }
 
-- (IBAction) copyAction:(id)sender {
+- (IBAction) copyAction:(__unused id)sender {
   [self.output copyAction];
 }
 
-- (IBAction) shareAction:(id)sender {
+- (IBAction) shareAction:(__unused id)sender {
   [self.output shareAction];
 }
 

@@ -10,12 +10,12 @@
 
 #import "ShareInteractorOutput.h"
 
-#import "AccountPlainObject.h"
+#import "MasterTokenPlainObject.h"
 
 static CGFloat const kShareInteractorQRCodeSize = 155.0;
 
 @interface ShareInteractor ()
-@property (nonatomic, strong) AccountPlainObject *account;
+@property (nonatomic, strong) MasterTokenPlainObject *masterToken;
 @property (nonatomic, strong) UIImage *qrCode;
 @end
 
@@ -23,10 +23,10 @@ static CGFloat const kShareInteractorQRCodeSize = 155.0;
 
 #pragma mark - ShareInteractorInput
 
-- (void) configureWithAccount:(AccountPlainObject *)account {
-  self.account = account;
+- (void) configureWithMasterToken:(MasterTokenPlainObject *)masterToken {
+  self.masterToken = masterToken;
   
-  NSString *address = account.publicAddress;
+  NSString *address = masterToken.address;
   NSData *addressData = [address dataUsingEncoding:NSUTF8StringEncoding];
   
   CIFilter *qrFilter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
@@ -43,7 +43,7 @@ static CGFloat const kShareInteractorQRCodeSize = 155.0;
 }
 
 - (NSString *) obtainPublicAddress {
-  return self.account.publicAddress;
+  return self.masterToken.address;
 }
 
 - (UIImage *)obtainQRCode {
@@ -51,11 +51,11 @@ static CGFloat const kShareInteractorQRCodeSize = 155.0;
 }
 
 - (void) copyAddress {
-  [UIPasteboard generalPasteboard].string = self.account.publicAddress;
+  [UIPasteboard generalPasteboard].string = self.masterToken.address;
 }
 
 - (NSArray *) shareActivityItems {
-  return @[self.account.publicAddress];
+  return @[self.masterToken.address];
 }
 
 @end

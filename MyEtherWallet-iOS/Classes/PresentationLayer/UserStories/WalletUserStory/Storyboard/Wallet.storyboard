@@ -122,6 +122,8 @@
                         <segue destination="bjD-Qn-fHU" kind="presentation" identifier="HomeToBuyEtherSegueIdentifier" id="aaz-Cv-z2t"/>
                         <segue destination="SCy-K4-Xfl" kind="unwind" identifier="HomeToStartUnwindSegueIdentifier" unwindAction="unwindToStart:" id="Jrq-uR-yox"/>
                         <segue destination="jof-MD-bbI" kind="presentation" identifier="HomeToShareSegueIdentifier" id="twW-2h-hFn"/>
+                        <segue destination="Yuh-PW-13J" kind="presentation" identifier="HomeToContextPasswordSegueIdentifier" id="r9z-sj-bX3"/>
+                        <segue destination="V0M-g7-eeh" kind="presentation" identifier="HomeToRestoreSeedSegueIdentifier" id="TxO-fp-DnR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dKq-6Q-B9q" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -163,7 +165,7 @@
                 <viewControllerPlaceholder storyboardName="Confirmation" id="aal-Ks-Rc6" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="prx-aW-hm4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-211" y="281"/>
+            <point key="canvasLocation" x="-1146" y="376"/>
         </scene>
         <!--Delegate-->
         <scene sceneID="UyH-q1-XEx">
@@ -410,7 +412,15 @@ with MyEtherWallet</string>
                 <viewControllerPlaceholder storyboardName="Confirmation" referencedIdentifier="MessageSignerViewController" id="TZ6-JA-fY1" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uwQ-lg-xPN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137" y="281"/>
+            <point key="canvasLocation" x="-842" y="376"/>
+        </scene>
+        <!--ContextPasswordViewController-->
+        <scene sceneID="Bm5-MF-oxq">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SplashPassword" referencedIdentifier="ContextPasswordViewController" id="Yuh-PW-13J" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="keO-Ge-zJA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-457" y="376"/>
         </scene>
         <!--BuyEther-->
         <scene sceneID="pFD-6B-yWR">
@@ -418,7 +428,15 @@ with MyEtherWallet</string>
                 <viewControllerPlaceholder storyboardName="BuyEther" id="bjD-Qn-fHU" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VYq-Cb-3EX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="667" y="281"/>
+            <point key="canvasLocation" x="19" y="376"/>
+        </scene>
+        <!--RestoreSeedViewController-->
+        <scene sceneID="w6y-cl-Q6N">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Setup" referencedIdentifier="RestoreSeedViewController" id="V0M-g7-eeh" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7hl-kF-UmA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="306" y="376"/>
         </scene>
         <!--Backup-->
         <scene sceneID="KoZ-bX-bMZ">
@@ -426,7 +444,7 @@ with MyEtherWallet</string>
                 <viewControllerPlaceholder storyboardName="Backup" id="Et8-6R-zGr" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tCu-5f-aqZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="438" y="281"/>
+            <point key="canvasLocation" x="-150" y="376"/>
         </scene>
         <!--Info View Controller-->
         <scene sceneID="dlA-hx-fn3">
@@ -535,7 +553,7 @@ with MyEtherWallet</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lwe-by-bLp" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ySg-Me-ph6" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1101.5999999999999" y="510.49475262368821"/>
+            <point key="canvasLocation" x="1102" y="663"/>
         </scene>
         <!--Share View Controller-->
         <scene sceneID="ppL-BA-3od">
@@ -660,7 +678,7 @@ with MyEtherWallet</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cpB-ob-CuM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1102" y="1248"/>
+            <point key="canvasLocation" x="1102" y="1400"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qBv-Bo-8LF">
@@ -677,7 +695,7 @@ with MyEtherWallet</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hf7-P5-yJ3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1897" y="510"/>
+            <point key="canvasLocation" x="1897" y="663"/>
         </scene>
         <!--About-->
         <scene sceneID="0nI-Uy-1EZ">
@@ -719,7 +737,7 @@ With added layers of security, MEWconnect puts you in total control of your cryp
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BJp-nb-14y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2673" y="510"/>
+            <point key="canvasLocation" x="2673" y="663"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="atF-Ks-CI5">

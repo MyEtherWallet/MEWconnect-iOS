@@ -66,7 +66,7 @@
     self.mnemonicsTextViewHeightConstraint.constant = 164.0;
     self.titleTopOffsetConstraint.constant = 30.0;
   }
-  self.mnemonicsTextView.placeholder = NSLocalizedString(@"Words, separated by spaces…", @"Restore wallet. Mnemonics placeholder");
+  self.mnemonicsTextView.placeholder = NSLocalizedString(@"Words separated by spaces…", @"Restore wallet. Mnemonics placeholder");
   self.mnemonicsTextView.placeholderColor = [[UIColor lightGreyTextColor] colorWithAlphaComponent:0.5];
   _separatorCharactorSet = [NSCharacterSet whitespaceAndSpaceAndNewlineCharacterSet];
   { //Title label

@@ -41,6 +41,7 @@
 #import "ReachabilityServiceImplementation.h"
 #import "RateServiceImplementation.h"
 #import "MigrationServiceImplementation.h"
+#import "SecurityServiceImplementation.h"
 
 #import "OperationSchedulerImplementation.h"
 
@@ -230,6 +231,13 @@ static NSString *const kReachabilityURLString   = @"API.ReachabilityURLString";
                                                 with:[self migrationManager]];
                           [definition injectProperty:@selector(keychainService)
                                                 with:[self keychainService]];
+                        }];
+}
+
+- (id<SecurityService>) securityService {
+  return [TyphoonDefinition withClass:[SecurityServiceImplementation class]
+                        configuration:^(TyphoonDefinition *definition) {
+                          definition.scope = TyphoonScopeSingleton;
                         }];
 }
 

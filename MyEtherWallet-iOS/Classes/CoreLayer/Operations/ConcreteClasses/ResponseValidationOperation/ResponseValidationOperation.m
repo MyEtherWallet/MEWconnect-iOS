@@ -43,9 +43,8 @@
       DDLogVerbose(@"The input data for the operation %@ has passed the validation", NSStringFromClass([self class]));
       return YES;
     }
-    DDLogVerbose(@"The input data for the operation %@ hasn't passed the validation. The input data type is: %@",
-                 NSStringFromClass([self class]),
-                 NSStringFromClass([data class]));
+    DDLogVerbose(@"The input data for the operation %@ hasn't passed the validation",
+                 NSStringFromClass([self class]));
     return NO;
   }];
   

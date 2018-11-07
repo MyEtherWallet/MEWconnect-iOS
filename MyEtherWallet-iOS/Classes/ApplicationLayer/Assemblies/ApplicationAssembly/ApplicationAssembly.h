@@ -15,6 +15,7 @@
 @class SystemInfrastructureAssembly;
 @class StoryboardsAssembly;
 @class PonsomizerAssembly;
+@class ModuleFactoriesAssembly;
 
 @protocol PropertyAnimatorsFactory;
 
@@ -24,4 +25,5 @@
 @property (nonatomic, strong, readonly) StoryboardsAssembly *storyboardAssembly;
 @property (nonatomic, strong, readonly) PonsomizerAssembly *ponsomizerAssembly;
 @property (nonatomic, strong, readonly) TyphoonAssembly <PropertyAnimatorsFactory> *propertyAnimatorsFactory;
+@property (nonatomic, strong, readonly) ModuleFactoriesAssembly *moduleFactoriesAssembly;
 @end

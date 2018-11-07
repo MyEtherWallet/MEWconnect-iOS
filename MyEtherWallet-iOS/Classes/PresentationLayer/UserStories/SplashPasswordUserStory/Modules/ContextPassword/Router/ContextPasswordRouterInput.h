@@ -9,5 +9,5 @@
 @import Foundation;
 
 @protocol ContextPasswordRouterInput <NSObject>
-- (void) close;
+- (void) close:(BOOL)animated;
 @end

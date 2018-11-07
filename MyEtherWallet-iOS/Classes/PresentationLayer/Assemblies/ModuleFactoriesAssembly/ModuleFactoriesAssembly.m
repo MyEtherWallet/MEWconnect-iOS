@@ -14,6 +14,7 @@
 static NSString *const kHomeViewControllerIdentifier            = @"HomeViewController";
 static NSString *const kTransactionViewControllerIdentifier     = @"TransactionViewController";
 static NSString *const kMessageSignerViewControllerIdentifier   = @"MessageSignerViewController";
+static NSString *const kSplashPasswordViewControllerIdentifier  = @"SplashPasswordViewController";
 
 @implementation ModuleFactoriesAssembly
 
@@ -46,6 +47,17 @@ static NSString *const kMessageSignerViewControllerIdentifier   = @"MessageSigne
                                           parameters:^(TyphoonMethod *initializer) {
                                             [initializer injectParameterWith:[self.storyboardsAssembly confirmationStoryboard]];
                                             [initializer injectParameterWith:kMessageSignerViewControllerIdentifier];
+                                          }];
+                        }];
+}
+
+- (RamblerViperModuleFactory *) splashPasswordFactory {
+  return [TyphoonDefinition withClass:[RamblerViperModuleFactory class]
+                        configuration:^(TyphoonDefinition *definition) {
+                          [definition useInitializer:@selector(initWithStoryboard:andRestorationId:)
+                                          parameters:^(TyphoonMethod *initializer) {
+                                            [initializer injectParameterWith:[self.storyboardsAssembly splashPasswordStoryboard]];
+                                            [initializer injectParameterWith:kSplashPasswordViewControllerIdentifier];
                                           }];
                         }];
 }

@@ -11,5 +11,6 @@
 @protocol ContextPasswordViewOutput <NSObject>
 - (void) didTriggerViewReadyEvent;
 - (void) cancelAction;
+- (void) resignAction;
 - (void) doneActionWithPassword:(NSString *)password;
 @end

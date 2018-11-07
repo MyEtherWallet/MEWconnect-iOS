@@ -134,18 +134,17 @@ static CGFloat const kHomeStretcyHeaderTitleBalanceTopMaxOffset         = 26.0;
 - (void)setSearchBarStyle:(HomeStretchyHeaderSearchBarStyle)searchBarStyle {
   if (_searchBarStyle != searchBarStyle) {
     _searchBarStyle = searchBarStyle;
-    UIColor *color = [UIColor whiteColor];
+    UIColor *color = nil;
     switch (searchBarStyle) {
       case HomeStretchyHeaderSearchBarStyleLightBlue: {
         color = [UIColor applicationLightBlue];
         break;
       }
-      case HomeStretchyHeaderSearchBarStyleWhite: {
+      case HomeStretchyHeaderSearchBarStyleWhite:
+      default: {
         color = [UIColor whiteColor];
         break;
       }
-      default:
-        break;
     }
     self.searchBarBackgroundImageView.tintColor = color;
   }
@@ -474,7 +473,6 @@ static CGFloat const kHomeStretcyHeaderTitleBalanceTopMaxOffset         = 26.0;
   CGVector scrollRange = CGVectorMake(0.0, 0.4);
   CGVector alphaRange = CGVectorMake(0.2, 0.45);
   CGVector lrRange = CGVectorMake(0.3, 0.55);
-  CGVector blinkAlphaRange = CGVectorMake(0.0, 0.3);
   CGVector shadowRange = CGVectorMake(0.0, 0.3);
   CGVector cornerRadiusRange = CGVectorMake(0.5, 0.7);
   CGVector titleBarContentRange = CGVectorMake(0.8, 0.91);
@@ -484,7 +482,6 @@ static CGFloat const kHomeStretcyHeaderTitleBalanceTopMaxOffset         = 26.0;
   CGFloat scrollFactor = MAX(scrollRange.dx, MIN(scrollRange.dy, stretchFactor)) * (1.0 / (scrollRange.dy - scrollRange.dx));
   CGFloat alphaFactor = 1.0 - (MAX(alphaRange.dx, MIN(alphaRange.dy, stretchFactor)) - alphaRange.dx) * (1.0 / (alphaRange.dy - alphaRange.dx));
   CGFloat lrFactor = (MAX(lrRange.dx, MIN(lrRange.dy, stretchFactor)) - lrRange.dx) * (1.0 / (lrRange.dy - lrRange.dx));
-  CGFloat blinkFactor = (MAX(blinkAlphaRange.dx, MIN(blinkAlphaRange.dy, stretchFactor)) - blinkAlphaRange.dx) * (1.0 / (blinkAlphaRange.dy - blinkAlphaRange.dx));
   CGFloat shadowFactor = (MAX(shadowRange.dx, MIN(shadowRange.dy, stretchFactor)) - shadowRange.dx) * (1.0 / (shadowRange.dy - shadowRange.dx));
   CGFloat cornerRadiusFactor = (MAX(cornerRadiusRange.dx, MIN(cornerRadiusRange.dy, stretchFactor)) - cornerRadiusRange.dx) * (1.0 / (cornerRadiusRange.dy - cornerRadiusRange.dx));
   CGFloat titleBarContentStretchFactor = 1.0 - (MAX(titleBarContentRange.dx, MIN(titleBarContentRange.dy, stretchFactor)) - titleBarContentRange.dx) * (1.0 / (titleBarContentRange.dy - titleBarContentRange.dx));
@@ -497,7 +494,6 @@ static CGFloat const kHomeStretcyHeaderTitleBalanceTopMaxOffset         = 26.0;
   self.cardTopConstraint.constant = CGFloatInterpolate(scrollFactor, kHomeStretchyHeaderTopDefaultOffset + _safeHeight, 0.0);
   self.cardRightConstraint.constant = self.cardLeftConstraint.constant = CGFloatInterpolate(lrFactor, kHomeStretchyHeaderDefaultOffset, 0.0);
   self.cardView.alpha = alphaFactor;
-  self.cardView.blinkImageView.alpha = CGFloatInterpolate(blinkFactor, kCardViewBlinkDefaultAlpha, 0.0);
   self.cardView.layer.shadowOpacity = CGFloatInterpolate(shadowFactor, kCardViewDefaultShadowOpacity, 0.0);
   self.patternImageView.layer.cornerRadius = CGFloatInterpolate(cornerRadiusFactor, kCardViewDefaultCornerRadius, 0.0);
   

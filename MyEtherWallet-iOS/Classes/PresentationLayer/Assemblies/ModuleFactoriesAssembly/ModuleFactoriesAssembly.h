@@ -17,4 +17,5 @@
 - (RamblerViperModuleFactory *) homeFactory;
 - (RamblerViperModuleFactory *) transactionFactory;
 - (RamblerViperModuleFactory *) messageSignerFactory;
+- (RamblerViperModuleFactory *) splashPasswordFactory;
 @end

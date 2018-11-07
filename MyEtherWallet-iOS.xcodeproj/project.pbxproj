@@ -809,6 +809,16 @@
 		56FE2B8020817F1100DB39D5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FE2B7F20817F1100DB39D5 /* main.m */; };
 		56FE2B8A20817F1100DB39D5 /* MyEtherWallet_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FE2B8920817F1100DB39D5 /* MyEtherWallet_iOSTests.m */; };
 		56FE2B9520817F1100DB39D5 /* MyEtherWallet_iOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FE2B9420817F1100DB39D5 /* MyEtherWallet_iOSUITests.m */; };
+		56FFD7EC2192200F00341D96 /* SecurityRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FFD7EB2192200F00341D96 /* SecurityRouter.m */; };
+		56FFD7ED2192201300341D96 /* SecurityRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FFD7EB2192200F00341D96 /* SecurityRouter.m */; };
+		56FFD7F12192204500341D96 /* SecurityAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FFD7F02192204500341D96 /* SecurityAppDelegate.m */; };
+		56FFD7F22192204900341D96 /* SecurityAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FFD7F02192204500341D96 /* SecurityAppDelegate.m */; };
+		56FFD7F72192455200341D96 /* UIResponder+FindFirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FFD7F62192455200341D96 /* UIResponder+FindFirstResponder.m */; };
+		56FFD7F82192455200341D96 /* UIResponder+FindFirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FFD7F62192455200341D96 /* UIResponder+FindFirstResponder.m */; };
+		56FFD7FD2192484400341D96 /* SecurityServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FFD7FC2192484400341D96 /* SecurityServiceImplementation.m */; };
+		56FFD7FE2192484400341D96 /* SecurityServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FFD7FC2192484400341D96 /* SecurityServiceImplementation.m */; };
+		56FFD803219250C800341D96 /* UIViewController+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FFD802219250C800341D96 /* UIViewController+Hierarchy.m */; };
+		56FFD804219250C800341D96 /* UIViewController+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FFD802219250C800341D96 /* UIViewController+Hierarchy.m */; };
 		583EB1E3327B02D20E3F8A56 /* BackupConfirmationRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E25473B847DFA074D8A45F /* BackupConfirmationRouter.m */; };
 		586114FE00B401F49B84D1B2 /* ContextPasswordInteractorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF8DD7DF880E904E14CAC7C /* ContextPasswordInteractorTests.m */; };
 		5926B15ADD0FC6A3DA1E0AEB /* ConfirmedTransactionViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2500C894DBBE0A1C0EB34D0B /* ConfirmedTransactionViewControllerTests.m */; };
@@ -1844,6 +1854,18 @@
 		56FE2B9420817F1100DB39D5 /* MyEtherWallet_iOSUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyEtherWallet_iOSUITests.m; sourceTree = "<group>"; };
 		56FE2B9620817F1100DB39D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56FE2BA32081816F00DB39D5 /* Rambafile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Rambafile; sourceTree = SOURCE_ROOT; };
+		56FFD7EA2192200F00341D96 /* SecurityRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecurityRouter.h; sourceTree = "<group>"; };
+		56FFD7EB2192200F00341D96 /* SecurityRouter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecurityRouter.m; sourceTree = "<group>"; };
+		56FFD7EF2192204500341D96 /* SecurityAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecurityAppDelegate.h; sourceTree = "<group>"; };
+		56FFD7F02192204500341D96 /* SecurityAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecurityAppDelegate.m; sourceTree = "<group>"; };
+		56FFD7F52192455200341D96 /* UIResponder+FindFirstResponder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIResponder+FindFirstResponder.h"; sourceTree = "<group>"; };
+		56FFD7F62192455200341D96 /* UIResponder+FindFirstResponder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+FindFirstResponder.m"; sourceTree = "<group>"; };
+		56FFD7FA2192483500341D96 /* SecurityService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecurityService.h; sourceTree = "<group>"; };
+		56FFD7FB2192484400341D96 /* SecurityServiceImplementation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecurityServiceImplementation.h; sourceTree = "<group>"; };
+		56FFD7FC2192484400341D96 /* SecurityServiceImplementation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecurityServiceImplementation.m; sourceTree = "<group>"; };
+		56FFD801219250C800341D96 /* UIViewController+Hierarchy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Hierarchy.h"; sourceTree = "<group>"; };
+		56FFD802219250C800341D96 /* UIViewController+Hierarchy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Hierarchy.m"; sourceTree = "<group>"; };
+		56FFD806219263F200341D96 /* FindFirstResponderProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FindFirstResponderProtocol.h; sourceTree = "<group>"; };
 		571D113078E3FAF6E782C1B5 /* ConfirmedTransactionViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ConfirmedTransactionViewController.h; sourceTree = "<group>"; };
 		57C6D7B839C103712A77B7F4 /* PasswordPresenter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PasswordPresenter.m; sourceTree = "<group>"; };
 		57E359A0103B2F664B631E33 /* DeclinedTransactionInteractorInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = DeclinedTransactionInteractorInput.h; sourceTree = "<group>"; };
@@ -4206,6 +4228,7 @@
 		565FFA4B2081837500755B6C /* AppDelegates */ = {
 			isa = PBXGroup;
 			children = (
+				56FFD7EE2192203300341D96 /* SecurityAppDelegate */,
 				5668E4E72083DA0D0070A402 /* CleanLaunchAppDelegate */,
 				565FFA4C2081837C00755B6C /* TyphoonAppDelegate */,
 			);
@@ -4288,6 +4311,7 @@
 		5668E4EC2083DABA0070A402 /* Routers */ = {
 			isa = PBXGroup;
 			children = (
+				56FFD7E921921FF100341D96 /* SecurityRouter */,
 				5668E50E2083E8060070A402 /* Helpers */,
 				5668E4ED2083DAC40070A402 /* CleanLaunchRouter */,
 			);
@@ -5125,6 +5149,7 @@
 		56AC9435208F76DF00E5BC2C /* ConcreteServices */ = {
 			isa = PBXGroup;
 			children = (
+				56FFD7F92192482500341D96 /* SecurityService */,
 				56D85B77217FAD1300B474C6 /* MigrationService */,
 				56191EAA215052D8000BF97F /* RateService */,
 				5606B348210FDA9900576C28 /* ReachabilityService */,
@@ -5188,6 +5213,8 @@
 		56AC944A208FAAE000E5BC2C /* Extenstions */ = {
 			isa = PBXGroup;
 			children = (
+				56FFD8052192620900341D96 /* UIResponder */,
+				56FFD7FF219250A500341D96 /* UIViewController */,
 				5677BB712100A80E0019E92D /* UIBezierPath */,
 				5677BB5720FE9F5C0019E92D /* UIView */,
 				5677BB5020FD0D830019E92D /* UIDevice */,
@@ -6934,6 +6961,69 @@
 				569E51CB20D9484C00883583 /* prefix.pch */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		56FFD7E921921FF100341D96 /* SecurityRouter */ = {
+			isa = PBXGroup;
+			children = (
+				56FFD7EA2192200F00341D96 /* SecurityRouter.h */,
+				56FFD7EB2192200F00341D96 /* SecurityRouter.m */,
+			);
+			path = SecurityRouter;
+			sourceTree = "<group>";
+		};
+		56FFD7EE2192203300341D96 /* SecurityAppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				56FFD7EF2192204500341D96 /* SecurityAppDelegate.h */,
+				56FFD7F02192204500341D96 /* SecurityAppDelegate.m */,
+			);
+			path = SecurityAppDelegate;
+			sourceTree = "<group>";
+		};
+		56FFD7F32192451B00341D96 /* UIResponder+FindFirstResponder */ = {
+			isa = PBXGroup;
+			children = (
+				56FFD806219263F200341D96 /* FindFirstResponderProtocol.h */,
+				56FFD7F52192455200341D96 /* UIResponder+FindFirstResponder.h */,
+				56FFD7F62192455200341D96 /* UIResponder+FindFirstResponder.m */,
+			);
+			path = "UIResponder+FindFirstResponder";
+			sourceTree = "<group>";
+		};
+		56FFD7F92192482500341D96 /* SecurityService */ = {
+			isa = PBXGroup;
+			children = (
+				56FFD7FA2192483500341D96 /* SecurityService.h */,
+				56FFD7FB2192484400341D96 /* SecurityServiceImplementation.h */,
+				56FFD7FC2192484400341D96 /* SecurityServiceImplementation.m */,
+			);
+			path = SecurityService;
+			sourceTree = "<group>";
+		};
+		56FFD7FF219250A500341D96 /* UIViewController */ = {
+			isa = PBXGroup;
+			children = (
+				56FFD800219250AF00341D96 /* UIViewController+Hierarchy */,
+			);
+			path = UIViewController;
+			sourceTree = "<group>";
+		};
+		56FFD800219250AF00341D96 /* UIViewController+Hierarchy */ = {
+			isa = PBXGroup;
+			children = (
+				56FFD801219250C800341D96 /* UIViewController+Hierarchy.h */,
+				56FFD802219250C800341D96 /* UIViewController+Hierarchy.m */,
+			);
+			path = "UIViewController+Hierarchy";
+			sourceTree = "<group>";
+		};
+		56FFD8052192620900341D96 /* UIResponder */ = {
+			isa = PBXGroup;
+			children = (
+				56FFD7F32192451B00341D96 /* UIResponder+FindFirstResponder */,
+			);
+			path = UIResponder;
 			sourceTree = "<group>";
 		};
 		583485589364D7BF540B41FA /* Router */ = {
@@ -9404,6 +9494,11 @@
 				TargetAttributes = {
 					56E3E4E921016DB60014152D = {
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.DataProtection = {
+								enabled = 0;
+							};
+						};
 					};
 					56FB3A3020B45969007776C8 = {
 						CreatedOnToolsVersion = 9.3;
@@ -9989,6 +10084,7 @@
 				56E3E53321016DB60014152D /* UIImage+Color.m in Sources */,
 				56E3E53421016DB60014152D /* MEWRTCConstants.m in Sources */,
 				56E3E53521016DB60014152D /* LinkedLabel.m in Sources */,
+				56FFD7F82192455200341D96 /* UIResponder+FindFirstResponder.m in Sources */,
 				56E3E53721016DB60014152D /* NewWalletAssembly.m in Sources */,
 				56E3E53821016DB60014152D /* ResponseDeserializationOperation.m in Sources */,
 				56E3E53921016DB60014152D /* NSString+HexToDecimal.swift in Sources */,
@@ -10133,6 +10229,7 @@
 				56E3E5BB21016DB60014152D /* UIColor+HSL.swift in Sources */,
 				56E3E5BC21016DB60014152D /* SettingsAssembly.m in Sources */,
 				56E3E5BD21016DB60014152D /* MEWConnectResponseMapper.m in Sources */,
+				56FFD804219250C800341D96 /* UIViewController+Hierarchy.m in Sources */,
 				56E3E5BE21016DB60014152D /* UIColor+Application.m in Sources */,
 				5677C59B2181226500477ACD /* PurchaseHistoryPlainObject.m in Sources */,
 				56E3E5BF21016DB60014152D /* InfoNormalTableViewCell.m in Sources */,
@@ -10202,8 +10299,10 @@
 				56E3E5F921016DB60014152D /* BackupWordsViewController.m in Sources */,
 				56E3E5FA21016DB60014152D /* SimplexResponseValidator.m in Sources */,
 				56E3E5FB21016DB60014152D /* BackupWordsPresenter.m in Sources */,
+				56FFD7F22192204900341D96 /* SecurityAppDelegate.m in Sources */,
 				56E3E5FC21016DB60014152D /* InfoDestructiveTableViewCell.m in Sources */,
 				56E3E5FD21016DB60014152D /* BackupWordsInteractor.m in Sources */,
+				56FFD7FE2192484400341D96 /* SecurityServiceImplementation.m in Sources */,
 				56E3E5FE21016DB60014152D /* SimplexMappingProvider.m in Sources */,
 				56E3E5FF21016DB60014152D /* BackupWordsRouter.m in Sources */,
 				56E3E60021016DB60014152D /* BuyEtherHistoryEmptyTableViewCell.m in Sources */,
@@ -10225,6 +10324,7 @@
 				56E3E60B21016DB60014152D /* BackupDonePresenter.m in Sources */,
 				56E3E60C21016DB60014152D /* BackupDoneInteractor.m in Sources */,
 				56E3E60E21016DB60014152D /* BackupDoneRouter.m in Sources */,
+				56FFD7ED2192201300341D96 /* SecurityRouter.m in Sources */,
 				56E3E60F21016DB60014152D /* SplashPasswordAssembly.m in Sources */,
 				56335F862187664000C07E2B /* KeychainServiceSharedConstants.m in Sources */,
 				56E3E61021016DB60014152D /* InfoDestructiveTableViewCellObject.m in Sources */,
@@ -10453,6 +10553,7 @@
 				56FB3A1A20B391B4007776C8 /* TokensBody.m in Sources */,
 				560CB009209B453600BFF59C /* NSString+RCFCapitalization.m in Sources */,
 				56E14BE720EBCE8A00C41F83 /* SimplexQueryTransformer.m in Sources */,
+				56FFD7F12192204500341D96 /* SecurityAppDelegate.m in Sources */,
 				5649CC27216FF1320009D982 /* CacheTransactionSection.m in Sources */,
 				56FB39FF20B35B33007776C8 /* OperationFactoriesAssembly.m in Sources */,
 				5645258B2164C63A004D23C4 /* TokensResponseValidator.m in Sources */,
@@ -10512,6 +10613,7 @@
 				0A4DA5A913C4B14DD728715E /* SettingsAssembly.m in Sources */,
 				560CB013209B504700BFF59C /* MEWConnectResponseMapper.m in Sources */,
 				563DF38A209871AA00F740FF /* UIColor+Application.m in Sources */,
+				56FFD7F72192455200341D96 /* UIResponder+FindFirstResponder.m in Sources */,
 				56C7758420DFEBC400451EEF /* InfoNormalTableViewCell.m in Sources */,
 				6A58F7B29733D102F927B25F /* SettingsViewController.m in Sources */,
 				6AD10E186DC461DCE0E19B5F /* SettingsPresenter.m in Sources */,
@@ -10542,6 +10644,7 @@
 				F97A9F3E04DFE53FBEB8DD88 /* MessageSignerRouter.m in Sources */,
 				56BFD41F209BB7D400951000 /* MEWConnectTransaction.m in Sources */,
 				56FB39DE20B31931007776C8 /* CommonNetworkClient.m in Sources */,
+				56FFD803219250C800341D96 /* UIViewController+Hierarchy.m in Sources */,
 				5677C5982181226500477ACD /* NetworkPlainObject.m in Sources */,
 				5677C58E2181226500477ACD /* _PurchaseHistoryModelObject.m in Sources */,
 				B6DD4E4FEF354C89A482CF6A /* ConfirmedTransactionAssembly.m in Sources */,
@@ -10556,9 +10659,11 @@
 				56FB39CD20B23522007776C8 /* ResponseMappingOperation.m in Sources */,
 				D2144009EF379EB804F2A23A /* BackupInfoAssembly.m in Sources */,
 				3DFC34FF9EF2077E7C5721C8 /* BackupInfoViewController.m in Sources */,
+				56FFD7FD2192484400341D96 /* SecurityServiceImplementation.m in Sources */,
 				D5793D1E507610D0FFC818BD /* BackupInfoPresenter.m in Sources */,
 				5B6327A009EB7A4F0688D269 /* BackupInfoInteractor.m in Sources */,
 				56E14BE320EBCCB600C41F83 /* SimplexOperationFactory.m in Sources */,
+				56FFD7EC2192200F00341D96 /* SecurityRouter.m in Sources */,
 				56C7757420DFEB4F00451EEF /* InfoCellObjectBuilder.m in Sources */,
 				56A29C9420E04B7500D05FF1 /* AccessoryTableViewAction.m in Sources */,
 				A489564CB7B7EA7DD2D3BE4A /* BackupInfoRouter.m in Sources */,

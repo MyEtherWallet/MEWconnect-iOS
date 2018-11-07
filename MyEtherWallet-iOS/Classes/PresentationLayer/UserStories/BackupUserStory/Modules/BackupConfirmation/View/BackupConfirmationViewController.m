@@ -37,6 +37,16 @@
 	[self.output didTriggerViewReadyEvent];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  [self.output didTriggerViewWillAppearEvent];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
+  [self.output didTriggerViewWillDisappearEvent];
+}
+
 #pragma mark - BackupConfirmationViewInput
 
 - (void) setupInitialStateWithQuiz:(BackupConfirmationQuiz *)quiz {

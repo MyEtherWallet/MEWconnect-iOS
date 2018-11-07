@@ -10,6 +10,8 @@
 
 #import "BackupWordsInteractor.h"
 
+#import "SecurityService.h"
+
 #import "BackupWordsInteractorOutput.h"
 
 @interface BackupWordsInteractor ()
@@ -40,6 +42,14 @@
 
 - (void) unsubscribeFromEvents {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void) enableSecurityProtection {
+  [self.securityService enableForceProtection];
+}
+
+- (void) disableSecurityProtection {
+  [self.securityService disableForceProtection];
 }
 
 #pragma mark - NSNotifications

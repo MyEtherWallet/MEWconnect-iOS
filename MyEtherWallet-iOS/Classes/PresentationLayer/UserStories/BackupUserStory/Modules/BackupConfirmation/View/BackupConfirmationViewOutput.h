@@ -12,4 +12,6 @@
 - (void) didTriggerViewReadyEvent;
 - (void) didSelectAnswers:(NSArray <NSString *>*)vector;
 - (void) finishAction;
+- (void) didTriggerViewWillAppearEvent;
+- (void) didTriggerViewWillDisappearEvent;
 @end

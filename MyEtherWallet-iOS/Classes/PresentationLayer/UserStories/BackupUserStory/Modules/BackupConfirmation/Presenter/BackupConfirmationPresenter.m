@@ -36,6 +36,14 @@
   [self.router openDone];
 }
 
+- (void) didTriggerViewWillAppearEvent {
+  [self.interactor enableSecurityProtection];
+}
+
+- (void) didTriggerViewWillDisappearEvent {
+  [self.interactor disableSecurityProtection];
+}
+
 #pragma mark - BackupConfirmationInteractorOutput
 
 - (void) vectorDidChecked:(BOOL)correct {

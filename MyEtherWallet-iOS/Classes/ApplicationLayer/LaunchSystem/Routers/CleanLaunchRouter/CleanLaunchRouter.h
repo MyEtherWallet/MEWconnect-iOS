@@ -8,6 +8,8 @@
 
 @import Foundation;
 
+@class RamblerViperModuleFactory;
+
 @protocol NavigationControllerFactory;
 @protocol AccountsService;
 @protocol Ponsomizer;
@@ -17,7 +19,7 @@
 @property (nonatomic, strong) id <PropertyAnimatorsFactory> propertyAnimatorsFactory;
 @property (nonatomic, strong) id <AccountsService> accountsService;
 @property (nonatomic, strong) id <Ponsomizer> ponsomizer;
-@property (nonatomic, strong) UIStoryboard *passwordStoryboard;
+@property (nonatomic, strong) RamblerViperModuleFactory *splashPasswordFactory;
 @property (nonatomic, strong) UIStoryboard *launchStoryboard;
 - (instancetype) initWithNavigationControllerFactory:(id<NavigationControllerFactory>)navigationControllerFactory
                                               window:(UIWindow *)window;

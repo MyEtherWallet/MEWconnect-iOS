@@ -54,7 +54,12 @@
 
 - (void) cancelAction {
   [self.view prepareForDismiss];
-  [self.router close];
+  [self.router close:YES];
+}
+
+- (void) resignAction {
+  [self.view prepareForDismiss];
+  [self.router close:NO];
 }
 
 - (void) doneActionWithPassword:(NSString *)password {
@@ -66,7 +71,7 @@
 - (void) correctPassword:(NSString *)password {
   [self.view prepareForDismiss];
   [self.moduleOutput passwordDidEntered:password];
-  [self.router close];
+  [self.router close:YES];
 }
 
 - (void) incorrectPassword {

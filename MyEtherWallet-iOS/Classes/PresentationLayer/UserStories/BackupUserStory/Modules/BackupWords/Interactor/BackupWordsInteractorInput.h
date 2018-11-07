@@ -16,4 +16,6 @@
 - (AccountPlainObject *) obtainAccount;
 - (void) subscribeToEvents;
 - (void) unsubscribeFromEvents;
+- (void) enableSecurityProtection;
+- (void) disableSecurityProtection;
 @end

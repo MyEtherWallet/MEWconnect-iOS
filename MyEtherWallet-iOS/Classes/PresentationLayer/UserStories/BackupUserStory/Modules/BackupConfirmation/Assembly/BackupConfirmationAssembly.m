@@ -38,6 +38,8 @@
                                                 with:[self.serviceComponents accountsService]];
                           [definition injectProperty:@selector(walletService)
                                                 with:[self.serviceComponents MEWwallet]];
+                          [definition injectProperty:@selector(securityService)
+                                                with:[self.serviceComponents securityService]];
                         }];
 }
 

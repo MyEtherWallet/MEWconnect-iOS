@@ -16,4 +16,6 @@
 - (BackupConfirmationQuiz *) obtainRecoveryQuiz;
 - (void) checkVector:(NSArray <NSString *> *)vector;
 - (void) walletBackedUp;
+- (void) enableSecurityProtection;
+- (void) disableSecurityProtection;
 @end

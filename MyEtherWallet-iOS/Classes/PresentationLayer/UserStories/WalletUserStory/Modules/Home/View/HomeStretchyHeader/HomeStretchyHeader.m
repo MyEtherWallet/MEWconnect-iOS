@@ -134,18 +134,17 @@ static CGFloat const kHomeStretcyHeaderTitleBalanceTopMaxOffset         = 26.0;
 - (void)setSearchBarStyle:(HomeStretchyHeaderSearchBarStyle)searchBarStyle {
   if (_searchBarStyle != searchBarStyle) {
     _searchBarStyle = searchBarStyle;
-    UIColor *color = [UIColor whiteColor];
+    UIColor *color = nil;
     switch (searchBarStyle) {
       case HomeStretchyHeaderSearchBarStyleLightBlue: {
         color = [UIColor applicationLightBlue];
         break;
       }
-      case HomeStretchyHeaderSearchBarStyleWhite: {
+      case HomeStretchyHeaderSearchBarStyleWhite:
+      default: {
         color = [UIColor whiteColor];
         break;
       }
-      default:
-        break;
     }
     self.searchBarBackgroundImageView.tintColor = color;
   }

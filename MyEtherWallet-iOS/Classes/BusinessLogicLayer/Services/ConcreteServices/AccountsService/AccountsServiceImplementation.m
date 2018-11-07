@@ -70,8 +70,6 @@
 }
 
 - (void) resetAccounts {
-  [self.keychainService resetKeychain];
-  
   NSManagedObjectContext *rootSavingContext = [NSManagedObjectContext MR_rootSavingContext];
   [rootSavingContext performBlockAndWait:^{
     NSArray <AccountModelObject *> *accounts = [AccountModelObject MR_findAllInContext:rootSavingContext];

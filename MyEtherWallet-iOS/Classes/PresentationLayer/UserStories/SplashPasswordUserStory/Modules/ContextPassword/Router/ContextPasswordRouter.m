@@ -14,8 +14,8 @@
 
 #pragma mark - ContextPasswordRouterInput
 
-- (void) close {
-  [self.transitionHandler closeCurrentModule:YES];
+- (void) close:(BOOL)animated {
+  [self.transitionHandler closeCurrentModule:animated];
 }
 
 @end

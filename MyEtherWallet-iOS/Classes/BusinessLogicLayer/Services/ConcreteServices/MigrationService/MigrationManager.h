@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol MigrationManagerDelegate <NSObject>
 @optional
-- (NSArray *) migrationManager:(MigrationManager *)migrationManager mappingModelsForSourceModel:(NSManagedObjectModel *)sourceModel;
+- (nullable NSArray *) migrationManager:(MigrationManager *)migrationManager mappingModelsForSourceModel:(NSManagedObjectModel *)sourceModel;
 - (void) migrationManager:(MigrationManager *)migrationManager didMigrationFromSourceVersion:(NSInteger)sourceVersion destinationVersion:(NSInteger)destinationVersion;
 @end
 

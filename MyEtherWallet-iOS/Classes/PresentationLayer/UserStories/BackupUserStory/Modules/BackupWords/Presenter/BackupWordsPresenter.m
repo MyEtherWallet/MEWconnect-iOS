@@ -34,11 +34,13 @@
 }
 
 - (void) didTriggerViewWillAppearEvent {
+  [self.interactor enableSecurityProtection];
   [self.interactor subscribeToEvents];
 }
 
 - (void) didTriggerViewWillDisappearEvent {
   [self.interactor unsubscribeFromEvents];
+  [self.interactor disableSecurityProtection];
 }
 
 #pragma mark - BackupWordsInteractorOutput

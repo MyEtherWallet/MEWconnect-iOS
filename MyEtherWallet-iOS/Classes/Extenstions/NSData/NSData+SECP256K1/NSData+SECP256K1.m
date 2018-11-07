@@ -21,11 +21,16 @@
   unsigned char *siga = malloc(65);
   secp256k1_ecdsa_recoverable_signature sig;
   int result = secp256k1_ecdsa_sign_recoverable(context, &sig, msg, prvKey, NULL, NULL);
+  if (result != 1) {
+    free(siga);
+    return nil;
+  }
   
   int recId = 0;
   result = secp256k1_ecdsa_recoverable_signature_serialize_compact(context, siga, &recId, &sig);
   
   if (result != 1) {
+    free(siga);
     return nil;
   }
   

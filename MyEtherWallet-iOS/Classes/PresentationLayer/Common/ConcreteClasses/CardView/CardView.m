@@ -358,7 +358,7 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
     }
     [seedLabelButton.leftAnchor constraintEqualToAnchor:self.balanceLabel.leftAnchor].active = YES;
     [seedLabelButton.topAnchor constraintEqualToAnchor:self.ethereumTitleLabel.bottomAnchor constant:verticalOffset].active = YES;
-    [seedLabelButton.rightAnchor constraintEqualToAnchor:seedLabelButton.superview.rightAnchor constant:kCardViewDefaultOffset].active = YES;
+    [seedLabelButton.superview.rightAnchor constraintEqualToAnchor:seedLabelButton.rightAnchor constant:kCardViewDefaultOffset].active = YES;
     self.seedLabelButton = seedLabelButton;
   }
   { //Warning view

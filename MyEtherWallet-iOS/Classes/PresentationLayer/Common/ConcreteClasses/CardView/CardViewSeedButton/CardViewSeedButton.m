@@ -12,7 +12,7 @@
 
 + (instancetype) seedButton {
   CardViewSeedButton *button = [CardViewSeedButton buttonWithType:UIButtonTypeSystem];
-  button.imageEdgeInsets = UIEdgeInsetsMake(0.0, 15.0, 0.0, 0.0);
+  button.imageEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0);
   [button setImage:[UIImage imageNamed:@"card_share_icon"] forState:UIControlStateNormal];
   return button;
 }
@@ -24,9 +24,8 @@
 }
 
 - (CGRect) imageRectForContentRect:(CGRect)contentRect {
-  CGRect titleRect = [self titleRectForContentRect:contentRect];
   CGRect imageRect = [super imageRectForContentRect:contentRect];
-  imageRect.origin.x = CGRectGetMaxX(titleRect) + self.imageEdgeInsets.left;
+  imageRect.origin.x = CGRectGetMaxX(contentRect) - self.imageEdgeInsets.right - CGRectGetWidth(imageRect);
   return imageRect;
 }
 

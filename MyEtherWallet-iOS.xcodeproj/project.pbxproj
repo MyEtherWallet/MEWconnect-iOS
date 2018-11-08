@@ -3749,7 +3749,7 @@
 				56BFD42820A1D68000951000 /* CardView */,
 				5685FE132099F996008C75A1 /* FlatButton */,
 				563DF39320990E5500F740FF /* TypingAnimationLabel */,
-				563DF38F2098AEF500F740FF /* BordlessNavigationBar */,
+				569162662194FCD800A58480 /* NavigationBar */,
 				563DF3862098718C00F740FF /* PasswordTextField */,
 			);
 			path = ConcreteClasses;
@@ -4722,6 +4722,14 @@
 				569162632194B8CC00A58480 /* ValidatorComponentsAssembly.m */,
 			);
 			path = ValidatorComponentsAssembly;
+			sourceTree = "<group>";
+		};
+		569162662194FCD800A58480 /* NavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				563DF38F2098AEF500F740FF /* BordlessNavigationBar */,
+			);
+			path = NavigationBar;
 			sourceTree = "<group>";
 		};
 		56947CD72186464400336F4B /* MasterTokenBody */ = {

@@ -155,7 +155,6 @@ static NSString *const kQRScannerInteractorConnectionSoundExtension   = @"caf";
 - (void) _playSound:(SystemSoundID)soundID {
   if (soundID != 0) {
     AudioServicesPlaySystemSoundWithCompletion(soundID, nil);
-//    AudioServicesPlayAlertSoundWithCompletion(soundID, nil);
   }
 }
 

@@ -106,11 +106,13 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
 }
 
 - (void) disconnect {
+  MEWConnectStatus status = self.connectionStatus;
   [self _disconnect];
-  dispatch_async(dispatch_get_main_queue(), ^{
-    self.connectionStatus = MEWConnectStatusDisconnected;
-    [self.delegate MEWConnectDidDisconnected:self];
-  });
+  if (status != MEWConnectStatusDisconnected) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+      [self.delegate MEWConnectDidDisconnected:self];
+    });
+  }
 }
 
 - (BOOL) sendMessage:(id)message {

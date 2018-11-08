@@ -10,6 +10,7 @@
 
 @protocol NewWalletInteractorOutput;
 @protocol AccountsService;
+@protocol KeychainService;
 @protocol BlockchainNetworkService;
 @protocol MEWwallet;
 @protocol Ponsomizer;
@@ -19,6 +20,7 @@
 
 @property (nonatomic, weak) id<NewWalletInteractorOutput> output;
 @property (nonatomic, strong) id <AccountsService> accountsService;
+@property (nonatomic, strong) id <KeychainService> keychainService;
 @property (nonatomic, strong) id <BlockchainNetworkService> blockchainNetworkService;
 @property (nonatomic, strong) id <MEWwallet> mewWallet;
 @property (nonatomic, strong) id <Ponsomizer> ponsomizer;

@@ -29,6 +29,7 @@ typedef void(^MEWWalletDataCompletionBlock)(id data);
 - (void) signTransaction:(MEWConnectTransaction *)transaction password:(NSString *)password masterToken:(MasterTokenPlainObject *)masterToken completion:(MEWWalletDataCompletionBlock)completion;
 - (BOOL) isSeedAvailableForAccount:(AccountPlainObject *)account;
 - (BOOL) validateSeedWithWords:(NSArray <NSString *> *)words withNetwork:(NetworkPlainObject *)network;
+- (BOOL) validateMnemonics:(NSArray <NSString *> *)words;
 - (NSArray <NSString *> *) recoveryMnemonicsWordsWithPassword:(NSString *)password ofAccount:(AccountPlainObject *)account;
 - (NSArray <NSString *> *) obtainBIP32Words;
 @end

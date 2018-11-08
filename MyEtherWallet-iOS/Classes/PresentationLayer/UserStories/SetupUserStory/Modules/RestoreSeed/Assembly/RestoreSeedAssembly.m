@@ -11,6 +11,7 @@
 #import "RestoreSeedAssembly.h"
 
 #import "ServiceComponents.h"
+#import "ValidatorComponents.h"
 
 #import "RestoreSeedViewController.h"
 #import "RestoreSeedInteractor.h"
@@ -36,6 +37,8 @@
                                                 with:[self presenterRestoreSeed]];
                           [definition injectProperty:@selector(walletService)
                                                 with:[self.serviceComponents MEWwallet]];
+                          [definition injectProperty:@selector(mnemonicsValidator)
+                                                with:[self.validatorComponents mnemonicsValidator]];
                         }];
 }
 

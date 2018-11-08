@@ -171,17 +171,19 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
 }
 
 - (void) updateWithMasterToken:(MasterTokenPlainObject *)masterToken {
-  NetworkPlainObject *network = masterToken.fromNetworkMaster;
-  AccountPlainObject *account = network.fromAccount;
-  
-  BlockchainNetworkType networkType = [network network];
-  [self.headerView.networkButton setTitle:NSStringFromBlockchainNetworkType(networkType) forState:UIControlStateNormal];
-  [self.headerView.cardView updateWithSeed:masterToken.address];
-  
-  [self.headerView refreshContentIfNeeded];
-  
-  self.headerView.cardView.backedUp = [account.backedUp boolValue];
-  [self updateBalanceWithMasterToken:masterToken];
+  if ([self isViewLoaded]) {
+    NetworkPlainObject *network = masterToken.fromNetworkMaster;
+    AccountPlainObject *account = network.fromAccount;
+    
+    BlockchainNetworkType networkType = [network network];
+    [self.headerView.networkButton setTitle:NSStringFromBlockchainNetworkType(networkType) forState:UIControlStateNormal];
+    [self.headerView.cardView updateWithSeed:masterToken.address];
+    
+    [self.headerView refreshContentIfNeeded];
+    
+    self.headerView.cardView.backedUp = [account.backedUp boolValue];
+    [self updateBalanceWithMasterToken:masterToken];
+  }
 }
 
 - (void) updateBalanceWithMasterToken:(MasterTokenPlainObject *)masterToken {

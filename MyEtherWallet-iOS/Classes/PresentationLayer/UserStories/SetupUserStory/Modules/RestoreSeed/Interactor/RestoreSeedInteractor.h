@@ -11,8 +11,10 @@
 @protocol MEWwallet;
 
 @protocol RestoreSeedInteractorOutput;
+@protocol ObjectValidator;
 
 @interface RestoreSeedInteractor : NSObject <RestoreSeedInteractorInput>
 @property (nonatomic, weak) id<RestoreSeedInteractorOutput> output;
 @property (nonatomic, strong) id<MEWwallet> walletService;
+@property (nonatomic, strong) id<ObjectValidator> mnemonicsValidator;
 @end

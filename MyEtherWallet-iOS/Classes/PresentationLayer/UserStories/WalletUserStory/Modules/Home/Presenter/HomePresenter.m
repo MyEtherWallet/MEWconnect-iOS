@@ -43,6 +43,8 @@ typedef NS_OPTIONS(short, HomeViewPresenterStatus) {
 - (void) configureModule {
   [self.interactor refreshMasterToken];
   [self.interactor configurate];
+  MasterTokenPlainObject *masterToken = [self.interactor obtainMasterToken];
+  [self.view updateWithMasterToken:masterToken];
 }
 
 - (void) configureBackupStatus {

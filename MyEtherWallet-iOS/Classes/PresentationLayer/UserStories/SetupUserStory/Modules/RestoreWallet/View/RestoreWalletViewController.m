@@ -13,8 +13,6 @@
 
 #import "RestoreWalletViewOutput.h"
 
-#import "NSCharacterSet+WNS.h"
-
 #import "ApplicationConstants.h"
 
 #import "UIColor+Application.h"
@@ -30,7 +28,6 @@
 @end
 
 @implementation RestoreWalletViewController {
-  NSCharacterSet *_separatorCharactorSet;
   CGFloat _keyboardHeight;
 }
 
@@ -68,7 +65,6 @@
   }
   self.mnemonicsTextView.placeholder = NSLocalizedString(@"Words separated by spaces…", @"Restore wallet. Mnemonics placeholder");
   self.mnemonicsTextView.placeholderColor = [[UIColor lightGreyTextColor] colorWithAlphaComponent:0.5];
-  _separatorCharactorSet = [NSCharacterSet whitespaceAndSpaceAndNewlineCharacterSet];
   { //Title label
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
     style.lineSpacing = 0.0;
@@ -130,16 +126,13 @@
 
 #pragma mark - UITextViewDelegate
 
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(__unused NSRange)range replacementText:(__unused NSString *)text {
   NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
   style.lineSpacing = 2.0;
   NSDictionary *attributes = @{NSParagraphStyleAttributeName: style,
                                NSFontAttributeName: self.mnemonicsTextView.font};
   textView.typingAttributes = attributes;
-  NSString *finalText = [textView.text stringByReplacingCharactersInRange:range withString:text];
-  NSArray <NSString *> *items = [finalText componentsSeparatedByCharactersInSet:_separatorCharactorSet];
-  items = [items filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.length > 0"]];
-  return [items count] <= kMnemonicsWordsMaxLength;
+  return YES;
 }
 
 - (void)textViewDidChange:(UITextView *)textView {

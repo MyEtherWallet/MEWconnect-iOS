@@ -311,6 +311,19 @@ class Web3Wrapper: NSObject {
     let fields = TransactionParametersField.allValues.map { $0.rawValue }
     return contractRequest(forAddress: address, contractAddresses: contractAddresses, abi: abi, method: "balanceOf", transactionFields: fields)
   }
+  
+  /**
+   Validating BIP39 mnemonics phrase
+   
+   - Parameter words: entered mnemonics phrase
+   
+   - Returns: Validation result
+   */
+  
+  func validateMnemonics(withWords words: [String]) -> Bool {
+    guard let _ = BIP39.mnemonicsToEntropy(words.joined(separator: " ")) else { return false }
+    return true
+  }
 
   func bip39Words() -> [String] {
     return BIP39Language.english.words

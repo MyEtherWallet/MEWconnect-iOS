@@ -11,6 +11,7 @@
 #import "RestoreWalletAssembly.h"
 
 #import "ServiceComponents.h"
+#import "ValidatorComponents.h"
 
 #import "RestoreWalletViewController.h"
 #import "RestoreWalletInteractor.h"
@@ -36,6 +37,8 @@
                                                 with:[self presenterRestoreWallet]];
                           [definition injectProperty:@selector(walletService)
                                                 with:[self.serviceComponents MEWwallet]];
+                          [definition injectProperty:@selector(mnemonicsValidator)
+                                                with:[self.validatorComponents mnemonicsValidator]];
                         }];
 }
 

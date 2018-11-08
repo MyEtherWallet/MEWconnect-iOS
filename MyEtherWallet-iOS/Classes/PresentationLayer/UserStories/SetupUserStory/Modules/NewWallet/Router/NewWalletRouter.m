@@ -14,7 +14,7 @@
 #import "HomeModuleInput.h"
 
 static NSString *const kNewWalletToStartUnwindSegueIdentifier = @"NewWalletToStartUnwindSegueIdentifier";
-static NSString *const kNewWalletToHomeUnwindSegueIdentifier = @"NewWalletToHomeUnwindSegueIdentifier";
+static NSString *const kNewWalletToHomeUnwindSegueIdentifier  = @"NewWalletToHomeUnwindSegueIdentifier";
 
 @implementation NewWalletRouter
 

@@ -163,6 +163,10 @@
   return [network.master.address isEqualToString:address];
 }
 
+- (BOOL) validateMnemonics:(NSArray <NSString *> *)words {
+  return [self.wrapper validateMnemonicsWithWords:words];
+}
+
 - (NSArray <NSString *> *) recoveryMnemonicsWordsWithPassword:(NSString *)password ofAccount:(AccountPlainObject *)account {
   return [self.wrapper recoveryMnemonicsWordsWithPassword:password account:account];
 }

@@ -309,6 +309,10 @@
 		5677C5B52181226500477ACD /* _TokenPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C5852181226500477ACD /* _TokenPlainObject.m */; };
 		5685FE162099F9A4008C75A1 /* FlatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5685FE152099F9A4008C75A1 /* FlatButton.m */; };
 		5689111F20EE6511001552D4 /* SimplexPaymentQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 5689111E20EE6511001552D4 /* SimplexPaymentQuery.m */; };
+		5691625D2194B85300A58480 /* MnemonicsValidatorImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5691625C2194B85300A58480 /* MnemonicsValidatorImplementation.m */; };
+		5691625E2194B85300A58480 /* MnemonicsValidatorImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5691625C2194B85300A58480 /* MnemonicsValidatorImplementation.m */; };
+		569162642194B8CC00A58480 /* ValidatorComponentsAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 569162632194B8CC00A58480 /* ValidatorComponentsAssembly.m */; };
+		569162652194B8CC00A58480 /* ValidatorComponentsAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 569162632194B8CC00A58480 /* ValidatorComponentsAssembly.m */; };
 		56947CDA2186465700336F4B /* MasterTokenBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 56947CD92186465700336F4B /* MasterTokenBody.m */; };
 		56947CDB2186465700336F4B /* MasterTokenBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 56947CD92186465700336F4B /* MasterTokenBody.m */; };
 		5695A95A2B5CED358C015C0D /* DeclinedTransactionRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = DD110C7B23B316FCBDF56162 /* DeclinedTransactionRouter.m */; };
@@ -1501,6 +1505,12 @@
 		5685FE152099F9A4008C75A1 /* FlatButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlatButton.m; sourceTree = "<group>"; };
 		5689111D20EE6511001552D4 /* SimplexPaymentQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimplexPaymentQuery.h; sourceTree = "<group>"; };
 		5689111E20EE6511001552D4 /* SimplexPaymentQuery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimplexPaymentQuery.m; sourceTree = "<group>"; };
+		5691625A2194B81D00A58480 /* ObjectValidator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjectValidator.h; sourceTree = "<group>"; };
+		5691625B2194B85300A58480 /* MnemonicsValidatorImplementation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MnemonicsValidatorImplementation.h; sourceTree = "<group>"; };
+		5691625C2194B85300A58480 /* MnemonicsValidatorImplementation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MnemonicsValidatorImplementation.m; sourceTree = "<group>"; };
+		569162612194B8C000A58480 /* ValidatorComponents.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ValidatorComponents.h; sourceTree = "<group>"; };
+		569162622194B8CC00A58480 /* ValidatorComponentsAssembly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ValidatorComponentsAssembly.h; sourceTree = "<group>"; };
+		569162632194B8CC00A58480 /* ValidatorComponentsAssembly.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ValidatorComponentsAssembly.m; sourceTree = "<group>"; };
 		56947CD82186465700336F4B /* MasterTokenBody.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterTokenBody.h; sourceTree = "<group>"; };
 		56947CD92186465700336F4B /* MasterTokenBody.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterTokenBody.m; sourceTree = "<group>"; };
 		5699983B2095141100D45153 /* Setup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setup.storyboard; sourceTree = "<group>"; };
@@ -4395,6 +4405,7 @@
 		5668E5152083EE4A0070A402 /* BusinessLogicLayer */ = {
 			isa = PBXGroup;
 			children = (
+				569162562194B7E500A58480 /* Validators */,
 				56FB38EF20B08362007776C8 /* Facades */,
 				5668E5162083EE620070A402 /* Assemblies */,
 				56AC9434208F76D200E5BC2C /* Services */,
@@ -4406,6 +4417,7 @@
 		5668E5162083EE620070A402 /* Assemblies */ = {
 			isa = PBXGroup;
 			children = (
+				569162602194B89C00A58480 /* ValidatorComponentsAssembly */,
 				5668E5172083EE690070A402 /* ServiceComponentsAssembly */,
 			);
 			path = Assemblies;
@@ -4666,6 +4678,50 @@
 				5689111E20EE6511001552D4 /* SimplexPaymentQuery.m */,
 			);
 			path = SimplexPaymentQuery;
+			sourceTree = "<group>";
+		};
+		569162562194B7E500A58480 /* Validators */ = {
+			isa = PBXGroup;
+			children = (
+				569162572194B7EF00A58480 /* Protocols */,
+				569162592194B7F800A58480 /* ConcreteClasses */,
+			);
+			path = Validators;
+			sourceTree = "<group>";
+		};
+		569162572194B7EF00A58480 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				5691625A2194B81D00A58480 /* ObjectValidator.h */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		569162592194B7F800A58480 /* ConcreteClasses */ = {
+			isa = PBXGroup;
+			children = (
+				5691625F2194B85600A58480 /* MnemonicsValidator */,
+			);
+			path = ConcreteClasses;
+			sourceTree = "<group>";
+		};
+		5691625F2194B85600A58480 /* MnemonicsValidator */ = {
+			isa = PBXGroup;
+			children = (
+				5691625B2194B85300A58480 /* MnemonicsValidatorImplementation.h */,
+				5691625C2194B85300A58480 /* MnemonicsValidatorImplementation.m */,
+			);
+			path = MnemonicsValidator;
+			sourceTree = "<group>";
+		};
+		569162602194B89C00A58480 /* ValidatorComponentsAssembly */ = {
+			isa = PBXGroup;
+			children = (
+				569162612194B8C000A58480 /* ValidatorComponents.h */,
+				569162622194B8CC00A58480 /* ValidatorComponentsAssembly.h */,
+				569162632194B8CC00A58480 /* ValidatorComponentsAssembly.m */,
+			);
+			path = ValidatorComponentsAssembly;
 			sourceTree = "<group>";
 		};
 		56947CD72186464400336F4B /* MasterTokenBody */ = {
@@ -9489,7 +9545,7 @@
 		56FE2B6520817F1100DB39D5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "MyEtherWallet, Inc.";
 				TargetAttributes = {
 					56E3E4E921016DB60014152D = {
@@ -10225,6 +10281,7 @@
 				56E3E5B721016DB60014152D /* InfoEmptyTableViewCellObject.m in Sources */,
 				56E3E5B821016DB60014152D /* PonsomizerImplementation.m in Sources */,
 				56E3E5B921016DB60014152D /* Web3Wrapper.swift in Sources */,
+				5691625E2194B85300A58480 /* MnemonicsValidatorImplementation.m in Sources */,
 				56E3E5BA21016DB60014152D /* NSString+MEWTokens.m in Sources */,
 				56E3E5BB21016DB60014152D /* UIColor+HSL.swift in Sources */,
 				56E3E5BC21016DB60014152D /* SettingsAssembly.m in Sources */,
@@ -10332,6 +10389,7 @@
 				56E3E61121016DB60014152D /* SplashPasswordViewController.m in Sources */,
 				56E3E61221016DB60014152D /* UIView+LockAlpha.m in Sources */,
 				56E3E61321016DB60014152D /* SplashPasswordPresenter.m in Sources */,
+				569162652194B8CC00A58480 /* ValidatorComponentsAssembly.m in Sources */,
 				56E3E61421016DB60014152D /* TransitioningDelegateAssembly.m in Sources */,
 				56E3E61521016DB60014152D /* SplashPasswordInteractor.m in Sources */,
 				56E3E61721016DB60014152D /* StatusButton.m in Sources */,
@@ -10436,6 +10494,7 @@
 				A8123FAF02CEA51B7C6502EA /* StartInteractor.m in Sources */,
 				5668E4DE2083D9220070A402 /* ApplicationAssembly.m in Sources */,
 				5668E5072083E5CA0070A402 /* ApplicationHelperAssembly.m in Sources */,
+				5691625D2194B85300A58480 /* MnemonicsValidatorImplementation.m in Sources */,
 				560D76F820B48487009A3D6D /* CacheTransactionBatch.m in Sources */,
 				56FB394E20B1AA0D007776C8 /* CompoundOperationBuilderConfig.m in Sources */,
 				56FB397520B222FF007776C8 /* RequestConfigurationOperation.m in Sources */,
@@ -10639,6 +10698,7 @@
 				9EA12B8253010D67DED815C9 /* MessageSignerPresenter.m in Sources */,
 				56E14C1920ED298100C41F83 /* SimplexOrder.m in Sources */,
 				563CF2F920EFAD65005467AE /* BuyEtherHistoryItemTableViewCell.m in Sources */,
+				569162642194B8CC00A58480 /* ValidatorComponentsAssembly.m in Sources */,
 				5677C5B22181226500477ACD /* _PurchaseHistoryPlainObject.m in Sources */,
 				72485618E7E8DF04CFBF2AA4 /* MessageSignerInteractor.m in Sources */,
 				F97A9F3E04DFE53FBEB8DD88 /* MessageSignerRouter.m in Sources */,

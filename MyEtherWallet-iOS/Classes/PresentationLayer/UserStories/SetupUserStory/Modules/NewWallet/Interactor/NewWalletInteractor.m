@@ -14,6 +14,7 @@
 
 #import "MEWConnectFacade.h"
 #import "AccountsService.h"
+#import "KeychainService.h"
 #import "BlockchainNetworkService.h"
 #import "MEWwallet.h"
 #import "Ponsomizer.h"
@@ -31,6 +32,9 @@
 
 - (void) createNewWalletWithPassword:(NSString *)password words:(NSArray<NSString *> *)words {
   [self.connectFacade disconnect];
+  
+  [self.accountsService resetAccounts];
+  [self.keychainService resetKeychain];
   
   AccountModelObject *accountModelObject = [self.accountsService obtainOrCreateActiveAccount];
   NSArray *ignoringProperties = @[NSStringFromSelector(@selector(tokens))];

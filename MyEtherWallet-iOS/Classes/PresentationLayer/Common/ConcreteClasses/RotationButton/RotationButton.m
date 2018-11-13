@@ -22,6 +22,8 @@ static NSString *const kRotationButtonAnimationKey  = @"animation.rotate";
     if (_rotation) {
       self.userInteractionEnabled = NO;
       [self _addRotateAnimation];
+    } else if ([self.imageView.layer animationForKey:kRotationButtonAnimationKey] == nil) {
+      self.userInteractionEnabled = YES;
     }
   }
 }

@@ -19,8 +19,8 @@
 - (void) updateBalanceWithMasterToken:(MasterTokenPlainObject *)masterToken;
 - (void) updateWithTransactionBatch:(CacheTransactionBatch *)transactionBatch;
 - (void) updateWithTokensCount:(NSUInteger)tokensCount withTotalPrice:(NSDecimalNumber *)totalPrice;
-- (void) startAnimatingTokensRefreshing;
-- (void) stopAnimatingTokensRefreshing;
+- (void) startAnimatingRefreshing;
+- (void) stopAnimatingRefreshing;
 - (void) presentNetworkSelection;
 - (void) updateStatusWithInternetConnection:(BOOL)internetConnection mewConnectConnection:(BOOL)mewConnectConnection animated:(BOOL)animated;
 @end

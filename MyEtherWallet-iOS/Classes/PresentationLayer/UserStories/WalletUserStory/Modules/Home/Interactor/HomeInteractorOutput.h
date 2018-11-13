@@ -21,8 +21,8 @@
 - (void) didUpdateEthereumBalance;
 - (void) didUpdateTokensBalance;
 - (void) mewConnectionStatusChanged;
-- (void) tokensDidStartUpdating;
-- (void) tokensDidEndUpdating;
+- (void) balancesDidStartUpdating;
+- (void) balancesDidEndUpdating;
 - (void) networkDidChanged;
 - (void) internetConnectionIsReachable;
 - (void) internetConnectionIsUnreachable;

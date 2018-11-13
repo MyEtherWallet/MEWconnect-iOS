@@ -30,7 +30,7 @@
 #define DEBUG_TOKENS 0
 
 #if !DEBUG
-  #undef DEBUG_BALANCE 1
+  #undef DEBUG_BALANCE
   #undef DEBUG_TOKENS
   #define DEBUG_TOKENS 0
   #define DEBUG_BALANCE 0
@@ -42,7 +42,7 @@ static NSString *const kMEWDonateAddress = @"0xDECAF9CD2367cdbb726E904cD6397eDFc
 
 static NSString *const TokensABI = @"[{\"constant\":true,\"inputs\":[{\"name\":\"_owner\",\"type\":\"address\"},{\"name\":\"name\",\"type\":\"bool\"},{\"name\":\"website\",\"type\":\"bool\"},{\"name\":\"email\",\"type\":\"bool\"},{\"name\":\"count\",\"type\":\"uint256\"}],\"name\":\"getAllBalance\",\"outputs\":[{\"name\":\"\",\"type\":\"bytes\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}]";
 static NSString *const MainnetTokensContractAddress = @"0xdAFf2b3BdC710EB33A847CCb30A24789c0Ef9c5b";
-static NSString *const RopstenTokensContractAddress = @"0xa23707C6f68B9e5630B2310db39F1Dfa119D46A4";
+static NSString *const RopstenTokensContractAddress = @"0xb8e1bbc50fd87ea00d8ce73747ac6f516af26dac";
 
 @implementation TokensServiceImplementation
 

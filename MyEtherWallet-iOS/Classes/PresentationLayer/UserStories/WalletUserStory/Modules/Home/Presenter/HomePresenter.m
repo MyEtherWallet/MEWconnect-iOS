@@ -34,7 +34,7 @@ typedef NS_OPTIONS(short, HomeViewPresenterStatus) {
 
 @implementation HomePresenter {
   BOOL _viewVisible;
-  BOOL _tokensRefreshing;
+  BOOL _balancesRefreshing;
   BOOL _transactionDidSigned;
 }
 
@@ -75,8 +75,8 @@ typedef NS_OPTIONS(short, HomeViewPresenterStatus) {
   [self.view updateWithMasterToken:masterToken];
   
   [self _refreshViewStatusAnimated:NO];
-  if (_tokensRefreshing) {
-    [self.view startAnimatingTokensRefreshing];
+  if (_balancesRefreshing) {
+    [self.view startAnimatingRefreshing];
   }
 }
 
@@ -125,7 +125,7 @@ typedef NS_OPTIONS(short, HomeViewPresenterStatus) {
 }
 
 - (void) refreshTokensAction {
-  [self.interactor refreshTokens];
+  [self.interactor reloadData];
 }
 
 - (void) shareAction {
@@ -193,14 +193,14 @@ typedef NS_OPTIONS(short, HomeViewPresenterStatus) {
   }
 }
 
-- (void) tokensDidStartUpdating {
-  _tokensRefreshing = YES;
-  [self.view startAnimatingTokensRefreshing];
+- (void) balancesDidStartUpdating {
+  _balancesRefreshing = YES;
+  [self.view startAnimatingRefreshing];
 }
 
-- (void) tokensDidEndUpdating {
-  _tokensRefreshing = NO;
-  [self.view stopAnimatingTokensRefreshing];
+- (void) balancesDidEndUpdating {
+  _balancesRefreshing = NO;
+  [self.view stopAnimatingRefreshing];
 }
 
 - (void) networkDidChanged {

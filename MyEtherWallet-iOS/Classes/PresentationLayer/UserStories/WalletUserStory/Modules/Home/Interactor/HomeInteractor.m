@@ -242,6 +242,17 @@ static NSTimeInterval kHomeInteractorDefaultRefreshBalancesTime = 900.0;
   [self.output didProcessCacheTransaction:transactionBatch];
 }
 
+#pragma mark - Override
+
+- (void)setUpdatingStatus:(HomeInteractorUpdatingStatus)updatingStatus {
+  if (_updatingStatus == HomeInteractorUpdatingStatusIdle && updatingStatus != HomeInteractorUpdatingStatusIdle) {
+    [self.output balancesDidStartUpdating];
+  } else if (_updatingStatus != HomeInteractorUpdatingStatusIdle && updatingStatus == HomeInteractorUpdatingStatusIdle) {
+    [self.output balancesDidEndUpdating];
+  }
+  _updatingStatus = updatingStatus;
+}
+
 #pragma mark - Private
 
 - (void) _reloadCacheRequest {
@@ -304,7 +315,6 @@ static NSTimeInterval kHomeInteractorDefaultRefreshBalancesTime = 900.0;
   if ((self.updatingStatus & HomeInteractorUpdatingStatusTokens) != HomeInteractorUpdatingStatusTokens) {
     self.updatingStatus |= HomeInteractorUpdatingStatusTokens;
     self.updatingStatus |= HomeInteractorUpdatingStatusTokensUpdating;
-    [self.output tokensDidStartUpdating];
     @weakify(self);
     [self.tokensService updateTokenBalancesOfMasterToken:[self obtainMasterToken]
                                           withCompletion:^(NSError *error) {
@@ -317,7 +327,6 @@ static NSTimeInterval kHomeInteractorDefaultRefreshBalancesTime = 900.0;
                                               }
                                             } else {
                                               self.updatingStatus &= ~HomeInteractorUpdatingStatusTokensReset;
-                                              [self.output tokensDidEndUpdating];
                                             }
                                           }];
   }
@@ -335,7 +344,6 @@ static NSTimeInterval kHomeInteractorDefaultRefreshBalancesTime = 900.0;
     }
     if ((self.updatingStatus & HomeInteractorUpdatingStatusTokens) == HomeInteractorUpdatingStatusTokens) {
       [self.output didUpdateTokensBalance];
-      [self.output tokensDidEndUpdating];
     }
     self.updatingStatus = HomeInteractorUpdatingStatusIdle;
   }];

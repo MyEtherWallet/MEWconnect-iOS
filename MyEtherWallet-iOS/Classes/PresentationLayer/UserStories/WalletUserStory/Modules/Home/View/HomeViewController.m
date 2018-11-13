@@ -227,11 +227,11 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
   }
 }
 
-- (void) startAnimatingTokensRefreshing {
+- (void) startAnimatingRefreshing {
   self.headerView.refreshButton.rotation = YES;
 }
 
-- (void) stopAnimatingTokensRefreshing {
+- (void) stopAnimatingRefreshing {
   self.headerView.refreshButton.rotation = NO;
 }
 

@@ -93,7 +93,8 @@ static NSString *const RopstenTokensContractAddress = @"0xb8e1bbc50fd87ea00d8ce7
 #endif
   
   NSString *contractAddress = nil;
-  if ([masterToken.fromNetworkMaster network] == BlockchainNetworkTypeMainnet) {
+  BlockchainNetworkType network = [masterToken.fromNetworkMaster network];
+  if (network == BlockchainNetworkTypeMainnet) {
     contractAddress = MainnetTokensContractAddress;
   } else {
     contractAddress = RopstenTokensContractAddress;
@@ -105,7 +106,7 @@ static NSString *const RopstenTokensContractAddress = @"0xb8e1bbc50fd87ea00d8ce7
   masterToken.address = originalPublicAddress;
 #endif
   [rootSavingContext performBlock:^{
-    CompoundOperationBase *compoundOperation = [self.tokensOperationFactory contractBalancesWithBody:body];
+    CompoundOperationBase *compoundOperation = [self.tokensOperationFactory contractBalancesWithBody:body inNetwork:network];
     [compoundOperation setResultBlock:^(NSArray <TokenModelObject *> *data, NSError *error) {
       if (!error) {
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.master.address == %@", masterToken.address];
@@ -119,13 +120,12 @@ static NSString *const RopstenTokensContractAddress = @"0xb8e1bbc50fd87ea00d8ce7
             
             NSArray <TokenModelObject *> *tokens = [networkModelObject.tokens allObjects];
             for (TokenModelObject *token in tokens) {
-              NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name == %@", token.name];
+              NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.address == %@", token.address];
               TokenModelObject *refreshingToken = [[data filteredArrayUsingPredicate:predicate] firstObject];
               if (refreshingToken) {
                 [tokensToAdd removeObject:refreshingToken];
                 token.balance = refreshingToken.balance;
                 token.decimals = refreshingToken.decimals;
-                [tokensToAdd addObject:token];
                 [tokensToDelete addObject:refreshingToken];
               } else {
                 [tokensToDelete addObject:token];
@@ -138,14 +138,23 @@ static NSString *const RopstenTokensContractAddress = @"0xb8e1bbc50fd87ea00d8ce7
               [networkModelObject addTokens:[NSSet setWithArray:tokensToAdd]];
             }
           }
-          [rootSavingContext MR_saveToPersistentStoreAndWait];
         }
       }
-      dispatch_async(dispatch_get_main_queue(), ^{
-        if (completion) {
-          completion(error);
-        }
-      });
+      if ([rootSavingContext hasChanges]) {
+        [rootSavingContext MR_saveToPersistentStoreWithCompletion:^(__unused BOOL contextDidSave, __unused NSError * _Nullable saveError) {
+          dispatch_async(dispatch_get_main_queue(), ^{
+            if (completion) {
+              completion(error);
+            }
+          });
+        }];
+      } else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+          if (completion) {
+            completion(error);
+          }
+        });
+      }
     }];
     [self.operationScheduler addOperation:compoundOperation];
   }];

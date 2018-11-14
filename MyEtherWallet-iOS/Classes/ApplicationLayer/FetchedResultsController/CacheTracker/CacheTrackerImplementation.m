@@ -90,7 +90,7 @@
   for (NSUInteger i = 0; i < _previousFetch.count; ++i) {
     id object = _previousFetch[i];
     id plainObject = [self.ponsomizer convertObject:object ignoringProperties:ignoringProperties];
-    NSIndexPath *oldIndexPath = [self.previousFetchObjectToIndexPathMap objectForKey:plainObject];
+    NSIndexPath *oldIndexPath = [self.previousFetchObjectToIndexPathMap objectForKey:object];
     NSParameterAssert(oldIndexPath);
     if (![self.controller.fetchedObjects containsObject:object] ||
         ![self.controller isEqual:self.previousController]) {
@@ -103,11 +103,11 @@
                                                                    objectType:nil
                                                                    changeType:NSFetchedResultsChangeDelete];
       [batch addTransaction:transaction];
-      [self _deleteIndexPathForObject:plainObject];
+      [self _deleteIndexPathForObject:object];
     } else {
       NSIndexPath *newIndexPath = [self.controller indexPathForObject:object];
       if (![newIndexPath isEqual:oldIndexPath]) {
-        [self _saveIndexPath:newIndexPath forObject:plainObject];
+        [self _saveIndexPath:newIndexPath forObject:object];
       }
     }
   }
@@ -128,7 +128,7 @@
                                                                    changeType:NSFetchedResultsChangeInsert];
       [batch addTransaction:transaction];
     }
-    [self _saveIndexPath:indexPath forObject:plainObject];
+    [self _saveIndexPath:indexPath forObject:object];
   }
   _previousFetch = self.controller.fetchedObjects;
   [self _updateSectionsIfNeededForBatch:batch];
@@ -168,15 +168,18 @@
   if (self.preparationBlock) {
     self.preparationBlock(plainObject);
   }
+  if (![indexPath isEqual:newIndexPath] && changeType == NSFetchedResultsChangeUpdate) {
+    changeType = NSFetchedResultsChangeMove;
+  }
   CacheTransaction *transaction = [CacheTransaction transactionWithObject:plainObject
                                                              oldIndexPath:indexPath
                                                          updatedIndexPath:newIndexPath
                                                                objectType:NSStringFromClass(self.cacheRequest.objectClass)
                                                                changeType:changeType];
   if (newIndexPath) {
-    [self _saveIndexPath:newIndexPath forObject:plainObject];
+    [self _saveIndexPath:newIndexPath forObject:anObject];
   } else if (indexPath) {
-    [self _deleteIndexPathForObject:plainObject];
+    [self _deleteIndexPathForObject:anObject];
   }
   
   [self.transactionBatch addTransaction:transaction];

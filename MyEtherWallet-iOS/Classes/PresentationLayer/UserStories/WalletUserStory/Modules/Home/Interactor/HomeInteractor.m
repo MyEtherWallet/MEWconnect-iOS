@@ -35,13 +35,17 @@
 
 typedef NS_OPTIONS(short, HomeInteractorUpdatingStatus) {
   HomeInteractorUpdatingStatusIdle              = 0 << 0, //0b00000
+  
   HomeInteractorUpdatingStatusBalance           = 1 << 0, //0b00001
-  HomeInteractorUpdatingStatusTokens            = 1 << 1, //0b00010
   HomeInteractorUpdatingStatusBalanceUpdating   = 1 << 2, //0b00100
+  HomeInteractorUpdatingStatusBalanceReset      = 5 << 0, //0b00101
+  
+  HomeInteractorUpdatingStatusTokens            = 1 << 1, //0b00010
   HomeInteractorUpdatingStatusTokensUpdating    = 1 << 3, //0b01000
-  HomeInteractorUpdatingStatusBalanceReset      = 3 << 0, //0b00011
-  HomeInteractorUpdatingStatusTokensReset       = 3 << 2, //0b01100
+  HomeInteractorUpdatingStatusTokensReset       = 5 << 1, //0b01010
+  
   HomeInteractorUpdatingStatusAnyUpdating       = 3 << 2, //0b01100
+  
   HomeInteractorUpdatingStatusFiatUpdating      = 1 << 4, //0b10000
 };
 
@@ -250,6 +254,7 @@ static NSTimeInterval kHomeInteractorDefaultRefreshBalancesTime = 900.0;
   } else if (_updatingStatus != HomeInteractorUpdatingStatusIdle && updatingStatus == HomeInteractorUpdatingStatusIdle) {
     [self.output balancesDidEndUpdating];
   }
+  
   _updatingStatus = updatingStatus;
 }
 
@@ -257,7 +262,7 @@ static NSTimeInterval kHomeInteractorDefaultRefreshBalancesTime = 900.0;
 
 - (void) _reloadCacheRequest {
   CacheRequest *request = [CacheRequest requestWithPredicate:[NSPredicate predicateWithFormat:@"SELF.address != nil && SELF.fromNetwork.master.address == %@", [self obtainMasterToken].address]
-                                             sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(name)) ascending:YES]]
+                                             sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(name)) ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]]
                                                  objectClass:[TokenModelObject class]
                                                  filterValue:nil
                                           ignoringProperties:@[NSStringFromSelector(@selector(fromAccount))]];
@@ -301,11 +306,11 @@ static NSTimeInterval kHomeInteractorDefaultRefreshBalancesTime = 900.0;
                                       if (!error) {
                                         self.updatingStatus &= ~HomeInteractorUpdatingStatusBalanceUpdating;
                                         [self.output didUpdateEthereumBalance];
-                                        if ((self.updatingStatus & HomeInteractorUpdatingStatusAnyUpdating) == HomeInteractorUpdatingStatusIdle) {
-                                          [self _updateFiatPrices];
-                                        }
                                       } else {
                                         self.updatingStatus &= ~HomeInteractorUpdatingStatusBalanceReset;
+                                      }
+                                      if ((self.updatingStatus & HomeInteractorUpdatingStatusAnyUpdating) == HomeInteractorUpdatingStatusIdle) {
+                                        [self _updateFiatPrices];
                                       }
                                     }];
   }
@@ -322,11 +327,11 @@ static NSTimeInterval kHomeInteractorDefaultRefreshBalancesTime = 900.0;
                                             if (!error) {
                                               self.updatingStatus &= ~HomeInteractorUpdatingStatusTokensUpdating;
                                               [self.output didUpdateTokens];
-                                              if ((self.updatingStatus & HomeInteractorUpdatingStatusAnyUpdating) == HomeInteractorUpdatingStatusIdle) {
-                                                [self _updateFiatPrices];
-                                              }
                                             } else {
                                               self.updatingStatus &= ~HomeInteractorUpdatingStatusTokensReset;
+                                            }
+                                            if ((self.updatingStatus & HomeInteractorUpdatingStatusAnyUpdating) == HomeInteractorUpdatingStatusIdle) {
+                                              [self _updateFiatPrices];
                                             }
                                           }];
   }

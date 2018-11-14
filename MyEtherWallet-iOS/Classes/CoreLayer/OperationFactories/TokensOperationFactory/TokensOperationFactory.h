@@ -25,6 +25,6 @@
                queryTransformer:(id<QueryTransformer>)queryTransformer
                 bodyTransformer:(id<BodyTransformer>)bodyTransformer
                  headersBuilder:(id<HeadersBuilder>)headersBuilder;
-- (CompoundOperationBase *) contractBalancesWithBody:(TokensBody *)body;
+- (CompoundOperationBase *) contractBalancesWithBody:(TokensBody *)body inNetwork:(BlockchainNetworkType)network;
 - (CompoundOperationBase *) ethereumBalanceWithBody:(MasterTokenBody *)body inNetwork:(BlockchainNetworkType)network;
 @end

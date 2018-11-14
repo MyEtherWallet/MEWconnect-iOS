@@ -19,8 +19,6 @@
   NSMutableOrderedSet <CacheTransaction *> *_updateTransactions;
   NSMutableOrderedSet <CacheTransaction *> *_moveTransactions;
   
-  NSMutableOrderedSet <CacheTransaction *> *_transactions;
-  
   NSMutableArray <CacheTransactionSection *> *_sections;
 }
 
@@ -69,7 +67,6 @@
     default:
       break;
   }
-  _transactions = nil;
 }
 
 - (void)addSection:(CacheTransactionSection *)section {

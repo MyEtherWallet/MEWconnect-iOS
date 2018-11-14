@@ -12,7 +12,7 @@
 
 @interface HomeTableViewAnimator : NSObject
 @property (nonatomic, weak) UITableView *tableView;
-//- (void)updateCellWithIndexPath:(NSIndexPath *)indexPath withCellObject:(id)cellObject;
+@property (nonatomic) BOOL animated;
 - (void)updateWithTransactionBatch:(CacheTransactionBatch *)transactionBatch;
 - (void)reloadData;
 @end

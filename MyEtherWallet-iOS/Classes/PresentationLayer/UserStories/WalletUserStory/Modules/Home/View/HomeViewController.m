@@ -12,6 +12,7 @@
 
 #import "HomeViewOutput.h"
 
+#import "HomeTableViewAnimator.h"
 #import "HomeDataDisplayManager.h"
 
 #import "MasterTokenPlainObject.h"
@@ -66,6 +67,7 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   [self.output didTriggerViewWillAppear];
+  self.tableViewAnimator.animated = YES;
   
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
@@ -80,6 +82,8 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
 
 - (void) viewDidDisappear:(BOOL)animated {
   [super viewDidDisappear:animated];
+  
+  self.tableViewAnimator.animated = NO;
   
   [[NSNotificationCenter defaultCenter] removeObserver:self];
   

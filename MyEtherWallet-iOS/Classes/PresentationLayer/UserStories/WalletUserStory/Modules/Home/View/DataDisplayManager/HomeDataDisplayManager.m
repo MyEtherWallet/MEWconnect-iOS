@@ -46,21 +46,21 @@
     NSIndexPath *removeIndexPath = [NSIndexPath indexPathForRow:transaction.oldIndexPath.row inSection:0];
     [self.tableViewModel removeObjectAtIndexPath:removeIndexPath];
   }
-  
+
   for (CacheTransaction *transaction in transactionBatch.insertTransactions) {
     HomeTableViewCellObject *cellObject = [self.cellObjectBuilder buildCellObjectForToken:transaction.object];
     NSUInteger updatedRow = transaction.updatedIndexPath.row;
     [self.tableViewModel insertObject:cellObject atRow:updatedRow inSection:0];
   }
-  
-  for (CacheTransaction *transaction in transactionBatch.moveTransactions) {
+
+  for (CacheTransaction *transaction in transactionBatch.updateTransactions) {
     HomeTableViewCellObject *cellObject = [self.cellObjectBuilder buildCellObjectForToken:transaction.object];
-    NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:transaction.oldIndexPath.row inSection:0];
-    [self.tableViewModel removeObjectAtIndexPath:oldIndexPath];
+    NSIndexPath *updatedIndexPath = [NSIndexPath indexPathForRow:transaction.updatedIndexPath.row inSection:0];
+    [self.tableViewModel removeObjectAtIndexPath:updatedIndexPath];
     [self.tableViewModel insertObject:cellObject atRow:transaction.updatedIndexPath.row inSection:0];
   }
-  
-  for (CacheTransaction *transaction in transactionBatch.updateTransactions) {
+
+  for (CacheTransaction *transaction in transactionBatch.moveTransactions) {
     HomeTableViewCellObject *cellObject = [self.cellObjectBuilder buildCellObjectForToken:transaction.object];
     NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:transaction.oldIndexPath.row inSection:0];
     [self.tableViewModel removeObjectAtIndexPath:oldIndexPath];

@@ -54,14 +54,11 @@
   config.requestConfigurationType = RequestConfigurationMyEtherAPIType;
   config.requestMethod = kHTTPMethodPOST;
   switch (network) {
-    case BlockchainNetworkTypeMainnet: {
-      config.serviceName = kServiceNameETH;
-      break;
-    }
     case BlockchainNetworkTypeRopsten: {
       config.serviceName = kServiceNameROP;
       break;
     }
+    case BlockchainNetworkTypeMainnet:
     default: {
       config.serviceName = kServiceNameETH;
       break;
@@ -87,12 +84,22 @@
   return [self.networkOperationBuilder buildCompoundOperationWithConfig:config];
 }
 
-- (CompoundOperationBase *) contractBalancesWithBody:(TokensBody *)body {
+- (CompoundOperationBase *) contractBalancesWithBody:(TokensBody *)body inNetwork:(BlockchainNetworkType)network {
   CompoundOperationBuilderConfig *config = [[CompoundOperationBuilderConfig alloc] init];
   
   config.requestConfigurationType = RequestConfigurationMyEtherAPIType;
   config.requestMethod = kHTTPMethodPOST;
-  config.serviceName = kServiceNameETH;
+  switch (network) {
+    case BlockchainNetworkTypeRopsten: {
+      config.serviceName = kServiceNameROP;
+      break;
+    }
+    case BlockchainNetworkTypeMainnet:
+    default: {
+      config.serviceName = kServiceNameETH;
+      break;
+    }
+  }
   
   config.responseDeserializationType = ResponseDeserializationJSONType;
   

@@ -25,6 +25,10 @@
 }
 
 - (void)updateWithTransactionBatch:(CacheTransactionBatch *)transactionBatch {
+  if (!self.animated) {
+    [self reloadData];
+    return;
+  }
   if (![transactionBatch isEmpty] && self.tableView) {
     [self.tableView beginUpdates];
     for (CacheTransaction *transaction in transactionBatch.deleteTransactions) {
@@ -35,11 +39,11 @@
       [self.tableView insertRowsAtIndexPaths:@[transaction.updatedIndexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
     
-    for (CacheTransaction *transaction in transactionBatch.moveTransactions) {
+    for (CacheTransaction *transaction in transactionBatch.updateTransactions) {
       [self.tableView reloadRowsAtIndexPaths:@[transaction.updatedIndexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
     
-    for (CacheTransaction *transaction in transactionBatch.updateTransactions) {
+    for (CacheTransaction *transaction in transactionBatch.moveTransactions) {
       [self.tableView moveRowAtIndexPath:transaction.oldIndexPath toIndexPath:transaction.updatedIndexPath];
     }
     

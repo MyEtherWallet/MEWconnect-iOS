@@ -352,7 +352,7 @@ class Web3Wrapper: NSObject {
         txParams[keyPath: kp] = nil
       }
     }
-    let requestParameters = [txParams] as Array<Encodable>
+    let requestParameters = [txParams, "latest"] as Array<Encodable>
     let request = JSONRPCRequestFabric.prepareRequest(.call, parameters: requestParameters)
     return request
   }

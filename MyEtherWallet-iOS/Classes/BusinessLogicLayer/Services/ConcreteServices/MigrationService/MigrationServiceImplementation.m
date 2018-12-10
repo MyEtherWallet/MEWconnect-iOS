@@ -25,6 +25,8 @@
 #import "NetworkModelObject.h"
 #import "MasterTokenModelObject.h"
 
+#import "BlockchainNetworkTypes.h"
+
 static NSString *const kMigrationServiceMomFilename   = @"MEWconnect";
 static NSString *const kMigrationServiceMomdExtension = @"momd";
 static NSString *const kMigrationServiceMomExtension  = @"mom";
@@ -127,7 +129,7 @@ static NSString *const kMigrationServiceMomExtension  = @"mom";
         continue;
       }
       NSInteger chainId = [[components lastObject] integerValue];
-      if (chainId == 3) { //Ropsten
+      if (chainId == BlockchainNetworkTypeRopsten) { //Skip Ropsten network
         continue;
       } else {
         NSDictionary *item = [self.keychainService _obtainItemWithKey:key];

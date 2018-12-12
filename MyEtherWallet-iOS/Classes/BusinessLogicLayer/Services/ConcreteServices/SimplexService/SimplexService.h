@@ -25,5 +25,6 @@ typedef void(^SimplexServiceStatusCompletion)(NSError *error);
 - (void) orderForMasterToken:(MasterTokenPlainObject *)masterToken quote:(SimplexQuote *)quote completion:(SimplexServiceOrderCompletion)completion;
 - (void) statusForPurchase:(PurchaseHistoryPlainObject *)purchase completion:(SimplexServiceStatusCompletion)completion;
 - (NSArray <PurchaseHistoryModelObject *> *) obtainHistoryForMasterToken:(MasterTokenPlainObject *)masterToken;
+- (void) clearCancelledHistoryForMasterToken:(MasterTokenPlainObject *)masterToken;
 - (NSURLRequest *) obtainRequestWithOrder:(SimplexOrder *)order forMasterToken:(MasterTokenPlainObject *)masterToken;
 @end

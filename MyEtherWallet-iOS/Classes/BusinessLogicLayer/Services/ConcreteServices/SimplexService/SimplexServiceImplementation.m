@@ -120,6 +120,20 @@
   return [masterTokenModelObject.purchaseHistory array];
 }
 
+- (void) clearCancelledHistoryForMasterToken:(MasterTokenPlainObject *)masterToken {
+  NSManagedObjectContext *context = [NSManagedObjectContext MR_rootSavingContext];
+  [context performBlockAndWait:^{
+    MasterTokenModelObject *masterTokenModelObject = [MasterTokenModelObject MR_findFirstByAttribute:NSStringFromSelector(@selector(address))
+                                                                                           withValue:masterToken.address
+                                                                                           inContext:context];
+    NSOrderedSet *cancelledPurchases = [masterTokenModelObject.purchaseHistory filteredOrderedSetUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.status == %d", SimplexServicePaymentStatusTypeCancelled]];
+    if ([cancelledPurchases count] > 0) {
+      [context MR_deleteObjects:cancelledPurchases];
+      [context MR_saveToPersistentStoreAndWait];
+    }
+  }];
+}
+
 - (NSURLRequest *) obtainRequestWithOrder:(SimplexOrder *)order forMasterToken:(MasterTokenPlainObject *)masterToken {
   SimplexPaymentQuery *query = [self _obtainPaymentQueryWithOrder:order forMasterToken:masterToken];
   NSURLRequest *request = [self.simplexOperationFactory requestWithQuery:query];

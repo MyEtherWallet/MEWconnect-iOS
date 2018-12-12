@@ -49,6 +49,10 @@
     NSArray *ignoringProperties = @[NSStringFromSelector(@selector(tokens))];
     AccountPlainObject *account = [self.ponsomizer convertObject:accountModelObject ignoringProperties:ignoringProperties];
     
+    if (words) {
+      [self.accountsService accountBackedUp:account];
+    }
+    
     NetworkPlainObject *mainnetNetwork = [account networkForNetworkType:BlockchainNetworkTypeMainnet];
     [self.blockchainNetworkService selectNetwork:mainnetNetwork inAccount:account];
   }];

@@ -68,9 +68,6 @@
                                                       cornerRadius:10.0];
   [self.switchCurrencyButton setBackgroundImage:switchCurrencyBackgroundImage forState:UIControlStateNormal];
   
-  NSString *decimalSeparator = [[NSLocale currentLocale] objectForKey:NSLocaleDecimalSeparator];
-  [self.separatorButton setTitle:decimalSeparator forState:UIControlStateNormal];
-  
   NSNumberFormatter *usdFormatter = [NSNumberFormatter usdFormatter];
   usdFormatter.maximumFractionDigits = 0;
   NSString *minimumAmountTitle = [NSString stringWithFormat:NSLocalizedString(@"%@ MINIMUM PURCHASE", @"BuyEther. Minimum amount format"),

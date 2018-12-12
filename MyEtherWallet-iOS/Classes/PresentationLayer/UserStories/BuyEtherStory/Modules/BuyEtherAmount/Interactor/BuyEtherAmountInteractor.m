@@ -26,6 +26,8 @@ static short const kBuyEtherAmountRoundingUSDScale        = 2;
 static NSDecimalNumber *kBuyEtherMinimumUSDAmount;
 static NSDecimalNumber *kBuyEtherMaximumUSDAmount;
 
+static NSString *const kBuyEtherAmountDecimalSeparator    = @".";
+
 @interface BuyEtherAmountInteractor ()
 @property (nonatomic, strong) MasterTokenPlainObject *masterToken;
 @property (nonatomic) SimplexServiceCurrencyType currency;
@@ -38,8 +40,8 @@ static NSDecimalNumber *kBuyEtherMaximumUSDAmount;
 }
 
 + (void)initialize {
-  kBuyEtherMinimumUSDAmount = [NSDecimalNumber decimalNumberWithString:@"50.0"];
-  kBuyEtherMaximumUSDAmount = [NSDecimalNumber decimalNumberWithString:@"20000.0"];
+  kBuyEtherMinimumUSDAmount = [NSDecimalNumber decimalNumberWithString:@"50"];
+  kBuyEtherMaximumUSDAmount = [NSDecimalNumber decimalNumberWithString:@"20000"];
 }
 
 #pragma mark - BuyEtherAmountInteractorInput
@@ -85,7 +87,7 @@ static NSDecimalNumber *kBuyEtherMaximumUSDAmount;
 }
 
 - (void) appendSymbol:(NSString *)symbol {
-  NSString *decimalSeparator = [[NSLocale currentLocale] objectForKey:NSLocaleDecimalSeparator];
+  NSString *decimalSeparator = kBuyEtherAmountDecimalSeparator;
   NSRange separatorRange = [_amount rangeOfString:decimalSeparator];
   NSInteger maxDecimalLength = 0;
   switch (_currency) {

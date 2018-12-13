@@ -307,6 +307,8 @@
 		5677C5B32181226500477ACD /* _PurchaseHistoryPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C5832181226500477ACD /* _PurchaseHistoryPlainObject.m */; };
 		5677C5B42181226500477ACD /* _TokenPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C5852181226500477ACD /* _TokenPlainObject.m */; };
 		5677C5B52181226500477ACD /* _TokenPlainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677C5852181226500477ACD /* _TokenPlainObject.m */; };
+		567DDFFE21C2F63C00727E0E /* MEWconnectTokenTransfer.m in Sources */ = {isa = PBXBuildFile; fileRef = 567DDFFD21C2F63C00727E0E /* MEWconnectTokenTransfer.m */; };
+		567DDFFF21C2F64100727E0E /* MEWconnectTokenTransfer.m in Sources */ = {isa = PBXBuildFile; fileRef = 567DDFFD21C2F63C00727E0E /* MEWconnectTokenTransfer.m */; };
 		5685FE162099F9A4008C75A1 /* FlatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5685FE152099F9A4008C75A1 /* FlatButton.m */; };
 		5689111F20EE6511001552D4 /* SimplexPaymentQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 5689111E20EE6511001552D4 /* SimplexPaymentQuery.m */; };
 		5691625D2194B85300A58480 /* MnemonicsValidatorImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5691625C2194B85300A58480 /* MnemonicsValidatorImplementation.m */; };
@@ -1501,6 +1503,8 @@
 		5677C5832181226500477ACD /* _PurchaseHistoryPlainObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _PurchaseHistoryPlainObject.m; sourceTree = "<group>"; };
 		5677C5842181226500477ACD /* _TokenPlainObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _TokenPlainObject.h; sourceTree = "<group>"; };
 		5677C5852181226500477ACD /* _TokenPlainObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _TokenPlainObject.m; sourceTree = "<group>"; };
+		567DDFFC21C2F63C00727E0E /* MEWconnectTokenTransfer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MEWconnectTokenTransfer.h; sourceTree = "<group>"; };
+		567DDFFD21C2F63C00727E0E /* MEWconnectTokenTransfer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MEWconnectTokenTransfer.m; sourceTree = "<group>"; };
 		5685FE142099F9A4008C75A1 /* FlatButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlatButton.h; sourceTree = "<group>"; };
 		5685FE152099F9A4008C75A1 /* FlatButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlatButton.m; sourceTree = "<group>"; };
 		5689111D20EE6511001552D4 /* SimplexPaymentQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimplexPaymentQuery.h; sourceTree = "<group>"; };
@@ -4662,6 +4666,15 @@
 			path = GeneratedPONSO;
 			sourceTree = "<group>";
 		};
+		567DDFFB21C2F60000727E0E /* MEWconnectTokenTransfer */ = {
+			isa = PBXGroup;
+			children = (
+				567DDFFC21C2F63C00727E0E /* MEWconnectTokenTransfer.h */,
+				567DDFFD21C2F63C00727E0E /* MEWconnectTokenTransfer.m */,
+			);
+			path = MEWconnectTokenTransfer;
+			sourceTree = "<group>";
+		};
 		5685FE132099F996008C75A1 /* FlatButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -6747,6 +6760,7 @@
 		56FB3A0020B35ED0007776C8 /* MEWConnect */ = {
 			isa = PBXGroup;
 			children = (
+				567DDFFB21C2F60000727E0E /* MEWconnectTokenTransfer */,
 				56FB3A0120B35ED8007776C8 /* MEWConnectCommand */,
 				56FB3A0220B35EEE007776C8 /* MEWConnectResponse */,
 				56FB3A0320B35EF7007776C8 /* MEWConnectTransaction */,
@@ -10142,6 +10156,7 @@
 				566BD3642138947F007EC803 /* MEWConnectMessage.m in Sources */,
 				56A4FABB214813C700E7B022 /* FadeModalDismissingAnimationController.m in Sources */,
 				56947CDB2186465700336F4B /* MasterTokenBody.m in Sources */,
+				567DDFFF21C2F64100727E0E /* MEWconnectTokenTransfer.m in Sources */,
 				56E3E53021016DB60014152D /* SystemInfrastructureAssembly.m in Sources */,
 				56E3E53121016DB60014152D /* MEWConnectConstants.m in Sources */,
 				56E3E53221016DB60014152D /* SimplexOrderBody.m in Sources */,
@@ -10556,6 +10571,7 @@
 				56C878BA20BC1A3300343ADC /* HomeEmptyTableViewCellObject.m in Sources */,
 				56DE4E0C20A9E61F001A2C19 /* BottomImageButton.m in Sources */,
 				15EE3D506AA2D21334803200 /* RestoreWalletViewController.m in Sources */,
+				567DDFFE21C2F63C00727E0E /* MEWconnectTokenTransfer.m in Sources */,
 				56FB390120B0B589007776C8 /* CameraServiceImplementation.m in Sources */,
 				56CF0A9420D87F550029F841 /* NSArray+Data.m in Sources */,
 				56F8EAA72183BDFE0010274B /* AccountToAccountV2Policy.m in Sources */,

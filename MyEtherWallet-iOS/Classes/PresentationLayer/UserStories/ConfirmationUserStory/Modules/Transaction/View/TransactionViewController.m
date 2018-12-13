@@ -85,13 +85,13 @@
   }
 }
 
-- (void) updateWithTransaction:(MEWConnectTransaction *)transaction forMasterToken:(MasterTokenPlainObject *)masterToken {
-  NSNumberFormatter *formatter = [NSNumberFormatter ethereumFormatterWithNetwork:[masterToken.fromNetwork network]];
+- (void) updateWithTransaction:(MEWConnectTransaction *)transaction {
+  NSNumberFormatter *formatter = [NSNumberFormatter ethereumFormatterWithCurrencySymbol:transaction.token.symbol ?: NSLocalizedString(@"Unknown", @"Transaction screen. Unknown token symbol")];
   NSDecimalNumber *ethAmount = [transaction decimalValue];
   NSString *amount = [formatter stringFromNumber:ethAmount];
   
   NSString *usdAmount = nil;
-  NSDecimalNumber *usdPrice = masterToken.price.usdPrice;
+  NSDecimalNumber *usdPrice = transaction.token.price.usdPrice;
   if (usdPrice) {
     NSNumberFormatter *usdFormatter = [NSNumberFormatter usdFormatter];
     NSDecimalNumber *usd = [ethAmount decimalNumberByMultiplyingBy:usdPrice];
@@ -104,8 +104,8 @@
     [self.addressCheckboxButton updateWithContentTitle:NSLocalizedString(@"Check address you’re sending to:", @"Transaction screen. Title")];
   }
   
-  [self.addressCheckboxButton updateWithContentText:transaction.to];
-  [self.addressCheckboxButton updateWithRightImageWithSeed:transaction.to];
+  [self.addressCheckboxButton updateWithContentText:transaction.toValue];
+  [self.addressCheckboxButton updateWithRightImageWithSeed:transaction.toValue];
   
   [self.amountCheckboxButton updateWithContentTitle:@"Check the amount:"];
   [self.amountCheckboxButton updateWithContentText:amount];

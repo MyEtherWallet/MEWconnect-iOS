@@ -109,7 +109,7 @@ static NSString *const RopstenTokensContractAddress = @"0xb8e1bbc50fd87ea00d8ce7
     CompoundOperationBase *compoundOperation = [self.tokensOperationFactory contractBalancesWithBody:body inNetwork:network];
     [compoundOperation setResultBlock:^(NSArray <TokenModelObject *> *data, NSError *error) {
       if (!error) {
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.master.address == %@", masterToken.address];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.master.address ==[c] %@", masterToken.address];
         NetworkModelObject *networkModelObject = [NetworkModelObject MR_findFirstWithPredicate:predicate inContext:rootSavingContext];
         if ([data isKindOfClass:[NSArray class]]) {
           if ([networkModelObject.tokens count] == 0) {
@@ -120,7 +120,7 @@ static NSString *const RopstenTokensContractAddress = @"0xb8e1bbc50fd87ea00d8ce7
             
             NSArray <TokenModelObject *> *tokens = [networkModelObject.tokens allObjects];
             for (TokenModelObject *token in tokens) {
-              NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.address == %@", token.address];
+              NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.address ==[c] %@", token.address];
               TokenModelObject *refreshingToken = [[data filteredArrayUsingPredicate:predicate] firstObject];
               if (refreshingToken) {
                 [tokensToAdd removeObject:refreshingToken];
@@ -162,13 +162,13 @@ static NSString *const RopstenTokensContractAddress = @"0xb8e1bbc50fd87ea00d8ce7
 
 - (NSUInteger) obtainNumberOfTokensOfMasterToken:(MasterTokenPlainObject *)masterToken {
   NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
-  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.fromNetwork.master.address == %@", masterToken.address];
+  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.fromNetwork.master.address ==[c] %@", masterToken.address];
   return [TokenModelObject MR_countOfEntitiesWithPredicate:predicate inContext:context];
 }
 
 - (NSDecimalNumber *) obtainTokensTotalPriceOfMasterToken:(MasterTokenPlainObject *)masterToken {
   NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
-  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.fromNetwork.master.address == %@ && SELF.price != nil", masterToken.address];
+  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.fromNetwork.master.address ==[c] %@ && SELF.price != nil", masterToken.address];
   NSArray <TokenModelObject *> *tokens = [TokenModelObject MR_findAllWithPredicate:predicate inContext:context];
   NSDecimalNumber *totalPrice = [NSDecimalNumber zero];
   for (TokenModelObject *tokenModelObject in tokens) {
@@ -185,6 +185,13 @@ static NSString *const RopstenTokensContractAddress = @"0xb8e1bbc50fd87ea00d8ce7
   NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.fromNetworkMaster.active = YES && SELF.fromNetworkMaster.fromAccount.active = YES"];
   MasterTokenModelObject *masterToken = [MasterTokenModelObject MR_findFirstWithPredicate:predicate inContext:context];
   return masterToken;
+}
+
+- (TokenModelObject *) obtainTokenWithAddress:(NSString *)address ofMasterToken:(MasterTokenPlainObject *)masterToken {
+  NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
+  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.address ==[c] %@ && SELF.fromNetwork.master.address ==[c] %@", address, masterToken.address];
+  TokenModelObject *tokenModelObject = [TokenModelObject MR_findFirstWithPredicate:predicate inContext:context];
+  return tokenModelObject;
 }
 
 #pragma mark - Private

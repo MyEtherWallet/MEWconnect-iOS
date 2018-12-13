@@ -31,10 +31,9 @@
 #pragma mark - TransactionViewOutput
 
 - (void) didTriggerViewReadyEvent {
-	[self.view setupInitialState];
-  MasterTokenPlainObject *masterToken = [self.interactor obtainMasterToken];
+  [self.view setupInitialState];
   MEWConnectTransaction *transaction = [self.interactor obtainTransaction];
-  [self.view updateWithTransaction:transaction forMasterToken:masterToken];
+  [self.view updateWithTransaction:transaction];
 }
 
 - (void) signAction {

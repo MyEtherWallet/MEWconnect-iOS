@@ -10,6 +10,8 @@
 
 #import "MEWConnectFacade.h"
 #import "MEWwallet.h"
+#import "Ponsomizer.h"
+#import "TokensService.h"
 
 #import "TransactionInteractor.h"
 
@@ -19,6 +21,8 @@
 #import "NetworkPlainObject.h"
 #import "MEWConnectCommand.h"
 #import "MEWConnectResponse.h"
+#import "MEWConnectTransaction.h"
+
 
 @interface TransactionInteractor ()
 @property (nonatomic, strong) MEWConnectCommand *message;
@@ -34,14 +38,19 @@
   self.masterToken = masterToken;
   self.message = message;
   self.transaction = [message transaction];
+  if ([self.transaction isTransfer]) {
+    TokenModelObject *tokenModelObject = [self.tokensService obtainTokenWithAddress:self.transaction.to
+                                                                      ofMasterToken:masterToken];
+    NSArray <NSString *> *ignoringProperties = @[NSStringFromSelector(@selector(fromNetwork)),
+                                                 NSStringFromSelector(@selector(purchaseHistory))];
+    self.transaction.token = [self.ponsomizer convertObject:tokenModelObject ignoringProperties:ignoringProperties];
+  } else {
+    self.transaction.token = self.masterToken;
+  }
 }
 
 - (AccountPlainObject *)obtainAccount {
   return self.masterToken.fromNetworkMaster.fromAccount;
-}
-
-- (MasterTokenPlainObject *)obtainMasterToken {
-  return self.masterToken;
 }
 
 - (MEWConnectTransaction *)obtainTransaction {

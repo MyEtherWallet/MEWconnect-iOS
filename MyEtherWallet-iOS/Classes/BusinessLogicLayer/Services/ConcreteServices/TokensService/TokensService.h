@@ -11,6 +11,8 @@
 @class MasterTokenModelObject;
 @class MasterTokenPlainObject;
 
+@class TokenModelObject;
+
 typedef void(^TokensServiceCompletion)(NSError *error);
 
 @protocol TokensService <NSObject>
@@ -19,4 +21,5 @@ typedef void(^TokensServiceCompletion)(NSError *error);
 - (NSUInteger) obtainNumberOfTokensOfMasterToken:(MasterTokenPlainObject *)masterToken;
 - (NSDecimalNumber *) obtainTokensTotalPriceOfMasterToken:(MasterTokenPlainObject *)masterToken;
 - (MasterTokenModelObject *) obtainActiveMasterToken;
+- (TokenModelObject *) obtainTokenWithAddress:(NSString *)address ofMasterToken:(MasterTokenPlainObject *)masterToken;
 @end

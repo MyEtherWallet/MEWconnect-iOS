@@ -11,6 +11,7 @@
 #import "ServiceComponents.h"
 
 #import "TransactionAssembly.h"
+#import "PonsomizerAssembly.h"
 
 #import "TransactionViewController.h"
 #import "TransactionInteractor.h"
@@ -38,6 +39,10 @@
                                                 with:[self.serviceComponents MEWwallet]];
                           [definition injectProperty:@selector(connectFacade)
                                                 with:[self.serviceComponents MEWConnectFacade]];
+                          [definition injectProperty:@selector(tokensService)
+                                                with:[self.serviceComponents tokensService]];
+                          [definition injectProperty:@selector(ponsomizer)
+                                                with:[self.ponsomizerAssembly ponsomizer]];
                         }];
 }
 

@@ -10,6 +10,8 @@
 
 @import RamblerTyphoonUtils.AssemblyCollector;
 
-@interface TransactionAssembly : ModuleAssemblyBase <RamblerInitialAssembly>
+@class PonsomizerAssembly;
 
+@interface TransactionAssembly : ModuleAssemblyBase <RamblerInitialAssembly>
+@property (nonatomic, strong, readonly) PonsomizerAssembly *ponsomizerAssembly;
 @end

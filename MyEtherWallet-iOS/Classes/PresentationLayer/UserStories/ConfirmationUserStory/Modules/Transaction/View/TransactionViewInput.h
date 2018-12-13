@@ -9,10 +9,9 @@
 @import Foundation;
 
 @class MEWConnectTransaction;
-@class MasterTokenPlainObject;
 
 @protocol TransactionViewInput <NSObject>
 - (void) setupInitialState;
-- (void) updateWithTransaction:(MEWConnectTransaction *)transaction forMasterToken:(MasterTokenPlainObject *)masterToken;
+- (void) updateWithTransaction:(MEWConnectTransaction *)transaction;
 - (void) enableSign:(BOOL)enable;
 @end

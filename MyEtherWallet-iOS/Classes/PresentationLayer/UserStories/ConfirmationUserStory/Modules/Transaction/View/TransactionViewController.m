@@ -86,17 +86,25 @@
 }
 
 - (void) updateWithTransaction:(MEWConnectTransaction *)transaction {
-  NSNumberFormatter *formatter = [NSNumberFormatter ethereumFormatterWithCurrencySymbol:transaction.token.symbol ?: NSLocalizedString(@"Unknown", @"Transaction screen. Unknown token symbol")];
   NSDecimalNumber *ethAmount = [transaction decimalValue];
+  NSString *usdAmount = nil;
+  NSNumberFormatter *formatter = nil;
+  
+  if (transaction.token) {
+    formatter = [NSNumberFormatter ethereumFormatterWithCurrencySymbol:transaction.token.symbol];
+    NSDecimalNumber *usdPrice = transaction.token.price.usdPrice;
+    if (usdPrice) {
+      NSNumberFormatter *usdFormatter = [NSNumberFormatter usdFormatter];
+      NSDecimalNumber *usd = [ethAmount decimalNumberByMultiplyingBy:usdPrice];
+      usdAmount = [usdFormatter stringFromNumber:usd];
+    }
+  } else {
+    formatter = [NSNumberFormatter ethereumFormatterWithCurrencySymbol:NSLocalizedString(@"Unknown Token", @"Transaction screen. Unknown token symbol")];
+    usdAmount = NSLocalizedString(@"Amount in fractional units", @"Transaction screen. Unknown token decimals");
+  }
+  
   NSString *amount = [formatter stringFromNumber:ethAmount];
   
-  NSString *usdAmount = nil;
-  NSDecimalNumber *usdPrice = transaction.token.price.usdPrice;
-  if (usdPrice) {
-    NSNumberFormatter *usdFormatter = [NSNumberFormatter usdFormatter];
-    NSDecimalNumber *usd = [ethAmount decimalNumberByMultiplyingBy:usdPrice];
-    usdAmount = [usdFormatter stringFromNumber:usd];
-  }
   
   if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
     [self.addressCheckboxButton updateWithContentTitle:NSLocalizedString(@"Check address:", @"Transaction screen. Title. 4.0 Inches")];

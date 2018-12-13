@@ -7,7 +7,7 @@
 		<key>NodeURL</key>
 		<string>NSURL(https://api.myetherwallet.com)</string>
 		<key>TickerURL</key>
-		<string>NSURL(http://still-waters-52916.herokuapp.com)</string>
+		<string>NSURL(https://cryptorates.mewapi.io)</string>
 		<key>SimplexAPIURL</key>
 		<string>NSURL(https://apiccswap.myetherwallet.com)</string>
 	</dict>

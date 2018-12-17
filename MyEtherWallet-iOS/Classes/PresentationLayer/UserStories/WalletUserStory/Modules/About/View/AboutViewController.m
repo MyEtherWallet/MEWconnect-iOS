@@ -3,7 +3,7 @@
 //  MyEtherWallet-iOS
 //
 //  Created by Mikhail Nikanorov on 25/07/2018.
-//  Copyright © 2018 MyEtherWallet, Inc.. All rights reserved.
+//  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
 #import "AboutViewController.h"
@@ -67,7 +67,7 @@
 
 #pragma mark - IBActions
 
-- (IBAction) closeAction:(id)sender {
+- (IBAction) closeAction:(__unused id)sender {
   [self.output closeAction];
 }
 

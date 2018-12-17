@@ -20,10 +20,10 @@
 
 #import "SimplexServiceStatusTypes.h"
 
-#import "AccountModelObject.h"
+#import "MasterTokenModelObject.h"
+#import "MasterTokenPlainObject.h"
+
 #import "PurchaseHistoryModelObject.h"
-#import "AccountPlainObject.h"
-#import "NetworkPlainObject.h"
 #import "PurchaseHistoryPlainObject.h"
 
 #import "SimplexQuoteBody.h"
@@ -41,9 +41,8 @@
 
 @implementation SimplexServiceImplementation
 
-- (void) quoteForAccount:(AccountPlainObject *)account amount:(NSDecimalNumber *)amount currency:(SimplexServiceCurrencyType)currency completion:(SimplexServiceQuoteCompletion)completion {
-
-  SimplexQuoteBody *body = [self obtainQuoteBodyWithAmount:amount currency:currency];
+- (void) quoteWithAmount:(NSDecimalNumber *)amount currency:(SimplexServiceCurrencyType)currency completion:(SimplexServiceQuoteCompletion)completion {
+  SimplexQuoteBody *body = [self _obtainQuoteBodyWithAmount:amount currency:currency];
 
   CompoundOperationBase *compoundOperation = [self.simplexOperationFactory quoteWithBody:body];
   [compoundOperation setResultBlock:^(SimplexQuote *data, NSError *error) {
@@ -58,22 +57,23 @@
   [self.operationScheduler addOperation:compoundOperation];
 }
 
-- (void) orderForAccount:(AccountPlainObject *)account quote:(SimplexQuote *)quote completion:(SimplexServiceOrderCompletion)completion {
-  SimplexOrderBody *body = [self obtainOrderBodyWithQuote:quote forAccount:account];
+- (void) orderForMasterToken:(MasterTokenPlainObject *)masterToken quote:(SimplexQuote *)quote completion:(SimplexServiceOrderCompletion)completion {
+  SimplexOrderBody *body = [self _obtainOrderBodyWithQuote:quote forMasterToken:masterToken];
   
   CompoundOperationBase *compoundOperation = [self.simplexOperationFactory orderWithBody:body];
   [compoundOperation setResultBlock:^(SimplexOrder *data, NSError *error) {
     if (data.userID) {
       NSManagedObjectContext *rootSavingContext = [NSManagedObjectContext MR_rootSavingContext];
       [rootSavingContext performBlock:^{
-        [self.keychainService saveSimplexUserId:data.userID ofPublicAddress:account.publicAddress fromNetwork:[account.fromNetwork network]];
-        AccountModelObject *accountModelObject = [AccountModelObject MR_findFirstByAttribute:NSStringFromSelector(@selector(publicAddress))
-                                                                                   withValue:account.publicAddress
-                                                                                   inContext:rootSavingContext];
+        [self.keychainService savePurchaseUserId:data.userID forMasterToken:masterToken];
+        MasterTokenModelObject *masterTokenModelObject = [MasterTokenModelObject MR_findFirstByAttribute:NSStringFromSelector(@selector(address))
+                                                                                               withValue:masterToken.address
+                                                                                               inContext:rootSavingContext];
+        
         PurchaseHistoryModelObject *historyModelObject = [PurchaseHistoryModelObject MR_createEntityInContext:rootSavingContext];
         historyModelObject.date = [NSDate date];
         historyModelObject.userId = data.userID;
-        [accountModelObject addPurchaseHistoryObject:historyModelObject];
+        [masterTokenModelObject addPurchaseHistoryObject:historyModelObject];
         [rootSavingContext MR_saveToPersistentStoreAndWait];
       }];
     }
@@ -87,7 +87,7 @@
 }
 
 - (void) statusForPurchase:(PurchaseHistoryPlainObject *)purchase completion:(SimplexServiceStatusCompletion)completion {
-  SimplexStatusQuery *query = [self obtainStatusQueryWithPurchase:purchase];
+  SimplexStatusQuery *query = [self _obtainStatusQueryWithPurchase:purchase];
   
   NSManagedObjectContext *rootSavingContext = [NSManagedObjectContext MR_rootSavingContext];
   [rootSavingContext performBlock:^{
@@ -112,14 +112,30 @@
   }];
 }
 
-- (NSArray <PurchaseHistoryModelObject *> *) obtainHistoryForAccount:(AccountPlainObject *)account {
+- (NSArray <PurchaseHistoryModelObject *> *) obtainHistoryForMasterToken:(MasterTokenPlainObject *)masterToken {
   NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
-  AccountModelObject *accountModelObject = [AccountModelObject MR_findFirstByAttribute:NSStringFromSelector(@selector(publicAddress)) withValue:account.publicAddress inContext:context];
-  return [accountModelObject.purchaseHistory array];
+  MasterTokenModelObject *masterTokenModelObject = [MasterTokenModelObject MR_findFirstByAttribute:NSStringFromSelector(@selector(address))
+                                                                                         withValue:masterToken.address
+                                                                                         inContext:context];
+  return [masterTokenModelObject.purchaseHistory array];
 }
 
-- (NSURLRequest *) obtainRequestWithOrder:(SimplexOrder *)order forAccount:(AccountPlainObject *)account {
-  SimplexPaymentQuery *query = [self obtainPaymentQueryWithOrder:order account:account];
+- (void) clearCancelledHistoryForMasterToken:(MasterTokenPlainObject *)masterToken {
+  NSManagedObjectContext *context = [NSManagedObjectContext MR_rootSavingContext];
+  [context performBlockAndWait:^{
+    MasterTokenModelObject *masterTokenModelObject = [MasterTokenModelObject MR_findFirstByAttribute:NSStringFromSelector(@selector(address))
+                                                                                           withValue:masterToken.address
+                                                                                           inContext:context];
+    NSOrderedSet *cancelledPurchases = [masterTokenModelObject.purchaseHistory filteredOrderedSetUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.status == %d", SimplexServicePaymentStatusTypeCancelled]];
+    if ([cancelledPurchases count] > 0) {
+      [context MR_deleteObjects:cancelledPurchases];
+      [context MR_saveToPersistentStoreAndWait];
+    }
+  }];
+}
+
+- (NSURLRequest *) obtainRequestWithOrder:(SimplexOrder *)order forMasterToken:(MasterTokenPlainObject *)masterToken {
+  SimplexPaymentQuery *query = [self _obtainPaymentQueryWithOrder:order forMasterToken:masterToken];
   NSURLRequest *request = [self.simplexOperationFactory requestWithQuery:query];
   return request;
 }
@@ -130,7 +146,7 @@
 
 #pragma mark - Private
 
-- (SimplexQuoteBody *) obtainQuoteBodyWithAmount:(NSDecimalNumber *)amount currency:(SimplexServiceCurrencyType)currency {
+- (SimplexQuoteBody *) _obtainQuoteBodyWithAmount:(NSDecimalNumber *)amount currency:(SimplexServiceCurrencyType)currency {
   SimplexQuoteBody *body = [[SimplexQuoteBody alloc] init];
   body.digitalCurrency = NSStringFromSimplexServiceCurrencyType(SimplexServiceCurrencyTypeETH);
   body.fiatCurrency = NSStringFromSimplexServiceCurrencyType(SimplexServiceCurrencyTypeUSD);
@@ -139,17 +155,17 @@
   return body;
 }
 
-- (SimplexOrderBody *) obtainOrderBodyWithQuote:(SimplexQuote *)quote forAccount:(AccountPlainObject *)account {
+- (SimplexOrderBody *) _obtainOrderBodyWithQuote:(SimplexQuote *)quote forMasterToken:(MasterTokenPlainObject *)masterToken {
   SimplexOrderBody *body = [[SimplexOrderBody alloc] init];
   body.userID = quote.userID;
-  body.walletAddress = account.publicAddress;
+  body.walletAddress = masterToken.address;
   body.fiatAmount = quote.fiatAmount;
   body.digitalAmount = quote.digitalAmount;
   body.appInstallDate = [self.keychainService obtainFirstLaunchDate];
   return body;
 }
 
-- (SimplexPaymentQuery *) obtainPaymentQueryWithOrder:(SimplexOrder *)order account:(AccountPlainObject *)account {
+- (SimplexPaymentQuery *) _obtainPaymentQueryWithOrder:(SimplexOrder *)order forMasterToken:(MasterTokenPlainObject *)masterToken {
   SimplexPaymentQuery *query = [[SimplexPaymentQuery alloc] init];
   query.postURL = order.postURL;
   query.version = order.apiVersion;
@@ -158,13 +174,13 @@
   query.paymentID = order.paymentID;
   query.userID = order.userID;
   query.returnURL = order.returnURL;
-  query.destinationWallet = account.publicAddress;
+  query.destinationWallet = masterToken.address;
   query.fiatTotalAmount = order.fiatTotalAmount;
   query.digitalTotalAmount = order.digitalTotalAmount;
   return query;
 }
 
-- (SimplexStatusQuery *) obtainStatusQueryWithPurchase:(PurchaseHistoryPlainObject *)history {
+- (SimplexStatusQuery *) _obtainStatusQueryWithPurchase:(PurchaseHistoryPlainObject *)history {
   SimplexStatusQuery *query = [[SimplexStatusQuery alloc] init];
   query.userId = history.userId;
   return query;

@@ -91,11 +91,11 @@
 
 #pragma mark - IBAction
 
-- (IBAction)signAction:(id)sender {
+- (IBAction)signAction:(__unused id)sender {
   [self.output signAction];
 }
 
-- (IBAction)declineAction:(id)sender {
+- (IBAction)declineAction:(__unused id)sender {
   [self.output declineAction];
 }
 

@@ -9,9 +9,9 @@
 @import Foundation;
 
 @class SimplexOrder;
-@class AccountPlainObject;
+@class MasterTokenPlainObject;
 
 @protocol BuyEtherWebInteractorInput <NSObject>
-- (void) configurateWithOrder:(SimplexOrder *)order account:(AccountPlainObject *)account;
+- (void) configurateWithOrder:(SimplexOrder *)order masterToken:(MasterTokenPlainObject *)masterToken;
 - (NSURLRequest *) obtainInitialRequest;
 @end

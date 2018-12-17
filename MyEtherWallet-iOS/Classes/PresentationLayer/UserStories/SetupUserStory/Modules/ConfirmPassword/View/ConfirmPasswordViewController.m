@@ -159,7 +159,7 @@ static CGFloat        kConfirmPasswordViewControllerCorrectVOffset      = 24.0;
                    animations:^{
                      self.incorrectPasswordLabel.alpha = 1.0;
                      [self.view layoutIfNeeded];
-                   } completion:^(BOOL finished) {
+                   } completion:^(__unused BOOL finished) {
                    }];
   if (self.passwordTextField.theme != PasswordTextFieldThemeRed) {
     [UIView transitionWithView:self.passwordTextField
@@ -185,13 +185,13 @@ static CGFloat        kConfirmPasswordViewControllerCorrectVOffset      = 24.0;
   [self.output passwordDidChanged:sender.text];
 }
 
-- (IBAction) nextAction:(UIBarButtonItem *)sender {
+- (IBAction) nextAction:(__unused UIBarButtonItem *)sender {
   [self.output nextActionWithPassword:self.passwordTextField.text];
 }
 
 #pragma mark - UITextFieldDelegate
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+- (BOOL)textFieldShouldReturn:(__unused UITextField *)textField {
   [self.output nextActionWithPassword:self.passwordTextField.text];
   return NO;
 }
@@ -204,7 +204,7 @@ static CGFloat        kConfirmPasswordViewControllerCorrectVOffset      = 24.0;
   [self _updateScrollViewInsets];
 }
 
-- (void) keyboardWillHide:(NSNotification *)notification {
+- (void) keyboardWillHide:(__unused NSNotification *)notification {
   _keyboardHeight = 0.0;
   [self _updateScrollViewInsets];
 }

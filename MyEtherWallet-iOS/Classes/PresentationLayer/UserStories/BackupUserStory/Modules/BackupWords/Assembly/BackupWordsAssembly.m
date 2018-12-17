@@ -34,6 +34,8 @@
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(output)
                                                 with:[self presenterBackupWords]];
+                          [definition injectProperty:@selector(securityService)
+                                                with:[self.serviceComponents securityService]];
                         }];
 }
 

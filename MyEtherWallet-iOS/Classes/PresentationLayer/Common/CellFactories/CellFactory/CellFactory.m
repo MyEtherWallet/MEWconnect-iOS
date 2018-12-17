@@ -29,7 +29,7 @@
   return cell;
 }
 
-+ (UITableViewCell *)tableViewModel:(NITableViewModel *)tableViewModel
++ (UITableViewCell *)tableViewModel:(__unused NITableViewModel *)tableViewModel
                    cellForTableView:(UITableView *)tableView
                         atIndexPath:(NSIndexPath *)indexPath
                          withObject:(id)object {

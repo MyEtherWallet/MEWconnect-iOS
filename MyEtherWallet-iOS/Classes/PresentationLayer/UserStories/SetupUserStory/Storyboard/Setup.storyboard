@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.3.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TZA-8o-0tf">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TZA-8o-0tf">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,32 +15,32 @@
             <objects>
                 <viewController id="TZA-8o-0tf" customClass="StartViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0Ai-uf-6Fu">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onboarding_background" translatesAutoresizingMaskIntoConstraints="NO" id="2mb-ws-FXz">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onboarding_background" translatesAutoresizingMaskIntoConstraints="NO" id="2mb-ws-FXz">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xa7-gv-aDf">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8nP-CK-LKH" userLabel="contentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="2625" height="667"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="2898" height="736"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k4X-dr-mCo" userLabel="page1">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="intro_mewconnect_logo" translatesAutoresizingMaskIntoConstraints="NO" id="YLW-t7-njx">
-                                                        <rect key="frame" x="40" y="100" width="289" height="92"/>
+                                                        <rect key="frame" x="40" y="100" width="289" height="36"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="by MyEtherWallet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgr-4b-rhX">
-                                                        <rect key="frame" x="40" y="207" width="134" height="21"/>
+                                                        <rect key="frame" x="40" y="151" width="134" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Finally, a ‘hardware wallet’ without all the hardware. Officially by MyEtherWallet" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dKN-Rk-zZ5" userLabel="descriptionPage1">
-                                                        <rect key="frame" x="40" y="392.5" width="295" height="124.5"/>
+                                                        <rect key="frame" x="40" y="392.5" width="334" height="124.5"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="26"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -62,10 +62,10 @@
                                                 </variation>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A3T-SH-eyu" userLabel="page2">
-                                                <rect key="frame" x="375" y="0.0" width="375" height="667"/>
+                                                <rect key="frame" x="414" y="0.0" width="414" height="736"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Interact directly with the blockchain with full control of your keys &amp; your funds." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xkV-Ja-NFK" userLabel="descriptionPage2">
-                                                        <rect key="frame" x="40" y="373.5" width="295" height="143.5"/>
+                                                        <rect key="frame" x="40" y="373.5" width="334" height="143.5"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -78,10 +78,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wp2-p6-Bdx" userLabel="page3">
-                                                <rect key="frame" x="750" y="0.0" width="375" height="667"/>
+                                                <rect key="frame" x="828" y="0.0" width="414" height="736"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Interact directly with the blockchain with full control of your keys &amp; your funds." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sdn-1n-Fgb" userLabel="descriptionPage3">
-                                                        <rect key="frame" x="40" y="373.5" width="295" height="143.5"/>
+                                                        <rect key="frame" x="40" y="373.5" width="334" height="143.5"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -94,10 +94,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yau-K5-SH0" userLabel="page4">
-                                                <rect key="frame" x="1125" y="0.0" width="375" height="667"/>
+                                                <rect key="frame" x="1242" y="0.0" width="414" height="736"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Interact directly with the blockchain with full control of your keys &amp; your funds." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gfg-cS-tRp" userLabel="descriptionPage4">
-                                                        <rect key="frame" x="40" y="373.5" width="295" height="143.5"/>
+                                                        <rect key="frame" x="40" y="373.5" width="334" height="143.5"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -110,10 +110,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WpW-OB-Yzz" userLabel="page5">
-                                                <rect key="frame" x="1500" y="0.0" width="375" height="667"/>
+                                                <rect key="frame" x="1656" y="0.0" width="414" height="736"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Interact directly with the blockchain with full control of your keys &amp; your funds." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A1v-5z-d7A" userLabel="descriptionPage5">
-                                                        <rect key="frame" x="40" y="373.5" width="295" height="143.5"/>
+                                                        <rect key="frame" x="40" y="373.5" width="334" height="143.5"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -126,10 +126,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VVD-sr-X45" userLabel="page6">
-                                                <rect key="frame" x="1875" y="0.0" width="375" height="667"/>
+                                                <rect key="frame" x="2070" y="0.0" width="414" height="736"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" tag="6" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Interact directly with the blockchain with full control of your keys &amp; your funds." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0tG-ye-IIL" userLabel="descriptionPage6">
-                                                        <rect key="frame" x="40" y="373.5" width="295" height="143.5"/>
+                                                        <rect key="frame" x="40" y="373.5" width="334" height="143.5"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -142,10 +142,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HJa-fj-4Je" userLabel="page7">
-                                                <rect key="frame" x="2250" y="0.0" width="375" height="667"/>
+                                                <rect key="frame" x="2484" y="0.0" width="414" height="736"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" tag="7" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Interact directly with the blockchain with full control of your keys &amp; your funds." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LwO-OS-ot9" userLabel="descriptionPage7">
-                                                        <rect key="frame" x="40" y="373.5" width="295" height="143.5"/>
+                                                        <rect key="frame" x="40" y="373.5" width="334" height="143.5"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -210,7 +210,7 @@
                                 </connections>
                             </scrollView>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jWv-Df-5QC">
-                                <rect key="frame" x="87.5" y="102" width="200" height="200"/>
+                                <rect key="frame" x="107" y="100" width="200" height="200"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="pmO-Nb-qiq"/>
@@ -218,7 +218,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="100" placeholderIntrinsicHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="4Zd-Zy-Eni" customClass="CHIPageControlChimayo" customModule="CHIPageControl">
-                                <rect key="frame" x="137.5" y="533" width="100" height="10"/>
+                                <rect key="frame" x="157" y="602" width="100" height="10"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                                 <userDefinedRuntimeAttributes>
@@ -243,7 +243,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oZu-OL-Hv5" customClass="FlatButton">
-                                <rect key="frame" x="40" y="567" width="295" height="30"/>
+                                <rect key="frame" x="40" y="636" width="334" height="30"/>
                                 <state key="normal" title="CREATE NEW WALLET"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="theme">
@@ -255,7 +255,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p61-aI-WVD" customClass="InlineButton">
-                                <rect key="frame" x="118.5" y="623" width="138" height="18"/>
+                                <rect key="frame" x="138" y="692" width="138" height="18"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -271,7 +271,6 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="2mb-ws-FXz" secondAttribute="bottom" id="1BB-f1-Exj"/>
                             <constraint firstItem="sCg-UF-gAk" firstAttribute="bottom" secondItem="p61-aI-WVD" secondAttribute="bottom" constant="26" id="2Ed-YZ-W6s"/>
-                            <constraint firstItem="YLW-t7-njx" firstAttribute="top" secondItem="sCg-UF-gAk" secondAttribute="top" constant="82" id="2cy-xg-9Bh"/>
                             <constraint firstAttribute="right" secondItem="xa7-gv-aDf" secondAttribute="right" id="4cZ-HB-CCS"/>
                             <constraint firstItem="4Zd-Zy-Eni" firstAttribute="centerX" secondItem="0Ai-uf-6Fu" secondAttribute="centerX" id="57d-md-Olz"/>
                             <constraint firstItem="p61-aI-WVD" firstAttribute="centerX" secondItem="0Ai-uf-6Fu" secondAttribute="centerX" id="Tdl-8k-ctP"/>
@@ -288,6 +287,7 @@
                             <constraint firstItem="xa7-gv-aDf" firstAttribute="left" secondItem="0Ai-uf-6Fu" secondAttribute="left" id="niD-lX-0QM"/>
                             <constraint firstAttribute="bottom" secondItem="xa7-gv-aDf" secondAttribute="bottom" id="oQb-hf-I0N"/>
                             <constraint firstItem="oZu-OL-Hv5" firstAttribute="top" secondItem="dKN-Rk-zZ5" secondAttribute="bottom" constant="50" id="xnM-Ux-wEr"/>
+                            <constraint firstItem="YLW-t7-njx" firstAttribute="top" secondItem="sCg-UF-gAk" secondAttribute="top" constant="80" id="zQa-AS-xlZ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sCg-UF-gAk"/>
                     </view>
@@ -296,7 +296,7 @@
                         <outlet property="byMyEtherWalletTitle" destination="hgr-4b-rhX" id="kCb-jH-ovd"/>
                         <outlet property="createNewWalletButton" destination="oZu-OL-Hv5" id="9Ze-AN-aXL"/>
                         <outlet property="mewConnectLogo" destination="YLW-t7-njx" id="3Bf-GB-ZHS"/>
-                        <outlet property="mewConnectLogoTopOffsetConstraint" destination="2cy-xg-9Bh" id="xxt-1L-Zbv"/>
+                        <outlet property="mewConnectLogoTopOffsetConstraint" destination="zQa-AS-xlZ" id="EyG-DF-kg7"/>
                         <outlet property="morphingIconContainer" destination="jWv-Df-5QC" id="zIC-zi-loP"/>
                         <outlet property="morphingIconContrainerCenterXConstraint" destination="dsH-cS-bF8" id="YKG-qI-EYK"/>
                         <outlet property="morphingIconContrainerTopOffsetConstraint" destination="YtJ-mP-Msg" id="Fnx-wm-cvY"/>
@@ -323,23 +323,23 @@
             <objects>
                 <viewController id="uQG-JA-0Na" customClass="RestoreWalletViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2Rs-5h-uOK">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="n4a-vC-Rpr">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KEV-QT-QBj">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="364.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="364.66666666666669"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your recovery phrase" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3kp-Aw-s29">
-                                                <rect key="frame" x="24" y="27" width="327" height="95.5"/>
+                                                <rect key="frame" x="24" y="27.000000000000007" width="366" height="95.666666666666686"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                                 <color key="textColor" red="0.023529411760000001" green="0.30196078430000001" blue="0.83921568629999999" alpha="1" colorSpace="deviceRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="always" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0UI-F3-Dod">
-                                                <rect key="frame" x="24" y="135.5" width="327" height="220"/>
+                                                <rect key="frame" x="24" y="135.66666666666666" width="366" height="219.99999999999997"/>
                                                 <color key="backgroundColor" red="0.92156862745098034" green="0.94509803921568625" blue="0.9882352941176471" alpha="1" colorSpace="deviceRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="220" id="Ck2-pT-gxB"/>
@@ -417,7 +417,7 @@
             <objects>
                 <navigationController id="Fe6-fl-kwA" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="QXY-4M-MCm" customClass="BordlessNavigationBar">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
@@ -434,17 +434,17 @@
             <objects>
                 <viewController id="jqt-TW-elj" customClass="PasswordViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UN6-pd-0ty">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="CG7-43-VXO">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XuG-7p-0aS">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="332.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="332.33333333333331"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jyf-Yi-uru" customClass="PasswordTextField">
-                                                <rect key="frame" x="24" y="207.5" width="327" height="48"/>
+                                                <rect key="frame" x="24" y="207.66666666666669" width="366" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="48" id="vVa-Ha-Ydp"/>
                                                 </constraints>
@@ -457,13 +457,13 @@
                                                 </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Best passwords are long and contain letters, numbers and special characters" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZTW-M2-q6y">
-                                                <rect key="frame" x="24" y="279.5" width="327" height="41"/>
+                                                <rect key="frame" x="24" y="279.66666666666669" width="366" height="40.666666666666686"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.42745098039215684" green="0.45098039215686275" blue="0.44705882352941173" alpha="1" colorSpace="deviceRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oR6-1e-Iju">
-                                                <rect key="frame" x="24" y="28" width="182" height="95.5"/>
+                                                <rect key="frame" x="24" y="28.000000000000007" width="181.66666666666666" height="95.666666666666686"/>
                                                 <string key="text">Pick a
 password</string>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
@@ -501,7 +501,7 @@ password</string>
                                                 </variation>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="So no one else but you can unlock your wallet" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lej-TZ-YXs">
-                                                <rect key="frame" x="24" y="135.5" width="327" height="48"/>
+                                                <rect key="frame" x="24" y="135.66666666666666" width="366" height="48"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="deviceRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -598,11 +598,11 @@ password</string>
             <objects>
                 <viewController id="4At-jE-A82" customClass="NewWalletViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="E5Q-0N-8OR">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C28-ET-RGh" customClass="TypingAnimationLabel">
-                                <rect key="frame" x="24" y="278" width="327" height="41"/>
+                                <rect key="frame" x="24" y="347.33333333333331" width="366" height="40.666666666666686"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="34"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -611,7 +611,7 @@ password</string>
                                 </connections>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s0c-iV-h7G" userLabel="helper_view">
-                                <rect key="frame" x="374" y="319" width="1" height="284"/>
+                                <rect key="frame" x="413" y="388" width="1" height="284"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="1" id="6U3-tk-pil"/>
@@ -619,7 +619,7 @@ password</string>
                                 </constraints>
                             </view>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vDv-v1-uhA" customClass="FlatButton">
-                                <rect key="frame" x="24" y="447" width="327" height="30"/>
+                                <rect key="frame" x="24" y="516" width="366" height="30"/>
                                 <state key="normal" title="START USING MEWCONNECT"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="theme">
@@ -671,17 +671,17 @@ password</string>
             <objects>
                 <viewController id="YPA-SR-O3L" customClass="ConfirmPasswordViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OER-gO-OEM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="02A-1X-65v">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3kO-NM-jWR">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="360.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="340.33333333333331"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qxY-Iy-yu4">
-                                                <rect key="frame" x="24" y="28" width="292" height="95.5"/>
+                                                <rect key="frame" x="24" y="28.000000000000007" width="292" height="95.666666666666686"/>
                                                 <string key="text">Type your
 password again</string>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
@@ -689,13 +689,13 @@ password again</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There will be NO ‘Restore password’ button. Make sure you remember it." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EZG-EI-90H">
-                                                <rect key="frame" x="24" y="135.5" width="327" height="48"/>
+                                                <rect key="frame" x="24" y="135.66666666666666" width="366" height="48"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="deviceRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LfX-gg-TfK" customClass="PasswordTextField">
-                                                <rect key="frame" x="24" y="207.5" width="327" height="48"/>
+                                                <rect key="frame" x="24" y="207.66666666666669" width="366" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="48" id="6aZ-gY-rXY"/>
                                                 </constraints>
@@ -708,7 +708,7 @@ password again</string>
                                                 </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Since you’re going to be your own bank, we won’t be able to help if you lose your password." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FOg-1a-ba0">
-                                                <rect key="frame" x="24" y="279.5" width="327" height="61"/>
+                                                <rect key="frame" x="24" y="279.66666666666669" width="366" height="40.666666666666686"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.42745098040000001" green="0.45098039220000002" blue="0.44705882349999998" alpha="1" colorSpace="deviceRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -797,7 +797,7 @@ password again</string>
             <objects>
                 <navigationController storyboardIdentifier="RestoreWalletViewController" id="7p6-Sy-ZJQ" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="nIt-G8-O90" customClass="BordlessNavigationBar">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
@@ -809,11 +809,121 @@ password again</string>
             </objects>
             <point key="canvasLocation" x="604" y="-611"/>
         </scene>
+        <!--Restore Seed View Controller-->
+        <scene sceneID="cWb-8b-4PO">
+            <objects>
+                <viewController id="Nh4-zl-0iX" customClass="RestoreSeedViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nWm-c5-sF9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="VXD-6W-osV">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dbp-pr-I97">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="340.66666666666669"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your MEWconnect backup passphrase to generate Ropsten testnet keys." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eex-Bj-WyE">
+                                                <rect key="frame" x="24" y="27" width="366" height="71.666666666666671"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <color key="textColor" red="0.023529411760000001" green="0.30196078430000001" blue="0.83921568629999999" alpha="1" colorSpace="deviceRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="always" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="LWC-R4-xak">
+                                                <rect key="frame" x="24" y="111.66666666666666" width="366" height="219.99999999999997"/>
+                                                <color key="backgroundColor" red="0.92156862750000001" green="0.94509803920000002" blue="0.98823529409999999" alpha="1" colorSpace="deviceRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="220" id="Fqa-d8-59V"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits" spellCheckingType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="Nh4-zl-0iX" id="Hh2-Lu-cAt"/>
+                                                </connections>
+                                            </textView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="LWC-R4-xak" firstAttribute="right" secondItem="Eex-Bj-WyE" secondAttribute="right" id="4qf-qi-WRh"/>
+                                            <constraint firstItem="LWC-R4-xak" firstAttribute="left" secondItem="Eex-Bj-WyE" secondAttribute="left" id="Osx-ui-Kmg"/>
+                                            <constraint firstItem="Eex-Bj-WyE" firstAttribute="top" secondItem="dbp-pr-I97" secondAttribute="top" constant="27" id="PCh-CV-aEf"/>
+                                            <constraint firstItem="LWC-R4-xak" firstAttribute="top" secondItem="Eex-Bj-WyE" secondAttribute="bottom" constant="13" id="Zmf-jH-jYI"/>
+                                            <constraint firstAttribute="trailing" secondItem="Eex-Bj-WyE" secondAttribute="trailing" constant="24" id="rZu-KO-eov"/>
+                                            <constraint firstItem="Eex-Bj-WyE" firstAttribute="leading" secondItem="dbp-pr-I97" secondAttribute="leading" constant="24" id="reP-f2-rGY"/>
+                                            <constraint firstAttribute="bottom" secondItem="LWC-R4-xak" secondAttribute="bottom" constant="9" id="tLD-YA-pV7"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="dbp-pr-I97" firstAttribute="width" secondItem="VXD-6W-osV" secondAttribute="width" id="4TE-HR-qsa"/>
+                                    <constraint firstAttribute="trailing" secondItem="dbp-pr-I97" secondAttribute="trailing" id="87W-Y6-XwT"/>
+                                    <constraint firstAttribute="bottom" secondItem="dbp-pr-I97" secondAttribute="bottom" id="P9R-1T-PB6"/>
+                                    <constraint firstItem="dbp-pr-I97" firstAttribute="leading" secondItem="VXD-6W-osV" secondAttribute="leading" id="keZ-Sg-XEN"/>
+                                    <constraint firstItem="dbp-pr-I97" firstAttribute="top" secondItem="VXD-6W-osV" secondAttribute="top" id="pvh-VZ-cuZ"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="VXD-6W-osV" firstAttribute="leading" secondItem="nWm-c5-sF9" secondAttribute="leading" id="5D8-hx-K8I"/>
+                            <constraint firstItem="J7S-Bf-2O1" firstAttribute="bottom" secondItem="VXD-6W-osV" secondAttribute="bottom" id="HvR-97-WCx"/>
+                            <constraint firstItem="VXD-6W-osV" firstAttribute="top" secondItem="nWm-c5-sF9" secondAttribute="top" id="U3w-zC-pqe"/>
+                            <constraint firstAttribute="trailing" secondItem="VXD-6W-osV" secondAttribute="trailing" id="wKM-m7-W5Z"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="J7S-Bf-2O1"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="sgr-Pp-xGg">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="bsw-CU-bir">
+                            <connections>
+                                <action selector="cancelAction:" destination="Nh4-zl-0iX" id="okV-mF-yqG"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Next" style="done" id="vfO-ti-l81">
+                            <connections>
+                                <action selector="nextAction:" destination="Nh4-zl-0iX" id="zyF-Dz-bMs"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mnemonicsTextView" destination="LWC-R4-xak" id="q4a-RI-gQe"/>
+                        <outlet property="mnemonicsTextViewHeightConstraint" destination="Fqa-d8-59V" id="ui4-CN-0EN"/>
+                        <outlet property="nextButton" destination="vfO-ti-l81" id="jLi-FY-Ap9"/>
+                        <outlet property="scrollView" destination="VXD-6W-osV" id="m3S-Xc-vlj"/>
+                        <outlet property="titleLabel" destination="Eex-Bj-WyE" id="qfr-dS-vf5"/>
+                        <outlet property="titleTopOffsetConstraint" destination="PCh-CV-aEf" id="rRY-YJ-XTJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cey-U7-0ya" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1325" y="-1308"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="heo-UX-UaK">
+            <objects>
+                <navigationController storyboardIdentifier="RestoreSeedViewController" id="6Gf-WC-IKR" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="UFx-e6-fNz" customClass="BordlessNavigationBar">
+                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Nh4-zl-0iX" kind="relationship" relationship="rootViewController" id="JRx-Pz-7lC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5cz-NB-hOL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="603" y="-1308"/>
+        </scene>
     </scenes>
     <resources>
         <image name="inline_small_chevron" width="6" height="10"/>
         <image name="intro_mewconnect_logo" width="289" height="36"/>
-        <image name="onboarding_background" width="414" height="812"/>
+        <image name="onboarding_background" width="414" height="896"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="24Y-DY-ODr"/>

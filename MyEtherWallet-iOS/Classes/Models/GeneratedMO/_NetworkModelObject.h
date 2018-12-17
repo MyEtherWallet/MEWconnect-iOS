@@ -12,6 +12,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class AccountModelObject;
+@class MasterTokenModelObject;
+@class TokenModelObject;
 
 @interface NetworkModelObjectID : NSManagedObjectID {}
 @end
@@ -34,23 +36,20 @@ NS_ASSUME_NONNULL_BEGIN
 - (int16_t)chainIDValue;
 - (void)setChainIDValue:(int16_t)value_;
 
-@property (nonatomic, strong, nullable) NSOrderedSet<AccountModelObject*> *accounts;
-- (nullable NSMutableOrderedSet<AccountModelObject*>*)accountsSet;
+@property (nonatomic, strong, nullable) AccountModelObject *fromAccount;
+
+@property (nonatomic, strong) MasterTokenModelObject *master;
+
+@property (nonatomic, strong, nullable) NSSet<TokenModelObject*> *tokens;
+- (nullable NSMutableSet<TokenModelObject*>*)tokensSet;
 
 @end
 
-@interface _NetworkModelObject (AccountsCoreDataGeneratedAccessors)
-- (void)addAccounts:(NSOrderedSet<AccountModelObject*>*)value_;
-- (void)removeAccounts:(NSOrderedSet<AccountModelObject*>*)value_;
-- (void)addAccountsObject:(AccountModelObject*)value_;
-- (void)removeAccountsObject:(AccountModelObject*)value_;
-
-- (void)insertObject:(AccountModelObject*)value inAccountsAtIndex:(NSUInteger)idx;
-- (void)removeObjectFromAccountsAtIndex:(NSUInteger)idx;
-- (void)insertAccounts:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
-- (void)removeAccountsAtIndexes:(NSIndexSet *)indexes;
-- (void)replaceObjectInAccountsAtIndex:(NSUInteger)idx withObject:(AccountModelObject*)value;
-- (void)replaceAccountsAtIndexes:(NSIndexSet *)indexes withAccounts:(NSArray *)values;
+@interface _NetworkModelObject (TokensCoreDataGeneratedAccessors)
+- (void)addTokens:(NSSet<TokenModelObject*>*)value_;
+- (void)removeTokens:(NSSet<TokenModelObject*>*)value_;
+- (void)addTokensObject:(TokenModelObject*)value_;
+- (void)removeTokensObject:(TokenModelObject*)value_;
 
 @end
 
@@ -68,8 +67,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (int16_t)primitiveChainIDValue;
 - (void)setPrimitiveChainIDValue:(int16_t)value_;
 
-- (NSMutableOrderedSet<AccountModelObject*>*)primitiveAccounts;
-- (void)setPrimitiveAccounts:(NSMutableOrderedSet<AccountModelObject*>*)value;
+- (AccountModelObject*)primitiveFromAccount;
+- (void)setPrimitiveFromAccount:(AccountModelObject*)value;
+
+- (MasterTokenModelObject*)primitiveMaster;
+- (void)setPrimitiveMaster:(MasterTokenModelObject*)value;
+
+- (NSMutableSet<TokenModelObject*>*)primitiveTokens;
+- (void)setPrimitiveTokens:(NSMutableSet<TokenModelObject*>*)value;
 
 @end
 
@@ -79,7 +84,9 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface NetworkModelObjectRelationships: NSObject
-+ (NSString *)accounts;
++ (NSString *)fromAccount;
++ (NSString *)master;
++ (NSString *)tokens;
 @end
 
 NS_ASSUME_NONNULL_END

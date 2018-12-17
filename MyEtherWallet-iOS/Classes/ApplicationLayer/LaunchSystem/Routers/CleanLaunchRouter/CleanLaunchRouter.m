@@ -22,7 +22,6 @@
 
 #import "SplashPasswordModuleInput.h"
 
-static NSString *const kSplashPasswordViewControllerIdentifier  = @"SplashPasswordViewController";
 static NSInteger const kSplashPasswordLogoImageViewTag          = 1;
 
 @interface CleanLaunchRouter ()
@@ -49,9 +48,7 @@ static NSInteger const kSplashPasswordLogoImageViewTag          = 1;
 - (void)openInitialScreen {
   AccountModelObject *accountModelObject = [self.accountsService obtainActiveAccount];
   
-  NSArray *ignoringProperties = @[NSStringFromSelector(@selector(tokens)),
-                                  NSStringFromSelector(@selector(active)),
-                                  NSStringFromSelector(@selector(accounts))];
+  NSArray *ignoringProperties = @[NSStringFromSelector(@selector(networks))];
   AccountPlainObject *account = [self.ponsomizer convertObject:accountModelObject ignoringProperties:ignoringProperties];
   UINavigationController *navigationController = nil;
   if (accountModelObject) {
@@ -69,17 +66,16 @@ static NSInteger const kSplashPasswordLogoImageViewTag          = 1;
   
   [self.window addSubview:launchViewController.view];
   
-  if (self.passwordStoryboard && accountModelObject) {
+  if (accountModelObject) {
     /* To prevent "Unbalanced calls to begin/end appearance transitions for..." */
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
       dispatch_async(dispatch_get_main_queue(), ^{
-        RamblerViperModuleFactory *passwordFactory = [[RamblerViperModuleFactory alloc] initWithViewControllerLoader:self.passwordStoryboard
-                                                                                         andViewControllerIdentifier:kSplashPasswordViewControllerIdentifier];
+        
         __block id <SplashPasswordModuleInput> passwordModuleInput = nil;
         RamblerViperModuleLinkBlock linkBlock = [self passwordConfigurationBlockWithAccount:account moduleInputCatch:^(id<SplashPasswordModuleInput> moduleInput) {
           passwordModuleInput = moduleInput;
         }];
-        [[navigationController.topViewController openModuleUsingFactory:passwordFactory
+        [[navigationController.topViewController openModuleUsingFactory:self.splashPasswordFactory
                                                     withTransitionBlock:[self passwordTransitionBlockWithCompletion:^{
           [self _animateSplash:launchViewController parentView:navigationController.topViewController.presentedViewController.presentationController.containerView withCompletion:^{
             [passwordModuleInput takeControlAfterLaunch];
@@ -143,12 +139,12 @@ static NSInteger const kSplashPasswordLogoImageViewTag          = 1;
                                                                 widthConstraint.constant = 16.0 * logoImageView.image.size.width;
                                                                 [launchViewController.view layoutIfNeeded];
                                                               }];
-                              } completion:^(BOOL finished) {
+                              } completion:^(__unused BOOL finished) {
                                 
                               }];
     
   }];
-  [animator addCompletion:^(UIViewAnimatingPosition finalPosition) {
+  [animator addCompletion:^(__unused UIViewAnimatingPosition finalPosition) {
     if (completion) {
       completion();
     }

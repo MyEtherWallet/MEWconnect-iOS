@@ -93,8 +93,8 @@ static NSTimeInterval MEWRTCServiceImplementationIceGatheringStateCompleteTimeou
 - (void) disconnect {
   [_gatheringTimeout invalidate];
   _gatheringTimeout = nil;
-  [self.peerConnection close];
   [self.dataChannel close];
+  [self.peerConnection close];
   [self _clearConnection];
 }
 
@@ -145,11 +145,13 @@ static NSTimeInterval MEWRTCServiceImplementationIceGatheringStateCompleteTimeou
       self.peerConnection.iceConnectionState != RTCIceConnectionStateFailed &&
       self.peerConnection.iceConnectionState != RTCIceConnectionStateConnected &&
       (forceWhileGathering || self.peerConnection.iceGatheringState == RTCIceGatheringStateComplete)) {
-        RTCSessionDescription *localDescription = self.peerConnection.localDescription;
-        NSString *answerType = [RTCSessionDescription stringForType:localDescription.type];
-        NSString *answerSDP = localDescription.sdp;
         dispatch_async(dispatch_get_main_queue(), ^{
-          [self.delegate MEWRTCService:self didGenerateAnswerWithType:answerType sdp:answerSDP];
+          RTCSessionDescription *localDescription = self.peerConnection.localDescription;
+          NSString *answerType = [RTCSessionDescription stringForType:localDescription.type];
+          NSString *answerSDP = localDescription.sdp;
+          if (answerSDP && answerType) {
+            [self.delegate MEWRTCService:self didGenerateAnswerWithType:answerType sdp:answerSDP];
+          }
         });
   }
 }
@@ -157,7 +159,7 @@ static NSTimeInterval MEWRTCServiceImplementationIceGatheringStateCompleteTimeou
 #pragma mark - RTCPeerConnectionDelegate
 
 /** Called when the SignalingState changed. */
-- (void)peerConnection:(RTCPeerConnection *)peerConnection didChangeSignalingState:(RTCSignalingState)stateChanged {
+- (void)peerConnection:(__unused RTCPeerConnection *)peerConnection didChangeSignalingState:(RTCSignalingState)stateChanged {
   switch (stateChanged) {
     case RTCSignalingStateHaveRemoteOffer: {
       DDLogVerbose(@"RTC Signaling state: REMOTE OFFER");
@@ -190,19 +192,19 @@ static NSTimeInterval MEWRTCServiceImplementationIceGatheringStateCompleteTimeou
 }
 
 /** Called when media is received on a new stream from remote peer. */
-- (void)peerConnection:(RTCPeerConnection *)peerConnection didAddStream:(RTCMediaStream *)stream {
+- (void)peerConnection:(__unused RTCPeerConnection *)peerConnection didAddStream:(__unused RTCMediaStream *)stream {
 }
 
 /** Called when a remote peer closes a stream. */
-- (void)peerConnection:(RTCPeerConnection *)peerConnection didRemoveStream:(RTCMediaStream *)stream {
+- (void)peerConnection:(__unused RTCPeerConnection *)peerConnection didRemoveStream:(__unused RTCMediaStream *)stream {
 }
 
 /** Called when negotiation is needed, for example ICE has restarted. */
-- (void)peerConnectionShouldNegotiate:(RTCPeerConnection *)peerConnection {
+- (void)peerConnectionShouldNegotiate:(__unused RTCPeerConnection *)peerConnection {
 }
 
 /** Called any time the IceConnectionState changes. */
-- (void)peerConnection:(RTCPeerConnection *)peerConnection didChangeIceConnectionState:(RTCIceConnectionState)newState {
+- (void)peerConnection:(__unused RTCPeerConnection *)peerConnection didChangeIceConnectionState:(RTCIceConnectionState)newState {
   switch (newState) {
     case RTCIceConnectionStateNew: {
       DDLogVerbose(@"RTC Ice connection state: NEW");
@@ -214,7 +216,9 @@ static NSTimeInterval MEWRTCServiceImplementationIceGatheringStateCompleteTimeou
     }
     case RTCIceConnectionStateClosed: {
       DDLogVerbose(@"RTC Ice connection state: CLOSED");
-      [self _clearConnection];
+      dispatch_async(dispatch_get_main_queue(), ^{
+        [self disconnect];
+      });
       break;
     }
     case RTCIceConnectionStateCompleted: {
@@ -234,8 +238,8 @@ static NSTimeInterval MEWRTCServiceImplementationIceGatheringStateCompleteTimeou
     }
     case RTCIceConnectionStateDisconnected: {
       DDLogVerbose(@"RTC Ice connection state: DISCONNECTED");
-      [self _clearConnection];
       dispatch_async(dispatch_get_main_queue(), ^{
+        [self disconnect];
         [self.delegate MEWRTCServiceConnectionDidDisconnected:self];
       });
       break;
@@ -254,7 +258,7 @@ static NSTimeInterval MEWRTCServiceImplementationIceGatheringStateCompleteTimeou
 }
 
 /** Called any time the IceGatheringState changes. */
-- (void)peerConnection:(RTCPeerConnection *)peerConnection didChangeIceGatheringState:(RTCIceGatheringState)newState {
+- (void)peerConnection:(__unused RTCPeerConnection *)peerConnection didChangeIceGatheringState:(RTCIceGatheringState)newState {
   switch (newState) {
     case RTCIceGatheringStateNew: {
       DDLogVerbose(@"RTC Ice gathering state: NEW");
@@ -265,7 +269,7 @@ static NSTimeInterval MEWRTCServiceImplementationIceGatheringStateCompleteTimeou
       @weakify(self);
       _gatheringTimeout = [NSTimer timerWithTimeInterval:MEWRTCServiceImplementationIceGatheringStateCompleteTimeout
                                                  repeats:NO
-                                                   block:^(NSTimer * _Nonnull timer) {
+                                                   block:^(__unused NSTimer * _Nonnull timer) {
                                                      @strongify(self);
                                                      [self _generateAnswer:YES];
                                                    }];
@@ -286,21 +290,21 @@ static NSTimeInterval MEWRTCServiceImplementationIceGatheringStateCompleteTimeou
 }
 
 /** New ice candidate has been found. */
-- (void)peerConnection:(RTCPeerConnection *)peerConnection didGenerateIceCandidate:(RTCIceCandidate *)candidate {
+- (void)peerConnection:(__unused RTCPeerConnection *)peerConnection didGenerateIceCandidate:(__unused RTCIceCandidate *)candidate {
 }
 
 /** Called when a group of local Ice candidates have been removed. */
-- (void)peerConnection:(RTCPeerConnection *)peerConnection didRemoveIceCandidates:(NSArray<RTCIceCandidate *> *)candidates {
+- (void)peerConnection:(__unused RTCPeerConnection *)peerConnection didRemoveIceCandidates:(__unused NSArray<RTCIceCandidate *> *)candidates {
 }
 
 /** New data channel has been opened. */
-- (void)peerConnection:(RTCPeerConnection *)peerConnection didOpenDataChannel:(RTCDataChannel *)dataChannel {
+- (void)peerConnection:(__unused RTCPeerConnection *)peerConnection didOpenDataChannel:(__unused RTCDataChannel *)dataChannel {
 }
 
 #pragma mark - RTCDataChannelDelegate
 
 /** The data channel state changed. */
-- (void)dataChannelDidChangeState:(RTCDataChannel *)dataChannel {
+- (void)dataChannelDidChangeState:(__unused RTCDataChannel *)dataChannel {
   switch (dataChannel.readyState) {
     case RTCDataChannelStateConnecting: {
       [self.delegate MEWRTCServiceDataChannelConnecting:self];
@@ -326,7 +330,7 @@ static NSTimeInterval MEWRTCServiceImplementationIceGatheringStateCompleteTimeou
 }
 
 /** The data channel successfully received a data buffer. */
-- (void)dataChannel:(RTCDataChannel *)dataChannel didReceiveMessageWithBuffer:(RTCDataBuffer *)buffer {
+- (void)dataChannel:(__unused RTCDataChannel *)dataChannel didReceiveMessageWithBuffer:(RTCDataBuffer *)buffer {
   NSDictionary *message = [NSJSONSerialization JSONObjectWithData:buffer.data options:0 error:nil];
   dispatch_async(dispatch_get_main_queue(), ^{
     [self.delegate MEWRTCService:self didReceiveMessage:message];

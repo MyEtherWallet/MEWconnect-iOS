@@ -18,7 +18,7 @@
     [aCoder encodeObject:self.loaded forKey:@"loaded"];
     [aCoder encodeObject:self.status forKey:@"status"];
     [aCoder encodeObject:self.userId forKey:@"userId"];
-    [aCoder encodeObject:self.fromAccount forKey:@"fromAccount"];
+    [aCoder encodeObject:self.fromToken forKey:@"fromToken"];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
@@ -30,7 +30,7 @@
         _loaded = [[aDecoder decodeObjectForKey:@"loaded"] copy];
         _status = [[aDecoder decodeObjectForKey:@"status"] copy];
         _userId = [[aDecoder decodeObjectForKey:@"userId"] copy];
-        _fromAccount = [[aDecoder decodeObjectForKey:@"fromAccount"] copy];
+        _fromToken = [[aDecoder decodeObjectForKey:@"fromToken"] copy];
     }
 
     return self;
@@ -47,7 +47,7 @@
     replica.status = self.status;
     replica.userId = self.userId;
 
-    replica.fromAccount = self.fromAccount;
+    replica.fromToken = self.fromToken;
 
     return replica;
 }

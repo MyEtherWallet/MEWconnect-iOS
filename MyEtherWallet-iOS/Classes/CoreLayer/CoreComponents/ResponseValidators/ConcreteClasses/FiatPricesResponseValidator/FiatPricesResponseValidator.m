@@ -22,7 +22,7 @@ static NSString *const kFiatPricesResponseValidatorMessage  = @"message";
     if ([data isKindOfClass:[NSDictionary class]]) {
       NSNumber *errorCode = data[kFiatPricesResponseValidatorError];
       NSString *message = data[kFiatPricesResponseValidatorMessage];
-      if (errorCode) {
+      if (errorCode != nil) {
         NSDictionary *userInfo = @{NSLocalizedDescriptionKey: message ?: @""};
         resultError = [NSError errorWithDomain:kResponseValidationErrorDomain
                                           code:[errorCode unsignedIntegerValue]

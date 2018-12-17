@@ -13,15 +13,15 @@
 #import "NewWalletInteractorOutput.h"
 
 #import "MEWConnectFacade.h"
-#import "BlockchainNetworkService.h"
 #import "AccountsService.h"
+#import "KeychainService.h"
+#import "BlockchainNetworkService.h"
+#import "MEWwallet.h"
 #import "Ponsomizer.h"
 
 #import "NetworkPlainObject.h"
 #import "AccountPlainObject.h"
-
-#import "UIImage+MEWBackground.h"
-#import "UIImage+MEWBackground.h"
+#import "MasterTokenPlainObject.h"
 
 @interface NewWalletInteractor ()
 @end
@@ -31,26 +31,30 @@
 #pragma mark - NewWalletInteractorInput
 
 - (void) createNewWalletWithPassword:(NSString *)password words:(NSArray<NSString *> *)words {
+  [self.connectFacade disconnect];
+  
+  [self.accountsService resetAccounts];
+  [self.keychainService resetKeychain];
+  
+  AccountModelObject *accountModelObject = [self.accountsService obtainOrCreateActiveAccount];
+  NSArray *ignoringProperties = @[NSStringFromSelector(@selector(tokens))];
+  AccountPlainObject *account = [self.ponsomizer convertObject:accountModelObject ignoringProperties:ignoringProperties];
+  
+  NSSet *chainIDs = [NSSet setWithObjects:@(BlockchainNetworkTypeMainnet), @(BlockchainNetworkTypeRopsten), nil];
   @weakify(self);
-  NetworkModelObject *networkModelObject = [self.blockchainNetworkService obtainActiveNetwork];
-  
-  NSArray *ignoringProperties = @[NSStringFromSelector(@selector(accounts))];
-  NetworkPlainObject *network = [self.ponsomizer convertObject:networkModelObject ignoringProperties:ignoringProperties];
-  
-  [self.accountsService createNewAccountInNetwork:network password:password words:words completion:^(AccountModelObject *accountModelObject) {
+  [self.mewWallet createKeysWithChainIDs:chainIDs forAccount:account withPassword:password mnemonicWords:words completion:^(__unused BOOL success) {
     @strongify(self);
     
-    [self.connectFacade disconnect];
-    
-    NSArray *ignoringProperties = @[NSStringFromSelector(@selector(backedUp)),
-                                    NSStringFromSelector(@selector(fromNetwork)),
-                                    NSStringFromSelector(@selector(price)),
-                                    NSStringFromSelector(@selector(tokens))];
+    AccountModelObject *accountModelObject = [self.accountsService obtainOrCreateActiveAccount];
+    NSArray *ignoringProperties = @[NSStringFromSelector(@selector(tokens))];
     AccountPlainObject *account = [self.ponsomizer convertObject:accountModelObject ignoringProperties:ignoringProperties];
     
-    CGSize fullSize = [UIImage fullSize];
-    CGSize cardSize = [UIImage cardSize];
-    [UIImage cacheImagesWithSeed:account.publicAddress fullSize:fullSize cardSize:cardSize];
+    if (words) {
+      [self.accountsService accountBackedUp:account];
+    }
+    
+    NetworkPlainObject *mainnetNetwork = [account networkForNetworkType:BlockchainNetworkTypeMainnet];
+    [self.blockchainNetworkService selectNetwork:mainnetNetwork inAccount:account];
   }];
 }
 

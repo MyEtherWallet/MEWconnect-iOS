@@ -12,11 +12,14 @@
 
 @class MEWConnectResponse;
 @class AccountPlainObject;
-@class TokenPlainObject;
+@class NetworkPlainObject;
+@class MasterTokenPlainObject;
 
 @protocol HomeInteractorInput <NSObject>
-- (void) refreshAccount;
+- (void) refreshMasterToken;
 - (AccountPlainObject *) obtainAccount;
+- (NetworkPlainObject *) obtainNetwork;
+- (MasterTokenPlainObject *) obtainMasterToken;
 - (void) configurate;
 - (NSUInteger) obtainNumberOfTokens;
 - (NSDecimalNumber *) obtainTotalPriceOfTokens;
@@ -25,9 +28,9 @@
 - (void) searchTokensWithTerm:(NSString *)term;
 - (void) disconnect;
 - (BOOL) isConnected;
-- (NSArray *) shareActivityItems;
 - (void) selectMainnetNetwork;
 - (void) selectRopstenNetwork;
+- (void) generateMissedKeysWithPassword:(NSString *)password;
 - (void) transactionDidSigned;
 - (void) requestRaterIfNeeded;
 @end

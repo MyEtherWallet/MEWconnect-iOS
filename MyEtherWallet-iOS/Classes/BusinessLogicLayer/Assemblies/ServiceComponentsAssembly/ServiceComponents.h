@@ -22,6 +22,8 @@
 @protocol ReachabilityService;
 @protocol ReachabilityServiceDelegate;
 @protocol RateService;
+@protocol MigrationService;
+@protocol SecurityService;
 
 @protocol ServiceComponents <NSObject>
 - (id <MEWConnectFacade>) MEWConnectFacade;
@@ -36,4 +38,6 @@
 - (id <SimplexService>) simplexService;
 - (id <ReachabilityService>) reachabilityServiceWithDelegate:(id <ReachabilityServiceDelegate>)delegate;
 - (id <RateService>) rateService;
+- (id <MigrationService>) migrationService;
+- (id <SecurityService>) securityService;
 @end

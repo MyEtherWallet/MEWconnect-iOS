@@ -17,12 +17,10 @@ typedef NS_ENUM(short, FlatButtonTheme) {
 };
 
 @interface FlatButton : UIButton
-#if TARGET_INTERFACE_BUILDER
-@property (nonatomic) IBInspectable short theme;
-#else
-@property (nonatomic) IBInspectable FlatButtonTheme theme;
-#endif
+
+@property (nonatomic) IBInspectable short /*FlatButtonTheme*/ theme;
 @property (nonatomic) IBInspectable BOOL alternativeDisabledTheme;
 @property (nonatomic) IBInspectable BOOL compact;
+@property (nonatomic) IBInspectable BOOL defineImageRect;
 @property (nonatomic) BOOL loading;
 @end

@@ -6,5 +6,5 @@
 #import "_PurchaseHistoryPlainObject.h"
 
 @interface PurchaseHistoryPlainObject : _PurchaseHistoryPlainObject
-// Custom logic goes here.
+- (BOOL) isEqualToPurchaseHistory:(PurchaseHistoryPlainObject *)purchaseHistory;
 @end

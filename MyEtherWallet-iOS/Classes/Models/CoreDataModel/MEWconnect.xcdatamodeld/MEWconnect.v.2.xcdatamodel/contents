@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14315.18" systemVersion="18A347e" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="2">
+    <entity name="Account" representedClassName="AccountModelObject" syncable="YES">
+        <attribute name="active" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="backedUp" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="networks" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Network" inverseName="fromAccount" inverseEntity="Network" syncable="YES"/>
+    </entity>
+    <entity name="FiatPrice" representedClassName="FiatPriceModelObject" syncable="YES">
+        <attribute name="usdPrice" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="fromToken" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Token" inverseName="price" inverseEntity="Token" syncable="YES"/>
+    </entity>
+    <entity name="MasterToken" representedClassName="MasterTokenModelObject" parentEntity="Token" syncable="YES">
+        <relationship name="fromNetworkMaster" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Network" inverseName="master" inverseEntity="Network" syncable="YES"/>
+    </entity>
+    <entity name="Network" representedClassName="NetworkModelObject" syncable="YES">
+        <attribute name="active" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="chainID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="fromAccount" optional="YES" maxCount="1" deletionRule="Nullify" ordered="YES" destinationEntity="Account" inverseName="networks" inverseEntity="Account" syncable="YES"/>
+        <relationship name="master" maxCount="1" deletionRule="Cascade" destinationEntity="MasterToken" inverseName="fromNetworkMaster" inverseEntity="MasterToken" syncable="YES"/>
+        <relationship name="tokens" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Token" inverseName="fromNetwork" inverseEntity="Token" syncable="YES"/>
+    </entity>
+    <entity name="PurchaseHistory" representedClassName="PurchaseHistoryModelObject" syncable="YES">
+        <attribute name="amount" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="loaded" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="fromToken" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Token" inverseName="purchaseHistory" inverseEntity="Token" syncable="YES"/>
+    </entity>
+    <entity name="Token" representedClassName="TokenModelObject" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="balance" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="decimals" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="symbol" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="fromNetwork" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Network" inverseName="tokens" inverseEntity="Network" syncable="YES"/>
+        <relationship name="price" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="FiatPrice" inverseName="fromToken" inverseEntity="FiatPrice" syncable="YES"/>
+        <relationship name="purchaseHistory" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="PurchaseHistory" inverseName="fromToken" inverseEntity="PurchaseHistory" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Account" positionX="-1379.0234375" positionY="-6297.203125" width="128" height="120"/>
+        <element name="FiatPrice" positionX="-788.19140625" positionY="-6267.05859375" width="128" height="75"/>
+        <element name="MasterToken" positionX="-1012.55078125" positionY="-6419" width="128" height="60"/>
+        <element name="Network" positionX="-1192.65234375" positionY="-6297.08203125" width="128" height="120"/>
+        <element name="PurchaseHistory" positionX="-789.89453125" positionY="-6127.15625" width="128" height="135"/>
+        <element name="Token" positionX="-954.703125" positionY="-6326.3359375" width="128" height="165"/>
+    </elements>
+</model>

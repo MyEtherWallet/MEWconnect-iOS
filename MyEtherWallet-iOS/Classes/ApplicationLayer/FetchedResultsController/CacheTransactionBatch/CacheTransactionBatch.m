@@ -8,15 +8,18 @@
 
 #import "CacheTransactionBatch.h"
 #import "CacheTransaction.h"
+#import "CacheTransactionSection.h"
 
 @interface CacheTransactionBatch ()
 @end
 
 @implementation CacheTransactionBatch {
-  NSMutableOrderedSet *_insertTransactions;
-  NSMutableOrderedSet *_updateTransactions;
-  NSMutableOrderedSet *_deleteTransactions;
-  NSMutableOrderedSet *_moveTransactions;
+  NSMutableOrderedSet <CacheTransaction *> *_deleteTransactions;
+  NSMutableOrderedSet <CacheTransaction *> *_insertTransactions;
+  NSMutableOrderedSet <CacheTransaction *> *_updateTransactions;
+  NSMutableOrderedSet <CacheTransaction *> *_moveTransactions;
+  
+  NSMutableArray <CacheTransactionSection *> *_sections;
 }
 
 - (instancetype)init {
@@ -29,18 +32,29 @@
 
 - (void)addTransaction:(CacheTransaction *)transaction {
   switch (transaction.changeType) {
-    case NSFetchedResultsChangeInsert: {
-      if (!_insertTransactions) {
-        _insertTransactions = [[NSMutableOrderedSet alloc] init];
-      }
-      [_insertTransactions addObject:transaction];
-      break;
-    }
     case NSFetchedResultsChangeDelete: {
       if (!_deleteTransactions) {
         _deleteTransactions = [[NSMutableOrderedSet alloc] init];
       }
       [_deleteTransactions addObject:transaction];
+      [_deleteTransactions sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(oldIndexPath)) ascending:NO]]];
+      break;
+    }
+    case NSFetchedResultsChangeInsert: {
+      if (!_insertTransactions) {
+        _insertTransactions = [[NSMutableOrderedSet alloc] init];
+      }
+      [_insertTransactions addObject:transaction];
+      [_insertTransactions sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(updatedIndexPath)) ascending:YES]]];
+      break;
+    }
+    case NSFetchedResultsChangeUpdate: {
+      if (!_updateTransactions) {
+        _updateTransactions = [[NSMutableOrderedSet alloc] init];
+      }
+      [_updateTransactions addObject:transaction];
+      [_updateTransactions sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(updatedIndexPath)) ascending:YES]]];
+      
       break;
     }
     case NSFetchedResultsChangeMove: {
@@ -50,24 +64,24 @@
       [_moveTransactions addObject:transaction];
       break;
     }
-    case NSFetchedResultsChangeUpdate: {
-      if (!_updateTransactions) {
-        _updateTransactions = [[NSMutableOrderedSet alloc] init];
-      }
-      [_updateTransactions addObject:transaction];
-      break;
-    }
-      
     default:
       break;
   }
 }
 
+- (void)addSection:(CacheTransactionSection *)section {
+  if (!_sections) {
+    _sections = [[NSMutableArray alloc] init];
+  }
+  [_sections addObject:section];
+}
+
 - (BOOL)isEmpty {
-  return  [_insertTransactions count] == 0 &&
-  [_updateTransactions count] == 0 &&
-  [_deleteTransactions count] == 0 &&
-  [_moveTransactions count] == 0;
+  return [_deleteTransactions count] == 0 &&
+         [_insertTransactions count] == 0 &&
+         [_updateTransactions count] == 0 &&
+         [_moveTransactions count] == 0 &&
+         [_sections count] == 0;
 }
 
 - (NSOrderedSet *)insertTransactions {
@@ -84,6 +98,10 @@
 
 - (NSOrderedSet *)moveTransactions {
   return [_moveTransactions copy];
+}
+
+- (NSOrderedSet <CacheTransactionSection *> *)sections {
+  return [_sections copy];
 }
 
 @end

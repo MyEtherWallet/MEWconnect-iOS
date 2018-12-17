@@ -49,7 +49,7 @@
   [debugDescription appendString:@"Dependencies on other NSOperations:\n"];
   if (compoundOperation.dependencies.count > 0) {
     [debugDescription appendString:@"Depends on:\n"];
-    [compoundOperation.dependencies enumerateObjectsUsingBlock:^(NSOperation *obj, NSUInteger idx, BOOL *stop) {
+    [compoundOperation.dependencies enumerateObjectsUsingBlock:^(NSOperation *obj, NSUInteger idx, __unused BOOL *stop) {
       NSString *dependencyDescription = [NSString stringWithFormat:@"%li: %@, isExecuting: %i\n", (unsigned long)idx, NSStringFromClass([obj class]), obj.isExecuting];
       [debugDescription appendString:dependencyDescription];
     }];
@@ -86,7 +86,7 @@
   }
   [debugDescription appendString:[NSString stringWithFormat:@"%li operations are executing right now\n", (unsigned long)executingOperationsCount]];
   if (executingOperationsCount > 0) {
-    [internalQueue.operations enumerateObjectsUsingBlock:^(NSOperation *obj, NSUInteger idx, BOOL *stop) {
+    [internalQueue.operations enumerateObjectsUsingBlock:^(NSOperation *obj, NSUInteger idx, __unused BOOL *stop) {
       if (obj.isExecuting) {
         [debugDescription appendString:[NSString stringWithFormat:@"- Operation %li\n", (unsigned long)idx]];
         [debugDescription appendString:[NSString stringWithFormat:@"  - Class: %@\n", NSStringFromClass([obj class])]];

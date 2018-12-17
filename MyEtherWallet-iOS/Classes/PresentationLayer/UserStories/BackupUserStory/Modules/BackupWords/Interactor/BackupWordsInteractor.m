@@ -10,6 +10,8 @@
 
 #import "BackupWordsInteractor.h"
 
+#import "SecurityService.h"
+
 #import "BackupWordsInteractorOutput.h"
 
 @interface BackupWordsInteractor ()
@@ -42,9 +44,17 @@
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (void) enableSecurityProtection {
+  [self.securityService enableForceProtection];
+}
+
+- (void) disableSecurityProtection {
+  [self.securityService disableForceProtection];
+}
+
 #pragma mark - NSNotifications
 
-- (void) _userDidTakeScreenshort:(NSNotification *)notification {
+- (void) _userDidTakeScreenshort:(__unused NSNotification *)notification {
   [self.output userDidTakeScreenshot];
 }
 

@@ -11,7 +11,7 @@
 
 @implementation SystemInfrastructureAssembly
 
-- (NSUserDefaults *)userDefaults {
+- (NSUserDefaults *) userDefaults {
   return [TyphoonDefinition withClass:[NSUserDefaults class] configuration:^(TyphoonDefinition *definition) {
     [definition useInitializer:@selector(initWithSuiteName:)
                     parameters:^(TyphoonMethod *initializer) {
@@ -21,35 +21,35 @@
   }];
 }
 
-- (NSHTTPCookieStorage *)httpCookieStorage {
+- (NSHTTPCookieStorage *) httpCookieStorage {
   return [TyphoonDefinition withClass:[NSHTTPCookieStorage class] configuration:^(TyphoonDefinition *definition) {
     [definition useInitializer:@selector(sharedHTTPCookieStorage)];
     definition.scope = TyphoonScopeSingleton;
   }];
 }
 
-- (NSNotificationCenter *)notificationCenter {
+- (NSNotificationCenter *) notificationCenter {
   return [TyphoonDefinition withClass:[NSNotificationCenter class] configuration:^(TyphoonDefinition *definition) {
     [definition useInitializer:@selector(defaultCenter)];
     definition.scope = TyphoonScopeSingleton;
   }];
 }
 
-- (UIApplication *)application {
+- (UIApplication *) application {
   return [TyphoonDefinition withClass:[UIApplication class] configuration:^(TyphoonDefinition *definition) {
     [definition useInitializer:@selector(sharedApplication)];
     definition.scope = TyphoonScopeSingleton;
   }];
 }
 
-- (NSFileManager *)fileManager {
+- (NSFileManager *) fileManager {
   return [TyphoonDefinition withClass:[NSFileManager class] configuration:^(TyphoonDefinition *definition) {
     [definition useInitializer:@selector(defaultManager)];
     definition.scope = TyphoonScopeSingleton;
   }];
 }
 
-- (UIWindow *)mainWindow {
+- (UIWindow *) mainWindow {
   return [TyphoonDefinition withClass:[UIWindow class]
                         configuration:^(TyphoonDefinition *definition) {
                           [definition useInitializer:@selector(initWithFrame:)
@@ -60,7 +60,7 @@
                         }];
 }
 
-- (NSBundle *)mainBundle {
+- (NSBundle *) mainBundle {
   return [TyphoonDefinition withClass:[NSBundle class] configuration:^(TyphoonDefinition *definition) {
     [definition useInitializer:@selector(mainBundle)];
     definition.scope = TyphoonScopeSingleton;

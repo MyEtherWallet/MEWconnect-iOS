@@ -37,6 +37,16 @@
 	[self.output didTriggerViewReadyEvent];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  [self.output didTriggerViewWillAppearEvent];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
+  [self.output didTriggerViewWillDisappearEvent];
+}
+
 #pragma mark - BackupConfirmationViewInput
 
 - (void) setupInitialStateWithQuiz:(BackupConfirmationQuiz *)quiz {
@@ -108,7 +118,7 @@
 
 #pragma mark - IBActions
 
-- (IBAction)answerSelected:(UISegmentedControl *)sender {
+- (IBAction)answerSelected:(__unused UISegmentedControl *)sender {
   NSArray *segmentedControls = [self.questionSegmentedControls sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(tag)) ascending:YES]]];
   NSMutableArray *checkVector = [[NSMutableArray alloc] init];
   for (BackupConfirmationSegmentedControl *segmentedControl in segmentedControls) {
@@ -126,7 +136,7 @@
   [self.output didSelectAnswers:checkVector];
 }
 
-- (IBAction)finishAction:(id)sender {
+- (IBAction)finishAction:(__unused id)sender {
   [self.output finishAction];
 }
 

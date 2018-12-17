@@ -11,6 +11,5 @@
 typedef void(^FiatPricesServiceCompletion)(NSError *error);
 
 @protocol FiatPricesService <NSObject>
-- (void) updatePriceForEthereumWithCompletion:(FiatPricesServiceCompletion)completion;
-- (void) updatePricesForTokensWithCompletion:(FiatPricesServiceCompletion)completion;
+- (void) updateFiatPricesWithCompletion:(FiatPricesServiceCompletion)completion;
 @end

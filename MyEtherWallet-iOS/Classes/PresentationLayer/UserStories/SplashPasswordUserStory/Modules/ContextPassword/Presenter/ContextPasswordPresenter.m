@@ -3,7 +3,7 @@
 //  MyEtherWallet-iOS
 //
 //  Created by Mikhail Nikanorov on 11/09/2018.
-//  Copyright © 2018 MyEtherWallet, Inc.. All rights reserved.
+//  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
 #import "ContextPasswordPresenter.h"
@@ -41,6 +41,10 @@
       title = NSLocalizedString(@"Enter password to confirm", @"Context inout password. Sign transaction");
       break;
     }
+    case ContextPasswordTypeGenerate: {
+      title = NSLocalizedString(@"Enter password to generate", @"Context inout password. Generate new private key");
+      break;
+    }
       
     default:
       break;
@@ -50,7 +54,12 @@
 
 - (void) cancelAction {
   [self.view prepareForDismiss];
-  [self.router close];
+  [self.router close:YES];
+}
+
+- (void) resignAction {
+  [self.view prepareForDismiss];
+  [self.router close:NO];
 }
 
 - (void) doneActionWithPassword:(NSString *)password {
@@ -62,7 +71,7 @@
 - (void) correctPassword:(NSString *)password {
   [self.view prepareForDismiss];
   [self.moduleOutput passwordDidEntered:password];
-  [self.router close];
+  [self.router close:YES];
 }
 
 - (void) incorrectPassword {

@@ -31,7 +31,6 @@
 @property (nonatomic, strong, readonly) TyphoonAssembly <ResponseMappersFactory> *responseMappersFactory;
 @property (nonatomic, strong, readonly) TyphoonAssembly <ResponseConverterFactory> *responseConverterFactory;
 - (TokensOperationFactory *) tokensOperationFactory;
-- (AccountsOperationFactory *) accountsOperationFactory;
 - (FiatPricesOperationFactory *) fiatPricesOperationFactory;
 - (SimplexOperationFactory *) simplexOperationFactory;
 @end

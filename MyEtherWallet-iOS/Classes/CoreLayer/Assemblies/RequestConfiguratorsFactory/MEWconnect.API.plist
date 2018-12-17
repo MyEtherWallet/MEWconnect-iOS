@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API</key>
+	<dict>
+		<key>NodeURL</key>
+		<string>NSURL(https://api.myetherwallet.com)</string>
+		<key>TickerURL</key>
+		<string>NSURL(https://cryptorates.mewapi.io)</string>
+		<key>SimplexAPIURL</key>
+		<string>NSURL(https://apiccswap.myetherwallet.com)</string>
+	</dict>
+</dict>
+</plist>

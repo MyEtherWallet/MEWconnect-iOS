@@ -42,37 +42,31 @@
       _empty = NO;
     }
   }
-  NSMutableOrderedSet *insertTransactions = [transactionBatch.insertTransactions mutableCopy];
-  [insertTransactions sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"updatedIndexPath.row" ascending:YES]]];
-  for (CacheTransaction *transaction in insertTransactions) {
+  for (CacheTransaction *transaction in transactionBatch.deleteTransactions) {
+    NSIndexPath *removeIndexPath = [NSIndexPath indexPathForRow:transaction.oldIndexPath.row inSection:0];
+    [self.tableViewModel removeObjectAtIndexPath:removeIndexPath];
+  }
+
+  for (CacheTransaction *transaction in transactionBatch.insertTransactions) {
     HomeTableViewCellObject *cellObject = [self.cellObjectBuilder buildCellObjectForToken:transaction.object];
     NSUInteger updatedRow = transaction.updatedIndexPath.row;
     [self.tableViewModel insertObject:cellObject atRow:updatedRow inSection:0];
   }
-  
+
   for (CacheTransaction *transaction in transactionBatch.updateTransactions) {
     HomeTableViewCellObject *cellObject = [self.cellObjectBuilder buildCellObjectForToken:transaction.object];
-    NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:transaction.oldIndexPath.row inSection:0];
-    [self.tableViewModel removeObjectAtIndexPath:oldIndexPath];
+    NSIndexPath *updatedIndexPath = [NSIndexPath indexPathForRow:transaction.updatedIndexPath.row inSection:0];
+    [self.tableViewModel removeObjectAtIndexPath:updatedIndexPath];
     [self.tableViewModel insertObject:cellObject atRow:transaction.updatedIndexPath.row inSection:0];
   }
-  
-  NSMutableArray *removeIndexPaths = [NSMutableArray array];
-  for (CacheTransaction *transaction in transactionBatch.deleteTransactions) {
-    NSIndexPath *removeIndexPath = [NSIndexPath indexPathForRow:transaction.oldIndexPath.row inSection:0];
-    [removeIndexPaths addObject:removeIndexPath];
-  }
-  [removeIndexPaths sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"row" ascending:NO]]];
-  for (NSIndexPath *indexPath in removeIndexPaths) {
-    [self.tableViewModel removeObjectAtIndexPath:indexPath];
-  }
-  
+
   for (CacheTransaction *transaction in transactionBatch.moveTransactions) {
     HomeTableViewCellObject *cellObject = [self.cellObjectBuilder buildCellObjectForToken:transaction.object];
     NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:transaction.oldIndexPath.row inSection:0];
     [self.tableViewModel removeObjectAtIndexPath:oldIndexPath];
     [self.tableViewModel insertObject:cellObject atRow:transaction.updatedIndexPath.row inSection:0];
   }
+  
   [self.animator updateWithTransactionBatch:transactionBatch];
 
   if ([self.tableViewModel tableView:self.animator.tableView numberOfRowsInSection:0] == 0 && maximumCount == 0) {
@@ -90,14 +84,14 @@
 
 #pragma mark - DataDisplayManager methods
 
-- (id<UITableViewDataSource>)dataSourceForTableView:(UITableView *)tableView {
+- (id<UITableViewDataSource>)dataSourceForTableView:(__unused UITableView *)tableView {
   if (!self.tableViewModel) {
     [self updateTableViewModel];
   }
   return self.tableViewModel;
 }
 
-- (id<UITableViewDelegate>)delegateForTableView:(UITableView *)tableView withBaseDelegate:(id<UITableViewDelegate>)baseTableViewDelegate {
+- (id<UITableViewDelegate>)delegateForTableView:(__unused UITableView *)tableView withBaseDelegate:(__unused id<UITableViewDelegate>)baseTableViewDelegate {
   if (!self.tableViewActions) {
     [self setupTableViewActions];
   }

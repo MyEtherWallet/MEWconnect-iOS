@@ -9,6 +9,7 @@
 @import TTTAttributedLabel;
 
 #import "CardView.h"
+#import "CardViewSeedButton.h"
 #import "UIImage+MEWBackground.h"
 #import "NSAttributedString+CustomEllipsis.h"
 #import "NSNumberFormatter+Ethereum.h"
@@ -23,7 +24,6 @@
 static CGFloat kCardViewSmallOffset             = 6.0;
 static CGFloat kCardViewEthereumTitleTopOffset  = 87.0;
 
-CGFloat const kCardViewBlinkDefaultAlpha        = 0.6;
 CGFloat const kCardViewDefaultShadowOpacity     = 0.2;
 CGFloat const kCardViewDefaultCornerRadius      = 16.0;
 CGFloat const kCardViewDefaultOffset            = 16.0;
@@ -35,7 +35,7 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
 @property (nonatomic, weak) UILabel *balanceLabel;
 @property (nonatomic, weak) UILabel *usdBalanceLabel;
 @property (nonatomic, weak) UILabel *ethereumTitleLabel;
-@property (nonatomic, weak) UILabel *seedLabel;
+@property (nonatomic, weak) UIButton *seedLabelButton;
 @property (nonatomic, weak) UIView *backupViewWarning;
 @property (nonatomic, weak) UIView *backupViewOk;
 @end
@@ -85,7 +85,16 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
     _backgroundImage = [patternImage renderBackgroundWithSeed:seed size:fullSize logo:NO];
   }
   UIImage *cardImage = [UIImage cachedBackgroundWithSeed:seed size:cardSize logo:YES];
-  self.backgroundImageView.image = cardImage;
+  if (self.backgroundImageView.image && cardImage) {
+    [UIView transitionWithView:self.backgroundImageView
+                      duration:0.3
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+                      self.backgroundImageView.image = cardImage;
+                    } completion:nil];
+  } else {
+    self.backgroundImageView.image = cardImage;
+  }
   if (!self.backgroundImageView.image) {
     if (!patternImage) {
       patternImage = [UIImage imageWithSeed:seed size:fullSize];
@@ -116,7 +125,7 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
   
   NSAttributedString *attributedSeedString = [[NSAttributedString alloc] initWithString:seed attributes:attributes];
   CGSize maxSize = CGSizeMake(0.0, CGFLOAT_MAX);
-  UIImage *shareIcon = [UIImage imageNamed:@"card_share_icon"];
+  UIImage *shareIcon = [self.seedLabelButton imageForState:UIControlStateNormal];
   maxSize.width = [self intrinsicContentSize].width;
   maxSize.width -= kCardViewDefaultOffset; //left offset
   maxSize.width -= shareIcon.size.width + 16.0; //share icon
@@ -125,7 +134,7 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
     attributedSeedString = [attributedSeedString truncatedAttributedStringWithCustomEllipsis:ellipsis maxSize:maxSize truncationPosition:6];
   }
   
-  self.seedLabel.attributedText = attributedSeedString;
+  [self.seedLabelButton setAttributedTitle:attributedSeedString forState:UIControlStateNormal];
 }
 
 /* 0.5679 ETH */
@@ -259,22 +268,6 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[background]|" options:NSLayoutFormatDirectionLeftToRight metrics:nil views:views]];
     self.backgroundImageView = backgroundImageView;
   }
-  { //Blink
-    UIImageView *blinkImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"card_blink"]];
-    blinkImageView.alpha = kCardViewBlinkDefaultAlpha;
-    blinkImageView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.backgroundImageView addSubview:blinkImageView];
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.backgroundImageView attribute:NSLayoutAttributeCenterX
-                                                     relatedBy:NSLayoutRelationEqual
-                                                        toItem:blinkImageView attribute:NSLayoutAttributeCenterX
-                                                    multiplier:1.0 constant:-50.0]];
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.backgroundImageView attribute:NSLayoutAttributeCenterY
-                                                     relatedBy:NSLayoutRelationEqual
-                                                        toItem:blinkImageView attribute:NSLayoutAttributeCenterY
-                                                    multiplier:1.0 constant:25.0]];
-    _blinkImageView = blinkImageView;
-    [self _addMotionEffect:blinkImageView];
-  }
   { //Balance
     UILabel *balanceLabel = [[UILabel alloc] init];
     balanceLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -352,43 +345,21 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
     ethereumTitleLabel.attributedText = [[NSAttributedString alloc] initWithString:title attributes:attributes];
     self.ethereumTitleLabel = ethereumTitleLabel;
   }
-  { //Seed label
-    UILabel *seedLabel = [[UILabel alloc] init];
-    seedLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [self addSubview:seedLabel];
+  { //Seed label + Share
+    UIButton *seedLabelButton = [CardViewSeedButton seedButton];
+    [seedLabelButton addTarget:self action:@selector(shareAction:) forControlEvents:UIControlEventTouchUpInside];
+    seedLabelButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSubview:seedLabelButton];
     CGFloat verticalOffset = 0.0;
     if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
       verticalOffset = 2.0;
     } else {
       verticalOffset = -1.0;
     }
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:seedLabel attribute:NSLayoutAttributeLeft
-                                                     relatedBy:NSLayoutRelationEqual
-                                                        toItem:self.balanceLabel attribute:NSLayoutAttributeLeft
-                                                    multiplier:1.0 constant:0.0]];
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:seedLabel attribute:NSLayoutAttributeTop
-                                                     relatedBy:NSLayoutRelationEqual
-                                                        toItem:self.ethereumTitleLabel attribute:NSLayoutAttributeBottom
-                                                    multiplier:1.0 constant:verticalOffset]];
-    self.seedLabel = seedLabel;
-  }
-  { //Share button
-    UIButton *shareButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [shareButton addTarget:self action:@selector(shareAction:) forControlEvents:UIControlEventTouchUpInside];
-    shareButton.tintColor = [UIColor whiteColor];
-    [shareButton setImage:[UIImage imageNamed:@"card_share_icon"] forState:UIControlStateNormal];
-    [shareButton setContentEdgeInsets:UIEdgeInsetsMake(4.0, 12.0, 4.0, 4.0)];
-    shareButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [shareButton setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
-    [self addSubview:shareButton];
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:shareButton attribute:NSLayoutAttributeCenterY
-                                                     relatedBy:NSLayoutRelationEqual
-                                                        toItem:self.seedLabel attribute:NSLayoutAttributeCenterY
-                                                    multiplier:1.0 constant:0.0]];
-    NSDictionary *metrics = @{@"ROFFSET": @(kCardViewDefaultOffset)};
-    NSDictionary *views = @{@"seed": self.seedLabel,
-                            @"share": shareButton};
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[seed][share]-(ROFFSET)-|" options:NSLayoutFormatDirectionLeftToRight metrics:metrics views:views]];
+    [seedLabelButton.leftAnchor constraintEqualToAnchor:self.balanceLabel.leftAnchor].active = YES;
+    [seedLabelButton.topAnchor constraintEqualToAnchor:self.ethereumTitleLabel.bottomAnchor constant:verticalOffset].active = YES;
+    [seedLabelButton.superview.rightAnchor constraintEqualToAnchor:seedLabelButton.rightAnchor constant:kCardViewDefaultOffset].active = YES;
+    self.seedLabelButton = seedLabelButton;
   }
   { //Warning view
     UIView *backupWarningView = [self _prepareBackupWarningView];
@@ -455,23 +426,6 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
       self.usdBalanceLabel.hidden = NO;
     }
   }
-}
-
-/* Parallax motion effect */
-- (void) _addMotionEffect:(UIView *)view {
-  CGFloat hAmount = [self intrinsicContentSize].width;
-  CGFloat vAmount = [self intrinsicContentSize].height;
-  UIInterpolatingMotionEffect *horizontal = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
-  horizontal.minimumRelativeValue = @(hAmount);
-  horizontal.maximumRelativeValue = @(-hAmount);
-  
-  UIInterpolatingMotionEffect *vertical = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
-  vertical.minimumRelativeValue = @(vAmount);
-  vertical.maximumRelativeValue = @(-vAmount);
-  
-  UIMotionEffectGroup *group = [[UIMotionEffectGroup alloc] init];
-  group.motionEffects = @[horizontal, vertical];
-  [view addMotionEffect:group];
 }
 
 - (UIView *) _prepareBackupWarningView {
@@ -630,15 +584,15 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
 
 #pragma mark - IBActions
 
-- (void) shareAction:(UIButton *)sender {
+- (void) shareAction:(__unused UIButton *)sender {
   [self.delegate cardViewDidTouchShareButton:self];
 }
 
-- (void) backupAction:(UIButton *)sender {
+- (void) backupAction:(__unused UIButton *)sender {
   [self.delegate cardViewDidTouchBackupButton:self];
 }
 
-- (void) backupStatusAction:(UIButton *)sender {
+- (void) backupStatusAction:(__unused UIButton *)sender {
   [self.delegate cardViewDidTouchBackupStatusButton:self];
 }
 

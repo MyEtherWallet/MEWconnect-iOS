@@ -62,52 +62,63 @@ ignoringObjectProperties:(NSArray<NSString *> *)ignoredProperties
 
 - (id)convertManagedObject:(NSManagedObject *)object
         ignoringProperties:(NSArray<NSString *> *)ignoredProperties {
-  NSString *modelObjectName = [NSStringFromClass([object class]) stringByReplacingOccurrencesOfString:NSMOPostfix
-                                                                                           withString:@""];
-  NSString *ponsoClassName = [modelObjectName stringByAppendingString:PONSOPostfix];
-  NSString *ponsoSuperclassName = [PONSOSuperClassPrefix stringByAppendingString:ponsoClassName];
   
-  const char *ponsoClassNameOldCString = [ponsoClassName UTF8String];
-  const char *ponsoSuperClassNameOldCString = [ponsoSuperclassName UTF8String];
+  id ponsoInstance = nil;
   
-  Class ponsoClass = objc_getClass(ponsoClassNameOldCString);
-  Class ponsoSuperclass = objc_getClass(ponsoSuperClassNameOldCString);
+  Class class = [object class];
   
-  NSAssert(ponsoClass != nil, @"Can't find class %@", ponsoClassName);
-  NSAssert(ponsoSuperclass != nil, @"Can't find superclass %@", ponsoSuperclassName);
-  
-  NSMutableArray<NSString *> *nextEntityIgnoredProperties = [ignoredProperties mutableCopy];
-  NSArray<NSString *> *currentObjectIgnoringProperties = [self ignoringPropertiesOfObject:object
-                                                                               ponsoClass:ponsoSuperclass];
-  [nextEntityIgnoredProperties addObjectsFromArray:currentObjectIgnoringProperties];
-  
-  id ponsoInstance = [ponsoClass new];
-  
-  unsigned int propertiesCount = 0u;
-  objc_property_t *properties = class_copyPropertyList(ponsoSuperclass, &propertiesCount);
-  
-  for (unsigned int propertyIndex = 0u; propertyIndex < propertiesCount; ++propertyIndex) {
-    objc_property_t property = properties[propertyIndex];
-    const char *name = property_getName(property);
+  do {
+    NSString *modelObjectName = [NSStringFromClass(class) stringByReplacingOccurrencesOfString:NSMOPostfix
+                                                                                             withString:@""];
+    NSString *ponsoClassName = [modelObjectName stringByAppendingString:PONSOPostfix];
+    NSString *ponsoSuperclassName = [PONSOSuperClassPrefix stringByAppendingString:ponsoClassName];
     
-    SEL selector = (SEL)name;
-    NSString *selectorAsString = NSStringFromSelector(selector);
+    const char *ponsoClassNameOldCString = [ponsoClassName UTF8String];
+    const char *ponsoSuperClassNameOldCString = [ponsoSuperclassName UTF8String];
     
-    if ([ignoredProperties containsObject:selectorAsString]) {
-      continue;
+    Class ponsoClass = objc_getClass(ponsoClassNameOldCString);
+    Class ponsoSuperclass = objc_getClass(ponsoSuperClassNameOldCString);
+    
+    NSAssert(ponsoClass != nil, @"Can't find class %@", ponsoClassName);
+    NSAssert(ponsoSuperclass != nil, @"Can't find superclass %@", ponsoSuperclassName);
+    
+    NSMutableArray<NSString *> *nextEntityIgnoredProperties = [ignoredProperties mutableCopy];
+    NSArray<NSString *> *currentObjectIgnoringProperties = [self ignoringPropertiesOfObject:object
+                                                                                 ponsoClass:ponsoSuperclass];
+    [nextEntityIgnoredProperties addObjectsFromArray:currentObjectIgnoringProperties];
+    
+    if (!ponsoInstance) {
+      ponsoInstance = [ponsoClass new];
     }
     
-    if ([object respondsToSelector:selector]) {
-      id value = [object valueForKey:selectorAsString];
+    unsigned int propertiesCount = 0u;
+    objc_property_t *properties = class_copyPropertyList(ponsoSuperclass, &propertiesCount);
+    
+    for (unsigned int propertyIndex = 0u; propertyIndex < propertiesCount; ++propertyIndex) {
+      objc_property_t property = properties[propertyIndex];
+      const char *name = property_getName(property);
       
-      id ponsoValue = [self convertObject:value
-                       ignoringProperties:[nextEntityIgnoredProperties copy]];
-      [ponsoInstance setValue:ponsoValue
-                       forKey:selectorAsString];
+      SEL selector = (SEL)name;
+      NSString *selectorAsString = NSStringFromSelector(selector);
+      
+      if ([ignoredProperties containsObject:selectorAsString]) {
+        continue;
+      }
+      
+      if ([object respondsToSelector:selector]) {
+        id value = [object valueForKey:selectorAsString];
+        
+        id ponsoValue = [self convertObject:value
+                         ignoringProperties:[nextEntityIgnoredProperties copy]];
+        [ponsoInstance setValue:ponsoValue
+                         forKey:selectorAsString];
+      }
     }
-  }
-  
-  free(properties);
+    
+    free(properties);
+    
+    class = class_getSuperclass(class_getSuperclass(class));
+  } while (![NSStringFromClass(class) isEqualToString:NSStringFromClass([NSManagedObject class])]);
   
   return ponsoInstance;
 }

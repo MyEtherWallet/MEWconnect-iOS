@@ -9,10 +9,9 @@
 @import Foundation;
 
 @class MEWConnectTransaction;
-@class AccountPlainObject;
 
 @protocol TransactionViewInput <NSObject>
 - (void) setupInitialState;
-- (void) updateWithTransaction:(MEWConnectTransaction *)transaction forAccount:(AccountPlainObject *)account;
+- (void) updateWithTransaction:(MEWConnectTransaction *)transaction;
 - (void) enableSign:(BOOL)enable;
 @end

@@ -16,13 +16,11 @@
 #import "NSString+RCFCapitalization.h"
 
 #import "TokenModelObject.h"
-#import "AccountModelObject.h"
+#import "MasterTokenModelObject.h"
 #import "FiatPriceModelObject.h"
 #import "PurchaseHistoryModelObject.h"
 
 #import "SimplexServiceStatusTypes.h"
-
-static NSString *const kManagedObjectMappingProviderETH = @"ETH";
 
 @implementation ManagedObjectMappingProvider
 
@@ -55,15 +53,15 @@ static NSString *const kManagedObjectMappingProviderETH = @"ETH";
                                             }];
 }
 
-- (EKManagedObjectMapping *) accountModelObjectMapping {
+- (EKManagedObjectMapping *) masterTokenModelObjectMapping {
   NSDictionary *properties = @{@"balance": NSStringFromSelector(@selector(balance)),
-                               @"address": NSStringFromSelector(@selector(publicAddress)),
+                               @"address": NSStringFromSelector(@selector(address)),
                                @"decimals": NSStringFromSelector(@selector(decimals))};
-  Class entityClass = [AccountModelObject class];
+  Class entityClass = [MasterTokenModelObject class];
   NSString *entityName = [self.entityNameFormatter transformToEntityNameClass:entityClass];
   return [EKManagedObjectMapping mappingForEntityName:entityName
                                             withBlock:^(EKManagedObjectMapping * _Nonnull mapping) {
-                                              mapping.primaryKey = NSStringFromSelector(@selector(publicAddress));
+                                              mapping.primaryKey = NSStringFromSelector(@selector(address));
                                               [mapping mapPropertiesFromDictionary:properties];
                                             }];
 }
@@ -76,7 +74,7 @@ static NSString *const kManagedObjectMappingProviderETH = @"ETH";
                                             withBlock:^(EKManagedObjectMapping * _Nonnull mapping) {
                                               [mapping mapPropertiesFromDictionary:properties];
                                               [mapping mapKeyPath:@"symbol"
-                                                       toProperty:NSStringFromSelector(@selector(fromParent))
+                                                       toProperty:NSStringFromSelector(@selector(fromToken))
                                                    withValueBlock:[self fromParentValueBlock]];
                                             }];
 }
@@ -99,21 +97,15 @@ static NSString *const kManagedObjectMappingProviderETH = @"ETH";
 #pragma mark - Value Blocks
 
 - (EKManagedMappingValueBlock) fromParentValueBlock {
-  return ^id(NSString *key, NSString *value, NSManagedObjectContext *context) {
-    if ([value isEqualToString:kManagedObjectMappingProviderETH]) {
-      NSArray <AccountModelObject *> *accounts = [AccountModelObject MR_findAllInContext:context];
-      return accounts;
-    } else {
-      NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.symbol == %@", value];
-      NSArray <TokenModelObject *> *tokens = [TokenModelObject MR_findAllWithPredicate:predicate inContext:context];
-      return tokens;
-    }
-    return nil;
+  return ^id(__unused NSString *key, NSString *value, NSManagedObjectContext *context) {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.symbol == %@", value];
+    NSArray <TokenModelObject *> *tokens = [TokenModelObject MR_findAllWithPredicate:predicate inContext:context];
+    return [NSSet setWithArray:tokens];
   };
 }
 
 - (EKManagedMappingValueBlock) simplexStatusValueBlock {
-  return ^id(NSString *key, NSString *value, NSManagedObjectContext *context) {
+  return ^id(__unused NSString *key, NSString *value, __unused NSManagedObjectContext *context) {
     SimplexServicePaymentStatusType type = SimplexServicePaymentStatusTypeFromString(value);
     if (type != SimplexServicePaymentStatusTypeUnknown) {
       return @(type);

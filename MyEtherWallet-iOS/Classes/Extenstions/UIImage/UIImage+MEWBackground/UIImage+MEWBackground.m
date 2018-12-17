@@ -166,15 +166,23 @@ static CGFloat kMEWBackgroundEtherLogoYOffset = 16.0;
 
 + (void) cacheImagesWithSeed:(NSString *)seed fullSize:(CGSize)fullSize cardSize:(CGSize)cardSize {
   seed = [seed lowercaseString];
-  dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
-  dispatch_async(queue, ^{
-    UIImage *patternImage = [UIImage imageWithSeed:seed size:fullSize];
-    UIImage *backgroundImage = [patternImage renderBackgroundWithSeed:seed size:fullSize logo:NO];
-    UIImage *cardImage = [patternImage renderBackgroundWithSeed:seed size:cardSize logo:YES];
-    
-    [backgroundImage _cacheImageWithSeed:seed size:fullSize logo:NO];
-    [cardImage _cacheImageWithSeed:seed size:cardSize logo:YES];
-  });
+  if ([NSThread isMainThread]) {
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+    dispatch_async(queue, ^{
+      [self _cacheImagesWithSeed:seed fullSize:fullSize cardSize:cardSize];
+    });
+  } else {
+    [self _cacheImagesWithSeed:seed fullSize:fullSize cardSize:cardSize];
+  }
+}
+
++ (void) _cacheImagesWithSeed:(NSString *)seed fullSize:(CGSize)fullSize cardSize:(CGSize)cardSize {
+  UIImage *patternImage = [UIImage imageWithSeed:seed size:fullSize];
+  UIImage *backgroundImage = [patternImage renderBackgroundWithSeed:seed size:fullSize logo:NO];
+  UIImage *cardImage = [patternImage renderBackgroundWithSeed:seed size:cardSize logo:YES];
+  
+  [backgroundImage _cacheImageWithSeed:seed size:fullSize logo:NO];
+  [cardImage _cacheImageWithSeed:seed size:cardSize logo:YES];
 }
 
 + (instancetype) _cachedImageWithSeed:(NSString *)seed size:(CGSize)size logo:(BOOL)logo {
@@ -192,6 +200,7 @@ static CGFloat kMEWBackgroundEtherLogoYOffset = 16.0;
   NSError *error = nil;
   NSURL *fileURL = [[self class] _cacheFileURLForSeed:seed size:size logo:logo];
   [imageData writeToURL:fileURL options:NSDataWritingAtomic error:&error];
+  DDLogInfo(@"Saved: %@", fileURL);
   if (error) {
     DDLogWarn(@"%@", error);
   }
@@ -213,6 +222,7 @@ static CGFloat kMEWBackgroundEtherLogoYOffset = 16.0;
 }
 
 + (CGSize) fullSize {
+  NSParameterAssert([NSThread isMainThread]);
   CGRect bounds = [UIScreen mainScreen].bounds;
   CGSize fullSize = CGSizeMake(CGRectGetWidth(bounds) + kCardViewDefaultCornerRadius * 2.0, 0.0);
   fullSize.height = floorf((fullSize.width - kCardViewDefaultOffset * 2.0 - kCardViewDefaultCornerRadius * 2.0) * kCardViewAspectRatio);

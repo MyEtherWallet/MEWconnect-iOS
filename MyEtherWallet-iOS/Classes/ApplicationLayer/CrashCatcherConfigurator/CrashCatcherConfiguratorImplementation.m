@@ -17,13 +17,13 @@ __weak static CrashCatcherConfiguratorImplementation *_crashCatcher;
 
 /* Exceptions handlers */
 
-void HandleException(NSException *exception) {
+void HandleException(__unused NSException *exception) {
   [_crashCatcher _crashReceived];
   NSLog(@"App crashing with exception: %@", exception);
   //Save somewhere that your app has crashed.
 }
 
-void HandleSignal(int signal) {
+void HandleSignal(__unused int signal) {
   [_crashCatcher _crashReceived];
   NSLog(@"We received a signal: %d", signal);
   //Save somewhere that your app has crashed.

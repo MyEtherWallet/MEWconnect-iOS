@@ -16,8 +16,8 @@
 
 #pragma mark - BuyEtherHistoryModuleInput
 
-- (void) configureModuleWithAccount:(AccountPlainObject *)account {
-  [self.interactor configureWithAccount:account];
+- (void) configureModuleWithMasterToken:(MasterTokenPlainObject *)masterToken {
+  [self.interactor configureWithMasterToken:masterToken];
 }
 
 #pragma mark - BuyEtherHistoryViewOutput

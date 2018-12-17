@@ -16,8 +16,8 @@
 
 #pragma mark - BuyEtherWebModuleInput
 
-- (void) configureModuleWithOrder:(SimplexOrder *)order forAccount:(AccountPlainObject *)account {
-  [self.interactor configurateWithOrder:order account:account];
+- (void) configureModuleWithOrder:(SimplexOrder *)order forMasterToken:(MasterTokenPlainObject *)masterToken {
+  [self.interactor configurateWithOrder:order masterToken:masterToken];
 }
 
 #pragma mark - BuyEtherWebViewOutput

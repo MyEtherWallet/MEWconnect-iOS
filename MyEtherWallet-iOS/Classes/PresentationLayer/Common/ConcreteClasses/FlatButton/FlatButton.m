@@ -22,11 +22,7 @@
   NSAttributedString *_disabledTitle;
 }
 
-#if TARGET_INTERFACE_BUILDER
-- (void)setTheme:(short)theme {
-#else
-- (void)setTheme:(FlatButtonTheme)theme {
-#endif
+- (void)setTheme:(short /*FlatButtonTheme*/)theme {
   if (_theme != theme) {
     _theme = theme;
     UIColor *backgroundColor = nil;
@@ -135,8 +131,7 @@
                          self.titleLabel.alpha = 0.0;
                          self.activityIndicatorView.alpha = 1.0;
                          self.titleLabel.lockAlpha = YES;
-                       } completion:^(BOOL finished) {
-                       }];
+                       } completion:nil];
     } else {
       [UIView animateWithDuration:0.3
                             delay:0.0
@@ -145,7 +140,7 @@
                          self.titleLabel.lockAlpha = NO;
                          self.titleLabel.alpha = 1.0;
                          self.activityIndicatorView.alpha = 0.0;
-                       } completion:^(BOOL finished) {
+                       } completion:^(__unused BOOL finished) {
                          [self.activityIndicatorView removeFromSuperview];
                          self.userInteractionEnabled = YES;
                        }];
@@ -176,6 +171,25 @@
   } else {
     [self setAttributedTitle:nil forState:state];
   }
+}
+
+- (CGRect)imageRectForContentRect:(CGRect)contentRect {
+  CGRect rect = [super imageRectForContentRect:contentRect];
+  if (self.defineImageRect) {
+    CGFloat offset = (CGRectGetHeight(contentRect) - CGRectGetHeight(rect)) / 2.0;
+    offset += self.imageEdgeInsets.left;
+    rect.origin.x = offset;
+  }
+  return rect;
+}
+
+- (CGRect)titleRectForContentRect:(CGRect)contentRect {
+  CGRect rect = [super titleRectForContentRect:contentRect];
+  if (self.defineImageRect) {
+    CGRect imageRect = [self imageRectForContentRect:contentRect];
+    rect.origin.x -= CGRectGetWidth(imageRect) / 2.0;
+  }
+  return rect;
 }
 
 @end

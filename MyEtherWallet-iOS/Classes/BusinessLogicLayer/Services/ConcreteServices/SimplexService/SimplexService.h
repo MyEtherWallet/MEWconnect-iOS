@@ -10,7 +10,7 @@
 
 #import "SimplexServiceCurrencyTypes.h"
 
-@class AccountPlainObject;
+@class MasterTokenPlainObject;
 @class PurchaseHistoryModelObject;
 @class PurchaseHistoryPlainObject;
 @class SimplexQuote;
@@ -21,9 +21,10 @@ typedef void(^SimplexServiceOrderCompletion)(SimplexOrder *order, NSError *error
 typedef void(^SimplexServiceStatusCompletion)(NSError *error);
 
 @protocol SimplexService <NSObject>
-- (void) quoteForAccount:(AccountPlainObject *)account amount:(NSDecimalNumber *)amount currency:(SimplexServiceCurrencyType)currency completion:(SimplexServiceQuoteCompletion)completion;
-- (void) orderForAccount:(AccountPlainObject *)account quote:(SimplexQuote *)quote completion:(SimplexServiceOrderCompletion)completion;
+- (void) quoteWithAmount:(NSDecimalNumber *)amount currency:(SimplexServiceCurrencyType)currency completion:(SimplexServiceQuoteCompletion)completion;
+- (void) orderForMasterToken:(MasterTokenPlainObject *)masterToken quote:(SimplexQuote *)quote completion:(SimplexServiceOrderCompletion)completion;
 - (void) statusForPurchase:(PurchaseHistoryPlainObject *)purchase completion:(SimplexServiceStatusCompletion)completion;
-- (NSArray <PurchaseHistoryModelObject *> *) obtainHistoryForAccount:(AccountPlainObject *)account;
-- (NSURLRequest *) obtainRequestWithOrder:(SimplexOrder *)order forAccount:(AccountPlainObject *)account;
+- (NSArray <PurchaseHistoryModelObject *> *) obtainHistoryForMasterToken:(MasterTokenPlainObject *)masterToken;
+- (void) clearCancelledHistoryForMasterToken:(MasterTokenPlainObject *)masterToken;
+- (NSURLRequest *) obtainRequestWithOrder:(SimplexOrder *)order forMasterToken:(MasterTokenPlainObject *)masterToken;
 @end

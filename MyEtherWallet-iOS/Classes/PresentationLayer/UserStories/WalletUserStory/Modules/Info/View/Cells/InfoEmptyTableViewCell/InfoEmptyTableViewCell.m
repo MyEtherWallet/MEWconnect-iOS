@@ -15,11 +15,11 @@ static CGFloat const kInfoEmptyTableViewCellHeight = 1.0;
 
 #pragma mark - NICell methods
 
-- (BOOL)shouldUpdateCellWithObject:(InfoEmptyTableViewCellObject *)object {
+- (BOOL)shouldUpdateCellWithObject:(__unused InfoEmptyTableViewCellObject *)object {
   return NO;
 }
 
-+ (CGFloat)heightForObject:(id)object atIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView {
++ (CGFloat)heightForObject:(__unused id)object atIndexPath:(__unused NSIndexPath *)indexPath tableView:(__unused UITableView *)tableView {
   return kInfoEmptyTableViewCellHeight;
 }
 

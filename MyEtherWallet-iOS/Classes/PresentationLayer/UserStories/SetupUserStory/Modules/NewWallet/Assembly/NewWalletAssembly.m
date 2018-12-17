@@ -39,10 +39,14 @@
                                                 with:[self.serviceComponents blockchainNetworkService]];
                           [definition injectProperty:@selector(accountsService)
                                                 with:[self.serviceComponents accountsService]];
+                          [definition injectProperty:@selector(keychainService)
+                                                with:[self.serviceComponents keychainService]];
                           [definition injectProperty:@selector(ponsomizer)
                                                 with:[self.ponsomizerAssembly ponsomizer]];
                           [definition injectProperty:@selector(connectFacade)
                                                 with:[self.serviceComponents MEWConnectFacade]];
+                          [definition injectProperty:@selector(mewWallet)
+                                                with:[self.serviceComponents MEWwallet]];
                         }];
 }
 

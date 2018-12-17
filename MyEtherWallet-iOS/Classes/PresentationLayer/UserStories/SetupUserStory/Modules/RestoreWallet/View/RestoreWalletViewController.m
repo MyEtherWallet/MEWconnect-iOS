@@ -13,8 +13,6 @@
 
 #import "RestoreWalletViewOutput.h"
 
-#import "NSCharacterSet+WNS.h"
-
 #import "ApplicationConstants.h"
 
 #import "UIColor+Application.h"
@@ -30,7 +28,6 @@
 @end
 
 @implementation RestoreWalletViewController {
-  NSCharacterSet *_separatorCharactorSet;
   CGFloat _keyboardHeight;
 }
 
@@ -66,9 +63,8 @@
     self.mnemonicsTextViewHeightConstraint.constant = 164.0;
     self.titleTopOffsetConstraint.constant = 30.0;
   }
-  self.mnemonicsTextView.placeholder = NSLocalizedString(@"Words, separated by spaces…", @"Restore wallet. Mnemonics placeholder");
+  self.mnemonicsTextView.placeholder = NSLocalizedString(@"Words separated by spaces…", @"Restore wallet. Mnemonics placeholder");
   self.mnemonicsTextView.placeholderColor = [[UIColor lightGreyTextColor] colorWithAlphaComponent:0.5];
-  _separatorCharactorSet = [NSCharacterSet whitespaceAndSpaceAndNewlineCharacterSet];
   { //Title label
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
     style.lineSpacing = 0.0;
@@ -111,7 +107,7 @@
   @weakify(self);
   [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Ok", @"")
                                             style:UIAlertActionStyleDefault
-                                          handler:^(UIAlertAction * _Nonnull action) {
+                                          handler:^(__unused UIAlertAction * _Nonnull action) {
                                             @strongify(self);
                                             [self.mnemonicsTextView becomeFirstResponder];
                                           }]];
@@ -120,26 +116,23 @@
 
 #pragma mark - IBActions
 
-- (IBAction) cancelAction:(id)sender {
+- (IBAction) cancelAction:(__unused id)sender {
   [self.output cancelAction];
 }
 
-- (IBAction) nextAction:(id)sender {
+- (IBAction) nextAction:(__unused id)sender {
   [self.output nextAction];
 }
 
 #pragma mark - UITextViewDelegate
 
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(__unused NSRange)range replacementText:(__unused NSString *)text {
   NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
   style.lineSpacing = 2.0;
   NSDictionary *attributes = @{NSParagraphStyleAttributeName: style,
                                NSFontAttributeName: self.mnemonicsTextView.font};
   textView.typingAttributes = attributes;
-  NSString *finalText = [textView.text stringByReplacingCharactersInRange:range withString:text];
-  NSArray <NSString *> *items = [finalText componentsSeparatedByCharactersInSet:_separatorCharactorSet];
-  items = [items filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.length > 0"]];
-  return [items count] <= kMnemonicsWordsMaxLength;
+  return YES;
 }
 
 - (void)textViewDidChange:(UITextView *)textView {
@@ -154,7 +147,7 @@
   [self _updateScrollViewInsets];
 }
 
-- (void) keyboardWillHide:(NSNotification *)notification {
+- (void) keyboardWillHide:(__unused NSNotification *)notification {
   _keyboardHeight = 0.0;
   [self _updateScrollViewInsets];
 }

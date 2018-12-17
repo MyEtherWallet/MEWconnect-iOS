@@ -9,11 +9,12 @@
 @import Foundation;
 
 @class AccountPlainObject;
+@class MasterTokenPlainObject;
 @class MEWConnectCommand;
 @class MEWConnectTransaction;
 
 @protocol TransactionInteractorInput <NSObject>
-- (void) configurateWithMessage:(MEWConnectCommand *)message account:(AccountPlainObject *)account;
+- (void) configurateWithMessage:(MEWConnectCommand *)message masterToken:(MasterTokenPlainObject *)masterToken;
 - (MEWConnectTransaction *) obtainTransaction;
 - (AccountPlainObject *) obtainAccount;
 - (void) signTransactionWithPassword:(NSString *)password;

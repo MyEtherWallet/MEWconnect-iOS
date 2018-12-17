@@ -139,7 +139,7 @@
 
 #pragma mark - IBActions
 
-- (IBAction)nextAction:(id)sender {
+- (IBAction)nextAction:(__unused id)sender {
   [self.output nextAction];
 }
 

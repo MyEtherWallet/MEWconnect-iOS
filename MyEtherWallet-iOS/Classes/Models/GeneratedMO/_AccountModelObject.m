@@ -39,11 +39,6 @@
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
-	if ([key isEqualToString:@"decimalsValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"decimals"];
-		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
-	}
 
 	return keyPaths;
 }
@@ -88,116 +83,21 @@
 	[self setPrimitiveBackedUp:@(value_)];
 }
 
-@dynamic balance;
+@dynamic name;
 
-@dynamic decimals;
+@dynamic uid;
 
-- (int16_t)decimalsValue {
-	NSNumber *result = [self decimals];
-	return [result shortValue];
-}
+@dynamic networks;
 
-- (void)setDecimalsValue:(int16_t)value_ {
-	[self setDecimals:@(value_)];
-}
+- (NSMutableSet<NetworkModelObject*>*)networksSet {
+	[self willAccessValueForKey:@"networks"];
 
-- (int16_t)primitiveDecimalsValue {
-	NSNumber *result = [self primitiveDecimals];
-	return [result shortValue];
-}
+	NSMutableSet<NetworkModelObject*> *result = (NSMutableSet<NetworkModelObject*>*)[self mutableSetValueForKey:@"networks"];
 
-- (void)setPrimitiveDecimalsValue:(int16_t)value_ {
-	[self setPrimitiveDecimals:@(value_)];
-}
-
-@dynamic publicAddress;
-
-@dynamic fromNetwork;
-
-@dynamic price;
-
-@dynamic purchaseHistory;
-
-- (NSMutableOrderedSet<PurchaseHistoryModelObject*>*)purchaseHistorySet {
-	[self willAccessValueForKey:@"purchaseHistory"];
-
-	NSMutableOrderedSet<PurchaseHistoryModelObject*> *result = (NSMutableOrderedSet<PurchaseHistoryModelObject*>*)[self mutableOrderedSetValueForKey:@"purchaseHistory"];
-
-	[self didAccessValueForKey:@"purchaseHistory"];
+	[self didAccessValueForKey:@"networks"];
 	return result;
 }
 
-@dynamic tokens;
-
-- (NSMutableSet<TokenModelObject*>*)tokensSet {
-	[self willAccessValueForKey:@"tokens"];
-
-	NSMutableSet<TokenModelObject*> *result = (NSMutableSet<TokenModelObject*>*)[self mutableSetValueForKey:@"tokens"];
-
-	[self didAccessValueForKey:@"tokens"];
-	return result;
-}
-
-@end
-
-@implementation _AccountModelObject (PurchaseHistoryCoreDataGeneratedAccessors)
-- (void)addPurchaseHistory:(NSOrderedSet<PurchaseHistoryModelObject*>*)value_ {
-	[self.purchaseHistorySet unionOrderedSet:value_];
-}
-- (void)removePurchaseHistory:(NSOrderedSet<PurchaseHistoryModelObject*>*)value_ {
-	[self.purchaseHistorySet minusOrderedSet:value_];
-}
-- (void)addPurchaseHistoryObject:(PurchaseHistoryModelObject*)value_ {
-	[self.purchaseHistorySet addObject:value_];
-}
-- (void)removePurchaseHistoryObject:(PurchaseHistoryModelObject*)value_ {
-	[self.purchaseHistorySet removeObject:value_];
-}
-- (void)insertObject:(PurchaseHistoryModelObject*)value inPurchaseHistoryAtIndex:(NSUInteger)idx {
-    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
-    [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"purchaseHistory"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self purchaseHistory] ?: [NSOrderedSet orderedSet]];
-    [tmpOrderedSet insertObject:value atIndex:idx];
-    [self setPrimitiveValue:tmpOrderedSet forKey:@"purchaseHistory"];
-    [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"purchaseHistory"];
-}
-- (void)removeObjectFromPurchaseHistoryAtIndex:(NSUInteger)idx {
-    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
-    [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"purchaseHistory"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self purchaseHistory] ?: [NSOrderedSet orderedSet]];
-    [tmpOrderedSet removeObjectAtIndex:idx];
-    [self setPrimitiveValue:tmpOrderedSet forKey:@"purchaseHistory"];
-    [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"purchaseHistory"];
-}
-- (void)insertPurchaseHistory:(NSArray *)value atIndexes:(NSIndexSet *)indexes {
-    [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"purchaseHistory"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self purchaseHistory] ?: [NSOrderedSet orderedSet]];
-    [tmpOrderedSet insertObjects:value atIndexes:indexes];
-    [self setPrimitiveValue:tmpOrderedSet forKey:@"purchaseHistory"];
-    [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"purchaseHistory"];
-}
-- (void)removePurchaseHistoryAtIndexes:(NSIndexSet *)indexes {
-    [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"purchaseHistory"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self purchaseHistory] ?: [NSOrderedSet orderedSet]];
-    [tmpOrderedSet removeObjectsAtIndexes:indexes];
-    [self setPrimitiveValue:tmpOrderedSet forKey:@"purchaseHistory"];
-    [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"purchaseHistory"];
-}
-- (void)replaceObjectInPurchaseHistoryAtIndex:(NSUInteger)idx withObject:(PurchaseHistoryModelObject*)value {
-    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
-    [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"purchaseHistory"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self purchaseHistory] ?: [NSOrderedSet orderedSet]];
-    [tmpOrderedSet replaceObjectAtIndex:idx withObject:value];
-    [self setPrimitiveValue:tmpOrderedSet forKey:@"purchaseHistory"];
-    [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"purchaseHistory"];
-}
-- (void)replacePurchaseHistoryAtIndexes:(NSIndexSet *)indexes withPurchaseHistory:(NSArray *)value {
-    [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"purchaseHistory"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self purchaseHistory] ?: [NSOrderedSet orderedSet]];
-    [tmpOrderedSet replaceObjectsAtIndexes:indexes withObjects:value];
-    [self setPrimitiveValue:tmpOrderedSet forKey:@"purchaseHistory"];
-    [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"purchaseHistory"];
-}
 @end
 
 @implementation AccountModelObjectAttributes 
@@ -207,29 +107,17 @@
 + (NSString *)backedUp {
 	return @"backedUp";
 }
-+ (NSString *)balance {
-	return @"balance";
++ (NSString *)name {
+	return @"name";
 }
-+ (NSString *)decimals {
-	return @"decimals";
-}
-+ (NSString *)publicAddress {
-	return @"publicAddress";
++ (NSString *)uid {
+	return @"uid";
 }
 @end
 
 @implementation AccountModelObjectRelationships 
-+ (NSString *)fromNetwork {
-	return @"fromNetwork";
-}
-+ (NSString *)price {
-	return @"price";
-}
-+ (NSString *)purchaseHistory {
-	return @"purchaseHistory";
-}
-+ (NSString *)tokens {
-	return @"tokens";
++ (NSString *)networks {
+	return @"networks";
 }
 @end
 

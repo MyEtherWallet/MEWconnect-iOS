@@ -16,9 +16,6 @@ static NSString   * const kKeychainService                    = @"com.myetherwal
 
 static NSString   * const kCoreDataName                       = @"MEWconnect.sqlite";
 
-static NSInteger    const kMnemonicsWordsMinLength            = 12;
-static NSInteger    const kMnemonicsWordsMaxLength            = 24;
-
 static CGFloat      const kCustomRepresentationTopBigOffset   = 90.0;
 static CGFloat      const kCustomRepresentationTopSmallOffset = 8.0;
 

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Headers</key>
+	<dict>
+		<key>mewapikey</key>
+		<string>your_mewapi_key</string>
+		<key>Referer</key>
+		<string>your_referer_header</string>
+	</dict>
+</dict>
+</plist>

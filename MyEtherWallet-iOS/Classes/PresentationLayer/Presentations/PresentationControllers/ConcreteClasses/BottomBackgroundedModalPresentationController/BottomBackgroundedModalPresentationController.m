@@ -8,10 +8,13 @@
 
 #import "BottomBackgroundedModalPresentationController.h"
 
-#import "AccountsService.h"
+#import "BlockchainNetworkService.h"
 #import "Ponsomizer.h"
 
-#import "AccountPlainObject.h"
+#import "NetworkPlainObject.h"
+#import "MasterTokenPlainObject.h"
+
+//#import "AccountPlainObject.h"
 
 #import "UIImage+MEWBackground.h"
 #import "UIView+LockFrame.h"
@@ -31,15 +34,17 @@
     _mewBackground = [[UIImageView alloc] init];
     _mewBackground.translatesAutoresizingMaskIntoConstraints = NO;
     
-    AccountModelObject *accountModelObject = [self.accountsService obtainActiveAccount];
+    NetworkModelObject *networkModelObject = [self.networkService obtainActiveNetwork];
     
-    NSArray *ignoringProperties = @[NSStringFromSelector(@selector(backedUp)),
+    NSArray *ignoringProperties = @[NSStringFromSelector(@selector(fromAccount)),
+                                    NSStringFromSelector(@selector(tokens)),
                                     NSStringFromSelector(@selector(fromNetwork)),
                                     NSStringFromSelector(@selector(price)),
-                                    NSStringFromSelector(@selector(tokens))];
-    AccountPlainObject *account = [self.ponsomizer convertObject:accountModelObject ignoringProperties:ignoringProperties];
+                                    NSStringFromSelector(@selector(purchaseHistory))];
+    NetworkPlainObject *network = [self.ponsomizer convertObject:networkModelObject ignoringProperties:ignoringProperties];
+    MasterTokenPlainObject *masterToken = network.master;
     
-    _mewBackground.image = [UIImage cachedBackgroundWithSeed:account.publicAddress
+    _mewBackground.image = [UIImage cachedBackgroundWithSeed:masterToken.address
                                                         size:[UIImage fullSize]
                                                         logo:NO];
   }
@@ -85,7 +90,7 @@
   if (self.presentedViewController.transitionCoordinator.animated) {
     self.mewBackground.alpha = 0.0;
     [self.presentedView snapshotViewAfterScreenUpdates:YES];
-    [self.presentedViewController.transitionCoordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+    [self.presentedViewController.transitionCoordinator animateAlongsideTransition:^(__unused id<UIViewControllerTransitionCoordinatorContext> context) {
         self.mewBackground.alpha = 1.0;
     } completion:nil];
   }
@@ -98,7 +103,7 @@
 }
 
 - (void) dismissalTransitionWillBegin {
-  [self.presentedViewController.transitionCoordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+  [self.presentedViewController.transitionCoordinator animateAlongsideTransition:^(__unused id<UIViewControllerTransitionCoordinatorContext> context) {
     self.mewBackground.alpha = 0.0;
   } completion:nil];
 }

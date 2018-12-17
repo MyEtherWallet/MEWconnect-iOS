@@ -18,7 +18,7 @@
 
 #import "MEWConnectTransaction.h"
 #import "NetworkPlainObject.h"
-#import "AccountPlainObject.h"
+#import "MasterTokenPlainObject.h"
 #import "FiatPricePlainObject.h"
 
 #import "NSNumberFormatter+Ethereum.h"
@@ -85,18 +85,26 @@
   }
 }
 
-- (void) updateWithTransaction:(MEWConnectTransaction *)transaction forAccount:(AccountPlainObject *)account {
-  NSNumberFormatter *formatter = [NSNumberFormatter ethereumFormatterWithNetwork:[account.fromNetwork network]];
+- (void) updateWithTransaction:(MEWConnectTransaction *)transaction {
   NSDecimalNumber *ethAmount = [transaction decimalValue];
+  NSString *usdAmount = nil;
+  NSNumberFormatter *formatter = nil;
+  
+  if (transaction.token) {
+    formatter = [NSNumberFormatter ethereumFormatterWithCurrencySymbol:transaction.token.symbol];
+    NSDecimalNumber *usdPrice = transaction.token.price.usdPrice;
+    if (usdPrice) {
+      NSNumberFormatter *usdFormatter = [NSNumberFormatter usdFormatter];
+      NSDecimalNumber *usd = [ethAmount decimalNumberByMultiplyingBy:usdPrice];
+      usdAmount = [usdFormatter stringFromNumber:usd];
+    }
+  } else {
+    formatter = [NSNumberFormatter ethereumFormatterWithCurrencySymbol:NSLocalizedString(@"Unknown Token", @"Transaction screen. Unknown token symbol")];
+    usdAmount = NSLocalizedString(@"Amount in fractional units", @"Transaction screen. Unknown token decimals");
+  }
+  
   NSString *amount = [formatter stringFromNumber:ethAmount];
   
-  NSString *usdAmount = nil;
-  NSDecimalNumber *usdPrice = account.price.usdPrice;
-  if (usdPrice) {
-    NSNumberFormatter *usdFormatter = [NSNumberFormatter usdFormatter];
-    NSDecimalNumber *usd = [ethAmount decimalNumberByMultiplyingBy:usdPrice];
-    usdAmount = [usdFormatter stringFromNumber:usd];
-  }
   
   if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
     [self.addressCheckboxButton updateWithContentTitle:NSLocalizedString(@"Check address:", @"Transaction screen. Title. 4.0 Inches")];
@@ -104,8 +112,8 @@
     [self.addressCheckboxButton updateWithContentTitle:NSLocalizedString(@"Check address you’re sending to:", @"Transaction screen. Title")];
   }
   
-  [self.addressCheckboxButton updateWithContentText:transaction.to];
-  [self.addressCheckboxButton updateWithRightImageWithSeed:transaction.to];
+  [self.addressCheckboxButton updateWithContentText:transaction.toValue];
+  [self.addressCheckboxButton updateWithRightImageWithSeed:transaction.toValue];
   
   [self.amountCheckboxButton updateWithContentTitle:@"Check the amount:"];
   [self.amountCheckboxButton updateWithContentText:amount];
@@ -120,11 +128,11 @@
 
 #pragma mark - IBActions
 
-- (IBAction) confirmAction:(id)sender {
+- (IBAction) confirmAction:(__unused id)sender {
   [self.output signAction];
 }
 
-- (IBAction) declineAction:(id)sender {
+- (IBAction) declineAction:(__unused id)sender {
   [self.output declineAction];
 }
 

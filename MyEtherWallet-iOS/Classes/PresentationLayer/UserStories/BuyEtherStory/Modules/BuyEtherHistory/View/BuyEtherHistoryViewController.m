@@ -13,9 +13,21 @@
 #import "BuyEtherHistoryTableViewAnimator.h"
 #import "BuyEtherHistoryDataDisplayManager.h"
 
+#import "UIImage+Color.h"
+
 @implementation BuyEtherHistoryViewController
 
 #pragma mark - LifeCycle
+
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor]] forBarMetrics:UIBarMetricsDefault];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+  [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor clearColor]] forBarMetrics:UIBarMetricsDefault];
+  [super viewWillDisappear:animated];
+}
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -31,11 +43,11 @@
                                                          withBaseDelegate:self.dataDisplayManager];
   self.tableViewAnimator.tableView = self.tableView;
   [self.dataDisplayManager configureDataDisplayManagerWithAnimator:self.tableViewAnimator];
-  [self.dataDisplayManager updateDataDisplayManagerWithTransactionBatch:nil empty:YES];
+  [self.dataDisplayManager updateDataDisplayManagerWithTransactionBatch:nil];
 }
 
 - (void) updateWithCacheTransaction:(CacheTransactionBatch *)cacheTransactionBatch {
-  [self.dataDisplayManager updateDataDisplayManagerWithTransactionBatch:cacheTransactionBatch empty:NO];
+  [self.dataDisplayManager updateDataDisplayManagerWithTransactionBatch:cacheTransactionBatch];
 }
 
 @end

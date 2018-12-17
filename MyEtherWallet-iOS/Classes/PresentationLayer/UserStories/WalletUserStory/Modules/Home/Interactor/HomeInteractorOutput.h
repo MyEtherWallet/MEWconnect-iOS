@@ -10,20 +10,22 @@
 
 @class MEWConnectCommand;
 @class CacheTransactionBatch;
+@class MasterTokenPlainObject;
 @class AccountPlainObject;
 
 @protocol HomeInteractorOutput <NSObject>
-- (void) openMessageSignerWithMessage:(MEWConnectCommand *)command account:(AccountPlainObject *)account;
-- (void) openTransactionSignerWithMessage:(MEWConnectCommand *)command account:(AccountPlainObject *)account;
+- (void) openMessageSignerWithMessage:(MEWConnectCommand *)command masterToken:(MasterTokenPlainObject *)masterToken;
+- (void) openTransactionSignerWithMessage:(MEWConnectCommand *)command masterToken:(MasterTokenPlainObject *)masterToken;
 - (void) didProcessCacheTransaction:(CacheTransactionBatch *)transactionBatch;
 - (void) didUpdateTokens;
 - (void) didUpdateEthereumBalance;
 - (void) didUpdateTokensBalance;
 - (void) mewConnectionStatusChanged;
-- (void) tokensDidStartUpdating;
-- (void) tokensDidEndUpdating;
-- (void) networkDidChangedWithAccount;
-- (void) networkDidChangedWithoutAccount;
+- (void) balancesDidStartUpdating;
+- (void) balancesDidEndUpdating;
+- (void) networkDidChanged;
 - (void) internetConnectionIsReachable;
 - (void) internetConnectionIsUnreachable;
+- (void) passwordIsNeededWithAccount:(AccountPlainObject *)account;
+- (void) seedIsNeededWithAccount:(AccountPlainObject *)account password:(NSString *)password;
 @end

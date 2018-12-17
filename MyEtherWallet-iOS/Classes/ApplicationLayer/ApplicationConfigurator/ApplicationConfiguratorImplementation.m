@@ -29,6 +29,8 @@
 
 #import "UIScreen+ScreenSizeType.h"
 
+#import "BuyEtherHistoryViewController.h"
+
 @implementation ApplicationConfiguratorImplementation
 
 - (void)configureInitialSettings {

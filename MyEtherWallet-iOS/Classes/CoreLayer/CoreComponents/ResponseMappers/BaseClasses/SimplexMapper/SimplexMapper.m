@@ -37,7 +37,7 @@
 
 - (id)mapServerResponse:(id)response
      withMappingContext:(NSDictionary *)context
-                  error:(NSError *__autoreleasing *)error {
+                  error:(__unused NSError *__autoreleasing *)error {
   if (self.responseFormatter) {
     response = [self.responseFormatter formatServerResponse:response];
   }

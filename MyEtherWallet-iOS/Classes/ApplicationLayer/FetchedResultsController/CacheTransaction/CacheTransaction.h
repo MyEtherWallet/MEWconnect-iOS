@@ -11,8 +11,8 @@
 
 @interface CacheTransaction : NSObject
 @property (strong, nonatomic, readonly) id object;
-@property (strong, nonatomic, readonly) NSIndexPath *oldIndexPath;
-@property (strong, nonatomic, readonly) NSIndexPath *updatedIndexPath;
+@property (strong, nonatomic)           NSIndexPath *oldIndexPath;
+@property (strong, nonatomic)           NSIndexPath *updatedIndexPath;
 @property (strong, nonatomic, readonly) NSString *objectType;
 @property (assign, nonatomic, readonly) NSFetchedResultsChangeType changeType;
 

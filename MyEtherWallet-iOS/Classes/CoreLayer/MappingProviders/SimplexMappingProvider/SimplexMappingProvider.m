@@ -77,13 +77,13 @@
 #pragma mark - Value blocks
 
 - (EKMappingValueBlock) decimalNumberValueBlock {
-  return ^id(NSString *key, NSNumber *value) {
+  return ^id(__unused NSString *key, NSNumber *value) {
     return [NSDecimalNumber decimalNumberWithDecimal:[value decimalValue]];
   };
 }
 
 - (EKMappingValueBlock) urlValueBlock {
-  return ^id(NSString *key, NSString *value) {
+  return ^id(__unused NSString *key, NSString *value) {
     return [NSURL URLWithString:value];
   };
 }

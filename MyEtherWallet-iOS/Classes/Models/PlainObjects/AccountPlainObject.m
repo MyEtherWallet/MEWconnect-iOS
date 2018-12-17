@@ -6,35 +6,21 @@
 #import "AccountPlainObject.h"
 
 @interface AccountPlainObject ()
-@property (nonatomic, strong) NSDecimalNumber *amount;
 @end
 
 @implementation AccountPlainObject
-@synthesize amount = _amount;
 
-- (void)setBalance:(NSDecimalNumber *)balance {
-  _amount = nil;
-  [super setBalance:balance];
-}
-
-- (NSDecimalNumber *)balance {
-  if (!_amount) {
-    NSDecimalNumber *decimals = [NSDecimalNumber decimalNumberWithMantissa:1 exponent:[self.decimals shortValue] isNegative:NO];
-    NSDecimalNumber *tokenBalance = [[super balance] decimalNumberByDividingBy:decimals];
-    if (!tokenBalance) {
-      tokenBalance = [NSDecimalNumber zero];
-    }
-    _amount = tokenBalance;
-  }
-  return _amount;
+- (NetworkPlainObject *) networkForNetworkType:(BlockchainNetworkType)networkType {
+  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.chainID = %d", networkType];
+  return [[self.networks filteredSetUsingPredicate:predicate] anyObject];
 }
 
 - (BOOL) isEqualToAccount:(AccountPlainObject *)object {
   if (!object) {
     return NO;
   }
-  BOOL equalPublicAddress = (!self.publicAddress && !object.publicAddress) || [self.publicAddress isEqualToString:object.publicAddress];
-  return equalPublicAddress;
+  BOOL equalUID = (!self.uid && !object.uid) || [self.uid isEqualToString:object.uid];
+  return equalUID;
 }
 
 #pragma mark - NSObject
@@ -52,6 +38,7 @@
 }
 
 - (NSUInteger) hash {
-  return [self.publicAddress hash];
+  return [self.uid hash];
 }
+
 @end

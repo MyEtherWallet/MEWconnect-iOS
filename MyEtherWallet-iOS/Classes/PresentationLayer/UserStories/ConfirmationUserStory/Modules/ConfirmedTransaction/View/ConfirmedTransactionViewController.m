@@ -62,7 +62,7 @@
 
 #pragma mark - IBActions
 
-- (IBAction) closeAction:(id)sender {
+- (IBAction) closeAction:(__unused id)sender {
   [self.output closeAction];
 }
 

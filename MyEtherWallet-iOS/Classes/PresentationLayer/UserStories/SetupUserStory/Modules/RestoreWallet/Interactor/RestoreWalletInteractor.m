@@ -12,48 +12,38 @@
 
 #import "MEWwallet.h"
 
-#import "ApplicationConstants.h"
-#import "NSCharacterSet+WNS.h"
-
-@interface RestoreWalletInteractor ()
-@end
+#import "ObjectValidator.h"
 
 @implementation RestoreWalletInteractor {
-  NSCharacterSet *_separatorCharactorSet;
-  NSArray <NSString *> *_words;
+  NSString *_mnemonics;
 }
 
 #pragma mark - RestoreWalletInteractorInput
 
 - (void)configurate {
-  _separatorCharactorSet = [NSCharacterSet whitespaceAndSpaceAndNewlineCharacterSet];
 }
 
 - (void) checkMnemonics:(NSString *)mnemonics {
-  NSArray <NSString *> *words = [mnemonics componentsSeparatedByCharactersInSet:_separatorCharactorSet];
-  words = [words filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.length > 0"]];
-  if ([words count] >= kMnemonicsWordsMinLength) {
-    _words = [words valueForKey:@"lowercaseString"];
+  if ([self.mnemonicsValidator isObjectValidated:mnemonics]) {
+    _mnemonics = mnemonics;
     [self.output allowRestore];
   } else {
-    _words = nil;
+    _mnemonics = nil;
     [self.output disallowRestore];
   }
 }
 
 - (void) tryRestore {
-  if (_words) {
-    NSArray *allwords = [self.walletService obtainBIP32Words];
-    NSSet *allWordsSet = [NSSet setWithArray:allwords];
-    NSSet *mnemonicsWordsSet = [NSSet setWithArray:_words];
-    if ([mnemonicsWordsSet isSubsetOfSet:allWordsSet]) {
-      [self.output openPasswordWithWords:[_words copy]];
-    } else {
-      [self.output restoreNotPossible];
-    }
-  } else {
+  if (![self.mnemonicsValidator isObjectValidated:_mnemonics]) {
     [self.output restoreNotPossible];
+    return;
   }
+  NSArray <NSString *> *words = [self.mnemonicsValidator extractValidObject:_mnemonics];
+  if (!words) {
+    [self.output restoreNotPossible];
+    return;
+  }
+  [self.output openPasswordWithWords:words];
 }
 
 @end

@@ -11,6 +11,7 @@
 #import "ForgotPasswordInteractorOutput.h"
 
 #import "AccountsService.h"
+#import "KeychainService.h"
 
 @interface ForgotPasswordInteractor ()
 @property (nonatomic, strong) AccountPlainObject *account;
@@ -24,8 +25,9 @@
   _account = account;
 }
 
-- (void)resetWallet {
-  [self.accountsService deleteAccount:self.account];
+- (void) resetWallet {
+  [self.accountsService resetAccounts];
+  [self.keychainService resetKeychain];
 }
 
 @end

@@ -46,6 +46,8 @@
                                                 with:[self presenterInfo]];
                           [definition injectProperty:@selector(accountsService)
                                                 with:[self.serviceComponents accountsService]];
+                          [definition injectProperty:@selector(keychainService)
+                                                with:[self.serviceComponents keychainService]];
                         }];
 }
 

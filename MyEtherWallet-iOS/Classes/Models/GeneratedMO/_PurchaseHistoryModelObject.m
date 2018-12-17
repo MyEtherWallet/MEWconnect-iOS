@@ -89,7 +89,7 @@
 
 @dynamic userId;
 
-@dynamic fromAccount;
+@dynamic fromToken;
 
 @end
 
@@ -112,8 +112,8 @@
 @end
 
 @implementation PurchaseHistoryModelObjectRelationships 
-+ (NSString *)fromAccount {
-	return @"fromAccount";
++ (NSString *)fromToken {
+	return @"fromToken";
 }
 @end
 

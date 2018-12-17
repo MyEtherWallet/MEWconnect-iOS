@@ -97,15 +97,15 @@ static NSUInteger kStartViewIconMinimumCorners  = 4;
 
 #pragma mark - IBActions
 
-- (IBAction) createNewWallet:(UIButton *)sender {
+- (IBAction) createNewWallet:(__unused UIButton *)sender {
   [self.output createNewWalletAction];
 }
 
-- (IBAction) restoreWallet:(UIButton *)sender {
+- (IBAction) restoreWallet:(__unused UIButton *)sender {
   [self.output restoreWallet];
 }
 
-- (IBAction)unwindToStart:(UIStoryboardSegue *)sender {}
+- (IBAction)unwindToStart:(__unused UIStoryboardSegue *)sender {}
 
 #pragma mark - UIScrollViewDelegate
 

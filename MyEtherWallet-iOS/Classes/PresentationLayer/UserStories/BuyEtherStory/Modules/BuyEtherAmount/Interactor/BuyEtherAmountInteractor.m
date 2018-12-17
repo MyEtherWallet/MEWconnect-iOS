@@ -14,7 +14,7 @@
 
 #import "SimplexService.h"
 
-#import "AccountPlainObject.h"
+#import "MasterTokenPlainObject.h"
 #import "NetworkPlainObject.h"
 #import "FiatPricePlainObject.h"
 
@@ -26,8 +26,10 @@ static short const kBuyEtherAmountRoundingUSDScale        = 2;
 static NSDecimalNumber *kBuyEtherMinimumUSDAmount;
 static NSDecimalNumber *kBuyEtherMaximumUSDAmount;
 
+static NSString *const kBuyEtherAmountDecimalSeparator    = @".";
+
 @interface BuyEtherAmountInteractor ()
-@property (nonatomic, strong) AccountPlainObject *account;
+@property (nonatomic, strong) MasterTokenPlainObject *masterToken;
 @property (nonatomic) SimplexServiceCurrencyType currency;
 @property (nonatomic, strong) NSMutableString *amount;
 @end
@@ -38,14 +40,14 @@ static NSDecimalNumber *kBuyEtherMaximumUSDAmount;
 }
 
 + (void)initialize {
-  kBuyEtherMinimumUSDAmount = [NSDecimalNumber decimalNumberWithString:@"50.0"];
-  kBuyEtherMaximumUSDAmount = [NSDecimalNumber decimalNumberWithString:@"20000.0"];
+  kBuyEtherMinimumUSDAmount = [NSDecimalNumber decimalNumberWithString:@"50"];
+  kBuyEtherMaximumUSDAmount = [NSDecimalNumber decimalNumberWithString:@"20000"];
 }
 
 #pragma mark - BuyEtherAmountInteractorInput
 
-- (void) configurateWithAccount:(AccountPlainObject *)account {
-  _account = account;
+- (void) configurateWithMasterToken:(MasterTokenPlainObject *)masterToken {
+  _masterToken = masterToken;
   _currency = SimplexServiceCurrencyTypeUSD;
   _amount = [[NSMutableString alloc] initWithString:@"0"];
   _ethRoundHandler = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundPlain
@@ -85,7 +87,7 @@ static NSDecimalNumber *kBuyEtherMaximumUSDAmount;
 }
 
 - (void) appendSymbol:(NSString *)symbol {
-  NSString *decimalSeparator = [[NSLocale currentLocale] objectForKey:NSLocaleDecimalSeparator];
+  NSString *decimalSeparator = kBuyEtherAmountDecimalSeparator;
   NSRange separatorRange = [_amount rangeOfString:decimalSeparator];
   NSInteger maxDecimalLength = 0;
   switch (_currency) {
@@ -197,18 +199,17 @@ static NSDecimalNumber *kBuyEtherMaximumUSDAmount;
   [self.output loadingDidStart];
   if (![amount isEqualToNumber:[NSDecimalNumber zero]]) {
     @weakify(self);
-    [self.simplexService quoteForAccount:self.account
-                                  amount:amount
+    [self.simplexService quoteWithAmount:amount
                                 currency:self.currency
-                              completion:^(SimplexQuote *quote, NSError *error) {
+                              completion:^(SimplexQuote *quote, __unused NSError *error) {
                                 @strongify(self);
                                 if (quote) {
-                                  [self.simplexService orderForAccount:self.account
+                                  [self.simplexService orderForMasterToken:self.masterToken
                                                                  quote:quote
                                                             completion:^(SimplexOrder *order, NSError *error) {
                                                               if (error) {
                                                               } else {
-                                                                [self.output orderDidCreated:order forAccount:self.account];
+                                                                [self.output orderDidCreated:order forMasterToken:self.masterToken];
                                                               }
                                                               [self.output loadingDidEnd];
                                                             }];
@@ -219,8 +220,8 @@ static NSDecimalNumber *kBuyEtherMaximumUSDAmount;
   }
 }
 
-- (AccountPlainObject *) obtainAccount {
-  return self.account;
+- (MasterTokenPlainObject *) obtainMasterToken {
+  return self.masterToken;
 }
 
 - (NSDecimalNumber *) obtainMinimumAmount {
@@ -237,18 +238,18 @@ static NSDecimalNumber *kBuyEtherMaximumUSDAmount;
 }
 
 - (NSDecimalNumber *) _obtainConvertedAmountWithCurrency:(SimplexServiceCurrencyType)currency enteredAmount:(NSDecimalNumber *)enteredAmount {
-  NSDecimalNumber *usdPrice = self.account.price.usdPrice;
+  NSDecimalNumber *usdPrice = self.masterToken.price.usdPrice;
   NSDecimalNumber *convertedAmount = nil;
   if (usdPrice) {
     switch (currency) {
       case SimplexServiceCurrencyTypeETH: {
-        convertedAmount = [enteredAmount decimalNumberByMultiplyingBy:self.account.price.usdPrice];
+        convertedAmount = [enteredAmount decimalNumberByMultiplyingBy:self.masterToken.price.usdPrice];
         convertedAmount = [convertedAmount decimalNumberByRoundingAccordingToBehavior:_usdRoundHandler];
         break;
       }
       case SimplexServiceCurrencyTypeUSD:
       default: {
-        convertedAmount = [enteredAmount decimalNumberByDividingBy:self.account.price.usdPrice];
+        convertedAmount = [enteredAmount decimalNumberByDividingBy:self.masterToken.price.usdPrice];
         convertedAmount = [convertedAmount decimalNumberByRoundingAccordingToBehavior:_ethRoundHandler];
         break;
       }

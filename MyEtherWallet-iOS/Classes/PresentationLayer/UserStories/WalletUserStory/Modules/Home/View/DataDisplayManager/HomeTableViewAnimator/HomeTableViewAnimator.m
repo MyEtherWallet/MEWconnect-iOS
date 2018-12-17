@@ -25,38 +25,29 @@
 }
 
 - (void)updateWithTransactionBatch:(CacheTransactionBatch *)transactionBatch {
+  if (!self.animated) {
+    [self reloadData];
+    return;
+  }
   if (![transactionBatch isEmpty] && self.tableView) {
-    [self.tableView reloadData];
-//    [self.tableView beginUpdates];
-//
-//    { //Insert
-//      NSMutableArray <NSIndexPath *> *indexPaths = [[NSMutableArray alloc] init];
-//      for (CacheTransaction *transaction in transactionBatch.insertTransactions) {
-//        NSUInteger updatedRow = transaction.updatedIndexPath.row;
-//        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:updatedRow inSection:0];
-//        [indexPaths addObject:indexPath];
-//      }
-//      [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
-//    }
-//    { //Update
-//      NSMutableArray <NSIndexPath *> *indexPaths = [[NSMutableArray alloc] init];
-//      for (CacheTransaction *transaction in transactionBatch.updateTransactions) {
-//        NSUInteger updatedRow = transaction.updatedIndexPath.row;
-//        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:updatedRow inSection:0];
-//        [indexPaths addObject:indexPath];
-//      }
-//      [self.tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
-//    }
-//    { //Remove
-//      NSMutableArray <NSIndexPath *> *indexPaths = [[NSMutableArray alloc] init];
-//      for (CacheTransaction *transaction in transactionBatch.deleteTransactions) {
-//        NSUInteger updatedRow = transaction.oldIndexPath.row;
-//        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:updatedRow inSection:0];
-//        [indexPaths addObject:indexPath];
-//      }
-//      [self.tableView reloadRowsAtIndexPaths:[[indexPaths reverseObjectEnumerator] allObjects] withRowAnimation:UITableViewRowAnimationFade];
-//    }
-//    [self.tableView endUpdates];
+    [self.tableView beginUpdates];
+    for (CacheTransaction *transaction in transactionBatch.deleteTransactions) {
+      [self.tableView deleteRowsAtIndexPaths:@[transaction.oldIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+    
+    for (CacheTransaction *transaction in transactionBatch.insertTransactions) {
+      [self.tableView insertRowsAtIndexPaths:@[transaction.updatedIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+    
+    for (CacheTransaction *transaction in transactionBatch.updateTransactions) {
+      [self.tableView reloadRowsAtIndexPaths:@[transaction.updatedIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+    
+    for (CacheTransaction *transaction in transactionBatch.moveTransactions) {
+      [self.tableView moveRowAtIndexPath:transaction.oldIndexPath toIndexPath:transaction.updatedIndexPath];
+    }
+    
+    [self.tableView endUpdates];
   }
 }
 

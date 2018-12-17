@@ -10,10 +10,10 @@
 @import ViperMcFlurryX;
 
 @class MEWConnectCommand;
-@class AccountPlainObject;
+@class MasterTokenPlainObject;
 
 @protocol MessageSignerModuleInput <RamblerViperModuleInput>
 
-- (void) configureModuleWithMessage:(MEWConnectCommand *)message account:(AccountPlainObject *)account;
+- (void) configureModuleWithMessage:(MEWConnectCommand *)message masterToken:(MasterTokenPlainObject *)masterToken;
 
 @end

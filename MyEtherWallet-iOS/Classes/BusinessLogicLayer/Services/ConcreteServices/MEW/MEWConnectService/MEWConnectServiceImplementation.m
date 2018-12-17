@@ -106,11 +106,13 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
 }
 
 - (void) disconnect {
+  MEWConnectStatus status = self.connectionStatus;
   [self _disconnect];
-  dispatch_async(dispatch_get_main_queue(), ^{
-    self.connectionStatus = MEWConnectStatusDisconnected;
-    [self.delegate MEWConnectDidDisconnected:self];
-  });
+  if (status != MEWConnectStatusDisconnected) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+      [self.delegate MEWConnectDidDisconnected:self];
+    });
+  }
 }
 
 - (BOOL) sendMessage:(id)message {
@@ -149,44 +151,44 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
 - (void) _defineSignalsWithSocketClient:(SocketIOClient *)client {
   @weakify(self);
   /* Connect signal */
-  [client on:kMEWConnectSignalConnect callback:^(NSArray* data, SocketAckEmitter* ack) {
+  [client on:kMEWConnectSignalConnect callback:^(NSArray* data, __unused SocketAckEmitter* ack) {
     @strongify(self);
     [self _signalConnect:data];
   }];
   
   /* Handshake signal */
-  [client on:kMEWConnectSignalHandshake callback:^(NSArray *data, SocketAckEmitter *ack) {
+  [client on:kMEWConnectSignalHandshake callback:^(NSArray *data, __unused SocketAckEmitter *ack) {
     @strongify(self);
     [self _signalHandshake:data];
   }];
   
   
   /* Offer signal */
-  [client on:kMEWConnectSignalOffer callback:^(NSArray *data, SocketAckEmitter *emit) {
+  [client on:kMEWConnectSignalOffer callback:^(NSArray *data, __unused SocketAckEmitter *emit) {
     @strongify(self);
     [self _signalOffer:data];
   }];
   
   /* Answer signal */
-  [client on:kMEWConnectSignalAnswer callback:^(NSArray *data, SocketAckEmitter *emit) {
+  [client on:kMEWConnectSignalAnswer callback:^(NSArray *data, __unused SocketAckEmitter *emit) {
     @strongify(self);
     [self _signalAnswer:data];
   }];
   
   /* Error signal */
-  [client on:kMEWConnectSignalError callback:^(NSArray * data, SocketAckEmitter * emit) {
+  [client on:kMEWConnectSignalError callback:^(NSArray * data, __unused SocketAckEmitter * emit) {
     @strongify(self);
     [self _signalError:data];
   }];
   
   /* Invalid connection signal */
-  [client on:kMEWConnectSignalInvalidConnection callback:^(NSArray * data, SocketAckEmitter * emit) {
+  [client on:kMEWConnectSignalInvalidConnection callback:^(__unused NSArray * data, __unused SocketAckEmitter * emit) {
     @strongify(self);
     [self _signalError:nil];
   }];
   
   /* Confirmation failed signal */
-  [client on:kMEWConnectSignalConfirmationFailed callback:^(NSArray * data, SocketAckEmitter * emit) {
+  [client on:kMEWConnectSignalConfirmationFailed callback:^(NSArray * data, __unused SocketAckEmitter * emit) {
     @strongify(self);
     [self _signalConfirmationError:data];
   }];
@@ -209,6 +211,7 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
 
 - (void) _timeout {
   if ([self.stateMachine applyTryTurn]) {
+    [self.rtcService disconnect];
     [self _sendTryTurn];
   } else {
     [self.stateMachine applyFailed];
@@ -255,13 +258,13 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
 
 #pragma mark - Signals
 
-- (void) _signalConnect:(NSArray *)data {
+- (void) _signalConnect:(__unused NSArray *)data {
   [self.stateMachine applySocketConnected];
   [self.stateMachine applyMEWConnecting];
   DDLogVerbose(@"MEWConnect: connected");
 }
 
-- (void) _signalHandshake:(NSArray *)data {
+- (void) _signalHandshake:(__unused NSArray *)data {
   DDLogVerbose(@"MEWConnect: handshake");
   
   if ([self.stateMachine applyMEWHandshake]) {
@@ -314,10 +317,10 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
   }
 }
 
-- (void) _signalAnswer:(NSArray *)data {
+- (void) _signalAnswer:(__unused NSArray *)data {
 }
 
-- (void) _signalError:(NSArray *)data {
+- (void) _signalError:(__unused NSArray *)data {
   dispatch_async(dispatch_get_main_queue(), ^{
     [self _disconnect];
     [self.delegate MEWConnectDidReceiveError:self];
@@ -377,13 +380,13 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
   }
 }
 
-- (void) MEWRTCService:(id<MEWRTCService>)rtcService didGenerateAnswerWithType:(NSString *)type sdp:(NSString *)sdp {
+- (void) MEWRTCService:(__unused id<MEWRTCService>)rtcService didGenerateAnswerWithType:(NSString *)type sdp:(NSString *)sdp {
   if ([self.stateMachine applyMEWRTCAnswerPrepared]) {
     [self _sendAnswerWithType:type andSdp:sdp];
   }
 }
 
-- (void) MEWRTCServiceConnectionDidFailed:(id<MEWRTCService>)rtcService {
+- (void) MEWRTCServiceConnectionDidFailed:(__unused id<MEWRTCService>)rtcService {
   if ([self.stateMachine applyTryTurn]) {
     [self _sendTryTurn];
   } else {
@@ -404,18 +407,18 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
   }
 }
 
-- (void) MEWRTCServiceConnectionDidDisconnected:(id<MEWRTCService>)rtcService {
+- (void) MEWRTCServiceConnectionDidDisconnected:(__unused id<MEWRTCService>)rtcService {
   dispatch_async(dispatch_get_main_queue(), ^{
     self.connectionStatus = MEWConnectStatusDisconnected;
     [self.delegate MEWConnectDidDisconnected:self];
   });
 }
 
-- (void)MEWRTCServiceDataChannelConnecting:(id<MEWRTCService>)rtcService {
+- (void)MEWRTCServiceDataChannelConnecting:(__unused id<MEWRTCService>)rtcService {
   [self.stateMachine applyMEWRTCDataChannelConnecting];
 }
 
-- (void) MEWRTCServiceDataChannelDidOpen:(id<MEWRTCService>)rtcService {
+- (void) MEWRTCServiceDataChannelDidOpen:(__unused id<MEWRTCService>)rtcService {
   if ([self.stateMachine applyMEWRTCDataChannelOpened]) {
     dispatch_async(dispatch_get_main_queue(), ^{
       if ([self.stateMachine applySocketClosed]) {
@@ -433,7 +436,7 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
   }
 }
 
-- (void) MEWRTCService:(id<MEWRTCService>)rtcService didReceiveMessage:(NSDictionary *)message {
+- (void) MEWRTCService:(__unused id<MEWRTCService>)rtcService didReceiveMessage:(NSDictionary *)message {
   if (!self.stateMachine.final) {
     if ([self.stateMachine applyConnected]) {
       self.connectionStatus = MEWConnectStatusConnected;

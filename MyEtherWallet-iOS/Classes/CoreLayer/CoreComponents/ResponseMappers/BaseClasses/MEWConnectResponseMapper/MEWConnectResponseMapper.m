@@ -26,7 +26,7 @@
 
 #pragma mark - ResponseMapper
 
-- (id) mapServerResponse:(id)response withMappingContext:(NSDictionary *)context error:(NSError *__autoreleasing *)error {
+- (id) mapServerResponse:(id)response withMappingContext:(NSDictionary *)context error:(__unused NSError *__autoreleasing *)error {
   EKObjectMapping *mapping = [self retreiveMappingForMappingContext:context];
   
   id object = [EKMapper objectFromExternalRepresentation:response
@@ -34,7 +34,7 @@
   return object;
 }
 
-- (id) serializeResponse:(id)response withMappingContext:(NSDictionary *)context error:(NSError *__autoreleasing *)error {
+- (id) serializeResponse:(id)response withMappingContext:(NSDictionary *)context error:(__unused NSError *__autoreleasing *)error {
   EKObjectMapping *mapping = [self retreiveMappingForMappingContext:context];
   
   id serializedObject = [EKSerializer serializeObject:response

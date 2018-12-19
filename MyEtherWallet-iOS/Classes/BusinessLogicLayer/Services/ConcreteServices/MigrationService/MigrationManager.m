@@ -156,7 +156,11 @@ static NSString *const kMigrationManagerMomExtension              = @"mom";
   NSString *storePath = [sourceStoreURL path].stringByDeletingPathExtension;
   // Build a path to write the new store
   storePath = [NSString stringWithFormat:@"%@.%@.%@", storePath, modelName, storeExtension];
-  return [NSURL fileURLWithPath:storePath];
+  NSURL *url = [NSURL fileURLWithPath:storePath];
+  if ([self.fileManager fileExistsAtPath:[url path]]) {
+    [self.fileManager removeItemAtURL:url error:nil];
+  }
+  return url;
 }
 
 - (NSArray *) _modelPaths {

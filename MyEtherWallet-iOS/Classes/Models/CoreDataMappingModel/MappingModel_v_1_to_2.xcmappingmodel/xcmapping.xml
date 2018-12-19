@@ -10,7 +10,7 @@
             <plist version="1.0">
                 <dict>
                     <key>NSPersistenceFrameworkVersion</key>
-                    <integer>864</integer>
+                    <integer>865</integer>
                     <key>NSStoreModelVersionHashes</key>
                     <dict>
                         <key>XDDevAttributeMapping</key>
@@ -154,14 +154,14 @@ FAcIExQZGiEnKywyMzY5PUJDRkpOVSRudWxs1QkKCwwNDg8QERJZTlNPcGVyYW5kXk5TU2VsZWN0b3JO
     </object>
     <object type="XDDEVENTITYMAPPING" id="z121">
         <attribute name="sourcename" type="string">Account</attribute>
-        <attribute name="sourcefilterpredicatestring" type="string">SELF.fromNetwork.chainID == 1</attribute>
+        <attribute name="sourcefilterpredicatestring" type="string">SELF.fromNetwork.chainID == 1  \u2600\u2600 SELF.active == 1</attribute>
         <attribute name="name" type="string">AccountToMasterToken</attribute>
         <attribute name="mappingtypename" type="string">Undefined</attribute>
         <attribute name="mappingnumber" type="int16">2</attribute>
         <attribute name="destinationname" type="string">MasterToken</attribute>
         <attribute name="autogenerateexpression" type="bool">1</attribute>
         <relationship name="mappingmodel" type="1/1" destination="XDDEVMAPPINGMODEL" idrefs="z133"></relationship>
-        <relationship name="attributemappings" type="0/0" destination="XDDEVATTRIBUTEMAPPING" idrefs="z142 z117 z109 z140 z127"></relationship>
+        <relationship name="attributemappings" type="0/0" destination="XDDEVATTRIBUTEMAPPING" idrefs="z109 z117 z140 z127 z142"></relationship>
         <relationship name="relationshipmappings" type="0/0" destination="XDDEVRELATIONSHIPMAPPING" idrefs="z115 z102 z114"></relationship>
     </object>
     <object type="XDDEVATTRIBUTEMAPPING" id="z122">
@@ -169,7 +169,7 @@ FAcIExQZGiEnKywyMzY5PUJDRkpOVSRudWxs1QkKCwwNDg8QERJZTlNPcGVyYW5kXk5TU2VsZWN0b3JO
         <relationship name="entitymapping" type="1/1" destination="XDDEVENTITYMAPPING" idrefs="z129"></relationship>
     </object>
     <object type="XDDEVENTITYMAPPING" id="z123">
-        <attribute name="sourcefilterpredicatestring" type="string">SELF.chainID == 1</attribute>
+        <attribute name="sourcefilterpredicatestring" type="string">SELF.chainID == 1 \u2600\u2600 SELF.accounts.@count \u3e00 0</attribute>
         <attribute name="sourcename" type="string">Network</attribute>
         <attribute name="mappingtypename" type="string">Undefined</attribute>
         <attribute name="mappingnumber" type="int16">4</attribute>
@@ -180,14 +180,14 @@ FAcIExQZGiEnKywyMzY5PUJDRkpOVSRudWxs1QkKCwwNDg8QERJZTlNPcGVyYW5kXk5TU2VsZWN0b3JO
         <relationship name="relationshipmappings" type="0/0" destination="XDDEVRELATIONSHIPMAPPING" idrefs="z132"></relationship>
     </object>
     <object type="XDDEVENTITYMAPPING" id="z124">
-        <attribute name="sourcefilterpredicatestring" type="string">SELF.fromAccount.fromNetwork.chainID == 1</attribute>
+        <attribute name="sourcefilterpredicatestring" type="string">SELF.fromAccount.fromNetwork.chainID == 1  \u2600\u2600 SELF.fromAccount.active == 1</attribute>
         <attribute name="sourcename" type="string">PurchaseHistory</attribute>
         <attribute name="mappingtypename" type="string">Undefined</attribute>
         <attribute name="mappingnumber" type="int16">6</attribute>
         <attribute name="destinationname" type="string">PurchaseHistory</attribute>
         <attribute name="autogenerateexpression" type="bool">1</attribute>
         <relationship name="mappingmodel" type="1/1" destination="XDDEVMAPPINGMODEL" idrefs="z133"></relationship>
-        <relationship name="attributemappings" type="0/0" destination="XDDEVATTRIBUTEMAPPING" idrefs="z106 z141 z118 z128 z113"></relationship>
+        <relationship name="attributemappings" type="0/0" destination="XDDEVATTRIBUTEMAPPING" idrefs="z118 z141 z106 z128 z113"></relationship>
         <relationship name="relationshipmappings" type="0/0" destination="XDDEVRELATIONSHIPMAPPING" idrefs="z116"></relationship>
     </object>
     <object type="XDDEVATTRIBUTEMAPPING" id="z125">
@@ -210,26 +210,26 @@ CA8QVSRudWxs0wkKCwwNDl8QD05TQ29uc3RhbnRWYWx1ZV8QEE5TRXhwcmVzc2lvblR5cGVWJGNsYXNz
         <relationship name="entitymapping" type="1/1" destination="XDDEVENTITYMAPPING" idrefs="z124"></relationship>
     </object>
     <object type="XDDEVENTITYMAPPING" id="z129">
-        <attribute name="sourcefilterpredicatestring" type="string">SELF.fromAccount.fromNetwork.chainID == 1</attribute>
+        <attribute name="sourcefilterpredicatestring" type="string">SELF.fromAccount.fromNetwork.chainID == 1  \u2600\u2600 SELF.fromAccount.active == 1</attribute>
         <attribute name="sourcename" type="string">Token</attribute>
         <attribute name="mappingtypename" type="string">Undefined</attribute>
         <attribute name="mappingnumber" type="int16">3</attribute>
         <attribute name="destinationname" type="string">Token</attribute>
         <attribute name="autogenerateexpression" type="bool">1</attribute>
         <relationship name="mappingmodel" type="1/1" destination="XDDEVMAPPINGMODEL" idrefs="z133"></relationship>
-        <relationship name="attributemappings" type="0/0" destination="XDDEVATTRIBUTEMAPPING" idrefs="z120 z126 z134 z136 z122"></relationship>
+        <relationship name="attributemappings" type="0/0" destination="XDDEVATTRIBUTEMAPPING" idrefs="z134 z122 z120 z136 z126"></relationship>
         <relationship name="relationshipmappings" type="0/0" destination="XDDEVRELATIONSHIPMAPPING" idrefs="z119 z131"></relationship>
     </object>
     <object type="XDDEVENTITYMAPPING" id="z130">
         <attribute name="migrationpolicyclassname" type="string">AccountToAccountV2Policy</attribute>
-        <attribute name="sourcefilterpredicatestring" type="string">SELF.fromNetwork.chainID == 1</attribute>
+        <attribute name="sourcefilterpredicatestring" type="string">SELF.fromNetwork.chainID == 1 \u2600\u2600 SELF.active == 1</attribute>
         <attribute name="sourcename" type="string">Account</attribute>
         <attribute name="mappingtypename" type="string">Undefined</attribute>
         <attribute name="mappingnumber" type="int16">1</attribute>
         <attribute name="destinationname" type="string">Account</attribute>
         <attribute name="autogenerateexpression" type="bool">1</attribute>
         <relationship name="mappingmodel" type="1/1" destination="XDDEVMAPPINGMODEL" idrefs="z133"></relationship>
-        <relationship name="attributemappings" type="0/0" destination="XDDEVATTRIBUTEMAPPING" idrefs="z105 z138 z104 z107"></relationship>
+        <relationship name="attributemappings" type="0/0" destination="XDDEVATTRIBUTEMAPPING" idrefs="z107 z105 z138 z104"></relationship>
         <relationship name="relationshipmappings" type="0/0" destination="XDDEVRELATIONSHIPMAPPING" idrefs="z112"></relationship>
     </object>
     <object type="XDDEVRELATIONSHIPMAPPING" id="z131">

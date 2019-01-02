@@ -1,0 +1,19 @@
+language: objective-c
+osx_image: xcode10.1
+
+branches:
+  only:
+    - develop
+    - master
+
+cache:
+ - cocoapods
+
+before_install:
+ - brew update
+ - gem install cocoapods
+ - pod install --repo-update
+
+script:
+ - set -o pipefail
+ - xcodebuild -workspace MyEtherWallet-iOS.xcworkspace -scheme MyEtherWallet-iOS -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone SE" | xcpretty

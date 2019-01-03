@@ -6,9 +6,24 @@
 #import "TokenPlainObject.h"
 #import "NSNumberFormatter+Ethereum.h"
 
+static NSString *const kTransactionTokenAddress   = @"address";
+static NSString *const kTransactionTokenDecimals  = @"decimal";
+static NSString *const kTransactionTokenSymbol    = @"symbol";
+
 @implementation TokenPlainObject
 @synthesize amount = _amount;
 @synthesize amountString = _amountString;
+
++ (instancetype) transactionTokenWithDescription:(NSDictionary *)description {
+  if (!description) {
+    return nil;
+  }
+  TokenPlainObject *token = [[[self class] alloc] init];
+  token.address = description[kTransactionTokenAddress];
+  token.decimals = @([description[kTransactionTokenDecimals] shortValue]);
+  token.symbol = description[kTransactionTokenSymbol];
+  return token;
+}
 
 #pragma mark - Getter
 

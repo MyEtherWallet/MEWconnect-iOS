@@ -7,7 +7,7 @@
 #import "NSNumberFormatter+Ethereum.h"
 
 static NSString *const kTransactionTokenAddress   = @"address";
-static NSString *const kTransactionTokenDecimals  = @"decimal";
+static NSString *const kTransactionTokenDecimals  = @"decimals";
 static NSString *const kTransactionTokenSymbol    = @"symbol";
 
 @implementation TokenPlainObject

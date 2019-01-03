@@ -1,0 +1,26 @@
+language: objective-c
+osx_image: xcode10.1
+env:
+  global:
+    secure: oX8UxAhaWXqhlywMKAw9yYYQppRJCfrzpQeEIHdGCHC873rA4Jwnf6reFFs6bFCoGczxrFdDYKOgDjbPL7cot3LtVKBF0f+YHK4NSG993XAwml2a22prIplJGxi/u0JZ5dbjupSdIx7bpUx2s9g+Y5wX9fARoWZShcXJP2P+wx9ss0RJiRyfz8ufFoHOzi11h4kRlPizPyqfWGl4L8DwTFLpmpT1IW1/R1TIK4vue9A0RHeV7YpIXJiwC5dXFxJoJXLmFxi44ilhYGCZVklgLCO9acHrL/suW9j201xerrKXlC7M3+sTMuPiadWOCPrZug5SaNMIRyJXutptscJt7cx0l1Tc3Aae/MXyrapvKVxFw8hhNMhGU1iQWGdIAHJApdIuJNUq37TecA12ZreqZ692zad16wLLjjmOPLHKr8KAHu33WhGUfWCTrrAwI7dTXnHaaAEBTHxu7Ne9pWRqhHyknofcQU6VdsPZuRu5h8dOa9ZoJBPmJkmpcc9Q2Z3pEeCQyIL0/i1mpdAwZNmZlMqlvF9on5xraxc3cEDBo9bXZ3ztk+fUEdzaX3drDPCftVmGT1f54Yh6VQBgUER8LzlFtUPcpvtMU4kDA7qeJhm7+FmvYEtO/ldT7I5QfVbP/3MOucZQSCKh8sHwPgyVwLtI+jVDuh36h47h6+g8bk4=
+
+cache:
+  - cocoapods
+
+before_install:
+  - brew update
+  - brew install jq
+  - gem install cocoapods
+  - pod install --repo-update
+
+script:
+  - set -o pipefail
+  - xcodebuild -workspace MyEtherWallet-iOS.xcworkspace -scheme MyEtherWallet-iOS -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone SE" | xcpretty
+
+deploy:
+  provider: script
+  script: bash ./Scripts/release.sh $TRAVIS_TAG $GITHUB_TOKEN "MyEtherWallet/MEWconnect-iOS"
+  skip_cleanup: true
+  on:
+    tags: true
+    branch: master

@@ -33,6 +33,7 @@ FOUNDATION_EXPORT NSString *const kMEWConnectSignalAnswer;
 FOUNDATION_EXPORT NSString *const kMEWConnectSignalError;
 FOUNDATION_EXPORT NSString *const kMEWConnectSignalInvalidConnection;
 FOUNDATION_EXPORT NSString *const kMEWConnectSignalConfirmationFailed;
+FOUNDATION_EXPORT NSString *const kMEWConnectSignalTurnToken;
 
 /* MEWConnect data keys */
 

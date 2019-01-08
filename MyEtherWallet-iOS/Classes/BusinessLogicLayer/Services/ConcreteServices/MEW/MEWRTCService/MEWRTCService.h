@@ -19,4 +19,5 @@
 - (void) openDataChannel;
 - (void) disconnect;
 - (BOOL) sendMessage:(id)message;
+- (void) updateIceServers:(NSArray *)servers;
 @end

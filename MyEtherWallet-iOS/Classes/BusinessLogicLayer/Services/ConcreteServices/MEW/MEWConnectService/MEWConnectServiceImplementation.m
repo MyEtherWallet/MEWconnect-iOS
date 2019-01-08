@@ -79,6 +79,7 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
     [self _disconnect];
   }
   [self.stateMachine reset];
+  [self.rtcService updateIceServers:nil];
   NSArray *params = [data componentsSeparatedByString:@"_"];
   if ([params count] < 3) {
     return NO;
@@ -191,6 +192,11 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
   [client on:kMEWConnectSignalConfirmationFailed callback:^(NSArray * data, __unused SocketAckEmitter * emit) {
     @strongify(self);
     [self _signalConfirmationError:data];
+  }];
+  
+  [client on:kMEWConnectSignalTurnToken callback:^(NSArray * data, __unused SocketAckEmitter * emit) {
+    @strongify(self);
+    [self _signalTurnToken:data];
   }];
   
   /* Any signal */
@@ -334,6 +340,10 @@ static NSTimeInterval kMEWConnectServiceTimeoutInterval = 10.0;
     [self.delegate MEWConnectDidReceiveError:self];
   });
   DDLogVerbose(@"MEWConnect: confirmation failed (%@)", data);
+}
+
+- (void) _signalTurnToken:(NSArray <NSDictionary <NSString *, NSArray *> *> *)data {
+  [self.rtcService updateIceServers:[data firstObject][kMEWConnectSocketData]];
 }
 
 #if DEBUG_ANYSIGNAL

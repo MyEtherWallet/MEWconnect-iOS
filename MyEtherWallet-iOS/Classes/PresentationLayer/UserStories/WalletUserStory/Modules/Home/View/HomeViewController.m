@@ -193,7 +193,9 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
 - (void) updateBalanceWithMasterToken:(MasterTokenPlainObject *)masterToken {
   NetworkPlainObject *network = masterToken.fromNetworkMaster;
   
-  [self.headerView.cardView updateEthPrice:masterToken.price.usdPrice];
+  if (network.network == BlockchainNetworkTypeMainnet) {
+    [self.headerView.cardView updateEthPrice:masterToken.price.usdPrice];
+  }
   
   NSNumberFormatter *ethereumFormatter = [NSNumberFormatter ethereumFormatterWithNetwork:[network network]];
   switch ([UIScreen mainScreen].screenSizeType) {

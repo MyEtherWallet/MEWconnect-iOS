@@ -13,8 +13,6 @@
 
 #import "TokenPlainObject.h"
 
-static NSString *const kMEWconnectTransactionTransferPrefix = @"0xa9059cbb";
-
 static NSString *const kMEWconnectTransactionChainId  = @"chainId";
 static NSString *const kMEWconnectTransactionData     = @"data";
 static NSString *const kMEWconnectTransactionGas      = @"gas";
@@ -22,6 +20,7 @@ static NSString *const kMEWconnectTransactionGasPrice = @"gasPrice";
 static NSString *const kMEWconnectTransactionNonce    = @"nonce";
 static NSString *const kMEWconnectTransactionTo       = @"to";
 static NSString *const kMEWconnectTransactionValue    = @"value";
+static NSString *const kMEWconnectTransactionCurrency = @"currency";
 
 @interface MEWConnectTransaction ()
 @property (nonatomic, strong) MEWconnectTokenTransfer *tokenTransferInformation;
@@ -40,6 +39,8 @@ static NSString *const kMEWconnectTransactionValue    = @"value";
   transaction->_nonce     = info[kMEWconnectTransactionNonce];
   transaction->_to        = info[kMEWconnectTransactionTo];
   transaction->_value     = info[kMEWconnectTransactionValue];
+  
+  transaction->_token     = [TokenPlainObject transactionTokenWithDescription:info[kMEWconnectTransactionCurrency]];
   
   transaction.tokenTransferInformation = [MEWconnectTokenTransfer tokenTransferWithData:transaction->_data];
   

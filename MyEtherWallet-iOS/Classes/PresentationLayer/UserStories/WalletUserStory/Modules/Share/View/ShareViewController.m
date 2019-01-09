@@ -67,7 +67,7 @@
 
 #pragma mark - ShareViewInput
 
-- (void) setupInitialStateWithAddress:(NSString *)address qrCode:(UIImage *)qrCode {
+- (void) setupInitialStateWithAddress:(NSString *)address qrCode:(UIImage *)qrCode network:(BlockchainNetworkType)network {
   self.qrCodeImageView.image = qrCode;
   [self _updatePrefferedContentSize];
   
@@ -86,7 +86,13 @@
                                  NSForegroundColorAttributeName: self.titleLabel.textColor,
                                  NSParagraphStyleAttributeName: style,
                                  NSKernAttributeName: @(titleKern)};
-    self.titleLabel.attributedText = [[NSAttributedString alloc] initWithString:self.titleLabel.text attributes:attributes];
+    NSString *title = nil;
+    if (network == BlockchainNetworkTypeMainnet) {
+      title = NSLocalizedString(@"Your public Ethereum address", nil);
+    } else {
+      title = NSLocalizedString(@"Your public Ropsten testnet address", nil);
+    }
+    self.titleLabel.attributedText = [[NSAttributedString alloc] initWithString:title attributes:attributes];
   }
   { //Description
     NSArray *infoParts = [self.descriptionLabel.text componentsSeparatedByString:@"\n"];

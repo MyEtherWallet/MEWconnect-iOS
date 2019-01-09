@@ -141,6 +141,7 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
 - (void) updateBalance:(NSDecimalNumber *)balance network:(BlockchainNetworkType)network {
   _ethBalance = balance;
   _network = network;
+  [self _updateAddressDescription];
   if (!balance) {
     balance = [NSDecimalNumber zero];
   }
@@ -327,23 +328,15 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
                                                         toItem:self.balanceLabel attribute:NSLayoutAttributeRight
                                                     multiplier:1.0 constant:kCardViewDefaultOffset]];
     CGFloat offset = kCardViewEthereumTitleTopOffset;
-    UIFont *font = nil;
     if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
       offset = 62.0;
-      font = [UIFont systemFontOfSize:10.0 weight:UIFontWeightRegular];
-    } else {
-      font = [UIFont systemFontOfSize:12.0 weight:UIFontWeightRegular];
     }
     [self addConstraint:[NSLayoutConstraint constraintWithItem:ethereumTitleLabel attribute:NSLayoutAttributeTop
                                                      relatedBy:NSLayoutRelationEqual
                                                         toItem:self attribute:NSLayoutAttributeTop
                                                     multiplier:1.0 constant:offset]];
-    NSDictionary *attributes = @{NSForegroundColorAttributeName: [UIColor whiteColor],
-                                 NSFontAttributeName: font,
-                                 NSKernAttributeName: @0.0};
-    NSString *title = NSLocalizedString(@"Your public Ethereum address", @"Card view");
-    ethereumTitleLabel.attributedText = [[NSAttributedString alloc] initWithString:title attributes:attributes];
     self.ethereumTitleLabel = ethereumTitleLabel;
+    [self _updateAddressDescription];
   }
   { //Seed label + Share
     UIButton *seedLabelButton = [CardViewSeedButton seedButton];
@@ -391,6 +384,25 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
   
   self.layer.shouldRasterize = YES;
   self.layer.rasterizationScale = [UIScreen mainScreen].scale;
+}
+
+- (void) _updateAddressDescription {
+  UIFont *font = nil;
+  if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+    font = [UIFont systemFontOfSize:10.0 weight:UIFontWeightRegular];
+  } else {
+    font = [UIFont systemFontOfSize:12.0 weight:UIFontWeightRegular];
+  }
+  NSDictionary *attributes = @{NSForegroundColorAttributeName: [UIColor whiteColor],
+                               NSFontAttributeName: font,
+                               NSKernAttributeName: @0.0};
+  NSString *title = nil;
+  if (_network == BlockchainNetworkTypeMainnet) {
+    title = NSLocalizedString(@"Your public Ethereum address", @"Card view");
+  } else {
+    title = NSLocalizedString(@"Your public Ropsten testnet address", @"Card view");
+  }
+  self.ethereumTitleLabel.attributedText = [[NSAttributedString alloc] initWithString:title attributes:attributes];
 }
 
 /* $423.65 USD @ $746/ETH */

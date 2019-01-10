@@ -240,7 +240,7 @@ static CGFloat const kHomeStretcyHeaderTitleBalanceTopMaxOffset         = 26.0;
   {
     titleBalanceLabel.alpha = 0.0;
     titleBalanceLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    titleBalanceLabel.textColor = [UIColor colorWithRGB:0xCCCCCC];
+    titleBalanceLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.7];
     titleBalanceLabel.font = [UIFont systemFontOfSize:13.0 weight:UIFontWeightSemibold];
     titleBalanceLabel.text = @"0.00 ETH";
     [self.contentView addSubview:titleBalanceLabel];
@@ -416,6 +416,13 @@ static CGFloat const kHomeStretcyHeaderTitleBalanceTopMaxOffset         = 26.0;
                         self.buyEtherButton.tintColor = [UIColor whiteColor];
                         [self.buyEtherButton setAttributedTitle:buyEtherAttributedString forState:UIControlStateNormal];
                       } completion:nil];
+      [UIView transitionWithView:self.networkButton.titleLabel
+                        duration:kHomeStretchyHeaderFadeDuration
+                         options:UIViewAnimationOptionTransitionCrossDissolve|UIViewAnimationOptionBeginFromCurrentState
+                      animations:^{
+                        self.networkButton.tintColor = [UIColor colorWithWhite:1.0 alpha:0.7];
+                        [self.networkButton setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.7] forState:UIControlStateNormal];
+                      } completion:nil];
 #if BETA
       [UIView transitionWithView:self.betaIconImageView
                         duration:kHomeStretchyHeaderFadeDuration
@@ -438,6 +445,13 @@ static CGFloat const kHomeStretcyHeaderTitleBalanceTopMaxOffset         = 26.0;
                         self.infoButton.tintColor = [[UIColor mainApplicationColor] colorWithAlphaComponent:0.1];
                         self.buyEtherButton.tintColor = [[UIColor mainApplicationColor] colorWithAlphaComponent:0.1];
                         [self.buyEtherButton setAttributedTitle:buyEtherAttributedString forState:UIControlStateNormal];
+                      } completion:nil];
+      [UIView transitionWithView:self.networkButton.titleLabel
+                        duration:kHomeStretchyHeaderFadeDuration
+                         options:UIViewAnimationOptionTransitionCrossDissolve|UIViewAnimationOptionBeginFromCurrentState
+                      animations:^{
+                        self.networkButton.tintColor = [UIColor lightGreyTextColor];
+                        [self.networkButton setTitleColor:[UIColor lightGreyTextColor] forState:UIControlStateNormal];
                       } completion:nil];
 #if BETA
       [UIView transitionWithView:self.betaIconImageView

@@ -11,6 +11,7 @@
 #import "ShareInteractorOutput.h"
 
 #import "MasterTokenPlainObject.h"
+#import "NetworkPlainObject.h"
 
 static CGFloat const kShareInteractorQRCodeSize = 155.0;
 
@@ -48,6 +49,10 @@ static CGFloat const kShareInteractorQRCodeSize = 155.0;
 
 - (UIImage *)obtainQRCode {
   return self.qrCode;
+}
+
+- (BlockchainNetworkType) obtainNetworkType {
+  return [self.masterToken.fromNetworkMaster network];
 }
 
 - (void) copyAddress {

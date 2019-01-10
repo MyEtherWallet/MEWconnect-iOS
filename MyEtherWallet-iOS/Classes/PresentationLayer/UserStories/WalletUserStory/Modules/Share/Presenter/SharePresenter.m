@@ -47,7 +47,8 @@ static NSTimeInterval const kSharePresenterBrightnessAnimationDuration      = 0.
 - (void) didTriggerViewReadyEvent {
   NSString *address = [self.interactor obtainPublicAddress];
   UIImage *qrCode = [self.interactor obtainQRCode];
-  [self.view setupInitialStateWithAddress:address qrCode:qrCode];
+  BlockchainNetworkType network = [self.interactor obtainNetworkType];
+  [self.view setupInitialStateWithAddress:address qrCode:qrCode network:network];
 }
 
 - (void) closeAction {

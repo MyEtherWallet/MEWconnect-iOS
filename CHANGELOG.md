@@ -1,3 +1,9 @@
+### Release 1.0.5
+
+- Improved connection for some mobile operators.
+- Improved Ether purchase history.
+- Improved UI for token transactions.
+
 ### Release 1.0.4
 
 - Minor improvements to 'restore account' scenario.

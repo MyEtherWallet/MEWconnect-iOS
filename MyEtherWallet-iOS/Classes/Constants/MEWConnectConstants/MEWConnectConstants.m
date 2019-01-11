@@ -33,6 +33,7 @@ NSString *const kMEWConnectSignalAnswer                   = @"answer";
 NSString *const kMEWConnectSignalError                    = @"error";
 NSString *const kMEWConnectSignalInvalidConnection        = @"InvalidConnection";
 NSString *const kMEWConnectSignalConfirmationFailed       = @"confirmationFailed";
+NSString *const kMEWConnectSignalTurnToken                = @"turnToken";
 
 /* MEWConnect data keys */
 

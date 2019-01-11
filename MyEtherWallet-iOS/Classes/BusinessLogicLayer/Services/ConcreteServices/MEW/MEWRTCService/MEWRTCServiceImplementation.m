@@ -19,6 +19,7 @@ static NSTimeInterval MEWRTCServiceImplementationIceGatheringStateCompleteTimeou
 @property (nonatomic, strong) RTCPeerConnectionFactory *peerConnectionFactory;
 @property (nonatomic, strong) RTCPeerConnection *peerConnection;
 @property (nonatomic, strong) RTCDataChannel *dataChannel;
+@property (nonatomic, strong) NSArray <RTCIceServer *> *turnServers;
 @end
 
 @implementation MEWRTCServiceImplementation {
@@ -32,7 +33,7 @@ static NSTimeInterval MEWRTCServiceImplementationIceGatheringStateCompleteTimeou
   RTCSdpType sdpType = [RTCSessionDescription typeForString:type];
   RTCSessionDescription *description = [[RTCSessionDescription alloc] initWithType:sdpType sdp:sdp];
   
-  self.peerConnection = [self.peerConnectionFactory peerConnectionWithConfiguration:[self _RTCConfigurationWithIceServers:nil]
+  self.peerConnection = [self.peerConnectionFactory peerConnectionWithConfiguration:[self _RTCConfigurationWithIceServers:self.turnServers]
                                                                         constraints:[self _RTCMediaConstraints]
                                                                            delegate:self];
   @weakify(self);
@@ -67,6 +68,16 @@ static NSTimeInterval MEWRTCServiceImplementationIceGatheringStateCompleteTimeou
                               [self.delegate MEWRTCService:self didPrepareAnswer:sdp];
                             }
                           }];
+}
+
+- (void) updateIceServers:(NSArray *)servers {
+  NSMutableArray <RTCIceServer *> *iceServers = [[NSMutableArray alloc] initWithCapacity:[servers count]];
+  for (NSDictionary *server in servers) {
+    [iceServers addObject:[[RTCIceServer alloc] initWithURLStrings:@[server[NSStringFromSelector(@selector(url))]]
+                                                          username:server[NSStringFromSelector(@selector(username))]
+                                                        credential:server[NSStringFromSelector(@selector(credential))]]];
+  }
+  self.turnServers = [iceServers copy];
 }
 
 - (void) updateLocalDescriptionWithAnswer:(RTCSessionDescription *)answer {

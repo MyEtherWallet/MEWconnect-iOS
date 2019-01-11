@@ -26,20 +26,6 @@ private struct CheckboxButtonConstants {
   }
 }
 
-private struct SignedMessageConstants {
-  struct Fields {
-    static let Address  = "address"
-    static let Msg      = "msg"
-    static let Sig      = "sig"
-    static let Version  = "version"
-    static let Signer   = "signer"
-  }
-  struct Values {
-    static let Version  = "3"
-    static let Signer   = "MEW"
-  }
-}
-
 @objc
 class CheckboxButton: UIButton {
   private let checkboxView = M13Checkbox(frame: .zero)

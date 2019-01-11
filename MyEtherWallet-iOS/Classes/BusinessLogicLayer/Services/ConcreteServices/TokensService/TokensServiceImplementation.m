@@ -188,6 +188,9 @@ static NSString *const RopstenTokensContractAddress = @"0xb8e1bbc50fd87ea00d8ce7
 }
 
 - (TokenModelObject *) obtainTokenWithAddress:(NSString *)address ofMasterToken:(MasterTokenPlainObject *)masterToken {
+  if (!address) {
+    return nil;
+  }
   NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
   NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.address ==[c] %@ && SELF.fromNetwork.master.address ==[c] %@", address, masterToken.address];
   TokenModelObject *tokenModelObject = [TokenModelObject MR_findFirstWithPredicate:predicate inContext:context];

@@ -17,6 +17,7 @@ static NSString *const kSimplexServicePaymentDeclined         = @"payment_simple
 static NSString *const kSimplexServicePaymentDeclined2        = @"simplexcc_declined";
 static NSString *const kSimplexServicePaymentPending          = @"pending_simplexcc_approval";
 static NSString *const kSimplexServicePaymentCancelled        = @"cancelled";
+static NSString *const kSimplexServicePaymentToPartner        = @"pending_simplexcc_payment_to_partner";
 
 typedef NS_ENUM(short, SimplexServicePaymentStatusType) {
   SimplexServicePaymentStatusTypeUnknown    = 0,
@@ -30,7 +31,8 @@ NS_INLINE SimplexServicePaymentStatusType SimplexServicePaymentStatusTypeFromStr
   if ([string isEqualToString:kSimplexServicePaymentRequestSubmitted] ||
       [string isEqualToString:kSimplexServicePaymentPending]) {
     return SimplexServicePaymentStatusTypeInProgress;
-  } else if ([string isEqualToString:kSimplexServicePaymentApproved]) {
+  } else if ([string isEqualToString:kSimplexServicePaymentApproved] ||
+             [string isEqualToString:kSimplexServicePaymentToPartner]) {
     return SimplexServicePaymentStatusTypeApproved;
   } else if ([string isEqualToString:kSimplexServicePaymentDeclined] ||
              [string isEqualToString:kSimplexServicePaymentDeclined2]) {

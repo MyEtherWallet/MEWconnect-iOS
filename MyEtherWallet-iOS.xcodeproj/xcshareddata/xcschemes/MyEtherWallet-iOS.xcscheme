@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   LastUpgradeVersion = "1010"
+   version = "1.3">
+   <BuildAction
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "YES">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "56FE2B6C20817F1100DB39D5"
+               BuildableName = "MyEtherWallet-iOS.app"
+               BlueprintName = "MyEtherWallet-iOS"
+               ReferencedContainer = "container:MyEtherWallet-iOS.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <TestAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      shouldUseLaunchSchemeArgsEnv = "YES">
+      <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "56FE2B8420817F1100DB39D5"
+               BuildableName = "MyEtherWallet-iOSTests.xctest"
+               BlueprintName = "MyEtherWallet-iOSTests"
+               ReferencedContainer = "container:MyEtherWallet-iOS.xcodeproj">
+            </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "AboutInteractorTests">
+               </Test>
+               <Test
+                  Identifier = "AboutPresenterTests">
+               </Test>
+               <Test
+                  Identifier = "AboutRouterTests">
+               </Test>
+               <Test
+                  Identifier = "AboutViewControllerTests">
+               </Test>
+               <Test
+                  Identifier = "BackupConfirmationAssemblyTests">
+               </Test>
+               <Test
+                  Identifier = "BackupConfirmationInteractorTests">
+               </Test>
+               <Test
+                  Identifier = "BackupConfirmationPresenterTests">
+               </Test>
+               <Test
+                  Identifier = "BackupConfirmationRouterTests">
+               </Test>
+               <Test
+                  Identifier = "BackupConfirmationViewControllerTests">
+               </Test>
+               <Test
+                  Identifier = "BackupDoneAssemblyTests">
+               </Test>
+               <Test
+                  Identifier = "BackupDoneInteractorTests">
+               </Test>
+               <Test
+                  Identifier = "BackupDonePresenterTests">
+               </Test>
+               <Test
+                  Identifier = "BackupDoneRouterTests">
+               </Test>
+               <Test
+                  Identifier = "BackupDoneViewControllerTests">
+               </Test>
+               <Test
+                  Identifier = "BackupInfoAssemblyTests">
+               </Test>
+               <Test
+                  Identifier = "BackupInfoInteractorTests">
+               </Test>
+               <Test
+                  Identifier = "BackupInfoPresenterTests">
+               </Test>
+               <Test
+                  Identifier = "BackupInfoRouterTests">
+               </Test>
+               <Test
+                  Identifier = "BackupInfoViewControllerTests">
+               </Test>
+               <Test
+                  Identifier = "BackupStartAssemblyTests">
+               </Test>
+               <Test
+                  Identifier = "BackupStartInteractorTests">
+               </Test>
+               <Test
+                  Identifier = "BackupStartPresenterTests">
+               </Test>
+               <Test
+                  Identifier = "BackupStartRouterTests">
+               </Test>
+               <Test
+                  Identifier = "BackupStartViewControllerTests">
+               </Test>
+               <Test
+                  Identifier = "BackupWordsAssemblyTests">
+               </Test>
+               <Test
+                  Identifier = "BackupWordsInteractorTests">
+               </Test>
+               <Test
+                  Identifier = "BackupWordsPresenterTests">
+               </Test>
+               <Test
+                  Identifier = "BackupWordsRouterTests">
+               </Test>
+               <Test
+                  Identifier = "BackupWordsViewControllerTests">
+               </Test>
+               <Test
+                  Identifier = "BuyEtherAmountAssemblyTests">
+               </Test>
+               <Test
+                  Identifier = "BuyEtherAmountInteractorTests">
+               </Test>
+               <Test
+                  Identifier = "BuyEtherAmountPresenterTests">
+               </Test>
+               <Test
+                  Identifier = "BuyEtherAmountRouterTests">
+               </Test>
+               <Test
+                  Identifier = "BuyEtherAmountViewControllerTests">
+               </Test>
+               <Test
+                  Identifier = "BuyEtherHistoryAssemblyTests">
+               </Test>
+               <Test
+                  Identifier = "BuyEtherHistoryInteractorTests">
+               </Test>
+               <Test
+                  Identifier = "BuyEtherHistoryPresenterTests">
+               </Test>
+               <Test
+                  Identifier = "BuyEtherHistoryRouterTests">
+               </Test>
+               <Test
+                  Identifier = "BuyEtherHistoryViewControllerTests">
+               </Test>
+               <Test
+                  Identifier = "BuyEtherNavigationAssemblyTests">
+               </Test>
+               <Test
+                  Identifier = "BuyEtherNavigationPresenterTests">
+               </Test>
+               <Test
+                  Identifier = "BuyEtherNavigationRouterTests">
+               </Test>
+               <Test
+                  Identifier = "BuyEtherNavigationViewControllerTests">
+               </Test>
+               <Test
+                  Identifier = "BuyEtherWebAssemblyTests">
+               </Test>
+               <Test
+                  Identifier = "BuyEtherWebInteractorTests">
+               </Test>
+               <Test
+                  Identifier = "BuyEtherWebPresenterTests">
+               </Test>
+               <Test
+                  Identifier = "BuyEtherWebRouterTests">
+               </Test>
+               <Test
+                  Identifier = "BuyEtherWebViewControllerTests">
+               </Test>
+               <Test
+                  Identifier = "ConfirmPasswordAssemblyTests">
+               </Test>
+               <Test
+                  Identifier = "ConfirmPasswordInteractorTests">
+               </Test>
+               <Test
+                  Identifier = "ConfirmPasswordPresenterTests">
+               </Test>
+               <Test
+                  Identifier = "ConfirmPasswordRouterTests">
+               </Test>
+               <Test
+                  Identifier = "ConfirmPasswordViewControllerTests">
+               </Test>
+               <Test
+                  Identifier = "ConfirmationNavigationAssemblyTests">
+               </Test>
+               <Test
+                  Identifier = "ConfirmationNavigationPresenterTests">
+               </Test>
+               <Test
+                  Identifier = "ConfirmationNavigationRouterTests">
+               </Test>
+               <Test
+                  Identifier = "ConfirmationNavigationViewControllerTests">
+               </Test>
+               <Test
+                  Identifier = "ConfirmedTransactionAssemblyTests">
+               </Test>
+               <Test
+                  Identifier = "ConfirmedTransactionInteractorTests">
+               </Test>
+               <Test
+                  Identifier = "ConfirmedTransactionPresenterTests">
+               </Test>
+               <Test
+                  Identifier = "ConfirmedTransactionRouterTests">
+               </Test>
+               <Test
+                  Identifier = "ConfirmedTransactionViewControllerTests">
+               </Test>
+               <Test
+                  Identifier = "ContextPasswordAssemblyTests">
+               </Test>
+               <Test
+                  Identifier = "ContextPasswordInteractorTests">
+               </Test>
+               <Test
+                  Identifier = "ContextPasswordPresenterTests">
+               </Test>
+               <Test
+                  Identifier = "ContextPasswordRouterTests">
+               </Test>
+               <Test
+                  Identifier = "ContextPasswordViewControllerTests">
+               </Test>
+               <Test
+                  Identifier = "DeclinedTransactionAssemblyTests">
+               </Test>
+               <Test
+                  Identifier = "DeclinedTransactionInteractorTests">
+               </Test>
+               <Test
+                  Identifier = "DeclinedTransactionPresenterTests">
+               </Test>
+               <Test
+                  Identifier = "DeclinedTransactionRouterTests">
+               </Test>
+               <Test
+                  Identifier = "DeclinedTransactionViewControllerTests">
+               </Test>
+               <Test
+                  Identifier = "ForgotPasswordAssemblyTests">
+               </Test>
+               <Test
+                  Identifier = "ForgotPasswordInteractorTests">
+               </Test>
+               <Test
+                  Identifier = "ForgotPasswordPresenterTests">
+               </Test>
+               <Test
+                  Identifier = "ForgotPasswordRouterTests">
+               </Test>
+               <Test
+                  Identifier = "ForgotPasswordViewControllerTests">
+               </Test>
+               <Test
+                  Identifier = "HomeAssemblyTests">
+               </Test>
+               <Test
+                  Identifier = "HomeInteractorTests">
+               </Test>
+               <Test
+                  Identifier = "HomePresenterTests">
+               </Test>
+               <Test
+                  Identifier = "HomeRouterTests">
+               </Test>
+               <Test
+                  Identifier = "HomeViewControllerTests">
+               </Test>
+               <Test
+                  Identifier = "InfoAssemblyTests">
+               </Test>
+               <Test
+                  Identifier = "InfoInteractorTests">
+               </Test>
+               <Test
+                  Identifier = "InfoPresenterTests">
+               </Test>
+               <Test
+                  Identifier = "InfoRouterTests">
+               </Test>
+               <Test
+                  Identifier = "InfoViewControllerTests">
+               </Test>
+               <Test
+                  Identifier = "MEWcryptoTests">
+               </Test>
+               <Test
+                  Identifier = "MessageSignerAssemblyTests">
+               </Test>
+               <Test
+                  Identifier = "MessageSignerInteractorTests">
+               </Test>
+               <Test
+                  Identifier = "MessageSignerPresenterTests">
+               </Test>
+               <Test
+                  Identifier = "MessageSignerRouterTests">
+               </Test>
+               <Test
+                  Identifier = "MessageSignerViewControllerTests">
+               </Test>
+               <Test
+                  Identifier = "MyEtherWallet_iOSTests">
+               </Test>
+               <Test
+                  Identifier = "NewWalletAssemblyTests">
+               </Test>
+               <Test
+                  Identifier = "NewWalletInteractorTests">
+               </Test>
+               <Test
+                  Identifier = "NewWalletPresenterTests">
+               </Test>
+               <Test
+                  Identifier = "NewWalletRouterTests">
+               </Test>
+               <Test
+                  Identifier = "NewWalletViewControllerTests">
+               </Test>
+               <Test
+                  Identifier = "PasswordAssemblyTests">
+               </Test>
+               <Test
+                  Identifier = "PasswordInteractorTests">
+               </Test>
+               <Test
+                  Identifier = "PasswordPresenterTests">
+               </Test>
+               <Test
+                  Identifier = "PasswordRouterTests">
+               </Test>
+               <Test
+                  Identifier = "PasswordViewControllerTests">
+               </Test>
+               <Test
+                  Identifier = "QRScannerAssemblyTests">
+               </Test>
+               <Test
+                  Identifier = "QRScannerInteractorTests">
+               </Test>
+               <Test
+                  Identifier = "QRScannerPresenterTests">
+               </Test>
+               <Test
+                  Identifier = "QRScannerRouterTests">
+               </Test>
+               <Test
+                  Identifier = "QRScannerViewControllerTests">
+               </Test>
+               <Test
+                  Identifier = "RamblerTyphoonAssemblyTests">
+               </Test>
+               <Test
+                  Identifier = "RestoreSeedAssemblyTests">
+               </Test>
+               <Test
+                  Identifier = "RestoreSeedInteractorTests">
+               </Test>
+               <Test
+                  Identifier = "RestoreSeedPresenterTests">
+               </Test>
+               <Test
+                  Identifier = "RestoreSeedRouterTests">
+               </Test>
+               <Test
+                  Identifier = "RestoreSeedViewControllerTests">
+               </Test>
+               <Test
+                  Identifier = "RestoreWalletAssemblyTests">
+               </Test>
+               <Test
+                  Identifier = "RestoreWalletInteractorTests">
+               </Test>
+               <Test
+                  Identifier = "RestoreWalletPresenterTests">
+               </Test>
+               <Test
+                  Identifier = "RestoreWalletRouterTests">
+               </Test>
+               <Test
+                  Identifier = "RestoreWalletViewControllerTests">
+               </Test>
+               <Test
+                  Identifier = "SettingsAssemblyTests">
+               </Test>
+               <Test
+                  Identifier = "SettingsInteractorTests">
+               </Test>
+               <Test
+                  Identifier = "SettingsPresenterTests">
+               </Test>
+               <Test
+                  Identifier = "SettingsRouterTests">
+               </Test>
+               <Test
+                  Identifier = "SettingsViewControllerTests">
+               </Test>
+               <Test
+                  Identifier = "ShareAssemblyTests">
+               </Test>
+               <Test
+                  Identifier = "ShareInteractorTests">
+               </Test>
+               <Test
+                  Identifier = "SharePresenterTests">
+               </Test>
+               <Test
+                  Identifier = "ShareRouterTests">
+               </Test>
+               <Test
+                  Identifier = "ShareViewControllerTests">
+               </Test>
+               <Test
+                  Identifier = "SplashPasswordAssemblyTests">
+               </Test>
+               <Test
+                  Identifier = "SplashPasswordInteractorTests">
+               </Test>
+               <Test
+                  Identifier = "SplashPasswordPresenterTests">
+               </Test>
+               <Test
+                  Identifier = "SplashPasswordRouterTests">
+               </Test>
+               <Test
+                  Identifier = "SplashPasswordViewControllerTests">
+               </Test>
+               <Test
+                  Identifier = "StartAssemblyTests">
+               </Test>
+               <Test
+                  Identifier = "StartInteractorTests">
+               </Test>
+               <Test
+                  Identifier = "StartPresenterTests">
+               </Test>
+               <Test
+                  Identifier = "StartRouterTests">
+               </Test>
+               <Test
+                  Identifier = "StartViewControllerTests">
+               </Test>
+               <Test
+                  Identifier = "TransactionAssemblyTests">
+               </Test>
+               <Test
+                  Identifier = "TransactionInteractorTests">
+               </Test>
+               <Test
+                  Identifier = "TransactionPresenterTests">
+               </Test>
+               <Test
+                  Identifier = "TransactionRouterTests">
+               </Test>
+               <Test
+                  Identifier = "TransactionViewControllerTests">
+               </Test>
+               <Test
+                  Identifier = "VerifiedTransactionAssemblyTests">
+               </Test>
+               <Test
+                  Identifier = "VerifiedTransactionInteractorTests">
+               </Test>
+               <Test
+                  Identifier = "VerifiedTransactionPresenterTests">
+               </Test>
+               <Test
+                  Identifier = "VerifiedTransactionRouterTests">
+               </Test>
+               <Test
+                  Identifier = "VerifiedTransactionViewControllerTests">
+               </Test>
+            </SkippedTests>
+         </TestableReference>
+      </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "56FE2B6C20817F1100DB39D5"
+            BuildableName = "MyEtherWallet-iOS.app"
+            BlueprintName = "MyEtherWallet-iOS"
+            ReferencedContainer = "container:MyEtherWallet-iOS.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+      <AdditionalOptions>
+      </AdditionalOptions>
+   </TestAction>
+   <LaunchAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      ignoresPersistentStateOnLaunch = "NO"
+      debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
+      allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "56FE2B6C20817F1100DB39D5"
+            BuildableName = "MyEtherWallet-iOS.app"
+            BlueprintName = "MyEtherWallet-iOS"
+            ReferencedContainer = "container:MyEtherWallet-iOS.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+      <AdditionalOptions>
+         <AdditionalOption
+            key = "NSZombieEnabled"
+            value = "YES"
+            isEnabled = "YES">
+         </AdditionalOption>
+      </AdditionalOptions>
+   </LaunchAction>
+   <ProfileAction
+      buildConfiguration = "Release"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "56FE2B6C20817F1100DB39D5"
+            BuildableName = "MyEtherWallet-iOS.app"
+            BlueprintName = "MyEtherWallet-iOS"
+            ReferencedContainer = "container:MyEtherWallet-iOS.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </ProfileAction>
+   <AnalyzeAction
+      buildConfiguration = "Debug">
+   </AnalyzeAction>
+   <ArchiveAction
+      buildConfiguration = "AppStore"
+      revealArchiveInOrganizer = "YES">
+   </ArchiveAction>
+</Scheme>

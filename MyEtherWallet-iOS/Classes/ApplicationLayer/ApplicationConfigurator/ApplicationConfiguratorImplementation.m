@@ -24,6 +24,7 @@
 #import "BackupConfirmationSegmentedControl.h"
 
 #import "KeychainService.h"
+#import "RateService.h"
 
 #import "ApplicationConfiguratorImplementation.h"
 
@@ -35,6 +36,8 @@
 
 - (void)configureInitialSettings {
   [self.keychainService saveFirstLaunchDate];
+  [self.rateService checkForUpdate];
+  [self.rateService applicationLaunched];
 }
 
 - (void)configurateAppearance {

@@ -13,4 +13,5 @@
 - (void) configureModule;
 - (void) configureBackupStatus;
 - (void) configureAfterChangingNetwork;
+- (void) takeControlAfterLaunch;
 @end

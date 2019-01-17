@@ -186,6 +186,10 @@
   return [self.keychainStore stringForKey:kKeychainServiceRateAskedField] != nil;
 }
 
+- (void) resetRateStatus {
+  [self.keychainStore removeItemForKey:kKeychainServiceRateAskedField];
+}
+
 #pragma mark - Protected
 
 #pragma mark - KeychainServiceProtected

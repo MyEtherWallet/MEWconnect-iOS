@@ -54,6 +54,10 @@ NS_ASSUME_NONNULL_BEGIN
  Obtain rate status
  */
 - (BOOL) obtainRateStatus;
+/**
+ Reset rate status
+ */
+- (void) resetRateStatus;
 @end
 
 NS_ASSUME_NONNULL_END

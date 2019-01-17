@@ -10,8 +10,10 @@
 
 #import "SplashPasswordRouter.h"
 #import "ForgotPasswordModuleInput.h"
+#import "HomeModuleInput.h"
 
 static NSString *const kSplashPasswordToForgotPasswordSegueIdentifier = @"SplashPasswordToForgotPasswordSegueIdentifier";
+static NSString *const kSplashPasswordToHomeUnwindSegueIdentifier     = @"SplashPasswordToHomeSegueIdentifier";
 
 @implementation SplashPasswordRouter
 
@@ -19,6 +21,13 @@ static NSString *const kSplashPasswordToForgotPasswordSegueIdentifier = @"Splash
 
 - (void) close {
   [self.transitionHandler closeCurrentModule:YES];
+}
+
+- (void) unwindToHome {
+  [[self.transitionHandler openModuleUsingSegue:kSplashPasswordToHomeUnwindSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<HomeModuleInput> moduleInput) {
+    [moduleInput takeControlAfterLaunch];
+    return nil;
+  }];
 }
 
 - (void) openForgotPasswordWithAccount:(AccountPlainObject *)account {

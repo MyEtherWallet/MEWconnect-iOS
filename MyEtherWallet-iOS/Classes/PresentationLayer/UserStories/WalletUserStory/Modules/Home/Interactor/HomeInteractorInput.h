@@ -31,6 +31,5 @@
 - (void) selectMainnetNetwork;
 - (void) selectRopstenNetwork;
 - (void) generateMissedKeysWithPassword:(NSString *)password;
-- (void) transactionDidSigned;
-- (void) requestRaterIfNeeded;
+- (void) unlockForUpdates;
 @end

@@ -20,11 +20,6 @@
   UIView *containerView = [transitionContext containerView];
   UIView *presentedView = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey].view;
   
-  UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-  UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-  [fromViewController beginAppearanceTransition:NO animated:[self transitionDuration:transitionContext] > 0.0];
-  [toViewController beginAppearanceTransition:YES animated:[self transitionDuration:transitionContext] > 0.0];
-  
   [presentedView setNeedsLayout];
   [presentedView layoutIfNeeded];
   UIView *presentedViewSnapshot = [presentedView snapshotViewAfterScreenUpdates:YES];
@@ -47,8 +42,6 @@
                      presentedView.hidden = NO;
                      [presentedViewSnapshot removeFromSuperview];
                      [transitionContext completeTransition:YES];
-                     [fromViewController endAppearanceTransition];
-                     [toViewController endAppearanceTransition];
                    }];
 }
 

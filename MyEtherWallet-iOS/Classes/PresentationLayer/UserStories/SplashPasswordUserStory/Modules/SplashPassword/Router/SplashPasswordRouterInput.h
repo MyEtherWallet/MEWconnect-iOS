@@ -12,5 +12,6 @@
 
 @protocol SplashPasswordRouterInput <NSObject>
 - (void) close;
+- (void) unwindToHome;
 - (void) openForgotPasswordWithAccount:(AccountPlainObject *)account;
 @end

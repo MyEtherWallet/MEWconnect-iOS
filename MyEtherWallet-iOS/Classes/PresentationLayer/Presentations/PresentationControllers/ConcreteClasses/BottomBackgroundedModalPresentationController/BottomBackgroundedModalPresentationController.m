@@ -100,6 +100,11 @@
   if (!completed) {
     [self.presentingSnapshot removeFromSuperview];
   }
+  [super presentationTransitionDidEnd:completed];
+}
+
+- (BOOL)shouldRemovePresentersView {
+  return YES;
 }
 
 - (void) dismissalTransitionWillBegin {

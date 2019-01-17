@@ -81,6 +81,8 @@
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(keychainService)
                                                 with:[self.serviceComponents keychainService]];
+                          [definition injectProperty:@selector(rateService)
+                                                with:[self.serviceComponents rateService]];
                         }];
 }
 

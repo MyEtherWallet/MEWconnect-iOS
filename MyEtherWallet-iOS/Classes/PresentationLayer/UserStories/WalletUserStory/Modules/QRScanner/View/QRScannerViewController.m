@@ -72,7 +72,6 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
 - (void) viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   [self.output didTriggerViewDidAppear];
-  self.view.lockFrame = YES;
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

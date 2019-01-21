@@ -78,6 +78,7 @@ static NSInteger const kSplashPasswordLogoImageViewTag          = 1;
         [[navigationController.topViewController openModuleUsingFactory:self.splashPasswordFactory
                                                     withTransitionBlock:[self passwordTransitionBlockWithCompletion:^{
           [self _animateSplash:launchViewController parentView:navigationController.topViewController.presentedViewController.presentationController.containerView withCompletion:^{
+            [launchViewController.view removeFromSuperview];
             [passwordModuleInput takeControlAfterLaunch];
           }];
         }]] thenChainUsingBlock:linkBlock];
@@ -85,6 +86,7 @@ static NSInteger const kSplashPasswordLogoImageViewTag          = 1;
     });
   } else {
     [self _animateSplash:launchViewController parentView:self.window.rootViewController.view withCompletion:^{
+      [launchViewController.view removeFromSuperview];
     }];
   }
 }

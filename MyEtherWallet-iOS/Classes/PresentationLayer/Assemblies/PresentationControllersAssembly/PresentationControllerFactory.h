@@ -14,5 +14,6 @@
                                     presentedViewController:(UIViewController *)presented
                                    presentingViewController:(UIViewController *)presenting
                                        sourceViewController:(UIViewController *)source
-                                               cornerRadius:(NSNumber *)cornerRadius;
+                                               cornerRadius:(NSNumber *)cornerRadius
+                                                     dimmed:(NSNumber *)dimmed;
 @end

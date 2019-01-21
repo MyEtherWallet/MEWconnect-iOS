@@ -43,7 +43,6 @@ static float const kSplashPasswordShakeAnimationRepeatCount = 3.0;
 
 - (void) viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
-  self.view.lockFrame = YES;
 }
 
 - (void) viewLayoutMarginsDidChange {

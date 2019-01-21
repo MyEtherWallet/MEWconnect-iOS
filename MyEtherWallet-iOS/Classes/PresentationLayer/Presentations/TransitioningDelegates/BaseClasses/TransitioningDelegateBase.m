@@ -25,7 +25,8 @@
                                                    presentedViewController:presented
                                                   presentingViewController:presenting
                                                       sourceViewController:source
-                                                              cornerRadius:@(self.cornerRadius)];
+                                                              cornerRadius:@(self.cornerRadius)
+                                                                    dimmed:@(self.dimmed)];
 }
 
 @end

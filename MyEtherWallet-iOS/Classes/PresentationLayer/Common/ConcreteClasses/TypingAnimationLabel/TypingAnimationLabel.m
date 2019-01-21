@@ -40,11 +40,13 @@ static NSTimeInterval kTypingAnimationDefaultCaretBlinkingTime  = 0.25;
   self.typingDelay = kTypingAnimationDefaultTypingDelay;
   [self addSubview:self.caretLabel];
   [self _updateCaretPosition:_currentAttributedString];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_applicationDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
 }
 
 - (void)dealloc {
   [self.typingTimer invalidate];
   [self.delayTimer invalidate];
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - Public
@@ -284,6 +286,13 @@ static NSTimeInterval kTypingAnimationDefaultCaretBlinkingTime  = 0.25;
     }
   }
   return nil;
+}
+
+#pragma mark - Notifications
+
+- (void) _applicationDidBecomeActive:(__unused NSNotification *)notifications {
+  self.caretLabel.alpha = 1.0;
+  [self _startBlinkingAnimation];
 }
 
 @end

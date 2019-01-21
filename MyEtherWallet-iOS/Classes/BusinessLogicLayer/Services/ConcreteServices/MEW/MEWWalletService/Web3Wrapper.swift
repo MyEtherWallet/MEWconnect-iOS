@@ -122,11 +122,8 @@ class Web3Wrapper: NSObject {
     guard let seed = BIP39.seedFromMmemonics(mnemonics) else { return nil }
     
     let prefixPath = KeySettings.derivationPath(network)
-    NSLog("1")
     guard let bip32Keystore = try? BIP32Keystore(seed: seed, password: password, prefixPath: prefixPath), bip32Keystore != nil else { return nil }
-    NSLog("2")
     guard let keydata = try? JSONEncoder().encode(bip32Keystore!.keystoreParams) else { return nil }
-    NSLog("3")
     guard let encryptedKeydata = self.MEWcrypto?.encryptData(keydata, withPassword: password) else { return nil }
     
     guard let keyAccount = bip32Keystore?.addresses?.first else { return nil }

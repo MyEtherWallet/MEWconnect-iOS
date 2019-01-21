@@ -11,7 +11,7 @@
 @implementation FadeModalPresentingAnimationController
 
 - (NSTimeInterval)transitionDuration:(__unused id <UIViewControllerContextTransitioning>)transitionContext {
-  return 0.3;
+  return 0.65;
 }
 
 - (void) animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
@@ -37,7 +37,7 @@
   UIViewAnimationOptions options = UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseOut;
   
   [UIView animateWithDuration:[self transitionDuration:transitionContext]
-                        delay:0.0
+                        delay:0.01
                       options:options
                    animations:^{
                      presentedViewSnapshot.alpha = 1.0;

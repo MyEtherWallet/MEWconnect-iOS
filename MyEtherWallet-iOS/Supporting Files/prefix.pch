@@ -2,8 +2,8 @@
 
 #if DEBUG
 #   define NSLog(...) NSLog(__VA_ARGS__)
-static const int ddLogLevel = DDLogLevelVerbose;
+static const int ddLogLevel = DDLogLevelWarning;
 #else
 #   define NSLog(...)
-static const int ddLogLevel = DDLogLevelWarning;
+static const int ddLogLevel = DDLogLevelOff;
 #endif

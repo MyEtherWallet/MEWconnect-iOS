@@ -42,10 +42,6 @@
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(presentationControllerType)
                                                 with:@(PresentationControllerBottomModalType)];
-                          [definition injectProperty:@selector(presentingAnimationController)
-                                                with:[self bottomModalPresentingAnimationController]];
-                          [definition injectProperty:@selector(dismissingAnimationController)
-                                                with:[self bottomModalDismissingAnimationController]];
                           [definition injectProperty:@selector(presentationControllerFactory)
                                                 with:self.presentationControllerFactory];
                           [definition injectProperty:@selector(cornerRadius)
@@ -58,10 +54,6 @@
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(presentationControllerType)
                                                 with:@(PresentationControllerBottomBackgroundedModalType)];
-                          [definition injectProperty:@selector(presentingAnimationController)
-                                                with:[self bottomModalPresentingAnimationController]];
-                          [definition injectProperty:@selector(dismissingAnimationController)
-                                                with:[self bottomModalDismissingAnimationController]];
                           [definition injectProperty:@selector(presentationControllerFactory)
                                                 with:self.presentationControllerFactory];
                           [definition injectProperty:@selector(cornerRadius)
@@ -80,6 +72,8 @@
                                                 with:[self fadeModalDismissingAnimationController]];
                           [definition injectProperty:@selector(presentationControllerFactory)
                                                 with:self.presentationControllerFactory];
+                          [definition injectProperty:@selector(dimmed)
+                                                with:@YES];
                         }];
 }
 

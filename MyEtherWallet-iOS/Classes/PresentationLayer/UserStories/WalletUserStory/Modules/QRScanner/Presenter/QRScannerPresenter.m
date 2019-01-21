@@ -41,7 +41,9 @@
 - (void) didTriggerViewDidAppear {
   _viewAppeared = YES;
   if (_accessGranted && _viewAppeared) {
-    [self.interactor startReading];
+    dispatch_async(dispatch_get_main_queue(), ^{
+      [self.interactor startReading];
+    });
   }
 }
 

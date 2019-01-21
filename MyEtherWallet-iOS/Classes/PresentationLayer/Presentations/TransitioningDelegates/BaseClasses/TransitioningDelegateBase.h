@@ -16,4 +16,5 @@
 @property (nonatomic, strong) id <UIViewControllerAnimatedTransitioning> dismissingAnimationController;
 @property (nonatomic, strong) id <PresentationControllerFactory> presentationControllerFactory;
 @property (nonatomic) CGFloat cornerRadius;
+@property (nonatomic) BOOL dimmed;
 @end

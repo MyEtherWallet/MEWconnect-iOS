@@ -26,7 +26,6 @@
 
 - (void) viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
-  self.view.lockFrame = YES;
 }
 
 - (void)viewLayoutMarginsDidChange {

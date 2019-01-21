@@ -39,7 +39,10 @@ typedef NS_OPTIONS(short, HomeViewPresenterStatus) {
 
 #pragma mark - HomeModuleInput
 
-- (void) configureModule {
+- (void) configureModuleForNewWallet:(BOOL)newWallet {
+  if (newWallet) {
+    [self.interactor unlockForUpdates];
+  }
   [self.interactor refreshMasterToken];
   [self.interactor configurate];
   MasterTokenPlainObject *masterToken = [self.interactor obtainMasterToken];

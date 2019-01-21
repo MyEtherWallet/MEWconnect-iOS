@@ -10,7 +10,7 @@
 @import ViperMcFlurryX;
 
 @protocol HomeModuleInput <RamblerViperModuleInput>
-- (void) configureModule;
+- (void) configureModuleForNewWallet:(BOOL)newWallet;
 - (void) configureBackupStatus;
 - (void) configureAfterChangingNetwork;
 - (void) takeControlAfterLaunch;

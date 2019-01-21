@@ -65,7 +65,7 @@ static NSString *const kHomeViewControllerIdentifier            = @"HomeViewCont
 
 - (RamblerViperModuleLinkBlock) homeConfigurationBlock {
   return ^id<RamblerViperModuleOutput>(id<HomeModuleInput> moduleInput) {
-    [moduleInput configureModule];
+    [moduleInput configureModuleForNewWallet:NO];
     return nil;
   };
 }

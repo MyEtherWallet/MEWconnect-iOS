@@ -22,7 +22,7 @@ static NSString *const kNewWalletToHomeUnwindSegueIdentifier  = @"NewWalletToHom
 
 - (void) unwindToWallet {
   [[self.transitionHandler openModuleUsingSegue:kNewWalletToHomeUnwindSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<HomeModuleInput> moduleInput) {
-    [moduleInput configureModule];
+    [moduleInput configureModuleForNewWallet:YES];
     return nil;
   }];
 }

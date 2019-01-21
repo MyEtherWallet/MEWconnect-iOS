@@ -196,6 +196,9 @@
 		563CF30220EFAD8A005467AE /* BuyEtherHistoryEmptyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 563CF30020EFAD8A005467AE /* BuyEtherHistoryEmptyTableViewCell.xib */; };
 		563CF30620EFAF26005467AE /* BuyEtherHistoryCellObjectBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF30520EFAF26005467AE /* BuyEtherHistoryCellObjectBuilder.m */; };
 		563CF30A20EFB235005467AE /* BuyEtherHistoryTableViewAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 563CF30920EFB235005467AE /* BuyEtherHistoryTableViewAnimator.m */; };
+		563D081521F680C80055A963 /* TokensResponseValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5645258A2164C63A004D23C4 /* TokensResponseValidator.m */; };
+		563D081621F680D50055A963 /* RateServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56191EAD215052FD000BF97F /* RateServiceImplementation.m */; };
+		563D081721F680F20055A963 /* MEWconnectServiceStateMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F3EF662163F95E00C40804 /* MEWconnectServiceStateMachine.m */; };
 		563DF37E20986B7200F740FF /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 563DF37D20986B7200F740FF /* UIColor+Hex.m */; };
 		563DF38120986B7900F740FF /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 563DF38020986B7900F740FF /* UIImage+Color.m */; };
 		563DF38520986F8500F740FF /* PasswordTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 563DF38420986F8500F740FF /* PasswordTextField.m */; };
@@ -10250,6 +10253,7 @@
 				56E3E57721016DB60014152D /* HomeInteractor.m in Sources */,
 				56E3E57821016DB60014152D /* HomeRouter.m in Sources */,
 				56E3E57921016DB60014152D /* MEWMappingProvider.m in Sources */,
+				563D081521F680C80055A963 /* TokensResponseValidator.m in Sources */,
 				56E3E57A21016DB60014152D /* SimplexBodyTransformer.m in Sources */,
 				56E3E57B21016DB60014152D /* QRScannerAssembly.m in Sources */,
 				56E3E57C21016DB60014152D /* QRScannerViewController.m in Sources */,
@@ -10320,6 +10324,7 @@
 				56E3E5B721016DB60014152D /* InfoEmptyTableViewCellObject.m in Sources */,
 				56E3E5B821016DB60014152D /* PonsomizerImplementation.m in Sources */,
 				56E3E5B921016DB60014152D /* Web3Wrapper.swift in Sources */,
+				563D081721F680F20055A963 /* MEWconnectServiceStateMachine.m in Sources */,
 				5691625E2194B85300A58480 /* MnemonicsValidatorImplementation.m in Sources */,
 				56E3E5BA21016DB60014152D /* NSString+MEWTokens.m in Sources */,
 				56E3E5BB21016DB60014152D /* UIColor+HSL.swift in Sources */,
@@ -10380,6 +10385,7 @@
 				56E3E5ED21016DB60014152D /* SimplexOperationFactory.m in Sources */,
 				56E3E5EE21016DB60014152D /* InfoCellObjectBuilder.m in Sources */,
 				5677C58D2181226500477ACD /* _NetworkModelObject.m in Sources */,
+				563D081621F680D50055A963 /* RateServiceImplementation.m in Sources */,
 				56F8EAA32183B7F90010274B /* MappingModel_v_1_to_2.xcmappingmodel in Sources */,
 				56E3E5EF21016DB60014152D /* AccessoryTableViewAction.m in Sources */,
 				56E3E5F021016DB60014152D /* BackupInfoRouter.m in Sources */,

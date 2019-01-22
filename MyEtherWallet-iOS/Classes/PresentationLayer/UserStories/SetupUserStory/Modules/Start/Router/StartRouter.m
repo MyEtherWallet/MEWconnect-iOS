@@ -33,7 +33,7 @@ static NSString *const kStartToRestoreWalletSegueIdentifier   = @"StartToRestore
   if (animated) {
     NSString *segueIdentifier = kStartToHomeSegueIdentifier;
     [[self.transitionHandler openModuleUsingSegue:segueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<HomeModuleInput> moduleInput) {
-      [moduleInput configureModule];
+      [moduleInput configureModuleForNewWallet:YES];
       return nil;
     }];
   } else {
@@ -46,7 +46,7 @@ static NSString *const kStartToRestoreWalletSegueIdentifier   = @"StartToRestore
                                   NSArray <__kindof UIViewController *> *viewControllers = [navigationController.viewControllers arrayByAddingObject:toViewController];
                                   [navigationController setViewControllers:viewControllers animated:NO];
                                 }] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<HomeModuleInput> moduleInput) {
-                                  [moduleInput configureModule];
+                                  [moduleInput configureModuleForNewWallet:YES];
                                   return nil;
                                 }];
   }

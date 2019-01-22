@@ -1,3 +1,9 @@
+### Release 1.0.6
+
+- Smooth screen transition animations
+- Reduced app loading time
+- Other minor improvements
+
 ### Release 1.0.5
 
 - Improved connection for some mobile operators.

@@ -78,6 +78,7 @@ static NSInteger const kSplashPasswordLogoImageViewTag          = 1;
         [[navigationController.topViewController openModuleUsingFactory:self.splashPasswordFactory
                                                     withTransitionBlock:[self passwordTransitionBlockWithCompletion:^{
           [self _animateSplash:launchViewController parentView:navigationController.topViewController.presentedViewController.presentationController.containerView withCompletion:^{
+            [launchViewController.view removeFromSuperview];
             [passwordModuleInput takeControlAfterLaunch];
           }];
         }]] thenChainUsingBlock:linkBlock];
@@ -85,6 +86,7 @@ static NSInteger const kSplashPasswordLogoImageViewTag          = 1;
     });
   } else {
     [self _animateSplash:launchViewController parentView:self.window.rootViewController.view withCompletion:^{
+      [launchViewController.view removeFromSuperview];
     }];
   }
 }
@@ -111,11 +113,13 @@ static NSInteger const kSplashPasswordLogoImageViewTag          = 1;
 
 - (void) _animateSplash:(UIViewController *)launchViewController parentView:(UIView *)parentView withCompletion:(void(^)(void))completion {
   UIImageView *logoImageView = (UIImageView *)[launchViewController.view viewWithTag:kSplashPasswordLogoImageViewTag];
-  UIViewPropertyAnimator *animator = [self.propertyAnimatorsFactory mewQuatroPropertyAnimatorWithDuration:@0.9];
-  
-  NSLayoutConstraint *widthConstraint = [logoImageView.widthAnchor constraintEqualToConstant:logoImageView.image.size.width];
+  CGFloat originalImageWidth = logoImageView.image.size.width;
+  NSLayoutConstraint *widthConstraint = [logoImageView.widthAnchor constraintEqualToConstant:originalImageWidth];
   widthConstraint.active = YES;
   [launchViewController.view layoutIfNeeded];
+  UIViewPropertyAnimator *animator = [self.propertyAnimatorsFactory mewQuatroPropertyAnimatorWithDuration:@1.1];
+  
+  [logoImageView setImage:[UIImage imageNamed:@"mew_logo_scaled"]];
   
   CGFloat firstPartAnimationDuration = 1.0/3.0;
   
@@ -128,7 +132,7 @@ static NSInteger const kSplashPasswordLogoImageViewTag          = 1;
                                                         relativeDuration:firstPartAnimationDuration
                                                               animations:^{
                                                                 parentView.transform = CGAffineTransformMakeScale(1.1, 1.1);
-                                                                widthConstraint.constant = 0.9 * logoImageView.image.size.width;
+                                                                widthConstraint.constant = 0.9 * originalImageWidth;
                                                                 [launchViewController.view layoutIfNeeded];
                                                               }];
                                 [UIView addKeyframeWithRelativeStartTime:firstPartAnimationDuration
@@ -136,7 +140,7 @@ static NSInteger const kSplashPasswordLogoImageViewTag          = 1;
                                                               animations:^{
                                                                 parentView.transform = CGAffineTransformIdentity;
                                                                 launchViewController.view.alpha = 0.0;
-                                                                widthConstraint.constant = 16.0 * logoImageView.image.size.width;
+                                                                widthConstraint.constant = 16.0 * originalImageWidth;
                                                                 [launchViewController.view layoutIfNeeded];
                                                               }];
                               } completion:^(__unused BOOL finished) {

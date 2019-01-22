@@ -11,43 +11,31 @@
 #import "UIView+LockFrame.h"
 
 @interface BottomModalPresentationController ()
-@property (nonatomic, strong, readonly) UIView *presentingSnapshot;
-@property (nonatomic, strong, readonly) UIView *presentedWrapper;
+@property (nonatomic, strong) UIView *dimmingView;
 @end
 
 @implementation BottomModalPresentationController
-@synthesize presentingSnapshot = _presentingSnapshot;
 
-- (UIView *) presentingSnapshot {
-  if (!_presentingSnapshot) {
-    UIView *viewForSnapshot = self.presentingViewController.view;
-    if (self.presentingViewController.presentationController.containerView != nil) {
-      viewForSnapshot = self.presentingViewController.presentationController.containerView;
-    }
-    _presentingSnapshot = [viewForSnapshot snapshotViewAfterScreenUpdates:NO];
-    _presentingSnapshot.translatesAutoresizingMaskIntoConstraints = NO;
+- (UIView *)dimmingView {
+  if (!_dimmingView) {
+    _dimmingView = [[UIView alloc] initWithFrame:self.containerView.bounds];
+    _dimmingView.backgroundColor = [UIColor blackColor];
   }
-  return _presentingSnapshot;
+  return _dimmingView;
 }
 
-- (UIView *) presentedView {
-  if (!_presentedWrapper) {
-    _presentedWrapper = [[UIView alloc] initWithFrame:[super presentedView].frame];
-    _presentedWrapper.autoresizingMask = [super presentedView].autoresizingMask;
-    _presentedWrapper.lockFrame = YES;
-  }
-  return _presentedWrapper;
-}
-
-- (void)presentationTransitionWillBegin {
-  [self.presentedView addSubview:[super presentedView]];
-  [self.containerView addSubview:self.presentingSnapshot];
-  [self.containerView.topAnchor constraintEqualToAnchor:self.presentingSnapshot.topAnchor].active = YES;
-  [self.containerView.leftAnchor constraintEqualToAnchor:self.presentingSnapshot.leftAnchor].active = YES;
-  [self.containerView.rightAnchor constraintEqualToAnchor:self.presentingSnapshot.rightAnchor].active = YES;
-  [self.containerView.bottomAnchor constraintEqualToAnchor:self.presentingSnapshot.bottomAnchor].active = YES;
+- (void) presentationTransitionWillBegin {
+  [super presentationTransitionWillBegin];
   
-  [self.containerView addSubview:self.presentedView];
+  if (self.dimmed) {
+    self.dimmingView.frame = self.containerView.bounds;
+    self.dimmingView.alpha = 0;
+    [self.containerView addSubview:self.dimmingView];
+    
+    [self.presentedViewController.transitionCoordinator animateAlongsideTransition:^(__unused id<UIViewControllerTransitionCoordinatorContext> context) {
+      self.dimmingView.alpha = 0.4;
+    } completion:nil];
+  }
   
   if (self.presentedViewController.transitionCoordinator.animated) {
     [self.presentedView snapshotViewAfterScreenUpdates:YES];
@@ -56,22 +44,37 @@
 
 - (void) presentationTransitionDidEnd:(BOOL)completed {
   if (!completed) {
-    [self.presentingSnapshot removeFromSuperview];
+    if (self.dimmed) {
+      [self.dimmingView removeFromSuperview];
+    }
+  } else {
+    self.presentedView.lockFrame = YES;
   }
+  [super presentationTransitionDidEnd:completed];
 }
 
 - (void) dismissalTransitionWillBegin {
+  self.presentedView.lockFrame = NO;
+  if (self.dimmed) {
+    [self.presentedViewController.transitionCoordinator animateAlongsideTransition:^(__unused id<UIViewControllerTransitionCoordinatorContext> context) {
+      self.dimmingView.alpha = 0;
+    } completion:nil];
+  }
+  [super dismissalTransitionWillBegin];
 }
 
 - (void) dismissalTransitionDidEnd:(BOOL)completed {
-  if (completed) {
-    [self.presentingSnapshot removeFromSuperview];
+  if (!completed) {
+    self.presentedView.lockFrame = YES;
+  } else if (self.dimmed) {
+    [self.dimmingView removeFromSuperview];
   }
+  [super dismissalTransitionDidEnd:completed];
 }
 
 - (CGRect) frameOfPresentedViewInContainerView {
   CGSize size = self.presentedViewController.preferredContentSize;
-  CGRect frame = CGRectMake(0.0, CGRectGetHeight(self.containerView.frame) - size.height,
+  CGRect frame = CGRectMake(0.0, CGRectGetHeight(self.containerView.bounds) - size.height,
                             CGRectGetWidth(self.containerView.bounds), size.height);
   return frame;
 }
@@ -79,8 +82,11 @@
 - (void) containerViewWillLayoutSubviews {
   [super containerViewWillLayoutSubviews];
   CGRect frame = [self frameOfPresentedViewInContainerView];
-  if (!CGRectEqualToRect([super presentedView].frame, frame)) {
-    [super presentedView].frame = frame;
+  if (self.dimmed) {
+    self.dimmingView.frame = self.containerView.bounds;
+  }
+  if (!CGRectEqualToRect([super presentedView].frame, frame) ||
+      !CGSizeEqualToSize([super presentedView].layer.mask.frame.size, frame.size)) {
     [self _updateMaskWithFrame:frame];
   }
 }

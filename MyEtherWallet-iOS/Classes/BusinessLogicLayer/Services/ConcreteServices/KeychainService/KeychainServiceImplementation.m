@@ -158,7 +158,7 @@
 
 - (void) resetKeychain {
   NSArray <NSString *> *keys = [self.keychainStore allKeys];
-  NSArray *ignoringKeys = @[kKeychainServiceRateAskedField, /*kKeychainServiceVersionField,*/ kKeychainServiceFirstLaunchField];
+  NSArray *ignoringKeys = @[kKeychainServiceRateAskedField, kKeychainServiceVersionField, kKeychainServiceFirstLaunchField];
   for (NSString *key in keys) {
     if (![ignoringKeys containsObject:key]) {
       [self _removeItemWithKey:key];
@@ -184,6 +184,10 @@
 
 - (BOOL) obtainRateStatus {
   return [self.keychainStore stringForKey:kKeychainServiceRateAskedField] != nil;
+}
+
+- (void) resetRateStatus {
+  [self.keychainStore removeItemForKey:kKeychainServiceRateAskedField];
 }
 
 #pragma mark - Protected

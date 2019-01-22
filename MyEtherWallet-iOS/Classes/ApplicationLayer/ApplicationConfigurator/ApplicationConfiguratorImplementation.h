@@ -11,7 +11,9 @@
 #import "ApplicationConfigurator.h"
 
 @protocol KeychainService;
+@protocol RateService;
 
 @interface ApplicationConfiguratorImplementation : NSObject <ApplicationConfigurator>
 @property (nonatomic, strong) id <KeychainService> keychainService;
+@property (nonatomic, strong) id <RateService> rateService;
 @end

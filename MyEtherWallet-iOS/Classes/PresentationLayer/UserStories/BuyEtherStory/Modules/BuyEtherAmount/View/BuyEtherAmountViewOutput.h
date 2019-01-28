@@ -16,4 +16,5 @@
 - (void) historyAction;
 - (void) buyAction;
 - (void) switchConvertingAction;
+- (void) didTriggerViewDidAppearEvent;
 @end

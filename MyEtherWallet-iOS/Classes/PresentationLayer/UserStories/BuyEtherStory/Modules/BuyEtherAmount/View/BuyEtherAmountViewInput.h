@@ -19,4 +19,5 @@
 - (void) disableContinue;
 - (void) showLoading;
 - (void) hideLoading;
+- (void) hidePriceActivity;
 @end

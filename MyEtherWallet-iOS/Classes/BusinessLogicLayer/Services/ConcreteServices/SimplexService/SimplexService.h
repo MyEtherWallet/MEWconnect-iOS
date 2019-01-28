@@ -21,7 +21,7 @@ typedef void(^SimplexServiceOrderCompletion)(SimplexOrder *order, NSError *error
 typedef void(^SimplexServiceStatusCompletion)(NSError *error);
 
 @protocol SimplexService <NSObject>
-- (void) quoteWithAmount:(NSDecimalNumber *)amount currency:(SimplexServiceCurrencyType)currency completion:(SimplexServiceQuoteCompletion)completion;
+- (void) quoteWithAmount:(NSDecimalNumber *)amount currency:(SimplexServiceCurrencyType)currency prequote:(BOOL)prequote completion:(SimplexServiceQuoteCompletion)completion;
 - (void) orderForMasterToken:(MasterTokenPlainObject *)masterToken quote:(SimplexQuote *)quote completion:(SimplexServiceOrderCompletion)completion;
 - (void) statusForPurchase:(PurchaseHistoryPlainObject *)purchase completion:(SimplexServiceStatusCompletion)completion;
 - (NSArray <PurchaseHistoryModelObject *> *) obtainHistoryForMasterToken:(MasterTokenPlainObject *)masterToken;

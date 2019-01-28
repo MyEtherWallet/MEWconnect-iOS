@@ -31,6 +31,10 @@
   [self.view updateWithEnteredAmount:enteredAmount convertedAmount:convertedAmount];
 }
 
+- (void) didTriggerViewDidAppearEvent {
+  [self.interactor updateEthPriceIfNeeded];
+}
+
 - (void) didEnterSymbolAction:(NSString *)symbol {
   [self.interactor appendSymbol:symbol];
 }
@@ -85,6 +89,10 @@
 
 - (void) loadingDidEnd {
   [self.view hideLoading];
+}
+
+- (void)priceDidUpdated {
+  [self.view hidePriceActivity];
 }
 
 @end

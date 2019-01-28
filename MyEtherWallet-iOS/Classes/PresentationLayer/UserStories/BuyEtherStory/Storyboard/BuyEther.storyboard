@@ -246,15 +246,20 @@
                                 <color key="textColor" red="0.43137254901960786" green="0.45098039215686275" blue="0.51764705882352935" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="y6h-mo-bjT">
+                                <rect key="frame" x="245" y="212" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="z0O-EI-5HY" secondAttribute="bottom" id="6AB-4g-CGn"/>
+                            <constraint firstItem="y6h-mo-bjT" firstAttribute="leading" secondItem="l32-qR-w0g" secondAttribute="trailing" constant="8" id="7My-4N-4s1"/>
                             <constraint firstItem="gwV-jF-T3l" firstAttribute="top" secondItem="de3-Ge-Pri" secondAttribute="top" constant="46" id="A6w-eX-Igy"/>
                             <constraint firstItem="nJ8-dO-0p9" firstAttribute="baseline" secondItem="gwV-jF-T3l" secondAttribute="baseline" id="FcY-gD-WDI"/>
                             <constraint firstItem="0Ew-qW-Plz" firstAttribute="centerX" secondItem="J5Y-Du-5Ui" secondAttribute="centerX" id="Gsh-8d-tIL"/>
                             <constraint firstItem="gwV-jF-T3l" firstAttribute="centerX" secondItem="J5Y-Du-5Ui" secondAttribute="centerX" priority="749" id="JH0-tY-OVA"/>
                             <constraint firstItem="l32-qR-w0g" firstAttribute="centerX" secondItem="J5Y-Du-5Ui" secondAttribute="centerX" id="Kfz-gP-Czg"/>
+                            <constraint firstItem="y6h-mo-bjT" firstAttribute="centerY" secondItem="l32-qR-w0g" secondAttribute="centerY" id="QX6-ZW-glE"/>
                             <constraint firstItem="de3-Ge-Pri" firstAttribute="bottom" secondItem="jGA-nU-jau" secondAttribute="bottom" constant="24" id="Tq8-ZD-s00"/>
                             <constraint firstItem="de3-Ge-Pri" firstAttribute="right" relation="greaterThanOrEqual" secondItem="nJ8-dO-0p9" secondAttribute="right" constant="16" id="Xeo-vB-O4R"/>
                             <constraint firstItem="l32-qR-w0g" firstAttribute="top" secondItem="0Ew-qW-Plz" secondAttribute="bottom" constant="15" id="aUC-U6-7Mk"/>
@@ -287,6 +292,7 @@
                         <outlet property="buttonBottomOffsetConstraint" destination="Tq8-ZD-s00" id="sho-ln-3tu"/>
                         <outlet property="buyButton" destination="jGA-nU-jau" id="GrH-Kr-aMI"/>
                         <outlet property="keypadToContainerTopOffsetConstraint" destination="h4n-w9-5v5" id="5LH-R5-4L9"/>
+                        <outlet property="priceActivityIndicator" destination="y6h-mo-bjT" id="0jn-n8-6S6"/>
                         <outlet property="resultLabel" destination="l32-qR-w0g" id="iFB-TG-er7"/>
                         <outlet property="separatorButton" destination="8Oa-xN-1qB" id="QGz-pT-BaB"/>
                         <outlet property="switchCurrencyButton" destination="0Ew-qW-Plz" id="Syk-Xg-hRA"/>

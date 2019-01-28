@@ -31,6 +31,7 @@
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *amountTopOffsetConstraint;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *keypadToContainerTopOffsetConstraint;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *buttonBottomOffsetConstraint;
+@property (nonatomic, weak) IBOutlet UIActivityIndicatorView *priceActivityIndicator;
 @end
 
 @implementation BuyEtherAmountViewController {
@@ -46,6 +47,11 @@
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  [self.output didTriggerViewDidAppearEvent];
 }
 
 - (UIStatusBarStyle) preferredStatusBarStyle {
@@ -133,6 +139,10 @@
 
 - (void) hideLoading {
   self.buyButton.loading = NO;
+}
+
+- (void) hidePriceActivity {
+  [self.priceActivityIndicator stopAnimating];
 }
 
 #pragma mark - IBActions

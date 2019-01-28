@@ -17,4 +17,5 @@
 - (void) minimumAmountDidReached:(BOOL)minimumAmountReached;
 - (void) loadingDidStart;
 - (void) loadingDidEnd;
+- (void) priceDidUpdated;
 @end

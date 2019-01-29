@@ -48,7 +48,7 @@ void HandleSignal(__unused int signal) {
 #pragma mark - Private
 
 - (void) _crashReceived {
-  [self.rateService clearCount];
+//  [self.rateService clearCount];
 }
 
 @end

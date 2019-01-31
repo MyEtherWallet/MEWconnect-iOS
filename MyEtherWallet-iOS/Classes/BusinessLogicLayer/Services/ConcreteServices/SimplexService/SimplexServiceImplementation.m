@@ -41,19 +41,23 @@
 
 @implementation SimplexServiceImplementation
 
-- (void) quoteWithAmount:(NSDecimalNumber *)amount currency:(SimplexServiceCurrencyType)currency completion:(SimplexServiceQuoteCompletion)completion {
+- (void) quoteWithAmount:(NSDecimalNumber *)amount currency:(SimplexServiceCurrencyType)currency prequote:(BOOL)prequote completion:(SimplexServiceQuoteCompletion)completion {
   SimplexQuoteBody *body = [self _obtainQuoteBodyWithAmount:amount currency:currency];
 
   CompoundOperationBase *compoundOperation = [self.simplexOperationFactory quoteWithBody:body];
   [compoundOperation setResultBlock:^(SimplexQuote *data, NSError *error) {
-    self.quote = data;
+    if (!prequote) {
+      self.quote = data;
+    }
     dispatch_async(dispatch_get_main_queue(), ^{
       if (completion) {
         completion(data, error);
       }
     });
   }];
-  [self.operationScheduler cancelAllOperations];
+  if (!prequote) {
+    [self.operationScheduler cancelAllOperations];
+  }
   [self.operationScheduler addOperation:compoundOperation];
 }
 

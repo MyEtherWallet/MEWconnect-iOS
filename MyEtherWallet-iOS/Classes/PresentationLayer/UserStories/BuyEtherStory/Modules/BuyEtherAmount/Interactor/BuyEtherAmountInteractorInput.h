@@ -15,6 +15,7 @@
 
 @protocol BuyEtherAmountInteractorInput <NSObject>
 - (void) configurateWithMasterToken:(MasterTokenPlainObject *)masterToken;
+- (void) updateEthPriceIfNeeded;
 - (void) appendSymbol:(NSString *)symbol;
 - (void) eraseSymbol;
 - (void) switchConverting;

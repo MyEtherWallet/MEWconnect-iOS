@@ -32,6 +32,7 @@ static NSString *const kBuyEtherAmountDecimalSeparator    = @".";
 @property (nonatomic, strong) MasterTokenPlainObject *masterToken;
 @property (nonatomic) SimplexServiceCurrencyType currency;
 @property (nonatomic, strong) NSMutableString *amount;
+@property (nonatomic, strong) NSDecimalNumber *simplexPrice;
 @end
 
 @implementation BuyEtherAmountInteractor {
@@ -62,6 +63,49 @@ static NSString *const kBuyEtherAmountDecimalSeparator    = @".";
                                                                   raiseOnOverflow:NO
                                                                  raiseOnUnderflow:NO
                                                               raiseOnDivideByZero:NO];
+}
+
+- (void) updateEthPriceIfNeeded {
+  if (!self.simplexPrice) {
+    @weakify(self);
+    [self.simplexService quoteWithAmount:[NSDecimalNumber one]
+                                currency:SimplexServiceCurrencyTypeETH
+                                prequote:YES
+                              completion:^(SimplexQuote *quote, __unused NSError *error) {
+                                @strongify(self);
+                                if (quote) {
+                                  self.simplexPrice = quote.fiatBaseAmount;
+                                  NSDecimalNumber *convertedAmount = [self obtainConvertedAmount];
+                                  
+                                  BOOL minimumAmountReached = NO;
+                                  switch (self.currency) {
+                                    case SimplexServiceCurrencyTypeUSD: {
+                                      NSDecimalNumber *usd = [self _obtainEnteredAmountNumber];
+                                      minimumAmountReached = [usd compare:kBuyEtherMinimumUSDAmount] != NSOrderedAscending;
+                                      break;
+                                    }
+                                    case SimplexServiceCurrencyTypeETH: {
+                                      if (convertedAmount) {
+                                        minimumAmountReached = [convertedAmount compare:kBuyEtherMinimumUSDAmount] != NSOrderedAscending;
+                                      } else {
+                                        NSDecimalNumber *eth = [self _obtainEnteredAmountNumber];
+                                        minimumAmountReached = [eth compare:[NSDecimalNumber zero]] == NSOrderedDescending;
+                                      }
+                                      break;
+                                    }
+                                      
+                                    default:
+                                      break;
+                                  }
+                                  
+                                  [self.output updateInputPriceWithEnteredAmount:self.amount convertedAmount:convertedAmount];
+                                  [self.output minimumAmountDidReached:minimumAmountReached];
+                                }
+                                [self.output priceDidUpdated];
+                              }];
+  } else {
+    [self.output priceDidUpdated];
+  }
 }
 
 - (void) switchConverting {
@@ -119,7 +163,7 @@ static NSString *const kBuyEtherAmountDecimalSeparator    = @".";
       NSDecimalNumber *usd = [self _obtainEnteredAmountNumber];
       if ([usd compare:kBuyEtherMaximumUSDAmount] == NSOrderedDescending) {
         usd = kBuyEtherMaximumUSDAmount;
-        convertedAmount = [self _obtainConvertedAmountWithCurrency:SimplexServiceCurrencyTypeETH enteredAmount:usd];
+        convertedAmount = [self _obtainConvertedAmountWithCurrency:SimplexServiceCurrencyTypeUSD enteredAmount:usd];
         [_amount replaceCharactersInRange:NSMakeRange(0, [_amount length]) withString:[usd stringValue]];
       }
       minimumAmountReached = [usd compare:kBuyEtherMinimumUSDAmount] != NSOrderedAscending;
@@ -201,6 +245,7 @@ static NSString *const kBuyEtherAmountDecimalSeparator    = @".";
     @weakify(self);
     [self.simplexService quoteWithAmount:amount
                                 currency:self.currency
+                                prequote:NO
                               completion:^(SimplexQuote *quote, __unused NSError *error) {
                                 @strongify(self);
                                 if (quote) {
@@ -238,18 +283,18 @@ static NSString *const kBuyEtherAmountDecimalSeparator    = @".";
 }
 
 - (NSDecimalNumber *) _obtainConvertedAmountWithCurrency:(SimplexServiceCurrencyType)currency enteredAmount:(NSDecimalNumber *)enteredAmount {
-  NSDecimalNumber *usdPrice = self.masterToken.price.usdPrice;
+  NSDecimalNumber *usdPrice = self.simplexPrice ?: self.masterToken.price.usdPrice;
   NSDecimalNumber *convertedAmount = nil;
   if (usdPrice) {
     switch (currency) {
       case SimplexServiceCurrencyTypeETH: {
-        convertedAmount = [enteredAmount decimalNumberByMultiplyingBy:self.masterToken.price.usdPrice];
+        convertedAmount = [enteredAmount decimalNumberByMultiplyingBy:usdPrice];
         convertedAmount = [convertedAmount decimalNumberByRoundingAccordingToBehavior:_usdRoundHandler];
         break;
       }
       case SimplexServiceCurrencyTypeUSD:
       default: {
-        convertedAmount = [enteredAmount decimalNumberByDividingBy:self.masterToken.price.usdPrice];
+        convertedAmount = [enteredAmount decimalNumberByDividingBy:usdPrice];
         convertedAmount = [convertedAmount decimalNumberByRoundingAccordingToBehavior:_ethRoundHandler];
         break;
       }

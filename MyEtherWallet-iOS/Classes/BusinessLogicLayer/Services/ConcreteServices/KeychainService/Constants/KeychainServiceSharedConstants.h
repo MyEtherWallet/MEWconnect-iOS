@@ -10,9 +10,6 @@
 
 FOUNDATION_EXPORT NSString *const kKeychainServiceFirstLaunchField;
 
-FOUNDATION_EXPORT NSString *const kKeychainServiceRateAskedValue;
-FOUNDATION_EXPORT NSString *const kKeychainServiceRateAskedField;
-
 FOUNDATION_EXPORT NSString *const kKeychainServiceVersionField;
 
 FOUNDATION_EXPORT NSString *const kKeychainServiceEntropyField;

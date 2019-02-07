@@ -110,16 +110,13 @@ static NSString *const kBuyEtherAmountDecimalSeparator    = @".";
 
 - (void) switchConverting {
   NSDecimalNumber *convertedAmount = [self obtainConvertedAmount];
-  NSDecimalNumberHandler *roundHandler = nil;
   switch (_currency) {
     case SimplexServiceCurrencyTypeETH: {
       _currency = SimplexServiceCurrencyTypeUSD;
-      roundHandler = _usdRoundHandler;
       break;
     }
     case SimplexServiceCurrencyTypeUSD: {
       _currency = SimplexServiceCurrencyTypeETH;
-      roundHandler = _ethRoundHandler;
       break;
     }
   }

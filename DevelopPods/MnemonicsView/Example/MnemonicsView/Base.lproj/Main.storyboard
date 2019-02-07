@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="whP-gf-Uak">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="wQg-tq-qST">
+            <objects>
+                <viewController id="whP-gf-Uak" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TpU-gO-2f1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="aWT-0a-Q5U">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="510" translatesAutoresizingMaskIntoConstraints="NO" id="7QN-hF-HEr">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="510"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SaL-ec-N0V" customClass="MnemonicsView">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="510"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="centered" value="NO"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="numberOfWords">
+                                                        <integer key="value" value="24"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="SaL-ec-N0V" secondAttribute="trailing" id="GSD-O5-wb8"/>
+                                            <constraint firstAttribute="bottom" secondItem="SaL-ec-N0V" secondAttribute="bottom" id="iPl-Bt-E2a"/>
+                                            <constraint firstItem="SaL-ec-N0V" firstAttribute="top" secondItem="7QN-hF-HEr" secondAttribute="top" id="q4N-uM-QJm"/>
+                                            <constraint firstItem="SaL-ec-N0V" firstAttribute="leading" secondItem="7QN-hF-HEr" secondAttribute="leading" id="yae-VZ-Ngh"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="7QN-hF-HEr" firstAttribute="top" secondItem="aWT-0a-Q5U" secondAttribute="top" id="2Q7-vR-WB3"/>
+                                    <constraint firstItem="7QN-hF-HEr" firstAttribute="width" secondItem="aWT-0a-Q5U" secondAttribute="width" id="4yc-ZQ-2nI"/>
+                                    <constraint firstAttribute="bottom" secondItem="7QN-hF-HEr" secondAttribute="bottom" id="JiU-lO-o3J"/>
+                                    <constraint firstItem="7QN-hF-HEr" firstAttribute="leading" secondItem="aWT-0a-Q5U" secondAttribute="leading" id="gV0-NZ-7jH"/>
+                                    <constraint firstAttribute="trailing" secondItem="7QN-hF-HEr" secondAttribute="trailing" id="uUk-hT-zx7"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="NUP-gG-4Z8" firstAttribute="trailing" secondItem="aWT-0a-Q5U" secondAttribute="trailing" id="2nV-lK-jQx"/>
+                            <constraint firstItem="aWT-0a-Q5U" firstAttribute="leading" secondItem="NUP-gG-4Z8" secondAttribute="leading" id="Ael-bC-Lwt"/>
+                            <constraint firstItem="aWT-0a-Q5U" firstAttribute="top" secondItem="NUP-gG-4Z8" secondAttribute="top" id="aOK-dN-4a4"/>
+                            <constraint firstItem="NUP-gG-4Z8" firstAttribute="bottom" secondItem="aWT-0a-Q5U" secondAttribute="bottom" id="hlr-Nt-MGX"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="NUP-gG-4Z8"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tc2-Qw-aMS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="305" y="433"/>
+        </scene>
+    </scenes>
+</document>

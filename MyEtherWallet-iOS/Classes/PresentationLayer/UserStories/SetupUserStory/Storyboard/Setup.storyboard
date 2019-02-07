@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TZA-8o-0tf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TZA-8o-0tf">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -30,17 +30,17 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k4X-dr-mCo" userLabel="page1">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="intro_mewconnect_logo" translatesAutoresizingMaskIntoConstraints="NO" id="YLW-t7-njx">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro_mewconnect_logo" translatesAutoresizingMaskIntoConstraints="NO" id="YLW-t7-njx">
                                                         <rect key="frame" x="40" y="100" width="289" height="36"/>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="by MyEtherWallet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgr-4b-rhX">
+                                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="by MyEtherWallet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgr-4b-rhX">
                                                         <rect key="frame" x="40" y="151" width="134" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Finally, a ‘hardware wallet’ without all the hardware. Officially by MyEtherWallet" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dKN-Rk-zZ5" userLabel="descriptionPage1">
-                                                        <rect key="frame" x="40" y="392.5" width="334" height="124.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Finally, a ‘hardware wallet’ without all the hardware. Officially by MyEtherWallet" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dKN-Rk-zZ5" userLabel="descriptionPage1">
+                                                        <rect key="frame" x="40" y="492.66666666666669" width="334" height="93.333333333333314"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="26"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -64,8 +64,8 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A3T-SH-eyu" userLabel="page2">
                                                 <rect key="frame" x="414" y="0.0" width="414" height="736"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Interact directly with the blockchain with full control of your keys &amp; your funds." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xkV-Ja-NFK" userLabel="descriptionPage2">
-                                                        <rect key="frame" x="40" y="373.5" width="334" height="143.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Interact directly with the blockchain with full control of your keys &amp; your funds." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xkV-Ja-NFK" userLabel="descriptionPage2">
+                                                        <rect key="frame" x="40" y="442.66666666666669" width="334" height="143.33333333333331"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -80,8 +80,8 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wp2-p6-Bdx" userLabel="page3">
                                                 <rect key="frame" x="828" y="0.0" width="414" height="736"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Interact directly with the blockchain with full control of your keys &amp; your funds." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sdn-1n-Fgb" userLabel="descriptionPage3">
-                                                        <rect key="frame" x="40" y="373.5" width="334" height="143.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Interact directly with the blockchain with full control of your keys &amp; your funds." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sdn-1n-Fgb" userLabel="descriptionPage3">
+                                                        <rect key="frame" x="40" y="442.66666666666669" width="334" height="143.33333333333331"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -96,8 +96,8 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yau-K5-SH0" userLabel="page4">
                                                 <rect key="frame" x="1242" y="0.0" width="414" height="736"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Interact directly with the blockchain with full control of your keys &amp; your funds." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gfg-cS-tRp" userLabel="descriptionPage4">
-                                                        <rect key="frame" x="40" y="373.5" width="334" height="143.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Interact directly with the blockchain with full control of your keys &amp; your funds." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gfg-cS-tRp" userLabel="descriptionPage4">
+                                                        <rect key="frame" x="40" y="442.66666666666669" width="334" height="143.33333333333331"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -112,8 +112,8 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WpW-OB-Yzz" userLabel="page5">
                                                 <rect key="frame" x="1656" y="0.0" width="414" height="736"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Interact directly with the blockchain with full control of your keys &amp; your funds." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A1v-5z-d7A" userLabel="descriptionPage5">
-                                                        <rect key="frame" x="40" y="373.5" width="334" height="143.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Interact directly with the blockchain with full control of your keys &amp; your funds." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A1v-5z-d7A" userLabel="descriptionPage5">
+                                                        <rect key="frame" x="40" y="442.66666666666669" width="334" height="143.33333333333331"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -128,8 +128,8 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VVD-sr-X45" userLabel="page6">
                                                 <rect key="frame" x="2070" y="0.0" width="414" height="736"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" tag="6" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Interact directly with the blockchain with full control of your keys &amp; your funds." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0tG-ye-IIL" userLabel="descriptionPage6">
-                                                        <rect key="frame" x="40" y="373.5" width="334" height="143.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="6" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Interact directly with the blockchain with full control of your keys &amp; your funds." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0tG-ye-IIL" userLabel="descriptionPage6">
+                                                        <rect key="frame" x="40" y="442.66666666666669" width="334" height="143.33333333333331"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -144,8 +144,8 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HJa-fj-4Je" userLabel="page7">
                                                 <rect key="frame" x="2484" y="0.0" width="414" height="736"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" tag="7" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Interact directly with the blockchain with full control of your keys &amp; your funds." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LwO-OS-ot9" userLabel="descriptionPage7">
-                                                        <rect key="frame" x="40" y="373.5" width="334" height="143.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="7" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Interact directly with the blockchain with full control of your keys &amp; your funds." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LwO-OS-ot9" userLabel="descriptionPage7">
+                                                        <rect key="frame" x="40" y="442.66666666666669" width="334" height="143.33333333333331"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -321,16 +321,16 @@
         <!--Restore Wallet View Controller-->
         <scene sceneID="iNc-3E-wGU">
             <objects>
-                <viewController id="uQG-JA-0Na" customClass="RestoreWalletViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="uQG-JA-0Na" customClass="RestoreWalletViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2Rs-5h-uOK">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1172"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="n4a-vC-Rpr">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="1172"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KEV-QT-QBj">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="364.66666666666669"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="751.33333333333337"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your recovery phrase" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3kp-Aw-s29">
                                                 <rect key="frame" x="24" y="27.000000000000007" width="366" height="95.666666666666686"/>
@@ -338,33 +338,39 @@
                                                 <color key="textColor" red="0.023529411760000001" green="0.30196078430000001" blue="0.83921568629999999" alpha="1" colorSpace="deviceRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="always" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0UI-F3-Dod">
-                                                <rect key="frame" x="24" y="135.66666666666666" width="366" height="219.99999999999997"/>
-                                                <color key="backgroundColor" red="0.92156862745098034" green="0.94509803921568625" blue="0.9882352941176471" alpha="1" colorSpace="deviceRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="220" id="Ck2-pT-gxB"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits" spellCheckingType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XIL-Jc-kXj" customClass="MnemonicsView">
+                                                <rect key="frame" x="16" y="139.66666666666663" width="382" height="512"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="10"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="centered" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="numberOfWords">
+                                                        <integer key="value" value="24"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <outlet property="delegate" destination="uQG-JA-0Na" id="Lo7-y0-Pyx"/>
+                                                    <action selector="mnemonicsChangedAction:" destination="uQG-JA-0Na" eventType="valueChanged" id="tbf-eB-nlP"/>
                                                 </connections>
-                                            </textView>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C42-h9-a6b">
+                                                <rect key="frame" x="24" y="667.66666666666663" width="366" height="71.666666666666629"/>
+                                                <string key="text">If your recovery phrase is shorter than 24 words (i.e. 12, 15, 18 or 21 words) you can still use it to restore your wallet. Just enter as many words as you have in your phrase.</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" red="0.42745098040000001" green="0.45098039220000002" blue="0.44705882349999998" alpha="1" colorSpace="deviceRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="0UI-F3-Dod" secondAttribute="bottom" constant="9" id="0uh-lX-uF9"/>
-                                            <constraint firstItem="0UI-F3-Dod" firstAttribute="left" secondItem="3kp-Aw-s29" secondAttribute="left" id="Gta-64-BYw"/>
+                                            <constraint firstItem="C42-h9-a6b" firstAttribute="top" secondItem="XIL-Jc-kXj" secondAttribute="bottom" constant="16" id="CmB-pU-THZ"/>
                                             <constraint firstAttribute="trailing" secondItem="3kp-Aw-s29" secondAttribute="trailing" constant="24" id="LUk-zq-Yv4"/>
+                                            <constraint firstItem="XIL-Jc-kXj" firstAttribute="top" secondItem="3kp-Aw-s29" secondAttribute="bottom" constant="17" id="MKF-rr-s1h"/>
                                             <constraint firstItem="3kp-Aw-s29" firstAttribute="top" secondItem="KEV-QT-QBj" secondAttribute="top" constant="27" id="WTs-EE-02m"/>
-                                            <constraint firstItem="0UI-F3-Dod" firstAttribute="right" secondItem="3kp-Aw-s29" secondAttribute="right" id="jBX-Sm-JgO"/>
-                                            <constraint firstItem="0UI-F3-Dod" firstAttribute="top" secondItem="3kp-Aw-s29" secondAttribute="bottom" constant="13" id="kc4-mV-gK7"/>
+                                            <constraint firstItem="XIL-Jc-kXj" firstAttribute="leading" secondItem="KEV-QT-QBj" secondAttribute="leading" constant="16" id="XZl-ka-rYs"/>
+                                            <constraint firstAttribute="trailing" secondItem="XIL-Jc-kXj" secondAttribute="trailing" constant="16" id="cIa-X9-HNj"/>
+                                            <constraint firstItem="C42-h9-a6b" firstAttribute="leading" secondItem="KEV-QT-QBj" secondAttribute="leading" constant="24" id="gRV-yQ-Zpw"/>
+                                            <constraint firstAttribute="trailing" secondItem="C42-h9-a6b" secondAttribute="trailing" constant="24" id="tH2-YC-pIV"/>
                                             <constraint firstItem="3kp-Aw-s29" firstAttribute="leading" secondItem="KEV-QT-QBj" secondAttribute="leading" constant="24" id="ujK-Rf-ZCF"/>
+                                            <constraint firstAttribute="bottom" secondItem="C42-h9-a6b" secondAttribute="bottom" constant="12" id="y9H-kH-QJQ"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -392,15 +398,15 @@
                                 <action selector="cancelAction:" destination="uQG-JA-0Na" id="gTY-YV-MmE"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Next" style="done" id="lI8-7d-nNR">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Restore" style="done" id="lI8-7d-nNR">
                             <connections>
                                 <action selector="nextAction:" destination="uQG-JA-0Na" id="W5O-kA-olE"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <size key="freeformSize" width="414" height="1236"/>
                     <connections>
-                        <outlet property="mnemonicsTextView" destination="0UI-F3-Dod" id="5eT-1e-9cf"/>
-                        <outlet property="mnemonicsTextViewHeightConstraint" destination="Ck2-pT-gxB" id="E5X-vt-KHF"/>
+                        <outlet property="mnemonicsView" destination="XIL-Jc-kXj" id="vdF-a7-bs2"/>
                         <outlet property="nextButton" destination="lI8-7d-nNR" id="JiQ-fL-lJX"/>
                         <outlet property="scrollView" destination="n4a-vC-Rpr" id="8Ba-PB-Zwi"/>
                         <outlet property="titleLabel" destination="3kp-Aw-s29" id="gjs-Cu-nF9"/>
@@ -410,7 +416,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OyM-61-ckk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1326" y="-611"/>
+            <point key="canvasLocation" x="1324.6376811594205" y="-611.41304347826087"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0eb-iN-Upa">

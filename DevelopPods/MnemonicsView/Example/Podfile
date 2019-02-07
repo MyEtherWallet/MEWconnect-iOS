@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '9.0'
+
+target 'MnemonicsView_Example' do
+  pod 'MnemonicsView', :path => '../'
+
+  target 'MnemonicsView_Tests' do
+    inherit! :search_paths
+
+    pod 'FBSnapshotTestCase'
+  end
+end

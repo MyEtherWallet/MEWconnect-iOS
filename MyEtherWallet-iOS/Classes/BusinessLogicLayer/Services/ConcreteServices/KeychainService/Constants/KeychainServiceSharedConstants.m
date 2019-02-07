@@ -10,9 +10,6 @@
 
 NSString *const kKeychainServiceFirstLaunchField            = @"firstLaunch";
 
-NSString *const kKeychainServiceRateAskedValue              = @"true";
-NSString *const kKeychainServiceRateAskedField              = @"com.myetherwallet.rater.rateasked";
-
 NSString *const kKeychainServiceVersionField                = @"com.myetherwallet.keychain.version";
 
 NSString *const kKeychainServiceEntropyField                = @"entropy";

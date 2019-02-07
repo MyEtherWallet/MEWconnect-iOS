@@ -158,7 +158,7 @@
 
 - (void) resetKeychain {
   NSArray <NSString *> *keys = [self.keychainStore allKeys];
-  NSArray *ignoringKeys = @[kKeychainServiceRateAskedField, kKeychainServiceVersionField, kKeychainServiceFirstLaunchField];
+  NSArray *ignoringKeys = @[kKeychainServiceVersionField, kKeychainServiceFirstLaunchField];
   for (NSString *key in keys) {
     if (![ignoringKeys containsObject:key]) {
       [self _removeItemWithKey:key];
@@ -176,18 +176,6 @@
 
 - (NSString *)obtainFirstLaunchDate {
   return [self.keychainStore stringForKey:kKeychainServiceFirstLaunchField];
-}
-
-- (void) rateDidAsked {
-  [self.keychainStore setString:kKeychainServiceRateAskedValue forKey:kKeychainServiceRateAskedField];
-}
-
-- (BOOL) obtainRateStatus {
-  return [self.keychainStore stringForKey:kKeychainServiceRateAskedField] != nil;
-}
-
-- (void) resetRateStatus {
-  [self.keychainStore removeItemForKey:kKeychainServiceRateAskedField];
 }
 
 #pragma mark - Protected
@@ -228,7 +216,7 @@
 
 - (NSArray *) _obtainRawKeys {
   NSMutableArray <NSString *> *keys = [[self.keychainStore allKeys] mutableCopy];
-  NSArray *ignoringKeys = @[kKeychainServiceRateAskedField, kKeychainServiceVersionField, kKeychainServiceFirstLaunchField];
+  NSArray *ignoringKeys = @[kKeychainServiceVersionField, kKeychainServiceFirstLaunchField];
   [keys removeObjectsInArray:ignoringKeys];
   return [keys copy];
 }

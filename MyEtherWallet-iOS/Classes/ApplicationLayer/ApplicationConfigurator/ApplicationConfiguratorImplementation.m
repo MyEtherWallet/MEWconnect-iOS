@@ -8,6 +8,7 @@
 
 @import UIKit;
 @import MagicalRecord;
+@import MnemonicsView;
 
 #if BETA
 #import "MyEtherWallet_iOS_Beta-Swift.h"
@@ -37,7 +38,6 @@
 - (void)configureInitialSettings {
   [self.keychainService saveFirstLaunchDate];
   [self.rateService checkForUpdate];
-  [self.rateService applicationLaunched];
 }
 
 - (void)configurateAppearance {
@@ -120,6 +120,16 @@
   }
   /* Toolbar Buttons */
   [UIBarButtonItem appearance].tintColor = [UIColor mainApplicationColor];
+  /* Mnemonics View */
+  [[UIView appearanceWhenContainedInInstancesOfClasses:@[[MnemonicsSuggestionsInputAccessoryViewCollectionViewCell class]]] setBackgroundColor:[UIColor backgroundLightBlue]];
+  [[UILabel appearanceWhenContainedInInstancesOfClasses:@[[MnemonicsSuggestionsInputAccessoryViewCollectionViewCell class]]] setTextColor:[UIColor mainApplicationColor]];
+  
+  [[UIView appearanceWhenContainedInInstancesOfClasses:@[[MnemonicsSuggestionsInputAccessoryViewCollectionViewDoneCell class]]] setBackgroundColor:[UIColor mainApplicationColor]];
+  [[UILabel appearanceWhenContainedInInstancesOfClasses:@[[MnemonicsSuggestionsInputAccessoryViewCollectionViewDoneCell class]]] setTextColor:[UIColor whiteColor]];
+  
+  
+  [[UILabel appearanceWhenContainedInInstancesOfClasses:@[[MnemonicsItemView class]]] setFont:[UIFont systemFontOfSize:13.0]];
+  [[UITextField appearanceWhenContainedInInstancesOfClasses:@[[MnemonicsItemView class]]] setFont:[UIFont systemFontOfSize:19.0]];
 }
 
 @end

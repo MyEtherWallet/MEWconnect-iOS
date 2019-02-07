@@ -46,18 +46,6 @@ NS_ASSUME_NONNULL_BEGIN
  Obtaining first launch date
  */
 - (NSString * _Nullable) obtainFirstLaunchDate;
-/**
- Saving rate status
- */
-- (void) rateDidAsked;
-/**
- Obtain rate status
- */
-- (BOOL) obtainRateStatus;
-/**
- Reset rate status
- */
-- (void) resetRateStatus;
 @end
 
 NS_ASSUME_NONNULL_END

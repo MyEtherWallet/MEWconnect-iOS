@@ -58,7 +58,7 @@ static NSString *const kMEWconnectTransactionCurrency = @"currency";
   } else {
     decimalValue = [self.value decimalNumberFromHexRepresentation];
   }
-  if (!self.token.decimals) {
+  if (self.token.decimals == nil) {
     return decimalValue;
   }
   NSDecimalNumber *decimals = [NSDecimalNumber decimalNumberWithMantissa:1 exponent:[self.token.decimals shortValue] isNegative:NO];

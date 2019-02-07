@@ -15,7 +15,7 @@ static NSInteger const kMEWconnectTokenTransferAddressLength    = 40;
 
 @implementation MEWconnectTokenTransfer
 
-+ (instancetype) tokenTransferWithData:(id)data {
++ (instancetype __nullable) tokenTransferWithData:(id)data {
   if (![data isKindOfClass:[NSString class]]) {
     return nil;
   }

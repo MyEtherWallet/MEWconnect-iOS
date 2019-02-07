@@ -138,9 +138,9 @@ static CGFloat const kMnemonicsItemViewPlaceholderHeight                        
     string = [components firstObject];
     if (textField.markedTextRange != nil) {
       if (@available(iOS 12.0, *)) {
-        [self setMarkedText:nil selectedRange:NSMakeRange(0, 0)];
+        [textField setMarkedText:nil selectedRange:NSMakeRange(0, 0)];
       } else {
-        [self setMarkedText:@"" selectedRange:NSMakeRange(0, 0)];
+        [textField setMarkedText:@"" selectedRange:NSMakeRange(0, 0)];
       }
       [textField unmarkText];
     }
@@ -152,9 +152,9 @@ static CGFloat const kMnemonicsItemViewPlaceholderHeight                        
     return NO;
   } else if (textField.markedTextRange != nil) {
     if (@available(iOS 12.0, *)) {
-      [self setMarkedText:nil selectedRange:NSMakeRange(0, 0)];
+      [textField setMarkedText:nil selectedRange:NSMakeRange(0, 0)];
     } else {
-      [self setMarkedText:@"" selectedRange:NSMakeRange(0, 0)];
+      [textField setMarkedText:@"" selectedRange:NSMakeRange(0, 0)];
     }
     [textField unmarkText];
     NSString *oldText = textField.text;

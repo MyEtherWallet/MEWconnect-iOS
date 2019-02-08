@@ -12,6 +12,7 @@
 
 #import "AccountsService.h"
 #import "KeychainService.h"
+#import "TokensService.h"
 
 @interface ForgotPasswordInteractor ()
 @property (nonatomic, strong) AccountPlainObject *account;
@@ -27,6 +28,7 @@
 
 - (void) resetWallet {
   [self.accountsService resetAccounts];
+  [self.tokensService resetTokens];
   [self.keychainService resetKeychain];
 }
 

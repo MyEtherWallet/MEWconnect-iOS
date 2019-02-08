@@ -213,6 +213,8 @@ static CGFloat const kMnemonicsItemViewPlaceholderHeight                        
   self.textField.returnKeyType = UIReturnKeyNext;
   [view makeCompleted];
   [self.textField reloadInputViews];
+  [self.delegate mnemonicsItemViewDidChangeState:self];
+  [self.delegate mnemonicsItemViewDidEndEditing:self];
 }
 
 - (void) mnemonicsSuggestionsDidCompletion:(nonnull MnemonicsSuggestionsInputAccessoryView *)view {

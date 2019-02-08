@@ -43,6 +43,8 @@
                                                 with:[self.serviceComponents accountsService]];
                           [definition injectProperty:@selector(keychainService)
                                                 with:[self.serviceComponents keychainService]];
+                          [definition injectProperty:@selector(tokensService)
+                                                with:[self.serviceComponents tokensService]];
                         }];
 }
 

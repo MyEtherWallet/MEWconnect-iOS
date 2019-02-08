@@ -238,6 +238,8 @@ static NSString *const kReachabilityURLString   = @"API.ReachabilityURLString";
   return [TyphoonDefinition withClass:[SecurityServiceImplementation class]
                         configuration:^(TyphoonDefinition *definition) {
                           definition.scope = TyphoonScopeSingleton;
+                          [definition injectProperty:@selector(keychainService)
+                                                with:[self keychainService]];
                         }];
 }
 

@@ -46,6 +46,22 @@ NS_ASSUME_NONNULL_BEGIN
  Obtaining first launch date
  */
 - (NSString * _Nullable) obtainFirstLaunchDate;
+/**
+ Obtaining number of password attempts
+ */
+- (NSInteger) obtainNumberOfPasswordAttempts;
+/**
+ Reset number of password attempts
+ */
+- (void) savePasswordAttempts:(NSInteger)attempts;
+/**
+ Obtain unlock date
+ */
+- (NSDate *) obtainPasswordUnlockDate;
+/**
+ Save password unlock date
+ */
+- (void) savePasswordUnlockDate:(NSDate *)date;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -20,4 +20,6 @@
 + (instancetype) applicationLightBlue;
 + (instancetype) backgroundLightBlue;
 + (instancetype) lightGreyTextColor;
++ (instancetype) disabledBackgroundColor;
++ (instancetype) disabledPlaceholderColor;
 @end

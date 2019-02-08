@@ -230,7 +230,6 @@ static CGFloat const kMnemonicsItemViewPlaceholderHeight                        
 
 - (void) _textFieldDidChanged:(__kindof MnemonicsTextField *)textField reloadInputs:(BOOL)reloadInputs {
   dispatch_async(dispatch_get_main_queue(), ^{
-    NSLog(@"hmm");
     //jap - todo
     if ([textField.text length] > 0) {
       NSString *term = nil;

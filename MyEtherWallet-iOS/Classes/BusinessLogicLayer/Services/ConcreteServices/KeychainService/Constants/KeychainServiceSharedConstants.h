@@ -21,3 +21,6 @@ FOUNDATION_EXPORT NSString *const kKeychainServicePurchaseDateField;
 //Current version
 FOUNDATION_EXPORT NSString *const kKeychainServiceCurrentKeychainVersionField;
 FOUNDATION_EXPORT NSInteger const kKeychainServiceCurrentKeychainVersionValue;
+
+FOUNDATION_EXPORT NSString *const kKeychainServiceBruteForceLockDateField;
+FOUNDATION_EXPORT NSString *const kKeychainServiceBruteForceNumberOfAttempts;

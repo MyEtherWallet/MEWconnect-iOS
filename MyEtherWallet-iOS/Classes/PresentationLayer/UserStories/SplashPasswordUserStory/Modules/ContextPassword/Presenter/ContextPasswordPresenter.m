@@ -50,6 +50,9 @@
       break;
   }
   [self.view setupInitialStateWithTitle:title];
+  if ([self.interactor isPasswordLocked]) {
+    [self.view lockPasswordField];
+  }
 }
 
 - (void) cancelAction {
@@ -75,7 +78,18 @@
 }
 
 - (void) incorrectPassword {
+  if ([self.interactor isPasswordLocked]) {
+    [self.view lockPasswordField];
+  }
   [self.view shakeInput];
+}
+
+- (void) passwordDidUnlocked {
+  [self.view unlockPasswordField];
+}
+
+- (void) passwordWillBeUnlockedIn:(NSTimeInterval)unlockIn {
+  [self.view updateLockWithTimeInterval:unlockIn];
 }
 
 @end

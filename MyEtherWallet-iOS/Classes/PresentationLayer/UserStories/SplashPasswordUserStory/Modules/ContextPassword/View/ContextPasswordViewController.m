@@ -15,13 +15,15 @@
 #import "UIView+LockFrame.h"
 #import "FindFirstResponderProtocol.h"
 
+#import "PasswordTextField.h"
+
 static CGFloat const kContextPasswordShakeAnimationDistance = 10.0;
 static CFTimeInterval const kContextPasswordShakeAnimationDuration = 0.05;
 static float const kContextPasswordShakeAnimationRepeatCount = 3.0;
 
 @interface ContextPasswordViewController () <UITextFieldDelegate, FindFirstResponderProtocol>
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
-@property (nonatomic, weak) IBOutlet UITextField *passwordTextField;
+@property (nonatomic, weak) IBOutlet PasswordTextField *passwordTextField;
 @property (nonatomic, weak) IBOutlet UIView *accessoryView;
 @property (nonatomic) BOOL dismissing;
 @property (nonatomic) BOOL skipResigning;
@@ -70,6 +72,10 @@ static float const kContextPasswordShakeAnimationRepeatCount = 3.0;
 
 - (void) viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
+  if (@available(iOS 11.0, *)) {
+  } else {
+    [self.passwordTextField becomeFirstResponder];
+  }
 }
 
 - (void) viewLayoutMarginsDidChange {
@@ -99,7 +105,30 @@ static float const kContextPasswordShakeAnimationRepeatCount = 3.0;
   [self.passwordTextField resignFirstResponder];
 }
 
+- (void) lockPasswordField {
+  [self.passwordTextField setText:nil];
+  self.passwordTextField.inputEnabled = NO;
+}
+
+- (void) unlockPasswordField {
+  self.passwordTextField.inputEnabled = YES;
+  [self.passwordTextField becomeFirstResponder];
+}
+
+- (void) updateLockWithTimeInterval:(NSTimeInterval)unlockIn {
+  NSDateComponentsFormatter *formatter = [[NSDateComponentsFormatter alloc] init];
+  [formatter setUnitsStyle:NSDateComponentsFormatterUnitsStylePositional];
+  [formatter setAllowedUnits:NSCalendarUnitMinute|NSCalendarUnitSecond];
+  [formatter setZeroFormattingBehavior:NSDateComponentsFormatterZeroFormattingBehaviorPad];
+  NSString *unlockInText = [formatter stringFromTimeInterval:unlockIn];
+  [self.passwordTextField setRightViewText:unlockInText];
+}
+
 #pragma mark - UITextFieldDelegate
+
+- (BOOL)textField:(PasswordTextField *)textField shouldChangeCharactersInRange:(__unused NSRange)range replacementString:(__unused NSString *)string {
+  return textField.inputEnabled;
+}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
   [self.output doneActionWithPassword:textField.text];

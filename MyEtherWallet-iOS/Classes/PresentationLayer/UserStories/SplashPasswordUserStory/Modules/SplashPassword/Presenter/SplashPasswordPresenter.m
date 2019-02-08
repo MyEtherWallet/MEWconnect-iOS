@@ -36,6 +36,9 @@
 
 - (void) didTriggerViewReadyEvent {
 	[self.view setupInitialStateWithAutoControl:_control];
+  if ([self.interactor isPasswordLocked]) {
+    [self.view lockPasswordField];
+  }
 }
 
 - (void) doneActionWithPassword:(NSString *)password {
@@ -59,7 +62,19 @@
 }
 
 - (void) incorrectPassword {
+  if ([self.interactor isPasswordLocked]) {
+    [self.view lockPasswordField];
+  }
   [self.view shakeInput];
 }
+
+- (void) passwordDidUnlocked {
+  [self.view unlockPasswordField];
+}
+
+- (void) passwordWillBeUnlockedIn:(NSTimeInterval)unlockIn {
+  [self.view updateLockWithTimeInterval:unlockIn];
+}
+
 
 @end

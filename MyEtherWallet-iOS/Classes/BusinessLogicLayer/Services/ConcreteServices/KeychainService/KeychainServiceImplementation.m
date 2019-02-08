@@ -178,6 +178,29 @@
   return [self.keychainStore stringForKey:kKeychainServiceFirstLaunchField];
 }
 
+- (NSInteger) obtainNumberOfPasswordAttempts {
+  NSString *attemptsValue = [self.keychainStore stringForKey:kKeychainServiceBruteForceNumberOfAttempts];
+  return [attemptsValue integerValue];
+}
+
+- (void) savePasswordAttempts:(NSInteger)attempts {
+  NSString *attemptsValue = [@(attempts) stringValue];
+  [self.keychainStore setString:attemptsValue forKey:kKeychainServiceBruteForceNumberOfAttempts];
+}
+
+- (NSDate *) obtainPasswordUnlockDate {
+  NSString *dateString = [self.keychainStore stringForKey:kKeychainServiceBruteForceLockDateField];
+  if (!dateString) {
+    return nil;
+  }
+  return [self.dateFormatter dateFromString:dateString];
+}
+
+- (void) savePasswordUnlockDate:(NSDate *)date {
+  NSString *dateString = [self.dateFormatter stringFromDate:date];
+  [self.keychainStore setString:dateString forKey:kKeychainServiceBruteForceLockDateField];
+}
+
 #pragma mark - Protected
 
 #pragma mark - KeychainServiceProtected

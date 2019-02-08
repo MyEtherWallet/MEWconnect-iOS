@@ -66,4 +66,13 @@
 + (instancetype) lightGreyTextColor {
   return [UIColor colorWithRGB:0x6E7384];
 }
+
++ (instancetype) disabledBackgroundColor {
+  return [UIColor colorWithRGB:0xF5F4F5];
+}
+
++ (instancetype) disabledPlaceholderColor {
+  return [UIColor colorWithWhite:0.0 alpha:0.2];
+}
+
 @end

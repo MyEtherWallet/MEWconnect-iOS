@@ -21,7 +21,7 @@
   UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
   
   UIView *containerView = [transitionContext containerView];
-  UIView *dismissedViewSnapshot = [dismissedView snapshotViewAfterScreenUpdates:NO];
+  UIView *dismissedViewSnapshot = [dismissedView snapshotViewAfterScreenUpdates:(dismissedView.window == nil)];
   [containerView addSubview:dismissedViewSnapshot];
   
   CGRect frame = dismissedView.frame;

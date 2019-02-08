@@ -46,6 +46,8 @@
                                                 with:[self.serviceComponents MEWwallet]];
                           [definition injectProperty:@selector(ponsomizer)
                                                 with:[self.ponsomizerAssembly ponsomizer]];
+                          [definition injectProperty:@selector(securityService)
+                                                with:[self.serviceComponents securityService]];
                         }];
 }
 

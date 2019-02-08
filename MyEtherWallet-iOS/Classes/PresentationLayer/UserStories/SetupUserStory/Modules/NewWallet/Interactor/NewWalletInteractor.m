@@ -14,6 +14,7 @@
 
 #import "MEWConnectFacade.h"
 #import "AccountsService.h"
+#import "TokensService.h"
 #import "KeychainService.h"
 #import "BlockchainNetworkService.h"
 #import "MEWwallet.h"
@@ -34,6 +35,7 @@
   [self.connectFacade disconnect];
   
   [self.accountsService resetAccounts];
+  [self.tokensService resetTokens];
   [self.keychainService resetKeychain];
   
   AccountModelObject *accountModelObject = [self.accountsService obtainOrCreateActiveAccount];

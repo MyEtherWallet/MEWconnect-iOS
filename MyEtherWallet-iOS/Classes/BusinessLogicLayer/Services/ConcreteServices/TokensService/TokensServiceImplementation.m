@@ -197,6 +197,15 @@ static NSString *const RopstenTokensContractAddress = @"0xb8e1bbc50fd87ea00d8ce7
   return tokenModelObject;
 }
 
+- (void) resetTokens {
+  NSManagedObjectContext *rootSavingContext = [NSManagedObjectContext MR_rootSavingContext];
+  [rootSavingContext performBlockAndWait:^{
+    NSArray <TokenModelObject *> *tokens = [TokenModelObject MR_findAllInContext:rootSavingContext];
+    [rootSavingContext MR_deleteObjects:tokens];
+    [rootSavingContext MR_saveToPersistentStoreAndWait];
+  }];
+}
+
 #pragma mark - Private
 
 - (TokensBody *) obtainTokensBodyWithToken:(MasterTokenPlainObject *)token contractAddresses:(NSArray <NSString *>*)contractAddresses {

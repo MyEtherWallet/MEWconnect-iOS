@@ -22,4 +22,5 @@ typedef void(^TokensServiceCompletion)(NSError *error);
 - (NSDecimalNumber *) obtainTokensTotalPriceOfMasterToken:(MasterTokenPlainObject *)masterToken;
 - (MasterTokenModelObject *) obtainActiveMasterToken;
 - (TokenModelObject *) obtainTokenWithAddress:(NSString *)address ofMasterToken:(MasterTokenPlainObject *)masterToken;
+- (void) resetTokens;
 @end

@@ -12,6 +12,7 @@
 
 #import "AccountsService.h"
 #import "KeychainService.h"
+#import "TokensService.h"
 
 @interface InfoInteractor ()
 @end
@@ -22,6 +23,7 @@
 
 - (void) resetWallet {
   [self.accountsService resetAccounts];
+  [self.tokensService resetTokens];
   [self.keychainService resetKeychain];
 }
 

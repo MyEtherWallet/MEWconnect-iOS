@@ -62,6 +62,7 @@ static CGFloat const kMnemonicsItemViewPlaceholderHeight                        
     [self addSubview:textField];
     
     textField.hidden = YES;
+    textField.suggestionsInputAccessoryView.delegate = self;
     
     self.textField = textField;
     self.textField.inputAccessoryView = nil;
@@ -121,6 +122,10 @@ static CGFloat const kMnemonicsItemViewPlaceholderHeight                        
 - (void) textFieldDidBeginEditing:(UITextField *)textField {
   self.placeholder.hidden = YES;
   [self _updateTitle];
+  if (textField.markedTextRange != nil) {
+    UITextRange *textRange = [textField textRangeFromPosition:textField.markedTextRange.start toPosition:textField.markedTextRange.start];
+    [textField setSelectedTextRange:textRange];
+  }
 }
 
 - (void) textFieldDidEndEditing:(UITextField *)textField {
@@ -232,100 +237,98 @@ static CGFloat const kMnemonicsItemViewPlaceholderHeight                        
   dispatch_async(dispatch_get_main_queue(), ^{
     NSLog(@"hmm");
     //jap - todo
-    if ([textField.text length] > 0) {
-      NSString *term = nil;
-      if (textField.markedTextRange) {
-        UITextRange *range = [textField textRangeFromPosition:textField.beginningOfDocument
-                                                   toPosition:textField.markedTextRange.start];
-        term = [textField textInRange:range];
-      } else {
-        term = textField.text;
-      }
-      //To stop infinite loop, because of setMarkedText:
-      if ([self.previousTerm isEqualToString:term]) {
-        return;
-      }
-      self.previousTerm = term;
-      term = [term stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-      if ([term length] > 0) {
-        NSArray <NSString *> *words = [self.mnemonicsProvider wordsWithSearchTerm:term];
-        if ([words count] > 0) {
-          [textField markAsCorrect];
-          NSString *fullSuggestion = [words firstObject];
-          if (fullSuggestion && (![term isEqualToString:fullSuggestion] || [words count] > 1)) {
-            [textField.inputAccessoryView updateWithWords:words];
-            NSString *suggestion = [fullSuggestion substringFromIndex:[term length]];
-            
-            if (![[[self.textField.text stringByAppendingString:suggestion] lowercaseString] containsString:fullSuggestion]) {
-              [textField markAsIncorrect];
-              if (reloadInputs) {
-                textField.inputAccessoryView = nil;
-              }
-            } else {
-              UITextRange *oldTextRange = textField.selectedTextRange;
-              UITextPosition *position = textField.endOfDocument;
-              UITextRange *textRange = [textField textRangeFromPosition:position toPosition:position];
-              [textField setSelectedTextRange:textRange];
-              [textField setMarkedText:suggestion selectedRange:NSMakeRange(0, 0)];
-              [textField setSelectedTextRange:oldTextRange];
-              if ([words count] == 1) {
-                [textField.inputAccessoryView makeCompleted];
-                if (!self.last) {
-                  self.textField.returnKeyType = UIReturnKeyNext;
-                } else {
-                  self.textField.returnKeyType = UIReturnKeyDone;
-                }
-              } else {
-                self.textField.returnKeyType = UIReturnKeyDone;
-              }
-              if (reloadInputs) {
-                [self.textField reloadInputViews];
-              }
-            }
-          } else if (textField.markedTextRange != nil) {
-            [textField.inputAccessoryView updateWithWords:words];
-            self.textField.returnKeyType = UIReturnKeyDone;
-            if (reloadInputs) {
-              [self.textField reloadInputViews];
-            }
-          } else if ([words count] == 1) {
-            [textField.inputAccessoryView makeCompleted];
-            if (!self.last) {
-              self.textField.returnKeyType = UIReturnKeyNext;
-            } else {
-              self.textField.returnKeyType = UIReturnKeyDone;
-            }
-            if (reloadInputs) {
-              [self.textField reloadInputViews];
-            }
-          }
-        } else {
-          [textField markAsIncorrect];
-          self.textField.returnKeyType = UIReturnKeyDone;
-          if (reloadInputs) {
-            textField.inputAccessoryView = nil;
-            [self.textField reloadInputViews];
-          }
-        }
-      } else {
-        [textField markAsCorrect];
-        self.textField.returnKeyType = UIReturnKeyDone;
-        if (reloadInputs) {
-          textField.inputAccessoryView = nil;
-          [self.textField reloadInputViews];
-        }
-      }
-    } else {
-      [textField markAsCorrect];
-      self.textField.returnKeyType = UIReturnKeyDone;
-      if (reloadInputs) {
-        textField.inputAccessoryView = nil;
-        [textField reloadInputViews];
-      }
+    if ([textField.text length] == 0) {
+      [self _textFieldDidChangedCompletion:textField empty:YES correct:YES completed:NO reloadInputs:reloadInputs];
+      return;
     }
-    [self _updateTitle];
-    [self.delegate mnemonicsItemViewDidChangeState:self];
+    
+    NSString *term = nil;
+    if (textField.markedTextRange) {
+      UITextRange *range = [textField textRangeFromPosition:textField.beginningOfDocument
+                                                 toPosition:textField.markedTextRange.start];
+      term = [textField textInRange:range];
+    } else {
+      term = textField.text;
+    }
+    //To stop infinite loop, because of setMarkedText:
+    if ([self.previousTerm isEqualToString:term]) {
+      return;
+    }
+    self.previousTerm = term;
+    term = [term stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    if ([term length] == 0) {
+      [self _textFieldDidChangedCompletion:textField empty:YES correct:YES completed:NO reloadInputs:reloadInputs];
+      return;
+    }
+    
+    NSArray <NSString *> *words = [self.mnemonicsProvider wordsWithSearchTerm:term];
+    if ([words count] == 0) {
+      [self _textFieldDidChangedCompletion:textField empty:NO correct:NO completed:NO reloadInputs:reloadInputs];
+      return;
+    }
+    
+    NSString *fullSuggestion = [words firstObject];
+    if (fullSuggestion && (![term isEqualToString:fullSuggestion] || [words count] > 1)) {
+      textField.showInputAccessoryView = YES;
+      [textField.inputAccessoryView updateWithWords:words];
+      NSString *suggestion = [fullSuggestion substringFromIndex:[term length]];
+      
+      if (![[[self.textField.text stringByAppendingString:suggestion] lowercaseString] containsString:fullSuggestion]) {
+        [self _textFieldDidChangedCompletion:textField empty:NO correct:NO completed:NO reloadInputs:reloadInputs];
+      } else {
+        UITextRange *oldTextRange = textField.selectedTextRange;
+        UITextPosition *position = textField.endOfDocument;
+        UITextRange *textRange = [textField textRangeFromPosition:position toPosition:position];
+        [textField setSelectedTextRange:textRange];
+        [textField setMarkedText:suggestion selectedRange:NSMakeRange(0, 0)];
+        [textField setSelectedTextRange:oldTextRange];
+        
+        [self _textFieldDidChangedCompletion:textField empty:NO correct:YES completed:([words count] == 1) reloadInputs:reloadInputs];
+      }
+    } else if (textField.markedTextRange != nil) {
+      textField.inputAccessoryView = textField.inputAccessoryView;
+      [textField.inputAccessoryView updateWithWords:words];
+      [self _textFieldDidChangedCompletion:textField empty:NO correct:YES completed:NO reloadInputs:reloadInputs];
+    } else if ([words count] == 1) {
+      
+      [self _textFieldDidChangedCompletion:textField empty:NO correct:YES completed:YES reloadInputs:reloadInputs];
+    }
   });
+}
+
+- (void) _textFieldDidChangedCompletion:(__kindof MnemonicsTextField *)textField empty:(BOOL)empty correct:(BOOL)correct completed:(BOOL)completed reloadInputs:(BOOL)reloadInputs {
+  if (empty) {
+    textField.showInputAccessoryView = NO;
+    [textField markAsCorrect];
+    self.textField.returnKeyType = UIReturnKeyDone;
+  }
+  if (correct) {
+    [textField markAsCorrect];
+    if (!empty) {
+      textField.showInputAccessoryView = YES;
+    }
+  } else {
+    textField.showInputAccessoryView = NO;
+    [textField markAsIncorrect];
+    self.textField.returnKeyType = UIReturnKeyDone;
+  }
+  if (completed) {
+    textField.showInputAccessoryView = NO;
+    [textField.inputAccessoryView makeCompleted];
+    if (!self.last) {
+      self.textField.returnKeyType = UIReturnKeyNext;
+    } else {
+      self.textField.returnKeyType = UIReturnKeyDone;
+    }
+  } else {
+    self.textField.returnKeyType = UIReturnKeyDone;
+  }
+  if (reloadInputs) {
+    [self.textField reloadInputViews];
+  }
+  [self _updateTitle];
+  [self.delegate mnemonicsItemViewDidChangeState:self];
 }
 
 - (void) _updateTitle {

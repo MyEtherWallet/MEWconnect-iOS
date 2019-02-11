@@ -8,6 +8,10 @@
 
 #import "MnemonicsSuggestionsInputAccessoryView.h"
 
+@interface MnemonicsTextField ()
+@property (nonatomic, strong) MnemonicsSuggestionsInputAccessoryView *suggestionsInputAccessoryView;
+@end
+
 @implementation MnemonicsTextField
 @dynamic delegate;
 @dynamic inputAccessoryView;
@@ -15,7 +19,9 @@
 - (instancetype)init {
   self = [super init];
   if (self) {
+    _showInputAccessoryView = NO;
     _correct = YES;
+    [self _createInputAccessoryView];
     self.autocorrectionType = UITextAutocorrectionTypeNo;
     self.spellCheckingType = UITextSpellCheckingTypeNo;
     self.autocapitalizationType = UITextAutocapitalizationTypeNone;
@@ -134,14 +140,17 @@
 #pragma mark - Override
 
 - (__kindof MnemonicsSuggestionsInputAccessoryView *)inputAccessoryView {
-  __kindof MnemonicsSuggestionsInputAccessoryView *inputAccessoryView = (__kindof MnemonicsSuggestionsInputAccessoryView *)[super inputAccessoryView];
-  NSString *enteredText = [self.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-  if (_correct && [enteredText length] > 0 && (!inputAccessoryView || ![inputAccessoryView isKindOfClass:[MnemonicsSuggestionsInputAccessoryView class]])) {
-    inputAccessoryView = [[MnemonicsSuggestionsInputAccessoryView alloc] init];
-    self.inputAccessoryView = inputAccessoryView;
-    [self.delegate textField:self didCreateNewInputAccessoryView:inputAccessoryView];
+  if (!_showInputAccessoryView) {
+    return nil;
   }
-  return inputAccessoryView;
+  return self.suggestionsInputAccessoryView;
+}
+
+#pragma mark - Private
+
+- (void) _createInputAccessoryView {
+  MnemonicsSuggestionsInputAccessoryView *inputAccessoryView = [[MnemonicsSuggestionsInputAccessoryView alloc] init];;
+  self.suggestionsInputAccessoryView = inputAccessoryView;
 }
 
 @end

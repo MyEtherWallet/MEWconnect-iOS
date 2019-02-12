@@ -25,6 +25,8 @@ static short const kBuyEtherAmountRoundingUSDScale        = 2;
 
 static NSDecimalNumber *kBuyEtherMinimumUSDAmount;
 static NSDecimalNumber *kBuyEtherMaximumUSDAmount;
+static NSDecimalNumber *kBuyEtherMidRangeFeeValue;
+static NSDecimalNumber *kBuyEtherMidRangeFee;
 
 static NSString *const kBuyEtherAmountDecimalSeparator    = @".";
 
@@ -43,6 +45,8 @@ static NSString *const kBuyEtherAmountDecimalSeparator    = @".";
 + (void)initialize {
   kBuyEtherMinimumUSDAmount = [NSDecimalNumber decimalNumberWithString:@"50"];
   kBuyEtherMaximumUSDAmount = [NSDecimalNumber decimalNumberWithString:@"20000"];
+  kBuyEtherMidRangeFeeValue = [NSDecimalNumber decimalNumberWithString:@"210"];
+  kBuyEtherMidRangeFee      = [NSDecimalNumber decimalNumberWithString:@"0.0566"];
 }
 
 #pragma mark - BuyEtherAmountInteractorInput
@@ -125,6 +129,21 @@ static NSString *const kBuyEtherAmountDecimalSeparator    = @".";
   } else {
     [_amount replaceCharactersInRange:NSMakeRange(0, [_amount length]) withString:[convertedAmount stringValue]];
   }
+  BOOL minimumAmountReached = NO;
+  switch (_currency) {
+    case SimplexServiceCurrencyTypeETH: {
+      NSDecimalNumber *enteredAmount = [self _obtainEnteredAmountNumber];
+      NSDecimalNumber *convertedAmount = [self _obtainConvertedAmountWithCurrency:self.currency enteredAmount:enteredAmount];
+      minimumAmountReached = [convertedAmount compare:kBuyEtherMinimumUSDAmount] != NSOrderedAscending;
+      break;
+    }
+    case SimplexServiceCurrencyTypeUSD: {
+      NSDecimalNumber *enteredAmount = [self _obtainEnteredAmountNumber];
+      minimumAmountReached = [enteredAmount compare:kBuyEtherMinimumUSDAmount] != NSOrderedAscending;
+      break;
+    }
+  }
+  [self.output minimumAmountDidReached:minimumAmountReached];
 }
 
 - (void) appendSymbol:(NSString *)symbol {
@@ -286,18 +305,53 @@ static NSString *const kBuyEtherAmountDecimalSeparator    = @".";
     switch (currency) {
       case SimplexServiceCurrencyTypeETH: {
         convertedAmount = [enteredAmount decimalNumberByMultiplyingBy:usdPrice];
+        convertedAmount = [convertedAmount decimalNumberByAdding:[self _calculateEstimatedFeeForAmount:convertedAmount]];
         convertedAmount = [convertedAmount decimalNumberByRoundingAccordingToBehavior:_usdRoundHandler];
         break;
       }
       case SimplexServiceCurrencyTypeUSD:
       default: {
-        convertedAmount = [enteredAmount decimalNumberByDividingBy:usdPrice];
+        convertedAmount = [enteredAmount decimalNumberBySubtracting:[self _calculateEstimatedFeeForAmount:enteredAmount]];
+        convertedAmount = [convertedAmount decimalNumberByDividingBy:usdPrice];
         convertedAmount = [convertedAmount decimalNumberByRoundingAccordingToBehavior:_ethRoundHandler];
         break;
       }
     }
   }
+  if ([convertedAmount compare:[NSDecimalNumber zero]] == NSOrderedAscending) {
+    convertedAmount = [NSDecimalNumber zero];
+  }
   return convertedAmount;
+}
+
+- (NSDecimalNumber *) _calculateEstimatedFeeForAmount:(NSDecimalNumber *)amount {
+  if ([amount compare:[NSDecimalNumber zero]] == NSOrderedSame) {
+    return [NSDecimalNumber zero];
+  }
+  NSDecimalNumber *feePercent = nil;
+  NSDecimalNumber *correction = [NSDecimalNumber decimalNumberWithString:@"-0.03"];
+  BOOL applyCorrection = NO;
+  if ([amount compare:kBuyEtherMidRangeFeeValue] == NSOrderedDescending) {
+    feePercent = kBuyEtherMidRangeFee;
+  } else {
+    applyCorrection = YES;
+    NSDecimalNumber *k1 = [NSDecimalNumber decimalNumberWithString:@"10"];
+    NSDecimalNumber *k2 = [NSDecimalNumber decimalNumberWithString:@"-0.08"];
+    NSDecimalNumber *k3 = [NSDecimalNumber decimalNumberWithString:@"0.01"];
+    
+    
+    NSDecimalNumber *p1 = [k1 decimalNumberByDividingBy:amount];
+    NSDecimalNumber *p2 = [k2 decimalNumberByDividingBy:amount];
+    
+    feePercent = [p1 decimalNumberByAdding:p2];
+    feePercent = [feePercent decimalNumberByAdding:k3];
+  }
+  
+  NSDecimalNumber *fee = [amount decimalNumberByMultiplyingBy:feePercent];
+  if (applyCorrection) {
+    fee = [fee decimalNumberByAdding:correction];
+  }
+  return fee;
 }
 
 @end

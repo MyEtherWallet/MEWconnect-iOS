@@ -323,11 +323,11 @@
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="uQG-JA-0Na" customClass="RestoreWalletViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2Rs-5h-uOK">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1172"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="n4a-vC-Rpr">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="1172"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KEV-QT-QBj">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="751.33333333333337"/>
@@ -404,7 +404,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <size key="freeformSize" width="414" height="1236"/>
                     <connections>
                         <outlet property="mnemonicsView" destination="XIL-Jc-kXj" id="vdF-a7-bs2"/>
                         <outlet property="nextButton" destination="lI8-7d-nNR" id="JiQ-fL-lJX"/>

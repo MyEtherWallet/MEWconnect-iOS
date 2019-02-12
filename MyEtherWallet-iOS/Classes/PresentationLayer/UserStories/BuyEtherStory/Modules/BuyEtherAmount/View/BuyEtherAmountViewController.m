@@ -28,10 +28,12 @@
 @property (nonatomic, weak) IBOutlet UIButton *separatorButton;
 @property (nonatomic, weak) IBOutlet FlatButton *buyButton;
 @property (nonatomic, strong) IBOutletCollection(UIButton) NSArray <UIButton *> *keypadButtons;
+@property (nonatomic, weak) IBOutlet UILabel *approximateFeeLabel;
+@property (nonatomic, weak) IBOutlet UIActivityIndicatorView *priceActivityIndicator;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *amountTopOffsetConstraint;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *keypadToContainerTopOffsetConstraint;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *buttonBottomOffsetConstraint;
-@property (nonatomic, weak) IBOutlet UIActivityIndicatorView *priceActivityIndicator;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *approximateFeeTopConstraint;
 @end
 
 @implementation BuyEtherAmountViewController {
@@ -61,11 +63,42 @@
 #pragma mark - BuyEtherAmountViewInput
 
 - (void) setupInitialStateWithCurrency:(SimplexServiceCurrencyType)currency minimumAmount:(NSDecimalNumber *)minimumAmount {
-  if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
-    self.amountTopOffsetConstraint.constant = -4.0;
-    self.keypadToContainerTopOffsetConstraint.constant = 17.0;
-    self.buttonBottomOffsetConstraint.constant = 22.0;
+  switch ([UIScreen mainScreen].screenSizeType) {
+    case ScreenSizeTypeInches40: {
+      self.amountTopOffsetConstraint.constant = -4.0;
+      self.keypadToContainerTopOffsetConstraint.constant = 17.0;
+      self.buttonBottomOffsetConstraint.constant = 22.0;
+      self.approximateFeeLabel.text = NSLocalizedString(@"Approx. Simplex fee included in rate", @"BuyEther. Approximate fee");
+      break;
+    }
+    case ScreenSizeTypeInches47: {
+      self.amountTopOffsetConstraint.constant = 13.0;
+      break;
+    }
+    case ScreenSizeTypeInches55: {
+      self.amountTopOffsetConstraint.constant = 26.0;
+      break;
+    }
+    default: {
+      self.approximateFeeTopConstraint.constant = 30.0;
+      break;
+    }
   }
+  
+  {
+    NSDictionary *attributes = @{NSFontAttributeName: self.approximateFeeLabel.font,
+                                 NSForegroundColorAttributeName: self.approximateFeeLabel.textColor};
+    NSMutableAttributedString *approximateString = [[NSMutableAttributedString alloc] initWithString:self.approximateFeeLabel.text
+                                                                                          attributes:attributes];
+    NSRange simplexRange = [approximateString.string rangeOfString:@"Simplex"];
+    if (simplexRange.location != NSNotFound) {
+      [approximateString addAttribute:NSUnderlineStyleAttributeName value:@(NSUnderlineStyleSingle) range:simplexRange];
+    }
+    
+    self.approximateFeeLabel.attributedText = approximateString;
+  }
+  
+  
   _currency = currency;
   self.amountCurrencyLabel.text = NSStringFromSimplexServiceCurrencyType(currency);
   
@@ -114,7 +147,8 @@
   
   self.amountLabel.text = [prefix stringByAppendingString:enteredAmount];
   if (convertedAmount) {
-    self.resultLabel.text = [convertedFormatter stringFromNumber:convertedAmount];
+    NSString *convertedAmountText = [@"≈" stringByAppendingString:[convertedFormatter stringFromNumber:convertedAmount]];
+    self.resultLabel.text = convertedAmountText;
   } else {
     self.resultLabel.text = [@"— " stringByAppendingString:nullSuffix];
   }

@@ -40,6 +40,7 @@ abstract_target 'MEWconnect' do
   pod 'DZNWebViewController', :git => 'https://github.com/Foboz/DZNWebViewController.git'
   pod 'UITextView+Placeholder', '~> 1.2.0'
   pod 'CHIPageControl/Chimayo', '= 0.1.6'
+  pod 'MnemonicsView', :path => 'DevelopPods/MnemonicsView'
   
   # Ethereum
   pod 'web3swift', :git => 'https://github.com/Foboz/web3swift.git', :branch => 'v200_mew'

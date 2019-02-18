@@ -16,7 +16,7 @@
   /* Logger */
   [DDLog addLogger:[DDTTYLogger sharedInstance]];
 #if !DEBUG
-  [DDLog addLogger:[DDASLLogger sharedInstance]];
+  [DDLog addLogger:[DDOSLogger sharedInstance]];
 #endif
   /* WebRTC */
   RTCInitializeSSL();

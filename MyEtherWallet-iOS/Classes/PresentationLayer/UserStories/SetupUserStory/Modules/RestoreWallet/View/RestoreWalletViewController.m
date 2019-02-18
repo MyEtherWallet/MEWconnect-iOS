@@ -8,6 +8,7 @@
 
 @import libextobjc.EXTScope;
 @import UITextView_Placeholder;
+@import MnemonicsView;
 
 #import "RestoreWalletViewController.h"
 
@@ -21,14 +22,14 @@
 @interface RestoreWalletViewController () <UITextViewDelegate>
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *nextButton;
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
-@property (nonatomic, weak) IBOutlet UITextView *mnemonicsTextView;
+@property (nonatomic, weak) IBOutlet MnemonicsView *mnemonicsView;
 @property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *mnemonicsTextViewHeightConstraint;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *titleTopOffsetConstraint;
 @end
 
 @implementation RestoreWalletViewController {
   CGFloat _keyboardHeight;
+  BOOL _keyboardWasShown;
 }
 
 #pragma mark - LifeCycle
@@ -43,7 +44,12 @@
   [super viewWillAppear:animated];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-  [self.mnemonicsTextView becomeFirstResponder];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  [self.mnemonicsView becomeFirstResponder];
 }
 
 - (void) viewDidDisappear:(BOOL)animated {
@@ -60,11 +66,8 @@
 
 - (void) setupInitialState {
   if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
-    self.mnemonicsTextViewHeightConstraint.constant = 164.0;
     self.titleTopOffsetConstraint.constant = 30.0;
   }
-  self.mnemonicsTextView.placeholder = NSLocalizedString(@"Words separated by spaces…", @"Restore wallet. Mnemonics placeholder");
-  self.mnemonicsTextView.placeholderColor = [[UIColor lightGreyTextColor] colorWithAlphaComponent:0.5];
   { //Title label
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
     style.lineSpacing = 0.0;
@@ -86,13 +89,13 @@
                                  NSKernAttributeName: @(kern)};
     self.titleLabel.attributedText = [[NSAttributedString alloc] initWithString:self.titleLabel.text attributes:attributes];
   }
-  { //TextView
-    self.mnemonicsTextView.textContainerInset = UIEdgeInsetsMake(16.0, 11.0, 11.0, 11.0);
-    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
-    style.lineSpacing = 2.0;
-    NSDictionary *attributes = @{NSParagraphStyleAttributeName: style,
-                                 NSFontAttributeName: self.mnemonicsTextView.font};
-    self.mnemonicsTextView.typingAttributes = attributes;
+  { //MnemonicsView
+    self.mnemonicsView.layer.cornerRadius = 10.0;
+    self.mnemonicsView.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.mnemonicsView.layer.shadowRadius = 20.0;
+    self.mnemonicsView.layer.shadowOpacity = 0.2;
+    self.mnemonicsView.layer.shadowOffset = CGSizeMake(0.0, 10.0);
+    self.mnemonicsView.clipsToBounds = NO;
   }
 }
 
@@ -109,7 +112,7 @@
                                             style:UIAlertActionStyleDefault
                                           handler:^(__unused UIAlertAction * _Nonnull action) {
                                             @strongify(self);
-                                            [self.mnemonicsTextView becomeFirstResponder];
+                                            [self.mnemonicsView becomeFirstResponder];
                                           }]];
   [self presentViewController:alert animated:YES completion:nil];
 }
@@ -124,30 +127,29 @@
   [self.output nextAction];
 }
 
-#pragma mark - UITextViewDelegate
-
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(__unused NSRange)range replacementText:(__unused NSString *)text {
-  NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
-  style.lineSpacing = 2.0;
-  NSDictionary *attributes = @{NSParagraphStyleAttributeName: style,
-                               NSFontAttributeName: self.mnemonicsTextView.font};
-  textView.typingAttributes = attributes;
-  return YES;
-}
-
-- (void)textViewDidChange:(UITextView *)textView {
-  [self.output textDidChangedAction:textView.text];
+- (IBAction) mnemonicsChangedAction:(MnemonicsView *)sender {
+  [self.output textDidChangedAction:sender.mnemonics];
 }
 
 #pragma mark - Notifications
 
 - (void) keyboardWillShow:(NSNotification *)notification {
+  _keyboardWasShown = YES;
   CGSize keyboardSize = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
   _keyboardHeight = keyboardSize.height;
   [self _updateScrollViewInsets];
 }
 
+- (void) keyboardWillChangeFrame:(NSNotification *)notification {
+  if (_keyboardWasShown) {
+    CGSize keyboardSize = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    _keyboardHeight = keyboardSize.height;
+    [self _updateScrollViewInsets];
+  }
+}
+
 - (void) keyboardWillHide:(__unused NSNotification *)notification {
+  _keyboardWasShown = NO;
   _keyboardHeight = 0.0;
   [self _updateScrollViewInsets];
 }
@@ -162,11 +164,17 @@
     insets = self.scrollView.contentInset;
   }
   insets.bottom = _keyboardHeight;
+  if (@available(iOS 11.0, *)) {
+    insets.bottom -= self.view.safeAreaInsets.bottom;
+  }
   
   self.scrollView.contentInset = insets;
   
   UIEdgeInsets indicatorInset = self.scrollView.scrollIndicatorInsets;
   indicatorInset.bottom = _keyboardHeight;
+  if (@available(iOS 11.0, *)) {
+    indicatorInset.bottom -= self.view.safeAreaInsets.bottom;
+  }
   self.scrollView.scrollIndicatorInsets = indicatorInset;
 }
 

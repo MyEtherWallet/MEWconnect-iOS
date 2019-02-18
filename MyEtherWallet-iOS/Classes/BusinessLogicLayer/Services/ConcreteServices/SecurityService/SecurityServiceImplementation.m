@@ -6,9 +6,16 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
+#import "KeychainService.h"
 #import "SecurityServiceImplementation.h"
 
-static CFTimeInterval const kSecurityServiceImplementationDefaultTimeout  = 300.0;
+static CFTimeInterval const kSecurityServiceImplementationDefaultTimeout              = 300.0;
+static NSInteger const      kSecurityServiceImplementationNumberOfIncorrectAttempts   = 5;
+#if DEBUG
+static NSTimeInterval const kSecurityServiceImplementationUnlockTimeout               = 120.0;
+#else
+static NSTimeInterval const kSecurityServiceImplementationUnlockTimeout               = 300.0;
+#endif
 
 @interface SecurityServiceImplementation ()
 @property (nonatomic) BOOL forceProtection;
@@ -60,6 +67,33 @@ static CFTimeInterval const kSecurityServiceImplementationDefaultTimeout  = 300.
 
 - (void) resetOneTimeProtection {
   self.oneTimeProtection = NO;
+}
+
+- (void) incorrectAttempt {
+  NSInteger numberOfAttempts = [self.keychainService obtainNumberOfPasswordAttempts];
+  ++numberOfAttempts;
+  if (numberOfAttempts >= kSecurityServiceImplementationNumberOfIncorrectAttempts) {
+    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:kSecurityServiceImplementationUnlockTimeout];
+    [self.keychainService savePasswordUnlockDate:date];
+    [self.keychainService savePasswordAttempts:0];
+  } else {
+    [self.keychainService savePasswordAttempts:numberOfAttempts];
+  }
+}
+
+- (void) correctAttempt {
+  [self.keychainService savePasswordAttempts:0];
+}
+
+- (BOOL) isInputLocked {
+  NSDate *unlockDate = [self.keychainService obtainPasswordUnlockDate];
+  NSDate *now = [NSDate date];
+  BOOL locked = unlockDate && [now compare:unlockDate] != NSOrderedDescending;
+  return locked;
+}
+
+- (NSDate * __nullable) unlockTime {
+  return [self.keychainService obtainPasswordUnlockDate];
 }
      
 #pragma mark - Notifications

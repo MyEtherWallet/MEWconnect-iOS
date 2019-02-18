@@ -75,12 +75,8 @@
   NSManagedObjectContext *rootSavingContext = [NSManagedObjectContext MR_rootSavingContext];
   [rootSavingContext performBlockAndWait:^{
     NSArray <AccountModelObject *> *accountModels = [AccountModelObject MR_findAllInContext:rootSavingContext];
-    if ([accountModels count] == 0) {
-      NSArray <KeychainAccountModel *> *storedItems = [self.keychainService obtainStoredItems];
-      if ([storedItems count] == 0) {
-        return;
-      }
-      
+    NSArray <KeychainAccountModel *> *storedItems = [self.keychainService obtainStoredItems];
+    if ([accountModels count] == 0 && [storedItems count] != 0) {
       for (KeychainAccountModel *keychainItem in storedItems) {
         AccountModelObject *accountModelObject = [AccountModelObject MR_findFirstOrCreateByAttribute:NSStringFromSelector(@selector(uid)) withValue:keychainItem.uid inContext:rootSavingContext];
         accountModelObject.backedUp = @(keychainItem.backedUp);
@@ -130,10 +126,23 @@
       
       accountModelObject.active = @YES;
       networkModelObject.active = @YES;
-      
-      if ([rootSavingContext hasChanges]) {
-        [rootSavingContext MR_saveToPersistentStoreAndWait];
-      }
+    }
+    //Clear ghost tokens
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.fromNetworkMaster == nil && SELF.fromNetwork == nil"];
+    NSArray <MasterTokenModelObject *> *ghostMasterTokens = [MasterTokenModelObject MR_findAllWithPredicate:predicate inContext:rootSavingContext];
+    if ([ghostMasterTokens count] > 0) {
+      [rootSavingContext MR_deleteObjects:ghostMasterTokens];
+    }
+    
+    predicate = [NSPredicate predicateWithFormat:@"SELF.fromNetwork == nil"];
+    NSFetchRequest <TokenModelObject *> *request = [TokenModelObject MR_requestAllWithPredicate:predicate inContext:rootSavingContext];
+    request.includesSubentities = NO;
+    NSArray <TokenModelObject *> *ghostTokens = [request execute:nil];
+    if ([ghostTokens count] > 0) {
+      [rootSavingContext MR_deleteObjects:ghostTokens];
+    }
+    if ([rootSavingContext hasChanges]) {
+      [rootSavingContext MR_saveToPersistentStoreAndWait];
     }
   }];
 }

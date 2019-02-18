@@ -11,13 +11,13 @@
 #import "RateServiceImplementation.h"
 #import "KeychainService.h"
 
-static NSString *const kRateServiceImplementationRaterVersion           = @"group.myetherwallet.userdefaults.raterversion";
-static NSString *const kRateServiceImplementationLaunchCount            = @"group.myetherwallet.userdefaults.launchcount";
-static NSString *const kRateServiceImplementationBalanceUpdateCount     = @"group.myetherwallet.userdefaults.balanceupdate";
+static NSString *const kRateServiceImplementationRaterVersion               = @"group.myetherwallet.userdefaults.raterversion";
+static NSString *const kRateServiceImplementationBalanceUpdateCount         = @"group.myetherwallet.userdefaults.balanceupdate";
+static NSString *const kRateServiceImplementationPhase                      = @"group.myetherwallet.userdefaults.phase";
 
-static NSInteger const kRateServiceImplementationNumberOfLaunchCount    = 5;
-static NSInteger const kRateServiceImplementationNumberOfBalanceUpdate  = 10;
-static NSInteger const kRateServiceImplementationCurrentRaterVersion    = 2;
+static NSInteger const kRateServiceImplementationNumberOfBalanceUpdate      = 10;
+static NSInteger const kRateServiceImplementationNextNumberOfBalanceUpdate  = 100;
+static NSInteger const kRateServiceImplementationCurrentRaterVersion        = 3;
 
 @implementation RateServiceImplementation
 
@@ -25,7 +25,6 @@ static NSInteger const kRateServiceImplementationCurrentRaterVersion    = 2;
   NSInteger version = [self.userDefaults integerForKey:kRateServiceImplementationRaterVersion];
   if (version != kRateServiceImplementationCurrentRaterVersion) {
     [self clearCount];
-    [self.keychainService resetRateStatus];
     [self.userDefaults setInteger:kRateServiceImplementationCurrentRaterVersion forKey:kRateServiceImplementationRaterVersion];
     [self.userDefaults synchronize];
   }
@@ -38,31 +37,24 @@ static NSInteger const kRateServiceImplementationCurrentRaterVersion    = 2;
   [self.userDefaults synchronize];
 }
 
-- (void) applicationLaunched {
-  NSInteger count = [self.userDefaults integerForKey:kRateServiceImplementationLaunchCount];
-  ++count;
-  [self.userDefaults setInteger:count forKey:kRateServiceImplementationLaunchCount];
-  [self.userDefaults synchronize];
-}
-
 - (void) clearCount {
-  [self.userDefaults removeObjectForKey:kRateServiceImplementationLaunchCount];
+  [self.userDefaults removeObjectForKey:kRateServiceImplementationPhase];
   [self.userDefaults removeObjectForKey:kRateServiceImplementationBalanceUpdateCount];
   [self.userDefaults synchronize];
 }
 
 - (void) requestReviewIfNeeded {
-  NSInteger launchCount = [self.userDefaults integerForKey:kRateServiceImplementationLaunchCount];
   NSInteger updateCount = [self.userDefaults integerForKey:kRateServiceImplementationBalanceUpdateCount];
+  NSInteger requiredCount = kRateServiceImplementationNumberOfBalanceUpdate + [self.userDefaults integerForKey:kRateServiceImplementationPhase] * kRateServiceImplementationNextNumberOfBalanceUpdate;
   
-  if (launchCount >= kRateServiceImplementationNumberOfLaunchCount
-      && updateCount >= kRateServiceImplementationNumberOfBalanceUpdate
-      && ![self.keychainService obtainRateStatus]) {
-    
+  if (updateCount >= requiredCount) {
     dispatch_async(dispatch_get_main_queue(), ^{
       if (@available(iOS 10.3, *)) {
         [SKStoreReviewController requestReview];
-        [self.keychainService rateDidAsked];
+        NSInteger phase = [self.userDefaults integerForKey:kRateServiceImplementationPhase];
+        ++phase;
+        [self.userDefaults setInteger:phase forKey:kRateServiceImplementationPhase];
+        [self.userDefaults synchronize];
       }
     });
   }

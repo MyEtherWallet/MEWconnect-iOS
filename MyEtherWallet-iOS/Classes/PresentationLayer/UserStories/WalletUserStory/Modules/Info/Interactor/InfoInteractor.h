@@ -11,9 +11,11 @@
 @protocol InfoInteractorOutput;
 @protocol AccountsService;
 @protocol KeychainService;
+@protocol TokensService;
 
 @interface InfoInteractor : NSObject <InfoInteractorInput>
 @property (nonatomic, weak) id<InfoInteractorOutput> output;
 @property (nonatomic, strong) id <AccountsService> accountsService;
 @property (nonatomic, strong) id <KeychainService> keychainService;
+@property (nonatomic, strong) id <TokensService> tokensService;
 @end

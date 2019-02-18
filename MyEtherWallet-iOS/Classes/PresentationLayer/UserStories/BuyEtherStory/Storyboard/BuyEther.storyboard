@@ -34,7 +34,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z0O-EI-5HY">
+                            <view contentMode="scaleToFill" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="z0O-EI-5HY">
                                 <rect key="frame" x="0.0" y="307" width="375" height="360"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Hqh-mu-9KU">
@@ -249,6 +249,15 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="y6h-mo-bjT">
                                 <rect key="frame" x="245" y="212" width="20" height="20"/>
                             </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="50" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s9i-8F-Rvw">
+                                <rect key="frame" x="10" y="238.5" width="355" height="61"/>
+                                <string key="text">Purchase will be done via Simplex
+Approximate fee is already
+included in this rate</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.18039215689999999" green="0.18823529410000001" blue="0.20000000000000001" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -264,10 +273,14 @@
                             <constraint firstItem="de3-Ge-Pri" firstAttribute="right" relation="greaterThanOrEqual" secondItem="nJ8-dO-0p9" secondAttribute="right" constant="16" id="Xeo-vB-O4R"/>
                             <constraint firstItem="l32-qR-w0g" firstAttribute="top" secondItem="0Ew-qW-Plz" secondAttribute="bottom" constant="15" id="aUC-U6-7Mk"/>
                             <constraint firstItem="l32-qR-w0g" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="de3-Ge-Pri" secondAttribute="leading" constant="16" id="bvd-aH-TZy"/>
+                            <constraint firstAttribute="trailing" secondItem="s9i-8F-Rvw" secondAttribute="trailing" constant="10" id="bzJ-VF-h28"/>
                             <constraint firstItem="0Ew-qW-Plz" firstAttribute="top" secondItem="gwV-jF-T3l" secondAttribute="bottom" constant="8" id="g9H-ZC-q0G"/>
+                            <constraint firstItem="s9i-8F-Rvw" firstAttribute="top" secondItem="l32-qR-w0g" secondAttribute="bottom" constant="6" id="lCM-yX-PT1"/>
                             <constraint firstItem="de3-Ge-Pri" firstAttribute="trailing" secondItem="z0O-EI-5HY" secondAttribute="trailing" id="oMv-VQ-U9c"/>
+                            <constraint firstItem="z0O-EI-5HY" firstAttribute="top" relation="greaterThanOrEqual" secondItem="s9i-8F-Rvw" secondAttribute="bottom" id="p7c-0o-z1I"/>
                             <constraint firstItem="de3-Ge-Pri" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="l32-qR-w0g" secondAttribute="trailing" constant="16" id="pl5-Y6-X7p"/>
                             <constraint firstItem="nJ8-dO-0p9" firstAttribute="leading" secondItem="gwV-jF-T3l" secondAttribute="trailing" constant="8" id="qJr-UD-nZP"/>
+                            <constraint firstItem="s9i-8F-Rvw" firstAttribute="leading" secondItem="J5Y-Du-5Ui" secondAttribute="leading" constant="10" id="rcI-81-Hfd"/>
                             <constraint firstItem="z0O-EI-5HY" firstAttribute="leading" secondItem="de3-Ge-Pri" secondAttribute="leading" id="vx7-Cf-WOf"/>
                             <constraint firstItem="gwV-jF-T3l" firstAttribute="left" relation="greaterThanOrEqual" secondItem="de3-Ge-Pri" secondAttribute="left" constant="16" id="yTL-Bw-eYx"/>
                         </constraints>
@@ -289,6 +302,8 @@
                         <outlet property="amountCurrencyLabel" destination="nJ8-dO-0p9" id="9Vu-3V-wPA"/>
                         <outlet property="amountLabel" destination="gwV-jF-T3l" id="kbA-jT-62Z"/>
                         <outlet property="amountTopOffsetConstraint" destination="A6w-eX-Igy" id="K15-Pt-FsP"/>
+                        <outlet property="approximateFeeLabel" destination="s9i-8F-Rvw" id="63t-XR-yT3"/>
+                        <outlet property="approximateFeeTopConstraint" destination="lCM-yX-PT1" id="9JH-9u-wRV"/>
                         <outlet property="buttonBottomOffsetConstraint" destination="Tq8-ZD-s00" id="sho-ln-3tu"/>
                         <outlet property="buyButton" destination="jGA-nU-jau" id="GrH-Kr-aMI"/>
                         <outlet property="keypadToContainerTopOffsetConstraint" destination="h4n-w9-5v5" id="5LH-R5-4L9"/>

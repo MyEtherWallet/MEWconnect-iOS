@@ -12,4 +12,7 @@
 - (void) setupInitialStateWithAutoControl:(BOOL)autoControl;
 - (void) becomePasswordInputActive;
 - (void) shakeInput;
+- (void) lockPasswordField;
+- (void) unlockPasswordField;
+- (void) updateLockWithTimeInterval:(NSTimeInterval)unlockIn;
 @end

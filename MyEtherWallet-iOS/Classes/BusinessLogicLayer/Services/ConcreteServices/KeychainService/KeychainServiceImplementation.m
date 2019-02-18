@@ -158,7 +158,7 @@
 
 - (void) resetKeychain {
   NSArray <NSString *> *keys = [self.keychainStore allKeys];
-  NSArray *ignoringKeys = @[kKeychainServiceRateAskedField, kKeychainServiceVersionField, kKeychainServiceFirstLaunchField];
+  NSArray *ignoringKeys = @[kKeychainServiceVersionField, kKeychainServiceFirstLaunchField];
   for (NSString *key in keys) {
     if (![ignoringKeys containsObject:key]) {
       [self _removeItemWithKey:key];
@@ -178,16 +178,27 @@
   return [self.keychainStore stringForKey:kKeychainServiceFirstLaunchField];
 }
 
-- (void) rateDidAsked {
-  [self.keychainStore setString:kKeychainServiceRateAskedValue forKey:kKeychainServiceRateAskedField];
+- (NSInteger) obtainNumberOfPasswordAttempts {
+  NSString *attemptsValue = [self.keychainStore stringForKey:kKeychainServiceBruteForceNumberOfAttempts];
+  return [attemptsValue integerValue];
 }
 
-- (BOOL) obtainRateStatus {
-  return [self.keychainStore stringForKey:kKeychainServiceRateAskedField] != nil;
+- (void) savePasswordAttempts:(NSInteger)attempts {
+  NSString *attemptsValue = [@(attempts) stringValue];
+  [self.keychainStore setString:attemptsValue forKey:kKeychainServiceBruteForceNumberOfAttempts];
 }
 
-- (void) resetRateStatus {
-  [self.keychainStore removeItemForKey:kKeychainServiceRateAskedField];
+- (NSDate *) obtainPasswordUnlockDate {
+  NSString *dateString = [self.keychainStore stringForKey:kKeychainServiceBruteForceLockDateField];
+  if (!dateString) {
+    return nil;
+  }
+  return [self.dateFormatter dateFromString:dateString];
+}
+
+- (void) savePasswordUnlockDate:(NSDate *)date {
+  NSString *dateString = [self.dateFormatter stringFromDate:date];
+  [self.keychainStore setString:dateString forKey:kKeychainServiceBruteForceLockDateField];
 }
 
 #pragma mark - Protected
@@ -228,7 +239,7 @@
 
 - (NSArray *) _obtainRawKeys {
   NSMutableArray <NSString *> *keys = [[self.keychainStore allKeys] mutableCopy];
-  NSArray *ignoringKeys = @[kKeychainServiceRateAskedField, kKeychainServiceVersionField, kKeychainServiceFirstLaunchField];
+  NSArray *ignoringKeys = @[kKeychainServiceVersionField, kKeychainServiceFirstLaunchField];
   [keys removeObjectsInArray:ignoringKeys];
   return [keys copy];
 }

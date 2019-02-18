@@ -18,6 +18,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) disableForceProtection;
 - (BOOL) obtainProtectionStatus;
 - (void) resetOneTimeProtection;
+
+- (void) incorrectAttempt;
+- (void) correctAttempt;
+- (BOOL) isInputLocked;
+- (NSDate * __nullable) unlockTime;
 @end
 
 NS_ASSUME_NONNULL_END

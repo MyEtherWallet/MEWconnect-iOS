@@ -12,6 +12,7 @@
 
 #import "ApplicationConstants.h"
 
+#import "PasswordTextField.h"
 #import "UIView+LockFrame.h"
 
 static CGFloat const kSplashPasswordShakeAnimationDistance = 10.0;
@@ -19,7 +20,7 @@ static CFTimeInterval const kSplashPasswordShakeAnimationDuration = 0.05;
 static float const kSplashPasswordShakeAnimationRepeatCount = 3.0;
 
 @interface SplashPasswordViewController () <UITextFieldDelegate>
-@property (nonatomic, weak) IBOutlet UITextField *passwordTextField;
+@property (nonatomic, weak) IBOutlet PasswordTextField *passwordTextField;
 @end
 
 @implementation SplashPasswordViewController {
@@ -83,6 +84,24 @@ static float const kSplashPasswordShakeAnimationRepeatCount = 3.0;
   [self.passwordTextField.layer addAnimation:animation forKey:@"position"];
 }
 
+- (void) lockPasswordField {
+  [self.passwordTextField setText:nil];
+  self.passwordTextField.inputEnabled = NO;
+}
+
+- (void) unlockPasswordField {
+  self.passwordTextField.inputEnabled = YES;
+}
+
+- (void) updateLockWithTimeInterval:(NSTimeInterval)unlockIn {
+  NSDateComponentsFormatter *formatter = [[NSDateComponentsFormatter alloc] init];
+  [formatter setUnitsStyle:NSDateComponentsFormatterUnitsStylePositional];
+  [formatter setAllowedUnits:NSCalendarUnitMinute|NSCalendarUnitSecond];
+  [formatter setZeroFormattingBehavior:NSDateComponentsFormatterZeroFormattingBehaviorPad];
+  NSString *unlockInText = [formatter stringFromTimeInterval:unlockIn];
+  [self.passwordTextField setRightViewText:unlockInText];
+}
+
 #pragma mark - IBActions
 
 - (IBAction) passwordDidChanged:(__unused UITextField *)sender {
@@ -94,6 +113,10 @@ static float const kSplashPasswordShakeAnimationRepeatCount = 3.0;
 }
 
 #pragma mark - UITextFieldDelegate
+
+- (BOOL)textField:(PasswordTextField *)textField shouldChangeCharactersInRange:(__unused NSRange)range replacementString:(__unused NSString *)string {
+  return textField.inputEnabled;
+}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
   [self.output doneActionWithPassword:textField.text];

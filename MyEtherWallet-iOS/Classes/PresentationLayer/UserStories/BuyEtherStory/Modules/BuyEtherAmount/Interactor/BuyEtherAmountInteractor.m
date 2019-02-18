@@ -339,7 +339,6 @@ static NSString *const kBuyEtherAmountDecimalSeparator    = @".";
     NSDecimalNumber *k2 = [NSDecimalNumber decimalNumberWithString:@"-0.08"];
     NSDecimalNumber *k3 = [NSDecimalNumber decimalNumberWithString:@"0.01"];
     
-    
     NSDecimalNumber *p1 = [k1 decimalNumberByDividingBy:amount];
     NSDecimalNumber *p2 = [k2 decimalNumberByDividingBy:amount];
     

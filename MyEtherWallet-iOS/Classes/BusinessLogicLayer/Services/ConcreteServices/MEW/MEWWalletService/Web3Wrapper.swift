@@ -142,17 +142,13 @@ class Web3Wrapper: NSObject {
    - Returns: true/false
    */
   func validatePassword(password: String, masterToken: MasterTokenPlainObject, account: AccountPlainObject, network: BlockchainNetworkType = .mainnet) -> Bool {
-    guard let encryptedKeydata = self.keychainService?.obtainKeydata(ofMasterToken: masterToken, ofAccount: account, inChainID: network.rawValue)  else { return false }
+    guard let masterTokenAddress = masterToken.address else { return false }
+    guard let encryptedKeydata = self.keychainService?.obtainKeydata(ofMasterToken: masterToken, ofAccount: account, inChainID: network.rawValue) else { return false }
     guard let keydata = self.MEWcrypto?.decryptData(encryptedKeydata, withPassword: password) else { return false }
 
     guard let bip32Keystore = BIP32Keystore(keydata) else { return false }
-    guard let account = bip32Keystore.addresses?.first else { return false }
-    do {
-      _ = try bip32Keystore.UNSAFE_getPrivateKeyData(password: password, account: account/*, prefixPath: HDNode.defaultPathMetamaskPrefix*/)
-    } catch {
-      return false
-    }
-    return true
+    guard let address = bip32Keystore.addresses?.first else { return false }
+    return masterTokenAddress == address.address
   }
   
   /**

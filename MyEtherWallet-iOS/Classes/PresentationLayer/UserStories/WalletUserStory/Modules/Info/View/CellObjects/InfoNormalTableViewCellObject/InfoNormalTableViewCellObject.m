@@ -39,6 +39,11 @@
       }
       case InfoNormalTableViewCellObjectTypeAbout: {
         _title = NSLocalizedString(@"About", @"Info screen");
+        break;
+      }
+      case InfoNormalTableViewCellObjectTypeBackupPhrase: {
+        _title = NSLocalizedString(@"View backup passphrase", @"Info screen");
+        break;
       }
       default:
         break;

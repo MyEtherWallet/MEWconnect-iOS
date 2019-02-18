@@ -20,6 +20,7 @@
 - (void) didTapResetWallet;
 - (void) didTapUserGuide;
 - (void) didTapAbout;
+- (void) didTapViewBackupPhrase;
 @end
 
 @interface InfoDataDisplayManager : NSObject <DataDisplayManager, UITableViewDelegate>

@@ -24,7 +24,7 @@
 - (id <ConfirmationNavigationModuleInput>) openMessageSignerWithMessage:(MEWConnectCommand *)command masterToken:(MasterTokenPlainObject *)masterToken confirmationDelegate:(id <ConfirmationStoryModuleOutput>)confirmationDelegate;
 - (id <ConfirmationNavigationModuleInput>) openTransactionSignerWithMessage:(MEWConnectCommand *)command masterToken:(MasterTokenPlainObject *)masterToken confirmationDelegate:(id <ConfirmationStoryModuleOutput>)confirmationDelegate;
 - (void) openBackupWithAccount:(AccountPlainObject *)account;
-- (void) openInfo;
+- (void) openInfoWithAccount:(AccountPlainObject *)account;
 - (void) openBuyEtherWithMasterToken:(MasterTokenPlainObject *)masterToken;
 - (void) unwindToStart;
 @end

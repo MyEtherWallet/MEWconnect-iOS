@@ -34,13 +34,25 @@
   
   BOOL compact = ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40);
   
+  [self.tableViewModel insertSectionWithTitle:@" " atIndex:0];
   [self.tableViewModel addObject:[self.cellObjectBuilder buildEmptyCellObject]];
   [self.tableViewModel addObject:[self.cellObjectBuilder buildContactCellObjectWithCompactSize:compact]];
-  [self.tableViewModel addObject:[self.cellObjectBuilder buildUserGuideCellObjectWithCompactSize:compact]];
+//  [self.tableViewModel addObject:[self.cellObjectBuilder buildUserGuideCellObjectWithCompactSize:compact]];
   [self.tableViewModel addObject:[self.cellObjectBuilder buildKnowledgeBaseCellObjectWithCompactSize:compact]];
+  [self.tableViewModel addObject:[self.cellObjectBuilder buildEmptyCellObject]];
+  [self.tableViewModel insertSectionWithTitle:@" " atIndex:1];
+  [self.tableViewModel addObject:[self.cellObjectBuilder buildEmptyCellObject]];
   [self.tableViewModel addObject:[self.cellObjectBuilder buildPrivacyAndTermsCellObjectWithCompactSize:compact]];
   [self.tableViewModel addObject:[self.cellObjectBuilder buildMyetherwalletComCellObjectWithCompactSize:compact]];
-  [self.tableViewModel addObject:[self.cellObjectBuilder buildAboutCellObjectWithCompactSize:compact]];
+  [self.tableViewModel addObject:[self.cellObjectBuilder buildEmptyCellObject]];
+  [self.tableViewModel insertSectionWithTitle:@" " atIndex:2];
+  [self.tableViewModel addObject:[self.cellObjectBuilder buildEmptyCellObject]];
+//  [self.tableViewModel addObject:[self.cellObjectBuilder buildAboutCellObjectWithCompactSize:compact]];
+  [self.tableViewModel addObject:[self.cellObjectBuilder buildViewBackupPhraseCellObjectWithCompactSize:compact]];
+  [self.tableViewModel addObject:[self.cellObjectBuilder buildEmptyCellObject]];
+  [self.tableViewModel insertSectionWithTitle:@" " atIndex:3];
+  [self.tableViewModel addObject:[self.cellObjectBuilder buildEmptyCellObject]];
+  [self.tableViewModel addObject:[self.cellObjectBuilder buildResetWalletCellObjectWithCompactSize:compact]];
   [self.tableViewModel addObject:[self.cellObjectBuilder buildEmptyCellObject]];
 }
 
@@ -82,7 +94,6 @@
 
 - (void) updateTableViewModel {
   self.tableViewModel = [[NIMutableTableViewModel alloc] initWithDelegate:(id)[CellFactory class]];
-  [self.tableViewModel insertSectionWithTitle:@" " atIndex:0];
 }
 
 - (void)setupTableViewActions {
@@ -116,6 +127,10 @@
                                   }
                                   case InfoNormalTableViewCellObjectTypeAbout: {
                                     [self.delegate didTapAbout];
+                                    break;
+                                  }
+                                  case InfoNormalTableViewCellObjectTypeBackupPhrase: {
+                                    [self.delegate didTapViewBackupPhrase];
                                     break;
                                   }
                                   default:

@@ -128,10 +128,6 @@
   [self.output closeAction];
 }
 
-- (IBAction) resetWalletAction:(__unused id)sender {
-  [self.output resetWalletAction];
-}
-
 #pragma mark - Private
 
 - (void) _updatePrefferedContentSize {
@@ -173,6 +169,10 @@
 
 - (void) didTapAbout {
   [self.output aboutAction];
+}
+
+- (void) didTapViewBackupPhrase {
+  [self.output viewBackupPhraseAction];
 }
 
 #pragma mark - MFMailComposeViewControllerDelegate

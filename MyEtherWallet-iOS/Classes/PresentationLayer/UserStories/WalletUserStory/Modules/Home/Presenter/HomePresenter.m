@@ -119,7 +119,8 @@ typedef NS_OPTIONS(short, HomeViewPresenterStatus) {
 }
 
 - (void) infoAction {
-  [self.router openInfo];
+  AccountPlainObject *account = [self.interactor obtainAccount];
+  [self.router openInfoWithAccount:account];
 }
 
 - (void) buyEtherAction {

@@ -63,7 +63,11 @@
 
 #pragma mark - BackupWordsViewInput
 
-- (void) setupInitialStateWithWords:(NSArray<NSString *> *)words {
+- (void) setupInitialStateWithWords:(NSArray<NSString *> *)words readOnly:(BOOL)readOnly {
+  if (readOnly) {
+    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Close", @"BackupWords. View phrase close button") style:UIBarButtonItemStyleDone target:self action:@selector(closeAction:)];
+    self.navigationItem.rightBarButtonItem = closeButton;
+  }
   if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
     self.titleToContentYOffsetConstraint.constant = 15.0;
     self.descriptionToWordsContainerYOffsetConstraint.constant = 11.0;
@@ -141,6 +145,10 @@
 
 - (IBAction)nextAction:(__unused id)sender {
   [self.output nextAction];
+}
+
+- (IBAction)closeAction:(__unused id)sender {
+  [self.output closeAction];
 }
 
 #pragma mark - Private

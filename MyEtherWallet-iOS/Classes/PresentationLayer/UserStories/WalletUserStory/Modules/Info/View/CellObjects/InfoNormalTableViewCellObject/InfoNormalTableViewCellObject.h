@@ -18,6 +18,7 @@ typedef NS_ENUM(short, InfoNormalTableViewCellObjectType) {
   InfoNormalTableViewCellObjectTypeMyEtherWalletCom   = 3,
   InfoNormalTableViewCellObjectTypeUserGuide          = 4,
   InfoNormalTableViewCellObjectTypeAbout              = 5,
+  InfoNormalTableViewCellObjectTypeBackupPhrase       = 6,
 };
 
 @interface InfoNormalTableViewCellObject : NSObject <NINibCellObject, NICellObject, CellObjectAction>

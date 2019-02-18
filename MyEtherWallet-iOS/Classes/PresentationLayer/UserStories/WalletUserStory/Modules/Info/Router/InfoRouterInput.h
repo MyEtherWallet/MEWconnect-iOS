@@ -8,6 +8,9 @@
 
 @import Foundation;
 
+@class AccountPlainObject;
+@protocol ContextPasswordModuleOutput;
+
 @protocol InfoRouterInput <NSObject>
 - (void) close;
 - (void) unwindToStart;
@@ -16,4 +19,6 @@
 - (void) openPrivacyAndTerms;
 - (void) openUserGuide;
 - (void) openAbout;
+- (void) openWordsWithMnemonics:(NSArray<NSString *> *)mnemonics;
+- (void) openContextPasswordWithOutput:(id <ContextPasswordModuleOutput>)output account:(AccountPlainObject *)account;
 @end

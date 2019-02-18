@@ -19,6 +19,7 @@
 - (InfoNormalTableViewCellObject *) buildMyetherwalletComCellObjectWithCompactSize:(BOOL)compact;
 - (InfoNormalTableViewCellObject *) buildUserGuideCellObjectWithCompactSize:(BOOL)compact;
 - (InfoNormalTableViewCellObject *) buildAboutCellObjectWithCompactSize:(BOOL)compact;
-- (InfoDestructiveTableViewCellObject *) buildResetWalletCellObject;
+- (InfoNormalTableViewCellObject *) buildViewBackupPhraseCellObjectWithCompactSize:(BOOL)compact;
+- (InfoDestructiveTableViewCellObject *) buildResetWalletCellObjectWithCompactSize:(BOOL)compact;
 - (InfoEmptyTableViewCellObject *) buildEmptyCellObject;
 @end

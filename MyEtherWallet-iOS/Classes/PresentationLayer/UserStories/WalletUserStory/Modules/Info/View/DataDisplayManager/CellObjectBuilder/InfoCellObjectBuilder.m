@@ -38,8 +38,12 @@
   return [InfoNormalTableViewCellObject objectWithType:InfoNormalTableViewCellObjectTypeAbout compact:compact];
 }
 
-- (InfoDestructiveTableViewCellObject *) buildResetWalletCellObject {
-  return [InfoDestructiveTableViewCellObject objectWithType:InfoDestructiveTableViewCellObjectResetType];
+- (InfoNormalTableViewCellObject *) buildViewBackupPhraseCellObjectWithCompactSize:(BOOL)compact {
+  return [InfoNormalTableViewCellObject objectWithType:InfoNormalTableViewCellObjectTypeBackupPhrase compact:compact];
+}
+
+- (InfoDestructiveTableViewCellObject *) buildResetWalletCellObjectWithCompactSize:(BOOL)compact {
+  return [InfoDestructiveTableViewCellObject objectWithType:InfoDestructiveTableViewCellObjectResetType compact:compact];
 }
 
 - (InfoEmptyTableViewCellObject *) buildEmptyCellObject {

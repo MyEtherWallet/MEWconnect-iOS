@@ -13,18 +13,33 @@
 #import "AccountsService.h"
 #import "KeychainService.h"
 #import "TokensService.h"
+#import "MEWwallet.h"
 
 @interface InfoInteractor ()
+@property (nonatomic, strong) AccountPlainObject *account;
 @end
 
 @implementation InfoInteractor
 
 #pragma mark - InfoInteractorInput
 
+- (void) configureWithAccount:(AccountPlainObject *)account {
+  self.account = account;
+}
+
+- (AccountPlainObject *) obtainAccount {
+  return self.account;
+}
+
 - (void) resetWallet {
   [self.accountsService resetAccounts];
   [self.tokensService resetTokens];
   [self.keychainService resetKeychain];
+}
+
+- (void) passwordDidEntered:(NSString *)password {
+  NSArray <NSString *> *mnemonics = [self.walletService recoveryMnemonicsWordsWithPassword:password ofAccount:self.account];
+  [self.output mnemonicsDidReceived:mnemonics];
 }
 
 @end

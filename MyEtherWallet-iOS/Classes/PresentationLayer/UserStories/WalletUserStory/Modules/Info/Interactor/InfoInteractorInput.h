@@ -11,5 +11,8 @@
 @class AccountPlainObject;
 
 @protocol InfoInteractorInput <NSObject>
+- (void) configureWithAccount:(AccountPlainObject *)account;
+- (AccountPlainObject *) obtainAccount;
 - (void) resetWallet;
+- (void) passwordDidEntered:(NSString *)password;
 @end

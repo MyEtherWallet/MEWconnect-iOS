@@ -50,6 +50,8 @@
                                                 with:[self.serviceComponents keychainService]];
                           [definition injectProperty:@selector(tokensService)
                                                 with:[self.serviceComponents tokensService]];
+                          [definition injectProperty:@selector(walletService)
+                                                with:[self.serviceComponents MEWwallet]];
                         }];
 }
 

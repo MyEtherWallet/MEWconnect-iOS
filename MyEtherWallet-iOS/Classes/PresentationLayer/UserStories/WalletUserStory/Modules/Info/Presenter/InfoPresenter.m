@@ -12,15 +12,21 @@
 #import "InfoInteractorInput.h"
 #import "InfoRouterInput.h"
 
+#import "ContextPasswordModuleOutput.h"
+
 #import "ApplicationConstants.h"
 
 #import "NSBundle+Version.h"
+
+@interface InfoPresenter () <ContextPasswordModuleOutput>
+@end
 
 @implementation InfoPresenter
 
 #pragma mark - InfoModuleInput
 
-- (void) configureModule {
+- (void) configureModuleWithAccount:(AccountPlainObject *)account {
+  [self.interactor configureWithAccount:account];
 }
 
 #pragma mark - InfoViewOutput
@@ -68,6 +74,25 @@
 
 - (void) aboutAction {
   [self.router openAbout];
+}
+
+- (void) viewBackupPhraseAction {  
+  AccountPlainObject *account = [self.interactor obtainAccount];
+  [self.router openContextPasswordWithOutput:self account:account];
+}
+
+#pragma mark - InfoInteractorOutput
+
+- (void) mnemonicsDidReceived:(NSArray <NSString *> *)mnemonics {
+  dispatch_async(dispatch_get_main_queue(), ^{
+    [self.router openWordsWithMnemonics:mnemonics];
+  });
+}
+
+#pragma mark - ContextPasswordModuleOutput
+
+- (void)passwordDidEntered:(NSString *)password {
+  [self.interactor passwordDidEntered:password];
 }
 
 @end

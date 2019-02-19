@@ -129,6 +129,15 @@ static CGFloat const kMnemonicsItemViewPlaceholderHeight                        
 }
 
 - (void) textFieldDidEndEditing:(UITextField *)textField {
+  if (@available(iOS 11.0, *)) { } else {
+    NSArray <NSString *> *words = [self.mnemonicsProvider wordsWithSearchTerm:textField.text];
+    
+    ((MnemonicsTextField *)textField).showInputAccessoryView = [words count] > 1;
+    [((MnemonicsTextField *)textField).inputAccessoryView updateWithWords:words];
+    if ([words count] == 1) {
+      [((MnemonicsTextField *)textField).inputAccessoryView makeCompleted];
+    }
+  }
   self.placeholder.hidden = (textField.text.length != 0);
   [self _updateTitle];
 }

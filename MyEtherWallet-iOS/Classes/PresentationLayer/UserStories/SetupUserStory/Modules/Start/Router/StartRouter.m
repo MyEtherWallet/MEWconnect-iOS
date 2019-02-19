@@ -11,12 +11,12 @@
 #import "StartRouter.h"
 
 #import "HomeModuleInput.h"
-#import "RestoreWalletModuleInput.h"
+#import "RestoreOptionsModuleInput.h"
 #import "PasswordModuleInput.h"
 
 static NSString *const kStartToPasswordSegueIdentifier        = @"StartToPasswordSegueIdentifier";
 static NSString *const kStartToHomeSegueIdentifier            = @"StartToHomeSegueIdentifier";
-static NSString *const kStartToRestoreWalletSegueIdentifier   = @"StartToRestoreWalletSegueIdentifier";
+static NSString *const kStartToRestoreOptionsSegueIdentifier  = @"StartToRestoreOptionsSegueIdentifier";
 
 @implementation StartRouter
 
@@ -53,7 +53,7 @@ static NSString *const kStartToRestoreWalletSegueIdentifier   = @"StartToRestore
 }
 
 - (void) openRestoreWallet {
-  [[self.transitionHandler openModuleUsingSegue:kStartToRestoreWalletSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<RestoreWalletModuleInput> moduleInput) {
+  [[self.transitionHandler openModuleUsingSegue:kStartToRestoreOptionsSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<RestoreOptionsModuleInput> moduleInput) {
     [moduleInput configureModuleWhileForgotPassword:NO];
     return nil;
   }];

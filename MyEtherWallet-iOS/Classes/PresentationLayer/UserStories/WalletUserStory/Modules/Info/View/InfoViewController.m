@@ -28,9 +28,7 @@
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *titleTopOffsetConstraint;
 @end
 
-@implementation InfoViewController {
-  NSTimer *_testnetTimer;
-}
+@implementation InfoViewController
 
 #pragma mark - LifeCycle
 

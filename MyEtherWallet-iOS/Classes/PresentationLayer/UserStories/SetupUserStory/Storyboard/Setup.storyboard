@@ -254,12 +254,12 @@
                                     <action selector="createNewWallet:" destination="TZA-8o-0tf" eventType="touchUpInside" id="MKJ-Mw-KTg"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p61-aI-WVD" customClass="InlineButton">
-                                <rect key="frame" x="138" y="692" width="138" height="18"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p61-aI-WVD" customClass="InlineButton">
+                                <rect key="frame" x="104.66666666666669" y="692" width="205" height="18"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="RESTORE WALLET" image="inline_small_chevron">
+                                <state key="normal" title="I ALREADY HAVE A WALLET" image="inline_small_chevron">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -311,7 +311,7 @@
                         <outletCollection property="pageDescriptions" destination="LwO-OS-ot9" id="6Ob-kV-eJ1"/>
                         <segue destination="Js0-Yk-gwG" kind="show" identifier="StartToHomeSegueIdentifier" id="Pid-95-T7W"/>
                         <segue destination="Fe6-fl-kwA" kind="presentation" identifier="StartToPasswordSegueIdentifier" id="j9x-JX-jNP"/>
-                        <segue destination="7p6-Sy-ZJQ" kind="presentation" identifier="StartToRestoreWalletSegueIdentifier" id="se7-H3-jWW"/>
+                        <segue destination="7p6-Sy-ZJQ" kind="presentation" identifier="StartToRestoreOptionsSegueIdentifier" id="se7-H3-jWW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BEN-9E-cSV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -326,10 +326,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="n4a-vC-Rpr">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="n4a-vC-Rpr">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KEV-QT-QBj">
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KEV-QT-QBj">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="751.33333333333337"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your recovery phrase" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3kp-Aw-s29">
@@ -338,7 +338,7 @@
                                                 <color key="textColor" red="0.023529411760000001" green="0.30196078430000001" blue="0.83921568629999999" alpha="1" colorSpace="deviceRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XIL-Jc-kXj" customClass="MnemonicsView">
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XIL-Jc-kXj" customClass="MnemonicsView">
                                                 <rect key="frame" x="16" y="139.66666666666663" width="382" height="512"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <userDefinedRuntimeAttributes>
@@ -351,8 +351,8 @@
                                                     <action selector="mnemonicsChangedAction:" destination="uQG-JA-0Na" eventType="valueChanged" id="tbf-eB-nlP"/>
                                                 </connections>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C42-h9-a6b">
-                                                <rect key="frame" x="24" y="667.66666666666663" width="366" height="71.666666666666629"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C42-h9-a6b">
+                                                <rect key="frame" x="24" y="667.66666666666674" width="366" height="71.666666666666629"/>
                                                 <string key="text">If your recovery phrase is shorter than 24 words (i.e. 12, 15, 18 or 21 words) you can still use it to restore your wallet. Just enter as many words as you have in your phrase.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" red="0.42745098040000001" green="0.45098039220000002" blue="0.44705882349999998" alpha="1" colorSpace="deviceRGB"/>
@@ -393,11 +393,6 @@
                         <viewLayoutGuide key="safeArea" id="6SS-hI-YgA"/>
                     </view>
                     <navigationItem key="navigationItem" id="U8P-Hn-yo2">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="b9F-fe-L3Q">
-                            <connections>
-                                <action selector="cancelAction:" destination="uQG-JA-0Na" id="gTY-YV-MmE"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" title="Restore" style="done" id="lI8-7d-nNR">
                             <connections>
                                 <action selector="nextAction:" destination="uQG-JA-0Na" id="W5O-kA-olE"/>
@@ -415,7 +410,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OyM-61-ckk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1324.6376811594205" y="-611.41304347826087"/>
+            <point key="canvasLocation" x="2812" y="-471"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0eb-iN-Upa">
@@ -427,12 +422,12 @@
                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="jqt-TW-elj" kind="relationship" relationship="rootViewController" id="fTS-Oo-qqM"/>
+                        <segue destination="jqt-TW-elj" kind="relationship" relationship="rootViewController" id="PUo-9M-FbY"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MIH-TF-ZQT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="604" y="234"/>
+            <point key="canvasLocation" x="603" y="967"/>
         </scene>
         <!--Password View Controller-->
         <scene sceneID="Vnj-89-yOp">
@@ -565,11 +560,6 @@ password</string>
                         <viewLayoutGuide key="safeArea" id="9h3-XE-Nu6"/>
                     </view>
                     <navigationItem key="navigationItem" id="Ojg-YK-5s8">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Eja-md-glo">
-                            <connections>
-                                <action selector="cancelAction:" destination="jqt-TW-elj" id="WV5-Wl-YTC"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" title="Next" style="done" id="jbV-gB-VII">
                             <connections>
                                 <action selector="nextAction:" destination="jqt-TW-elj" id="NXr-Av-6aI"/>
@@ -596,7 +586,7 @@ password</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PMw-aW-aJZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1327" y="233"/>
+            <point key="canvasLocation" x="1325" y="967"/>
         </scene>
         <!--Delegate-->
         <scene sceneID="sU0-12-yfP">
@@ -661,7 +651,7 @@ password</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RVZ-zf-qdo" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ccp-7j-1XS" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2770" y="233"/>
+            <point key="canvasLocation" x="2812" y="967"/>
         </scene>
         <!--Wallet-->
         <scene sceneID="a28-AO-2tf">
@@ -669,7 +659,7 @@ password</string>
                 <viewControllerPlaceholder storyboardName="Wallet" id="Js0-Yk-gwG" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FYo-dh-1LP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3286" y="-201"/>
+            <point key="canvasLocation" x="-509" y="1457"/>
         </scene>
         <!--Confirm Password View Controller-->
         <scene sceneID="zqa-IE-ixh">
@@ -795,24 +785,24 @@ password again</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TiT-YB-x89" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2060" y="233"/>
+            <point key="canvasLocation" x="2058" y="967"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="YP9-Sq-k8i">
             <objects>
-                <navigationController storyboardIdentifier="RestoreWalletViewController" id="7p6-Sy-ZJQ" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="RestoreOptionsViewController" id="7p6-Sy-ZJQ" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="nIt-G8-O90" customClass="BordlessNavigationBar">
                         <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="uQG-JA-0Na" kind="relationship" relationship="rootViewController" id="GKS-Xd-bPY"/>
+                        <segue destination="AGR-e4-hRU" kind="relationship" relationship="rootViewController" id="oXR-dm-Orh"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KJi-dv-ULV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="604" y="-611"/>
+            <point key="canvasLocation" x="603" y="-471"/>
         </scene>
         <!--Restore Seed View Controller-->
         <scene sceneID="cWb-8b-4PO">
@@ -905,7 +895,7 @@ password again</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cey-U7-0ya" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1325" y="-1308"/>
+            <point key="canvasLocation" x="1325" y="-1176"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="heo-UX-UaK">
@@ -922,10 +912,250 @@ password again</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5cz-NB-hOL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="603" y="-1308"/>
+            <point key="canvasLocation" x="603" y="-1176"/>
+        </scene>
+        <!--Restore Prepare View Controller-->
+        <scene sceneID="CwW-Ek-Zio">
+            <objects>
+                <viewController id="5A9-u2-KhG" customClass="RestorePrepareViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tXJ-is-Hz7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backup_restore" translatesAutoresizingMaskIntoConstraints="NO" id="bad-Z7-pcd">
+                                <rect key="frame" x="24" y="21" width="110" height="140"/>
+                                <color key="tintColor" red="0.023529411760000001" green="0.30196078430000001" blue="0.83921568629999999" alpha="1" colorSpace="deviceRGB"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tBL-qB-QSn">
+                                <rect key="frame" x="24" y="173" width="366" height="143.33333333333337"/>
+                                <string key="text">Do you have
+your recovery
+phrase handy?</string>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                <color key="textColor" red="0.023529411760000001" green="0.30196078430000001" blue="0.83921568629999999" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recovery phrase is a 24 word phrase that you wrote down when you backed up your wallet." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pds-zR-Txc">
+                                <rect key="frame" x="24" y="328.33333333333331" width="366" height="40.666666666666686"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="56" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nhL-XN-UsL" customClass="FlatButton">
+                                <rect key="frame" x="24" y="576" width="366" height="56"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <state key="normal" title="CONTINUE">
+                                    <color key="titleColor" red="0.023529411760000001" green="0.30196078430000001" blue="0.83921568629999999" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="theme">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="compact" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="continueAction:" destination="5A9-u2-KhG" eventType="touchUpInside" id="mVG-To-3Ln"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="nhL-XN-UsL" firstAttribute="right" secondItem="Pds-zR-Txc" secondAttribute="right" id="684-Wt-93h"/>
+                            <constraint firstItem="Pds-zR-Txc" firstAttribute="left" secondItem="tBL-qB-QSn" secondAttribute="left" id="8jL-Wd-aFf"/>
+                            <constraint firstItem="bad-Z7-pcd" firstAttribute="top" secondItem="3we-1s-9sx" secondAttribute="top" constant="21" id="9EB-LR-4bb"/>
+                            <constraint firstItem="3we-1s-9sx" firstAttribute="trailing" secondItem="tBL-qB-QSn" secondAttribute="trailing" constant="24" id="Izo-v7-m2k"/>
+                            <constraint firstItem="tBL-qB-QSn" firstAttribute="left" secondItem="bad-Z7-pcd" secondAttribute="left" id="NaL-er-5rh"/>
+                            <constraint firstItem="tBL-qB-QSn" firstAttribute="top" secondItem="bad-Z7-pcd" secondAttribute="bottom" constant="12" id="Ri5-xz-xnU"/>
+                            <constraint firstItem="bad-Z7-pcd" firstAttribute="left" secondItem="tXJ-is-Hz7" secondAttribute="left" constant="24" id="VFI-CP-yl5"/>
+                            <constraint firstItem="nhL-XN-UsL" firstAttribute="left" secondItem="Pds-zR-Txc" secondAttribute="left" id="aNz-K9-R6K"/>
+                            <constraint firstItem="Pds-zR-Txc" firstAttribute="right" secondItem="tBL-qB-QSn" secondAttribute="right" id="eiL-Om-2Am"/>
+                            <constraint firstItem="Pds-zR-Txc" firstAttribute="top" secondItem="tBL-qB-QSn" secondAttribute="bottom" constant="12" id="itQ-ym-bA4"/>
+                            <constraint firstItem="3we-1s-9sx" firstAttribute="bottom" secondItem="nhL-XN-UsL" secondAttribute="bottom" constant="40" id="lVw-VI-gNb"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="3we-1s-9sx"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="hlw-cA-dZu"/>
+                    <connections>
+                        <outlet property="buttonBottomOffsetConstraint" destination="lVw-VI-gNb" id="NWV-s9-2ZT"/>
+                        <outlet property="contentLeftOffsetConstraint" destination="VFI-CP-yl5" id="SgC-EY-VGc"/>
+                        <outlet property="contentRightOffsetConstraint" destination="Izo-v7-m2k" id="Zgk-cj-oex"/>
+                        <outlet property="descriptionLabel" destination="Pds-zR-Txc" id="hLO-QC-ij1"/>
+                        <outlet property="logoToTitleYOffsetConstraint" destination="Ri5-xz-xnU" id="Lfo-EH-Nf5"/>
+                        <outlet property="logoTopOffsetConstraint" destination="9EB-LR-4bb" id="yru-iy-MW7"/>
+                        <outlet property="titleLabel" destination="tBL-qB-QSn" id="DHQ-Vx-p8y"/>
+                        <segue destination="uQG-JA-0Na" kind="show" identifier="RestorePrepareToRestoreWalletSegueIdentifier" id="hUA-LS-MSu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mvB-Su-woV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2058" y="-471"/>
+        </scene>
+        <!--Restore Safety View Controller-->
+        <scene sceneID="4Im-kV-t6S">
+            <objects>
+                <viewController id="hXp-lK-hUU" customClass="RestoreSafetyViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xtj-kB-vpD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="izt-5V-O43">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WoC-E2-n8Z">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="657.66666666666663"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eCI-kO-7Z2">
+                                                <rect key="frame" x="24" y="16" width="366" height="143.33333333333334"/>
+                                                <string key="text">Your safety and security is our 
+#1 priority</string>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                                <color key="textColor" red="0.023529411760000001" green="0.30196078430000001" blue="0.83921568629999999" alpha="1" colorSpace="deviceRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qFD-MZ-yQh">
+                                                <rect key="frame" x="24" y="171.33333333333334" width="366" height="426.33333333333326"/>
+                                                <mutableString key="text">We don’t support keystore file and private key imports in MEWconnect app, as they are highly unsafe. 
+(Note that keystore file and private key are still available methods of access on MyEtherWallet.com, but are not recommended unless using MEW offline)
+Because MEWconnect is a ‘Hardware wallet’ without all the hardware, it's best to create a new wallet directly in MEWconnect app, same as if you just got a new hardware wallet. That way you can be sure your keys never leave your device.
+If you want to access funds in one of your existing wallets via MEWconnect, the most secure way to do so would be transferring your ETH and tokens to your new MEWconnect wallet once it’s created. 
+Using your existing private key defeats the purpose of MEWconnect, and reduces your security considerably.</mutableString>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="eCI-kO-7Z2" firstAttribute="top" secondItem="WoC-E2-n8Z" secondAttribute="top" constant="16" id="68O-B8-bbh"/>
+                                            <constraint firstItem="qFD-MZ-yQh" firstAttribute="left" secondItem="eCI-kO-7Z2" secondAttribute="left" id="7DK-WR-yTg"/>
+                                            <constraint firstItem="eCI-kO-7Z2" firstAttribute="leading" secondItem="WoC-E2-n8Z" secondAttribute="leading" constant="24" id="86H-W5-dDj"/>
+                                            <constraint firstAttribute="bottom" secondItem="qFD-MZ-yQh" secondAttribute="bottom" constant="60" id="VDF-2T-jeO"/>
+                                            <constraint firstItem="qFD-MZ-yQh" firstAttribute="right" secondItem="eCI-kO-7Z2" secondAttribute="right" id="b2A-9e-wjb"/>
+                                            <constraint firstAttribute="trailing" secondItem="eCI-kO-7Z2" secondAttribute="trailing" constant="24" id="jj5-MQ-5nf"/>
+                                            <constraint firstItem="qFD-MZ-yQh" firstAttribute="top" secondItem="eCI-kO-7Z2" secondAttribute="bottom" constant="12" id="uR1-ll-Uyq"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="WoC-E2-n8Z" secondAttribute="bottom" id="Hss-NM-x1h"/>
+                                    <constraint firstItem="WoC-E2-n8Z" firstAttribute="width" secondItem="izt-5V-O43" secondAttribute="width" id="MlH-yE-mNH"/>
+                                    <constraint firstItem="WoC-E2-n8Z" firstAttribute="leading" secondItem="izt-5V-O43" secondAttribute="leading" id="afe-2E-gpy"/>
+                                    <constraint firstItem="WoC-E2-n8Z" firstAttribute="top" secondItem="izt-5V-O43" secondAttribute="top" id="eK5-Te-uAH"/>
+                                    <constraint firstAttribute="trailing" secondItem="WoC-E2-n8Z" secondAttribute="trailing" id="p5I-Y4-SeG"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="izt-5V-O43" firstAttribute="top" secondItem="xtj-kB-vpD" secondAttribute="top" id="AyN-QK-GOC"/>
+                            <constraint firstItem="k84-R2-DWo" firstAttribute="bottom" secondItem="izt-5V-O43" secondAttribute="bottom" id="SYm-dR-T4h"/>
+                            <constraint firstAttribute="trailing" secondItem="izt-5V-O43" secondAttribute="trailing" id="VSg-ye-2La"/>
+                            <constraint firstItem="izt-5V-O43" firstAttribute="leading" secondItem="xtj-kB-vpD" secondAttribute="leading" id="uzm-uG-5sL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="k84-R2-DWo"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="LHj-5F-d3F"/>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="qFD-MZ-yQh" id="UMh-73-HxH"/>
+                        <outlet property="scrollView" destination="izt-5V-O43" id="Llu-kM-yfI"/>
+                        <outlet property="titleLabel" destination="eCI-kO-7Z2" id="ZI9-fL-eXg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Gn-Ye-DSl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1325" y="246"/>
+        </scene>
+        <!--Restore Options View Controller-->
+        <scene sceneID="PhE-hi-pKp">
+            <objects>
+                <viewController id="AGR-e4-hRU" customClass="RestoreOptionsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZyV-q8-2VY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="698-s1-6zK">
+                                <rect key="frame" x="24" y="27.000000000000007" width="366" height="95.666666666666686"/>
+                                <string key="text">Restore
+existing wallet</string>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                <color key="textColor" red="0.023529411760000001" green="0.30196078430000001" blue="0.83921568629999999" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DEr-qx-NtY">
+                                <rect key="frame" x="0.0" y="122.66666666666669" width="414" height="549.33333333333326"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="UM8-zN-VUF">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="115"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="i.e. keystore file, private key etc." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Xr-MG-NxM">
+                                            <rect key="frame" x="24" y="40" width="195" height="15.666666666666664"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" red="0.43137254899999999" green="0.45098039220000002" blue="0.51764705879999995" alpha="1" colorSpace="deviceRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hry-Av-yD2" customClass="InlineButton">
+                                            <rect key="frame" x="24" y="6" width="141" height="31"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="tintColor" red="0.43137254899999999" green="0.45098039220000002" blue="0.51764705879999995" alpha="1" colorSpace="deviceRGB"/>
+                                            <inset key="contentEdgeInsets" minX="0.0" minY="10" maxX="30" maxY="0.0"/>
+                                            <inset key="imageEdgeInsets" minX="6" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal" title="Other options" image="inline_small_chevron">
+                                                <color key="titleColor" red="0.43137254899999999" green="0.45098039220000002" blue="0.51764705879999995" alpha="1" colorSpace="deviceRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="otherOptionsAction:" destination="AGR-e4-hRU" eventType="touchUpInside" id="6sH-Oq-DeA"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="hry-Av-yD2" firstAttribute="top" secondItem="UM8-zN-VUF" secondAttribute="top" constant="6" id="76i-bA-XNr"/>
+                                        <constraint firstItem="hry-Av-yD2" firstAttribute="leading" secondItem="UM8-zN-VUF" secondAttribute="leading" constant="24" id="GFT-u5-O2X"/>
+                                        <constraint firstItem="1Xr-MG-NxM" firstAttribute="top" secondItem="hry-Av-yD2" secondAttribute="bottom" constant="3" id="d8c-PV-rhN"/>
+                                        <constraint firstItem="hry-Av-yD2" firstAttribute="leading" secondItem="1Xr-MG-NxM" secondAttribute="leading" id="pUJ-Lr-WHr"/>
+                                    </constraints>
+                                </view>
+                                <sections/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="698-s1-6zK" firstAttribute="leading" secondItem="yWo-oU-aZW" secondAttribute="leading" constant="24" id="3Np-ib-LAv"/>
+                            <constraint firstAttribute="trailing" secondItem="698-s1-6zK" secondAttribute="trailing" constant="24" id="5MU-gT-jLt"/>
+                            <constraint firstItem="yWo-oU-aZW" firstAttribute="bottom" secondItem="DEr-qx-NtY" secondAttribute="bottom" id="TUD-JA-ANk"/>
+                            <constraint firstItem="yWo-oU-aZW" firstAttribute="trailing" secondItem="DEr-qx-NtY" secondAttribute="trailing" id="Wji-wn-Sg0"/>
+                            <constraint firstItem="698-s1-6zK" firstAttribute="top" secondItem="ZyV-q8-2VY" secondAttribute="top" constant="27" id="Xtq-zD-AQt"/>
+                            <constraint firstItem="DEr-qx-NtY" firstAttribute="top" secondItem="698-s1-6zK" secondAttribute="bottom" id="ad4-Ue-Wy2"/>
+                            <constraint firstItem="DEr-qx-NtY" firstAttribute="leading" secondItem="yWo-oU-aZW" secondAttribute="leading" id="fCk-3c-cWJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="yWo-oU-aZW"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="eLV-f8-a5X">
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="CWx-tV-eBA">
+                            <connections>
+                                <action selector="closeAction:" destination="AGR-e4-hRU" id="wqE-e2-x4u"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="DEr-qx-NtY" id="7dI-GP-RMM"/>
+                        <outlet property="titleLabel" destination="698-s1-6zK" id="BeQ-eq-iKV"/>
+                        <outlet property="titleTopOffsetConstraint" destination="Xtq-zD-AQt" id="IXC-xh-Dy8"/>
+                        <segue destination="SZp-bA-PiU" kind="unwind" identifier="InfoToStartUnwindSegueIdentifier" unwindAction="unwindToStart:" id="dcw-ah-4Oa"/>
+                        <segue destination="hXp-lK-hUU" kind="show" identifier="RestoreOptionsToRestoreSafetySegueIdentifier" id="xzz-Qu-m8z"/>
+                        <segue destination="5A9-u2-KhG" kind="show" identifier="RestoreOptionsToRestorePrepareSegueIdentifier" id="6Rq-K2-Ja1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1fv-mX-LqX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="SZp-bA-PiU" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1325" y="-471"/>
         </scene>
     </scenes>
     <resources>
+        <image name="backup_restore" width="110" height="140"/>
         <image name="inline_small_chevron" width="6" height="10"/>
         <image name="intro_mewconnect_logo" width="289" height="36"/>
         <image name="onboarding_background" width="414" height="896"/>

@@ -324,12 +324,12 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
 #pragma mark - Private
 
 - (void) _prepareStepsDescription {
-  NSString *step1 = NSLocalizedString(@"Go to MyEtherWallet.com on your computer and choose Send Ether and Tokens option.", @"QRScanner. Step 1");
-  NSString *step1Semibolds = NSLocalizedString(@"MyEtherWallet.com|Send Ether|Tokens", @"QRScanner. Step 1. Semibolds");
-  NSString *step2 = NSLocalizedString(@"Select MEWconnect option on How would you like to access your wallet screen.", @"QRScanner. Step 2");
-  NSString *step2Semibolds = NSLocalizedString(@"MEWconnect|How would you like to access your wallet", @"QRScanner. Step 1. Semibolds");
-  NSString *step3 = NSLocalizedString(@"Click Access with MEWconnect and scan the QR code on the screen that will follow. ", @"QRScanner. Step 3");
-  NSString *step3Semibolds = NSLocalizedString(@"Access with MEWconnect", @"QRScanner. Step 1. Semibolds");
+  NSString *step1 = NSLocalizedString(@"Go to MyEtherWallet.com on your computer and choose Access My Wallet option.", @"QRScanner. Step 1");
+  NSString *step1Semibolds = NSLocalizedString(@"MyEtherWallet.com|Access My Wallet", @"QRScanner. Step 1. Semibolds");
+  NSString *step2 = NSLocalizedString(@"Select MEWconnect option on the screen that follows.", @"QRScanner. Step 2");
+  NSString *step2Semibolds = NSLocalizedString(@"MEWconnect", @"QRScanner. Step 1. Semibolds");
+  NSString *step3 = NSLocalizedString(@"Scan the QR code.", @"QRScanner. Step 3");
+  NSString *step3Semibolds = NSLocalizedString(@"", @"QRScanner. Step 1. Semibolds");
   
   NSAttributedString *step1AttributedString = [self _prepareString:[step1 stringByAppendingString:@"\n"] stepNumber:1 semiboldParts:[step1Semibolds componentsSeparatedByString:@"|"]];
   NSAttributedString *step2AttributedString = [self _prepareString:[step2 stringByAppendingString:@"\n"] stepNumber:2 semiboldParts:[step2Semibolds componentsSeparatedByString:@"|"]];

@@ -30,6 +30,17 @@
   return self;
 }
 
+- (void)addSubview:(UIView *)view {
+  [super addSubview:view];
+  
+  if (@available(iOS 11.0, *)) { } else {
+    if ([NSStringFromClass(view.class) isEqualToString:@"UITextFieldLabel"]) {
+      UILabel *label = (UILabel *)view;
+      label.font = self.font;
+    }
+  }
+}
+
 - (CGRect) textRectForBounds:(CGRect)bounds {
   CGRect rect = [super textRectForBounds:bounds];
   rect = CGRectInset(rect, 7.0, 2.0);

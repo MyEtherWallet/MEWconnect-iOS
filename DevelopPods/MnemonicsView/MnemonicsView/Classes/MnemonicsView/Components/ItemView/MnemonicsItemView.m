@@ -292,7 +292,6 @@ static CGFloat const kMnemonicsItemViewPlaceholderHeight                        
       [textField.inputAccessoryView updateWithWords:words];
       [self _textFieldDidChangedCompletion:textField empty:NO correct:YES completed:NO reloadInputs:reloadInputs];
     } else if ([words count] == 1) {
-      
       [self _textFieldDidChangedCompletion:textField empty:NO correct:YES completed:YES reloadInputs:reloadInputs];
     }
   });

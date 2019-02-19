@@ -60,7 +60,12 @@ static UIViewController *test;
     if (!UIAccessibilityIsReduceTransparencyEnabled()) {
       view.backgroundColor = [UIColor clearColor];
       
-      UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleProminent];
+      UIBlurEffectStyle style = UIBlurEffectStyleLight;
+      if (@available(iOS 11.0, *)) {
+        style = UIBlurEffectStyleProminent;
+      }
+      
+      UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:style];
       UIVisualEffectView *blurEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
 
       blurEffectView.frame = view.bounds;

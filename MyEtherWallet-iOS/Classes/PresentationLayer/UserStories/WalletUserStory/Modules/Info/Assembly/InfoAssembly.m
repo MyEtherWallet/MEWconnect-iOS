@@ -87,5 +87,4 @@
   return [TyphoonDefinition withClass:[InfoCellObjectBuilder class]];
 }
 
-
 @end

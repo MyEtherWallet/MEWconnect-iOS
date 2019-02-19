@@ -13,7 +13,6 @@
 + (instancetype) inlineButtonWithChevron:(BOOL)chevron {
   InlineButton *button = [[self class] buttonWithType:UIButtonTypeSystem];
   button.tintColor = [UIColor whiteColor];
-  //TODO: Uncomment when available new UI
   if (chevron) {
     UIImage *icon = [UIImage imageNamed:@"inline_small_chevron"];
     [button setImage:icon forState:UIControlStateNormal];
@@ -34,6 +33,15 @@
 - (CGRect)titleRectForContentRect:(CGRect)contentRect
 {
   CGRect frame = [super titleRectForContentRect:contentRect];
+  NSAttributedString *attributedTitle = [self attributedTitleForState:self.state];
+  if (attributedTitle) {
+    CGRect bounds = [attributedTitle boundingRectWithSize:CGSizeMake(1000.0, 1000.0) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading context:nil];
+    CGFloat diff = CGRectGetWidth(bounds) - CGRectGetWidth(frame);
+    if (self.contentHorizontalAlignment == UIControlContentHorizontalAlignmentCenter) {
+      frame.origin.x -= diff / 2.0;
+    }
+    frame.size.width = CGRectGetWidth(bounds);
+  }
   UIImage *image = [self imageForState:self.state];
   CGFloat imageWidth = 0.0;
   if (image) {

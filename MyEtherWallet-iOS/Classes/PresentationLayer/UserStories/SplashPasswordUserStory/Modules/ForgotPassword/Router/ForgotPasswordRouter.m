@@ -10,10 +10,10 @@
 
 #import "ForgotPasswordRouter.h"
 
-#import "RestoreWalletModuleInput.h"
+#import "RestoreOptionsModuleInput.h"
 #import "StartModuleInput.h"
 
-static NSString *const kForgotPasswordToRestoreWalletSegueIdentifier = @"ForgotPasswordToRestoreWalletSegueIdentifier";
+static NSString *const kForgotPasswordToRestoreOptionsSegueIdentifier = @"ForgotPasswordToRestoreOptionsSegueIdentifier";
 static NSString *const kForgotPasswordToStartUnwindSegueIdentifier   = @"ForgotPasswordToStartUnwindSegueIdentifier";
 
 @implementation ForgotPasswordRouter
@@ -25,7 +25,7 @@ static NSString *const kForgotPasswordToStartUnwindSegueIdentifier   = @"ForgotP
 }
 
 - (void) openRestore {
-  [[self.transitionHandler openModuleUsingSegue:kForgotPasswordToRestoreWalletSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<RestoreWalletModuleInput> moduleInput) {
+  [[self.transitionHandler openModuleUsingSegue:kForgotPasswordToRestoreOptionsSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<RestoreOptionsModuleInput> moduleInput) {
     [moduleInput configureModuleWhileForgotPassword:YES];
     return nil;
   }];

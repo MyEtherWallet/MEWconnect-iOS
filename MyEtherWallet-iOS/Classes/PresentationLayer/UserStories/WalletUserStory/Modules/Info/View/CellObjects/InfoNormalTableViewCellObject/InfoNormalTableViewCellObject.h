@@ -19,6 +19,7 @@ typedef NS_ENUM(short, InfoNormalTableViewCellObjectType) {
   InfoNormalTableViewCellObjectTypeUserGuide          = 4,
   InfoNormalTableViewCellObjectTypeAbout              = 5,
   InfoNormalTableViewCellObjectTypeBackupPhrase       = 6,
+  InfoNormalTableViewCellObjectTypeMakeBackup         = 7,
 };
 
 @interface InfoNormalTableViewCellObject : NSObject <NINibCellObject, NICellObject, CellObjectAction>

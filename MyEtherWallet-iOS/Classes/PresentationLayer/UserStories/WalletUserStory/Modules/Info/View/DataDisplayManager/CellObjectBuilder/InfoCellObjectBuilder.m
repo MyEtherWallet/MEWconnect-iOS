@@ -42,6 +42,10 @@
   return [InfoNormalTableViewCellObject objectWithType:InfoNormalTableViewCellObjectTypeBackupPhrase compact:compact];
 }
 
+- (InfoNormalTableViewCellObject *) buildMakeBackupCellObjectWithCompactSize:(BOOL)compact {
+  return [InfoNormalTableViewCellObject objectWithType:InfoNormalTableViewCellObjectTypeMakeBackup compact:compact];
+}
+
 - (InfoDestructiveTableViewCellObject *) buildResetWalletCellObjectWithCompactSize:(BOOL)compact {
   return [InfoDestructiveTableViewCellObject objectWithType:InfoDestructiveTableViewCellObjectResetType compact:compact];
 }

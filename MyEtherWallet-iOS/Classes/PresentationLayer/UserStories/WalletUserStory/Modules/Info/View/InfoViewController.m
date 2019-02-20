@@ -62,7 +62,7 @@
 
 #pragma mark - InfoViewInput
 
-- (void) setupInitialStateWithVersion:(NSString *)version {
+- (void)setupInitialStateWithVersion:(NSString *)version backupAvailability:(BOOL)available backedStatus:(BOOL)isBackedUp {
   switch ([UIScreen mainScreen].screenSizeType) {
     case ScreenSizeTypeInches35:
     case ScreenSizeTypeInches40: {
@@ -82,11 +82,16 @@
   } else {
     self.copyrightLabel.text = [NSString stringWithFormat:@"Copyright %zd MyEtherWallet Inc.", kStartDevelopmentYear];
   }
-  [self.dataDisplayManager updateDataDisplayManager];
+  [self.dataDisplayManager updateDataDisplayManagerWithBackupAvailability:available backedUpStatus:isBackedUp];
   self.tableView.dataSource = [self.dataDisplayManager dataSourceForTableView:self.tableView];
   self.tableView.delegate = [self.dataDisplayManager delegateForTableView:self.tableView
                                                          withBaseDelegate:self.dataDisplayManager];
   [self _updatePrefferedContentSize];
+}
+
+- (void) updateWithBackupAvailability:(BOOL)avaiable backupStatus:(BOOL)isBackedUp {
+  [self.dataDisplayManager updateDataDisplayManagerWithBackupAvailability:avaiable backedUpStatus:isBackedUp];
+  [self.tableView reloadData];
 }
 
 - (void) presentResetConfirmation {
@@ -127,6 +132,12 @@
 - (IBAction) closeAction:(__unused id)sender {
   [self.output closeAction];
 }
+
+- (IBAction) resetWalletAction:(__unused id)sender {
+  [self.output resetWalletAction];
+}
+
+- (IBAction) unwindToInfo:(__unused UIStoryboardSegue *)sender {}
 
 #pragma mark - Private
 
@@ -173,6 +184,10 @@
 
 - (void) didTapViewBackupPhrase {
   [self.output viewBackupPhraseAction];
+}
+
+- (void) didTapMakeBackup {
+  [self.output makeBackupAction];
 }
 
 #pragma mark - MFMailComposeViewControllerDelegate

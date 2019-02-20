@@ -13,6 +13,7 @@
 @protocol KeychainService;
 @protocol TokensService;
 @protocol MEWwallet;
+@protocol Ponsomizer;
 
 @interface InfoInteractor : NSObject <InfoInteractorInput>
 @property (nonatomic, weak) id<InfoInteractorOutput> output;
@@ -20,4 +21,5 @@
 @property (nonatomic, strong) id <KeychainService> keychainService;
 @property (nonatomic, strong) id <TokensService> tokensService;
 @property (nonatomic, strong) id <MEWwallet> walletService;
+@property (nonatomic, strong) id <Ponsomizer> ponsomizer;
 @end

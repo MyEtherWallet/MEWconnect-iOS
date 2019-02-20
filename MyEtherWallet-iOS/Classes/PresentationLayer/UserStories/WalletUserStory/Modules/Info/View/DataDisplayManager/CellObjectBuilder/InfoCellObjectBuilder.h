@@ -20,6 +20,7 @@
 - (InfoNormalTableViewCellObject *) buildUserGuideCellObjectWithCompactSize:(BOOL)compact;
 - (InfoNormalTableViewCellObject *) buildAboutCellObjectWithCompactSize:(BOOL)compact;
 - (InfoNormalTableViewCellObject *) buildViewBackupPhraseCellObjectWithCompactSize:(BOOL)compact;
+- (InfoNormalTableViewCellObject *) buildMakeBackupCellObjectWithCompactSize:(BOOL)compact;
 - (InfoDestructiveTableViewCellObject *) buildResetWalletCellObjectWithCompactSize:(BOOL)compact;
 - (InfoEmptyTableViewCellObject *) buildEmptyCellObject;
 @end

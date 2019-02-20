@@ -21,4 +21,5 @@
 - (void) openAbout;
 - (void) openWordsWithMnemonics:(NSArray<NSString *> *)mnemonics;
 - (void) openContextPasswordWithOutput:(id <ContextPasswordModuleOutput>)output account:(AccountPlainObject *)account;
+- (void) openBackupWithAccount:(AccountPlainObject *)account;
 @end

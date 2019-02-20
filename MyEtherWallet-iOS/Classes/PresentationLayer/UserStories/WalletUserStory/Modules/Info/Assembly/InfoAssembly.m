@@ -10,6 +10,7 @@
 
 #import "TransitioningDelegateFactory.h"
 #import "ServiceComponents.h"
+#import "PonsomizerAssembly.h"
 
 #import "InfoAssembly.h"
 
@@ -52,6 +53,8 @@
                                                 with:[self.serviceComponents tokensService]];
                           [definition injectProperty:@selector(walletService)
                                                 with:[self.serviceComponents MEWwallet]];
+                          [definition injectProperty:@selector(ponsomizer)
+                                                with:[self.ponsomizerAssembly ponsomizer]];
                         }];
 }
 

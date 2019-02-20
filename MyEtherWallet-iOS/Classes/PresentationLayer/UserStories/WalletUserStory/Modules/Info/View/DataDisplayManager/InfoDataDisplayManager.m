@@ -29,30 +29,29 @@
 
 @implementation InfoDataDisplayManager
 
-- (void) updateDataDisplayManager {
-  [self updateTableViewModel];
+- (void) updateDataDisplayManagerWithBackupAvailability:(BOOL)avaiable backedUpStatus:(BOOL)isBackedUp {
+  if (!self.tableViewModel) {
+    [self updateTableViewModel];
+  }
+  
+  [self.tableViewModel removeSectionAtIndex:0];
+  [self.tableViewModel addSectionWithTitle:@" "];
   
   BOOL compact = ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40);
   
-  [self.tableViewModel insertSectionWithTitle:@" " atIndex:0];
   [self.tableViewModel addObject:[self.cellObjectBuilder buildEmptyCellObject]];
   [self.tableViewModel addObject:[self.cellObjectBuilder buildContactCellObjectWithCompactSize:compact]];
-//  [self.tableViewModel addObject:[self.cellObjectBuilder buildUserGuideCellObjectWithCompactSize:compact]];
+  [self.tableViewModel addObject:[self.cellObjectBuilder buildUserGuideCellObjectWithCompactSize:compact]];
   [self.tableViewModel addObject:[self.cellObjectBuilder buildKnowledgeBaseCellObjectWithCompactSize:compact]];
-  [self.tableViewModel addObject:[self.cellObjectBuilder buildEmptyCellObject]];
-  [self.tableViewModel insertSectionWithTitle:@" " atIndex:1];
-  [self.tableViewModel addObject:[self.cellObjectBuilder buildEmptyCellObject]];
   [self.tableViewModel addObject:[self.cellObjectBuilder buildPrivacyAndTermsCellObjectWithCompactSize:compact]];
   [self.tableViewModel addObject:[self.cellObjectBuilder buildMyetherwalletComCellObjectWithCompactSize:compact]];
-  [self.tableViewModel addObject:[self.cellObjectBuilder buildEmptyCellObject]];
-  [self.tableViewModel insertSectionWithTitle:@" " atIndex:2];
-  [self.tableViewModel addObject:[self.cellObjectBuilder buildEmptyCellObject]];
-//  [self.tableViewModel addObject:[self.cellObjectBuilder buildAboutCellObjectWithCompactSize:compact]];
-  [self.tableViewModel addObject:[self.cellObjectBuilder buildViewBackupPhraseCellObjectWithCompactSize:compact]];
-  [self.tableViewModel addObject:[self.cellObjectBuilder buildEmptyCellObject]];
-  [self.tableViewModel insertSectionWithTitle:@" " atIndex:3];
-  [self.tableViewModel addObject:[self.cellObjectBuilder buildEmptyCellObject]];
-  [self.tableViewModel addObject:[self.cellObjectBuilder buildResetWalletCellObjectWithCompactSize:compact]];
+  if (avaiable) {
+    if (isBackedUp) {
+      [self.tableViewModel addObject:[self.cellObjectBuilder buildViewBackupPhraseCellObjectWithCompactSize:compact]];
+    } else {
+      [self.tableViewModel addObject:[self.cellObjectBuilder buildMakeBackupCellObjectWithCompactSize:compact]];
+    }
+  }
   [self.tableViewModel addObject:[self.cellObjectBuilder buildEmptyCellObject]];
 }
 
@@ -94,6 +93,7 @@
 
 - (void) updateTableViewModel {
   self.tableViewModel = [[NIMutableTableViewModel alloc] initWithDelegate:(id)[CellFactory class]];
+  [self.tableViewModel insertSectionWithTitle:@" " atIndex:0];
 }
 
 - (void)setupTableViewActions {
@@ -131,6 +131,10 @@
                                   }
                                   case InfoNormalTableViewCellObjectTypeBackupPhrase: {
                                     [self.delegate didTapViewBackupPhrase];
+                                    break;
+                                  }
+                                  case InfoNormalTableViewCellObjectTypeMakeBackup: {
+                                    [self.delegate didTapMakeBackup];
                                     break;
                                   }
                                   default:

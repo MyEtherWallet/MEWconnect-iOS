@@ -243,10 +243,8 @@ Get pen and paper before you start.</string>
                                                     <constraint firstItem="hXT-pc-Hu2" firstAttribute="leading" secondItem="c2m-Cx-s2h" secondAttribute="centerX" constant="24" id="nKw-Mk-oed"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJa-CC-2cP">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Resist temptation to email it to yourself or screenshot it. You will thank yourself later. The order of words is important too." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJa-CC-2cP">
                                                 <rect key="frame" x="24" y="388.5" width="327" height="54"/>
-                                                <string key="text">Resist temptation to email it to yourself or screenshot it. You will thank yourself later.
-The order of words is important too.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" red="0.42745098039215684" green="0.45098039215686275" blue="0.44705882352941173" alpha="1" colorSpace="deviceRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -543,6 +541,7 @@ Stay safe out there!</string>
                         <outlet property="titleLabel" destination="O2U-zQ-HSC" id="xPe-eX-Qhy"/>
                         <outlet property="titleToDescriptionYOffsetConstraint" destination="13h-2x-bL8" id="7qF-Hd-qd7"/>
                         <segue destination="1cM-eL-cUT" kind="unwind" identifier="BackupDoneToHomeUnwindSegueIdentifier" unwindAction="unwindToHome:" id="sBh-nA-bK5"/>
+                        <segue destination="1cM-eL-cUT" kind="unwind" identifier="BackupDoneToInfoUnwindSegueIdentifier" unwindAction="unwindToInfo:" id="WmE-3r-tb5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HrH-k3-rNP" userLabel="First Responder" sceneMemberID="firstResponder"/>

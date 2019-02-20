@@ -29,11 +29,20 @@
   [self.interactor configureWithAccount:account];
 }
 
+- (void) configureAccountBackupStatus {
+  [self.interactor accountBackedUp];
+  BOOL isBackupAvailable = [self.interactor isBackupAvailable];
+  BOOL isBackedUp = [self.interactor isBackedUp];
+  [self.view updateWithBackupAvailability:isBackupAvailable backupStatus:isBackedUp];
+}
+
 #pragma mark - InfoViewOutput
 
 - (void) didTriggerViewReadyEvent {
   NSString *version = [[NSBundle mainBundle] applicationVersion];
-	[self.view setupInitialStateWithVersion:version];
+  BOOL isBackedUp = [self.interactor isBackedUp];
+  BOOL isBackupAvailable = [self.interactor isBackupAvailable];
+  [self.view setupInitialStateWithVersion:version backupAvailability:isBackupAvailable backedStatus:isBackedUp];
 }
 
 - (void) closeAction {
@@ -79,6 +88,11 @@
 - (void) viewBackupPhraseAction {  
   AccountPlainObject *account = [self.interactor obtainAccount];
   [self.router openContextPasswordWithOutput:self account:account];
+}
+
+- (void) makeBackupAction {
+  AccountPlainObject *account = [self.interactor obtainAccount];
+  [self.router openBackupWithAccount:account];
 }
 
 #pragma mark - InfoInteractorOutput

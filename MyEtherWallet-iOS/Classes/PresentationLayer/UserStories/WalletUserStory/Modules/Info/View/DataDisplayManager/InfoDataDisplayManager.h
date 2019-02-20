@@ -21,10 +21,11 @@
 - (void) didTapUserGuide;
 - (void) didTapAbout;
 - (void) didTapViewBackupPhrase;
+- (void) didTapMakeBackup;
 @end
 
 @interface InfoDataDisplayManager : NSObject <DataDisplayManager, UITableViewDelegate>
 @property (nonatomic, weak) id <InfoDataDisplayManagerDelegate> delegate;
 @property (nonatomic, strong) InfoCellObjectBuilder* cellObjectBuilder;
-- (void) updateDataDisplayManager;
+- (void) updateDataDisplayManagerWithBackupAvailability:(BOOL)avaiable backedUpStatus:(BOOL)isBackedUp;
 @end

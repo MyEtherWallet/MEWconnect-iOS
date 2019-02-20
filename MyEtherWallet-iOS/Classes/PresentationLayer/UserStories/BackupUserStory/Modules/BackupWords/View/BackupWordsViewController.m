@@ -63,7 +63,15 @@
 
 #pragma mark - BackupWordsViewInput
 
-- (void) setupInitialStateWithWords:(NSArray<NSString *> *)words {
+- (void) setupInitialStateWithWords:(NSArray<NSString *> *)words readOnly:(BOOL)readOnly {
+  NSString *titleText = nil;
+  if (readOnly) {
+    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Close", @"BackupWords. View phrase close button") style:UIBarButtonItemStyleDone target:self action:@selector(closeAction:)];
+    self.navigationItem.rightBarButtonItem = closeButton;
+    titleText = NSLocalizedString(@"Your recovery phrase", @"BackupWords. View phrase title");
+  } else {
+    titleText = NSLocalizedString(@"Write these down", @"BackupWords. Title");
+  }
   if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
     self.titleToContentYOffsetConstraint.constant = 15.0;
     self.descriptionToWordsContainerYOffsetConstraint.constant = 11.0;
@@ -100,7 +108,7 @@
                                  NSForegroundColorAttributeName: self.titleLabel.textColor,
                                  NSParagraphStyleAttributeName: style,
                                  NSKernAttributeName: @(-0.3)};
-    self.titleLabel.attributedText = [[NSAttributedString alloc] initWithString:self.titleLabel.text attributes:attributes];
+    self.titleLabel.attributedText = [[NSAttributedString alloc] initWithString:titleText attributes:attributes];
   }
   { //Description
     NSDictionary *attributes = @{NSFontAttributeName: self.descriptionLabel.font,
@@ -141,6 +149,10 @@
 
 - (IBAction)nextAction:(__unused id)sender {
   [self.output nextAction];
+}
+
+- (IBAction)closeAction:(__unused id)sender {
+  [self.output closeAction];
 }
 
 #pragma mark - Private

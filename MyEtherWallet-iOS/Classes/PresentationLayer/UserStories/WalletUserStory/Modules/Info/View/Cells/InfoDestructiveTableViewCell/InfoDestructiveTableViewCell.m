@@ -10,6 +10,7 @@
 #import "InfoDestructiveTableViewCellObject.h"
 
 static CGFloat const kInfoDestructiveTableViewCellHeight = 56.0;
+static CGFloat const kInfoDestructiveTableViewCellCompactHeight = 44.0;
 
 @interface InfoDestructiveTableViewCell ()
 @end
@@ -23,8 +24,12 @@ static CGFloat const kInfoDestructiveTableViewCellHeight = 56.0;
   return YES;
 }
 
-+ (CGFloat)heightForObject:(__unused id)object atIndexPath:(__unused NSIndexPath *)indexPath tableView:(__unused UITableView *)tableView {
-  return kInfoDestructiveTableViewCellHeight;
++ (CGFloat)heightForObject:(InfoDestructiveTableViewCellObject *)object atIndexPath:(__unused NSIndexPath *)indexPath tableView:(__unused UITableView *)tableView {
+  if (object.compact) {
+    return kInfoDestructiveTableViewCellCompactHeight;
+  } else {
+    return kInfoDestructiveTableViewCellHeight;
+  }
 }
 
 @end

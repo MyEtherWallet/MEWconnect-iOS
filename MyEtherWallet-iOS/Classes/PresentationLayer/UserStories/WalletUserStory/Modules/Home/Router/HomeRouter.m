@@ -140,9 +140,9 @@ static NSString *const kHomeToRestoreSeedSegueIdentifier      = @"HomeToRestoreS
   }];
 }
 
-- (void) openInfo {
+- (void) openInfoWithAccount:(AccountPlainObject *)account {
   [[self.transitionHandler openModuleUsingSegue:kHomeToInfoSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<InfoModuleInput> moduleInput) {
-    [moduleInput configureModule];
+    [moduleInput configureModuleWithAccount:account];
     return nil;
   }];
 }

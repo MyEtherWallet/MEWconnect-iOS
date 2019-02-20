@@ -9,6 +9,8 @@
 #import "ModuleAssemblyBase.h"
 @import RamblerTyphoonUtils.AssemblyCollector;
 
-@interface InfoAssembly : ModuleAssemblyBase <RamblerInitialAssembly>
+@class PonsomizerAssembly;
 
+@interface InfoAssembly : ModuleAssemblyBase <RamblerInitialAssembly>
+@property (nonatomic, strong, readonly) PonsomizerAssembly *ponsomizerAssembly;
 @end

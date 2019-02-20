@@ -1,3 +1,12 @@
+### Release 1.0.8
+- Completely re-designed 'restore from recovery phrase' flow. 
+- Improved authentication, and additional password brute force protection
+- More accurate price estimates when purchasing Ether.
+- Other minor improvements
+
+### Release 1.0.7
+- More accurate price quotes for Buy Ether scenario.
+
 ### Release 1.0.6
 
 - Smooth screen transition animations

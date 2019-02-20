@@ -18,7 +18,7 @@
     _type = type;
     switch (type) {
       case InfoNormalTableViewCellObjectTypeContact: {
-        _title = NSLocalizedString(@"Contact", @"Info screen");
+        _title = NSLocalizedString(@"Contact support", @"Info screen");
         break;
       }
       case InfoNormalTableViewCellObjectTypeKnowledgeBase: {
@@ -39,6 +39,15 @@
       }
       case InfoNormalTableViewCellObjectTypeAbout: {
         _title = NSLocalizedString(@"About", @"Info screen");
+        break;
+      }
+      case InfoNormalTableViewCellObjectTypeBackupPhrase: {
+        _title = NSLocalizedString(@"View backup passphrase", @"Info screen");
+        break;
+      }
+      case InfoNormalTableViewCellObjectTypeMakeBackup: {
+        _title = NSLocalizedString(@"Back up my wallet", @"Info screen");
+        break;
       }
       default:
         break;

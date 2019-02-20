@@ -11,9 +11,10 @@
 
 @implementation InfoDestructiveTableViewCellObject
 
-- (instancetype) initWithType:(InfoDestructiveTableViewCellObjectType)type {
+- (instancetype) initWithType:(InfoDestructiveTableViewCellObjectType)type compact:(BOOL)compact {
   self = [super init];
   if (self) {
+    _compact = compact;
     _type = type;
     switch (type) {
       case InfoDestructiveTableViewCellObjectResetType: {
@@ -27,8 +28,8 @@
   return self;
 }
 
-+ (instancetype) objectWithType:(InfoDestructiveTableViewCellObjectType)type {
-  return [[[self class] alloc] initWithType:type];
++ (instancetype) objectWithType:(InfoDestructiveTableViewCellObjectType)type compact:(BOOL)compact {
+  return [[[self class] alloc] initWithType:type compact:compact];
 }
 
 #pragma mark - NICellObject

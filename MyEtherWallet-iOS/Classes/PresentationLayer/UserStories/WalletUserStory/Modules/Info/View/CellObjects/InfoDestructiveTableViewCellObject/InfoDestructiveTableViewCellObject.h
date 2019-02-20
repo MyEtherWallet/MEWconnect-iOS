@@ -16,5 +16,6 @@ typedef NS_ENUM(short, InfoDestructiveTableViewCellObjectType) {
 @interface InfoDestructiveTableViewCellObject : NSObject <NINibCellObject, NICellObject>
 @property (nonatomic, readonly) InfoDestructiveTableViewCellObjectType type;
 @property (nonatomic, strong, readonly) NSString *title;
-+ (instancetype) objectWithType:(InfoDestructiveTableViewCellObjectType)type;
+@property (nonatomic, readonly) BOOL compact;
++ (instancetype) objectWithType:(InfoDestructiveTableViewCellObjectType)type compact:(BOOL)compact;
 @end

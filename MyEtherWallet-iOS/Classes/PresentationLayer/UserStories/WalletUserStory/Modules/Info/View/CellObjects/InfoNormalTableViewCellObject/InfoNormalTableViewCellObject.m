@@ -42,7 +42,7 @@
         break;
       }
       case InfoNormalTableViewCellObjectTypeBackupPhrase: {
-        _title = NSLocalizedString(@"View backup passphrase", @"Info screen");
+        _title = NSLocalizedString(@"View my recovery phrase", @"Info screen");
         break;
       }
       case InfoNormalTableViewCellObjectTypeMakeBackup: {

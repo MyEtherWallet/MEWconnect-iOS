@@ -118,10 +118,12 @@
     self.descriptionLabel.attributedText = [[NSAttributedString alloc] initWithString:self.descriptionLabel.text attributes:attributes];
   }
   { //Words
-    NSArray *wordsPart1 = [words subarrayWithRange:NSMakeRange(0, 12)];
+    NSUInteger firstHalfCount = [words count] / 2 + [words count] % 2;
+    NSArray *wordsPart1 = [words subarrayWithRange:NSMakeRange(0, firstHalfCount)];
     [self _prepareWordsList:wordsPart1 inLabel:self.wordsPart1Label startIndex:1];
-    NSArray *wordsPart2 = [words subarrayWithRange:NSMakeRange(12, 12)];
-    [self _prepareWordsList:wordsPart2 inLabel:self.wordsPart2Label startIndex:13];
+    NSUInteger secondHalpCount = [words count] - firstHalfCount;
+    NSArray *wordsPart2 = [words subarrayWithRange:NSMakeRange(firstHalfCount, secondHalpCount)];
+    [self _prepareWordsList:wordsPart2 inLabel:self.wordsPart2Label startIndex:firstHalfCount + 1];
   }
   { //Beware label
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];

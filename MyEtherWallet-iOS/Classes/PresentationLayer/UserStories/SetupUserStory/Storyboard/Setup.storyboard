@@ -438,7 +438,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="CG7-43-VXO">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="628"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XuG-7p-0aS">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="332.33333333333331"/>
@@ -559,13 +559,20 @@ password</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9h3-XE-Nu6"/>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="Ojg-YK-5s8">
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="EY8-L0-Ymt">
+                            <connections>
+                                <action selector="cancelAction:" destination="jqt-TW-elj" id="nsW-du-IXL"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" title="Next" style="done" id="jbV-gB-VII">
                             <connections>
                                 <action selector="nextAction:" destination="jqt-TW-elj" id="NXr-Av-6aI"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="bestPasswordDescriptionLabel" destination="ZTW-M2-q6y" id="NJJ-R7-A2D"/>
                         <outlet property="crackMeterLabel" destination="e2q-UQ-i3Z" id="iJy-qg-daY"/>
@@ -597,7 +604,7 @@ password</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C28-ET-RGh" customClass="TypingAnimationLabel">
-                                <rect key="frame" x="24" y="347.33333333333331" width="366" height="40.666666666666686"/>
+                                <rect key="frame" x="24" y="303.33333333333331" width="366" height="40.666666666666686"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="34"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -606,7 +613,7 @@ password</string>
                                 </connections>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s0c-iV-h7G" userLabel="helper_view">
-                                <rect key="frame" x="413" y="388" width="1" height="284"/>
+                                <rect key="frame" x="413" y="344" width="1" height="284"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="1" id="6U3-tk-pil"/>
@@ -614,7 +621,7 @@ password</string>
                                 </constraints>
                             </view>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vDv-v1-uhA" customClass="FlatButton">
-                                <rect key="frame" x="24" y="516" width="366" height="30"/>
+                                <rect key="frame" x="24" y="472" width="366" height="30"/>
                                 <state key="normal" title="START USING MEWCONNECT"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="theme">
@@ -670,7 +677,7 @@ password</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="02A-1X-65v">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="628"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3kO-NM-jWR">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="340.33333333333331"/>
@@ -1014,11 +1021,11 @@ phrase handy?</string>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qFD-MZ-yQh">
                                                 <rect key="frame" x="24" y="171.33333333333334" width="366" height="426.33333333333326"/>
-                                                <mutableString key="text">We don’t support keystore file and private key imports in MEWconnect app, as they are highly unsafe. 
+                                                <string key="text">We don’t support keystore file and private key imports in MEWconnect app, as they are highly unsafe. 
 (Note that keystore file and private key are still available methods of access on MyEtherWallet.com, but are not recommended unless using MEW offline)
 Because MEWconnect is a ‘Hardware wallet’ without all the hardware, it's best to create a new wallet directly in MEWconnect app, same as if you just got a new hardware wallet. That way you can be sure your keys never leave your device.
 If you want to access funds in one of your existing wallets via MEWconnect, the most secure way to do so would be transferring your ETH and tokens to your new MEWconnect wallet once it’s created. 
-Using your existing private key defeats the purpose of MEWconnect, and reduces your security considerably.</mutableString>
+Using your existing private key defeats the purpose of MEWconnect, and reduces your security considerably.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1089,8 +1096,8 @@ existing wallet</string>
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="115"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="i.e. keystore file, private key etc." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Xr-MG-NxM">
-                                            <rect key="frame" x="24" y="40" width="195" height="15.666666666666664"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="i.e. keystore file, private key, etc." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Xr-MG-NxM">
+                                            <rect key="frame" x="24" y="40" width="197.66666666666666" height="15.666666666666664"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <color key="textColor" red="0.43137254899999999" green="0.45098039220000002" blue="0.51764705879999995" alpha="1" colorSpace="deviceRGB"/>
                                             <nil key="highlightedColor"/>
@@ -1100,7 +1107,7 @@ existing wallet</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="tintColor" red="0.43137254899999999" green="0.45098039220000002" blue="0.51764705879999995" alpha="1" colorSpace="deviceRGB"/>
                                             <inset key="contentEdgeInsets" minX="0.0" minY="10" maxX="30" maxY="0.0"/>
-                                            <inset key="imageEdgeInsets" minX="6" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <inset key="imageEdgeInsets" minX="6" minY="1" maxX="0.0" maxY="0.0"/>
                                             <state key="normal" title="Other options" image="inline_small_chevron">
                                                 <color key="titleColor" red="0.43137254899999999" green="0.45098039220000002" blue="0.51764705879999995" alpha="1" colorSpace="deviceRGB"/>
                                             </state>

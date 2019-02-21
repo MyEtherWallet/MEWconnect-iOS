@@ -9,4 +9,5 @@
 @import Foundation;
 
 @protocol InfoInteractorOutput <NSObject>
+- (void) mnemonicsDidReceived:(NSArray <NSString *> *)mnemonics;
 @end

@@ -29,8 +29,13 @@
 
 @implementation InfoDataDisplayManager
 
-- (void) updateDataDisplayManager {
-  [self updateTableViewModel];
+- (void) updateDataDisplayManagerWithBackupAvailability:(BOOL)avaiable backedUpStatus:(BOOL)isBackedUp {
+  if (!self.tableViewModel) {
+    [self updateTableViewModel];
+  }
+  
+  [self.tableViewModel removeSectionAtIndex:0];
+  [self.tableViewModel addSectionWithTitle:@" "];
   
   BOOL compact = ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40);
   
@@ -40,7 +45,13 @@
   [self.tableViewModel addObject:[self.cellObjectBuilder buildKnowledgeBaseCellObjectWithCompactSize:compact]];
   [self.tableViewModel addObject:[self.cellObjectBuilder buildPrivacyAndTermsCellObjectWithCompactSize:compact]];
   [self.tableViewModel addObject:[self.cellObjectBuilder buildMyetherwalletComCellObjectWithCompactSize:compact]];
-  [self.tableViewModel addObject:[self.cellObjectBuilder buildAboutCellObjectWithCompactSize:compact]];
+  if (avaiable) {
+    if (isBackedUp) {
+      [self.tableViewModel addObject:[self.cellObjectBuilder buildViewBackupPhraseCellObjectWithCompactSize:compact]];
+    } else {
+      [self.tableViewModel addObject:[self.cellObjectBuilder buildMakeBackupCellObjectWithCompactSize:compact]];
+    }
+  }
   [self.tableViewModel addObject:[self.cellObjectBuilder buildEmptyCellObject]];
 }
 
@@ -116,6 +127,14 @@
                                   }
                                   case InfoNormalTableViewCellObjectTypeAbout: {
                                     [self.delegate didTapAbout];
+                                    break;
+                                  }
+                                  case InfoNormalTableViewCellObjectTypeBackupPhrase: {
+                                    [self.delegate didTapViewBackupPhrase];
+                                    break;
+                                  }
+                                  case InfoNormalTableViewCellObjectTypeMakeBackup: {
+                                    [self.delegate didTapMakeBackup];
                                     break;
                                   }
                                   default:

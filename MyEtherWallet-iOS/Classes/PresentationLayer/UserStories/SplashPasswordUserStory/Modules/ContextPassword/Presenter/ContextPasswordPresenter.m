@@ -30,19 +30,23 @@
   NSString *title = nil;
   switch (_type) {
     case ContextPasswordTypeBackup: {
-      title = NSLocalizedString(@"Enter password to start", @"Context inout password. Backup");
+      title = NSLocalizedString(@"Enter password to start", @"Context input password. Backup");
       break;
     }
     case ContextPasswordTypeMessage: {
-      title = NSLocalizedString(@"Enter password to sign", @"Context inout password. Sign message");
+      title = NSLocalizedString(@"Enter password to sign", @"Context input password. Sign message");
       break;
     }
     case ContextPasswordTypeTransaction: {
-      title = NSLocalizedString(@"Enter password to confirm", @"Context inout password. Sign transaction");
+      title = NSLocalizedString(@"Enter password to confirm", @"Context input password. Sign transaction");
       break;
     }
     case ContextPasswordTypeGenerate: {
-      title = NSLocalizedString(@"Enter password to generate", @"Context inout password. Generate new private key");
+      title = NSLocalizedString(@"Enter password to generate", @"Context input password. Generate new private key");
+      break;
+    }
+    case ContextPasswordTypeViewBackup: {
+      title = NSLocalizedString(@"Enter password to view", @"Context input password. View backup phrase");
       break;
     }
       

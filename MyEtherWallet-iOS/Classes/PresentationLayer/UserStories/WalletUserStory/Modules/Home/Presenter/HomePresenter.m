@@ -50,9 +50,6 @@ typedef NS_OPTIONS(short, HomeViewPresenterStatus) {
 }
 
 - (void) configureBackupStatus {
-  [self.interactor refreshMasterToken];
-  MasterTokenPlainObject *masterToken = [self.interactor obtainMasterToken];
-  [self.view updateWithMasterToken:masterToken];
 }
 
 - (void) configureAfterChangingNetwork {
@@ -90,6 +87,9 @@ typedef NS_OPTIONS(short, HomeViewPresenterStatus) {
 - (void) didTriggerViewWillAppear {
   _viewVisible = YES;
   [self _refreshViewStatusAnimated:NO];
+  [self.interactor refreshMasterToken];
+  MasterTokenPlainObject *masterToken = [self.interactor obtainMasterToken];
+  [self.view updateWithMasterToken:masterToken];
 }
 
 - (void) didTriggerViewDidDisappear {
@@ -119,7 +119,8 @@ typedef NS_OPTIONS(short, HomeViewPresenterStatus) {
 }
 
 - (void) infoAction {
-  [self.router openInfo];
+  AccountPlainObject *account = [self.interactor obtainAccount];
+  [self.router openInfoWithAccount:account];
 }
 
 - (void) buyEtherAction {

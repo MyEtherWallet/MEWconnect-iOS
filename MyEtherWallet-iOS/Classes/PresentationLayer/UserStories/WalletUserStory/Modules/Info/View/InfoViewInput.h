@@ -9,7 +9,8 @@
 @import Foundation;
 
 @protocol InfoViewInput <NSObject>
-- (void) setupInitialStateWithVersion:(NSString *)version;
+- (void) setupInitialStateWithVersion:(NSString *)version backupAvailability:(BOOL)available backedStatus:(BOOL)isBackedUp;
+- (void) updateWithBackupAvailability:(BOOL)avaiable backupStatus:(BOOL)isBackedUp;
 - (void) presentResetConfirmation;
 - (void) presentMailComposeWithSubject:(NSString *)subject recipients:(NSArray <NSString *> *)recipients;
 @end

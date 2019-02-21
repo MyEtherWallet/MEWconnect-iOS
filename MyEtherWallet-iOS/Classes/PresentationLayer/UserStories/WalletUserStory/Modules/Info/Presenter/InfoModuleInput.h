@@ -13,6 +13,6 @@
 
 @protocol InfoModuleInput <RamblerViperModuleInput>
 
-- (void) configureModule;
-
+- (void) configureModuleWithAccount:(AccountPlainObject *)account;
+- (void) configureAccountBackupStatus;
 @end

@@ -12,22 +12,37 @@
 #import "InfoInteractorInput.h"
 #import "InfoRouterInput.h"
 
+#import "ContextPasswordModuleOutput.h"
+
 #import "ApplicationConstants.h"
 
 #import "NSBundle+Version.h"
+
+@interface InfoPresenter () <ContextPasswordModuleOutput>
+@end
 
 @implementation InfoPresenter
 
 #pragma mark - InfoModuleInput
 
-- (void) configureModule {
+- (void) configureModuleWithAccount:(AccountPlainObject *)account {
+  [self.interactor configureWithAccount:account];
+}
+
+- (void) configureAccountBackupStatus {
+  [self.interactor accountBackedUp];
+  BOOL isBackupAvailable = [self.interactor isBackupAvailable];
+  BOOL isBackedUp = [self.interactor isBackedUp];
+  [self.view updateWithBackupAvailability:isBackupAvailable backupStatus:isBackedUp];
 }
 
 #pragma mark - InfoViewOutput
 
 - (void) didTriggerViewReadyEvent {
   NSString *version = [[NSBundle mainBundle] applicationVersion];
-	[self.view setupInitialStateWithVersion:version];
+  BOOL isBackedUp = [self.interactor isBackedUp];
+  BOOL isBackupAvailable = [self.interactor isBackupAvailable];
+  [self.view setupInitialStateWithVersion:version backupAvailability:isBackupAvailable backedStatus:isBackedUp];
 }
 
 - (void) closeAction {
@@ -68,6 +83,30 @@
 
 - (void) aboutAction {
   [self.router openAbout];
+}
+
+- (void) viewBackupPhraseAction {  
+  AccountPlainObject *account = [self.interactor obtainAccount];
+  [self.router openContextPasswordWithOutput:self account:account];
+}
+
+- (void) makeBackupAction {
+  AccountPlainObject *account = [self.interactor obtainAccount];
+  [self.router openBackupWithAccount:account];
+}
+
+#pragma mark - InfoInteractorOutput
+
+- (void) mnemonicsDidReceived:(NSArray <NSString *> *)mnemonics {
+  dispatch_async(dispatch_get_main_queue(), ^{
+    [self.router openWordsWithMnemonics:mnemonics];
+  });
+}
+
+#pragma mark - ContextPasswordModuleOutput
+
+- (void)passwordDidEntered:(NSString *)password {
+  [self.interactor passwordDidEntered:password];
 }
 
 @end

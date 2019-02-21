@@ -27,6 +27,8 @@
 #import "ContextPasswordModuleOutput.h"
 #import "RestoreSeedModuleOutput.h"
 
+#import "UIViewController+Hierarchy.h"
+
 static NSString *const kHomeToScannerSegueIdentifier          = @"HomeToScannerSegueIdentifier";
 static NSString *const kHomeToMessageSignerSegueIdentifier    = @"HomeToMessageSignerSegueIdentifier";
 static NSString *const kHomeToTransactionSegueIdentifier      = @"HomeToTransactionSegueIdentifier";
@@ -84,8 +86,15 @@ static NSString *const kHomeToRestoreSeedSegueIdentifier      = @"HomeToRestoreS
                                                   UIViewController *fromViewController = (UIViewController *)sourceModuleTransitionHandler;
                                                   UIViewController *toViewController = (UIViewController *)destinationModuleTransitionHandler;
                                                   
-                                                  UINavigationController *fromNavigationController = [fromViewController navigationController];
-                                                  [fromNavigationController.visibleViewController presentViewController:toViewController animated:YES completion:nil];
+                                                  fromViewController = [fromViewController obtainTopController];
+                                                  if ([fromViewController isKindOfClass:[UIAlertController class]]) {
+                                                    UIViewController *presentingViewController = fromViewController.presentingViewController;
+                                                    [fromViewController dismissViewControllerAnimated:YES completion:^{
+                                                      [presentingViewController presentViewController:toViewController animated:YES completion:nil];
+                                                    }];
+                                                  } else {
+                                                    [fromViewController presentViewController:toViewController animated:YES completion:nil];
+                                                  }
                                                 } originalModuleInput:&originalModuleInput];
   [promise thenChainUsingBlock:^id<ConfirmationStoryModuleOutput>(id<MessageSignerModuleInput> moduleInput) {
     [moduleInput configureModuleWithMessage:command masterToken:masterToken];
@@ -104,8 +113,15 @@ static NSString *const kHomeToRestoreSeedSegueIdentifier      = @"HomeToRestoreS
                                                   UIViewController *fromViewController = (UIViewController *)sourceModuleTransitionHandler;
                                                   UIViewController *toViewController = (UIViewController *)destinationModuleTransitionHandler;
                                                   
-                                                  UINavigationController *fromNavigationController = [fromViewController navigationController];
-                                                  [fromNavigationController.visibleViewController presentViewController:toViewController animated:YES completion:nil];
+                                                  fromViewController = [fromViewController obtainTopController];
+                                                  if ([fromViewController isKindOfClass:[UIAlertController class]]) {
+                                                    UIViewController *presentingViewController = fromViewController.presentingViewController;
+                                                    [fromViewController dismissViewControllerAnimated:YES completion:^{
+                                                      [presentingViewController presentViewController:toViewController animated:YES completion:nil];
+                                                    }];
+                                                  } else {
+                                                    [fromViewController presentViewController:toViewController animated:YES completion:nil];
+                                                  }
                                                 } originalModuleInput:&originalModuleInput];
   [promise thenChainUsingBlock:^id<ConfirmationStoryModuleOutput>(id<TransactionModuleInput> moduleInput) {
     [moduleInput configureModuleWithMessage:command masterToken:masterToken];
@@ -124,9 +140,9 @@ static NSString *const kHomeToRestoreSeedSegueIdentifier      = @"HomeToRestoreS
   }];
 }
 
-- (void) openInfo {
+- (void) openInfoWithAccount:(AccountPlainObject *)account {
   [[self.transitionHandler openModuleUsingSegue:kHomeToInfoSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<InfoModuleInput> moduleInput) {
-    [moduleInput configureModule];
+    [moduleInput configureModuleWithAccount:account];
     return nil;
   }];
 }

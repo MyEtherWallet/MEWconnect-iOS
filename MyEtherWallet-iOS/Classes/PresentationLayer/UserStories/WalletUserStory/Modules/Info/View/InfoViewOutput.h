@@ -19,4 +19,6 @@
 - (void) resetWalletAction;
 - (void) resetWalletConfirmedAction;
 - (void) aboutAction;
+- (void) viewBackupPhraseAction;
+- (void) makeBackupAction;
 @end

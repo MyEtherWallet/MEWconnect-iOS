@@ -16,6 +16,8 @@
 #import "CacheTransactionBatch.h"
 #import "CacheTransaction.h"
 
+#import "HomeTableViewCell.h"
+
 #import "CellFactory.h"
 
 @interface HomeDataDisplayManager ()
@@ -73,6 +75,15 @@
     _empty = YES;
     [self.tableViewModel addObject:[self.cellObjectBuilder buildEmptyCellObject]];
     [self.animator reloadData];
+  }
+}
+
+- (CGFloat) estimatedContentHeight {
+  if (_empty) {
+    return 0.0;
+  } else {
+    NSUInteger numberOfRows = [self.tableViewModel tableView:self.animator.tableView numberOfRowsInSection:0];
+    return numberOfRows * [HomeTableViewCell heightForObject:nil atIndexPath:nil tableView:nil];
   }
 }
 

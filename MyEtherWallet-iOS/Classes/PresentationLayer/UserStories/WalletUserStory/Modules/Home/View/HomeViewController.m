@@ -171,7 +171,9 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
 }
 
 - (void)updateWithTransactionBatch:(CacheTransactionBatch *)transactionBatch {
+  [self _prepareTableViewFooterForLayout];
   [self.dataDisplayManager updateDataDisplayManagerWithTransactionBatch:transactionBatch maximumCount:_numberOfTokens];
+  [self _updateTableViewFooterIfNeeded];
 }
 
 - (void) updateWithMasterToken:(MasterTokenPlainObject *)masterToken {
@@ -218,7 +220,6 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
   } else {
     [self.headerView updateHeightIfNeeded];
   }
-  [self _updateTableViewFooterIfNeeded];
 }
 
 - (void) updateWithTokensCount:(NSUInteger)tokensCount withTotalPrice:(NSDecimalNumber *)totalPrice {
@@ -230,6 +231,7 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
   } else {
     self.headerView.searchBar.hidden = YES;
     [self.dataDisplayManager updateDataDisplayManagerWithTransactionBatch:nil maximumCount:0];
+    [self _updateTableViewFooterIfNeeded];
   }
 }
 
@@ -527,16 +529,31 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
 }
 
 - (void) _updateTableViewFooterIfNeeded {
-  CGFloat additionalHeight = CGRectGetHeight(self.view.frame) - (self.tableView.contentSize.height - CGRectGetHeight(self.tableView.tableFooterView.frame)) - self.headerView.minimumContentHeight - self.tableView.contentInset.bottom;
+  CGFloat additionalHeight = CGRectGetHeight(self.view.frame) - [self.dataDisplayManager estimatedContentHeight] - self.headerView.minimumContentHeight - self.tableView.contentInset.bottom;
   if (additionalHeight > 0.0 && _numberOfTokens > 0) {
-    if (CGRectGetHeight(self.tableView.tableFooterView.frame) != additionalHeight) {
-      UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 1.0, additionalHeight)];
+    UIView *footerView = self.tableView.tableFooterView;
+    if (!footerView) {
+      footerView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, CGRectGetWidth(self.tableView.bounds), 1.0)];
       footerView.backgroundColor = [UIColor clearColor];
+      self.tableView.tableFooterView = footerView;
+    }
+    if (CGRectGetHeight(footerView.frame) != additionalHeight) {
+      CGRect frame = footerView.frame;
+      frame.size.height = additionalHeight;
+      footerView.frame = frame;
       self.tableView.tableFooterView = footerView;
     }
   } else {
     self.tableView.tableFooterView = nil;
   }
+}
+
+- (void) _prepareTableViewFooterForLayout {
+  UIView *footerView = self.tableView.tableFooterView;
+  CGRect frame = footerView.frame;
+  frame.size.height = 1000.0;
+  footerView.frame = frame;
+  self.tableView.tableFooterView = footerView;
 }
 
 @end

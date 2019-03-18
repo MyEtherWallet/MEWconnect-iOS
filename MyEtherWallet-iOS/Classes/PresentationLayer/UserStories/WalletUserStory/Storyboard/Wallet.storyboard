@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6Ru-E1-NPD" customClass="HomeTableView">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="56" estimatedRowHeight="56" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6Ru-E1-NPD" customClass="HomeTableView">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.94901960784313721" green="0.95686274509803915" blue="0.96862745098039216" alpha="1" colorSpace="deviceRGB"/>
                             </tableView>
@@ -769,7 +769,7 @@ With added layers of security, MEWconnect puts you in total control of your cryp
         <image name="scan_focus_tl" width="38" height="38"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="sgz-ig-KhO"/>
-        <segue reference="r2z-jI-6VM"/>
+        <segue reference="gma-Fq-rkZ"/>
+        <segue reference="r9z-sj-bX3"/>
     </inferredMetricsTieBreakers>
 </document>

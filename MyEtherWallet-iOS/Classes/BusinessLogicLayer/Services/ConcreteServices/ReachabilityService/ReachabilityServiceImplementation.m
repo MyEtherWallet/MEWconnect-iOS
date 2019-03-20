@@ -48,4 +48,11 @@
 - (void) _applicationWillResignActive:(__unused NSNotification *)notification {
   [self.reachabilityManager stopMonitoring];
 }
+
+#pragma mark - ReachabilityService
+
+- (BOOL) isReachable {
+  return self.reachabilityManager.reachable;
+}
+
 @end

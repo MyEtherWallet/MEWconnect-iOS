@@ -10,6 +10,7 @@
 
 @interface UIColor (Application)
 + (instancetype) mainApplicationColor;
++ (instancetype) mainLightApplicationColor;
 + (instancetype) placeholderColor;
 + (instancetype) weakColor;
 + (instancetype) sosoColor;
@@ -22,4 +23,5 @@
 + (instancetype) lightGreyTextColor;
 + (instancetype) disabledBackgroundColor;
 + (instancetype) disabledPlaceholderColor;
++ (instancetype) connectionLightGrayBackgroundColor;
 @end

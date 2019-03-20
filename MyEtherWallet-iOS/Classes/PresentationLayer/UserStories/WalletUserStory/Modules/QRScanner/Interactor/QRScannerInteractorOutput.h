@@ -16,4 +16,6 @@
 - (void) closeScanner;
 - (void) accessGranted;
 - (void) accessNotGranted;
+- (void) internetConnectionIsReachable;
+- (void) internetConnectionIsUnreachable;
 @end

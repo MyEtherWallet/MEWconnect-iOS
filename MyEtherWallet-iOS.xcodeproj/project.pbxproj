@@ -233,6 +233,20 @@
 		564952FB20E3F20D00CF2348 /* AccountsServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 564952FA20E3F20D00CF2348 /* AccountsServiceImplementation.m */; };
 		5649CC27216FF1320009D982 /* CacheTransactionSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5649CC26216FF1320009D982 /* CacheTransactionSection.m */; };
 		5649CC28217002840009D982 /* CacheTransactionSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5649CC26216FF1320009D982 /* CacheTransactionSection.m */; };
+		56594467224167D800C9BD82 /* QRScannerStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56594466224167D800C9BD82 /* QRScannerStatusView.m */; };
+		56594468224167D800C9BD82 /* QRScannerStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56594466224167D800C9BD82 /* QRScannerStatusView.m */; };
+		5659447322417DE200C9BD82 /* UIStringList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5659447222417DE200C9BD82 /* UIStringList.m */; };
+		5659447422417DE200C9BD82 /* UIStringList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5659447222417DE200C9BD82 /* UIStringList.m */; };
+		5659447A22417EAB00C9BD82 /* WalletUIStringList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5659447922417EAB00C9BD82 /* WalletUIStringList.m */; };
+		5659447B22417EAB00C9BD82 /* WalletUIStringList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5659447922417EAB00C9BD82 /* WalletUIStringList.m */; };
+		5659447F22417ECF00C9BD82 /* ImageCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5659447E22417ECF00C9BD82 /* ImageCatalog.m */; };
+		5659448022417ECF00C9BD82 /* ImageCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5659447E22417ECF00C9BD82 /* ImageCatalog.m */; };
+		5659448322417EDA00C9BD82 /* WalletImageCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5659448222417EDA00C9BD82 /* WalletImageCatalog.m */; };
+		5659448422417EDA00C9BD82 /* WalletImageCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5659448222417EDA00C9BD82 /* WalletImageCatalog.m */; };
+		565944882241826100C9BD82 /* UIStringAttributesProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 565944872241826100C9BD82 /* UIStringAttributesProvider.m */; };
+		565944892241826100C9BD82 /* UIStringAttributesProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 565944872241826100C9BD82 /* UIStringAttributesProvider.m */; };
+		5659448D2241828600C9BD82 /* WalletUIStringAttributesProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 5659448C2241828600C9BD82 /* WalletUIStringAttributesProvider.m */; };
+		5659448E2241828600C9BD82 /* WalletUIStringAttributesProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 5659448C2241828600C9BD82 /* WalletUIStringAttributesProvider.m */; };
 		565FFA4F2081838F00755B6C /* TyphoonAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 565FFA4E2081838F00755B6C /* TyphoonAppDelegate.m */; };
 		5662E24D2147FEAA00A3C77E /* ContextPasswordAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA7058E611E406A1AA22703 /* ContextPasswordAssembly.m */; };
 		5662E24E2147FEAD00A3C77E /* ContextPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B6EBBF7ADB10AF3DF0DFCD /* ContextPasswordViewController.m */; };
@@ -1473,6 +1487,20 @@
 		5649CC25216FF1320009D982 /* CacheTransactionSection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CacheTransactionSection.h; sourceTree = "<group>"; };
 		5649CC26216FF1320009D982 /* CacheTransactionSection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CacheTransactionSection.m; sourceTree = "<group>"; };
 		565935FC5198CFB42639DA1E /* BuyEtherHistoryViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BuyEtherHistoryViewController.m; sourceTree = "<group>"; };
+		56594465224167D800C9BD82 /* QRScannerStatusView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QRScannerStatusView.h; sourceTree = "<group>"; };
+		56594466224167D800C9BD82 /* QRScannerStatusView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QRScannerStatusView.m; sourceTree = "<group>"; };
+		5659447122417DE200C9BD82 /* UIStringList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIStringList.h; sourceTree = "<group>"; };
+		5659447222417DE200C9BD82 /* UIStringList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIStringList.m; sourceTree = "<group>"; };
+		5659447822417EAB00C9BD82 /* WalletUIStringList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalletUIStringList.h; sourceTree = "<group>"; };
+		5659447922417EAB00C9BD82 /* WalletUIStringList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WalletUIStringList.m; sourceTree = "<group>"; };
+		5659447D22417ECF00C9BD82 /* ImageCatalog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageCatalog.h; sourceTree = "<group>"; };
+		5659447E22417ECF00C9BD82 /* ImageCatalog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageCatalog.m; sourceTree = "<group>"; };
+		5659448122417EDA00C9BD82 /* WalletImageCatalog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalletImageCatalog.h; sourceTree = "<group>"; };
+		5659448222417EDA00C9BD82 /* WalletImageCatalog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WalletImageCatalog.m; sourceTree = "<group>"; };
+		565944862241826100C9BD82 /* UIStringAttributesProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIStringAttributesProvider.h; sourceTree = "<group>"; };
+		565944872241826100C9BD82 /* UIStringAttributesProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIStringAttributesProvider.m; sourceTree = "<group>"; };
+		5659448B2241828600C9BD82 /* WalletUIStringAttributesProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalletUIStringAttributesProvider.h; sourceTree = "<group>"; };
+		5659448C2241828600C9BD82 /* WalletUIStringAttributesProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WalletUIStringAttributesProvider.m; sourceTree = "<group>"; };
 		565FFA4D2081838F00755B6C /* TyphoonAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TyphoonAppDelegate.h; sourceTree = "<group>"; };
 		565FFA4E2081838F00755B6C /* TyphoonAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TyphoonAppDelegate.m; sourceTree = "<group>"; };
 		566334FB37EDE9EA46493776 /* ConfirmPasswordInteractorTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ConfirmPasswordInteractorTests.m; sourceTree = "<group>"; };
@@ -4504,6 +4532,89 @@
 			path = CacheTransactionSection;
 			sourceTree = "<group>";
 		};
+		5659446922416F3C00C9BD82 /* StatusView */ = {
+			isa = PBXGroup;
+			children = (
+				56594465224167D800C9BD82 /* QRScannerStatusView.h */,
+				56594466224167D800C9BD82 /* QRScannerStatusView.m */,
+			);
+			path = StatusView;
+			sourceTree = "<group>";
+		};
+		5659446F22417DCF00C9BD82 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				565944852241824300C9BD82 /* StringAttributes */,
+				5659447C22417EBE00C9BD82 /* Images */,
+				5659447022417DD700C9BD82 /* Strings */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		5659447022417DD700C9BD82 /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				5659447122417DE200C9BD82 /* UIStringList.h */,
+				5659447222417DE200C9BD82 /* UIStringList.m */,
+			);
+			path = Strings;
+			sourceTree = "<group>";
+		};
+		5659447522417E7F00C9BD82 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				5659448A2241826500C9BD82 /* StringAttributes */,
+				5659447722417E8F00C9BD82 /* Images */,
+				5659447622417E8900C9BD82 /* Strings */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		5659447622417E8900C9BD82 /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				5659447822417EAB00C9BD82 /* WalletUIStringList.h */,
+				5659447922417EAB00C9BD82 /* WalletUIStringList.m */,
+			);
+			path = Strings;
+			sourceTree = "<group>";
+		};
+		5659447722417E8F00C9BD82 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				5659448122417EDA00C9BD82 /* WalletImageCatalog.h */,
+				5659448222417EDA00C9BD82 /* WalletImageCatalog.m */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		5659447C22417EBE00C9BD82 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				5659447D22417ECF00C9BD82 /* ImageCatalog.h */,
+				5659447E22417ECF00C9BD82 /* ImageCatalog.m */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		565944852241824300C9BD82 /* StringAttributes */ = {
+			isa = PBXGroup;
+			children = (
+				565944862241826100C9BD82 /* UIStringAttributesProvider.h */,
+				565944872241826100C9BD82 /* UIStringAttributesProvider.m */,
+			);
+			path = StringAttributes;
+			sourceTree = "<group>";
+		};
+		5659448A2241826500C9BD82 /* StringAttributes */ = {
+			isa = PBXGroup;
+			children = (
+				5659448B2241828600C9BD82 /* WalletUIStringAttributesProvider.h */,
+				5659448C2241828600C9BD82 /* WalletUIStringAttributesProvider.m */,
+			);
+			path = StringAttributes;
+			sourceTree = "<group>";
+		};
 		565FFA492081836800755B6C /* ApplicationLayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -5153,6 +5264,7 @@
 		5699983F2095177D00D45153 /* WalletUserStory */ = {
 			isa = PBXGroup;
 			children = (
+				5659447522417E7F00C9BD82 /* Constants */,
 				56999843209517C100D45153 /* Storyboard */,
 				569998402095178800D45153 /* Modules */,
 			);
@@ -9076,6 +9188,7 @@
 		C85E964F9D6452DA15D8B9EB /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				5659446F22417DCF00C9BD82 /* Constants */,
 				5668E4E02083D93C0070A402 /* Assemblies */,
 				56A4EAAA20B8BE070042A358 /* Presentations */,
 				5668E4E12083D9430070A402 /* UserStories */,
@@ -9409,6 +9522,7 @@
 				683E8F3B0035BFE651D67160 /* QRScannerViewOutput.h */,
 				CA12B5039BED5D38878D8AF8 /* QRScannerViewController.h */,
 				AA6DF4713EBC024BD47A9633 /* QRScannerViewController.m */,
+				5659446922416F3C00C9BD82 /* StatusView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -10676,6 +10790,7 @@
 				56335F7E2187662200C07E2B /* KeychainServiceConstantsV1.m in Sources */,
 				56E3E4F621016DB60014152D /* HomeTableViewCellObject.m in Sources */,
 				56A4FAC321485D2D00E7B022 /* ContextPasswordInputAccessoryView.m in Sources */,
+				5659447B22417EAB00C9BD82 /* WalletUIStringList.m in Sources */,
 				56E3E4F721016DB60014152D /* PresentationControllerAssembly.m in Sources */,
 				56896BA4221B6B0B00B78FF6 /* RestoreOptionsEmptyTableViewCell.m in Sources */,
 				56E3E4F821016DB60014152D /* MEWcryptoMessage.m in Sources */,
@@ -10700,6 +10815,7 @@
 				56E3E50B21016DB60014152D /* KeychainNetworkModel.m in Sources */,
 				56E3E50C21016DB60014152D /* CleanLaunchAppDelegate.m in Sources */,
 				56E3E50D21016DB60014152D /* UIColor+RandSeed.swift in Sources */,
+				56594468224167D800C9BD82 /* QRScannerStatusView.m in Sources */,
 				56E3E50E21016DB60014152D /* StoryboardsAssembly.m in Sources */,
 				5662E2502147FEB100A3C77E /* ContextPasswordInteractor.m in Sources */,
 				56E3E50F21016DB60014152D /* NSData+Hexadecimal.m in Sources */,
@@ -10731,6 +10847,7 @@
 				56E3E52621016DB60014152D /* FiatPricesQueryTransformer.m in Sources */,
 				56E3E52721016DB60014152D /* NSData+ArrayBuffer.m in Sources */,
 				56E3E52821016DB60014152D /* StartRouter.m in Sources */,
+				5659447422417DE200C9BD82 /* UIStringList.m in Sources */,
 				56E3E52921016DB60014152D /* NetworkOperation.m in Sources */,
 				56E3E52A21016DB60014152D /* ManyResponseObjectFormatter.m in Sources */,
 				56191EA921504C39000BF97F /* CrashCatcherConfiguratorImplementation.m in Sources */,
@@ -10946,6 +11063,7 @@
 				56E3E5E421016DB60014152D /* ConfirmedTransactionInteractor.m in Sources */,
 				56E3E5E521016DB60014152D /* ResponseValidatorBase.m in Sources */,
 				56E3E5E621016DB60014152D /* TickerResponseConverterImplementation.m in Sources */,
+				5659448E2241828600C9BD82 /* WalletUIStringAttributesProvider.m in Sources */,
 				56E3E5E721016DB60014152D /* ConfirmedTransactionRouter.m in Sources */,
 				56E3E5E821016DB60014152D /* ResponseMappingOperation.m in Sources */,
 				56E3E5E921016DB60014152D /* BackupInfoAssembly.m in Sources */,
@@ -10974,6 +11092,7 @@
 				56E3E5FA21016DB60014152D /* SimplexResponseValidator.m in Sources */,
 				56E3E5FB21016DB60014152D /* BackupWordsPresenter.m in Sources */,
 				56FFD7F22192204900341D96 /* SecurityAppDelegate.m in Sources */,
+				5659448422417EDA00C9BD82 /* WalletImageCatalog.m in Sources */,
 				56E3E5FC21016DB60014152D /* InfoDestructiveTableViewCell.m in Sources */,
 				56E3E5FD21016DB60014152D /* BackupWordsInteractor.m in Sources */,
 				56FFD7FE2192484400341D96 /* SecurityServiceImplementation.m in Sources */,
@@ -10998,6 +11117,7 @@
 				56E3E60A21016DB60014152D /* UIScreen+ScreenScaleType.m in Sources */,
 				56E3E60B21016DB60014152D /* BackupDonePresenter.m in Sources */,
 				56E3E60C21016DB60014152D /* BackupDoneInteractor.m in Sources */,
+				565944892241826100C9BD82 /* UIStringAttributesProvider.m in Sources */,
 				56E3E60E21016DB60014152D /* BackupDoneRouter.m in Sources */,
 				56FFD7ED2192201300341D96 /* SecurityRouter.m in Sources */,
 				56E3E60F21016DB60014152D /* SplashPasswordAssembly.m in Sources */,
@@ -11028,6 +11148,7 @@
 				56E3E62721016DB60014152D /* InfoRouter.m in Sources */,
 				56E3E62821016DB60014152D /* BuyEtherAmountAssembly.m in Sources */,
 				56E3E62921016DB60014152D /* BuyEtherAmountViewController.m in Sources */,
+				5659448022417ECF00C9BD82 /* ImageCatalog.m in Sources */,
 				56E3E62A21016DB60014152D /* BuyEtherAmountPresenter.m in Sources */,
 				56E3E62B21016DB60014152D /* BuyEtherAmountInteractor.m in Sources */,
 				56E3E62C21016DB60014152D /* BuyEtherAmountRouter.m in Sources */,
@@ -11096,6 +11217,7 @@
 				EFF1B135C57BD1034056F8DE /* StartViewController.m in Sources */,
 				560A867520E681E700046B53 /* KeychainNetworkModel.m in Sources */,
 				56F8EAA22183B7F90010274B /* MappingModel_v_1_to_2.xcmappingmodel in Sources */,
+				56594467224167D800C9BD82 /* QRScannerStatusView.m in Sources */,
 				5668E4EA2083DA190070A402 /* CleanLaunchAppDelegate.m in Sources */,
 				5643879720A492240017790F /* UIColor+RandSeed.swift in Sources */,
 				5668E50C2083E7280070A402 /* StoryboardsAssembly.m in Sources */,
@@ -11133,6 +11255,7 @@
 				56FB3A6120B471B0007776C8 /* ManyResponseObjectFormatter.m in Sources */,
 				563DF37E20986B7200F740FF /* UIColor+Hex.m in Sources */,
 				5668E4E52083D95F0070A402 /* ModuleAssemblyBase.m in Sources */,
+				5659448D2241828600C9BD82 /* WalletUIStringAttributesProvider.m in Sources */,
 				563C6AE620AF690A00E85B8B /* CheckboxButton+Blockies.swift in Sources */,
 				56191EA821504C35000BF97F /* CrashCatcherConfiguratorImplementation.m in Sources */,
 				56F17AC420E23FF60010393C /* NSBundle+Version.m in Sources */,
@@ -11242,6 +11365,7 @@
 				56A4EAA420B826A50042A358 /* NSCharacterSet+WNS.m in Sources */,
 				564387A620A4A9820017790F /* CGPoint+RandSeed.swift in Sources */,
 				56BFD427209BC77100951000 /* String+HexPrefix.swift in Sources */,
+				5659447322417DE200C9BD82 /* UIStringList.m in Sources */,
 				56FB395720B1ACE2007776C8 /* NetworkCompoundOperationBuilder.m in Sources */,
 				563CF30620EFAF26005467AE /* BuyEtherHistoryCellObjectBuilder.m in Sources */,
 				560CB01F209B542A00BFF59C /* ResponseMappersAssembly.m in Sources */,
@@ -11268,6 +11392,7 @@
 				5677C5962181226500477ACD /* MasterTokenPlainObject.m in Sources */,
 				9C68410123433AEA8C27D94A /* DeclinedTransactionPresenter.m in Sources */,
 				56FB398620B226C9007776C8 /* ServerResponseModel.m in Sources */,
+				5659447A22417EAB00C9BD82 /* WalletUIStringList.m in Sources */,
 				560D772520B49927009A3D6D /* HomeTableViewAnimator.m in Sources */,
 				560D771320B49535009A3D6D /* HomeTableViewCell.m in Sources */,
 				560D773620B58C93009A3D6D /* BackupConfirmationSegmentedControl.m in Sources */,
@@ -11278,6 +11403,7 @@
 				5695A95A2B5CED358C015C0D /* DeclinedTransactionRouter.m in Sources */,
 				56896B83221B694300B78FF6 /* RestoreOptionsDataDisplayManager.m in Sources */,
 				563CF30A20EFB235005467AE /* BuyEtherHistoryTableViewAnimator.m in Sources */,
+				565944882241826100C9BD82 /* UIStringAttributesProvider.m in Sources */,
 				5677C59C2181226500477ACD /* TokenPlainObject.m in Sources */,
 				56FB3A5320B47037007776C8 /* ManagedObjectMappingProvider.m in Sources */,
 				5685FE162099F9A4008C75A1 /* FlatButton.m in Sources */,
@@ -11355,6 +11481,7 @@
 				5689111F20EE6511001552D4 /* SimplexPaymentQuery.m in Sources */,
 				C1E40ADDC31A90446D7E54FB /* BackupStartPresenter.m in Sources */,
 				19C254B03461059BFA00A529 /* BackupStartInteractor.m in Sources */,
+				5659447F22417ECF00C9BD82 /* ImageCatalog.m in Sources */,
 				56896BA1221B6B0B00B78FF6 /* RestoreOptionsNormalTableViewCellObject.m in Sources */,
 				50E9A0649AE46B8F3A5B8117 /* BackupStartRouter.m in Sources */,
 				726F177BFDD1D778D3118037 /* BackupWordsAssembly.m in Sources */,
@@ -11396,6 +11523,7 @@
 				56E14BDE20EBC84500C41F83 /* SimplexServiceImplementation.m in Sources */,
 				564952FB20E3F20D00CF2348 /* AccountsServiceImplementation.m in Sources */,
 				BFE229932CEED582B99472F2 /* SplashPasswordRouter.m in Sources */,
+				5659448322417EDA00C9BD82 /* WalletImageCatalog.m in Sources */,
 				0300F8A0DC179B5B8E58E3EC /* ForgotPasswordAssembly.m in Sources */,
 				A423000337866A1DB124671A /* ForgotPasswordViewController.m in Sources */,
 				010EC2BA658F3F6E97F548A3 /* ForgotPasswordPresenter.m in Sources */,

@@ -21,6 +21,8 @@
 
 #import "UIView+LockFrame.h"
 
+#import "QRScannerStatusView.h"
+
 static CFTimeInterval kQRScannerViewControllerOpacityAnimationDuration = 0.4;
 static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
 
@@ -33,20 +35,11 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
 @property (nonatomic, weak) IBOutlet UIImageView *focusViewBR;
 @property (nonatomic, weak) IBOutlet UIView *cameraContainerView;
 
-@property (nonatomic, weak) IBOutlet UIView *loadingContainerView;
-@property (nonatomic, weak) IBOutlet UIActivityIndicatorView *loadingActivity;
-
+@property (nonatomic, weak) IBOutlet UIView *statusBlockView;
 @property (nonatomic, weak) IBOutlet UIView *statusContainerView;
-@property (nonatomic, weak) IBOutlet UIImageView *statusInfoIconImageView;
-@property (nonatomic, weak) IBOutlet UILabel *statusInfoTitleLabel;
-@property (nonatomic, weak) IBOutlet UILabel *statusInfoDescriptionLabel;
-@property (nonatomic, weak) IBOutlet UIButton *statusInfoContactSupportButton;
+@property (nonatomic, weak) QRScannerStatusView *currentStatusView;
 
 @property (nonatomic, strong) AVCaptureVideoPreviewLayer *videoPreviewLayer;
-
-@property (nonatomic, weak) IBOutlet LinkedLabel *accessToCameraLabel;
-
-@property (nonatomic) NSInteger runningAnimations;
 
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *cameraContainerHeightConstraint;
 @property (nonatomic, strong) IBOutletCollection(NSLayoutConstraint) NSArray <NSLayoutConstraint *> *focusViewYOffsetConstraints;
@@ -77,7 +70,7 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
 - (void)viewDidDisappear:(BOOL)animated {
   [super viewDidDisappear:animated];
   [self.output didTriggerViewDidDisappear];
-  [self.loadingActivity stopAnimating];
+  [self.currentStatusView.activityIndicator stopAnimating];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -108,17 +101,7 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
     self.cameraToDescriptionYOffsetConstraint.constant = 17.0;
     self.descriptionRightOffsetConstraint.constant = 20.0;
   }
-  if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40 ||
-      ![MFMailComposeViewController canSendMail]) {
-    [self.statusInfoContactSupportButton removeFromSuperview];
-    [self.statusInfoDescriptionLabel.bottomAnchor constraintEqualToAnchor:self.statusInfoDescriptionLabel.superview.bottomAnchor].active = YES;
-  } else {
-    NSDictionary *attributes = @{NSFontAttributeName: self.statusInfoContactSupportButton.titleLabel.font,
-                                 NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)};
-    NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Contact support", @"QRScanner. Connect error. Contact support")
-                                                                          attributes:attributes];
-    [self.statusInfoContactSupportButton setAttributedTitle:attributedTitle forState:UIControlStateNormal];
-  }
+  
   [self _prepareStepsDescription];
   { //title label
     NSDictionary *attributes = @{NSFontAttributeName: self.titleLabel.font,
@@ -126,45 +109,10 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
                                  NSKernAttributeName: @(-0.12)};
     self.titleLabel.attributedText = [[NSAttributedString alloc] initWithString:self.titleLabel.text attributes:attributes];
   }
-  { //close button
-    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
-    style.alignment = NSTextAlignmentCenter;
-    NSDictionary *attributes = @{NSFontAttributeName: self.closeButton.titleLabel.font,
-                                 NSForegroundColorAttributeName: [self.closeButton titleColorForState:UIControlStateNormal],
-                                 NSParagraphStyleAttributeName: style,
-                                 NSKernAttributeName: @(0.6)};
-    [self.closeButton setAttributedTitle:[[NSAttributedString alloc] initWithString:[self.closeButton titleForState:UIControlStateNormal]
-                                                                         attributes:attributes]
-                                forState:UIControlStateNormal];
-  }
   {
     self.focusViewTR.layer.transform = CATransform3DMakeScale(-1.0, 1.0, 1.0);
     self.focusViewBL.layer.transform = CATransform3DMakeScale(1.0, -1.0, 1.0);
     self.focusViewBR.layer.transform = CATransform3DMakeScale(-1.0, -1.0, 1.0);
-  }
-  { //Access to camera
-    NSString *text = NSLocalizedString(@"Please enable camera access for MEWconnect in Settings", @"QR Scanner. Access to camera warning");
-    NSArray <NSString *> *linkedParts = [NSLocalizedString(@"Settings", @"QR Scanner. Access to camera warning. Linked parts") componentsSeparatedByString:@"|"];
-    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
-    style.lineSpacing = 5.0;
-    style.alignment = self.accessToCameraLabel.textAlignment;
-    NSDictionary *attributes = @{NSFontAttributeName: self.accessToCameraLabel.font,
-                                 NSForegroundColorAttributeName: self.accessToCameraLabel.textColor,
-                                 NSParagraphStyleAttributeName: style,
-                                 NSKernAttributeName: @(-0.01)};
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:text attributes:attributes];
-    for (NSString *part in linkedParts) {
-      NSRange range = [attributedString.string rangeOfString:part];
-      if (range.location != NSNotFound && range.length > 0) {
-        NSDictionary *linkAttributes = @{NSUnderlineColorAttributeName: [UIColor whiteColor],
-                                         NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle),
-                                         NSLinkAttributeName: [NSURL URLWithString:@"http://dummy.url"],
-                                         NSForegroundColorAttributeName: [UIColor whiteColor]};
-        [attributedString addAttributes:linkAttributes range:range];
-      }
-    }
-    
-    self.accessToCameraLabel.attributedText = attributedString;
   }
   [self _updatePrefferedContentSize];
 }
@@ -191,109 +139,40 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
   }
 }
 
-- (void)showLoading {
-  [self.loadingActivity startAnimating];
-  self.loadingContainerView.alpha = 0.0;
-  ++self.runningAnimations;
-  [UIView animateWithDuration:kQRScannerViewControllerFadeAnimationDuration animations:^{
-    self.stepsDescriptionLabel.alpha = 0.0;
-    self.statusContainerView.alpha = 0.0;
-    self.loadingContainerView.alpha = 1.0;
-  } completion:^(__unused BOOL finished) {
-    --self.runningAnimations;
-  }];
+- (void) showLoading {
+  QRScannerStatusView *statusView = [QRScannerStatusView statusViewWithType:QRScannerStatusViewInProgress];
+  [statusView.activityIndicator startAnimating];
+  [self _showNewStatusView:statusView withMainColor:[UIColor lightGreyTextColor] secondaryColor:[UIColor connectionLightGrayBackgroundColor]];
 }
 
 - (void) showError {
-  self.statusInfoIconImageView.image = [UIImage imageNamed:@"scan_error_icon"];
-  self.statusInfoTitleLabel.text = NSLocalizedString(@"Something went wrong", @"QRScanner. Connection error title");
-  self.statusInfoContactSupportButton.hidden = NO;
-  {
-    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
-    style.alignment = NSTextAlignmentCenter;
-    style.lineSpacing = 2.0;
-    NSDictionary *attributes = @{NSForegroundColorAttributeName: self.statusInfoDescriptionLabel.textColor,
-                                 NSFontAttributeName: self.statusInfoDescriptionLabel.font,
-                                 NSParagraphStyleAttributeName: style};
-    NSString *text = NSLocalizedString(@"Please try again or use a\ndifferent QR code.", @"QRScanner. Connection error description");
-    self.statusInfoDescriptionLabel.attributedText = [[NSAttributedString alloc] initWithString:text attributes:attributes];
-  }
-  
-  ++self.runningAnimations;
-  [UIView animateWithDuration:kQRScannerViewControllerFadeAnimationDuration
-                   animations:^{
-                     self.stepsDescriptionLabel.alpha = 0.0;
-                     self.loadingContainerView.alpha = 0.0;
-                     self.statusContainerView.alpha = 1.0;
-                     self.statusInfoContactSupportButton.alpha = 1.0;
-                   } completion:^(__unused BOOL finished) {
-                     --self.runningAnimations;
-                     if (self.runningAnimations == 0) {
-                       [self.loadingActivity stopAnimating];
-                     }
-                   }];
+  QRScannerStatusView *statusView = [QRScannerStatusView statusViewWithType:QRScannerStatusViewFailure];
+  [statusView.tryAgainButton addTarget:self action:@selector(tryAgainAction:) forControlEvents:UIControlEventTouchUpInside];
+  [statusView.contactSupportButton addTarget:self action:@selector(contactSupport:) forControlEvents:UIControlEventTouchUpInside];
+  [self _showNewStatusView:statusView withMainColor:[UIColor lightGreyTextColor] secondaryColor:[UIColor connectionLightGrayBackgroundColor]];
 }
 
 - (void) showSuccess {
-  self.statusInfoIconImageView.image = [UIImage imageNamed:@"scan_success_icon"];
-  self.statusInfoTitleLabel.text = NSLocalizedString(@"Connected to MyEtherWallet", @"QRScanner. Connection success title");
-  self.statusInfoContactSupportButton.hidden = YES;
-  {
-    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
-    style.alignment = NSTextAlignmentCenter;
-    style.lineSpacing = 2.0;
-    NSDictionary *attributes = @{NSForegroundColorAttributeName: self.statusInfoDescriptionLabel.textColor,
-                                 NSFontAttributeName: self.statusInfoDescriptionLabel.font,
-                                 NSParagraphStyleAttributeName: style};
-    NSString *text = NSLocalizedString(@"Via encrypted peer-to-peer connection", @"QRScanner. Connection success description");
-    self.statusInfoDescriptionLabel.attributedText = [[NSAttributedString alloc] initWithString:text attributes:attributes];
-  }
-  
-  CABasicAnimation *backgroundColorAnimation = [CABasicAnimation animationWithKeyPath:@"backgroundColor"];
-  backgroundColorAnimation.duration = kQRScannerViewControllerFadeAnimationDuration;
-  UIColor *color = [UIColor mainApplicationColor];
-  backgroundColorAnimation.fromValue = (id)self.view.backgroundColor.CGColor;
-  backgroundColorAnimation.toValue = (id)color.CGColor;
-  backgroundColorAnimation.removedOnCompletion = YES;
-  
-  self.view.layer.backgroundColor = color.CGColor;
-  [self.view.layer addAnimation:backgroundColorAnimation forKey:@"backgroundColorAnimation"];
-  
-  ++self.runningAnimations;
-  [UIView animateWithDuration:kQRScannerViewControllerFadeAnimationDuration
-                   animations:^{
-                     self.loadingContainerView.alpha = 0.0;
-                     self.statusContainerView.alpha = 1.0;
-                   } completion:^(__unused BOOL finished) {
-                     --self.runningAnimations;
-                     if (self.runningAnimations == 0) {
-                       [self.loadingActivity stopAnimating];
-                     }
-                   }];
-}
-
-- (void) hideAccessWarning {
-  if (!self.accessToCameraLabel.hidden) {
-    self.accessToCameraLabel.alpha = 1.0;
-    [UIView animateWithDuration:kQRScannerViewControllerFadeAnimationDuration
-                     animations:^{
-                       self.accessToCameraLabel.alpha = 0.0;
-                     } completion:^(__unused BOOL finished) {
-                       self.accessToCameraLabel.hidden = YES;
-                     }];
-  }
+  QRScannerStatusView *statusView = [QRScannerStatusView statusViewWithType:QRScannerStatusViewConnected];
+  [self _showNewStatusView:statusView withMainColor:[UIColor mainApplicationColor] secondaryColor:[UIColor mainLightApplicationColor]];
 }
 
 - (void) showAccessWarning {
-  if (self.accessToCameraLabel.hidden) {
-    self.accessToCameraLabel.alpha = 0.0;
-    self.accessToCameraLabel.hidden = NO;
-    [UIView animateWithDuration:kQRScannerViewControllerFadeAnimationDuration
-                     animations:^{
-                       self.accessToCameraLabel.alpha = 1.0;
-                     } completion:nil];
-  }
+  QRScannerStatusView *statusView = [QRScannerStatusView statusViewWithType:QRScannerStatusViewNoAccess];
+  statusView.settingsLinkedLabel.delegate = self;
+  [self _showNewStatusView:statusView withMainColor:[UIColor lightGreyTextColor] secondaryColor:[UIColor clearColor]];
 }
+
+- (void) showNoConnection {
+  QRScannerStatusView *statusView = [QRScannerStatusView statusViewWithType:QRScannerStatusViewNoConnection];
+  [self _showNewStatusView:statusView withMainColor:[UIColor lightGreyTextColor] secondaryColor:[UIColor connectionLightGrayBackgroundColor]];
+}
+
+- (void) hideStatus {
+  [self _hideStatusView];
+}
+
+#pragma mark MessageCompose
 
 - (void) presentMailComposeWithSubject:(NSString *)subject recipients:(NSArray <NSString *> *)recipients {
   if ([MFMailComposeViewController canSendMail]) {
@@ -321,7 +200,65 @@ static NSTimeInterval kQRScannerViewControllerFadeAnimationDuration    = 0.25;
   [self.output contactSupportAction];
 }
 
+- (IBAction) tryAgainAction:(__unused id)sender {
+  [self.output tryAgainAction];
+}
+
 #pragma mark - Private
+
+- (void) _showNewStatusView:(QRScannerStatusView *)view withMainColor:(UIColor *)mainColor secondaryColor:(UIColor *)secondaryColor {
+  [self.statusContainerView addSubview:view];
+  [NSLayoutConstraint activateConstraints:@[[view.centerYAnchor constraintEqualToAnchor:self.statusContainerView.centerYAnchor],
+                                            [view.leadingAnchor constraintEqualToAnchor:self.statusContainerView.leadingAnchor],
+                                            [view.trailingAnchor constraintEqualToAnchor:self.statusContainerView.trailingAnchor],
+                                            [view.topAnchor constraintEqualToAnchor:self.statusContainerView.topAnchor],
+                                            [view.bottomAnchor constraintEqualToAnchor:self.statusContainerView.bottomAnchor]]];
+  
+  [CATransaction begin];
+  { //Interior
+    CABasicAnimation *backgroundColorAnimation = [CABasicAnimation animationWithKeyPath:@"backgroundColor"];
+    backgroundColorAnimation.duration = kQRScannerViewControllerFadeAnimationDuration;
+    backgroundColorAnimation.fromValue = (id)self.view.backgroundColor.CGColor;
+    backgroundColorAnimation.toValue = (id)mainColor.CGColor;
+    backgroundColorAnimation.removedOnCompletion = YES;
+    
+    self.view.layer.backgroundColor = mainColor.CGColor;
+    [self.view.layer addAnimation:backgroundColorAnimation forKey:@"backgroundColorAnimation"];
+  }
+  { //Connection container
+    CABasicAnimation *backgroundColorAnimation = [CABasicAnimation animationWithKeyPath:@"backgroundColor"];
+    backgroundColorAnimation.duration = kQRScannerViewControllerFadeAnimationDuration;
+    backgroundColorAnimation.fromValue = (id)self.statusBlockView.backgroundColor.CGColor;
+    backgroundColorAnimation.toValue = (id)secondaryColor.CGColor;
+    backgroundColorAnimation.removedOnCompletion = YES;
+    
+    self.statusBlockView.layer.backgroundColor = secondaryColor.CGColor;
+    [self.statusBlockView.layer addAnimation:backgroundColorAnimation forKey:@"backgroundColorAnimation"];
+  }
+  [CATransaction commit];
+  [UIView animateWithDuration:kQRScannerViewControllerFadeAnimationDuration
+                   animations:^{
+                     self.statusBlockView.alpha = 1.0;
+                     self.closeButton.alpha = view.type == QRScannerStatusViewConnected ? 0.0 : 1.0;
+                   }];
+  
+  [UIView transitionFromView:self.currentStatusView
+                      toView:view
+                    duration:kQRScannerViewControllerFadeAnimationDuration
+                     options:UIViewAnimationOptionTransitionCrossDissolve
+                  completion:^(BOOL finished __unused) {
+                    self.currentStatusView = view;
+                  }];
+}
+
+- (void) _hideStatusView {
+  [UIView animateWithDuration:kQRScannerViewControllerFadeAnimationDuration
+                   animations:^{
+                     self.statusBlockView.alpha = 0.0;
+                   } completion:^(BOOL finished __unused) {
+                     [self.currentStatusView removeFromSuperview];
+                   }];
+}
 
 - (void) _prepareStepsDescription {
   NSString *step1 = NSLocalizedString(@"Go to MyEtherWallet.com on your computer and choose Access My Wallet option.", @"QRScanner. Step 1");

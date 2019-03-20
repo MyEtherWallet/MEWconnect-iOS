@@ -9,5 +9,5 @@
 @import Foundation;
 
 @protocol ReachabilityService <NSObject>
-
+- (BOOL) isReachable;
 @end

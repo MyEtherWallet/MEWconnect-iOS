@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.94901960784313721" green="0.95686274509803915" blue="0.96862745098039216" alpha="1" colorSpace="deviceRGB"/>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2b3-2N-jAz">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2b3-2N-jAz">
                                 <rect key="frame" x="76.5" y="613" width="222" height="38"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -689,7 +689,7 @@ With added layers of security, MEWconnect puts you in total control of your cryp
         <image name="scan_focus_tl" width="38" height="38"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="sgz-ig-KhO"/>
-        <segue reference="r2z-jI-6VM"/>
+        <segue reference="gma-Fq-rkZ"/>
+        <segue reference="r9z-sj-bX3"/>
     </inferredMetricsTieBreakers>
 </document>

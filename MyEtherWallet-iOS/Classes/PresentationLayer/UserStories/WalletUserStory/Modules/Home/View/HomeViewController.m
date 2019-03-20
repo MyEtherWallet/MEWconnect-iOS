@@ -35,6 +35,8 @@
 
 #import "NSNumberFormatter+Ethereum.h"
 
+#import "UIStringList.h"
+
 static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
 
 @interface HomeViewController () <UIScrollViewDelegate, GSKStretchyHeaderViewStretchDelegate, HomeStretchyHeaderDelegate, CardViewDelegate, UISearchBarDelegate>
@@ -147,7 +149,11 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
     UIImage *scanBackgroundImage = [[UIImage imageWithColor:[UIColor mainApplicationColor]
                                                        size:CGSizeMake(52.0, 52.0)
                                                cornerRadius:26.0] resizableImageWithCapInsets:UIEdgeInsetsMake(26.0, 26.0, 26.0, 26.0)];
+    UIImage *disabledBackgroundImage = [[UIImage imageWithColor:[UIColor noInternetConnectionColor]
+                                                           size:CGSizeMake(52.0, 52.0)
+                                                   cornerRadius:26.0] resizableImageWithCapInsets:UIEdgeInsetsMake(26.0, 26.0, 26.0, 26.0)];
     [self.connectButton setBackgroundImage:scanBackgroundImage forState:UIControlStateNormal];
+    [self.connectButton setBackgroundImage:disabledBackgroundImage forState:UIControlStateDisabled];
     self.connectButton.layer.shadowColor = [UIColor mainApplicationColor].CGColor;
     self.connectButton.layer.shadowOffset = CGSizeMake(0.0, 2.0);
     self.connectButton.layer.shadowRadius = 6.0;
@@ -159,6 +165,8 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
     [self.connectButton setAttributedTitle:[[NSAttributedString alloc] initWithString:[self.connectButton titleForState:UIControlStateNormal]
                                                                            attributes:attributes]
                                                                              forState:UIControlStateNormal];
+    [self.connectButton setImage:[[self.connectButton imageForState:UIControlStateNormal] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+                        forState:UIControlStateDisabled];
   }
   {
     UIImage *disconnectBackgroundImage = [[UIImage imageWithColor:[UIColor mainApplicationColor]
@@ -255,7 +263,7 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
                                           handler:^(__unused UIAlertAction * _Nonnull action) {
     [self.output ropstenAction];
   }]];
-  [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"Wallet. Network selection. Cancel")
+  [alert addAction:[UIAlertAction actionWithTitle:UIStringList.cancel
                                             style:UIAlertActionStyleCancel
                                           handler:nil]];
   [self presentViewController:alert animated:YES completion:nil];
@@ -295,11 +303,18 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
                         animations:^{
                           self.statusLabel.text = NSLocalizedString(@"Connected to MyEtherWallet", @"Wallet. MEWconnect connected status");
                         } completion:nil];
+        [UIView transitionWithView:self.connectButton
+                          duration:self.animator.duration
+                           options:UIViewAnimationOptionTransitionCrossDissolve|UIViewAnimationOptionBeginFromCurrentState
+                        animations:^{
+                          self.connectButton.enabled = internetConnection;
+                        } completion:nil];
       } else {
         [self.statusBackgroundImageView setImage:backgroundImage];
         self.statusLabel.text = NSLocalizedString(@"Connected to MyEtherWallet", @"Wallet. MEWconnect connected status");
         self.disconnectButton.hidden = NO;
         self.disconnectButton.alpha = 1.0;
+        self.connectButton.enabled = internetConnection;
       }
       self.statusBottomContraint.constant = 0.0;
     } else {
@@ -316,9 +331,10 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
       }
       
       self.statusBottomContraint.constant = -(CGRectGetHeight(self.statusView.bounds));
+      self.connectButton.enabled = internetConnection;
     }
   } else {
-    UIImage *backgroundImage = [[UIImage imageWithColor:[UIColor colorWithRGB:0xB6B9C1]
+    UIImage *backgroundImage = [[UIImage imageWithColor:[UIColor noInternetConnectionColor]
                                                    size:CGSizeMake(20.0, 28.0)
                                            cornerRadius:8.0
                                                 corners:UIRectCornerTopLeft|UIRectCornerTopRight]
@@ -342,7 +358,13 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
                         duration:self.animator.duration
                          options:UIViewAnimationOptionTransitionCrossDissolve|UIViewAnimationOptionBeginFromCurrentState
                       animations:^{
-                        self.statusLabel.text = NSLocalizedString(@"No internet connection", @"Wallet. No internet connection status");
+                        self.statusLabel.text = UIStringList.noInternetConnection;
+                      } completion:nil];
+      [UIView transitionWithView:self.connectButton
+                        duration:self.animator.duration
+                         options:UIViewAnimationOptionTransitionCrossDissolve|UIViewAnimationOptionBeginFromCurrentState
+                      animations:^{
+                        self.connectButton.enabled = internetConnection;
                       } completion:nil];
       [self.animator addAnimations:^{
         @strongify(self);
@@ -354,8 +376,9 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
         self.disconnectButton.alpha = 1.0;
       }];
     } else {
-      self.statusLabel.text = NSLocalizedString(@"No internet connection", @"Wallet. No internet connection status");
+      self.statusLabel.text = UIStringList.noInternetConnection;
       self.disconnectButton.hidden = YES;
+      self.connectButton.enabled = internetConnection;
     }
     if (mewConnectConnection) {
       self.connectButtonBottomConstraint.constant = -(CGRectGetHeight(self.connectButton.frame) + kHomeViewControllerBottomDefaultOffset + self.view.layoutMargins.bottom);
@@ -377,21 +400,6 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
     [self.view layoutIfNeeded];
     [self _updateTableViewInsets];
   }
-}
-
-- (void) showInternetConnection {
-  self.statusBottomContraint.constant = -(CGRectGetHeight(self.statusView.bounds));
-}
-
-- (void) showNoInternetConnection {
-  self.statusView.hidden = NO;
-  UIImage *disconnectBackgroundImage = [[UIImage imageWithColor:[UIColor colorWithRGB:0xB6B9C1]
-                                                           size:CGSizeMake(20.0, 28.0)
-                                                   cornerRadius:8.0
-                                                        corners:UIRectCornerTopLeft|UIRectCornerTopRight]
-                                        resizableImageWithCapInsets:UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)];
-  [self.statusBackgroundImageView setImage:disconnectBackgroundImage];
-  self.statusBottomContraint.constant = 0.0;
 }
 
 #pragma mark - IBActions

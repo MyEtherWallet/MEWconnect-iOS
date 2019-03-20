@@ -16,4 +16,5 @@
 - (void) closeAction;
 - (void) settingsAction;
 - (void) contactSupportAction;
+- (void) tryAgainAction;
 @end

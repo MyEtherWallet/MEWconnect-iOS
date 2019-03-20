@@ -19,7 +19,6 @@
 #import "BlockchainNetworkService.h"
 #import "AccountsService.h"
 #import "FiatPricesService.h"
-#import "ReachabilityServiceDelegate.h"
 #import "RateService.h"
 #import "MEWwallet.h"
 

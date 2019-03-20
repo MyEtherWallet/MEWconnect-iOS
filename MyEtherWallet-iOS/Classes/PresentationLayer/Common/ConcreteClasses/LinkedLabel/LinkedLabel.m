@@ -19,26 +19,20 @@
 
 @implementation LinkedLabel
 
-- (void)awakeFromNib
-{
-  [super awakeFromNib];
-  self.userInteractionEnabled = YES;
-  UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
-  [self addGestureRecognizer:tapGesture];
-  self.numberOfLines = 0;
-  
-  self.layoutManager = [[NSLayoutManager alloc] init];
-  self.textContainer = [[NSTextContainer alloc] initWithSize:self.bounds.size];
-  
-  self.textContainer.lineFragmentPadding = 0.0;
-  self.textContainer.lineBreakMode = self.lineBreakMode;
-  self.textContainer.maximumNumberOfLines = self.numberOfLines;
-  
-  [self.layoutManager addTextContainer:self.textContainer];
+- (instancetype)init {
+  self = [super init];
+  if (self) {
+    [self _commonInit];
+  }
+  return self;
 }
 
-- (void)setAttributedText:(NSAttributedString *)attributedText
-{
+- (void)awakeFromNib {
+  [super awakeFromNib];
+  [self _commonInit];
+}
+
+- (void)setAttributedText:(NSAttributedString *)attributedText {
   [super setAttributedText:attributedText];
   self.textStorage = [[NSTextStorage alloc] initWithAttributedString:attributedText];
   [self.textStorage addLayoutManager:self.layoutManager];
@@ -62,14 +56,12 @@
   self.linkRanges = ranges;
 }
 
-- (void)layoutSubviews
-{
+- (void)layoutSubviews {
   [super layoutSubviews];
   self.textContainer.size = self.bounds.size;
 }
 
-- (void) tapAction:(UITapGestureRecognizer *)tapGesture
-{
+- (void) tapAction:(UITapGestureRecognizer *)tapGesture {
   [self.layoutManager ensureLayoutForGlyphRange:NSMakeRange(0, self.attributedText.length)];
   CGPoint locationOfTouchInLabel = [tapGesture locationInView:tapGesture.view];
   CGPoint locationOfTouchInTextContainer = CGPointMake(locationOfTouchInLabel.x,
@@ -90,12 +82,29 @@
 }
 
 //HACK: iOS 11 don't allow to change foreground color of linked attribute
-- (void)drawTextInRect:(__unused CGRect)rect
-{
+- (void)drawTextInRect:(__unused CGRect)rect {
   CGRect textRect = [self textRectForBounds:self.bounds limitedToNumberOfLines:self.numberOfLines];
   NSMutableAttributedString *attributedString = [self.attributedText mutableCopy];
   [attributedString removeAttribute:NSLinkAttributeName range:NSMakeRange(0, [attributedString length])];
   [attributedString drawInRect:textRect];
+}
+
+#pragma mark - Private
+
+- (void) _commonInit {
+  self.userInteractionEnabled = YES;
+  UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
+  [self addGestureRecognizer:tapGesture];
+  self.numberOfLines = 0;
+  
+  self.layoutManager = [[NSLayoutManager alloc] init];
+  self.textContainer = [[NSTextContainer alloc] initWithSize:self.bounds.size];
+  
+  self.textContainer.lineFragmentPadding = 0.0;
+  self.textContainer.lineBreakMode = self.lineBreakMode;
+  self.textContainer.maximumNumberOfLines = self.numberOfLines;
+  
+  [self.layoutManager addTextContainer:self.textContainer];
 }
 
 @end

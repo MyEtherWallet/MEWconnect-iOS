@@ -167,7 +167,7 @@
             </objects>
             <point key="canvasLocation" x="-1146" y="376"/>
         </scene>
-        <!--Delegate-->
+        <!--Scanner View Controller-->
         <scene sceneID="UyH-q1-XEx">
             <objects>
                 <viewController id="EmZ-Sq-cvZ" customClass="QRScannerViewController" sceneMemberID="viewController">
@@ -190,6 +190,14 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fCl-2g-s8z">
+                                        <rect key="frame" x="323" y="16" width="36" height="36"/>
+                                        <inset key="contentEdgeInsets" minX="6" minY="2" maxX="2" maxY="6"/>
+                                        <state key="normal" image="close_button_dark"/>
+                                        <connections>
+                                            <action selector="closeAction:" destination="EmZ-Sq-cvZ" eventType="touchUpInside" id="QuP-KP-Ku3"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -197,6 +205,8 @@
                                     <constraint firstItem="h5f-xs-YvH" firstAttribute="top" secondItem="WC6-as-09h" secondAttribute="top" constant="18" id="7u6-Zf-zIa"/>
                                     <constraint firstItem="h5f-xs-YvH" firstAttribute="leading" secondItem="WC6-as-09h" secondAttribute="leading" constant="40" id="FGO-04-2nV"/>
                                     <constraint firstItem="ysL-al-JJC" firstAttribute="top" secondItem="h5f-xs-YvH" secondAttribute="bottom" constant="3" id="Oot-bj-All"/>
+                                    <constraint firstAttribute="trailing" secondItem="fCl-2g-s8z" secondAttribute="trailing" constant="16" id="bB7-RE-llC"/>
+                                    <constraint firstItem="fCl-2g-s8z" firstAttribute="top" secondItem="WC6-as-09h" secondAttribute="top" constant="16" id="eUn-oL-xsY"/>
                                     <constraint firstItem="ysL-al-JJC" firstAttribute="leading" secondItem="h5f-xs-YvH" secondAttribute="leading" id="nSE-HR-bPF"/>
                                 </constraints>
                             </view>
@@ -207,7 +217,7 @@
                                     <constraint firstAttribute="height" secondItem="Hc2-fc-sHK" secondAttribute="width" multiplier="271:375" id="swu-h5-MYW"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BZ6-kF-gE9">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BZ6-kF-gE9" userLabel="Focus">
                                 <rect key="frame" x="83" y="127" width="209" height="209"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scan_focus_tl" translatesAutoresizingMaskIntoConstraints="NO" id="dhP-fj-3b3">
@@ -222,17 +232,6 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scan_focus_tl" translatesAutoresizingMaskIntoConstraints="NO" id="Cw4-BC-mgS">
                                         <rect key="frame" x="171" y="171" width="38" height="38"/>
                                     </imageView>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Pe-dr-1i3" customClass="LinkedLabel">
-                                        <rect key="frame" x="0.0" y="86.5" width="209" height="36"/>
-                                        <string key="text"> Please enable camera access
-for MEWconnect in Settings</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="EmZ-Sq-cvZ" id="qCL-Sn-EOp"/>
-                                        </connections>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -241,16 +240,28 @@ for MEWconnect in Settings</string>
                                     <constraint firstAttribute="bottom" secondItem="MVX-Us-Aeo" secondAttribute="bottom" id="CuT-RR-bAS"/>
                                     <constraint firstAttribute="right" secondItem="fAv-yz-KXL" secondAttribute="right" id="DgW-X7-XYk"/>
                                     <constraint firstAttribute="width" secondItem="BZ6-kF-gE9" secondAttribute="height" id="YkG-ip-abs"/>
-                                    <constraint firstAttribute="trailing" secondItem="5Pe-dr-1i3" secondAttribute="trailing" id="Zx0-7k-aIp"/>
                                     <constraint firstAttribute="right" secondItem="Cw4-BC-mgS" secondAttribute="right" id="aF0-jA-pOK"/>
                                     <constraint firstItem="dhP-fj-3b3" firstAttribute="left" secondItem="BZ6-kF-gE9" secondAttribute="left" id="ahl-s7-2Wn"/>
                                     <constraint firstAttribute="bottom" secondItem="Cw4-BC-mgS" secondAttribute="bottom" id="glQ-g2-DG8"/>
                                     <constraint firstItem="dhP-fj-3b3" firstAttribute="top" secondItem="BZ6-kF-gE9" secondAttribute="top" id="nnx-9c-25l"/>
-                                    <constraint firstItem="5Pe-dr-1i3" firstAttribute="leading" secondItem="BZ6-kF-gE9" secondAttribute="leading" id="rwY-mn-kNw"/>
-                                    <constraint firstItem="5Pe-dr-1i3" firstAttribute="centerY" secondItem="BZ6-kF-gE9" secondAttribute="centerY" id="x4g-qb-e8Z"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RTV-Dy-8jr">
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z3r-VL-9uC" userLabel="Status">
+                                <rect key="frame" x="0.0" y="96" width="375" height="271"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="343" placeholderIntrinsicHeight="128" translatesAutoresizingMaskIntoConstraints="NO" id="i3N-Vo-3Zs" userLabel="Status Container">
+                                        <rect key="frame" x="20" y="71.5" width="335" height="128"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.52941176469999995" green="0.54901960780000003" blue="0.61568627450000002" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstItem="i3N-Vo-3Zs" firstAttribute="centerY" secondItem="z3r-VL-9uC" secondAttribute="centerY" id="NOF-JF-K3u"/>
+                                    <constraint firstAttribute="trailing" secondItem="i3N-Vo-3Zs" secondAttribute="trailing" constant="20" id="ezm-Sb-ehm"/>
+                                    <constraint firstItem="i3N-Vo-3Zs" firstAttribute="leading" secondItem="z3r-VL-9uC" secondAttribute="leading" constant="20" id="vrT-R7-4uU"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RTV-Dy-8jr" userLabel="Bottom Container">
                                 <rect key="frame" x="0.0" y="367" width="375" height="300"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yW4-Nc-2RA">
@@ -264,100 +275,12 @@ for MEWconnect in Settings</string>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J3R-dv-EsU">
-                                        <rect key="frame" x="66" y="24" width="243" height="99"/>
-                                        <subviews>
-                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="pg1-km-Qx3">
-                                                <rect key="frame" x="103" y="0.0" width="37" height="37"/>
-                                                <color key="color" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="deviceRGB"/>
-                                            </activityIndicatorView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U1k-tl-FCO">
-                                                <rect key="frame" x="0.0" y="51" width="243" height="48"/>
-                                                <string key="text">Creating a local connection
-with MyEtherWallet</string>
-                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="U1k-tl-FCO" secondAttribute="bottom" id="004-bD-qhX"/>
-                                            <constraint firstItem="pg1-km-Qx3" firstAttribute="top" secondItem="J3R-dv-EsU" secondAttribute="top" id="9CQ-e8-zm6"/>
-                                            <constraint firstItem="pg1-km-Qx3" firstAttribute="centerX" secondItem="J3R-dv-EsU" secondAttribute="centerX" id="D0T-Ec-pU9"/>
-                                            <constraint firstItem="U1k-tl-FCO" firstAttribute="left" secondItem="J3R-dv-EsU" secondAttribute="left" id="WQE-5r-0yZ"/>
-                                            <constraint firstItem="U1k-tl-FCO" firstAttribute="top" secondItem="pg1-km-Qx3" secondAttribute="bottom" constant="14" id="hVo-el-Ma2"/>
-                                            <constraint firstAttribute="right" secondItem="U1k-tl-FCO" secondAttribute="right" id="uYC-88-a5u"/>
-                                        </constraints>
-                                    </view>
-                                    <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oQD-eg-yVi">
-                                        <rect key="frame" x="0.0" y="22" width="375" height="156.5"/>
-                                        <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scan_error_icon" translatesAutoresizingMaskIntoConstraints="NO" id="MkQ-nq-Hgt">
-                                                <rect key="frame" x="165.5" y="0.0" width="44" height="44"/>
-                                            </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Something went wrong" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKV-Fk-dcp">
-                                                <rect key="frame" x="78.5" y="66" width="218" height="24"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please try again or use a different QR code." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VaY-pi-Wp8">
-                                                <rect key="frame" x="22" y="98" width="331" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6g-jh-5zW">
-                                                <rect key="frame" x="131" y="126.5" width="113" height="30"/>
-                                                <state key="normal" title="Contact support">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="contactSupport:" destination="EmZ-Sq-cvZ" eventType="touchUpInside" id="RRJ-Uc-06i"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="VaY-pi-Wp8" firstAttribute="left" relation="greaterThanOrEqual" secondItem="oQD-eg-yVi" secondAttribute="left" constant="16" id="6NO-uz-aWF"/>
-                                            <constraint firstItem="ZKV-Fk-dcp" firstAttribute="centerX" secondItem="oQD-eg-yVi" secondAttribute="centerX" id="HoF-MI-jHw"/>
-                                            <constraint firstItem="ZKV-Fk-dcp" firstAttribute="top" secondItem="MkQ-nq-Hgt" secondAttribute="bottom" constant="22" id="LjL-PB-xXI"/>
-                                            <constraint firstItem="MkQ-nq-Hgt" firstAttribute="bottom" secondItem="oQD-eg-yVi" secondAttribute="top" constant="44" id="N9Z-CD-GuF"/>
-                                            <constraint firstItem="K6g-jh-5zW" firstAttribute="centerX" secondItem="oQD-eg-yVi" secondAttribute="centerX" id="PF6-ti-cyg"/>
-                                            <constraint firstAttribute="right" relation="greaterThanOrEqual" secondItem="VaY-pi-Wp8" secondAttribute="right" constant="16" id="QgE-PD-bch"/>
-                                            <constraint firstAttribute="bottom" secondItem="K6g-jh-5zW" secondAttribute="bottom" id="XDg-Gg-1au"/>
-                                            <constraint firstItem="VaY-pi-Wp8" firstAttribute="centerX" secondItem="oQD-eg-yVi" secondAttribute="centerX" id="dwl-mP-PAx"/>
-                                            <constraint firstItem="K6g-jh-5zW" firstAttribute="top" secondItem="VaY-pi-Wp8" secondAttribute="bottom" constant="8" id="kHm-ZP-JFz"/>
-                                            <constraint firstItem="MkQ-nq-Hgt" firstAttribute="centerX" secondItem="oQD-eg-yVi" secondAttribute="centerX" id="rQf-Fl-we9"/>
-                                            <constraint firstItem="VaY-pi-Wp8" firstAttribute="top" secondItem="ZKV-Fk-dcp" secondAttribute="bottom" constant="8" id="xKv-lS-1S9"/>
-                                        </constraints>
-                                    </view>
-                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RYd-fJ-xeM" customClass="BottomImageButton">
-                                        <rect key="frame" x="109.5" y="263" width="156" height="37"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
-                                        <inset key="contentEdgeInsets" minX="30" minY="0.0" maxX="30" maxY="19"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="2" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="CLOSE" image="bottom_chevron"/>
-                                        <connections>
-                                            <action selector="closeAction:" destination="EmZ-Sq-cvZ" eventType="touchUpInside" id="4Dl-1A-4Ni"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="yW4-Nc-2RA" firstAttribute="leading" secondItem="RTV-Dy-8jr" secondAttribute="leading" constant="16" id="HID-I7-Dst"/>
-                                    <constraint firstAttribute="bottom" secondItem="RYd-fJ-xeM" secondAttribute="bottom" id="NOi-b5-EDp"/>
-                                    <constraint firstItem="J3R-dv-EsU" firstAttribute="centerX" secondItem="RTV-Dy-8jr" secondAttribute="centerX" id="VU1-ea-9zo"/>
-                                    <constraint firstItem="RYd-fJ-xeM" firstAttribute="top" relation="greaterThanOrEqual" secondItem="yW4-Nc-2RA" secondAttribute="bottom" constant="8" id="WDe-zG-etX"/>
                                     <constraint firstItem="yW4-Nc-2RA" firstAttribute="top" secondItem="RTV-Dy-8jr" secondAttribute="top" constant="26" id="kfV-kh-Zfu"/>
-                                    <constraint firstItem="J3R-dv-EsU" firstAttribute="top" secondItem="RTV-Dy-8jr" secondAttribute="top" constant="24" id="oMe-dV-7AA"/>
-                                    <constraint firstItem="RYd-fJ-xeM" firstAttribute="centerX" secondItem="RTV-Dy-8jr" secondAttribute="centerX" id="oep-b4-xxZ"/>
                                     <constraint firstAttribute="trailing" secondItem="yW4-Nc-2RA" secondAttribute="trailing" constant="40" id="oli-ha-3y3"/>
-                                    <constraint firstItem="oQD-eg-yVi" firstAttribute="top" secondItem="RTV-Dy-8jr" secondAttribute="top" constant="22" id="tFi-DS-aEc"/>
-                                    <constraint firstAttribute="right" secondItem="oQD-eg-yVi" secondAttribute="right" id="y4m-Pi-JKG"/>
-                                    <constraint firstItem="oQD-eg-yVi" firstAttribute="left" secondItem="RTV-Dy-8jr" secondAttribute="left" id="yXA-Z1-kHL"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -366,8 +289,11 @@ with MyEtherWallet</string>
                             <constraint firstItem="Hc2-fc-sHK" firstAttribute="bottom" secondItem="BZ6-kF-gE9" secondAttribute="bottom" constant="31" id="3KX-mb-nLg"/>
                             <constraint firstItem="WIg-qq-OFB" firstAttribute="trailing" secondItem="RTV-Dy-8jr" secondAttribute="trailing" id="84U-vg-iVP"/>
                             <constraint firstItem="BZ6-kF-gE9" firstAttribute="top" secondItem="Hc2-fc-sHK" secondAttribute="top" constant="31" id="8HC-fM-k3T"/>
+                            <constraint firstItem="z3r-VL-9uC" firstAttribute="leading" secondItem="v25-Cw-kJV" secondAttribute="leading" id="He2-9p-KEh"/>
                             <constraint firstItem="Hc2-fc-sHK" firstAttribute="leading" secondItem="WIg-qq-OFB" secondAttribute="leading" id="Qg0-VE-31T"/>
                             <constraint firstItem="WC6-as-09h" firstAttribute="leading" secondItem="WIg-qq-OFB" secondAttribute="leading" id="Qx5-Z6-cfz"/>
+                            <constraint firstItem="RTV-Dy-8jr" firstAttribute="top" secondItem="z3r-VL-9uC" secondAttribute="bottom" id="dYL-hP-y5v"/>
+                            <constraint firstAttribute="trailing" secondItem="z3r-VL-9uC" secondAttribute="trailing" id="gjs-5y-Rzx"/>
                             <constraint firstItem="RTV-Dy-8jr" firstAttribute="leading" secondItem="WIg-qq-OFB" secondAttribute="leading" id="iZL-K9-GQN"/>
                             <constraint firstItem="BZ6-kF-gE9" firstAttribute="centerX" secondItem="v25-Cw-kJV" secondAttribute="centerX" id="mEI-Yf-Ieu"/>
                             <constraint firstItem="WIg-qq-OFB" firstAttribute="trailing" secondItem="Hc2-fc-sHK" secondAttribute="trailing" id="osm-5l-inr"/>
@@ -376,26 +302,21 @@ with MyEtherWallet</string>
                             <constraint firstItem="Hc2-fc-sHK" firstAttribute="top" secondItem="WC6-as-09h" secondAttribute="bottom" id="uQM-zY-QPR"/>
                             <constraint firstAttribute="trailing" secondItem="WC6-as-09h" secondAttribute="trailing" id="unM-Z2-dKv"/>
                             <constraint firstAttribute="bottom" secondItem="RTV-Dy-8jr" secondAttribute="bottom" id="viN-vS-m0r"/>
+                            <constraint firstItem="z3r-VL-9uC" firstAttribute="top" secondItem="WC6-as-09h" secondAttribute="bottom" id="xpj-zL-Ovp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="WIg-qq-OFB"/>
                     </view>
                     <connections>
-                        <outlet property="accessToCameraLabel" destination="5Pe-dr-1i3" id="Axn-Pk-R19"/>
                         <outlet property="cameraContainerHeightConstraint" destination="swu-h5-MYW" id="Mee-v5-PXs"/>
                         <outlet property="cameraContainerView" destination="Hc2-fc-sHK" id="GpC-et-7rA"/>
                         <outlet property="cameraToDescriptionYOffsetConstraint" destination="kfV-kh-Zfu" id="Fhz-WD-9qG"/>
-                        <outlet property="closeButton" destination="RYd-fJ-xeM" id="hAj-3k-1uZ"/>
+                        <outlet property="closeButton" destination="fCl-2g-s8z" id="8GR-zm-sfh"/>
                         <outlet property="descriptionRightOffsetConstraint" destination="oli-ha-3y3" id="7kV-2W-mCh"/>
                         <outlet property="focusViewBL" destination="MVX-Us-Aeo" id="Cw8-46-cXl"/>
                         <outlet property="focusViewBR" destination="Cw4-BC-mgS" id="qlQ-zW-Ha9"/>
                         <outlet property="focusViewTR" destination="fAv-yz-KXL" id="n6c-I5-wZt"/>
-                        <outlet property="loadingActivity" destination="pg1-km-Qx3" id="6i1-l7-ZhB"/>
-                        <outlet property="loadingContainerView" destination="J3R-dv-EsU" id="ugo-rt-hhZ"/>
-                        <outlet property="statusContainerView" destination="oQD-eg-yVi" id="lDG-GF-osO"/>
-                        <outlet property="statusInfoContactSupportButton" destination="K6g-jh-5zW" id="LEJ-AK-M6A"/>
-                        <outlet property="statusInfoDescriptionLabel" destination="VaY-pi-Wp8" id="be7-tc-7xj"/>
-                        <outlet property="statusInfoIconImageView" destination="MkQ-nq-Hgt" id="18J-7e-H4v"/>
-                        <outlet property="statusInfoTitleLabel" destination="ZKV-Fk-dcp" id="Rzf-Hi-4MO"/>
+                        <outlet property="statusBlockView" destination="z3r-VL-9uC" id="hVm-s3-Kg1"/>
+                        <outlet property="statusContainerView" destination="i3N-Vo-3Zs" id="X8s-jF-UmY"/>
                         <outlet property="stepsDescriptionLabel" destination="yW4-Nc-2RA" id="0hP-VD-bgX"/>
                         <outlet property="titleLabel" destination="h5f-xs-YvH" id="at9-hw-Eg9"/>
                         <outletCollection property="focusViewYOffsetConstraints" destination="8HC-fM-k3T" id="Rdt-0E-VVy"/>
@@ -760,16 +681,15 @@ With added layers of security, MEWconnect puts you in total control of your cryp
         </scene>
     </scenes>
     <resources>
-        <image name="bottom_chevron" width="46" height="12"/>
         <image name="button_share_icon" width="18" height="22"/>
         <image name="close_button" width="28" height="28"/>
+        <image name="close_button_dark" width="28" height="28"/>
         <image name="inline_small_chevron" width="6" height="10"/>
         <image name="qr_icon" width="18" height="18"/>
-        <image name="scan_error_icon" width="44" height="44"/>
         <image name="scan_focus_tl" width="38" height="38"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gma-Fq-rkZ"/>
-        <segue reference="r9z-sj-bX3"/>
+        <segue reference="sgz-ig-KhO"/>
+        <segue reference="r2z-jI-6VM"/>
     </inferredMetricsTieBreakers>
 </document>

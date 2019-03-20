@@ -19,9 +19,9 @@
 - (void) showLoading;
 - (void) showError;
 - (void) showSuccess;
-
-- (void) hideAccessWarning;
+- (void) showNoConnection;
 - (void) showAccessWarning;
+- (void) hideStatus;
 
 - (void) presentMailComposeWithSubject:(NSString *)subject recipients:(NSArray <NSString *> *)recipients;
 @end

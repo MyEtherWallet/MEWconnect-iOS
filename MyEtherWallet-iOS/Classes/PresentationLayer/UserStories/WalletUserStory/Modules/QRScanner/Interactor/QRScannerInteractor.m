@@ -15,6 +15,7 @@
 
 #import "CameraService.h"
 #import "CameraServiceDelegate.h"
+#import "ReachabilityService.h"
 #import "MEWConnectFacade.h"
 #import "MEWConnectFacadeConstants.h"
 
@@ -104,8 +105,9 @@ static NSString *const kQRScannerInteractorConnectionSoundExtension   = @"caf";
 
 - (void) MEWConnectDidDisconnect:(__unused NSNotification *)notification {
   [self _playSound:self.connectionFailedSoundID];
-  [self.output mewConnectDidFail];
-  [self.cameraService startReading];
+  if ([self.reachabilityService isReachable]) {
+    [self.output mewConnectDidFail];
+  }
 }
 
 #pragma mark - Private
@@ -173,7 +175,6 @@ static NSString *const kQRScannerInteractorConnectionSoundExtension   = @"caf";
   BOOL result = [self.connectFacade connectWithData:QRCode];
   if (!result) {
     [self.output mewConnectDidFail];
-    [cameraService startReading];
   } else {
     [self _playSound:self.connectionStartedSoundID];
 #if !DEBUG
@@ -181,6 +182,22 @@ static NSString *const kQRScannerInteractorConnectionSoundExtension   = @"caf";
 #endif
     [cameraService stopReading];
     [self.output mewConnectInProgress];
+  }
+}
+
+#pragma mark - ReachabilityServiceDelegate
+
+- (void)reachabilityStatusDidChanged:(BOOL)isReachable {
+  if (isReachable) {
+    if ([self.cameraService isHaveAccess]) {
+      [self.cameraService startReading];
+    }
+    [self.output internetConnectionIsReachable];
+  } else {
+    if ([self.cameraService isHaveAccess]) {
+      [self.output internetConnectionIsUnreachable];
+      [self.cameraService pauseReading];
+    }
   }
 }
 

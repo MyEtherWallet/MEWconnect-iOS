@@ -11,7 +11,11 @@
 @implementation UIStringList
 
 + (NSString *) noInternetConnection {
-  return NSLocalizedString(@"No internet connection", @"Shared. No internet connection");
+  return NSLocalizedString(@"No internet connection", @"Shared (Home, QRScanner). No internet connection");
+}
+
++ (NSString *) cancel {
+  return NSLocalizedString(@"Cancel", @"Shared (Home - Network selection). Cancel title");
 }
 
 @end

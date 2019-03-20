@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Shared
 @property (class, strong, readonly) NSString *noInternetConnection;
+@property (class, strong, readonly) NSString *cancel;
 
 @end
 

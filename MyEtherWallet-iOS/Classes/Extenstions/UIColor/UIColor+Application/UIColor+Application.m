@@ -83,4 +83,8 @@
   return [UIColor colorWithRGB:0x878C9D];
 }
 
++ (instancetype)noInternetConnectionColor {
+  return [UIColor colorWithRGB:0xB6B9C1];
+}
+
 @end

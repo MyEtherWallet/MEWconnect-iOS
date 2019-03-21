@@ -23,6 +23,7 @@
 #import "PurchaseHistoryModelObject.h"
 
 #import "BlockchainNetworkTypes.h"
+#import "BlockchainNetworkTypesInfoProvider.h"
 
 #import "CoreDataConfiguratorImplementation.h"
 
@@ -94,8 +95,8 @@
           
           MasterTokenModelObject *masterTokenModelObject = [MasterTokenModelObject MR_createEntityInContext:rootSavingContext];
           masterTokenModelObject.address = keychainNetworkItem.address;
-          masterTokenModelObject.name = NSStringNameFromBlockchainNetworkType(keychainNetworkItem.chainID);
-          masterTokenModelObject.symbol = NSStringCurrencySymbolFromBlockchainNetworkType(keychainNetworkItem.chainID);
+          masterTokenModelObject.name = [BlockchainNetworkTypesInfoProvider nameForNetworkType:keychainNetworkItem.chainID];
+          masterTokenModelObject.symbol = [BlockchainNetworkTypesInfoProvider currencySymbolForNetworkType:keychainNetworkItem.chainID];
           
           networkModelObject.master = masterTokenModelObject;
           [accountModelObject addNetworksObject:networkModelObject];
@@ -118,7 +119,7 @@
       }
       
       AccountModelObject *accountModelObject = [AccountModelObject MR_findFirstInContext:rootSavingContext];
-      NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.chainID = %d", BlockchainNetworkTypeMainnet];
+      NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.chainID = %d", BlockchainNetworkTypeEthereum];
       NetworkModelObject *networkModelObject = [[accountModelObject.networks filteredSetUsingPredicate:predicate] anyObject];
       if (!networkModelObject) {
         networkModelObject = [accountModelObject.networks anyObject];

@@ -149,7 +149,7 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
   NSNumberFormatter *ethereumFormatter = [NSNumberFormatter ethereumFormatterWithNetwork:network];
   ethereumFormatter.maximumSignificantDigits = 8;
   switch (network) {
-    case BlockchainNetworkTypeMainnet: {
+    case BlockchainNetworkTypeEthereum: {
       switch ([UIScreen mainScreen].screenSizeType) {
         case ScreenSizeTypeInches40: {
           ethereumFormatter.maximumSignificantDigits = 9;
@@ -380,7 +380,7 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
                                                   multiplier:kCardViewAspectRatio constant:0.0]];
   
   //Default values
-  [self updateBalance:[NSDecimalNumber decimalNumberWithString:@"0.0"] network:BlockchainNetworkTypeMainnet];
+  [self updateBalance:[NSDecimalNumber decimalNumberWithString:@"0.0"] network:BlockchainNetworkTypeEthereum];
   
   self.layer.shouldRasterize = YES;
   self.layer.rasterizationScale = [UIScreen mainScreen].scale;
@@ -397,7 +397,7 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
                                NSFontAttributeName: font,
                                NSKernAttributeName: @0.0};
   NSString *title = nil;
-  if (_network == BlockchainNetworkTypeMainnet) {
+  if (_network == BlockchainNetworkTypeEthereum) {
     title = NSLocalizedString(@"Your public Ethereum address", @"Card view");
   } else {
     title = NSLocalizedString(@"Your public Ropsten testnet address", @"Card view");
@@ -411,7 +411,7 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
     NSString *finalString = nil;
     NSString *usdBalance = nil;
     
-    if (_network == BlockchainNetworkTypeMainnet) {
+    if (_network == BlockchainNetworkTypeEthereum) {
       NSDecimalNumber *usd = [_ethBalance decimalNumberByMultiplyingBy:_ethToUsdPrice];
       NSNumberFormatter *usdFormatter = [NSNumberFormatter usdFormatter];
       NSNumberFormatter *ethFormatter = [NSNumberFormatter ethereumFormatterWithNetwork:_network];

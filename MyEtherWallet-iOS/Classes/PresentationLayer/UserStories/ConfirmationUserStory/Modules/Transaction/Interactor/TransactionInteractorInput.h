@@ -17,5 +17,6 @@
 - (void) configurateWithMessage:(MEWConnectCommand *)message masterToken:(MasterTokenPlainObject *)masterToken;
 - (MEWConnectTransaction *) obtainTransaction;
 - (AccountPlainObject *) obtainAccount;
+- (NSString *) obtainNetworkToConfirm;
 - (void) signTransactionWithPassword:(NSString *)password;
 @end

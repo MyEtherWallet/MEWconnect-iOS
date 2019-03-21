@@ -14,4 +14,5 @@
 - (void) declineAction;
 - (void) confirmAddressAction:(BOOL)confirmed;
 - (void) confirmAmountAction:(BOOL)confirmed;
+- (void) confirmNetworkAction:(BOOL)confirmed;
 @end

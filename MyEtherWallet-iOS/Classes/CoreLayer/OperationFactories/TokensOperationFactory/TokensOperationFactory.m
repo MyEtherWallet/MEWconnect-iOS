@@ -58,7 +58,7 @@
       config.serviceName = kServiceNameROP;
       break;
     }
-    case BlockchainNetworkTypeMainnet:
+    case BlockchainNetworkTypeEthereum:
     default: {
       config.serviceName = kServiceNameETH;
       break;
@@ -94,7 +94,7 @@
       config.serviceName = kServiceNameROP;
       break;
     }
-    case BlockchainNetworkTypeMainnet:
+    case BlockchainNetworkTypeEthereum:
     default: {
       config.serviceName = kServiceNameETH;
       break;

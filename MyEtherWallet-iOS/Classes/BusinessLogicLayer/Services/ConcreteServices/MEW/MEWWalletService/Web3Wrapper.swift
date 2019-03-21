@@ -45,16 +45,18 @@ private struct KeychainInfo {
 
 private struct KeySettings {
   private struct DerivationPaths {
-    static var mainnet: String  = "m/44'/60'/0'/0"
+    static var ethereum: String  = "m/44'/60'/0'/0"
     static var ropsten: String  = "m/44'/1'/0'/0"
   }
   
   static func derivationPath(_ network: BlockchainNetworkType) -> String {
     switch network {
-    case .mainnet:
-      return DerivationPaths.mainnet
+    case .ethereum:
+      return DerivationPaths.ethereum
     case .ropsten:
       return DerivationPaths.ropsten
+    default:
+      return ""
     }
   }
 }
@@ -114,7 +116,7 @@ class Web3Wrapper: NSObject {
    
    - Returns: Public Ethereum address
    */
-  func createPrivateKey(password: String, account: AccountPlainObject, masterToken: MasterTokenPlainObject, network: BlockchainNetworkType = .mainnet) -> String? {
+  func createPrivateKey(password: String, account: AccountPlainObject, masterToken: MasterTokenPlainObject, network: BlockchainNetworkType = .ethereum) -> String? {
     guard let encryptedEntropy = self.keychainService?.obtainEntropy(ofAccount: account) else { return nil }
     guard let entropy = self.MEWcrypto?.decryptData(encryptedEntropy, withPassword: password) else { return nil }
     
@@ -141,7 +143,7 @@ class Web3Wrapper: NSObject {
    
    - Returns: true/false
    */
-  func validatePassword(password: String, masterToken: MasterTokenPlainObject, account: AccountPlainObject, network: BlockchainNetworkType = .mainnet) -> Bool {
+  func validatePassword(password: String, masterToken: MasterTokenPlainObject, account: AccountPlainObject, network: BlockchainNetworkType = .ethereum) -> Bool {
     guard let masterTokenAddress = masterToken.address else { return false }
     guard let encryptedKeydata = self.keychainService?.obtainKeydata(ofMasterToken: masterToken, ofAccount: account, inChainID: network.rawValue) else { return false }
     guard let keydata = self.MEWcrypto?.decryptData(encryptedKeydata, withPassword: password) else { return false }
@@ -160,7 +162,7 @@ class Web3Wrapper: NSObject {
    - Returns: Public Ethereum address
    */
   
-  func obtainAddress(words: [String], network: BlockchainNetworkType = .mainnet) -> String? {
+  func obtainAddress(words: [String], network: BlockchainNetworkType = .ethereum) -> String? {
     let mnemonics: String = words.joined(separator: " ")
     guard let seed = BIP39.seedFromMmemonics(mnemonics) else { return nil }
     
@@ -182,7 +184,7 @@ class Web3Wrapper: NSObject {
    - Returns: Signed message, that can be verified at https://www.myetherwallet.com/signmsg.html
    or **nil** if something goes wrong
    */
-  func signMessage(_ message: MEWConnectMessage, password: String, masterToken: MasterTokenPlainObject, account: AccountPlainObject, network: BlockchainNetworkType = .mainnet) -> [String: String]? {
+  func signMessage(_ message: MEWConnectMessage, password: String, masterToken: MasterTokenPlainObject, account: AccountPlainObject, network: BlockchainNetworkType = .ethereum) -> [String: String]? {
     guard let data = message.message.data(using: .utf8) else { return nil }
     guard let hashData = Web3.Utils.hashPersonalMessage(data) else { return nil }
     if hashData != message.messageHash { return nil }
@@ -213,7 +215,7 @@ class Web3Wrapper: NSObject {
    
    - Returns: Signed transaction or **nil** if something goes wrong
    */
-  func signTransaction(_ transaction: MEWConnectTransaction, password: String, masterToken: MasterTokenPlainObject, account: AccountPlainObject, network: BlockchainNetworkType = .mainnet) -> String? {
+  func signTransaction(_ transaction: MEWConnectTransaction, password: String, masterToken: MasterTokenPlainObject, account: AccountPlainObject, network: BlockchainNetworkType = .ethereum) -> String? {
     guard let encryptedKeydata = self.keychainService?.obtainKeydata(ofMasterToken: masterToken, ofAccount: account, inChainID: network.rawValue) else { return nil }
     guard let keydata = self.MEWcrypto?.decryptData(encryptedKeydata, withPassword: password) else { return nil }
 

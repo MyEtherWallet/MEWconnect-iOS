@@ -94,7 +94,7 @@ static NSString *const RopstenTokensContractAddress = @"0xb8e1bbc50fd87ea00d8ce7
   
   NSString *contractAddress = nil;
   BlockchainNetworkType network = [masterToken.fromNetworkMaster network];
-  if (network == BlockchainNetworkTypeMainnet) {
+  if (network == BlockchainNetworkTypeEthereum) {
     contractAddress = MainnetTokensContractAddress;
   } else {
     contractAddress = RopstenTokensContractAddress;

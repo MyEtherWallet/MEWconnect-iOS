@@ -19,7 +19,8 @@
 
 @implementation TransactionPresenter {
   BOOL _addressConfirmed;
-  BOOL _amountConfirmer;
+  BOOL _amountConfirmed;
+  BOOL _networkConfirmed;
 }
 
 #pragma mark - TransactionModuleInput
@@ -33,7 +34,11 @@
 - (void) didTriggerViewReadyEvent {
   [self.view setupInitialState];
   MEWConnectTransaction *transaction = [self.interactor obtainTransaction];
-  [self.view updateWithTransaction:transaction];
+  NSString *network = [self.interactor obtainNetworkToConfirm];
+  if (!network) {
+    _networkConfirmed = YES;
+  }
+  [self.view updateWithTransaction:transaction networkName:network];
 }
 
 - (void) signAction {
@@ -47,12 +52,17 @@
 
 - (void) confirmAddressAction:(BOOL)confirmed {
   _addressConfirmed = confirmed;
-  [self.view enableSign:_addressConfirmed && _amountConfirmer];
+  [self.view enableSign:_addressConfirmed && _amountConfirmed && _networkConfirmed];
 }
 
 - (void) confirmAmountAction:(BOOL)confirmed {
-  _amountConfirmer = confirmed;
-  [self.view enableSign:_addressConfirmed && _amountConfirmer];
+  _amountConfirmed = confirmed;
+  [self.view enableSign:_addressConfirmed && _amountConfirmed && _networkConfirmed];
+}
+
+- (void) confirmNetworkAction:(BOOL)confirmed {
+  _networkConfirmed = confirmed;
+  [self.view enableSign:_addressConfirmed && _amountConfirmed && _networkConfirmed];
 }
 
 #pragma mark - TransactionInteractorOutput

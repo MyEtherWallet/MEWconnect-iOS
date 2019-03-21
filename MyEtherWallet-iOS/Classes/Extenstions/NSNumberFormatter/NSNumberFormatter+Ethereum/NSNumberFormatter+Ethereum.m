@@ -7,11 +7,12 @@
 //
 
 #import "NSNumberFormatter+Ethereum.h"
+#import "BlockchainNetworkTypesInfoProvider.h"
 
 @implementation NSNumberFormatter (Ethereum)
 
-+ (instancetype)ethereumFormatterWithNetwork:(BlockchainNetworkType)network {
-  return [self ethereumFormatterWithCurrencySymbol:NSStringCurrencySymbolFromBlockchainNetworkType(network)];
++ (instancetype) ethereumFormatterWithNetwork:(BlockchainNetworkType)network {
+  return [self ethereumFormatterWithCurrencySymbol:[BlockchainNetworkTypesInfoProvider currencySymbolForNetworkType:network]];
 }
 
 + (instancetype)ethereumFormatterWithCurrencySymbol:(NSString *)currencySymbol {

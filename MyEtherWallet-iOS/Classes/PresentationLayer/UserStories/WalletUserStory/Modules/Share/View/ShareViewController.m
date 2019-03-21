@@ -86,7 +86,7 @@
                                  NSParagraphStyleAttributeName: style,
                                  NSKernAttributeName: @(titleKern)};
     NSString *title = nil;
-    if (network == BlockchainNetworkTypeMainnet) {
+    if (network == BlockchainNetworkTypeEthereum) {
       title = NSLocalizedString(@"Your public Ethereum address", nil);
     } else {
       title = NSLocalizedString(@"Your public Ropsten testnet address", nil);

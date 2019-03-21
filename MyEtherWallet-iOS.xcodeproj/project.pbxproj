@@ -233,6 +233,14 @@
 		564952FB20E3F20D00CF2348 /* AccountsServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 564952FA20E3F20D00CF2348 /* AccountsServiceImplementation.m */; };
 		5649CC27216FF1320009D982 /* CacheTransactionSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5649CC26216FF1320009D982 /* CacheTransactionSection.m */; };
 		5649CC28217002840009D982 /* CacheTransactionSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5649CC26216FF1320009D982 /* CacheTransactionSection.m */; };
+		565851322242B347006AEC7E /* ConfirmationUIStringList.m in Sources */ = {isa = PBXBuildFile; fileRef = 565851312242B347006AEC7E /* ConfirmationUIStringList.m */; };
+		565851332242B347006AEC7E /* ConfirmationUIStringList.m in Sources */ = {isa = PBXBuildFile; fileRef = 565851312242B347006AEC7E /* ConfirmationUIStringList.m */; };
+		565851362242B357006AEC7E /* ConfirmationImageCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 565851352242B357006AEC7E /* ConfirmationImageCatalog.m */; };
+		565851372242B357006AEC7E /* ConfirmationImageCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 565851352242B357006AEC7E /* ConfirmationImageCatalog.m */; };
+		5658513A2242B36B006AEC7E /* ConfirmationUIStringAttributesProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 565851392242B36B006AEC7E /* ConfirmationUIStringAttributesProvider.m */; };
+		5658513B2242B36B006AEC7E /* ConfirmationUIStringAttributesProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 565851392242B36B006AEC7E /* ConfirmationUIStringAttributesProvider.m */; };
+		5658513E2242CA81006AEC7E /* BlockchainNetworkTypesInfoProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 5658513D2242CA81006AEC7E /* BlockchainNetworkTypesInfoProvider.m */; };
+		5658513F2242CA81006AEC7E /* BlockchainNetworkTypesInfoProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 5658513D2242CA81006AEC7E /* BlockchainNetworkTypesInfoProvider.m */; };
 		56594467224167D800C9BD82 /* QRScannerStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56594466224167D800C9BD82 /* QRScannerStatusView.m */; };
 		56594468224167D800C9BD82 /* QRScannerStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56594466224167D800C9BD82 /* QRScannerStatusView.m */; };
 		5659447322417DE200C9BD82 /* UIStringList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5659447222417DE200C9BD82 /* UIStringList.m */; };
@@ -1486,6 +1494,14 @@
 		564952FA20E3F20D00CF2348 /* AccountsServiceImplementation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountsServiceImplementation.m; sourceTree = "<group>"; };
 		5649CC25216FF1320009D982 /* CacheTransactionSection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CacheTransactionSection.h; sourceTree = "<group>"; };
 		5649CC26216FF1320009D982 /* CacheTransactionSection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CacheTransactionSection.m; sourceTree = "<group>"; };
+		565851302242B347006AEC7E /* ConfirmationUIStringList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfirmationUIStringList.h; sourceTree = "<group>"; };
+		565851312242B347006AEC7E /* ConfirmationUIStringList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConfirmationUIStringList.m; sourceTree = "<group>"; };
+		565851342242B357006AEC7E /* ConfirmationImageCatalog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfirmationImageCatalog.h; sourceTree = "<group>"; };
+		565851352242B357006AEC7E /* ConfirmationImageCatalog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConfirmationImageCatalog.m; sourceTree = "<group>"; };
+		565851382242B36B006AEC7E /* ConfirmationUIStringAttributesProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfirmationUIStringAttributesProvider.h; sourceTree = "<group>"; };
+		565851392242B36B006AEC7E /* ConfirmationUIStringAttributesProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConfirmationUIStringAttributesProvider.m; sourceTree = "<group>"; };
+		5658513C2242CA81006AEC7E /* BlockchainNetworkTypesInfoProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockchainNetworkTypesInfoProvider.h; sourceTree = "<group>"; };
+		5658513D2242CA81006AEC7E /* BlockchainNetworkTypesInfoProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlockchainNetworkTypesInfoProvider.m; sourceTree = "<group>"; };
 		565935FC5198CFB42639DA1E /* BuyEtherHistoryViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BuyEtherHistoryViewController.m; sourceTree = "<group>"; };
 		56594465224167D800C9BD82 /* QRScannerStatusView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QRScannerStatusView.h; sourceTree = "<group>"; };
 		56594466224167D800C9BD82 /* QRScannerStatusView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QRScannerStatusView.m; sourceTree = "<group>"; };
@@ -4509,6 +4525,8 @@
 				564952BF20E3DEE300CF2348 /* BlockchainNetworkServiceImplementation.h */,
 				564952C020E3DEE300CF2348 /* BlockchainNetworkServiceImplementation.m */,
 				564952C220E3DFD500CF2348 /* BlockchainNetworkTypes.h */,
+				5658513C2242CA81006AEC7E /* BlockchainNetworkTypesInfoProvider.h */,
+				5658513D2242CA81006AEC7E /* BlockchainNetworkTypesInfoProvider.m */,
 			);
 			path = BlockchainNetworkService;
 			sourceTree = "<group>";
@@ -4530,6 +4548,43 @@
 				5649CC26216FF1320009D982 /* CacheTransactionSection.m */,
 			);
 			path = CacheTransactionSection;
+			sourceTree = "<group>";
+		};
+		5658512C2242B31B006AEC7E /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				5658512F2242B32E006AEC7E /* StringAttributes */,
+				5658512E2242B32A006AEC7E /* Images */,
+				5658512D2242B327006AEC7E /* Strings */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		5658512D2242B327006AEC7E /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				565851302242B347006AEC7E /* ConfirmationUIStringList.h */,
+				565851312242B347006AEC7E /* ConfirmationUIStringList.m */,
+			);
+			path = Strings;
+			sourceTree = "<group>";
+		};
+		5658512E2242B32A006AEC7E /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				565851342242B357006AEC7E /* ConfirmationImageCatalog.h */,
+				565851352242B357006AEC7E /* ConfirmationImageCatalog.m */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		5658512F2242B32E006AEC7E /* StringAttributes */ = {
+			isa = PBXGroup;
+			children = (
+				565851382242B36B006AEC7E /* ConfirmationUIStringAttributesProvider.h */,
+				565851392242B36B006AEC7E /* ConfirmationUIStringAttributesProvider.m */,
+			);
+			path = StringAttributes;
 			sourceTree = "<group>";
 		};
 		5659446922416F3C00C9BD82 /* StatusView */ = {
@@ -5287,6 +5342,7 @@
 		56999841209517A300D45153 /* ConfirmationUserStory */ = {
 			isa = PBXGroup;
 			children = (
+				5658512C2242B31B006AEC7E /* Constants */,
 				56999844209517C800D45153 /* Storyboard */,
 				56999842209517B000D45153 /* Modules */,
 			);
@@ -10832,6 +10888,7 @@
 				56E3E51821016DB60014152D /* StartInteractor.m in Sources */,
 				56E3E51921016DB60014152D /* ApplicationAssembly.m in Sources */,
 				56E3E51A21016DB60014152D /* ApplicationHelperAssembly.m in Sources */,
+				565851372242B357006AEC7E /* ConfirmationImageCatalog.m in Sources */,
 				56E3E51B21016DB60014152D /* CacheTransactionBatch.m in Sources */,
 				56E3E51C21016DB60014152D /* CompoundOperationBuilderConfig.m in Sources */,
 				56E3E51D21016DB60014152D /* RequestConfigurationOperation.m in Sources */,
@@ -11094,6 +11151,7 @@
 				56FFD7F22192204900341D96 /* SecurityAppDelegate.m in Sources */,
 				5659448422417EDA00C9BD82 /* WalletImageCatalog.m in Sources */,
 				56E3E5FC21016DB60014152D /* InfoDestructiveTableViewCell.m in Sources */,
+				5658513B2242B36B006AEC7E /* ConfirmationUIStringAttributesProvider.m in Sources */,
 				56E3E5FD21016DB60014152D /* BackupWordsInteractor.m in Sources */,
 				56FFD7FE2192484400341D96 /* SecurityServiceImplementation.m in Sources */,
 				56E3E5FE21016DB60014152D /* SimplexMappingProvider.m in Sources */,
@@ -11144,6 +11202,7 @@
 				56E3E62421016DB60014152D /* InfoPresenter.m in Sources */,
 				56896B84221B694300B78FF6 /* RestoreOptionsDataDisplayManager.m in Sources */,
 				56E3E62521016DB60014152D /* InfoInteractor.m in Sources */,
+				5658513F2242CA81006AEC7E /* BlockchainNetworkTypesInfoProvider.m in Sources */,
 				56A4FABA214813C500E7B022 /* FadeModalPresentingAnimationController.m in Sources */,
 				56E3E62721016DB60014152D /* InfoRouter.m in Sources */,
 				56E3E62821016DB60014152D /* BuyEtherAmountAssembly.m in Sources */,
@@ -11177,6 +11236,7 @@
 				5677C5B12181226500477ACD /* _NetworkPlainObject.m in Sources */,
 				5677C5872181226500477ACD /* _AccountModelObject.m in Sources */,
 				56E3E63F21016DB60014152D /* ConfirmationNavigationRouter.m in Sources */,
+				565851332242B347006AEC7E /* ConfirmationUIStringList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -11443,6 +11503,7 @@
 				3AFFA21DF27C931992B4A54C /* MessageSignerAssembly.m in Sources */,
 				3BBADB73833FE4F61E032A06 /* MessageSignerViewController.m in Sources */,
 				56FB396920B22091007776C8 /* RequestDataModel.m in Sources */,
+				5658513E2242CA81006AEC7E /* BlockchainNetworkTypesInfoProvider.m in Sources */,
 				9EA12B8253010D67DED815C9 /* MessageSignerPresenter.m in Sources */,
 				56E14C1920ED298100C41F83 /* SimplexOrder.m in Sources */,
 				563CF2F920EFAD65005467AE /* BuyEtherHistoryItemTableViewCell.m in Sources */,
@@ -11483,6 +11544,7 @@
 				19C254B03461059BFA00A529 /* BackupStartInteractor.m in Sources */,
 				5659447F22417ECF00C9BD82 /* ImageCatalog.m in Sources */,
 				56896BA1221B6B0B00B78FF6 /* RestoreOptionsNormalTableViewCellObject.m in Sources */,
+				565851322242B347006AEC7E /* ConfirmationUIStringList.m in Sources */,
 				50E9A0649AE46B8F3A5B8117 /* BackupStartRouter.m in Sources */,
 				726F177BFDD1D778D3118037 /* BackupWordsAssembly.m in Sources */,
 				EE2E56F2E2160F882F6FD764 /* BackupWordsViewController.m in Sources */,
@@ -11554,12 +11616,14 @@
 				A30F16618E51D57E2E24EEFA /* BuyEtherNavigationPresenter.m in Sources */,
 				5677C58A2181226500477ACD /* _MasterTokenModelObject.m in Sources */,
 				5677BB4220FAB28C0019E92D /* UIView+LockFrame.m in Sources */,
+				5658513A2242B36B006AEC7E /* ConfirmationUIStringAttributesProvider.m in Sources */,
 				EA0EFB4E115E73BC1B98904C /* BuyEtherNavigationRouter.m in Sources */,
 				7CD4D8349C636C9982158EE2 /* BuyEtherWebAssembly.m in Sources */,
 				666B9C38833B024733CF5DB7 /* BuyEtherWebViewController.m in Sources */,
 				EA36650C452FF14AEA63AC24 /* BuyEtherWebPresenter.m in Sources */,
 				30DC9DBB091E3BE7E7290791 /* BuyEtherWebInteractor.m in Sources */,
 				B97380417D4D48CEFBC3AD41 /* BuyEtherWebRouter.m in Sources */,
+				565851362242B357006AEC7E /* ConfirmationImageCatalog.m in Sources */,
 				AA61150AB10C9B2857D74506 /* ConfirmationNavigationAssembly.m in Sources */,
 				74A2945485A6387284AEA0A0 /* ConfirmationNavigationViewController.m in Sources */,
 				EA8204AC2210D75975DCD2F5 /* ConfirmationNavigationPresenter.m in Sources */,

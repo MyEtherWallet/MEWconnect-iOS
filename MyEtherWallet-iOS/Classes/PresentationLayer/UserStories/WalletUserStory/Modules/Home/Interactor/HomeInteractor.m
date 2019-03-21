@@ -162,7 +162,7 @@ static NSTimeInterval kHomeInteractorDefaultRefreshBalancesTime = 900.0;
                                                NSStringFromSelector(@selector(tokens))];
   AccountPlainObject *account = [self.ponsomizer convertObject:accountModelObject ignoringProperties:ignoringProperties];
   
-  NetworkPlainObject *network = [account networkForNetworkType:BlockchainNetworkTypeMainnet];
+  NetworkPlainObject *network = [account networkForNetworkType:BlockchainNetworkTypeEthereum];
   if (network && ![network.active boolValue]) {
     [self.blockchainNetworkService selectNetwork:network inAccount:account];
     [self.output networkDidChanged];

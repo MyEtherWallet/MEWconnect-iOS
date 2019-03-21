@@ -190,7 +190,8 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
     AccountPlainObject *account = network.fromAccount;
     
     BlockchainNetworkType networkType = [network network];
-    [self.headerView.networkButton setTitle:NSStringFromBlockchainNetworkType(networkType) forState:UIControlStateNormal];
+    NSString *networkTitle = [BlockchainNetworkTypesInfoProvider stringFromNetworkType:networkType];
+    [self.headerView.networkButton setTitle:networkTitle forState:UIControlStateNormal];
     [self.headerView.cardView updateWithSeed:masterToken.address];
     
     [self.headerView refreshContentIfNeeded];
@@ -203,7 +204,7 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
 - (void) updateBalanceWithMasterToken:(MasterTokenPlainObject *)masterToken {
   NetworkPlainObject *network = masterToken.fromNetworkMaster;
   
-  if (network.network == BlockchainNetworkTypeMainnet) {
+  if (network.network == BlockchainNetworkTypeEthereum) {
     [self.headerView.cardView updateEthPrice:masterToken.price.usdPrice];
   }
   

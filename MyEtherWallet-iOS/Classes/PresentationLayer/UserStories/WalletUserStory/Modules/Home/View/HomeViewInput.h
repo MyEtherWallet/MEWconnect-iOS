@@ -23,4 +23,5 @@
 - (void) stopAnimatingRefreshing;
 - (void) presentNetworkSelection;
 - (void) updateStatusWithInternetConnection:(BOOL)internetConnection mewConnectConnection:(BOOL)mewConnectConnection animated:(BOOL)animated;
+- (void) hideKeyboard;
 @end

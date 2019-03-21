@@ -30,6 +30,7 @@
 #import "UIColor+Hex.h"
 #import "UIColor+Application.h"
 #import "UIScreen+ScreenSizeType.h"
+#import "CALayer+LockZPosition.h"
 
 #import "HomeTableViewAnimator.h"
 
@@ -77,9 +78,6 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
-  
-  /* Fix GSKStretchyHeaderView issue: [UIScrollView gsk_fixZPositionsForStretchyHeaderView:]; */
-  self.tableView.backgroundView.layer.zPosition = 0.0;
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
@@ -116,6 +114,8 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
 #pragma mark - HomeViewInput
 
 - (void) setupInitialStateWithNumberOfTokens:(NSUInteger)tokensCount totalPrice:(NSDecimalNumber *)totalPrice {
+  UITapGestureRecognizer *dismissTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissTap:)];
+  [self.view addGestureRecognizer:dismissTapGesture];
   if (@available(iOS 11.0, *)) {
     self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
   }
@@ -148,6 +148,11 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
   tableViewBackgroundView.backgroundColor = [UIColor whiteColor];
   tableViewBackgroundView.alpha = 0.0;
   self.tableView.backgroundView = tableViewBackgroundView;
+  
+  /* Fix GSKStretchyHeaderView issue: [UIScrollView gsk_fixZPositionsForStretchyHeaderView:]; */
+  self.tableView.backgroundView.layer.zPosition = 0.0;
+  self.tableView.backgroundView.layer.lockZPosition = YES;
+  
   self.tableViewAnimator.tableView = self.tableView;
   
   { //Scan button
@@ -237,6 +242,9 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
 }
 
 - (void) updateWithTokensCount:(NSUInteger)tokensCount withTotalPrice:(NSDecimalNumber *)totalPrice {
+  if (tokensCount == 0) {
+    [self _hideKeyboardIfNeeded];
+  }
   [self.headerView updateTokensPrice:totalPrice];
   _numberOfTokens = tokensCount;
   if (_numberOfTokens > 0) {
@@ -258,15 +266,14 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
 }
 
 - (void)presentNetworkSelection {
+  @weakify(self);
   UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Select network", @"Wallet. Network selection") message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-  [alert addAction:[UIAlertAction actionWithTitle:@"Main Ethereum network"
-                                            style:UIAlertActionStyleDefault
-                                          handler:^(__unused UIAlertAction * _Nonnull action) {
+  [alert addAction:[UIAlertAction actionWithTitle:@"Main Ethereum network" style:UIAlertActionStyleDefault handler:^(__unused UIAlertAction * _Nonnull action) {
+    @strongify(self);
     [self.output mainnetAction];
   }]];
-  [alert addAction:[UIAlertAction actionWithTitle:@"Ropsten Test network"
-                                            style:UIAlertActionStyleDefault
-                                          handler:^(__unused UIAlertAction * _Nonnull action) {
+  [alert addAction:[UIAlertAction actionWithTitle:@"Ropsten Test network" style:UIAlertActionStyleDefault handler:^(__unused UIAlertAction * _Nonnull action) {
+    @strongify(self);
     [self.output ropstenAction];
   }]];
   [alert addAction:[UIAlertAction actionWithTitle:UIStringList.cancel
@@ -441,9 +448,18 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
   }
 }
 
+- (void) hideKeyboard {
+  [self _hideKeyboardIfNeeded];
+}
+
 #pragma mark - IBActions
 
+- (void) dismissTap:(__unused UITapGestureRecognizer *)sender {
+  [self _hideKeyboardIfNeeded];
+}
+
 - (IBAction) connectAction:(__unused id)sender {
+  [self _hideKeyboardIfNeeded];
   [self.output connectAction];
 }
 
@@ -452,10 +468,12 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
 }
 
 - (IBAction) infoAction:(__unused id)sender {
+  [self _hideKeyboardIfNeeded];
   [self.output infoAction];
 }
 
 - (IBAction) buyEtherAction:(__unused id)sender {
+  [self _hideKeyboardIfNeeded];
   [self.output buyEtherAction];
 }
 
@@ -515,10 +533,12 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
 #pragma mark - CardViewDelegate
 
 - (void) cardViewDidTouchShareButton:(__unused CardView *)cardView {
+  [self _hideKeyboardIfNeeded];
   [self.output shareAction];
 }
 
 - (void) cardViewDidTouchBackupButton:(__unused CardView *)cardView {
+  [self _hideKeyboardIfNeeded];
   [self.output backupAction];
 }
 
@@ -540,6 +560,10 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
   [self.output searchTermDidChanged:searchText];
 }
 
+- (void)searchBarSearchButtonClicked:(__unused UISearchBar *)searchBar {
+  [self _hideKeyboardIfNeeded];
+}
+
 #pragma mark - Notifications
 
 - (void) keyboardWillShow:(NSNotification *)notification {
@@ -554,6 +578,13 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
 }
 
 #pragma mark - Private
+
+- (void) _hideKeyboardIfNeeded {
+  if ([self.headerView.searchBar isFirstResponder]) {
+    [self _prepareTableViewFooterForLayout];
+    [self.view endEditing:YES];
+  }
+}
 
 - (void) _updateTableViewInsets {
   UIEdgeInsets insets;

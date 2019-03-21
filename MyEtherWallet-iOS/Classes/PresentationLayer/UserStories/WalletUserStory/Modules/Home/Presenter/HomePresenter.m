@@ -208,6 +208,7 @@ typedef NS_OPTIONS(short, HomeViewPresenterStatus) {
 }
 
 - (void) networkDidChanged {
+  [self.view hideKeyboard];
   [self configureAfterChangingNetwork];
 }
 

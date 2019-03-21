@@ -13,6 +13,7 @@
 #import "ServiceComponentsAssembly.h"
 
 #import "BuyEtherWebViewController.h"
+#import "BuyEther10WebViewController.h"
 #import "BuyEtherWebInteractor.h"
 #import "BuyEtherWebPresenter.h"
 #import "BuyEtherWebRouter.h"
@@ -20,7 +21,14 @@
 @implementation BuyEtherWebAssembly
 
 - (BuyEtherWebViewController *)viewBuyEtherWeb {
-  return [TyphoonDefinition withClass:[BuyEtherWebViewController class]
+  Class viewClass;
+  if (@available(iOS 11.0, *)) {
+    viewClass = [BuyEtherWebViewController class];
+  } else {
+    viewClass = [BuyEther10WebViewController class];
+  }
+  
+  return [TyphoonDefinition withClass:viewClass
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(output)
                                                 with:[self presenterBuyEtherWeb]];

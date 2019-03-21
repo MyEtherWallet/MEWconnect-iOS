@@ -54,7 +54,7 @@ static NSString *const kBuyEtherAmountDecimalSeparator    = @".";
 - (void) configurateWithMasterToken:(MasterTokenPlainObject *)masterToken {
   _masterToken = masterToken;
   _currency = SimplexServiceCurrencyTypeUSD;
-  _amount = [[NSMutableString alloc] initWithString:@"0"];
+  _amount = [[NSMutableString alloc] initWithString:@"100"];
   _ethRoundHandler = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundPlain
                                                                             scale:kBuyEtherAmountRoundingETHScale
                                                                  raiseOnExactness:NO

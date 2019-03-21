@@ -25,4 +25,5 @@
 + (instancetype) disabledPlaceholderColor;
 + (instancetype) connectionLightGrayBackgroundColor;
 + (instancetype) noInternetConnectionColor;
++ (instancetype) dimmingBackgroundColor;
 @end

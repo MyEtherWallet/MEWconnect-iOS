@@ -171,6 +171,7 @@
     return nil;
   }
   UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+  imageView.tintColor = [UIColor whiteColor];
   imageView.translatesAutoresizingMaskIntoConstraints = NO;
   return imageView;
 }

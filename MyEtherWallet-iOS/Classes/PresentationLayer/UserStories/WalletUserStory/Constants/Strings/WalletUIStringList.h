@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface WalletUIStringList : UIStringList
 
 #pragma mark - QRScanner
-
 @property (class, strong, readonly) NSString *qrScannerInProgressTitle;
 @property (class, strong, readonly) NSString *qrScannerFailureTitle;
 @property (class, strong, readonly) NSString *qrScannerSuccessTitle;
@@ -22,6 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (class, strong, readonly) NSString *qrScannerContactSupportTitle;
 @property (class, strong, readonly) NSString *qrScannerNoAccessTitle;
 @property (class, strong, readonly) NSArray <NSString *> *qrScannerNoAccessTitleLinked;
+
+#pragma mark - Share
+@property (class, strong, readonly) NSString *addressCopied;
 
 @end
 

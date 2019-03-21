@@ -17,6 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (class, strong, readonly) UIImage *qrScannerConnectionSuccess;
 @property (class, strong, readonly) UIImage *qrScannerConnectionFailure;
 
+#pragma mark - Share
+@property (class, strong, readonly) UIImage *shareToastIcon;
+
 @end
 
 NS_ASSUME_NONNULL_END

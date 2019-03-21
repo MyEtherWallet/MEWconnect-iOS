@@ -82,6 +82,11 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
   self.tableView.backgroundView.layer.zPosition = 0.0;
 }
 
+- (void) viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
+  [self.output didTriggerViewDidDisappear];
+}
+
 - (void) viewDidDisappear:(BOOL)animated {
   [super viewDidDisappear:animated];
   
@@ -287,10 +292,17 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
         if (self.disconnectButton.hidden) {
           self.disconnectButton.hidden = NO;
           self.disconnectButton.alpha = 0.0;
-          [self.animator addAnimations:^{
-            @strongify(self);
-            self.disconnectButton.alpha = 1.0;
-          }];
+          if (@available(iOS 11.0, *)) {
+            [self.animator addAnimations:^{
+              @strongify(self);
+              self.disconnectButton.alpha = 1.0;
+            }];
+          } else {
+            [UIView animateWithDuration:self.animator.duration
+                             animations:^{
+                               self.disconnectButton.alpha = 1.0;
+                             }];
+          }
         }
         [UIView transitionWithView:self.statusBackgroundImageView
                           duration:self.animator.duration
@@ -322,11 +334,13 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
       self.connectButtonBottomConstraint.constant = kHomeViewControllerBottomDefaultOffset;
       if (animated) {
         self.statusView.alpha = 1.0;
-        [self.animator addCompletion:^(__unused UIViewAnimatingPosition finalPosition) {
-          @strongify(self);
-          self.statusView.alpha = 0.0;
-          self.statusView.hidden = YES;
-        }];
+        if (@available(iOS 11.0, *)) {
+          [self.animator addCompletion:^(__unused UIViewAnimatingPosition finalPosition) {
+            @strongify(self);
+            self.statusView.alpha = 0.0;
+            self.statusView.hidden = YES;
+          }];
+        }
       } else {
         self.statusView.hidden = YES;
       }
@@ -367,15 +381,30 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
                       animations:^{
                         self.connectButton.enabled = internetConnection;
                       } completion:nil];
-      [self.animator addAnimations:^{
-        @strongify(self);
-        self.disconnectButton.alpha = 0.0;
-      }];
-      [self.animator addCompletion:^(__unused UIViewAnimatingPosition finalPosition) {
-        @strongify(self);
-        self.disconnectButton.hidden = YES;
-        self.disconnectButton.alpha = 1.0;
-      }];
+      if (@available(iOS 11.0, *)) {
+        [self.animator addAnimations:^{
+          @strongify(self);
+          self.disconnectButton.alpha = 0.0;
+        }];
+        [self.animator addCompletion:^(__unused UIViewAnimatingPosition finalPosition) {
+          @strongify(self);
+          self.disconnectButton.hidden = YES;
+          self.disconnectButton.alpha = 1.0;
+        }];
+      } else {
+        [UIView animateWithDuration:self.animator.duration
+                         animations:^{
+                           self.disconnectButton.alpha = 0.0;
+                         } completion:^(__unused BOOL finished) {
+                           self.disconnectButton.hidden = YES;
+                           self.disconnectButton.alpha = 1.0;
+                           
+                           if (internetConnection && !mewConnectConnection) {
+                             self.statusView.alpha = 0.0;
+                             self.statusView.hidden = YES;
+                           }
+                         }];
+      }
     } else {
       self.statusLabel.text = UIStringList.noInternetConnection;
       self.disconnectButton.hidden = YES;
@@ -388,15 +417,24 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
     }
   }
   if (animated) {
-    [self.animator addAnimations:^{
-      @strongify(self);
-      [self.view layoutIfNeeded];
-    }];
-    [self.animator addCompletion:^(__unused UIViewAnimatingPosition finalPosition) {
-      @strongify(self);
-      [self _updateTableViewInsets];
-    }];
-    [self.animator startAnimation];
+    if (@available(iOS 11.0, *)) {
+      [self.animator addAnimations:^{
+        @strongify(self);
+        [self.view layoutIfNeeded];
+      }];
+      [self.animator addCompletion:^(__unused UIViewAnimatingPosition finalPosition) {
+        @strongify(self);
+        [self _updateTableViewInsets];
+      }];
+      [self.animator startAnimation];
+    } else {
+      [UIView animateWithDuration:self.animator.duration
+                       animations:^{
+                         [self.view layoutIfNeeded];
+                       } completion:^(__unused BOOL finished) {
+                         [self _updateTableViewInsets];
+                       }];
+    }
   } else {
     [self.view layoutIfNeeded];
     [self _updateTableViewInsets];

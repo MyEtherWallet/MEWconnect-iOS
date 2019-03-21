@@ -112,7 +112,6 @@
   NSString *minimumAmountTitle = [NSString stringWithFormat:NSLocalizedString(@"%@ MINIMUM PURCHASE", @"BuyEther. Minimum amount format"),
                                   [usdFormatter stringFromNumber:minimumAmount]];
   [self.buyButton setTitle:minimumAmountTitle forState:UIControlStateDisabled];
-  self.buyButton.enabled = NO;
   
   if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches55) {
     UIFont *font = [UIFont systemFontOfSize:25.0 weight:UIFontWeightRegular];

@@ -14,6 +14,7 @@
 #import "BuyEtherAmountRouter.h"
 
 static NSString *const kBuyEtherAmountToBuyEtherWebSegueIdentifier      = @"BuyEtherAmountToBuyEtherWebSegueIdentifier";
+static NSString *const kBuyEtherAmountToBuyEther10WebSegueIdentifier    = @"BuyEtherAmountToBuyEther10WebSegueIdentifier";
 static NSString *const kBuyEtherAmountToBuyEtherHistorySegueIdentifier  = @"BuyEtherAmountToBuyEtherHistorySegueIdentifier";
 
 @implementation BuyEtherAmountRouter
@@ -25,7 +26,13 @@ static NSString *const kBuyEtherAmountToBuyEtherHistorySegueIdentifier  = @"BuyE
 }
 
 - (void) openBuyEtherWebWithOrder:(SimplexOrder *)order masterToken:(MasterTokenPlainObject *)masterToken {
-  [[self.transitionHandler openModuleUsingSegue:kBuyEtherAmountToBuyEtherWebSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<BuyEtherWebModuleInput> moduleInput) {
+  NSString *segueIdentifier;
+  if (@available(iOS 11.0, *)) {
+    segueIdentifier = kBuyEtherAmountToBuyEtherWebSegueIdentifier;
+  } else {
+    segueIdentifier = kBuyEtherAmountToBuyEther10WebSegueIdentifier;
+  }
+  [[self.transitionHandler openModuleUsingSegue:segueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<BuyEtherWebModuleInput> moduleInput) {
     [moduleInput configureModuleWithOrder:order forMasterToken:masterToken];
     return nil;
   }];

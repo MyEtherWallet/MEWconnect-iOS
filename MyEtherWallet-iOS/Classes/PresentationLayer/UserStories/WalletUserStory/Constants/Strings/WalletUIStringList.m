@@ -46,4 +46,10 @@
   return linkedParts;
 }
 
+#pragma mark - Share
+
++ (NSString *) addressCopied {
+  return NSLocalizedString(@"Address Copied", @"Share. Success toast");
+}
+
 @end

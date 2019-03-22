@@ -16,6 +16,11 @@
 
 #import "UIView+LockFrame.h"
 
+#import "ToastView.h"
+
+#import "WalletImageCatalog.h"
+#import "WalletUIStringList.h"
+
 @interface ShareViewController ()
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) IBOutlet UILabel *descriptionLabel;
@@ -135,6 +140,11 @@
 - (void) presentShareWithItems:(NSArray *)items {
   UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:items applicationActivities:nil];
   [self presentViewController:activityController animated:YES completion:nil];
+}
+
+- (void) showToastAddressCopied {
+  [[ToastView shared] showWithImage:WalletImageCatalog.shareToastIcon
+                              title:WalletUIStringList.addressCopied];
 }
 
 #pragma mark - IBActions

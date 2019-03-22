@@ -87,4 +87,8 @@
   return [UIColor colorWithRGB:0xB6B9C1];
 }
 
++ (instancetype)dimmingBackgroundColor {
+  return [UIColor colorWithRGB:0x04040F alpha:0.4];
+}
+
 @end

@@ -243,6 +243,10 @@
 		5658513F2242CA81006AEC7E /* BlockchainNetworkTypesInfoProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 5658513D2242CA81006AEC7E /* BlockchainNetworkTypesInfoProvider.m */; };
 		5658514922440505006AEC7E /* BuyEther10WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5658514822440505006AEC7E /* BuyEther10WebViewController.m */; };
 		5658514A22440505006AEC7E /* BuyEther10WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5658514822440505006AEC7E /* BuyEther10WebViewController.m */; };
+		5658514F22442A7F006AEC7E /* CALayer+LockZPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 5658514E22442A7F006AEC7E /* CALayer+LockZPosition.m */; };
+		5658515022442A7F006AEC7E /* CALayer+LockZPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 5658514E22442A7F006AEC7E /* CALayer+LockZPosition.m */; };
+		56585154224435C7006AEC7E /* ToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56585153224435C7006AEC7E /* ToastView.m */; };
+		56585155224435C7006AEC7E /* ToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56585153224435C7006AEC7E /* ToastView.m */; };
 		56594467224167D800C9BD82 /* QRScannerStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56594466224167D800C9BD82 /* QRScannerStatusView.m */; };
 		56594468224167D800C9BD82 /* QRScannerStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56594466224167D800C9BD82 /* QRScannerStatusView.m */; };
 		5659447322417DE200C9BD82 /* UIStringList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5659447222417DE200C9BD82 /* UIStringList.m */; };
@@ -1506,6 +1510,10 @@
 		5658513D2242CA81006AEC7E /* BlockchainNetworkTypesInfoProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlockchainNetworkTypesInfoProvider.m; sourceTree = "<group>"; };
 		5658514722440505006AEC7E /* BuyEther10WebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuyEther10WebViewController.h; sourceTree = "<group>"; };
 		5658514822440505006AEC7E /* BuyEther10WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuyEther10WebViewController.m; sourceTree = "<group>"; };
+		5658514D22442A7F006AEC7E /* CALayer+LockZPosition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+LockZPosition.h"; sourceTree = "<group>"; };
+		5658514E22442A7F006AEC7E /* CALayer+LockZPosition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+LockZPosition.m"; sourceTree = "<group>"; };
+		56585152224435C7006AEC7E /* ToastView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToastView.h; sourceTree = "<group>"; };
+		56585153224435C7006AEC7E /* ToastView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToastView.m; sourceTree = "<group>"; };
 		565935FC5198CFB42639DA1E /* BuyEtherHistoryViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BuyEtherHistoryViewController.m; sourceTree = "<group>"; };
 		56594465224167D800C9BD82 /* QRScannerStatusView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QRScannerStatusView.h; sourceTree = "<group>"; };
 		56594466224167D800C9BD82 /* QRScannerStatusView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QRScannerStatusView.m; sourceTree = "<group>"; };
@@ -4071,6 +4079,7 @@
 		560D772020B49789009A3D6D /* ConcreteClasses */ = {
 			isa = PBXGroup;
 			children = (
+				56585151224435B4006AEC7E /* ToastView */,
 				5677BB6120FEA5C70019E92D /* RotationButton */,
 				56C878A820BB6F7600343ADC /* StatusButton */,
 				56FB38EB20AF9204007776C8 /* LinkedLabel */,
@@ -4591,6 +4600,32 @@
 				565851392242B36B006AEC7E /* ConfirmationUIStringAttributesProvider.m */,
 			);
 			path = StringAttributes;
+			sourceTree = "<group>";
+		};
+		5658514B22442A5E006AEC7E /* CALayer */ = {
+			isa = PBXGroup;
+			children = (
+				5658514C22442A68006AEC7E /* CALayer+LockZPosition */,
+			);
+			path = CALayer;
+			sourceTree = "<group>";
+		};
+		5658514C22442A68006AEC7E /* CALayer+LockZPosition */ = {
+			isa = PBXGroup;
+			children = (
+				5658514D22442A7F006AEC7E /* CALayer+LockZPosition.h */,
+				5658514E22442A7F006AEC7E /* CALayer+LockZPosition.m */,
+			);
+			path = "CALayer+LockZPosition";
+			sourceTree = "<group>";
+		};
+		56585151224435B4006AEC7E /* ToastView */ = {
+			isa = PBXGroup;
+			children = (
+				56585152224435C7006AEC7E /* ToastView.h */,
+				56585153224435C7006AEC7E /* ToastView.m */,
+			);
+			path = ToastView;
 			sourceTree = "<group>";
 		};
 		5659446922416F3C00C9BD82 /* StatusView */ = {
@@ -5823,6 +5858,7 @@
 		56AC944A208FAAE000E5BC2C /* Extenstions */ = {
 			isa = PBXGroup;
 			children = (
+				5658514B22442A5E006AEC7E /* CALayer */,
 				56FFD8052192620900341D96 /* UIResponder */,
 				56FFD7FF219250A500341D96 /* UIViewController */,
 				5677BB712100A80E0019E92D /* UIBezierPath */,
@@ -10990,6 +11026,7 @@
 				56E3E56C21016DB60014152D /* PonsomizerAssembly.m in Sources */,
 				56E3E56D21016DB60014152D /* HomeAssembly.m in Sources */,
 				56E3E56E21016DB60014152D /* SimplexQuoteBody.m in Sources */,
+				5658515022442A7F006AEC7E /* CALayer+LockZPosition.m in Sources */,
 				56E3E56F21016DB60014152D /* HomeViewController.m in Sources */,
 				56E3E57021016DB60014152D /* BuyEtherHistoryDataDisplayManager.m in Sources */,
 				56E3E57121016DB60014152D /* QueryTransformerBase.m in Sources */,
@@ -11195,6 +11232,7 @@
 				56E3E61521016DB60014152D /* SplashPasswordInteractor.m in Sources */,
 				56E3E61721016DB60014152D /* StatusButton.m in Sources */,
 				56E3E61821016DB60014152D /* SimplexServiceImplementation.m in Sources */,
+				56585155224435C7006AEC7E /* ToastView.m in Sources */,
 				56E3E61921016DB60014152D /* AccountsServiceImplementation.m in Sources */,
 				56E3E61B21016DB60014152D /* SplashPasswordRouter.m in Sources */,
 				56E3E61C21016DB60014152D /* ForgotPasswordAssembly.m in Sources */,
@@ -11265,7 +11303,9 @@
 				56FB398F20B227EC007776C8 /* ResponseDeserializersAssembly.m in Sources */,
 				56FB39A320B22A47007776C8 /* ResponseConverterAssembly.m in Sources */,
 				563CF2F320EFAD3F005467AE /* BuyEtherHistoryItemTableViewCellObject.m in Sources */,
+				56585154224435C7006AEC7E /* ToastView.m in Sources */,
 				5677BB3920FA13860019E92D /* ModuleFactoriesAssembly.m in Sources */,
+				5658514F22442A7F006AEC7E /* CALayer+LockZPosition.m in Sources */,
 				56A29C9E20E0627200D05FF1 /* InfoEmptyTableViewCell.m in Sources */,
 				56E14C1120EC180500C41F83 /* SingleResponseObjectFormatter.m in Sources */,
 				56C45E9D20A35A00001261A2 /* CardView.m in Sources */,

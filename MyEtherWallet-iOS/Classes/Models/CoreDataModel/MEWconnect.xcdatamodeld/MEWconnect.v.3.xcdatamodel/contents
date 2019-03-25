@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18D109" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="2">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18D109" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="3">
     <entity name="Account" representedClassName="AccountModelObject" syncable="YES">
         <attribute name="active" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="backedUp" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
@@ -16,7 +16,7 @@
     </entity>
     <entity name="Network" representedClassName="NetworkModelObject" syncable="YES">
         <attribute name="active" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="chainID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="chainID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="fromAccount" optional="YES" maxCount="1" deletionRule="Nullify" ordered="YES" destinationEntity="Account" inverseName="networks" inverseEntity="Account" syncable="YES"/>
         <relationship name="master" maxCount="1" deletionRule="Cascade" destinationEntity="MasterToken" inverseName="fromNetworkMaster" inverseEntity="MasterToken" syncable="YES"/>
         <relationship name="tokens" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Token" inverseName="fromNetwork" inverseEntity="Token" syncable="YES"/>

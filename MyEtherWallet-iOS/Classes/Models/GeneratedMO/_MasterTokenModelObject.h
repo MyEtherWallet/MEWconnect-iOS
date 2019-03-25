@@ -30,8 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface _MasterTokenModelObject (CoreDataGeneratedPrimitiveAccessors)
 
-- (NetworkModelObject*)primitiveFromNetworkMaster;
-- (void)setPrimitiveFromNetworkMaster:(NetworkModelObject*)value;
+- (nullable NetworkModelObject*)primitiveFromNetworkMaster;
+- (void)setPrimitiveFromNetworkMaster:(nullable NetworkModelObject*)value;
 
 @end
 

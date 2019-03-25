@@ -67,7 +67,7 @@
           continue;
         }
         
-        NetworkModelObject *generatedNetworkModelObject = [self.networkService createNetworkWithChainID:[chainID integerValue] inAccount:account];
+        NetworkModelObject *generatedNetworkModelObject = [self.networkService createNetworkWithChainID:[chainID longLongValue] inAccount:account];
         networkModelObject = [rootSavingContext objectWithID:[generatedNetworkModelObject objectID]];
         
         NSArray <NSString *> *ignoringProperties = @[NSStringFromSelector(@selector(fromAccount)),

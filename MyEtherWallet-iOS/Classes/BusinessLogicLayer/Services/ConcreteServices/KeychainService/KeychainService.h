@@ -26,12 +26,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (NSArray <KeychainAccountModel *> * _Nullable) obtainStoredItems;
 //Save
-- (void) saveKeydata:(NSData *)keydata forAddress:(NSString *)address ofAccount:(AccountPlainObject *)account inChainID:(NSInteger)chainID;
+- (void) saveKeydata:(NSData *)keydata forAddress:(NSString *)address ofAccount:(AccountPlainObject *)account inChainID:(BlockchainNetworkType)chainID;
 - (void) saveEntropy:(NSData *)entropyData ofAccount:(AccountPlainObject *)account;
 - (void) saveBackupStatus:(BOOL)backup forAccount:(AccountPlainObject *)account;
 - (void) savePurchaseUserId:(NSString *)userId forMasterToken:(MasterTokenPlainObject *)token;
 //Obtain
-- (NSData * _Nullable) obtainKeydataOfMasterToken:(MasterTokenPlainObject *)token ofAccount:(AccountPlainObject *)account inChainID:(NSInteger)chainID;
+- (NSData * _Nullable) obtainKeydataOfMasterToken:(MasterTokenPlainObject *)token ofAccount:(AccountPlainObject *)account inChainID:(BlockchainNetworkType)chainID;
 - (NSData * _Nullable) obtainEntropyOfAccount:(AccountPlainObject *)account;
 - (NSArray <KeychainHistoryItemModel *> * _Nullable) obtainPurchaseHistoryOfMasterToken:(MasterTokenPlainObject *)token;
 - (BOOL) obtainBackupStatusForAccount:(AccountPlainObject *)account;

@@ -61,7 +61,7 @@
 }
 
 - (NSString *) obtainNetworkToConfirm {
-  BlockchainNetworkType transactionNetwork = [self.transaction.chainId integerValue];
+  BlockchainNetworkType transactionNetwork = [self.transaction.chainId longLongValue];
   BlockchainNetworkType accountNetwork = [self.masterToken.fromNetworkMaster network];
   if (transactionNetwork != accountNetwork) {
     return [BlockchainNetworkTypesInfoProvider nameForNetworkType:transactionNetwork];

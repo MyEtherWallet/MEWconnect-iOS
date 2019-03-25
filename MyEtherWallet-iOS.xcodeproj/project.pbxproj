@@ -251,6 +251,8 @@
 		5658515C224461CB006AEC7E /* WhatsNewServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5658515A224461CB006AEC7E /* WhatsNewServiceImplementation.m */; };
 		5658515E224462BA006AEC7E /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 5610EBA421DD97FB00F925C3 /* CHANGELOG.md */; };
 		5658515F224462BB006AEC7E /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 5610EBA421DD97FB00F925C3 /* CHANGELOG.md */; };
+		5658516222497F9C006AEC7E /* MappingModel_v_2_to_3.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5658516122497F9C006AEC7E /* MappingModel_v_2_to_3.xcmappingmodel */; };
+		5658516322497F9C006AEC7E /* MappingModel_v_2_to_3.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5658516122497F9C006AEC7E /* MappingModel_v_2_to_3.xcmappingmodel */; };
 		56594467224167D800C9BD82 /* QRScannerStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56594466224167D800C9BD82 /* QRScannerStatusView.m */; };
 		56594468224167D800C9BD82 /* QRScannerStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56594466224167D800C9BD82 /* QRScannerStatusView.m */; };
 		5659447322417DE200C9BD82 /* UIStringList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5659447222417DE200C9BD82 /* UIStringList.m */; };
@@ -1521,6 +1523,8 @@
 		56585159224461CB006AEC7E /* WhatsNewServiceImplementation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WhatsNewServiceImplementation.h; sourceTree = "<group>"; };
 		5658515A224461CB006AEC7E /* WhatsNewServiceImplementation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WhatsNewServiceImplementation.m; sourceTree = "<group>"; };
 		5658515D224461D7006AEC7E /* WhatsNewService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WhatsNewService.h; sourceTree = "<group>"; };
+		5658516022497F4C006AEC7E /* MEWconnect.v.3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MEWconnect.v.3.xcdatamodel; sourceTree = "<group>"; };
+		5658516122497F9C006AEC7E /* MappingModel_v_2_to_3.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = MappingModel_v_2_to_3.xcmappingmodel; sourceTree = "<group>"; };
 		565935FC5198CFB42639DA1E /* BuyEtherHistoryViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BuyEtherHistoryViewController.m; sourceTree = "<group>"; };
 		56594465224167D800C9BD82 /* QRScannerStatusView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QRScannerStatusView.h; sourceTree = "<group>"; };
 		56594466224167D800C9BD82 /* QRScannerStatusView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QRScannerStatusView.m; sourceTree = "<group>"; };
@@ -6136,6 +6140,7 @@
 			children = (
 				56F8EAA42183BDCC0010274B /* CustomPolicies */,
 				56F8EAA12183B7F90010274B /* MappingModel_v_1_to_2.xcmappingmodel */,
+				5658516122497F9C006AEC7E /* MappingModel_v_2_to_3.xcmappingmodel */,
 			);
 			path = CoreDataMappingModel;
 			sourceTree = "<group>";
@@ -10924,6 +10929,7 @@
 				56E3E50321016DB60014152D /* CoreDataConfiguratorImplementation.m in Sources */,
 				56E3E50521016DB60014152D /* UIBezierPath+Morphing.m in Sources */,
 				56E3E50621016DB60014152D /* KeychainServiceImplementation.m in Sources */,
+				5658516322497F9C006AEC7E /* MappingModel_v_2_to_3.xcmappingmodel in Sources */,
 				56E3E50721016DB60014152D /* SimplexQuery.m in Sources */,
 				56E3E50821016DB60014152D /* MEWConnectFacadeImplementation.m in Sources */,
 				56E3E50921016DB60014152D /* CacheRequest.m in Sources */,
@@ -11414,6 +11420,7 @@
 				C68E10A4E1B3A9BF240DD0D5 /* NewWalletRouter.m in Sources */,
 				56307A94216F61AF00282602 /* UIScreen+AnimateBrightness.m in Sources */,
 				4B880994DD0B5F9B4F44203F /* RestoreWalletAssembly.m in Sources */,
+				5658516222497F9C006AEC7E /* MappingModel_v_2_to_3.xcmappingmodel in Sources */,
 				56C878BA20BC1A3300343ADC /* HomeEmptyTableViewCellObject.m in Sources */,
 				56DE4E0C20A9E61F001A2C19 /* BottomImageButton.m in Sources */,
 				15EE3D506AA2D21334803200 /* RestoreWalletViewController.m in Sources */,
@@ -12512,10 +12519,11 @@
 		56FB3A2D20B45741007776C8 /* MEWconnect.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				5658516022497F4C006AEC7E /* MEWconnect.v.3.xcdatamodel */,
 				56D85B6F217F70A200B474C6 /* MEWconnect.v.2.xcdatamodel */,
 				56FB3A2E20B45741007776C8 /* MEWconnect.xcdatamodel */,
 			);
-			currentVersion = 56D85B6F217F70A200B474C6 /* MEWconnect.v.2.xcdatamodel */;
+			currentVersion = 5658516022497F4C006AEC7E /* MEWconnect.v.3.xcdatamodel */;
 			path = MEWconnect.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

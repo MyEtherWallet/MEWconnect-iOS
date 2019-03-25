@@ -130,7 +130,7 @@ class Web3Wrapper: NSObject {
     
     guard let keyAccount = bip32Keystore?.addresses?.first else { return nil }
     
-    self.keychainService?.saveKeydata(encryptedKeydata, forAddress:keyAccount.address, ofAccount: account, inChainID: network.rawValue)
+    self.keychainService?.saveKeydata(encryptedKeydata, forAddress:keyAccount.address, ofAccount: account, inChainID: network)
     
     return keyAccount.address
   }
@@ -145,7 +145,7 @@ class Web3Wrapper: NSObject {
    */
   func validatePassword(password: String, masterToken: MasterTokenPlainObject, account: AccountPlainObject, network: BlockchainNetworkType = .ethereum) -> Bool {
     guard let masterTokenAddress = masterToken.address else { return false }
-    guard let encryptedKeydata = self.keychainService?.obtainKeydata(ofMasterToken: masterToken, ofAccount: account, inChainID: network.rawValue) else { return false }
+    guard let encryptedKeydata = self.keychainService?.obtainKeydata(ofMasterToken: masterToken, ofAccount: account, inChainID: network) else { return false }
     guard let keydata = self.MEWcrypto?.decryptData(encryptedKeydata, withPassword: password) else { return false }
 
     guard let bip32Keystore = BIP32Keystore(keydata) else { return false }
@@ -189,7 +189,7 @@ class Web3Wrapper: NSObject {
     guard let hashData = Web3.Utils.hashPersonalMessage(data) else { return nil }
     if hashData != message.messageHash { return nil }
 
-    guard let encryptedKeydata = self.keychainService?.obtainKeydata(ofMasterToken: masterToken, ofAccount: account, inChainID: network.rawValue) else { return nil }
+    guard let encryptedKeydata = self.keychainService?.obtainKeydata(ofMasterToken: masterToken, ofAccount: account, inChainID: network) else { return nil }
     guard let keydata = self.MEWcrypto?.decryptData(encryptedKeydata, withPassword: password) else { return nil }
 
     guard let bip32Keystore = BIP32Keystore(keydata) else { return nil }
@@ -216,7 +216,7 @@ class Web3Wrapper: NSObject {
    - Returns: Signed transaction or **nil** if something goes wrong
    */
   func signTransaction(_ transaction: MEWConnectTransaction, password: String, masterToken: MasterTokenPlainObject, account: AccountPlainObject, network: BlockchainNetworkType = .ethereum) -> String? {
-    guard let encryptedKeydata = self.keychainService?.obtainKeydata(ofMasterToken: masterToken, ofAccount: account, inChainID: network.rawValue) else { return nil }
+    guard let encryptedKeydata = self.keychainService?.obtainKeydata(ofMasterToken: masterToken, ofAccount: account, inChainID: network) else { return nil }
     guard let keydata = self.MEWcrypto?.decryptData(encryptedKeydata, withPassword: password) else { return nil }
 
     guard let bip32Keystore = BIP32Keystore(keydata) else { return nil }
@@ -229,7 +229,7 @@ class Web3Wrapper: NSObject {
     guard let value = BigUInt(transaction.value.stripHexPrefix(), radix: 16) else { return nil }
     guard let data = Data.fromHex(transaction.data) else { return nil }
     guard let nonce = BigUInt(transaction.nonce.stripHexPrefix(), radix: 16) else { return nil }
-    let chainId = BigUInt(transaction.chainId.intValue)
+    let chainId = BigUInt(transaction.chainId.int64Value)
 
     var to = EthereumAddress(transaction.to)
     if to == nil {

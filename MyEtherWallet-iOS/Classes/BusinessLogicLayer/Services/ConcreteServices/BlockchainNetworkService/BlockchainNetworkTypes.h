@@ -11,7 +11,7 @@
 
 @import Foundation;
 
-typedef NS_ENUM(NSInteger, BlockchainNetworkType) {
+typedef NS_ENUM(long long, BlockchainNetworkType) {
   BlockchainNetworkTypeEthereum         = 1,
   BlockchainNetworkTypeExpanse          = 2,
   BlockchainNetworkTypeRopsten          = 3,

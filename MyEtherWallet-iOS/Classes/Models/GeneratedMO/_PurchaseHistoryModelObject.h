@@ -67,8 +67,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSString*)primitiveUserId;
 - (void)setPrimitiveUserId:(nullable NSString*)value;
 
-- (TokenModelObject*)primitiveFromToken;
-- (void)setPrimitiveFromToken:(TokenModelObject*)value;
+- (nullable TokenModelObject*)primitiveFromToken;
+- (void)setPrimitiveFromToken:(nullable TokenModelObject*)value;
 
 @end
 

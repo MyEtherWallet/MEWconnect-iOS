@@ -48,7 +48,7 @@
   }];
 }
 
-- (NetworkModelObject *) createNetworkWithChainID:(NSInteger)chainID inAccount:(AccountPlainObject *)account {
+- (NetworkModelObject *) createNetworkWithChainID:(BlockchainNetworkType)chainID inAccount:(AccountPlainObject *)account {
   __block NetworkModelObject *createdNetwork = nil;
   NSManagedObjectContext *rootSavingContext = [NSManagedObjectContext MR_rootSavingContext];
   [rootSavingContext performBlockAndWait:^{

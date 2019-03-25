@@ -158,7 +158,7 @@
 
 - (void) resetKeychain {
   NSArray <NSString *> *keys = [self.keychainStore allKeys];
-  NSArray *ignoringKeys = @[kKeychainServiceVersionField, kKeychainServiceFirstLaunchField];
+  NSArray *ignoringKeys = @[kKeychainServiceVersionField, kKeychainServiceFirstLaunchField, kKeychainServiceWhatsNewVersionField];
   for (NSString *key in keys) {
     if (![ignoringKeys containsObject:key]) {
       [self _removeItemWithKey:key];
@@ -255,7 +255,7 @@
 
 - (NSArray *) _obtainRawKeys {
   NSMutableArray <NSString *> *keys = [[self.keychainStore allKeys] mutableCopy];
-  NSArray *ignoringKeys = @[kKeychainServiceVersionField, kKeychainServiceFirstLaunchField];
+  NSArray *ignoringKeys = @[kKeychainServiceVersionField, kKeychainServiceFirstLaunchField, kKeychainServiceWhatsNewVersionField];
   [keys removeObjectsInArray:ignoringKeys];
   return [keys copy];
 }

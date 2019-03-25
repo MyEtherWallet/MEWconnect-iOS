@@ -63,7 +63,7 @@
 }
 
 - (void) contactSupportAction {
-  NSString *version = [[NSBundle mainBundle] applicationVersion];
+  NSString *version = [[NSBundle mainBundle] fullApplicationVersion];
   NSString *subject = [NSString stringWithFormat:@"MEWconnect iOS v.%@ connection issue", version];
   NSArray *recipients = @[kMyEtherWalletSupportEmail];
   [self.view presentMailComposeWithSubject:subject recipients:recipients];

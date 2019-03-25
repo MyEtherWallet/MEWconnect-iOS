@@ -247,6 +247,10 @@
 		5658515022442A7F006AEC7E /* CALayer+LockZPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 5658514E22442A7F006AEC7E /* CALayer+LockZPosition.m */; };
 		56585154224435C7006AEC7E /* ToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56585153224435C7006AEC7E /* ToastView.m */; };
 		56585155224435C7006AEC7E /* ToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56585153224435C7006AEC7E /* ToastView.m */; };
+		5658515B224461CB006AEC7E /* WhatsNewServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5658515A224461CB006AEC7E /* WhatsNewServiceImplementation.m */; };
+		5658515C224461CB006AEC7E /* WhatsNewServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5658515A224461CB006AEC7E /* WhatsNewServiceImplementation.m */; };
+		5658515E224462BA006AEC7E /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 5610EBA421DD97FB00F925C3 /* CHANGELOG.md */; };
+		5658515F224462BB006AEC7E /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 5610EBA421DD97FB00F925C3 /* CHANGELOG.md */; };
 		56594467224167D800C9BD82 /* QRScannerStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56594466224167D800C9BD82 /* QRScannerStatusView.m */; };
 		56594468224167D800C9BD82 /* QRScannerStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56594466224167D800C9BD82 /* QRScannerStatusView.m */; };
 		5659447322417DE200C9BD82 /* UIStringList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5659447222417DE200C9BD82 /* UIStringList.m */; };
@@ -1514,6 +1518,9 @@
 		5658514E22442A7F006AEC7E /* CALayer+LockZPosition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+LockZPosition.m"; sourceTree = "<group>"; };
 		56585152224435C7006AEC7E /* ToastView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToastView.h; sourceTree = "<group>"; };
 		56585153224435C7006AEC7E /* ToastView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToastView.m; sourceTree = "<group>"; };
+		56585159224461CB006AEC7E /* WhatsNewServiceImplementation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WhatsNewServiceImplementation.h; sourceTree = "<group>"; };
+		5658515A224461CB006AEC7E /* WhatsNewServiceImplementation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WhatsNewServiceImplementation.m; sourceTree = "<group>"; };
+		5658515D224461D7006AEC7E /* WhatsNewService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WhatsNewService.h; sourceTree = "<group>"; };
 		565935FC5198CFB42639DA1E /* BuyEtherHistoryViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BuyEtherHistoryViewController.m; sourceTree = "<group>"; };
 		56594465224167D800C9BD82 /* QRScannerStatusView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QRScannerStatusView.h; sourceTree = "<group>"; };
 		56594466224167D800C9BD82 /* QRScannerStatusView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QRScannerStatusView.m; sourceTree = "<group>"; };
@@ -4628,6 +4635,16 @@
 			path = ToastView;
 			sourceTree = "<group>";
 		};
+		56585158224461A5006AEC7E /* WhatsNewService */ = {
+			isa = PBXGroup;
+			children = (
+				5658515D224461D7006AEC7E /* WhatsNewService.h */,
+				56585159224461CB006AEC7E /* WhatsNewServiceImplementation.h */,
+				5658515A224461CB006AEC7E /* WhatsNewServiceImplementation.m */,
+			);
+			path = WhatsNewService;
+			sourceTree = "<group>";
+		};
 		5659446922416F3C00C9BD82 /* StatusView */ = {
 			isa = PBXGroup;
 			children = (
@@ -5794,6 +5811,7 @@
 		56AC9435208F76DF00E5BC2C /* ConcreteServices */ = {
 			isa = PBXGroup;
 			children = (
+				56585158224461A5006AEC7E /* WhatsNewService */,
 				56FFD7F92192482500341D96 /* SecurityService */,
 				56D85B77217FAD1300B474C6 /* MigrationService */,
 				56191EAA215052D8000BF97F /* RateService */,
@@ -10430,6 +10448,7 @@
 				56E3E64E21016DB60014152D /* LaunchScreen.storyboard in Resources */,
 				56E3E64F21016DB60014152D /* InfoDestructiveTableViewCell.xib in Resources */,
 				56E3E65021016DB60014152D /* HomeEmptyTableViewCell.xib in Resources */,
+				5658515E224462BA006AEC7E /* CHANGELOG.md in Resources */,
 				56E3E65E21016E060014152D /* Assets.xcassets in Resources */,
 				56E9D3752170C4260004AC61 /* peep_connection_success.caf in Resources */,
 				56E3E65121016DB60014152D /* Confirmation.storyboard in Resources */,
@@ -10464,6 +10483,7 @@
 				56C878B620BC199300343ADC /* HomeEmptyTableViewCell.xib in Resources */,
 				56BDC2E3212F342700D7AE03 /* ApplicationIcon.xcassets in Resources */,
 				56E3E6652101746F0014152D /* Assets.xcassets in Resources */,
+				5658515F224462BB006AEC7E /* CHANGELOG.md in Resources */,
 				56999848209517EB00D45153 /* Confirmation.storyboard in Resources */,
 				56E9D3742170C4260004AC61 /* peep_connection_success.caf in Resources */,
 				56A4EAA920B8BC440042A358 /* SplashPassword.storyboard in Resources */,
@@ -11195,6 +11215,7 @@
 				56E3E5FC21016DB60014152D /* InfoDestructiveTableViewCell.m in Sources */,
 				5658513B2242B36B006AEC7E /* ConfirmationUIStringAttributesProvider.m in Sources */,
 				56E3E5FD21016DB60014152D /* BackupWordsInteractor.m in Sources */,
+				5658515C224461CB006AEC7E /* WhatsNewServiceImplementation.m in Sources */,
 				56FFD7FE2192484400341D96 /* SecurityServiceImplementation.m in Sources */,
 				56E3E5FE21016DB60014152D /* SimplexMappingProvider.m in Sources */,
 				56E3E5FF21016DB60014152D /* BackupWordsRouter.m in Sources */,
@@ -11355,6 +11376,7 @@
 				56FB3A4F20B46FB1007776C8 /* ManagedObjectMapper.m in Sources */,
 				56E14BC820E97ED200C41F83 /* FiatPricesQueryTransformer.m in Sources */,
 				569E51CA20D946B000883583 /* NSData+ArrayBuffer.m in Sources */,
+				5658515B224461CB006AEC7E /* WhatsNewServiceImplementation.m in Sources */,
 				2A3FFB6DBE3CE8BCA37EC381 /* StartRouter.m in Sources */,
 				56FB398A20B22726007776C8 /* NetworkOperation.m in Sources */,
 				56FB3A6120B471B0007776C8 /* ManyResponseObjectFormatter.m in Sources */,

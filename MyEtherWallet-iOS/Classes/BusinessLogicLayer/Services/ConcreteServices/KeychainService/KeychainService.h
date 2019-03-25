@@ -45,7 +45,8 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Obtaining first launch date
  */
-- (NSString * _Nullable) obtainFirstLaunchDate;
+- (NSString * _Nullable) obtainFirstLaunchDateString;
+- (NSDate * _Nullable) obtainFirstLaunchDate;
 /**
  Obtaining number of password attempts
  */
@@ -62,6 +63,14 @@ NS_ASSUME_NONNULL_BEGIN
  Save password unlock date
  */
 - (void) savePasswordUnlockDate:(NSDate *)date;
+/**
+ Obtain What's new version
+ */
+- (NSString *) obtainWhatsNewViewedVersion;
+/**
+ Store What's new version
+ */
+- (void) saveWhatsNewViewedVersion:(NSString *)version;
 @end
 
 NS_ASSUME_NONNULL_END

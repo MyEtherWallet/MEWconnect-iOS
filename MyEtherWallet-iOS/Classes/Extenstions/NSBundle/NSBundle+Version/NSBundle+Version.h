@@ -9,5 +9,7 @@
 @import Foundation;
 
 @interface NSBundle (Version)
+- (NSString *) fullApplicationVersion;
 - (NSString *) applicationVersion;
+- (NSString *) applicationBuild;
 @end

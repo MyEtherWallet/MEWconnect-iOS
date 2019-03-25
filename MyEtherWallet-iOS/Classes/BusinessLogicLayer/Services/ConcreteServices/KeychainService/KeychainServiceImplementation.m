@@ -174,8 +174,16 @@
   }
 }
 
-- (NSString *)obtainFirstLaunchDate {
+- (NSString *)obtainFirstLaunchDateString {
   return [self.keychainStore stringForKey:kKeychainServiceFirstLaunchField];
+}
+
+- (NSDate * _Nullable) obtainFirstLaunchDate {
+  NSString *date = [self obtainFirstLaunchDateString];
+  if (!date) {
+    return nil;
+  }
+  return [self.dateFormatter dateFromString:date];
 }
 
 - (NSInteger) obtainNumberOfPasswordAttempts {
@@ -199,6 +207,14 @@
 - (void) savePasswordUnlockDate:(NSDate *)date {
   NSString *dateString = [self.dateFormatter stringFromDate:date];
   [self.keychainStore setString:dateString forKey:kKeychainServiceBruteForceLockDateField];
+}
+
+- (NSString *) obtainWhatsNewViewedVersion {
+  return [self.keychainStore stringForKey:kKeychainServiceWhatsNewVersionField];
+}
+
+- (void) saveWhatsNewViewedVersion:(NSString *)version {
+  [self.keychainStore setString:version forKey:kKeychainServiceWhatsNewVersionField];
 }
 
 #pragma mark - Protected

@@ -16,11 +16,14 @@
 
 #import "AccountsService.h"
 #import "Ponsomizer.h"
+#import "WhatsNewService.h"
 
 #import "NetworkPlainObject.h"
 #import "AccountPlainObject.h"
 
 #import "SplashPasswordModuleInput.h"
+
+#import "UIVIewController+Hierarchy.h"
 
 static NSInteger const kSplashPasswordLogoImageViewTag          = 1;
 
@@ -66,11 +69,12 @@ static NSInteger const kSplashPasswordLogoImageViewTag          = 1;
   
   [self.window addSubview:launchViewController.view];
   
+  @weakify(self);
   if (accountModelObject) {
     /* To prevent "Unbalanced calls to begin/end appearance transitions for..." */
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
       dispatch_async(dispatch_get_main_queue(), ^{
-        
+        @strongify(self);
         __block id <SplashPasswordModuleInput> passwordModuleInput = nil;
         RamblerViperModuleLinkBlock linkBlock = [self passwordConfigurationBlockWithAccount:account moduleInputCatch:^(id<SplashPasswordModuleInput> moduleInput) {
           passwordModuleInput = moduleInput;
@@ -79,7 +83,9 @@ static NSInteger const kSplashPasswordLogoImageViewTag          = 1;
                                                     withTransitionBlock:[self passwordTransitionBlockWithCompletion:^{
           [self _animateSplash:launchViewController parentView:navigationController.topViewController.presentedViewController.presentationController.containerView withCompletion:^{
             [launchViewController.view removeFromSuperview];
-            [passwordModuleInput takeControlAfterLaunch];
+            [self _presentWhatsNewIfNeededIn:navigationController completion:^{
+              [passwordModuleInput takeControlAfterLaunch];
+            }];
           }];
         }]] thenChainUsingBlock:linkBlock];
       });
@@ -87,6 +93,8 @@ static NSInteger const kSplashPasswordLogoImageViewTag          = 1;
   } else {
     [self _animateSplash:launchViewController parentView:self.window.rootViewController.view withCompletion:^{
       [launchViewController.view removeFromSuperview];
+      @strongify(self);
+      [self _presentWhatsNewIfNeededIn:navigationController completion:nil];
     }];
   }
 }
@@ -154,6 +162,45 @@ static NSInteger const kSplashPasswordLogoImageViewTag          = 1;
     }
   }];
   [animator startAnimation];
+}
+
+- (void) _presentWhatsNewIfNeededIn:(UINavigationController *)navigationController completion:(void(^)(void))completion {
+  if (![self.whatsNewService shouldShowWhatsNew]) {
+    if (completion) {
+      completion();
+    }
+    return;
+  }
+  NSString *message = [self.whatsNewService currentWhatsNew];
+  if (!message || [message length] == 0) {
+    if (completion) {
+      completion();
+    }
+    return;
+  }
+  [self.whatsNewService registerShow];
+  UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"What's new", @"What's new alert")
+                                                                 message:message
+                                                          preferredStyle:UIAlertControllerStyleAlert];
+  [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Ok", nil)
+                                            style:UIAlertActionStyleDefault
+                                          handler:^(__unused UIAlertAction * _Nonnull action) {
+                                            if (completion) {
+                                              completion();
+                                            }
+                                          }]];
+  NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+  style.alignment = NSTextAlignmentLeft;
+  NSDictionary *attributes = @{NSParagraphStyleAttributeName: style,
+                               NSFontAttributeName: [UIFont preferredFontForTextStyle: UIFontTextStyleFootnote]};
+  NSAttributedString *attributedMessage = [[NSAttributedString alloc] initWithString:message
+                                                                          attributes:attributes];
+  @try {
+    [alert setValue:attributedMessage forKey:@"attributedMessage"];
+  } @catch (NSException *exception) {
+  } @finally {
+  }
+  [[navigationController obtainTopController] presentViewController:alert animated:YES completion:nil];
 }
 
 @end

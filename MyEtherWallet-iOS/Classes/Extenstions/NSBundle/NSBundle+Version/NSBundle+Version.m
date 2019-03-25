@@ -9,9 +9,19 @@
 #import "NSBundle+Version.h"
 
 @implementation NSBundle (Version)
-- (NSString *) applicationVersion {
+
+- (NSString *) fullApplicationVersion {
   NSString *version = [self objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
   NSString *build = [self objectForInfoDictionaryKey:(NSString*)kCFBundleVersionKey];
   return [NSString stringWithFormat:@"%@ (%@)", version, build];
 }
+
+- (NSString *) applicationVersion {
+  return [self objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+}
+
+- (NSString *) applicationBuild {
+  return [self objectForInfoDictionaryKey:(NSString*)kCFBundleVersionKey];
+}
+
 @end

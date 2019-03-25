@@ -24,6 +24,7 @@
 @protocol RateService;
 @protocol MigrationService;
 @protocol SecurityService;
+@protocol WhatsNewService;
 
 @protocol ServiceComponents <NSObject>
 - (id <MEWConnectFacade>) MEWConnectFacade;
@@ -40,4 +41,5 @@
 - (id <RateService>) rateService;
 - (id <MigrationService>) migrationService;
 - (id <SecurityService>) securityService;
+- (id <WhatsNewService>) whatsNewService;
 @end

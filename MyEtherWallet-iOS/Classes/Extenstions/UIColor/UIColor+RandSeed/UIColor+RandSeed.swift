@@ -9,6 +9,7 @@
 import UIKit
 
 extension UIColor {
+  @objc
   static func color(seed: String) -> [UIColor] {
     var colors:[UIColor] = [];
     var randSeed = seed.randSeed()

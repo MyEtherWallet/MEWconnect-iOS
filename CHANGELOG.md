@@ -1,16 +1,28 @@
+### Release 1.0.10
+
+- Added what’s new alert, so you can catch up with the latest changes
+- Additional confirmation if active network in MEW is not matching active network in MEWconnect
+- Share address UI updates
+- Minor layout improvements
+- Buy Ether scenario fixes for iOS 10.x
+- Multiple minor fixes and improvements
+
 ### Release 1.0.9
+
 - Updated ‘Restore wallet’ flow
 - Updated QR code scanning instructions
 - Recovery phrase can be viewed in Info screen (password protected, and available only after the backup is completed) 
 - Minor fixes and improvements
 
 ### Release 1.0.8
+
 - Completely re-designed 'restore from recovery phrase' flow. 
 - Improved authentication, and additional password brute force protection
 - More accurate price estimates when purchasing Ether.
 - Other minor improvements
 
 ### Release 1.0.7
+
 - More accurate price quotes for Buy Ether scenario.
 
 ### Release 1.0.6

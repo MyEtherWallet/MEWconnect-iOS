@@ -8,7 +8,7 @@
 @implementation NetworkPlainObject
 
 - (BlockchainNetworkType) network {
-  return [self.chainID shortValue];
+  return [self.chainID longLongValue];
 }
 
 @end

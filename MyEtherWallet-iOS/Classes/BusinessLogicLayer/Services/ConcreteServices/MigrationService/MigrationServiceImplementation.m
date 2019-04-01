@@ -128,7 +128,7 @@ static NSString *const kMigrationServiceMomExtension  = @"mom";
       if ([components count] != 2 || [key hasPrefix:kKeychainServiceV2ItemPrefix]) {
         continue;
       }
-      NSInteger chainId = [[components lastObject] integerValue];
+      BlockchainNetworkType chainId = [[components lastObject] longLongValue];
       if (chainId == BlockchainNetworkTypeRopsten) { //Skip Ropsten network
         continue;
       } else {

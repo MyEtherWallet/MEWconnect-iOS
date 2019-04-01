@@ -15,6 +15,10 @@
   return [UIColor colorWithRGB:0x064DD6];
 }
 
++ (instancetype) mainLightApplicationColor {
+  return [UIColor colorWithRGB:0x2067F0];
+}
+
 + (instancetype) placeholderColor {
   return [UIColor colorWithRGB:0xFFFFFF alpha:0.3];
 }
@@ -73,6 +77,18 @@
 
 + (instancetype) disabledPlaceholderColor {
   return [UIColor colorWithWhite:0.0 alpha:0.2];
+}
+
++ (instancetype)connectionLightGrayBackgroundColor {
+  return [UIColor colorWithRGB:0x878C9D];
+}
+
++ (instancetype)noInternetConnectionColor {
+  return [UIColor colorWithRGB:0xB6B9C1];
+}
+
++ (instancetype)dimmingBackgroundColor {
+  return [UIColor colorWithRGB:0x04040F alpha:0.4];
 }
 
 @end

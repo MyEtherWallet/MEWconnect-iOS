@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.13.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dSU-dI-qOt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dSU-dI-qOt">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.9"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -33,91 +33,128 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="56" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZO-L9-lI5" customClass="FlatButton">
-                                <rect key="frame" x="24" y="587" width="136" height="56"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                <state key="normal" title="DECLINE">
-                                    <color key="titleColor" red="0.83921568627450982" green="0.023529411764705882" blue="0.023529411764705882" alpha="1" colorSpace="deviceRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="theme">
-                                        <integer key="value" value="3"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="compact" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="declineAction:" destination="XFV-L1-tpZ" eventType="touchUpInside" id="QXr-io-RNi"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="56" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELz-ph-v1O" customClass="FlatButton">
-                                <rect key="frame" x="175" y="587" width="176" height="56"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                <state key="normal" title="CONFIRM">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="theme">
-                                        <integer key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="compact" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="confirmAction:" destination="XFV-L1-tpZ" eventType="touchUpInside" id="xHa-h7-dtb"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Th-YD-m1u">
-                                <rect key="frame" x="24" y="64" width="211.5" height="95.5"/>
-                                <string key="text">Verify
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fOA-2L-PhO">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zDj-4s-pbA">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="712.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="56" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZO-L9-lI5" customClass="FlatButton">
+                                                <rect key="frame" x="24" y="632.5" width="136" height="56"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                <state key="normal" title="DECLINE">
+                                                    <color key="titleColor" red="0.83921568627450982" green="0.023529411764705882" blue="0.023529411764705882" alpha="1" colorSpace="deviceRGB"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="theme">
+                                                        <integer key="value" value="3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="compact" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="declineAction:" destination="XFV-L1-tpZ" eventType="touchUpInside" id="QXr-io-RNi"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="56" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELz-ph-v1O" customClass="FlatButton">
+                                                <rect key="frame" x="175" y="632.5" width="176" height="56"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                <state key="normal" title="CONFIRM">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="theme">
+                                                        <integer key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="compact" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="confirmAction:" destination="XFV-L1-tpZ" eventType="touchUpInside" id="xHa-h7-dtb"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Th-YD-m1u">
+                                                <rect key="frame" x="24" y="44" width="211.5" height="95.5"/>
+                                                <string key="text">Verify
 transaction</string>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
-                                <color key="textColor" red="0.023529411764705882" green="0.30196078431372547" blue="0.83921568627450982" alpha="1" colorSpace="deviceRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="112" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iIY-vJ-qAa" customClass="CheckboxButton" customModule="MyEtherWallet_iOS" customModuleProvider="target">
-                                <rect key="frame" x="16" y="179.5" width="343" height="112"/>
-                                <state key="normal">
-                                    <color key="titleColor" red="0.023529411760000001" green="0.30196078430000001" blue="0.83921568629999999" alpha="1" colorSpace="deviceRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="confirmAddress:" destination="XFV-L1-tpZ" eventType="touchUpInside" id="7Vx-nV-WVe"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="112" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j1M-Mb-kKC" customClass="CheckboxButton" customModule="MyEtherWallet_iOS" customModuleProvider="target">
-                                <rect key="frame" x="16" y="307.5" width="343" height="112"/>
-                                <state key="normal">
-                                    <color key="titleColor" red="0.023529411760000001" green="0.30196078430000001" blue="0.83921568629999999" alpha="1" colorSpace="deviceRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="confirmAmount:" destination="XFV-L1-tpZ" eventType="touchUpInside" id="vEa-5E-UWg"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9lA-gj-2kw">
-                                <rect key="frame" x="24" y="437.5" width="327" height="67"/>
-                                <string key="text">If your computer is compromised, attackers might replace ‘Send to’ address with their own, before sending your transaction. That’s why it’s important to check it in MEWconnect.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.42745098039215684" green="0.45098039215686275" blue="0.44705882352941173" alpha="1" colorSpace="deviceRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                                <color key="textColor" red="0.023529411764705882" green="0.30196078431372547" blue="0.83921568627450982" alpha="1" colorSpace="deviceRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="xZA-gg-ep6">
+                                                <rect key="frame" x="16" y="159.5" width="343" height="368"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="112" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PLT-yv-JDm" customClass="CheckboxButton" customModule="MyEtherWallet_iOS" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="112"/>
+                                                        <state key="normal">
+                                                            <color key="titleColor" red="0.023529411760000001" green="0.30196078430000001" blue="0.83921568629999999" alpha="1" colorSpace="deviceRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="confirmNetwork:" destination="XFV-L1-tpZ" eventType="touchUpInside" id="aMA-YW-jqT"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="112" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iIY-vJ-qAa" customClass="CheckboxButton" customModule="MyEtherWallet_iOS" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="128" width="343" height="112"/>
+                                                        <state key="normal">
+                                                            <color key="titleColor" red="0.023529411760000001" green="0.30196078430000001" blue="0.83921568629999999" alpha="1" colorSpace="deviceRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="confirmAddress:" destination="XFV-L1-tpZ" eventType="touchUpInside" id="7Vx-nV-WVe"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="112" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j1M-Mb-kKC" customClass="CheckboxButton" customModule="MyEtherWallet_iOS" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="256" width="343" height="112"/>
+                                                        <state key="normal">
+                                                            <color key="titleColor" red="0.023529411760000001" green="0.30196078430000001" blue="0.83921568629999999" alpha="1" colorSpace="deviceRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="confirmAmount:" destination="XFV-L1-tpZ" eventType="touchUpInside" id="vEa-5E-UWg"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9lA-gj-2kw">
+                                                <rect key="frame" x="24" y="545.5" width="327" height="67"/>
+                                                <string key="text">If your computer is compromised, attackers might replace ‘Send to’ address with their own, before sending your transaction. That’s why it’s important to check it in MEWconnect.</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" red="0.42745098039215684" green="0.45098039215686275" blue="0.44705882352941173" alpha="1" colorSpace="deviceRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="8Th-YD-m1u" firstAttribute="top" secondItem="zDj-4s-pbA" secondAttribute="top" constant="44" id="1xY-Ww-ghs"/>
+                                            <constraint firstItem="8Th-YD-m1u" firstAttribute="leading" secondItem="zDj-4s-pbA" secondAttribute="leading" constant="24" id="38o-UI-obW"/>
+                                            <constraint firstItem="ELz-ph-v1O" firstAttribute="bottom" secondItem="SZO-L9-lI5" secondAttribute="bottom" id="3yo-Id-bq4"/>
+                                            <constraint firstAttribute="trailing" secondItem="ELz-ph-v1O" secondAttribute="trailing" constant="24" id="4G2-nH-aA5"/>
+                                            <constraint firstAttribute="bottom" secondItem="SZO-L9-lI5" secondAttribute="bottom" constant="24" id="B2q-ra-qef"/>
+                                            <constraint firstItem="9lA-gj-2kw" firstAttribute="trailing" secondItem="xZA-gg-ep6" secondAttribute="trailing" constant="-8" id="Hwa-8k-j0i"/>
+                                            <constraint firstItem="ELz-ph-v1O" firstAttribute="left" secondItem="SZO-L9-lI5" secondAttribute="right" constant="15" id="PyK-2w-X5S"/>
+                                            <constraint firstAttribute="trailing" secondItem="xZA-gg-ep6" secondAttribute="trailing" constant="16" id="VMQ-Ri-MuF"/>
+                                            <constraint firstItem="SZO-L9-lI5" firstAttribute="leading" secondItem="zDj-4s-pbA" secondAttribute="leading" constant="24" id="dwb-sn-cJf"/>
+                                            <constraint firstItem="9lA-gj-2kw" firstAttribute="top" secondItem="xZA-gg-ep6" secondAttribute="bottom" constant="18" id="hld-k3-Tbi"/>
+                                            <constraint firstItem="xZA-gg-ep6" firstAttribute="leading" secondItem="zDj-4s-pbA" secondAttribute="leading" constant="16" id="i1g-f0-FpN"/>
+                                            <constraint firstItem="ELz-ph-v1O" firstAttribute="width" secondItem="SZO-L9-lI5" secondAttribute="width" constant="40" id="oGU-38-2U4"/>
+                                            <constraint firstItem="SZO-L9-lI5" firstAttribute="top" secondItem="9lA-gj-2kw" secondAttribute="bottom" constant="20" id="oWs-pT-WZf"/>
+                                            <constraint firstItem="xZA-gg-ep6" firstAttribute="top" secondItem="8Th-YD-m1u" secondAttribute="bottom" constant="20" id="xrP-Us-Ddr"/>
+                                            <constraint firstItem="9lA-gj-2kw" firstAttribute="leading" secondItem="xZA-gg-ep6" secondAttribute="leading" constant="8" id="y9c-O7-T5Y"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="zDj-4s-pbA" firstAttribute="leading" secondItem="fOA-2L-PhO" secondAttribute="leading" id="38w-dQ-nAu"/>
+                                    <constraint firstItem="zDj-4s-pbA" firstAttribute="width" secondItem="fOA-2L-PhO" secondAttribute="width" id="47b-bh-Q1H"/>
+                                    <constraint firstAttribute="trailing" secondItem="zDj-4s-pbA" secondAttribute="trailing" id="R9T-lq-Mzs"/>
+                                    <constraint firstAttribute="bottom" secondItem="zDj-4s-pbA" secondAttribute="bottom" id="hpF-xz-Uf7"/>
+                                    <constraint firstItem="zDj-4s-pbA" firstAttribute="top" secondItem="fOA-2L-PhO" secondAttribute="top" id="iFS-BD-eDe"/>
+                                </constraints>
+                                <inset key="scrollIndicatorInsets" minX="0.0" minY="10" maxX="0.0" maxY="0.0"/>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="j1M-Mb-kKC" firstAttribute="top" secondItem="iIY-vJ-qAa" secondAttribute="bottom" constant="16" id="2BL-X0-82B"/>
-                            <constraint firstItem="ELz-ph-v1O" firstAttribute="bottom" secondItem="SZO-L9-lI5" secondAttribute="bottom" id="8bw-dW-cYE"/>
-                            <constraint firstItem="iIY-vJ-qAa" firstAttribute="leading" secondItem="aLr-uG-IND" secondAttribute="leading" constant="16" id="B18-6d-pXp"/>
-                            <constraint firstItem="aLr-uG-IND" firstAttribute="trailing" secondItem="ELz-ph-v1O" secondAttribute="trailing" constant="24" id="HWp-wL-0xv"/>
-                            <constraint firstItem="9lA-gj-2kw" firstAttribute="left" secondItem="j1M-Mb-kKC" secondAttribute="left" constant="8" id="MoA-UL-CPg"/>
-                            <constraint firstItem="ELz-ph-v1O" firstAttribute="left" secondItem="SZO-L9-lI5" secondAttribute="right" constant="15" id="Q2O-Fc-8H9"/>
-                            <constraint firstItem="aLr-uG-IND" firstAttribute="trailing" secondItem="iIY-vJ-qAa" secondAttribute="trailing" constant="16" id="SJ1-4A-a6L"/>
-                            <constraint firstItem="8Th-YD-m1u" firstAttribute="top" secondItem="aLr-uG-IND" secondAttribute="top" constant="44" id="TQ0-xB-EoZ"/>
-                            <constraint firstItem="SZO-L9-lI5" firstAttribute="left" secondItem="aLr-uG-IND" secondAttribute="left" constant="24" id="TSp-la-YN1"/>
-                            <constraint firstItem="j1M-Mb-kKC" firstAttribute="left" secondItem="iIY-vJ-qAa" secondAttribute="left" id="Zxe-lE-xY6"/>
-                            <constraint firstItem="iIY-vJ-qAa" firstAttribute="top" secondItem="8Th-YD-m1u" secondAttribute="bottom" constant="20" id="gwq-8R-B7x"/>
-                            <constraint firstItem="9lA-gj-2kw" firstAttribute="top" secondItem="j1M-Mb-kKC" secondAttribute="bottom" constant="18" id="kR7-s0-XCp"/>
-                            <constraint firstItem="ELz-ph-v1O" firstAttribute="width" secondItem="SZO-L9-lI5" secondAttribute="width" constant="40" id="nIs-wp-npk"/>
-                            <constraint firstItem="j1M-Mb-kKC" firstAttribute="right" secondItem="iIY-vJ-qAa" secondAttribute="right" id="pl0-tF-1OW"/>
-                            <constraint firstItem="8Th-YD-m1u" firstAttribute="leading" secondItem="aLr-uG-IND" secondAttribute="leading" constant="24" id="qaJ-nQ-FtY"/>
-                            <constraint firstItem="aLr-uG-IND" firstAttribute="bottom" secondItem="SZO-L9-lI5" secondAttribute="bottom" constant="24" id="vX7-NQ-Jks"/>
-                            <constraint firstItem="j1M-Mb-kKC" firstAttribute="right" secondItem="9lA-gj-2kw" secondAttribute="right" constant="8" id="vp6-vx-UND"/>
+                            <constraint firstItem="fOA-2L-PhO" firstAttribute="top" secondItem="Jc1-Do-gqv" secondAttribute="top" id="R3a-yW-TXj"/>
+                            <constraint firstAttribute="trailing" secondItem="fOA-2L-PhO" secondAttribute="trailing" id="Vr6-mY-yUW"/>
+                            <constraint firstItem="fOA-2L-PhO" firstAttribute="leading" secondItem="Jc1-Do-gqv" secondAttribute="leading" id="k4Y-gr-d9b"/>
+                            <constraint firstAttribute="bottom" secondItem="fOA-2L-PhO" secondAttribute="bottom" id="xho-wB-1F1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="aLr-uG-IND"/>
                     </view>
@@ -125,12 +162,15 @@ transaction</string>
                     <connections>
                         <outlet property="addressCheckboxButton" destination="iIY-vJ-qAa" id="q7R-sv-BNF"/>
                         <outlet property="amountCheckboxButton" destination="j1M-Mb-kKC" id="cP9-ue-GJl"/>
-                        <outlet property="buttonsWidthConstraint" destination="nIs-wp-npk" id="6qZ-3V-HJH"/>
+                        <outlet property="buttonsWidthConstraint" destination="oGU-38-2U4" id="1x7-LK-OZl"/>
                         <outlet property="confirmButton" destination="ELz-ph-v1O" id="Wmi-Fj-itJ"/>
                         <outlet property="descriptionLabel" destination="9lA-gj-2kw" id="C2c-Ej-c0D"/>
-                        <outlet property="interbuttonOffsetConstraint" destination="Q2O-Fc-8H9" id="pU7-7Z-i5W"/>
+                        <outlet property="descriptionToButtonVerticalOffsetConstraint" destination="oWs-pT-WZf" id="f4a-2g-Z9j"/>
+                        <outlet property="interbuttonOffsetConstraint" destination="PyK-2w-X5S" id="KSB-3m-wVg"/>
+                        <outlet property="networkCheckboxButton" destination="PLT-yv-JDm" id="5Ja-H4-wLu"/>
+                        <outlet property="scrollView" destination="fOA-2L-PhO" id="uWt-PD-y9a"/>
                         <outlet property="titleLabel" destination="8Th-YD-m1u" id="Uph-vg-3B3"/>
-                        <outlet property="titleTopOffsetConstraint" destination="TQ0-xB-EoZ" id="8d4-zJ-5FZ"/>
+                        <outlet property="titleTopOffsetConstraint" destination="1xY-Ww-ghs" id="d1B-cT-uKC"/>
                         <segue destination="V5h-zr-lHt" kind="show" identifier="TransactionToDeclinedTransactionSegueIdentifier" id="1xX-zz-QIs"/>
                         <segue destination="Osz-z3-Lpi" kind="show" identifier="TransactionToConfirmedTransactionSegueIdentifier" id="9FK-49-v55"/>
                         <segue destination="Y4n-mg-mQJ" kind="presentation" identifier="TransactionToContextPasswordSegueIdentifier" id="VgU-CY-Pdz"/>
@@ -397,7 +437,7 @@ declined</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="yXB-lP-loE"/>
-        <segue reference="zTc-Aq-ZZx"/>
+        <segue reference="9FK-49-v55"/>
+        <segue reference="VgU-CY-Pdz"/>
     </inferredMetricsTieBreakers>
 </document>

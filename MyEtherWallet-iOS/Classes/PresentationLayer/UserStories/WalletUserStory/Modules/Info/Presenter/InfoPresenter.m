@@ -39,7 +39,7 @@
 #pragma mark - InfoViewOutput
 
 - (void) didTriggerViewReadyEvent {
-  NSString *version = [[NSBundle mainBundle] applicationVersion];
+  NSString *version = [[NSBundle mainBundle] fullApplicationVersion];
   BOOL isBackedUp = [self.interactor isBackedUp];
   BOOL isBackupAvailable = [self.interactor isBackupAvailable];
   [self.view setupInitialStateWithVersion:version backupAvailability:isBackupAvailable backedStatus:isBackedUp];
@@ -50,7 +50,7 @@
 }
 
 - (void) contactAction {
-  NSString *version = [[NSBundle mainBundle] applicationVersion];
+  NSString *version = [[NSBundle mainBundle] fullApplicationVersion];
   NSString *subject = [NSString stringWithFormat:@"MEWconnect v.%@ support request", version];
   NSArray *recipients = @[kMyEtherWalletSupportEmail];
   [self.view presentMailComposeWithSubject:subject recipients:recipients];

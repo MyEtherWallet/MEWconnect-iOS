@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 extension UIImage {
+  @objc
   func part(seed: String, size: CGSize) -> UIImage? {
     let randOrigin = CGPoint.rand(seed: seed)
     let scaledSize = CGSize(width: size.width * scale,

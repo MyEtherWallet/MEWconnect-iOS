@@ -122,6 +122,8 @@
                                           }];
                           [definition injectProperty:@selector(accountsService)
                                                 with:[self.serviceComponents accountsService]];
+                          [definition injectProperty:@selector(whatsNewService)
+                                                with:[self.serviceComponents whatsNewService]];
                           [definition injectProperty:@selector(ponsomizer)
                                                 with:[self.ponsomizerAssembly ponsomizer]];
                           [definition injectProperty:@selector(splashPasswordFactory)

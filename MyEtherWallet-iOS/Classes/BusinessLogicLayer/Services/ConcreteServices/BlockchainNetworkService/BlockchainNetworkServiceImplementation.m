@@ -18,6 +18,7 @@
 #import "NetworkPlainObject.h"
 
 #import "BlockchainNetworkTypes.h"
+#import "BlockchainNetworkTypesInfoProvider.h"
 
 @implementation BlockchainNetworkServiceImplementation
 
@@ -47,7 +48,7 @@
   }];
 }
 
-- (NetworkModelObject *) createNetworkWithChainID:(NSInteger)chainID inAccount:(AccountPlainObject *)account {
+- (NetworkModelObject *) createNetworkWithChainID:(BlockchainNetworkType)chainID inAccount:(AccountPlainObject *)account {
   __block NetworkModelObject *createdNetwork = nil;
   NSManagedObjectContext *rootSavingContext = [NSManagedObjectContext MR_rootSavingContext];
   [rootSavingContext performBlockAndWait:^{
@@ -57,8 +58,8 @@
     networkModelObject.chainID = @(chainID);
     
     MasterTokenModelObject *masterTokenModelObject = [MasterTokenModelObject MR_createEntityInContext:rootSavingContext];
-    masterTokenModelObject.name = NSStringNameFromBlockchainNetworkType(chainID);
-    masterTokenModelObject.symbol = NSStringCurrencySymbolFromBlockchainNetworkType(chainID);
+    masterTokenModelObject.name = [BlockchainNetworkTypesInfoProvider nameForNetworkType:chainID];
+    masterTokenModelObject.symbol = [BlockchainNetworkTypesInfoProvider currencySymbolForNetworkType:chainID];
     
     masterTokenModelObject.fromNetworkMaster = networkModelObject;
     [accountModelObject addNetworksObject:networkModelObject];

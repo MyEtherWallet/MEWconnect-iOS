@@ -165,9 +165,9 @@ static NSUInteger kStartViewIconMinimumCorners  = 4;
   NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
   CGFloat fontSize = 26.0;
   if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
-    fontSize = 20.0;
-    style.minimumLineHeight = 28.0;
-    style.maximumLineHeight = 28.0;
+    fontSize = 18.0;
+    style.minimumLineHeight = 26.0;
+    style.maximumLineHeight = 26.0;
   } else {
     style.minimumLineHeight = 34.0;
     style.maximumLineHeight = 34.0;

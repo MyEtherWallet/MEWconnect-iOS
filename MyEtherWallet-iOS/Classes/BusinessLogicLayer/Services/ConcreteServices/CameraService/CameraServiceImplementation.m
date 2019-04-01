@@ -52,7 +52,12 @@
 
 #pragma mark - Public
 
-- (void)isHaveAccessWithCompletion:(CameraServiceAccessCompletion)completion {
+- (BOOL) isHaveAccess {
+  AVAuthorizationStatus state = [AVCaptureDevice authorizationStatusForMediaType:self.mediaType];
+  return state == AVAuthorizationStatusAuthorized;
+}
+
+- (void) isHaveAccessWithCompletion:(CameraServiceAccessCompletion)completion {
   AVAuthorizationStatus state = [AVCaptureDevice authorizationStatusForMediaType:self.mediaType];
   switch (state) {
     case AVAuthorizationStatusAuthorized: {

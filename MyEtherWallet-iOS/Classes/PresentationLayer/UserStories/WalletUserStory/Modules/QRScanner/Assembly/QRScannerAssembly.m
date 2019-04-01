@@ -44,6 +44,8 @@
                                                 with:[self.serviceComponents MEWConnectFacade]];
                           [definition injectProperty:@selector(cameraService)
                                                 with:[self.serviceComponents cameraServiceWithDelegate:[self interactorQRScanner]]];
+                          [definition injectProperty:@selector(reachabilityService)
+                                                with:[self.serviceComponents reachabilityServiceWithDelegate:[self interactorQRScanner]]];
                         }];
 }
 

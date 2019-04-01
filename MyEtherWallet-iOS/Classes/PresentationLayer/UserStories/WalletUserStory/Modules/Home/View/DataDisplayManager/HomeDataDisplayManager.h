@@ -27,4 +27,5 @@
 @property (nonatomic, weak) HomeTableViewAnimator *animator;
 - (void)configureDataDisplayManagerWithAnimator:(HomeTableViewAnimator *)animator;
 - (void)updateDataDisplayManagerWithTransactionBatch:(CacheTransactionBatch *)transactionBatch maximumCount:(NSUInteger)maximumCount;
+- (CGFloat)estimatedContentHeight;
 @end

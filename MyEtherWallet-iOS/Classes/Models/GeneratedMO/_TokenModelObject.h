@@ -82,11 +82,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSString*)primitiveSymbol;
 - (void)setPrimitiveSymbol:(nullable NSString*)value;
 
-- (NetworkModelObject*)primitiveFromNetwork;
-- (void)setPrimitiveFromNetwork:(NetworkModelObject*)value;
+- (nullable NetworkModelObject*)primitiveFromNetwork;
+- (void)setPrimitiveFromNetwork:(nullable NetworkModelObject*)value;
 
-- (FiatPriceModelObject*)primitivePrice;
-- (void)setPrimitivePrice:(FiatPriceModelObject*)value;
+- (nullable FiatPriceModelObject*)primitivePrice;
+- (void)setPrimitivePrice:(nullable FiatPriceModelObject*)value;
 
 - (NSMutableOrderedSet<PurchaseHistoryModelObject*>*)primitivePurchaseHistory;
 - (void)setPrimitivePurchaseHistory:(NSMutableOrderedSet<PurchaseHistoryModelObject*>*)value;

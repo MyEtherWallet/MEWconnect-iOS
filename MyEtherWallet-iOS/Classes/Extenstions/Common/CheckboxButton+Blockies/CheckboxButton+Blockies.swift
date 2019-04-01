@@ -10,6 +10,7 @@ import Foundation
 import BlockiesSwift
 
 extension CheckboxButton {
+  @objc
   func update(rightImageWithSeed seed: String) {
     let blockies = Blockies(seed: seed.lowercased())
     update(rightImage: blockies.createImage())

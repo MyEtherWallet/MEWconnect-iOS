@@ -13,4 +13,5 @@
 @protocol ShareViewInput <NSObject>
 - (void) setupInitialStateWithAddress:(NSString *)address qrCode:(UIImage *)qrCode network:(BlockchainNetworkType)network;
 - (void) presentShareWithItems:(NSArray *)items;
+- (void) showToastAddressCopied;
 @end

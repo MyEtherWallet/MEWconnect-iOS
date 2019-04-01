@@ -57,6 +57,7 @@ static NSTimeInterval const kSharePresenterBrightnessAnimationDuration      = 0.
 
 - (void) copyAction {
   [self.interactor copyAddress];
+  [self.view showToastAddressCopied];
 }
 
 - (void) shareAction {

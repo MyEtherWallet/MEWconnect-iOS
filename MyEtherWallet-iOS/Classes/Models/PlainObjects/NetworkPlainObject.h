@@ -4,6 +4,7 @@
 //
 
 #import "BlockchainNetworkTypes.h"
+#import "BlockchainNetworkTypesInfoProvider.h"
 
 #import "_NetworkPlainObject.h"
 

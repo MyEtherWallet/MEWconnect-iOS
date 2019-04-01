@@ -11,53 +11,27 @@
 
 @import Foundation;
 
-typedef NS_ENUM(NSInteger, BlockchainNetworkType) {
-  BlockchainNetworkTypeMainnet  = 1,
-  BlockchainNetworkTypeRopsten  = 3,
+typedef NS_ENUM(long long, BlockchainNetworkType) {
+  BlockchainNetworkTypeEthereum         = 1,
+  BlockchainNetworkTypeExpanse          = 2,
+  BlockchainNetworkTypeRopsten          = 3,
+  BlockchainNetworkTypeRinkeby          = 4,
+  BlockchainNetworkTypeUbiq             = 8,
+  BlockchainNetworkTypeEOSClassic       = 20,
+  BlockchainNetworkTypeEthereumSocial   = 28,
+  BlockchainNetworkTypeKovan            = 42,
+  BlockchainNetworkTypeGoChain          = 60,
+  BlockchainNetworkTypeEthereumClassic  = 61,
+  BlockchainNetworkTypeEllaism          = 64,
+  BlockchainNetworkTypeProofOfAuthority = 99,
+  BlockchainNetworkTypeCallisto         = 820,
+  BlockchainNetworkTypeEtherGem         = 1987,
+  BlockchainNetworkTypeEtherSocial      = 31102,
+  BlockchainNetworkTypeTomoCoin         = 40686,
+  BlockchainNetworkTypeAkroma           = 200625,
+  BlockchainNetworkTypeEther1           = 1313114,
+  BlockchainNetworkTypeMusicCoin        = 7762959,
+  BlockchainNetworkTypePirl             = 3125659152,
 };
-
-NS_INLINE NSString *NSStringCurrencySymbolFromBlockchainNetworkType(BlockchainNetworkType type) {
-  switch (type) {
-    case BlockchainNetworkTypeRopsten: {
-      return @"ROPSTEN ETH";
-      break;
-    }
-    case BlockchainNetworkTypeMainnet:
-    default: {
-      return @"ETH";
-      break;
-    }
-  }
-}
-
-NS_INLINE NSString *NSStringNameFromBlockchainNetworkType(BlockchainNetworkType type) {
-  switch (type) {
-    case BlockchainNetworkTypeRopsten: {
-      return @"Ethereum Ropsten";
-      break;
-    }
-    case BlockchainNetworkTypeMainnet:
-    default: {
-      return @"Ethereum";
-      break;
-    }
-  }
-}
-
-NS_INLINE NSString *NSStringFromBlockchainNetworkType(BlockchainNetworkType type) {
-  switch (type) {
-    case BlockchainNetworkTypeMainnet: {
-      return @"Mainnet";
-      break;
-    }
-    case BlockchainNetworkTypeRopsten: {
-      return @"Ropsten";
-      break;
-    }
-    default:
-      break;
-  }
-  return @"";
-}
 
 #endif /* BlockchainNetworkTypes_h */

@@ -561,7 +561,7 @@ password</string>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Ojg-YK-5s8">
-                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="EY8-L0-Ymt">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="EY8-L0-Ymt">
                             <connections>
                                 <action selector="cancelAction:" destination="jqt-TW-elj" id="nsW-du-IXL"/>
                             </connections>
@@ -1140,7 +1140,7 @@ existing wallet</string>
                         <viewLayoutGuide key="safeArea" id="yWo-oU-aZW"/>
                     </view>
                     <navigationItem key="navigationItem" id="eLV-f8-a5X">
-                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="CWx-tV-eBA">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="CWx-tV-eBA">
                             <connections>
                                 <action selector="closeAction:" destination="AGR-e4-hRU" id="wqE-e2-x4u"/>
                             </connections>

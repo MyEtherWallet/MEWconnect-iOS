@@ -48,13 +48,18 @@
         textColor = [UIColor mainApplicationColor];
         break;
       }
+      case FlatButtonThemeLighterBlue: {
+        backgroundColor = [UIColor backgroundLightBlue];
+        textColor = [UIColor mainLightApplicationColor];
+        break;
+      }
       case FlatButtonThemeUnknown:
       default: {
         break;
       }
     }
     CGFloat size = 56.0;
-    if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40 && self.compact) {
+    if (([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40 && self.compact) || self.forceCompact) {
       size = 44.0;
     }
     CGFloat halfSize = size / 2.0;

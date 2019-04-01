@@ -165,7 +165,7 @@
   body.walletAddress = masterToken.address;
   body.fiatAmount = quote.fiatAmount;
   body.digitalAmount = quote.digitalAmount;
-  body.appInstallDate = [self.keychainService obtainFirstLaunchDate];
+  body.appInstallDate = [self.keychainService obtainFirstLaunchDateString];
   return body;
 }
 

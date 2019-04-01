@@ -60,6 +60,15 @@
   return self.transaction;
 }
 
+- (NSString *) obtainNetworkToConfirm {
+  BlockchainNetworkType transactionNetwork = [self.transaction.chainId longLongValue];
+  BlockchainNetworkType accountNetwork = [self.masterToken.fromNetworkMaster network];
+  if (transactionNetwork != accountNetwork) {
+    return [BlockchainNetworkTypesInfoProvider nameForNetworkType:transactionNetwork];
+  }
+  return nil;
+}
+
 - (void)signTransactionWithPassword:(NSString *)password {
   if (self.transaction) {
     @weakify(self);

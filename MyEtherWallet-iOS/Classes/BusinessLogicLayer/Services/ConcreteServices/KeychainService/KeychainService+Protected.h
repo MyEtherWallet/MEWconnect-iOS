@@ -6,12 +6,14 @@
 //  Copyright © 2018 MyEtherWallet, Inc. All rights reserved.
 //
 
+#import "BlockchainNetworkTypes.h"
+
 @class AccountPlainObject;
 
 @protocol KeychainServiceProtected <NSObject>
 - (NSString *) _keyForUID:(NSString *)uid;
-- (NSString *) _keyForAddress:(NSString *)address chainID:(NSInteger)chainID;
-- (NSString *) _historyKeyForAddress:(NSString *)address chainID:(NSInteger)chainID;
+- (NSString *) _keyForAddress:(NSString *)address chainID:(BlockchainNetworkType)chainID;
+- (NSString *) _historyKeyForAddress:(NSString *)address chainID:(BlockchainNetworkType)chainID;
 - (NSDictionary *) _obtainItemWithKey:(NSString *)key;
 - (void) _storeItem:(NSDictionary *)item withKey:(NSString *)key;
 - (void) _removeItemWithKey:(NSString *)key;

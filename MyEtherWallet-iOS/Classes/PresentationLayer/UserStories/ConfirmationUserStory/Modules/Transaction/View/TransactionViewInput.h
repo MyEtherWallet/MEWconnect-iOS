@@ -12,6 +12,6 @@
 
 @protocol TransactionViewInput <NSObject>
 - (void) setupInitialState;
-- (void) updateWithTransaction:(MEWConnectTransaction *)transaction;
+- (void) updateWithTransaction:(MEWConnectTransaction *)transaction networkName:(NSString *)networkName;
 - (void) enableSign:(BOOL)enable;
 @end

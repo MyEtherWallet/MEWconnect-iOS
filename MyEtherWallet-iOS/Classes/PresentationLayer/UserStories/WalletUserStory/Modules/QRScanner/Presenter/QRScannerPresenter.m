@@ -63,10 +63,15 @@
 }
 
 - (void) contactSupportAction {
-  NSString *version = [[NSBundle mainBundle] applicationVersion];
+  NSString *version = [[NSBundle mainBundle] fullApplicationVersion];
   NSString *subject = [NSString stringWithFormat:@"MEWconnect iOS v.%@ connection issue", version];
   NSArray *recipients = @[kMyEtherWalletSupportEmail];
   [self.view presentMailComposeWithSubject:subject recipients:recipients];
+}
+
+- (void) tryAgainAction {
+  [self.interactor startReading];
+  [self.view hideStatus];
 }
 
 #pragma mark - QRScannerInteractorOutput
@@ -93,7 +98,7 @@
 
 - (void) accessGranted {
   _accessGranted = YES;
-  [self.view hideAccessWarning];
+  [self.view hideStatus];
   
   AVCaptureSession *session = [self.interactor obtainCaptureSession];
   [self.view updateWithCaptureSession:session];
@@ -105,6 +110,14 @@
 
 - (void) accessNotGranted {
   [self.view showAccessWarning];
+}
+
+- (void) internetConnectionIsUnreachable {
+  [self.view showNoConnection];
+}
+
+- (void) internetConnectionIsReachable {
+  [self.view hideStatus];
 }
 
 @end

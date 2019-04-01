@@ -65,21 +65,21 @@
 
 @dynamic chainID;
 
-- (int16_t)chainIDValue {
+- (int64_t)chainIDValue {
 	NSNumber *result = [self chainID];
-	return [result shortValue];
+	return [result longLongValue];
 }
 
-- (void)setChainIDValue:(int16_t)value_ {
+- (void)setChainIDValue:(int64_t)value_ {
 	[self setChainID:@(value_)];
 }
 
-- (int16_t)primitiveChainIDValue {
+- (int64_t)primitiveChainIDValue {
 	NSNumber *result = [self primitiveChainID];
-	return [result shortValue];
+	return [result longLongValue];
 }
 
-- (void)setPrimitiveChainIDValue:(int16_t)value_ {
+- (void)setPrimitiveChainIDValue:(int64_t)value_ {
 	[self setPrimitiveChainID:@(value_)];
 }
 

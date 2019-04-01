@@ -24,3 +24,5 @@ NSInteger const kKeychainServiceCurrentKeychainVersionValue = 2;
 
 NSString *const kKeychainServiceBruteForceLockDateField     = @"com.myetherwallet.bruteforce.lockdate";
 NSString *const kKeychainServiceBruteForceNumberOfAttempts  = @"com.myetherwallet.bruteforce.attempts";
+
+NSString *const kKeychainServiceWhatsNewVersionField        = @"com.myetherwallet.mewconnect.whatsnew.version";

@@ -233,6 +233,40 @@
 		564952FB20E3F20D00CF2348 /* AccountsServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 564952FA20E3F20D00CF2348 /* AccountsServiceImplementation.m */; };
 		5649CC27216FF1320009D982 /* CacheTransactionSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5649CC26216FF1320009D982 /* CacheTransactionSection.m */; };
 		5649CC28217002840009D982 /* CacheTransactionSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5649CC26216FF1320009D982 /* CacheTransactionSection.m */; };
+		565851322242B347006AEC7E /* ConfirmationUIStringList.m in Sources */ = {isa = PBXBuildFile; fileRef = 565851312242B347006AEC7E /* ConfirmationUIStringList.m */; };
+		565851332242B347006AEC7E /* ConfirmationUIStringList.m in Sources */ = {isa = PBXBuildFile; fileRef = 565851312242B347006AEC7E /* ConfirmationUIStringList.m */; };
+		565851362242B357006AEC7E /* ConfirmationImageCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 565851352242B357006AEC7E /* ConfirmationImageCatalog.m */; };
+		565851372242B357006AEC7E /* ConfirmationImageCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 565851352242B357006AEC7E /* ConfirmationImageCatalog.m */; };
+		5658513A2242B36B006AEC7E /* ConfirmationUIStringAttributesProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 565851392242B36B006AEC7E /* ConfirmationUIStringAttributesProvider.m */; };
+		5658513B2242B36B006AEC7E /* ConfirmationUIStringAttributesProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 565851392242B36B006AEC7E /* ConfirmationUIStringAttributesProvider.m */; };
+		5658513E2242CA81006AEC7E /* BlockchainNetworkTypesInfoProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 5658513D2242CA81006AEC7E /* BlockchainNetworkTypesInfoProvider.m */; };
+		5658513F2242CA81006AEC7E /* BlockchainNetworkTypesInfoProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 5658513D2242CA81006AEC7E /* BlockchainNetworkTypesInfoProvider.m */; };
+		5658514922440505006AEC7E /* BuyEther10WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5658514822440505006AEC7E /* BuyEther10WebViewController.m */; };
+		5658514A22440505006AEC7E /* BuyEther10WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5658514822440505006AEC7E /* BuyEther10WebViewController.m */; };
+		5658514F22442A7F006AEC7E /* CALayer+LockZPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 5658514E22442A7F006AEC7E /* CALayer+LockZPosition.m */; };
+		5658515022442A7F006AEC7E /* CALayer+LockZPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 5658514E22442A7F006AEC7E /* CALayer+LockZPosition.m */; };
+		56585154224435C7006AEC7E /* ToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56585153224435C7006AEC7E /* ToastView.m */; };
+		56585155224435C7006AEC7E /* ToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56585153224435C7006AEC7E /* ToastView.m */; };
+		5658515B224461CB006AEC7E /* WhatsNewServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5658515A224461CB006AEC7E /* WhatsNewServiceImplementation.m */; };
+		5658515C224461CB006AEC7E /* WhatsNewServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5658515A224461CB006AEC7E /* WhatsNewServiceImplementation.m */; };
+		5658515E224462BA006AEC7E /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 5610EBA421DD97FB00F925C3 /* CHANGELOG.md */; };
+		5658515F224462BB006AEC7E /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 5610EBA421DD97FB00F925C3 /* CHANGELOG.md */; };
+		5658516222497F9C006AEC7E /* MappingModel_v_2_to_3.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5658516122497F9C006AEC7E /* MappingModel_v_2_to_3.xcmappingmodel */; };
+		5658516322497F9C006AEC7E /* MappingModel_v_2_to_3.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5658516122497F9C006AEC7E /* MappingModel_v_2_to_3.xcmappingmodel */; };
+		56594467224167D800C9BD82 /* QRScannerStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56594466224167D800C9BD82 /* QRScannerStatusView.m */; };
+		56594468224167D800C9BD82 /* QRScannerStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56594466224167D800C9BD82 /* QRScannerStatusView.m */; };
+		5659447322417DE200C9BD82 /* UIStringList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5659447222417DE200C9BD82 /* UIStringList.m */; };
+		5659447422417DE200C9BD82 /* UIStringList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5659447222417DE200C9BD82 /* UIStringList.m */; };
+		5659447A22417EAB00C9BD82 /* WalletUIStringList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5659447922417EAB00C9BD82 /* WalletUIStringList.m */; };
+		5659447B22417EAB00C9BD82 /* WalletUIStringList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5659447922417EAB00C9BD82 /* WalletUIStringList.m */; };
+		5659447F22417ECF00C9BD82 /* ImageCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5659447E22417ECF00C9BD82 /* ImageCatalog.m */; };
+		5659448022417ECF00C9BD82 /* ImageCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5659447E22417ECF00C9BD82 /* ImageCatalog.m */; };
+		5659448322417EDA00C9BD82 /* WalletImageCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5659448222417EDA00C9BD82 /* WalletImageCatalog.m */; };
+		5659448422417EDA00C9BD82 /* WalletImageCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5659448222417EDA00C9BD82 /* WalletImageCatalog.m */; };
+		565944882241826100C9BD82 /* UIStringAttributesProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 565944872241826100C9BD82 /* UIStringAttributesProvider.m */; };
+		565944892241826100C9BD82 /* UIStringAttributesProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 565944872241826100C9BD82 /* UIStringAttributesProvider.m */; };
+		5659448D2241828600C9BD82 /* WalletUIStringAttributesProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 5659448C2241828600C9BD82 /* WalletUIStringAttributesProvider.m */; };
+		5659448E2241828600C9BD82 /* WalletUIStringAttributesProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 5659448C2241828600C9BD82 /* WalletUIStringAttributesProvider.m */; };
 		565FFA4F2081838F00755B6C /* TyphoonAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 565FFA4E2081838F00755B6C /* TyphoonAppDelegate.m */; };
 		5662E24D2147FEAA00A3C77E /* ContextPasswordAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA7058E611E406A1AA22703 /* ContextPasswordAssembly.m */; };
 		5662E24E2147FEAD00A3C77E /* ContextPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B6EBBF7ADB10AF3DF0DFCD /* ContextPasswordViewController.m */; };
@@ -1266,6 +1300,7 @@
 		429A91FADBC8437782C0E9C6 /* InfoAssembly.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = InfoAssembly.h; sourceTree = "<group>"; };
 		42DE71492569077D3F9CF2AE /* BackupWordsAssembly.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BackupWordsAssembly.h; sourceTree = "<group>"; };
 		4303EE5F3C9B7D7F82123EE5 /* BackupDoneInteractor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BackupDoneInteractor.h; sourceTree = "<group>"; };
+		436334F9DA192A9B3763EED9 /* Pods-MEWconnect-MyEtherWallet-iOS-Beta.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MEWconnect-MyEtherWallet-iOS-Beta.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MEWconnect-MyEtherWallet-iOS-Beta/Pods-MEWconnect-MyEtherWallet-iOS-Beta.debug.xcconfig"; sourceTree = "<group>"; };
 		4415B9E78E059F38EB53A817 /* ShareInteractor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ShareInteractor.h; sourceTree = "<group>"; };
 		446216B11D5B2A33BA278C17 /* RestorePreparePresenterTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RestorePreparePresenterTests.m; sourceTree = "<group>"; };
 		44A457FDE982F50B57EE4323 /* MessageSignerInteractor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MessageSignerInteractor.m; sourceTree = "<group>"; };
@@ -1472,7 +1507,40 @@
 		564952FA20E3F20D00CF2348 /* AccountsServiceImplementation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountsServiceImplementation.m; sourceTree = "<group>"; };
 		5649CC25216FF1320009D982 /* CacheTransactionSection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CacheTransactionSection.h; sourceTree = "<group>"; };
 		5649CC26216FF1320009D982 /* CacheTransactionSection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CacheTransactionSection.m; sourceTree = "<group>"; };
+		565851302242B347006AEC7E /* ConfirmationUIStringList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfirmationUIStringList.h; sourceTree = "<group>"; };
+		565851312242B347006AEC7E /* ConfirmationUIStringList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConfirmationUIStringList.m; sourceTree = "<group>"; };
+		565851342242B357006AEC7E /* ConfirmationImageCatalog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfirmationImageCatalog.h; sourceTree = "<group>"; };
+		565851352242B357006AEC7E /* ConfirmationImageCatalog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConfirmationImageCatalog.m; sourceTree = "<group>"; };
+		565851382242B36B006AEC7E /* ConfirmationUIStringAttributesProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfirmationUIStringAttributesProvider.h; sourceTree = "<group>"; };
+		565851392242B36B006AEC7E /* ConfirmationUIStringAttributesProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConfirmationUIStringAttributesProvider.m; sourceTree = "<group>"; };
+		5658513C2242CA81006AEC7E /* BlockchainNetworkTypesInfoProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockchainNetworkTypesInfoProvider.h; sourceTree = "<group>"; };
+		5658513D2242CA81006AEC7E /* BlockchainNetworkTypesInfoProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlockchainNetworkTypesInfoProvider.m; sourceTree = "<group>"; };
+		5658514722440505006AEC7E /* BuyEther10WebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuyEther10WebViewController.h; sourceTree = "<group>"; };
+		5658514822440505006AEC7E /* BuyEther10WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuyEther10WebViewController.m; sourceTree = "<group>"; };
+		5658514D22442A7F006AEC7E /* CALayer+LockZPosition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+LockZPosition.h"; sourceTree = "<group>"; };
+		5658514E22442A7F006AEC7E /* CALayer+LockZPosition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+LockZPosition.m"; sourceTree = "<group>"; };
+		56585152224435C7006AEC7E /* ToastView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToastView.h; sourceTree = "<group>"; };
+		56585153224435C7006AEC7E /* ToastView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToastView.m; sourceTree = "<group>"; };
+		56585159224461CB006AEC7E /* WhatsNewServiceImplementation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WhatsNewServiceImplementation.h; sourceTree = "<group>"; };
+		5658515A224461CB006AEC7E /* WhatsNewServiceImplementation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WhatsNewServiceImplementation.m; sourceTree = "<group>"; };
+		5658515D224461D7006AEC7E /* WhatsNewService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WhatsNewService.h; sourceTree = "<group>"; };
+		5658516022497F4C006AEC7E /* MEWconnect.v.3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MEWconnect.v.3.xcdatamodel; sourceTree = "<group>"; };
+		5658516122497F9C006AEC7E /* MappingModel_v_2_to_3.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = MappingModel_v_2_to_3.xcmappingmodel; sourceTree = "<group>"; };
 		565935FC5198CFB42639DA1E /* BuyEtherHistoryViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BuyEtherHistoryViewController.m; sourceTree = "<group>"; };
+		56594465224167D800C9BD82 /* QRScannerStatusView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QRScannerStatusView.h; sourceTree = "<group>"; };
+		56594466224167D800C9BD82 /* QRScannerStatusView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QRScannerStatusView.m; sourceTree = "<group>"; };
+		5659447122417DE200C9BD82 /* UIStringList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIStringList.h; sourceTree = "<group>"; };
+		5659447222417DE200C9BD82 /* UIStringList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIStringList.m; sourceTree = "<group>"; };
+		5659447822417EAB00C9BD82 /* WalletUIStringList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalletUIStringList.h; sourceTree = "<group>"; };
+		5659447922417EAB00C9BD82 /* WalletUIStringList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WalletUIStringList.m; sourceTree = "<group>"; };
+		5659447D22417ECF00C9BD82 /* ImageCatalog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageCatalog.h; sourceTree = "<group>"; };
+		5659447E22417ECF00C9BD82 /* ImageCatalog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageCatalog.m; sourceTree = "<group>"; };
+		5659448122417EDA00C9BD82 /* WalletImageCatalog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalletImageCatalog.h; sourceTree = "<group>"; };
+		5659448222417EDA00C9BD82 /* WalletImageCatalog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WalletImageCatalog.m; sourceTree = "<group>"; };
+		565944862241826100C9BD82 /* UIStringAttributesProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIStringAttributesProvider.h; sourceTree = "<group>"; };
+		565944872241826100C9BD82 /* UIStringAttributesProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIStringAttributesProvider.m; sourceTree = "<group>"; };
+		5659448B2241828600C9BD82 /* WalletUIStringAttributesProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalletUIStringAttributesProvider.h; sourceTree = "<group>"; };
+		5659448C2241828600C9BD82 /* WalletUIStringAttributesProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WalletUIStringAttributesProvider.m; sourceTree = "<group>"; };
 		565FFA4D2081838F00755B6C /* TyphoonAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TyphoonAppDelegate.h; sourceTree = "<group>"; };
 		565FFA4E2081838F00755B6C /* TyphoonAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TyphoonAppDelegate.m; sourceTree = "<group>"; };
 		566334FB37EDE9EA46493776 /* ConfirmPasswordInteractorTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ConfirmPasswordInteractorTests.m; sourceTree = "<group>"; };
@@ -2017,6 +2085,7 @@
 		683E8F3B0035BFE651D67160 /* QRScannerViewOutput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = QRScannerViewOutput.h; sourceTree = "<group>"; };
 		6935F9C5FD28B770EF33796A /* ShareRouter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ShareRouter.h; sourceTree = "<group>"; };
 		697F6514256FAF8BE3C583AD /* BackupStartAssemblyTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BackupStartAssemblyTests.m; sourceTree = "<group>"; };
+		69E4C6D1689B6409DD5A65A1 /* Pods-MEWconnect-MyEtherWallet-iOS-Beta.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MEWconnect-MyEtherWallet-iOS-Beta.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-MEWconnect-MyEtherWallet-iOS-Beta/Pods-MEWconnect-MyEtherWallet-iOS-Beta.appstore.xcconfig"; sourceTree = "<group>"; };
 		6A2BA58178562788106B7820 /* ForgotPasswordViewOutput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordViewOutput.h; sourceTree = "<group>"; };
 		6B2CD3398BF760DC7F6E24F1 /* RestoreSafetyPresenter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RestoreSafetyPresenter.m; sourceTree = "<group>"; };
 		6B8E5F6E76201FCF88CF35A0 /* MessageSignerModuleInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MessageSignerModuleInput.h; sourceTree = "<group>"; };
@@ -2427,6 +2496,7 @@
 		F8917E8B618A84445E2211D4 /* SettingsPresenterTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SettingsPresenterTests.m; sourceTree = "<group>"; };
 		F965B2E1519BE24488B35D0E /* StartInteractorTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = StartInteractorTests.m; sourceTree = "<group>"; };
 		FB0CCDEF650B6161977A6F3A /* BackupInfoInteractorTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BackupInfoInteractorTests.m; sourceTree = "<group>"; };
+		FB25CF07D1A15B022F95AC18 /* Pods-MEWconnect-MyEtherWallet-iOS-Beta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MEWconnect-MyEtherWallet-iOS-Beta.release.xcconfig"; path = "Pods/Target Support Files/Pods-MEWconnect-MyEtherWallet-iOS-Beta/Pods-MEWconnect-MyEtherWallet-iOS-Beta.release.xcconfig"; sourceTree = "<group>"; };
 		FB2B6F0BD97A364DC5913C11 /* Pods-MyEtherWallet-iOSUITests.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyEtherWallet-iOSUITests.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-MyEtherWallet-iOSUITests/Pods-MyEtherWallet-iOSUITests.appstore.xcconfig"; sourceTree = "<group>"; };
 		FB9FC9E2299555A58D985D0B /* ForgotPasswordPresenterTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ForgotPasswordPresenterTests.m; sourceTree = "<group>"; };
 		FC31CE53D3305D9F1C0B74F3 /* SplashPasswordRouterInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SplashPasswordRouterInput.h; sourceTree = "<group>"; };
@@ -2683,6 +2753,8 @@
 				973B103EF355D6F0719F917A /* BuyEtherWebViewOutput.h */,
 				25CD309E55232142F33D32A3 /* BuyEtherWebViewController.h */,
 				8781BB1CCB445088FBD04636 /* BuyEtherWebViewController.m */,
+				5658514722440505006AEC7E /* BuyEther10WebViewController.h */,
+				5658514822440505006AEC7E /* BuyEther10WebViewController.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4021,6 +4093,7 @@
 		560D772020B49789009A3D6D /* ConcreteClasses */ = {
 			isa = PBXGroup;
 			children = (
+				56585151224435B4006AEC7E /* ToastView */,
 				5677BB6120FEA5C70019E92D /* RotationButton */,
 				56C878A820BB6F7600343ADC /* StatusButton */,
 				56FB38EB20AF9204007776C8 /* LinkedLabel */,
@@ -4481,6 +4554,8 @@
 				564952BF20E3DEE300CF2348 /* BlockchainNetworkServiceImplementation.h */,
 				564952C020E3DEE300CF2348 /* BlockchainNetworkServiceImplementation.m */,
 				564952C220E3DFD500CF2348 /* BlockchainNetworkTypes.h */,
+				5658513C2242CA81006AEC7E /* BlockchainNetworkTypesInfoProvider.h */,
+				5658513D2242CA81006AEC7E /* BlockchainNetworkTypesInfoProvider.m */,
 			);
 			path = BlockchainNetworkService;
 			sourceTree = "<group>";
@@ -4502,6 +4577,162 @@
 				5649CC26216FF1320009D982 /* CacheTransactionSection.m */,
 			);
 			path = CacheTransactionSection;
+			sourceTree = "<group>";
+		};
+		5658512C2242B31B006AEC7E /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				5658512F2242B32E006AEC7E /* StringAttributes */,
+				5658512E2242B32A006AEC7E /* Images */,
+				5658512D2242B327006AEC7E /* Strings */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		5658512D2242B327006AEC7E /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				565851302242B347006AEC7E /* ConfirmationUIStringList.h */,
+				565851312242B347006AEC7E /* ConfirmationUIStringList.m */,
+			);
+			path = Strings;
+			sourceTree = "<group>";
+		};
+		5658512E2242B32A006AEC7E /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				565851342242B357006AEC7E /* ConfirmationImageCatalog.h */,
+				565851352242B357006AEC7E /* ConfirmationImageCatalog.m */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		5658512F2242B32E006AEC7E /* StringAttributes */ = {
+			isa = PBXGroup;
+			children = (
+				565851382242B36B006AEC7E /* ConfirmationUIStringAttributesProvider.h */,
+				565851392242B36B006AEC7E /* ConfirmationUIStringAttributesProvider.m */,
+			);
+			path = StringAttributes;
+			sourceTree = "<group>";
+		};
+		5658514B22442A5E006AEC7E /* CALayer */ = {
+			isa = PBXGroup;
+			children = (
+				5658514C22442A68006AEC7E /* CALayer+LockZPosition */,
+			);
+			path = CALayer;
+			sourceTree = "<group>";
+		};
+		5658514C22442A68006AEC7E /* CALayer+LockZPosition */ = {
+			isa = PBXGroup;
+			children = (
+				5658514D22442A7F006AEC7E /* CALayer+LockZPosition.h */,
+				5658514E22442A7F006AEC7E /* CALayer+LockZPosition.m */,
+			);
+			path = "CALayer+LockZPosition";
+			sourceTree = "<group>";
+		};
+		56585151224435B4006AEC7E /* ToastView */ = {
+			isa = PBXGroup;
+			children = (
+				56585152224435C7006AEC7E /* ToastView.h */,
+				56585153224435C7006AEC7E /* ToastView.m */,
+			);
+			path = ToastView;
+			sourceTree = "<group>";
+		};
+		56585158224461A5006AEC7E /* WhatsNewService */ = {
+			isa = PBXGroup;
+			children = (
+				5658515D224461D7006AEC7E /* WhatsNewService.h */,
+				56585159224461CB006AEC7E /* WhatsNewServiceImplementation.h */,
+				5658515A224461CB006AEC7E /* WhatsNewServiceImplementation.m */,
+			);
+			path = WhatsNewService;
+			sourceTree = "<group>";
+		};
+		5659446922416F3C00C9BD82 /* StatusView */ = {
+			isa = PBXGroup;
+			children = (
+				56594465224167D800C9BD82 /* QRScannerStatusView.h */,
+				56594466224167D800C9BD82 /* QRScannerStatusView.m */,
+			);
+			path = StatusView;
+			sourceTree = "<group>";
+		};
+		5659446F22417DCF00C9BD82 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				565944852241824300C9BD82 /* StringAttributes */,
+				5659447C22417EBE00C9BD82 /* Images */,
+				5659447022417DD700C9BD82 /* Strings */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		5659447022417DD700C9BD82 /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				5659447122417DE200C9BD82 /* UIStringList.h */,
+				5659447222417DE200C9BD82 /* UIStringList.m */,
+			);
+			path = Strings;
+			sourceTree = "<group>";
+		};
+		5659447522417E7F00C9BD82 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				5659448A2241826500C9BD82 /* StringAttributes */,
+				5659447722417E8F00C9BD82 /* Images */,
+				5659447622417E8900C9BD82 /* Strings */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		5659447622417E8900C9BD82 /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				5659447822417EAB00C9BD82 /* WalletUIStringList.h */,
+				5659447922417EAB00C9BD82 /* WalletUIStringList.m */,
+			);
+			path = Strings;
+			sourceTree = "<group>";
+		};
+		5659447722417E8F00C9BD82 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				5659448122417EDA00C9BD82 /* WalletImageCatalog.h */,
+				5659448222417EDA00C9BD82 /* WalletImageCatalog.m */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		5659447C22417EBE00C9BD82 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				5659447D22417ECF00C9BD82 /* ImageCatalog.h */,
+				5659447E22417ECF00C9BD82 /* ImageCatalog.m */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		565944852241824300C9BD82 /* StringAttributes */ = {
+			isa = PBXGroup;
+			children = (
+				565944862241826100C9BD82 /* UIStringAttributesProvider.h */,
+				565944872241826100C9BD82 /* UIStringAttributesProvider.m */,
+			);
+			path = StringAttributes;
+			sourceTree = "<group>";
+		};
+		5659448A2241826500C9BD82 /* StringAttributes */ = {
+			isa = PBXGroup;
+			children = (
+				5659448B2241828600C9BD82 /* WalletUIStringAttributesProvider.h */,
+				5659448C2241828600C9BD82 /* WalletUIStringAttributesProvider.m */,
+			);
+			path = StringAttributes;
 			sourceTree = "<group>";
 		};
 		565FFA492081836800755B6C /* ApplicationLayer */ = {
@@ -4827,13 +5058,6 @@
 			path = "UIScreen+ScreenScaleType";
 			sourceTree = "<group>";
 		};
-		5677BB5020FD0D830019E92D /* UIDevice */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = UIDevice;
-			sourceTree = "<group>";
-		};
 		5677BB5720FE9F5C0019E92D /* UIView */ = {
 			isa = PBXGroup;
 			children = (
@@ -5153,6 +5377,7 @@
 		5699983F2095177D00D45153 /* WalletUserStory */ = {
 			isa = PBXGroup;
 			children = (
+				5659447522417E7F00C9BD82 /* Constants */,
 				56999843209517C100D45153 /* Storyboard */,
 				569998402095178800D45153 /* Modules */,
 			);
@@ -5175,6 +5400,7 @@
 		56999841209517A300D45153 /* ConfirmationUserStory */ = {
 			isa = PBXGroup;
 			children = (
+				5658512C2242B31B006AEC7E /* Constants */,
 				56999844209517C800D45153 /* Storyboard */,
 				56999842209517B000D45153 /* Modules */,
 			);
@@ -5592,6 +5818,7 @@
 		56AC9435208F76DF00E5BC2C /* ConcreteServices */ = {
 			isa = PBXGroup;
 			children = (
+				56585158224461A5006AEC7E /* WhatsNewService */,
 				56FFD7F92192482500341D96 /* SecurityService */,
 				56D85B77217FAD1300B474C6 /* MigrationService */,
 				56191EAA215052D8000BF97F /* RateService */,
@@ -5656,11 +5883,11 @@
 		56AC944A208FAAE000E5BC2C /* Extenstions */ = {
 			isa = PBXGroup;
 			children = (
+				5658514B22442A5E006AEC7E /* CALayer */,
 				56FFD8052192620900341D96 /* UIResponder */,
 				56FFD7FF219250A500341D96 /* UIViewController */,
 				5677BB712100A80E0019E92D /* UIBezierPath */,
 				5677BB5720FE9F5C0019E92D /* UIView */,
-				5677BB5020FD0D830019E92D /* UIDevice */,
 				5677BB4420FD0A150019E92D /* UIScreen */,
 				56F17AC020E23FDE0010393C /* NSBundle */,
 				569E51C520D9465C00883583 /* Common */,
@@ -5916,6 +6143,7 @@
 			children = (
 				56F8EAA42183BDCC0010274B /* CustomPolicies */,
 				56F8EAA12183B7F90010274B /* MappingModel_v_1_to_2.xcmappingmodel */,
+				5658516122497F9C006AEC7E /* MappingModel_v_2_to_3.xcmappingmodel */,
 			);
 			path = CoreDataMappingModel;
 			sourceTree = "<group>";
@@ -9076,6 +9304,7 @@
 		C85E964F9D6452DA15D8B9EB /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				5659446F22417DCF00C9BD82 /* Constants */,
 				5668E4E02083D93C0070A402 /* Assemblies */,
 				56A4EAAA20B8BE070042A358 /* Presentations */,
 				5668E4E12083D9430070A402 /* UserStories */,
@@ -9409,6 +9638,7 @@
 				683E8F3B0035BFE651D67160 /* QRScannerViewOutput.h */,
 				CA12B5039BED5D38878D8AF8 /* QRScannerViewController.h */,
 				AA6DF4713EBC024BD47A9633 /* QRScannerViewController.m */,
+				5659446922416F3C00C9BD82 /* StatusView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -9663,6 +9893,9 @@
 				07DF82019A108691F7CBCB64 /* Pods-MEWconnect-MyEtherWallet-iOS-MyEtherWallet-iOSTests.debug.xcconfig */,
 				D62B98088A6460F358412CDF /* Pods-MEWconnect-MyEtherWallet-iOS-MyEtherWallet-iOSTests.release.xcconfig */,
 				5E9DFA439A8965987C8E2D53 /* Pods-MEWconnect-MyEtherWallet-iOS-MyEtherWallet-iOSTests.appstore.xcconfig */,
+				436334F9DA192A9B3763EED9 /* Pods-MEWconnect-MyEtherWallet-iOS-Beta.debug.xcconfig */,
+				FB25CF07D1A15B022F95AC18 /* Pods-MEWconnect-MyEtherWallet-iOS-Beta.release.xcconfig */,
+				69E4C6D1689B6409DD5A65A1 /* Pods-MEWconnect-MyEtherWallet-iOS-Beta.appstore.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -10226,6 +10459,7 @@
 				56E3E64E21016DB60014152D /* LaunchScreen.storyboard in Resources */,
 				56E3E64F21016DB60014152D /* InfoDestructiveTableViewCell.xib in Resources */,
 				56E3E65021016DB60014152D /* HomeEmptyTableViewCell.xib in Resources */,
+				5658515E224462BA006AEC7E /* CHANGELOG.md in Resources */,
 				56E3E65E21016E060014152D /* Assets.xcassets in Resources */,
 				56E9D3752170C4260004AC61 /* peep_connection_success.caf in Resources */,
 				56E3E65121016DB60014152D /* Confirmation.storyboard in Resources */,
@@ -10260,6 +10494,7 @@
 				56C878B620BC199300343ADC /* HomeEmptyTableViewCell.xib in Resources */,
 				56BDC2E3212F342700D7AE03 /* ApplicationIcon.xcassets in Resources */,
 				56E3E6652101746F0014152D /* Assets.xcassets in Resources */,
+				5658515F224462BB006AEC7E /* CHANGELOG.md in Resources */,
 				56999848209517EB00D45153 /* Confirmation.storyboard in Resources */,
 				56E9D3742170C4260004AC61 /* peep_connection_success.caf in Resources */,
 				56A4EAA920B8BC440042A358 /* SplashPassword.storyboard in Resources */,
@@ -10312,7 +10547,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-MEWconnect-MyEtherWallet-iOS/Pods-MEWconnect-MyEtherWallet-iOS-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-MEWconnect-MyEtherWallet-iOS/Pods-MEWconnect-MyEtherWallet-iOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/BEMCheckBox/BEMCheckBox.framework",
 				"${BUILT_PRODUCTS_DIR}/BigInt/BigInt.framework",
@@ -10339,6 +10574,7 @@
 				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftRLP/SwiftRLP.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftSelfAware/SwiftSelfAware.framework",
+				"${BUILT_PRODUCTS_DIR}/TOWebViewController/TOWebViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/TTTAttributedLabel/TTTAttributedLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/TrezorCrypto/TrezorCrypto.framework",
 				"${BUILT_PRODUCTS_DIR}/Typhoon/Typhoon.framework",
@@ -10381,6 +10617,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftRLP.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSelfAware.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TOWebViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTTAttributedLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TrezorCrypto.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Typhoon.framework",
@@ -10397,7 +10634,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MEWconnect-MyEtherWallet-iOS/Pods-MEWconnect-MyEtherWallet-iOS-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MEWconnect-MyEtherWallet-iOS/Pods-MEWconnect-MyEtherWallet-iOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		3D4980B3FFB78C5DFCFE74E5 /* [CP] Check Pods Manifest.lock */ = {
@@ -10442,7 +10679,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-MEWconnect-MyEtherWallet-iOS-Beta/Pods-MEWconnect-MyEtherWallet-iOS-Beta-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-MEWconnect-MyEtherWallet-iOS-Beta/Pods-MEWconnect-MyEtherWallet-iOS-Beta-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/BEMCheckBox/BEMCheckBox.framework",
 				"${BUILT_PRODUCTS_DIR}/BigInt/BigInt.framework",
@@ -10469,6 +10706,7 @@
 				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftRLP/SwiftRLP.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftSelfAware/SwiftSelfAware.framework",
+				"${BUILT_PRODUCTS_DIR}/TOWebViewController/TOWebViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/TTTAttributedLabel/TTTAttributedLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/TrezorCrypto/TrezorCrypto.framework",
 				"${BUILT_PRODUCTS_DIR}/Typhoon/Typhoon.framework",
@@ -10511,6 +10749,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftRLP.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSelfAware.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TOWebViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTTAttributedLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TrezorCrypto.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Typhoon.framework",
@@ -10527,7 +10766,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MEWconnect-MyEtherWallet-iOS-Beta/Pods-MEWconnect-MyEtherWallet-iOS-Beta-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MEWconnect-MyEtherWallet-iOS-Beta/Pods-MEWconnect-MyEtherWallet-iOS-Beta-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		56FB3A3520B45971007776C8 /* ShellScript */ = {
@@ -10549,7 +10788,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-MEWconnect-MyEtherWallet-iOS-MyEtherWallet-iOSTests/Pods-MEWconnect-MyEtherWallet-iOS-MyEtherWallet-iOSTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-MEWconnect-MyEtherWallet-iOS-MyEtherWallet-iOSTests/Pods-MEWconnect-MyEtherWallet-iOS-MyEtherWallet-iOSTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/BEMCheckBox/BEMCheckBox.framework",
 				"${BUILT_PRODUCTS_DIR}/BigInt/BigInt.framework",
@@ -10576,6 +10815,7 @@
 				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftRLP/SwiftRLP.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftSelfAware/SwiftSelfAware.framework",
+				"${BUILT_PRODUCTS_DIR}/TOWebViewController/TOWebViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/TTTAttributedLabel/TTTAttributedLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/TrezorCrypto/TrezorCrypto.framework",
 				"${BUILT_PRODUCTS_DIR}/Typhoon/Typhoon.framework",
@@ -10619,6 +10859,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftRLP.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSelfAware.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TOWebViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTTAttributedLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TrezorCrypto.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Typhoon.framework",
@@ -10636,7 +10877,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MEWconnect-MyEtherWallet-iOS-MyEtherWallet-iOSTests/Pods-MEWconnect-MyEtherWallet-iOS-MyEtherWallet-iOSTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MEWconnect-MyEtherWallet-iOS-MyEtherWallet-iOSTests/Pods-MEWconnect-MyEtherWallet-iOS-MyEtherWallet-iOSTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C6460EBB23761D90F1D3133E /* [CP] Check Pods Manifest.lock */ = {
@@ -10676,6 +10917,7 @@
 				56335F7E2187662200C07E2B /* KeychainServiceConstantsV1.m in Sources */,
 				56E3E4F621016DB60014152D /* HomeTableViewCellObject.m in Sources */,
 				56A4FAC321485D2D00E7B022 /* ContextPasswordInputAccessoryView.m in Sources */,
+				5659447B22417EAB00C9BD82 /* WalletUIStringList.m in Sources */,
 				56E3E4F721016DB60014152D /* PresentationControllerAssembly.m in Sources */,
 				56896BA4221B6B0B00B78FF6 /* RestoreOptionsEmptyTableViewCell.m in Sources */,
 				56E3E4F821016DB60014152D /* MEWcryptoMessage.m in Sources */,
@@ -10693,6 +10935,7 @@
 				56E3E50321016DB60014152D /* CoreDataConfiguratorImplementation.m in Sources */,
 				56E3E50521016DB60014152D /* UIBezierPath+Morphing.m in Sources */,
 				56E3E50621016DB60014152D /* KeychainServiceImplementation.m in Sources */,
+				5658516322497F9C006AEC7E /* MappingModel_v_2_to_3.xcmappingmodel in Sources */,
 				56E3E50721016DB60014152D /* SimplexQuery.m in Sources */,
 				56E3E50821016DB60014152D /* MEWConnectFacadeImplementation.m in Sources */,
 				56E3E50921016DB60014152D /* CacheRequest.m in Sources */,
@@ -10700,6 +10943,7 @@
 				56E3E50B21016DB60014152D /* KeychainNetworkModel.m in Sources */,
 				56E3E50C21016DB60014152D /* CleanLaunchAppDelegate.m in Sources */,
 				56E3E50D21016DB60014152D /* UIColor+RandSeed.swift in Sources */,
+				56594468224167D800C9BD82 /* QRScannerStatusView.m in Sources */,
 				56E3E50E21016DB60014152D /* StoryboardsAssembly.m in Sources */,
 				5662E2502147FEB100A3C77E /* ContextPasswordInteractor.m in Sources */,
 				56E3E50F21016DB60014152D /* NSData+Hexadecimal.m in Sources */,
@@ -10716,6 +10960,7 @@
 				56E3E51821016DB60014152D /* StartInteractor.m in Sources */,
 				56E3E51921016DB60014152D /* ApplicationAssembly.m in Sources */,
 				56E3E51A21016DB60014152D /* ApplicationHelperAssembly.m in Sources */,
+				565851372242B357006AEC7E /* ConfirmationImageCatalog.m in Sources */,
 				56E3E51B21016DB60014152D /* CacheTransactionBatch.m in Sources */,
 				56E3E51C21016DB60014152D /* CompoundOperationBuilderConfig.m in Sources */,
 				56E3E51D21016DB60014152D /* RequestConfigurationOperation.m in Sources */,
@@ -10731,6 +10976,7 @@
 				56E3E52621016DB60014152D /* FiatPricesQueryTransformer.m in Sources */,
 				56E3E52721016DB60014152D /* NSData+ArrayBuffer.m in Sources */,
 				56E3E52821016DB60014152D /* StartRouter.m in Sources */,
+				5659447422417DE200C9BD82 /* UIStringList.m in Sources */,
 				56E3E52921016DB60014152D /* NetworkOperation.m in Sources */,
 				56E3E52A21016DB60014152D /* ManyResponseObjectFormatter.m in Sources */,
 				56191EA921504C39000BF97F /* CrashCatcherConfiguratorImplementation.m in Sources */,
@@ -10812,6 +11058,7 @@
 				56E3E56C21016DB60014152D /* PonsomizerAssembly.m in Sources */,
 				56E3E56D21016DB60014152D /* HomeAssembly.m in Sources */,
 				56E3E56E21016DB60014152D /* SimplexQuoteBody.m in Sources */,
+				5658515022442A7F006AEC7E /* CALayer+LockZPosition.m in Sources */,
 				56E3E56F21016DB60014152D /* HomeViewController.m in Sources */,
 				56E3E57021016DB60014152D /* BuyEtherHistoryDataDisplayManager.m in Sources */,
 				56E3E57121016DB60014152D /* QueryTransformerBase.m in Sources */,
@@ -10946,6 +11193,7 @@
 				56E3E5E421016DB60014152D /* ConfirmedTransactionInteractor.m in Sources */,
 				56E3E5E521016DB60014152D /* ResponseValidatorBase.m in Sources */,
 				56E3E5E621016DB60014152D /* TickerResponseConverterImplementation.m in Sources */,
+				5659448E2241828600C9BD82 /* WalletUIStringAttributesProvider.m in Sources */,
 				56E3E5E721016DB60014152D /* ConfirmedTransactionRouter.m in Sources */,
 				56E3E5E821016DB60014152D /* ResponseMappingOperation.m in Sources */,
 				56E3E5E921016DB60014152D /* BackupInfoAssembly.m in Sources */,
@@ -10969,13 +11217,17 @@
 				56E3E5F521016DB60014152D /* BackupStartPresenter.m in Sources */,
 				56E3E5F621016DB60014152D /* BackupStartInteractor.m in Sources */,
 				56E3E5F721016DB60014152D /* BackupStartRouter.m in Sources */,
+				5658514A22440505006AEC7E /* BuyEther10WebViewController.m in Sources */,
 				56E3E5F821016DB60014152D /* BackupWordsAssembly.m in Sources */,
 				56E3E5F921016DB60014152D /* BackupWordsViewController.m in Sources */,
 				56E3E5FA21016DB60014152D /* SimplexResponseValidator.m in Sources */,
 				56E3E5FB21016DB60014152D /* BackupWordsPresenter.m in Sources */,
 				56FFD7F22192204900341D96 /* SecurityAppDelegate.m in Sources */,
+				5659448422417EDA00C9BD82 /* WalletImageCatalog.m in Sources */,
 				56E3E5FC21016DB60014152D /* InfoDestructiveTableViewCell.m in Sources */,
+				5658513B2242B36B006AEC7E /* ConfirmationUIStringAttributesProvider.m in Sources */,
 				56E3E5FD21016DB60014152D /* BackupWordsInteractor.m in Sources */,
+				5658515C224461CB006AEC7E /* WhatsNewServiceImplementation.m in Sources */,
 				56FFD7FE2192484400341D96 /* SecurityServiceImplementation.m in Sources */,
 				56E3E5FE21016DB60014152D /* SimplexMappingProvider.m in Sources */,
 				56E3E5FF21016DB60014152D /* BackupWordsRouter.m in Sources */,
@@ -10998,6 +11250,7 @@
 				56E3E60A21016DB60014152D /* UIScreen+ScreenScaleType.m in Sources */,
 				56E3E60B21016DB60014152D /* BackupDonePresenter.m in Sources */,
 				56E3E60C21016DB60014152D /* BackupDoneInteractor.m in Sources */,
+				565944892241826100C9BD82 /* UIStringAttributesProvider.m in Sources */,
 				56E3E60E21016DB60014152D /* BackupDoneRouter.m in Sources */,
 				56FFD7ED2192201300341D96 /* SecurityRouter.m in Sources */,
 				56E3E60F21016DB60014152D /* SplashPasswordAssembly.m in Sources */,
@@ -11012,6 +11265,7 @@
 				56E3E61521016DB60014152D /* SplashPasswordInteractor.m in Sources */,
 				56E3E61721016DB60014152D /* StatusButton.m in Sources */,
 				56E3E61821016DB60014152D /* SimplexServiceImplementation.m in Sources */,
+				56585155224435C7006AEC7E /* ToastView.m in Sources */,
 				56E3E61921016DB60014152D /* AccountsServiceImplementation.m in Sources */,
 				56E3E61B21016DB60014152D /* SplashPasswordRouter.m in Sources */,
 				56E3E61C21016DB60014152D /* ForgotPasswordAssembly.m in Sources */,
@@ -11024,10 +11278,12 @@
 				56E3E62421016DB60014152D /* InfoPresenter.m in Sources */,
 				56896B84221B694300B78FF6 /* RestoreOptionsDataDisplayManager.m in Sources */,
 				56E3E62521016DB60014152D /* InfoInteractor.m in Sources */,
+				5658513F2242CA81006AEC7E /* BlockchainNetworkTypesInfoProvider.m in Sources */,
 				56A4FABA214813C500E7B022 /* FadeModalPresentingAnimationController.m in Sources */,
 				56E3E62721016DB60014152D /* InfoRouter.m in Sources */,
 				56E3E62821016DB60014152D /* BuyEtherAmountAssembly.m in Sources */,
 				56E3E62921016DB60014152D /* BuyEtherAmountViewController.m in Sources */,
+				5659448022417ECF00C9BD82 /* ImageCatalog.m in Sources */,
 				56E3E62A21016DB60014152D /* BuyEtherAmountPresenter.m in Sources */,
 				56E3E62B21016DB60014152D /* BuyEtherAmountInteractor.m in Sources */,
 				56E3E62C21016DB60014152D /* BuyEtherAmountRouter.m in Sources */,
@@ -11056,6 +11312,7 @@
 				5677C5B12181226500477ACD /* _NetworkPlainObject.m in Sources */,
 				5677C5872181226500477ACD /* _AccountModelObject.m in Sources */,
 				56E3E63F21016DB60014152D /* ConfirmationNavigationRouter.m in Sources */,
+				565851332242B347006AEC7E /* ConfirmationUIStringList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -11079,7 +11336,9 @@
 				56FB398F20B227EC007776C8 /* ResponseDeserializersAssembly.m in Sources */,
 				56FB39A320B22A47007776C8 /* ResponseConverterAssembly.m in Sources */,
 				563CF2F320EFAD3F005467AE /* BuyEtherHistoryItemTableViewCellObject.m in Sources */,
+				56585154224435C7006AEC7E /* ToastView.m in Sources */,
 				5677BB3920FA13860019E92D /* ModuleFactoriesAssembly.m in Sources */,
+				5658514F22442A7F006AEC7E /* CALayer+LockZPosition.m in Sources */,
 				56A29C9E20E0627200D05FF1 /* InfoEmptyTableViewCell.m in Sources */,
 				56E14C1120EC180500C41F83 /* SingleResponseObjectFormatter.m in Sources */,
 				56C45E9D20A35A00001261A2 /* CardView.m in Sources */,
@@ -11096,6 +11355,7 @@
 				EFF1B135C57BD1034056F8DE /* StartViewController.m in Sources */,
 				560A867520E681E700046B53 /* KeychainNetworkModel.m in Sources */,
 				56F8EAA22183B7F90010274B /* MappingModel_v_1_to_2.xcmappingmodel in Sources */,
+				56594467224167D800C9BD82 /* QRScannerStatusView.m in Sources */,
 				5668E4EA2083DA190070A402 /* CleanLaunchAppDelegate.m in Sources */,
 				5643879720A492240017790F /* UIColor+RandSeed.swift in Sources */,
 				5668E50C2083E7280070A402 /* StoryboardsAssembly.m in Sources */,
@@ -11128,11 +11388,13 @@
 				56FB3A4F20B46FB1007776C8 /* ManagedObjectMapper.m in Sources */,
 				56E14BC820E97ED200C41F83 /* FiatPricesQueryTransformer.m in Sources */,
 				569E51CA20D946B000883583 /* NSData+ArrayBuffer.m in Sources */,
+				5658515B224461CB006AEC7E /* WhatsNewServiceImplementation.m in Sources */,
 				2A3FFB6DBE3CE8BCA37EC381 /* StartRouter.m in Sources */,
 				56FB398A20B22726007776C8 /* NetworkOperation.m in Sources */,
 				56FB3A6120B471B0007776C8 /* ManyResponseObjectFormatter.m in Sources */,
 				563DF37E20986B7200F740FF /* UIColor+Hex.m in Sources */,
 				5668E4E52083D95F0070A402 /* ModuleAssemblyBase.m in Sources */,
+				5659448D2241828600C9BD82 /* WalletUIStringAttributesProvider.m in Sources */,
 				563C6AE620AF690A00E85B8B /* CheckboxButton+Blockies.swift in Sources */,
 				56191EA821504C35000BF97F /* CrashCatcherConfiguratorImplementation.m in Sources */,
 				56F17AC420E23FF60010393C /* NSBundle+Version.m in Sources */,
@@ -11164,6 +11426,7 @@
 				C68E10A4E1B3A9BF240DD0D5 /* NewWalletRouter.m in Sources */,
 				56307A94216F61AF00282602 /* UIScreen+AnimateBrightness.m in Sources */,
 				4B880994DD0B5F9B4F44203F /* RestoreWalletAssembly.m in Sources */,
+				5658516222497F9C006AEC7E /* MappingModel_v_2_to_3.xcmappingmodel in Sources */,
 				56C878BA20BC1A3300343ADC /* HomeEmptyTableViewCellObject.m in Sources */,
 				56DE4E0C20A9E61F001A2C19 /* BottomImageButton.m in Sources */,
 				15EE3D506AA2D21334803200 /* RestoreWalletViewController.m in Sources */,
@@ -11242,6 +11505,7 @@
 				56A4EAA420B826A50042A358 /* NSCharacterSet+WNS.m in Sources */,
 				564387A620A4A9820017790F /* CGPoint+RandSeed.swift in Sources */,
 				56BFD427209BC77100951000 /* String+HexPrefix.swift in Sources */,
+				5659447322417DE200C9BD82 /* UIStringList.m in Sources */,
 				56FB395720B1ACE2007776C8 /* NetworkCompoundOperationBuilder.m in Sources */,
 				563CF30620EFAF26005467AE /* BuyEtherHistoryCellObjectBuilder.m in Sources */,
 				560CB01F209B542A00BFF59C /* ResponseMappersAssembly.m in Sources */,
@@ -11268,6 +11532,7 @@
 				5677C5962181226500477ACD /* MasterTokenPlainObject.m in Sources */,
 				9C68410123433AEA8C27D94A /* DeclinedTransactionPresenter.m in Sources */,
 				56FB398620B226C9007776C8 /* ServerResponseModel.m in Sources */,
+				5659447A22417EAB00C9BD82 /* WalletUIStringList.m in Sources */,
 				560D772520B49927009A3D6D /* HomeTableViewAnimator.m in Sources */,
 				560D771320B49535009A3D6D /* HomeTableViewCell.m in Sources */,
 				560D773620B58C93009A3D6D /* BackupConfirmationSegmentedControl.m in Sources */,
@@ -11278,6 +11543,7 @@
 				5695A95A2B5CED358C015C0D /* DeclinedTransactionRouter.m in Sources */,
 				56896B83221B694300B78FF6 /* RestoreOptionsDataDisplayManager.m in Sources */,
 				563CF30A20EFB235005467AE /* BuyEtherHistoryTableViewAnimator.m in Sources */,
+				565944882241826100C9BD82 /* UIStringAttributesProvider.m in Sources */,
 				5677C59C2181226500477ACD /* TokenPlainObject.m in Sources */,
 				56FB3A5320B47037007776C8 /* ManagedObjectMappingProvider.m in Sources */,
 				5685FE162099F9A4008C75A1 /* FlatButton.m in Sources */,
@@ -11317,6 +11583,7 @@
 				3AFFA21DF27C931992B4A54C /* MessageSignerAssembly.m in Sources */,
 				3BBADB73833FE4F61E032A06 /* MessageSignerViewController.m in Sources */,
 				56FB396920B22091007776C8 /* RequestDataModel.m in Sources */,
+				5658513E2242CA81006AEC7E /* BlockchainNetworkTypesInfoProvider.m in Sources */,
 				9EA12B8253010D67DED815C9 /* MessageSignerPresenter.m in Sources */,
 				56E14C1920ED298100C41F83 /* SimplexOrder.m in Sources */,
 				563CF2F920EFAD65005467AE /* BuyEtherHistoryItemTableViewCell.m in Sources */,
@@ -11351,11 +11618,14 @@
 				A489564CB7B7EA7DD2D3BE4A /* BackupInfoRouter.m in Sources */,
 				B83681BB9459A6C08ABBA212 /* BackupStartAssembly.m in Sources */,
 				2B4CD051283C97E7A215B46C /* BackupStartViewController.m in Sources */,
+				5658514922440505006AEC7E /* BuyEther10WebViewController.m in Sources */,
 				563CF2F020EFAD37005467AE /* BuyEtherHistoryEmptyTableViewCellObject.m in Sources */,
 				5689111F20EE6511001552D4 /* SimplexPaymentQuery.m in Sources */,
 				C1E40ADDC31A90446D7E54FB /* BackupStartPresenter.m in Sources */,
 				19C254B03461059BFA00A529 /* BackupStartInteractor.m in Sources */,
+				5659447F22417ECF00C9BD82 /* ImageCatalog.m in Sources */,
 				56896BA1221B6B0B00B78FF6 /* RestoreOptionsNormalTableViewCellObject.m in Sources */,
+				565851322242B347006AEC7E /* ConfirmationUIStringList.m in Sources */,
 				50E9A0649AE46B8F3A5B8117 /* BackupStartRouter.m in Sources */,
 				726F177BFDD1D778D3118037 /* BackupWordsAssembly.m in Sources */,
 				EE2E56F2E2160F882F6FD764 /* BackupWordsViewController.m in Sources */,
@@ -11396,6 +11666,7 @@
 				56E14BDE20EBC84500C41F83 /* SimplexServiceImplementation.m in Sources */,
 				564952FB20E3F20D00CF2348 /* AccountsServiceImplementation.m in Sources */,
 				BFE229932CEED582B99472F2 /* SplashPasswordRouter.m in Sources */,
+				5659448322417EDA00C9BD82 /* WalletImageCatalog.m in Sources */,
 				0300F8A0DC179B5B8E58E3EC /* ForgotPasswordAssembly.m in Sources */,
 				A423000337866A1DB124671A /* ForgotPasswordViewController.m in Sources */,
 				010EC2BA658F3F6E97F548A3 /* ForgotPasswordPresenter.m in Sources */,
@@ -11426,12 +11697,14 @@
 				A30F16618E51D57E2E24EEFA /* BuyEtherNavigationPresenter.m in Sources */,
 				5677C58A2181226500477ACD /* _MasterTokenModelObject.m in Sources */,
 				5677BB4220FAB28C0019E92D /* UIView+LockFrame.m in Sources */,
+				5658513A2242B36B006AEC7E /* ConfirmationUIStringAttributesProvider.m in Sources */,
 				EA0EFB4E115E73BC1B98904C /* BuyEtherNavigationRouter.m in Sources */,
 				7CD4D8349C636C9982158EE2 /* BuyEtherWebAssembly.m in Sources */,
 				666B9C38833B024733CF5DB7 /* BuyEtherWebViewController.m in Sources */,
 				EA36650C452FF14AEA63AC24 /* BuyEtherWebPresenter.m in Sources */,
 				30DC9DBB091E3BE7E7290791 /* BuyEtherWebInteractor.m in Sources */,
 				B97380417D4D48CEFBC3AD41 /* BuyEtherWebRouter.m in Sources */,
+				565851362242B357006AEC7E /* ConfirmationImageCatalog.m in Sources */,
 				AA61150AB10C9B2857D74506 /* ConfirmationNavigationAssembly.m in Sources */,
 				74A2945485A6387284AEA0A0 /* ConfirmationNavigationViewController.m in Sources */,
 				EA8204AC2210D75975DCD2F5 /* ConfirmationNavigationPresenter.m in Sources */,
@@ -11776,7 +12049,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MyEtherWallet-iOS/MyEtherWallet-iOS-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = AppStore;
@@ -11846,7 +12119,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MyEtherWallet-iOS/MyEtherWallet-iOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -11874,7 +12147,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MyEtherWallet-iOS/MyEtherWallet-iOS-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -11902,7 +12175,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MyEtherWallet-iOS/MyEtherWallet-iOS-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = AppStore;
@@ -12066,7 +12339,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MyEtherWallet-iOS/MyEtherWallet-iOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -12096,7 +12369,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MyEtherWallet-iOS/MyEtherWallet-iOS-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -12252,10 +12525,11 @@
 		56FB3A2D20B45741007776C8 /* MEWconnect.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				5658516022497F4C006AEC7E /* MEWconnect.v.3.xcdatamodel */,
 				56D85B6F217F70A200B474C6 /* MEWconnect.v.2.xcdatamodel */,
 				56FB3A2E20B45741007776C8 /* MEWconnect.xcdatamodel */,
 			);
-			currentVersion = 56D85B6F217F70A200B474C6 /* MEWconnect.v.2.xcdatamodel */;
+			currentVersion = 5658516022497F4C006AEC7E /* MEWconnect.v.3.xcdatamodel */;
 			path = MEWconnect.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

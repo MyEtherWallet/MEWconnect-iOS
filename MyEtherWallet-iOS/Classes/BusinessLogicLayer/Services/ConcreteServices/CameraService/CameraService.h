@@ -14,6 +14,7 @@ typedef void(^CameraServiceAccessCompletion)(BOOL granted);
 
 @protocol CameraService <NSObject>
 @property (nonatomic, weak) id <CameraServiceDelegate> delegate;
+- (BOOL) isHaveAccess;
 - (void) isHaveAccessWithCompletion:(CameraServiceAccessCompletion)completion;
 - (AVCaptureSession *) obtainSession;
 - (void) startReading;

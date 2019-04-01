@@ -11,7 +11,7 @@
 @implementation AccountPlainObject
 
 - (NetworkPlainObject *) networkForNetworkType:(BlockchainNetworkType)networkType {
-  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.chainID = %d", networkType];
+  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.chainID = %lld", networkType];
   return [[self.networks filteredSetUsingPredicate:predicate] anyObject];
 }
 

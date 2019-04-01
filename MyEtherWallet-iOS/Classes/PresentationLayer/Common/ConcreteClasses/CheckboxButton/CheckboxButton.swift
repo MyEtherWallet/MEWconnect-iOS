@@ -42,18 +42,22 @@ class CheckboxButton: UIButton {
   
   //MARK: - Public
   
+  @objc
   func update(withContentTitle text: String?) {
     contentTitle = text
   }
   
+  @objc
   func update(withContentText text: String?) {
     contentText = text
   }
   
+  @objc
   func update(withContentDescription text: String?) {
     contentDescription = text
   }
   
+  @objc
   func update(rightImage image: UIImage?) {
     if image != nil {
       if rightImageView == nil {
@@ -117,9 +121,9 @@ class CheckboxButton: UIButton {
     }
     
     if let cDescription = contentDescription {
-      let descriptionAttributes:[String:Any] = [NSFontAttributeName: UIFont.systemFont(ofSize: contentDescriptionFontSize, weight: UIFontWeightRegular),
-                                                NSForegroundColorAttributeName: UIColor.lightGreyText(),
-                                                NSParagraphStyleAttributeName: NSParagraphStyle()]
+      let descriptionAttributes:[NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: contentDescriptionFontSize, weight: .regular),
+                                                                 .foregroundColor: UIColor.lightGreyText(),
+                                                                 .paragraphStyle: NSParagraphStyle()]
       attributedTitle.append(NSAttributedString(string: cDescription, attributes: descriptionAttributes))
     }
     if let cText = contentText {
@@ -132,9 +136,9 @@ class CheckboxButton: UIButton {
       let textParagraphStyle = NSMutableParagraphStyle()
       textParagraphStyle.lineSpacing = 4.0
       textParagraphStyle.paragraphSpacing = 2.0
-      let textAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: contentTextFontSize, weight: UIFontWeightSemibold),
-                            NSForegroundColorAttributeName: UIColor.black,
-                            NSParagraphStyleAttributeName: textParagraphStyle]
+      let textAttributes:[NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: contentTextFontSize, weight: .semibold),
+                                                          .foregroundColor: UIColor.black,
+                                                          .paragraphStyle: textParagraphStyle]
       attributedTitle.insert(NSAttributedString(string: text, attributes: textAttributes), at: 0)
     }
     if let cTitle = contentTitle {
@@ -146,9 +150,9 @@ class CheckboxButton: UIButton {
       }
       let titleParagraphSpacing = NSMutableParagraphStyle()
       titleParagraphSpacing.paragraphSpacing = 6.0
-      let titleAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: contentTitleFontSize, weight: UIFontWeightRegular),
-                             NSForegroundColorAttributeName: UIColor.black,
-                             NSParagraphStyleAttributeName: titleParagraphSpacing]
+      let titleAttributes:[NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: contentTitleFontSize, weight: .regular),
+                                                           .foregroundColor: UIColor.black,
+                                                           .paragraphStyle: titleParagraphSpacing]
       attributedTitle.insert(NSAttributedString(string: text, attributes: titleAttributes), at: 0)
     }
     
@@ -187,6 +191,6 @@ class CheckboxButton: UIButton {
   //MARK: - Layout
   
   override var intrinsicContentSize: CGSize {
-    return CGSize(width: UIViewNoIntrinsicMetric, height: CheckboxButtonConstants.button.height)
+    return CGSize(width: UIView.noIntrinsicMetric, height: CheckboxButtonConstants.button.height)
   }
 }

@@ -119,7 +119,7 @@
       }
       
       AccountModelObject *accountModelObject = [AccountModelObject MR_findFirstInContext:rootSavingContext];
-      NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.chainID = %d", BlockchainNetworkTypeEthereum];
+      NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.chainID = %lld", BlockchainNetworkTypeEthereum];
       NetworkModelObject *networkModelObject = [[accountModelObject.networks filteredSetUsingPredicate:predicate] anyObject];
       if (!networkModelObject) {
         networkModelObject = [accountModelObject.networks anyObject];

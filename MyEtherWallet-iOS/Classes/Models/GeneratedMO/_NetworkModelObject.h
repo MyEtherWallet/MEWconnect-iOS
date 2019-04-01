@@ -32,9 +32,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, nullable) NSNumber* chainID;
 
-@property (atomic) int16_t chainIDValue;
-- (int16_t)chainIDValue;
-- (void)setChainIDValue:(int16_t)value_;
+@property (atomic) int64_t chainIDValue;
+- (int64_t)chainIDValue;
+- (void)setChainIDValue:(int64_t)value_;
 
 @property (nonatomic, strong, nullable) AccountModelObject *fromAccount;
 
@@ -64,11 +64,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSNumber*)primitiveChainID;
 - (void)setPrimitiveChainID:(nullable NSNumber*)value;
 
-- (int16_t)primitiveChainIDValue;
-- (void)setPrimitiveChainIDValue:(int16_t)value_;
+- (int64_t)primitiveChainIDValue;
+- (void)setPrimitiveChainIDValue:(int64_t)value_;
 
-- (AccountModelObject*)primitiveFromAccount;
-- (void)setPrimitiveFromAccount:(AccountModelObject*)value;
+- (nullable AccountModelObject*)primitiveFromAccount;
+- (void)setPrimitiveFromAccount:(nullable AccountModelObject*)value;
 
 - (MasterTokenModelObject*)primitiveMaster;
 - (void)setPrimitiveMaster:(MasterTokenModelObject*)value;

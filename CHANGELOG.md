@@ -1,6 +1,7 @@
 ### Release 1.0.11
 
-- Multiple fixes and improvements
+- Fixed rare issue that prevented some users from logging into the app
+- Improvements to message signing
 
 ### Release 1.0.10
 

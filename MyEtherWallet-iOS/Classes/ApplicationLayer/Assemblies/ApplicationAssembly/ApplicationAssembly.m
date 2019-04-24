@@ -99,6 +99,8 @@
                                                 with:[self.serviceComponents keychainService]];
                           [definition injectProperty:@selector(ponsomizer)
                                                 with:[self.ponsomizerAssembly ponsomizer]];
+                          [definition injectProperty:@selector(userDefaults)
+                                                with:[self.systemInfrastructureAssembly userDefaults]];
                         }];
 }
 

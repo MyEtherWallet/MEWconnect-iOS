@@ -15,4 +15,5 @@
 @property (nonatomic, strong) NSFileManager *fileManager;
 @property (nonatomic, strong) id <KeychainService> keychainService;
 @property (nonatomic, strong) id <Ponsomizer> ponsomizer;
+@property (nonatomic, strong) NSUserDefaults *userDefaults;
 @end

@@ -1,3 +1,7 @@
+### Release 1.0.11
+
+- Multiple fixes and improvements
+
 ### Release 1.0.10
 
 - Added what’s new alert, so you can catch up with the latest changes

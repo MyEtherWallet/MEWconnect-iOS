@@ -16,10 +16,12 @@
 
 @interface MessageSignerViewController ()
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
-@property (nonatomic, weak) IBOutlet UITextView *messageTextView;
 @property (nonatomic, weak) IBOutlet UILabel *descriptionLabel;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *logoTopOffsetConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *contentLeftOffsetConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *contentRightOffsetConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *logoToTitleYOffsetConstraint;
 
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *titleTopOffsetConstraint;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *buttonsWidthConstraint;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *interbuttonOffsetConstraint;
 
@@ -35,58 +37,66 @@
 	[self.output didTriggerViewReadyEvent];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-  [super viewDidAppear:animated];
-  [self.messageTextView flashScrollIndicators];
-}
-
 - (UIStatusBarStyle) preferredStatusBarStyle {
   return UIStatusBarStyleLightContent;
-}
-
-- (void) viewDidLayoutSubviews {
-  [super viewDidLayoutSubviews];
-  self.messageTextView.contentOffset = CGPointZero;
 }
 
 #pragma mark - MessageSignerViewInput
 
 - (void) setupInitialState {
   if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
-    self.titleTopOffsetConstraint.constant = 24.0;
     self.buttonsWidthConstraint.constant = 0.0;
     self.interbuttonOffsetConstraint.constant = 8.0;
+    
+    self.logoTopOffsetConstraint.constant = 24.0;
+    self.logoToTitleYOffsetConstraint.constant = 23.0;
+  }
+  if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+    
   }
   { //Title label
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
     style.lineSpacing = 0.0;
-    style.maximumLineHeight = 40.0;
-    style.minimumLineHeight = 40.0;
-    NSDictionary *attributes = @{NSFontAttributeName: self.titleLabel.font,
+    UIFont *font = self.titleLabel.font;
+    if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
+      font = [font fontWithSize:36.0];
+      style.maximumLineHeight = 36.0;
+      style.minimumLineHeight = 36.0;
+    } else {
+      style.maximumLineHeight = 40.0;
+      style.minimumLineHeight = 40.0;
+    }
+    NSDictionary *attributes = @{NSFontAttributeName: font,
                                  NSForegroundColorAttributeName: self.titleLabel.textColor,
                                  NSParagraphStyleAttributeName: style,
                                  NSKernAttributeName: @(-0.3)};
     self.titleLabel.attributedText = [[NSAttributedString alloc] initWithString:self.titleLabel.text attributes:attributes];
   }
   { //Description
-    if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
-      [self.descriptionLabel removeFromSuperview];
-    } else {
+    NSArray *infoParts = [self.descriptionLabel.text componentsSeparatedByString:@"\n"];
+    NSMutableAttributedString *attributedInfoText = [[NSMutableAttributedString alloc] init];
+    for (NSInteger i = 0; i < [infoParts count]; ++i) {
       NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
-      style.lineSpacing = 3.0;
+      style.lineSpacing = 2.0;
+      if (i != [infoParts count] - 1) {
+        style.paragraphSpacing = 9.0;
+      }
       NSDictionary *attributes = @{NSFontAttributeName: self.descriptionLabel.font,
                                    NSForegroundColorAttributeName: self.descriptionLabel.textColor,
                                    NSParagraphStyleAttributeName: style,
-                                   NSKernAttributeName: @(-0.08)};
-      self.descriptionLabel.attributedText = [[NSAttributedString alloc] initWithString:self.descriptionLabel.text attributes:attributes];
+                                   NSKernAttributeName: @(-0.01)};
+      NSString *part = infoParts[i];
+      if (i != [infoParts count] - 1) {
+        part = [part stringByAppendingString:@"\n"];
+      }
+      [attributedInfoText appendAttributedString:[[NSAttributedString alloc] initWithString:part attributes:attributes]];
     }
+    
+    self.descriptionLabel.attributedText = attributedInfoText;
   }
-  self.messageTextView.textContainerInset = UIEdgeInsetsMake(16.0, 16.0, 16.0, 16.0);
-  self.messageTextView.scrollIndicatorInsets = UIEdgeInsetsMake(4.0, 0.0, 4.0, 0.0);
 }
 
 - (void) updateWithMessage:(MEWConnectMessage *)message {
-  self.messageTextView.text = message.message;
 }
 
 #pragma mark - IBAction

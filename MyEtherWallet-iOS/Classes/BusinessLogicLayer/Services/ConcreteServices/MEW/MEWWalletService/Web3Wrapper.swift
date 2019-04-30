@@ -185,8 +185,20 @@ class Web3Wrapper: NSObject {
    or **nil** if something goes wrong
    */
   @objc func signMessage(_ message: MEWConnectMessage, password: String, masterToken: MasterTokenPlainObject, account: AccountPlainObject, network: BlockchainNetworkType = .ethereum) -> [String: String]? {
-    guard let data = message.message.data(using: .utf8) else { return nil }
-    guard let hashData = Web3.Utils.hashPersonalMessage(data) else { return nil }
+    let data: Data?
+    if message.message.hasPrefix("0x") {
+      var possibleBuffer = message.message.stripHexPrefix()
+      let nonHexCharactersSet = CharacterSet(charactersIn: "0123456789ABCDEF").inverted
+      if possibleBuffer.uppercased().rangeOfCharacter(from: nonHexCharactersSet) == nil {
+        data = Data(hex: possibleBuffer)
+      } else {
+        data = message.message.data(using: .utf8)
+      }
+    } else {
+      data = message.message.data(using: .utf8)
+    }
+    guard let messageData = data else { return nil }
+    guard let hashData = Web3.Utils.hashPersonalMessage(messageData) else { return nil }
     if hashData != message.messageHash { return nil }
 
     guard let encryptedKeydata = self.keychainService?.obtainKeydata(ofMasterToken: masterToken, ofAccount: account, inChainID: network) else { return nil }

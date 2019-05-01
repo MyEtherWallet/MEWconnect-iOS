@@ -96,7 +96,7 @@
   }
 }
 
-- (void) updateWithMessage:(MEWConnectMessage *)message {
+- (void) updateWithMessage:(__unused MEWConnectMessage *)message {
 }
 
 #pragma mark - IBAction

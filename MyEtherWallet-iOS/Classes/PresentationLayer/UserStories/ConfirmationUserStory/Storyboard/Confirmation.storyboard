@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dSU-dI-qOt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dSU-dI-qOt">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -295,17 +295,17 @@ declined</string>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="signmessage_logo" translatesAutoresizingMaskIntoConstraints="NO" id="S2m-As-ExC">
-                                <rect key="frame" x="24" y="64" width="104" height="111"/>
+                                <rect key="frame" x="32" y="60" width="16" height="16"/>
                                 <color key="tintColor" red="0.023529411760000001" green="0.30196078430000001" blue="0.83921568629999999" alpha="1" colorSpace="deviceRGB"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign message" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nl7-IL-2Qw">
-                                <rect key="frame" x="24" y="195" width="327" height="48"/>
+                                <rect key="frame" x="32" y="96" width="311" height="48"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                 <color key="textColor" red="0.023529411760000001" green="0.30196078430000001" blue="0.83921568629999999" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5p2-Xe-moj">
-                                <rect key="frame" x="24" y="255" width="327" height="81.5"/>
+                                <rect key="frame" x="32" y="156" width="311" height="81.5"/>
                                 <string key="text">Please remember to include your nickname and a specific reason for the message, so someone else cannot re-use it for a different purpose.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -314,20 +314,20 @@ declined</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="S2m-As-ExC" firstAttribute="top" secondItem="jpP-E4-W78" secondAttribute="top" constant="64" id="1b2-I9-P0z"/>
+                            <constraint firstItem="S2m-As-ExC" firstAttribute="top" secondItem="jpP-E4-W78" secondAttribute="top" constant="60" id="1b2-I9-P0z"/>
                             <constraint firstItem="ZGL-KX-pIb" firstAttribute="left" secondItem="U2W-Qh-rvb" secondAttribute="left" constant="24" id="IMP-uL-PUS"/>
                             <constraint firstItem="nl7-IL-2Qw" firstAttribute="left" secondItem="S2m-As-ExC" secondAttribute="left" id="KFN-kh-U8S"/>
                             <constraint firstItem="U2W-Qh-rvb" firstAttribute="right" secondItem="7rv-hF-bz6" secondAttribute="right" constant="24" id="M4L-g9-t4T"/>
                             <constraint firstItem="nl7-IL-2Qw" firstAttribute="top" secondItem="S2m-As-ExC" secondAttribute="bottom" constant="20" id="OOz-fx-OoI"/>
                             <constraint firstItem="5p2-Xe-moj" firstAttribute="right" secondItem="nl7-IL-2Qw" secondAttribute="right" id="R9P-xK-kOX"/>
                             <constraint firstItem="U2W-Qh-rvb" firstAttribute="bottom" secondItem="ZGL-KX-pIb" secondAttribute="bottom" constant="24" id="RDW-df-Dre"/>
-                            <constraint firstItem="nl7-IL-2Qw" firstAttribute="leading" secondItem="U2W-Qh-rvb" secondAttribute="leading" constant="24" id="cN3-LH-12m"/>
+                            <constraint firstItem="nl7-IL-2Qw" firstAttribute="leading" secondItem="U2W-Qh-rvb" secondAttribute="leading" constant="32" id="cN3-LH-12m"/>
                             <constraint firstItem="7rv-hF-bz6" firstAttribute="width" secondItem="ZGL-KX-pIb" secondAttribute="width" constant="40" id="e7E-Vf-zP3"/>
                             <constraint firstItem="5p2-Xe-moj" firstAttribute="left" secondItem="nl7-IL-2Qw" secondAttribute="left" id="ihr-MH-kz7"/>
                             <constraint firstItem="7rv-hF-bz6" firstAttribute="left" secondItem="ZGL-KX-pIb" secondAttribute="right" constant="15" id="lFZ-gn-Xn5"/>
                             <constraint firstItem="7rv-hF-bz6" firstAttribute="bottom" secondItem="ZGL-KX-pIb" secondAttribute="bottom" id="t2P-Fi-84n"/>
                             <constraint firstItem="5p2-Xe-moj" firstAttribute="top" secondItem="nl7-IL-2Qw" secondAttribute="bottom" constant="12" id="tgB-PF-Zsj"/>
-                            <constraint firstItem="U2W-Qh-rvb" firstAttribute="trailing" secondItem="nl7-IL-2Qw" secondAttribute="trailing" constant="24" id="xsc-CY-JON"/>
+                            <constraint firstItem="U2W-Qh-rvb" firstAttribute="trailing" secondItem="nl7-IL-2Qw" secondAttribute="trailing" constant="32" id="xsc-CY-JON"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="U2W-Qh-rvb"/>
                     </view>
@@ -429,7 +429,7 @@ declined</string>
         </scene>
     </scenes>
     <resources>
-        <image name="signmessage_logo" width="104" height="111"/>
+        <image name="signmessage_logo" width="104" height="107"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="yXB-lP-loE"/>

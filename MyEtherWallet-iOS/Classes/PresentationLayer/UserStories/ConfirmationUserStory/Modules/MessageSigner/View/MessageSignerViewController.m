@@ -51,9 +51,6 @@
     self.logoTopOffsetConstraint.constant = 24.0;
     self.logoToTitleYOffsetConstraint.constant = 23.0;
   }
-  if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
-    
-  }
   { //Title label
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
     style.lineSpacing = 0.0;

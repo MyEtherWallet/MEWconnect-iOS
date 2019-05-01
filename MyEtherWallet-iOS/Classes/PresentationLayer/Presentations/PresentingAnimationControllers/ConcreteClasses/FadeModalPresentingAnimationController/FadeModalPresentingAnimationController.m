@@ -25,7 +25,7 @@
   
   [presentedView setNeedsLayout];
   [presentedView layoutIfNeeded];
-  UIView *presentedViewSnapshot = [presentedView snapshotViewAfterScreenUpdates:YES];
+  UIView *presentedViewSnapshot = [presentedView snapshotViewAfterScreenUpdates:NO];
   presentedView.hidden = YES;
   [containerView addSubview:presentedViewSnapshot];
   CGRect frame = presentedView.bounds;

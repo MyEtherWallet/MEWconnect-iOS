@@ -10377,7 +10377,7 @@
 		56FE2B6520817F1100DB39D5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "MyEtherWallet, Inc.";
 				TargetAttributes = {
 					56E3E4E921016DB60014152D = {

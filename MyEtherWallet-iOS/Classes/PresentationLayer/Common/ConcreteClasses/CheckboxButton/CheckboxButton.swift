@@ -191,6 +191,6 @@ class CheckboxButton: UIButton {
   //MARK: - Layout
   
   override var intrinsicContentSize: CGSize {
-    return CGSize(width: UIView.noIntrinsicMetric, height: CheckboxButtonConstants.button.height)
+    return CGSize(width: UIViewNoIntrinsicMetric, height: CheckboxButtonConstants.button.height)
   }
 }

@@ -1,3 +1,6 @@
+### Release 1.0.12
+- Bugfixes
+
 ### Release 1.0.11
 
 - Fixed rare issue that prevented some users from logging into the app

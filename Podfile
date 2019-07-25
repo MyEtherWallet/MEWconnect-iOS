@@ -45,7 +45,7 @@ abstract_target 'MEWconnect' do
   
   # Ethereum
   pod 'web3swift', :git => 'https://github.com/Foboz/web3swift.git', :branch => 'v200_mew'
-  pod 'GoogleWebRTC'
+  pod 'GoogleWebRTC', '=1.1.26675'
   
   # Cryptographic
   pod 'TrezorCrypto'#, :git => 'https://github.com/Foboz/trezor-crypto-ios.git'

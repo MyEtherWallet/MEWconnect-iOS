@@ -24,6 +24,9 @@
     [self _createInputAccessoryView];
     self.autocorrectionType = UITextAutocorrectionTypeNo;
     self.spellCheckingType = UITextSpellCheckingTypeNo;
+    self.smartDashesType = UITextSmartDashesTypeNo;
+    self.smartQuotesType = UITextSmartQuotesTypeNo;
+    self.smartInsertDeleteType = UITextSmartInsertDeleteTypeNo;
     self.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.returnKeyType = UIReturnKeyDone;
   }

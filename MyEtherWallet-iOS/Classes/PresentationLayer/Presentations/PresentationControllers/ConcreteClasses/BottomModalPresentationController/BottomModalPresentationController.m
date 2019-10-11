@@ -25,11 +25,9 @@
 }
 
 - (void) presentationTransitionWillBegin {
-  [super presentationTransitionWillBegin];
-  
   if (self.dimmed) {
     self.dimmingView.frame = self.containerView.bounds;
-    self.dimmingView.alpha = 0;
+    self.dimmingView.alpha = 0.0;
     [self.containerView addSubview:self.dimmingView];
     
     [self.presentedViewController.transitionCoordinator animateAlongsideTransition:^(__unused id<UIViewControllerTransitionCoordinatorContext> context) {
@@ -37,9 +35,7 @@
     } completion:nil];
   }
   
-  if (self.presentedViewController.transitionCoordinator.animated) {
-    [self.presentedView snapshotViewAfterScreenUpdates:YES];
-  }
+  [super presentationTransitionWillBegin];
 }
 
 - (void) presentationTransitionDidEnd:(BOOL)completed {
@@ -57,7 +53,7 @@
   self.presentedView.lockFrame = NO;
   if (self.dimmed) {
     [self.presentedViewController.transitionCoordinator animateAlongsideTransition:^(__unused id<UIViewControllerTransitionCoordinatorContext> context) {
-      self.dimmingView.alpha = 0;
+      self.dimmingView.alpha = 0.0;
     } completion:nil];
   }
   [super dismissalTransitionWillBegin];

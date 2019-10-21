@@ -272,6 +272,8 @@ CGFloat const kCardViewAspectRatio              = 216.0/343.0;;
   { //Balance
     UILabel *balanceLabel = [[UILabel alloc] init];
     balanceLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    balanceLabel.adjustsFontSizeToFitWidth = YES;
+    balanceLabel.minimumScaleFactor = 0.5;
     [self addSubview:balanceLabel];
     CGFloat correction = 1.0;
     if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {

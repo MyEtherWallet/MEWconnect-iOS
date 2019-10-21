@@ -17,16 +17,20 @@
 
 #import "PasswordTextField.h"
 
+#import "UIImage+Color.h"
+
 static CGFloat const kContextPasswordShakeAnimationDistance = 10.0;
 static CFTimeInterval const kContextPasswordShakeAnimationDuration = 0.05;
 static float const kContextPasswordShakeAnimationRepeatCount = 3.0;
 
+static CGFloat const ContextPasswordViewCornerRadius  = 12.0;
+static CGFloat const ContextPasswordDefaultBottomInset = 25.0;
+
 @interface ContextPasswordViewController () <UITextFieldDelegate, FindFirstResponderProtocol>
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) IBOutlet PasswordTextField *passwordTextField;
-@property (nonatomic, weak) IBOutlet UIView *accessoryView;
-@property (nonatomic) BOOL dismissing;
-@property (nonatomic) BOOL skipResigning;
+@property (nonatomic, weak) IBOutlet UIImageView *backgroundImageView;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *bottomConstraint;
 @end
 
 @implementation ContextPasswordViewController
@@ -40,42 +44,17 @@ static float const kContextPasswordShakeAnimationRepeatCount = 3.0;
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
-  self.passwordTextField.inputAccessoryView = self.accessoryView;
-  
-  //To show inputAccessoryView
-  [self becomeFirstResponder];
-  
-  //To switch firstResponder to passwordTextField
-  @weakify(self);
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+
   dispatch_async(dispatch_get_main_queue(), ^{
-    @strongify(self);
-    self.skipResigning = YES;
     [self.passwordTextField becomeFirstResponder];
   });
 }
 
-- (BOOL)canBecomeFirstResponder {
-  return !_dismissing;
-}
-
-- (BOOL)resignFirstResponder {
-  if (!_skipResigning) {
-    [self.output resignAction];
-  }
-  _skipResigning = NO;
-  return YES;
-}
-
-- (UIView *)inputAccessoryView {
-  return self.accessoryView;
-}
-
-- (void) viewDidAppear:(BOOL)animated {
-  [super viewDidAppear:animated];
-  if (@available(iOS 11.0, *)) {
-  } else {
-    [self.passwordTextField becomeFirstResponder];
-  }
+- (void)viewDidDisappear:(BOOL)animated {
+  [super viewDidDisappear:animated];
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void) viewLayoutMarginsDidChange {
@@ -87,6 +66,16 @@ static float const kContextPasswordShakeAnimationRepeatCount = 3.0;
 
 - (void) setupInitialStateWithTitle:(NSString *)title {
   self.titleLabel.text = title;
+  
+  CGFloat size = ContextPasswordViewCornerRadius * 2.0 + 10.0;
+  CGFloat halfSize = size / 2.0;
+  UIImage *backgroundImage = [[UIImage imageWithColor:[UIColor whiteColor]
+                                                 size:CGSizeMake(size, size)
+                                         cornerRadius:ContextPasswordViewCornerRadius
+                                              corners:UIRectCornerTopLeft|UIRectCornerTopRight]
+                              resizableImageWithCapInsets:UIEdgeInsetsMake(halfSize, halfSize, halfSize, halfSize)];
+  self.backgroundImageView.image = backgroundImage;
+  
   [self _updatePrefferedContentSize];
 }
 
@@ -101,7 +90,6 @@ static float const kContextPasswordShakeAnimationRepeatCount = 3.0;
 }
 
 - (void) prepareForDismiss {
-  _dismissing = YES;
   [self.passwordTextField resignFirstResponder];
 }
 
@@ -161,7 +149,31 @@ static float const kContextPasswordShakeAnimationRepeatCount = 3.0;
 #pragma mark - FindFirstResponderProtocol
 
 - (UIResponder *) providedFirstResponder {
-  return self;
+  return self.passwordTextField;
+}
+
+#pragma mark - Keyboard
+
+- (void) keyboardWillShow:(NSNotification *)notification {
+  CGRect keyboardFrame = [((NSValue *)notification.userInfo[UIKeyboardFrameEndUserInfoKey]) CGRectValue];
+  NSInteger curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+  NSTimeInterval duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+  
+  self.bottomConstraint.constant = CGRectGetHeight(keyboardFrame) + ContextPasswordDefaultBottomInset;
+  [UIView animateWithDuration:duration delay:0.0 options:(curve << 16) animations:^{
+    [self.view layoutIfNeeded];
+  } completion:nil];
+}
+
+- (void) keyboardWillHide:(NSNotification *)notification {
+  NSInteger curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+  NSTimeInterval duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+  
+  self.bottomConstraint.constant = ContextPasswordDefaultBottomInset;
+  
+  [UIView animateWithDuration:duration delay:0.0 options:(curve << 16) animations:^{
+    [self.view layoutIfNeeded];
+  } completion:nil];
 }
 
 @end

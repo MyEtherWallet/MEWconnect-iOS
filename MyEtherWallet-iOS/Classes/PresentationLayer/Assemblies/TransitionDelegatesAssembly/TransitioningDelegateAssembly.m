@@ -66,12 +66,6 @@
                         configuration:^(TyphoonDefinition *definition) {
                           [definition injectProperty:@selector(presentationControllerType)
                                                 with:@(PresentationControllerBottomModalType)];
-                          if (@available(iOS 11.0, *)) {
-                            [definition injectProperty:@selector(presentingAnimationController)
-                                                  with:[self fadeModalPresentingAnimationController]];
-                            [definition injectProperty:@selector(dismissingAnimationController)
-                                                  with:[self fadeModalDismissingAnimationController]];
-                          }
                           [definition injectProperty:@selector(presentationControllerFactory)
                                                 with:self.presentationControllerFactory];
                           [definition injectProperty:@selector(dimmed)

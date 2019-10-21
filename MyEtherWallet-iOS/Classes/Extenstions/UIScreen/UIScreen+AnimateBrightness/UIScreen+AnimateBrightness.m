@@ -34,8 +34,9 @@ static double const kUIScreenTicksPerSecond = 60;
     for (NSInteger i = 2; i <= totalTicks; ++i) {
       [NSThread sleepForTimeInterval:delayBetweenTicks];
       CGFloat nextValue = MAX(0.0, MIN(1.0, self.brightness + changePerTick));
-      
-      self.brightness = nextValue;
+      dispatch_async(dispatch_get_main_queue(), ^{
+        self.brightness = nextValue;
+      });
     }
   });
   return startBrightness;

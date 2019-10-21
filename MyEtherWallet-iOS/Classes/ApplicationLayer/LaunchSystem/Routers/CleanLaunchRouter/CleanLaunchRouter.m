@@ -120,6 +120,7 @@ static NSInteger const kSplashPasswordLogoImageViewTag          = 1;
 }
 
 - (void) _animateSplash:(UIViewController *)launchViewController parentView:(UIView *)parentView withCompletion:(void(^)(void))completion {
+  [launchViewController.view.superview bringSubviewToFront:launchViewController.view];
   UIImageView *logoImageView = (UIImageView *)[launchViewController.view viewWithTag:kSplashPasswordLogoImageViewTag];
   CGFloat originalImageWidth = logoImageView.image.size.width;
   NSLayoutConstraint *widthConstraint = [logoImageView.widthAnchor constraintEqualToConstant:originalImageWidth];

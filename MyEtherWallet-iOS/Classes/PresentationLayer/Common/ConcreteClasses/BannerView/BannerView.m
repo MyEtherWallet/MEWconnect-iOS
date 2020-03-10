@@ -12,6 +12,7 @@
 #import "BannerView.h"
 #import "UIImage+Color.h"
 #import "UIColor+Application.h"
+#import "UIScreen+ScreenSizeType.h"
 
 static UIEdgeInsets BannerViewContentInsets = {20.0, 20.0, 20.0, 20.0};
 static UIEdgeInsets TitleInsets = {0.0, 0.0, 0.0, 0.0};
@@ -92,17 +93,29 @@ static UIEdgeInsets ButtonInsets = {11.0, 0.0, 0.0, 0.0};
     animationView.loopAnimation = NO;
     [self addSubview:animationView];
     
-    NSDictionary *metrics = @{
+    NSMutableDictionary *metrics = [@{
       @"LOFFSET": @(BannerViewContentInsets.left + AnimationInsets.left),
-      @"TOFFSET": @(TitleInsets.bottom + AnimationInsets.top)
-    };
+      @"TOFFSET": @(TitleInsets.bottom + AnimationInsets.top),
+      @"HEIGHT": @96.0,
+      @"WIDTH": @96.0
+    } mutableCopy];
+    
+    switch ([UIScreen mainScreen].screenSizeType) {
+      case ScreenSizeTypeInches35:
+      case ScreenSizeTypeInches40:
+        metrics[@"HEIGHT"] = @70.0;
+        metrics[@"WIDTH"] = @70.0;
+        break;
+      default:
+        break;
+    }
     NSDictionary *views = @{
       @"ANIMATION_VIEW": animationView,
       @"TITLE": titleLabel
     };
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(LOFFSET)-[ANIMATION_VIEW(==96)]" options:NSLayoutFormatDirectionLeftToRight metrics:metrics views:views]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[TITLE]-(TOFFSET)-[ANIMATION_VIEW(==96)]" options:NSLayoutFormatDirectionLeftToRight metrics:metrics views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(LOFFSET)-[ANIMATION_VIEW(==HEIGHT)]" options:NSLayoutFormatDirectionLeftToRight metrics:metrics views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[TITLE]-(TOFFSET)-[ANIMATION_VIEW(==WIDTH)]" options:NSLayoutFormatDirectionLeftToRight metrics:metrics views:views]];
     
     _animationView = animationView;
   }
@@ -113,11 +126,20 @@ static UIEdgeInsets ButtonInsets = {11.0, 0.0, 0.0, 0.0};
     descriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:descriptionLabel];
     
-    NSDictionary *metrics = @{
+    NSMutableDictionary *metrics = [@{
       @"LOFFSET": @(AnimationInsets.right + DescriptionInsets.left),
       @"ROFFSET": @(BannerViewContentInsets.right + DescriptionInsets.right),
       @"TOFFSET": @(TitleInsets.bottom + DescriptionInsets.top)
-    };
+    } mutableCopy];
+    switch ([UIScreen mainScreen].screenSizeType) {
+      case ScreenSizeTypeInches35:
+      case ScreenSizeTypeInches40:
+        metrics[@"LOFFSET"] = @(fabs(AnimationInsets.right / 2.0 + DescriptionInsets.left));
+        break;
+      default:
+        break;
+    }
+    
     NSDictionary *views = @{
       @"ANIMATION_VIEW": animationView,
       @"TITLE": titleLabel,
@@ -157,14 +179,33 @@ static UIEdgeInsets ButtonInsets = {11.0, 0.0, 0.0, 0.0};
   self.backgroundColor = [UIColor clearColor];
   
   self.titleLabel.text = NSLocalizedString(@"MEW wallet app is now available", @"Banner view");
-  self.titleLabel.font = [UIFont systemFontOfSize:20.0 weight:UIFontWeightSemibold];
+  
   NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
   style.lineSpacing = 2.0;
-  NSDictionary *attributes = @{
-    NSFontAttributeName: [UIFont systemFontOfSize:15.0 weight:UIFontWeightRegular],
-    NSForegroundColorAttributeName: [UIColor bannerDescriptionColor],
-    NSParagraphStyleAttributeName: style
-  };
+  NSDictionary *attributes;
+  
+  switch ([UIScreen mainScreen].screenSizeType) {
+    case ScreenSizeTypeInches35:
+    case ScreenSizeTypeInches40: {
+      self.titleLabel.font = [UIFont systemFontOfSize:16.0 weight:UIFontWeightSemibold];
+      attributes = @{
+        NSFontAttributeName: [UIFont systemFontOfSize:12.0 weight:UIFontWeightRegular],
+        NSForegroundColorAttributeName: [UIColor bannerDescriptionColor],
+        NSParagraphStyleAttributeName: style
+      };
+      break;
+    }
+    default: {
+      self.titleLabel.font = [UIFont systemFontOfSize:20.0 weight:UIFontWeightSemibold];
+      attributes = @{
+        NSFontAttributeName: [UIFont systemFontOfSize:15.0 weight:UIFontWeightRegular],
+        NSForegroundColorAttributeName: [UIColor bannerDescriptionColor],
+        NSParagraphStyleAttributeName: style
+      };
+      break;
+    }
+  }
+  
   NSAttributedString *attributedDescription = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"A fully fledged mobile wallet that works with your existing MEWconnect account.\nDownload the app to upgrade.", @"Banner view")
                                                                               attributes:attributes];
   self.descriptionLabel.attributedText = attributedDescription;

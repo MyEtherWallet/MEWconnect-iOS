@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^BannerViewActionBlock)(void);
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BannerView : UIView
+@property (nonatomic, strong) BannerViewActionBlock actionBlock;
 - (void) playAnimation;
 - (void) stopAnimation;
 @end

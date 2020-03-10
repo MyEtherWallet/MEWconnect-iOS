@@ -18,4 +18,6 @@ static NSString *const kServiceNameQuote          =   @"quote";
 static NSString *const kServiceNameOrder          =   @"order";
 static NSString *const kServiceNameStatus         =   @"status";
 
+static NSString *const kServiceNameAnalytics      =   @"analytics/record/ios";
+
 #endif /* ServiceNameConstants_h */

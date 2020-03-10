@@ -70,6 +70,8 @@
                                                 with:[self.serviceComponents rateService]];
                           [definition injectProperty:@selector(walletService)
                                                 with:[self.serviceComponents MEWwallet]];
+                          [definition injectProperty:@selector(analyticsService)
+                                                with:[self.serviceComponents analyticsService]];
                         }];
 }
 

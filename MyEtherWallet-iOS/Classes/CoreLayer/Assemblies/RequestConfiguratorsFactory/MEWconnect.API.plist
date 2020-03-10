@@ -10,6 +10,8 @@
 		<string>NSURL(https://cryptorates.mewapi.io)</string>
 		<key>SimplexAPIURL</key>
 		<string>NSURL(https://apiccswap.myetherwallet.com)</string>
+		<key>AnalyticsURL</key>
+		<string>NSURL(https://api.myetherwallet.com)</string>
 	</dict>
 </dict>
 </plist>

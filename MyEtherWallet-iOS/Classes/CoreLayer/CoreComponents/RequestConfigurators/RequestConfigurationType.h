@@ -15,6 +15,7 @@ typedef NS_ENUM(NSUInteger, RequestConfigurationType) {
   RequestConfigurationTickerAPIType     = 2,
   RequestConfigurationSimplexAPIType    = 3,
   RequestConfigurationSimplexWebType    = 4,
+  RequestConfigurationAnalyticsType     = 5,
 };
 
 #endif /* RequestConfigurationType_h */

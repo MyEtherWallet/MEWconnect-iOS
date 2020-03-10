@@ -239,8 +239,6 @@
 		5658513B2242B36B006AEC7E /* ConfirmationUIStringAttributesProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 565851392242B36B006AEC7E /* ConfirmationUIStringAttributesProvider.m */; };
 		5658513E2242CA81006AEC7E /* BlockchainNetworkTypesInfoProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 5658513D2242CA81006AEC7E /* BlockchainNetworkTypesInfoProvider.m */; };
 		5658513F2242CA81006AEC7E /* BlockchainNetworkTypesInfoProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 5658513D2242CA81006AEC7E /* BlockchainNetworkTypesInfoProvider.m */; };
-		5658514922440505006AEC7E /* BuyEther10WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5658514822440505006AEC7E /* BuyEther10WebViewController.m */; };
-		5658514A22440505006AEC7E /* BuyEther10WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5658514822440505006AEC7E /* BuyEther10WebViewController.m */; };
 		5658514F22442A7F006AEC7E /* CALayer+LockZPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 5658514E22442A7F006AEC7E /* CALayer+LockZPosition.m */; };
 		5658515022442A7F006AEC7E /* CALayer+LockZPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 5658514E22442A7F006AEC7E /* CALayer+LockZPosition.m */; };
 		56585154224435C7006AEC7E /* ToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56585153224435C7006AEC7E /* ToastView.m */; };
@@ -1519,8 +1517,6 @@
 		565851392242B36B006AEC7E /* ConfirmationUIStringAttributesProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConfirmationUIStringAttributesProvider.m; sourceTree = "<group>"; };
 		5658513C2242CA81006AEC7E /* BlockchainNetworkTypesInfoProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockchainNetworkTypesInfoProvider.h; sourceTree = "<group>"; };
 		5658513D2242CA81006AEC7E /* BlockchainNetworkTypesInfoProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlockchainNetworkTypesInfoProvider.m; sourceTree = "<group>"; };
-		5658514722440505006AEC7E /* BuyEther10WebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuyEther10WebViewController.h; sourceTree = "<group>"; };
-		5658514822440505006AEC7E /* BuyEther10WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuyEther10WebViewController.m; sourceTree = "<group>"; };
 		5658514D22442A7F006AEC7E /* CALayer+LockZPosition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+LockZPosition.h"; sourceTree = "<group>"; };
 		5658514E22442A7F006AEC7E /* CALayer+LockZPosition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+LockZPosition.m"; sourceTree = "<group>"; };
 		56585152224435C7006AEC7E /* ToastView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToastView.h; sourceTree = "<group>"; };
@@ -2755,8 +2751,6 @@
 				973B103EF355D6F0719F917A /* BuyEtherWebViewOutput.h */,
 				25CD309E55232142F33D32A3 /* BuyEtherWebViewController.h */,
 				8781BB1CCB445088FBD04636 /* BuyEtherWebViewController.m */,
-				5658514722440505006AEC7E /* BuyEther10WebViewController.h */,
-				5658514822440505006AEC7E /* BuyEther10WebViewController.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -10576,7 +10570,6 @@
 				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftRLP/SwiftRLP.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftSelfAware/SwiftSelfAware.framework",
-				"${BUILT_PRODUCTS_DIR}/TOWebViewController/TOWebViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/TTTAttributedLabel/TTTAttributedLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/TrezorCrypto/TrezorCrypto.framework",
 				"${BUILT_PRODUCTS_DIR}/Typhoon/Typhoon.framework",
@@ -10622,7 +10615,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftRLP.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSelfAware.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TOWebViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTTAttributedLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TrezorCrypto.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Typhoon.framework",
@@ -10735,7 +10727,6 @@
 				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftRLP/SwiftRLP.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftSelfAware/SwiftSelfAware.framework",
-				"${BUILT_PRODUCTS_DIR}/TOWebViewController/TOWebViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/TTTAttributedLabel/TTTAttributedLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/TrezorCrypto/TrezorCrypto.framework",
 				"${BUILT_PRODUCTS_DIR}/Typhoon/Typhoon.framework",
@@ -10782,7 +10773,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftRLP.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSelfAware.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TOWebViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTTAttributedLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TrezorCrypto.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Typhoon.framework",
@@ -11192,7 +11182,6 @@
 				56E3E5F521016DB60014152D /* BackupStartPresenter.m in Sources */,
 				56E3E5F621016DB60014152D /* BackupStartInteractor.m in Sources */,
 				56E3E5F721016DB60014152D /* BackupStartRouter.m in Sources */,
-				5658514A22440505006AEC7E /* BuyEther10WebViewController.m in Sources */,
 				56E3E5F821016DB60014152D /* BackupWordsAssembly.m in Sources */,
 				56E3E5F921016DB60014152D /* BackupWordsViewController.m in Sources */,
 				56E3E5FA21016DB60014152D /* SimplexResponseValidator.m in Sources */,
@@ -11594,7 +11583,6 @@
 				A489564CB7B7EA7DD2D3BE4A /* BackupInfoRouter.m in Sources */,
 				B83681BB9459A6C08ABBA212 /* BackupStartAssembly.m in Sources */,
 				2B4CD051283C97E7A215B46C /* BackupStartViewController.m in Sources */,
-				5658514922440505006AEC7E /* BuyEther10WebViewController.m in Sources */,
 				563CF2F020EFAD37005467AE /* BuyEtherHistoryEmptyTableViewCellObject.m in Sources */,
 				5689111F20EE6511001552D4 /* SimplexPaymentQuery.m in Sources */,
 				C1E40ADDC31A90446D7E54FB /* BackupStartPresenter.m in Sources */,

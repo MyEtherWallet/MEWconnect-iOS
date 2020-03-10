@@ -14,10 +14,12 @@
 #import "QueryTransformerBase.h"
 #import "FiatPricesQueryTransformer.h"
 #import "SimplexQueryTransformer.h"
+#import "AnalyticsQueryTransformer.h"
 
 #import "BodyTransformerBase.h"
 #import "TokensBodyTransformer.h"
 #import "SimplexBodyTransformer.h"
+#import "AnalyticsBodyTransformer.h"
 
 #import "HeadersBuilderBase.h"
 #import "SimplexHeadersBuilder.h"
@@ -25,6 +27,7 @@
 #import "TokensOperationFactory.h"
 #import "FiatPricesOperationFactory.h"
 #import "SimplexOperationFactory.h"
+#import "AnalyticsOperationFactory.h"
 
 static NSString *const kConfigFileName        = @"HeadersConfig.plist";
 
@@ -73,6 +76,19 @@ static NSString *const kAdditionalHeadersKey  = @"Headers";
                         }];
 }
 
+- (AnalyticsOperationFactory *) analyticsOperationFactory {
+  return [TyphoonDefinition withClass:[AnalyticsOperationFactory class]
+                        configuration:^(TyphoonDefinition *definition) {
+                          [definition useInitializer:@selector(initWithBuilder:queryTransformer:bodyTransformer:headersBuilder:)
+                                          parameters:^(TyphoonMethod *initializer) {
+                                            [initializer injectParameterWith:[self networkOperationBuilder]];
+                                            [initializer injectParameterWith:[self analyticsQueryTransformer]];
+                                            [initializer injectParameterWith:[self analyticsBodyTransformer]];
+                                            [initializer injectParameterWith:[self headersBuilder]];
+                                          }];
+                        }];
+}
+
 #pragma mark - Builders
 
 - (NetworkCompoundOperationBuilder *) networkOperationBuilder
@@ -118,6 +134,10 @@ static NSString *const kAdditionalHeadersKey  = @"Headers";
   return [TyphoonDefinition withClass:[SimplexQueryTransformer class]];
 }
 
+- (AnalyticsQueryTransformer *) analyticsQueryTransformer {
+  return [TyphoonDefinition withClass:[AnalyticsQueryTransformer class]];
+}
+
 #pragma mark - Body Transformers
 
 - (TokensBodyTransformer *) contractsBodyTransformer {
@@ -130,6 +150,10 @@ static NSString *const kAdditionalHeadersKey  = @"Headers";
 
 - (SimplexBodyTransformer *) simplexBodyTransformer {
   return [TyphoonDefinition withClass:[SimplexBodyTransformer class]];
+}
+
+- (AnalyticsBodyTransformer *) analyticsBodyTransformer {
+  return [TyphoonDefinition withClass:[AnalyticsBodyTransformer class]];
 }
 
 #pragma mark - Headers Builders

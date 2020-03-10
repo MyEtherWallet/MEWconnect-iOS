@@ -229,12 +229,8 @@ static UIEdgeInsets ButtonInsets = {11.0, 0.0, 0.0, 0.0};
 }
 
 - (IBAction)openAppAction:(__unused id)sender {
-  NSURL *url = [NSURL URLWithString:@"mewwallet://"];
-  if ([[UIApplication sharedApplication] canOpenURL:url]) {
-    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
-  } else {
-    NSURL *appstoreURL = [NSURL URLWithString:@"https://itunes.apple.com/app/id1464614025"];
-    [[UIApplication sharedApplication] openURL:appstoreURL options:@{} completionHandler:nil];
+  if (self.actionBlock) {
+    self.actionBlock();
   }
 }
 

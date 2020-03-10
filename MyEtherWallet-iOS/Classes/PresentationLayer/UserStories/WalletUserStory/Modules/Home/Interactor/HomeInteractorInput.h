@@ -32,4 +32,6 @@
 - (void) selectRopstenNetwork;
 - (void) generateMissedKeysWithPassword:(NSString *)password;
 - (void) unlockForUpdates;
+- (void) trackBannerShown;
+- (void) trackBannerClicked;
 @end

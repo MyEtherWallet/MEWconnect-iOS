@@ -10,11 +10,12 @@
 
 #import "RESTRequestConfigurator.h"
 
-static NSString *const kConfigFileName    = @"MEWconnect.API.plist";
+static NSString *const kConfigFileName      = @"MEWconnect.API.plist";
 
-static NSString *const kNodeURLKey        = @"API.NodeURL";
-static NSString *const kTickerURLKey      = @"API.TickerURL";
-static NSString *const kSimplexAPIURLKey  = @"API.SimplexAPIURL";
+static NSString *const kNodeURLKey          = @"API.NodeURL";
+static NSString *const kTickerURLKey        = @"API.TickerURL";
+static NSString *const kSimplexAPIURLKey    = @"API.SimplexAPIURL";
+static NSString *const kAnalyticsAPIURLKey  = @"API.AnalyticsURL";
 
 @implementation RequestConfiguratorsAssembly
 
@@ -34,6 +35,8 @@ static NSString *const kSimplexAPIURLKey  = @"API.SimplexAPIURL";
                    use:[self simplexAPIRequestConfigurator]];
     [matcher caseEqual:@(RequestConfigurationSimplexWebType)
                    use:[self simplexWebRequestConfiguratorWithURL:url]];
+    [matcher caseEqual:@(RequestConfigurationAnalyticsType)
+                   use:[self analyticsRequestConfigurator]];
   }];
 }
 
@@ -68,6 +71,15 @@ static NSString *const kSimplexAPIURLKey  = @"API.SimplexAPIURL";
   return [TyphoonDefinition withClass:[RESTRequestConfigurator class] configuration:^(TyphoonDefinition *definition) {
     [definition useInitializer:@selector(initWithBaseURL:apiPath:) parameters:^(TyphoonMethod *initializer) {
       [initializer injectParameterWith:url];
+      [initializer injectParameterWith:nil];
+    }];
+  }];
+}
+
+- (id<RequestConfigurator>) analyticsRequestConfigurator {
+  return [TyphoonDefinition withClass:[RESTRequestConfigurator class] configuration:^(TyphoonDefinition *definition) {
+    [definition useInitializer:@selector(initWithBaseURL:apiPath:) parameters:^(TyphoonMethod *initializer) {
+      [initializer injectParameterWith:TyphoonConfig(kAnalyticsAPIURLKey)];
       [initializer injectParameterWith:nil];
     }];
   }];

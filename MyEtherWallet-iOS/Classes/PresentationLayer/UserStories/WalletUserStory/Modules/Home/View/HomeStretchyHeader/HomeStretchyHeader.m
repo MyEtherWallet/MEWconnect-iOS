@@ -503,6 +503,10 @@ static CGFloat const kHomeStretcyHeaderTitleBalanceTopMaxOffset         = 26.0;
   }
 }
 
+- (void)setBannerAction:(BannerViewActionBlock)action {
+  [self.bannerView setActionBlock:action];
+}
+
 #pragma mark - Override
 
 - (void) didMoveToSuperview {

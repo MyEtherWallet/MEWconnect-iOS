@@ -25,6 +25,7 @@
   if (self) {
     _baseURL = [baseURL copy];
     _apiPath = [apiPath copy];
+    self.HTTPMethodsEncodingParametersInURI = [self.HTTPMethodsEncodingParametersInURI setByAddingObject:@"POST"];
   }
   return self;
 }
@@ -46,6 +47,11 @@
   
   NSURLRequest *request;
   if (requestDataModel.bodyData) {
+    if ([requestDataModel.queryParameters count] > 0) {
+      mutableRequest = [[self requestBySerializingRequest:[mutableRequest copy]
+                                           withParameters:requestDataModel.queryParameters
+                                                    error:nil] mutableCopy];
+    }
     [mutableRequest setHTTPBody:requestDataModel.bodyData];
     request = [mutableRequest copy];
   } else {

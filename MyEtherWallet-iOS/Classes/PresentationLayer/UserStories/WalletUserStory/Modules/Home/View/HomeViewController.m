@@ -61,6 +61,10 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
 
 #pragma mark - LifeCycle
 
+- (void)dealloc {
+  [NSObject cancelPreviousPerformRequestsWithTarget:self];
+}
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
@@ -79,6 +83,7 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   [self.headerView playAnimation];
+  [self performSelector:@selector(_reportBannedDidShown) withObject:nil afterDelay:1.0];
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
@@ -88,6 +93,7 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
 
 - (void) viewDidDisappear:(BOOL)animated {
   [super viewDidDisappear:animated];
+  [NSObject cancelPreviousPerformRequestsWithTarget:self];
   
   [self.headerView stopAnimation];
   
@@ -123,6 +129,11 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
     self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
   }
   HomeStretchyHeader *header = [[HomeStretchyHeader alloc] initWithFrame:CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.frame), 308.0) delegate:self];
+  @weakify(self);
+  [header setBannerAction:^{
+    @strongify(self);
+    [self.output bannerDidClickedAction];
+  }];
   header.stretchDelegate = self;
   
   [header refreshContentIfNeeded];
@@ -582,6 +593,10 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
 }
 
 #pragma mark - Private
+
+- (void) _reportBannedDidShown {
+  [self.output bannerDidShownEvent];
+}
 
 - (void) _hideKeyboardIfNeeded {
   if ([self.headerView.searchBar isFirstResponder]) {

@@ -299,6 +299,8 @@
 		566D15612107F9E60020E4F3 /* AboutPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD4E433684E1D6237A7BBC0 /* AboutPresenter.m */; };
 		566D15622107F9E60020E4F3 /* AboutInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF488F3DD448529EA6DC29E /* AboutInteractor.m */; };
 		566D15632107F9E60020E4F3 /* AboutRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC48850154BB9A42EDDEB76 /* AboutRouter.m */; };
+		566EF069241307F400999505 /* BannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 566EF068241307F400999505 /* BannerView.m */; };
+		566EF06A241307F400999505 /* BannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 566EF068241307F400999505 /* BannerView.m */; };
 		5677BB3920FA13860019E92D /* ModuleFactoriesAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677BB3820FA13860019E92D /* ModuleFactoriesAssembly.m */; };
 		5677BB4220FAB28C0019E92D /* UIView+LockFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677BB4120FAB28C0019E92D /* UIView+LockFrame.m */; };
 		5677BB4820FD0A2D0019E92D /* UIScreen+ScreenSizeType.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677BB4720FD0A2D0019E92D /* UIScreen+ScreenSizeType.m */; };
@@ -441,6 +443,8 @@
 		56D85B7C217FAD3200B474C6 /* MigrationServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D85B7A217FAD3200B474C6 /* MigrationServiceImplementation.m */; };
 		56D85B7F217FB42600B474C6 /* MigrationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D85B7E217FB42600B474C6 /* MigrationManager.m */; };
 		56D85B80217FB42600B474C6 /* MigrationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D85B7E217FB42600B474C6 /* MigrationManager.m */; };
+		56DB1DC62417163600E489B0 /* banner_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 56DB1DC52417163600E489B0 /* banner_animation.json */; };
+		56DB1DC72417163600E489B0 /* banner_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 56DB1DC52417163600E489B0 /* banner_animation.json */; };
 		56DE4E0C20A9E61F001A2C19 /* BottomImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DE4E0B20A9E61F001A2C19 /* BottomImageButton.m */; };
 		56E14BBA20E979CD00C41F83 /* FiatPricesServiceImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E14BB920E979CD00C41F83 /* FiatPricesServiceImplementation.m */; };
 		56E14BBF20E97B3C00C41F83 /* FiatPricesQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E14BBE20E97B3C00C41F83 /* FiatPricesQuery.m */; };
@@ -970,6 +974,7 @@
 		9B249DCA77F6F403B94E38F4 /* SplashPasswordPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0DACBE3EACB94253861E96 /* SplashPasswordPresenter.m */; };
 		9C57B1014606FC21BEA9F6D0 /* ContextPasswordRouterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D926003102DB0132F9AC30 /* ContextPasswordRouterTests.m */; };
 		9C68410123433AEA8C27D94A /* DeclinedTransactionPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 81EFEFC639DF6DF795FAFE2C /* DeclinedTransactionPresenter.m */; };
+		9DE69BE400A8AE66F0A0E9AE /* Pods_MyEtherWallet_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC74D0801C5C1D394CC3F664 /* Pods_MyEtherWallet_iOSTests.framework */; };
 		9E2FD108EF9C7A9028FEFE16 /* InfoPresenterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A013BB25D75CE24FF3FB6D3C /* InfoPresenterTests.m */; };
 		9EA12B8253010D67DED815C9 /* MessageSignerPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = E7378ED00FE871D84A79F90A /* MessageSignerPresenter.m */; };
 		A027B15D9DDA21566A18E162 /* PasswordInteractorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D64E0F1F07E9A635852977C9 /* PasswordInteractorTests.m */; };
@@ -1253,6 +1258,7 @@
 		308060365E84A72C7F95F4FC /* StartAssemblyTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = StartAssemblyTests.m; sourceTree = "<group>"; };
 		308EA7593A99718C9D9B32D2 /* HomePresenterTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HomePresenterTests.m; sourceTree = "<group>"; };
 		30ABE733EBDD54D9B1E62587 /* BuyEtherAmountInteractor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BuyEtherAmountInteractor.h; sourceTree = "<group>"; };
+		315960C55B9E75EA94C257A6 /* Pods-MyEtherWallet-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyEtherWallet-iOSTests.release.xcconfig"; path = "Target Support Files/Pods-MyEtherWallet-iOSTests/Pods-MyEtherWallet-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		31F4B2A9AF5866DBE3413D3E /* RestoreSeedRouter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RestoreSeedRouter.h; sourceTree = "<group>"; };
 		3257A914759D6780C38D41F9 /* BackupWordsViewControllerTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BackupWordsViewControllerTests.m; sourceTree = "<group>"; };
 		329B7E19952EEA1A0EC7844A /* ConfirmationNavigationPresenter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ConfirmationNavigationPresenter.h; sourceTree = "<group>"; };
@@ -1581,6 +1587,8 @@
 		566BD36121389478007EC803 /* MEWConnectMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MEWConnectMessage.h; sourceTree = "<group>"; };
 		566BD36221389478007EC803 /* MEWConnectMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MEWConnectMessage.m; sourceTree = "<group>"; };
 		566EE4CEDBB6E248148BF5EE /* RestoreSeedViewInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RestoreSeedViewInput.h; sourceTree = "<group>"; };
+		566EF067241307F400999505 /* BannerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BannerView.h; sourceTree = "<group>"; };
+		566EF068241307F400999505 /* BannerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BannerView.m; sourceTree = "<group>"; };
 		5677BB3720FA13860019E92D /* ModuleFactoriesAssembly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModuleFactoriesAssembly.h; sourceTree = "<group>"; };
 		5677BB3820FA13860019E92D /* ModuleFactoriesAssembly.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModuleFactoriesAssembly.m; sourceTree = "<group>"; };
 		5677BB4020FAB28C0019E92D /* UIView+LockFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+LockFrame.h"; sourceTree = "<group>"; };
@@ -1788,6 +1796,7 @@
 		56D85B7A217FAD3200B474C6 /* MigrationServiceImplementation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MigrationServiceImplementation.m; sourceTree = "<group>"; };
 		56D85B7D217FB42600B474C6 /* MigrationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MigrationManager.h; sourceTree = "<group>"; };
 		56D85B7E217FB42600B474C6 /* MigrationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MigrationManager.m; sourceTree = "<group>"; };
+		56DB1DC52417163600E489B0 /* banner_animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = banner_animation.json; sourceTree = "<group>"; };
 		56DE4E0A20A9E61F001A2C19 /* BottomImageButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BottomImageButton.h; sourceTree = "<group>"; };
 		56DE4E0B20A9E61F001A2C19 /* BottomImageButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BottomImageButton.m; sourceTree = "<group>"; };
 		56E14BB720E979BD00C41F83 /* FiatPricesService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FiatPricesService.h; sourceTree = "<group>"; };
@@ -2059,6 +2068,7 @@
 		5E10BB3B12FC4EEF8C78785D /* BackupWordsRouterTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BackupWordsRouterTests.m; sourceTree = "<group>"; };
 		5E22BA1D744E066F1CF99D54 /* RestoreSeedRouterTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RestoreSeedRouterTests.m; sourceTree = "<group>"; };
 		5E88E6EE3FEDD37AC45942FB /* StartRouter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = StartRouter.m; sourceTree = "<group>"; };
+		5EE2751F6C148225562486ED /* Pods-MyEtherWallet-iOSTests.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyEtherWallet-iOSTests.appstore.xcconfig"; path = "Target Support Files/Pods-MyEtherWallet-iOSTests/Pods-MyEtherWallet-iOSTests.appstore.xcconfig"; sourceTree = "<group>"; };
 		5F6A5DB4B25CE2D036FEC396 /* BuyEtherAmountRouterInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BuyEtherAmountRouterInput.h; sourceTree = "<group>"; };
 		5FAA0DA66C977F150A0EE380 /* PasswordViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PasswordViewController.h; sourceTree = "<group>"; };
 		60C5C61E96B2F1334292024C /* BackupWordsPresenter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BackupWordsPresenter.m; sourceTree = "<group>"; };
@@ -2163,6 +2173,7 @@
 		88307D9A12D085AF246D455E /* BackupInfoInteractorInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BackupInfoInteractorInput.h; sourceTree = "<group>"; };
 		888A7C0FF4F78F4853C8AC7D /* RestoreWalletAssemblyTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RestoreWalletAssemblyTests.m; sourceTree = "<group>"; };
 		8894473D90C1A6C93DAB964A /* BackupDoneRouter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BackupDoneRouter.m; sourceTree = "<group>"; };
+		88963DF4E47605E1AE361B6C /* Pods-MyEtherWallet-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyEtherWallet-iOSTests.debug.xcconfig"; path = "Target Support Files/Pods-MyEtherWallet-iOSTests/Pods-MyEtherWallet-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		88EE0CF55FCFB73F3AAC93A0 /* BackupStartAssembly_Testable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BackupStartAssembly_Testable.h; sourceTree = "<group>"; };
 		894A8A3B5F5735B179F33171 /* BuyEtherHistoryInteractorTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BuyEtherHistoryInteractorTests.m; sourceTree = "<group>"; };
 		899107ACAB9C214BA47482E8 /* BuyEtherHistoryModuleInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BuyEtherHistoryModuleInput.h; sourceTree = "<group>"; };
@@ -2491,6 +2502,7 @@
 		FB0CCDEF650B6161977A6F3A /* BackupInfoInteractorTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BackupInfoInteractorTests.m; sourceTree = "<group>"; };
 		FB9FC9E2299555A58D985D0B /* ForgotPasswordPresenterTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ForgotPasswordPresenterTests.m; sourceTree = "<group>"; };
 		FC31CE53D3305D9F1C0B74F3 /* SplashPasswordRouterInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SplashPasswordRouterInput.h; sourceTree = "<group>"; };
+		FC74D0801C5C1D394CC3F664 /* Pods_MyEtherWallet_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyEtherWallet_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCC2128FDB445666924EDF79 /* ConfirmedTransactionInteractorInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ConfirmedTransactionInteractorInput.h; sourceTree = "<group>"; };
 		FD9A505613B66706A8BE237A /* BackupStartViewInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BackupStartViewInput.h; sourceTree = "<group>"; };
 		FDA7058E611E406A1AA22703 /* ContextPasswordAssembly.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ContextPasswordAssembly.m; sourceTree = "<group>"; };
@@ -2529,6 +2541,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D930BFE93591CB66A99A2A8C /* Pods_MEWconnect_MyEtherWallet_iOS_MyEtherWallet_iOSTests.framework in Frameworks */,
+				9DE69BE400A8AE66F0A0E9AE /* Pods_MyEtherWallet_iOSTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4082,6 +4095,7 @@
 		560D772020B49789009A3D6D /* ConcreteClasses */ = {
 			isa = PBXGroup;
 			children = (
+				566EF066241306B800999505 /* BannerView */,
 				56585151224435B4006AEC7E /* ToastView */,
 				5677BB6120FEA5C70019E92D /* RotationButton */,
 				56C878A820BB6F7600343ADC /* StatusButton */,
@@ -5001,6 +5015,15 @@
 			path = MEWConnectMessage;
 			sourceTree = "<group>";
 		};
+		566EF066241306B800999505 /* BannerView */ = {
+			isa = PBXGroup;
+			children = (
+				566EF067241307F400999505 /* BannerView.h */,
+				566EF068241307F400999505 /* BannerView.m */,
+			);
+			path = BannerView;
+			sourceTree = "<group>";
+		};
 		5677BB3620FA137E0019E92D /* ModuleFactoriesAssembly */ = {
 			isa = PBXGroup;
 			children = (
@@ -5165,6 +5188,14 @@
 				5677C5852181226500477ACD /* _TokenPlainObject.m */,
 			);
 			path = GeneratedPONSO;
+			sourceTree = "<group>";
+		};
+		5678B27D241715C6004D74A9 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				56DB1DC52417163600E489B0 /* banner_animation.json */,
+			);
+			path = Animations;
 			sourceTree = "<group>";
 		};
 		567DDFFB21C2F60000727E0E /* MEWconnectTokenTransfer */ = {
@@ -6586,6 +6617,7 @@
 		56FB390C20B19253007776C8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5678B27D241715C6004D74A9 /* Animations */,
 				56E9D3672170BCFD0004AC61 /* Sounds */,
 				56BDC2DE212F342700D7AE03 /* ApplicationIcon */,
 				560D772B20B4D3CF009A3D6D /* Localization */,
@@ -8797,6 +8829,9 @@
 				A33198B7FE3B1C6747A20165 /* Pods-MyEtherWallet-iOSUITests.debug.xcconfig */,
 				32FC60064586409837CCAD63 /* Pods-MyEtherWallet-iOSUITests.release.xcconfig */,
 				1B2E8C2C90FF987B1212A726 /* Pods-MyEtherWallet-iOSUITests.appstore.xcconfig */,
+				88963DF4E47605E1AE361B6C /* Pods-MyEtherWallet-iOSTests.debug.xcconfig */,
+				315960C55B9E75EA94C257A6 /* Pods-MyEtherWallet-iOSTests.release.xcconfig */,
+				5EE2751F6C148225562486ED /* Pods-MyEtherWallet-iOSTests.appstore.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -9783,6 +9818,7 @@
 				E96BD30D76272316209C7C81 /* Pods_MEWconnect_MyEtherWallet_iOS_Beta.framework */,
 				4DE20D7E2447DAE839CD1825 /* Pods_MEWconnect_MyEtherWallet_iOS_MyEtherWallet_iOSTests.framework */,
 				9288F15E7528CD24F6ABB58D /* Pods_MyEtherWallet_iOSUITests.framework */,
+				FC74D0801C5C1D394CC3F664 /* Pods_MyEtherWallet_iOSTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -10423,6 +10459,7 @@
 				56E3E64321016DB60014152D /* Setup.storyboard in Resources */,
 				56E3E64421016DB60014152D /* Wallet.storyboard in Resources */,
 				56E3E64521016DB60014152D /* Backup.storyboard in Resources */,
+				56DB1DC72417163600E489B0 /* banner_animation.json in Resources */,
 				56E3E64621016DB60014152D /* BuyEther.storyboard in Resources */,
 				56896BAA221B6B0B00B78FF6 /* RestoreOptionsNormalTableViewCell.xib in Resources */,
 				56E3E64721016DB60014152D /* BuyEtherHistoryEmptyTableViewCell.xib in Resources */,
@@ -10458,6 +10495,7 @@
 				5699983C2095141100D45153 /* Setup.storyboard in Resources */,
 				56999846209517D500D45153 /* Wallet.storyboard in Resources */,
 				560D773220B4F0C1009A3D6D /* Backup.storyboard in Resources */,
+				56DB1DC62417163600E489B0 /* banner_animation.json in Resources */,
 				56E14BD920EA838400C41F83 /* BuyEther.storyboard in Resources */,
 				56896BA9221B6B0B00B78FF6 /* RestoreOptionsNormalTableViewCell.xib in Resources */,
 				563CF30220EFAD8A005467AE /* BuyEtherHistoryEmptyTableViewCell.xib in Resources */,
@@ -10531,7 +10569,7 @@
 				"${BUILT_PRODUCTS_DIR}/Nimbus/Nimbus.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/RamblerAppDelegateProxy/RamblerAppDelegateProxy.framework",
-				"${BUILT_PRODUCTS_DIR}/RamblerTyphoonUtils/RamblerTyphoonUtils.framework",
+				"${BUILT_PRODUCTS_DIR}/RamblerTyphoonUtils-AssemblyCollector/RamblerTyphoonUtils.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SipHash/SipHash.framework",
 				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
@@ -10548,6 +10586,7 @@
 				"${BUILT_PRODUCTS_DIR}/ViperMcFlurryX/ViperMcFlurryX.framework",
 				"${BUILT_PRODUCTS_DIR}/YLProgressBar/YLProgressBar.framework",
 				"${BUILT_PRODUCTS_DIR}/libextobjc/libextobjc.framework",
+				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 				"${BUILT_PRODUCTS_DIR}/scrypt/scrypt.framework",
 				"${BUILT_PRODUCTS_DIR}/secp256k1_swift/secp256k1_swift.framework",
 				"${BUILT_PRODUCTS_DIR}/web3swift/Web3swift.framework",
@@ -10593,6 +10632,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ViperMcFlurryX.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YLProgressBar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libextobjc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/scrypt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/secp256k1_swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Web3swift.framework",
@@ -10688,7 +10728,7 @@
 				"${BUILT_PRODUCTS_DIR}/Nimbus/Nimbus.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/RamblerAppDelegateProxy/RamblerAppDelegateProxy.framework",
-				"${BUILT_PRODUCTS_DIR}/RamblerTyphoonUtils/RamblerTyphoonUtils.framework",
+				"${BUILT_PRODUCTS_DIR}/RamblerTyphoonUtils-AssemblyTesting/RamblerTyphoonUtils.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SipHash/SipHash.framework",
 				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
@@ -10705,10 +10745,12 @@
 				"${BUILT_PRODUCTS_DIR}/ViperMcFlurryX/ViperMcFlurryX.framework",
 				"${BUILT_PRODUCTS_DIR}/YLProgressBar/YLProgressBar.framework",
 				"${BUILT_PRODUCTS_DIR}/libextobjc/libextobjc.framework",
+				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 				"${BUILT_PRODUCTS_DIR}/scrypt/scrypt.framework",
 				"${BUILT_PRODUCTS_DIR}/secp256k1_swift/secp256k1_swift.framework",
 				"${BUILT_PRODUCTS_DIR}/web3swift/Web3swift.framework",
 				"${BUILT_PRODUCTS_DIR}/zxcvbn-ios/zxcvbn_ios.framework",
+				"${BUILT_PRODUCTS_DIR}/OCMock/OCMock.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -10750,10 +10792,12 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ViperMcFlurryX.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YLProgressBar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libextobjc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/scrypt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/secp256k1_swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Web3swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/zxcvbn_ios.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OCMock.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -10768,96 +10812,20 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MEWconnect-MyEtherWallet-iOS-MyEtherWallet-iOSTests/Pods-MEWconnect-MyEtherWallet-iOS-MyEtherWallet-iOSTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
-				"${BUILT_PRODUCTS_DIR}/BEMCheckBox/BEMCheckBox.framework",
-				"${BUILT_PRODUCTS_DIR}/BigInt/BigInt.framework",
-				"${BUILT_PRODUCTS_DIR}/BlockiesSwift/BlockiesSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/CHIPageControl/CHIPageControl.framework",
-				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
-				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/DZNWebViewController/DZNWebViewController.framework",
-				"${BUILT_PRODUCTS_DIR}/EasyMapping/EasyMapping.framework",
-				"${BUILT_PRODUCTS_DIR}/EthereumABI/EthereumABI.framework",
-				"${BUILT_PRODUCTS_DIR}/EthereumAddress/EthereumAddress.framework",
-				"${BUILT_PRODUCTS_DIR}/GSKStretchyHeaderView/GSKStretchyHeaderView.framework",
-				"${PODS_ROOT}/GoogleWebRTC/Frameworks/frameworks/WebRTC.framework",
-				"${BUILT_PRODUCTS_DIR}/M13Checkbox/M13Checkbox.framework",
-				"${BUILT_PRODUCTS_DIR}/MagicalRecord/MagicalRecord.framework",
-				"${BUILT_PRODUCTS_DIR}/MnemonicsView/MnemonicsView.framework",
-				"${BUILT_PRODUCTS_DIR}/Nimbus/Nimbus.framework",
-				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
-				"${BUILT_PRODUCTS_DIR}/RamblerAppDelegateProxy/RamblerAppDelegateProxy.framework",
-				"${BUILT_PRODUCTS_DIR}/RamblerTyphoonUtils/RamblerTyphoonUtils.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/SipHash/SipHash.framework",
-				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
-				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftRLP/SwiftRLP.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftSelfAware/SwiftSelfAware.framework",
-				"${BUILT_PRODUCTS_DIR}/TOWebViewController/TOWebViewController.framework",
-				"${BUILT_PRODUCTS_DIR}/TTTAttributedLabel/TTTAttributedLabel.framework",
-				"${BUILT_PRODUCTS_DIR}/TrezorCrypto/TrezorCrypto.framework",
-				"${BUILT_PRODUCTS_DIR}/Typhoon/Typhoon.framework",
-				"${BUILT_PRODUCTS_DIR}/UICKeyChainStore/UICKeyChainStore.framework",
-				"${BUILT_PRODUCTS_DIR}/UITextView+Placeholder/UITextView_Placeholder.framework",
-				"${BUILT_PRODUCTS_DIR}/ViperMcFlurrySwiftFix/ViperMcFlurrySwiftFix.framework",
-				"${BUILT_PRODUCTS_DIR}/ViperMcFlurryX/ViperMcFlurryX.framework",
-				"${BUILT_PRODUCTS_DIR}/YLProgressBar/YLProgressBar.framework",
-				"${BUILT_PRODUCTS_DIR}/libextobjc/libextobjc.framework",
-				"${BUILT_PRODUCTS_DIR}/scrypt/scrypt.framework",
-				"${BUILT_PRODUCTS_DIR}/secp256k1_swift/secp256k1_swift.framework",
-				"${BUILT_PRODUCTS_DIR}/web3swift/Web3swift.framework",
-				"${BUILT_PRODUCTS_DIR}/zxcvbn-ios/zxcvbn_ios.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-MyEtherWallet-iOSTests/Pods-MyEtherWallet-iOSTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RamblerTyphoonUtils-AssemblyTesting/RamblerTyphoonUtils.framework",
+				"${BUILT_PRODUCTS_DIR}/OCMock/OCMock.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BEMCheckBox.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BigInt.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BlockiesSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CHIPageControl.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNWebViewController.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EasyMapping.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EthereumABI.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EthereumAddress.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GSKStretchyHeaderView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebRTC.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/M13Checkbox.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MagicalRecord.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MnemonicsView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimbus.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RamblerAppDelegateProxy.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RamblerTyphoonUtils.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SipHash.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftRLP.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSelfAware.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TOWebViewController.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTTAttributedLabel.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TrezorCrypto.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Typhoon.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UICKeyChainStore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UITextView_Placeholder.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ViperMcFlurrySwiftFix.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ViperMcFlurryX.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YLProgressBar.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libextobjc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/scrypt.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/secp256k1_swift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Web3swift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/zxcvbn_ios.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OCMock.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MEWconnect-MyEtherWallet-iOS-MyEtherWallet-iOSTests/Pods-MEWconnect-MyEtherWallet-iOS-MyEtherWallet-iOSTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyEtherWallet-iOSTests/Pods-MyEtherWallet-iOSTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B2BFED4EC00E6403590F3EAF /* [CP] Check Pods Manifest.lock */ = {
@@ -10897,7 +10865,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MEWconnect-MyEtherWallet-iOS-MyEtherWallet-iOSTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-MyEtherWallet-iOSTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -11139,6 +11107,7 @@
 				56E3E5B021016DB60014152D /* ManagedObjectMappingProvider.m in Sources */,
 				5677C59F2181226500477ACD /* AccountModelObject.m in Sources */,
 				56E3E5B121016DB60014152D /* FlatButton.m in Sources */,
+				566EF06A241307F400999505 /* BannerView.m in Sources */,
 				56E3E5B221016DB60014152D /* TokensBodyTransformer.m in Sources */,
 				56E3E5B321016DB60014152D /* NetworkClientsAssembly.m in Sources */,
 				56E3E5B421016DB60014152D /* OperationChainer.m in Sources */,
@@ -11418,6 +11387,7 @@
 				56FB38EE20AF9211007776C8 /* LinkedLabel.m in Sources */,
 				E382C859C6675B6E524BDC87 /* NewWalletAssembly.m in Sources */,
 				56FB399C20B22939007776C8 /* ResponseDeserializationOperation.m in Sources */,
+				566EF069241307F400999505 /* BannerView.m in Sources */,
 				56BFD425209BB8CB00951000 /* NSString+HexToDecimal.swift in Sources */,
 				F3BEB5996A9106BD0DE22462 /* NewWalletViewController.m in Sources */,
 				5677BB6420FEA5D30019E92D /* RotationButton.m in Sources */,
@@ -12064,7 +12034,7 @@
 		};
 		5668E51F2083F40C0070A402 /* AppStore */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B1ED101B4827A696D8212B93 /* Pods-MEWconnect-MyEtherWallet-iOS-MyEtherWallet-iOSTests.appstore.xcconfig */;
+			baseConfigurationReference = 5EE2751F6C148225562486ED /* Pods-MyEtherWallet-iOSTests.appstore.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -12388,7 +12358,7 @@
 		};
 		56FE2B9D20817F1100DB39D5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 86E90CEA888FC3B3FCB916F4 /* Pods-MEWconnect-MyEtherWallet-iOS-MyEtherWallet-iOSTests.debug.xcconfig */;
+			baseConfigurationReference = 88963DF4E47605E1AE361B6C /* Pods-MyEtherWallet-iOSTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -12413,7 +12383,7 @@
 		};
 		56FE2B9E20817F1100DB39D5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8C1D52096F3D6136552C59B1 /* Pods-MEWconnect-MyEtherWallet-iOS-MyEtherWallet-iOSTests.release.xcconfig */;
+			baseConfigurationReference = 315960C55B9E75EA94C257A6 /* Pods-MyEtherWallet-iOSTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

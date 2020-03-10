@@ -78,6 +78,7 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
+  [self.headerView playAnimation];
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
@@ -87,6 +88,8 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
 
 - (void) viewDidDisappear:(BOOL)animated {
   [super viewDidDisappear:animated];
+  
+  [self.headerView stopAnimation];
   
   self.tableViewAnimator.animated = NO;
   
@@ -524,6 +527,7 @@ static CGFloat kHomeViewControllerBottomDefaultOffset = 38.0;
   if ((*targetContentOffset).y < -self.headerView.minimumContentHeight) {
     if ((*targetContentOffset).y < -self.headerView.maximumContentHeight + fullSize * 0.65) {
       (*targetContentOffset).y = -scrollView.contentInset.top;
+      [self.view endEditing:YES];
     } else {
       (*targetContentOffset).y = -self.headerView.minimumContentHeight;
     }

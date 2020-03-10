@@ -3,6 +3,11 @@ platform :ios, '10.0'
 use_frameworks!
 inhibit_all_warnings!
 
+def shared_testing_pods
+    pod 'OCMock', '3.3.1'
+    pod 'RamblerTyphoonUtils/AssemblyTesting', '1.5.0'
+end
+
 abstract_target 'MEWconnect' do
   # VIPER
   pod 'Typhoon', '4.0.7'
@@ -42,6 +47,7 @@ abstract_target 'MEWconnect' do
   pod 'UITextView+Placeholder', '~> 1.2.0'
   pod 'CHIPageControl/Chimayo', '= 0.1.6'
   pod 'MnemonicsView', :path => 'DevelopPods/MnemonicsView'
+  pod 'lottie-ios', '~> 2.5.3'
   
   # Ethereum
   pod 'web3swift', :git => 'https://github.com/Foboz/web3swift.git', :branch => 'v200_mew'
@@ -61,19 +67,20 @@ abstract_target 'MEWconnect' do
     #VIPER
     pod 'RamblerTyphoonUtils/AssemblyCollector', '1.5.0'
     
-    target 'MyEtherWallet-iOSTests' do
-      # Pods for testing
-      
-      pod 'OCMock', '3.3.1'
-      pod 'RamblerTyphoonUtils/AssemblyTesting', '1.5.0'
-    end
+  end
+  
+  target 'MyEtherWallet-iOSTests' do
+    inherit! :search_paths
     
+    # Pods for testing
+    
+    shared_testing_pods
   end
   
   target 'MyEtherWallet-iOS-Beta' do
     
     #VIPER
-    pod 'RamblerTyphoonUtils/AssemblyCollector', '1.5.0'
+    shared_testing_pods
     
   end
   

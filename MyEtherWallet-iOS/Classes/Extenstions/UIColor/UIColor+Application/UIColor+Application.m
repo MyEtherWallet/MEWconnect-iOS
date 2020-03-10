@@ -91,4 +91,8 @@
   return [UIColor colorWithRGB:0x04040F alpha:0.4];
 }
 
++ (instancetype)bannerDescriptionColor {
+  return [UIColor colorWithRGB:0x3C3C43 alpha:0.6];
+}
+
 @end

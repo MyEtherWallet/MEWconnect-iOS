@@ -26,4 +26,5 @@
 + (instancetype) connectionLightGrayBackgroundColor;
 + (instancetype) noInternetConnectionColor;
 + (instancetype) dimmingBackgroundColor;
++ (instancetype) bannerDescriptionColor;
 @end

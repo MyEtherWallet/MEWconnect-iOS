@@ -23,6 +23,7 @@
 @protocol ReachabilityService;
 @protocol RateService;
 @protocol MEWwallet;
+@protocol AnalyticsService;
 
 @interface HomeInteractor : NSObject <HomeInteractorInput, CacheTrackerDelegate, ReachabilityServiceDelegate>
 @property (nonatomic, weak) id<HomeInteractorOutput> output;
@@ -36,4 +37,5 @@
 @property (nonatomic, strong) id <ReachabilityService> reachabilityService;
 @property (nonatomic, strong) id <RateService> rateService;
 @property (nonatomic, strong) id <MEWwallet> walletService;
+@property (nonatomic, strong) id <AnalyticsService> analyticsService;
 @end

@@ -149,6 +149,14 @@ typedef NS_OPTIONS(short, HomeViewPresenterStatus) {
   [self.interactor selectRopstenNetwork];
 }
 
+- (void) bannerDidShownEvent {
+  [self.interactor trackBannerShown];
+}
+
+- (void) bannerDidClickedAction {
+  [self.interactor trackBannerClicked];
+}
+
 #pragma mark - HomeInteractorOutput
 
 - (void) openMessageSignerWithMessage:(MEWConnectCommand *)command masterToken:(MasterTokenPlainObject *)masterToken {

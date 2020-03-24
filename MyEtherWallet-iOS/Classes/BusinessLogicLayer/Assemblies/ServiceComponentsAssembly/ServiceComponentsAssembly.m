@@ -43,6 +43,7 @@
 #import "MigrationServiceImplementation.h"
 #import "SecurityServiceImplementation.h"
 #import "WhatsNewServiceImplementation.h"
+#import "AnalyticsServiceImplementation.h"
 
 #import "OperationSchedulerImplementation.h"
 
@@ -190,6 +191,16 @@ static NSString *const kReachabilityURLString   = @"API.ReachabilityURLString";
                           [definition injectProperty:@selector(keychainService)
                                                 with:[self keychainService]];
                         }];
+}
+
+- (id<AnalyticsService>)analyticsService {
+  return [TyphoonDefinition withClass:[AnalyticsServiceImplementation class]
+                        configuration:^(TyphoonDefinition *definition) {
+                          [definition injectProperty:@selector(analyticsOperationFactory)
+                                                with:[self.operationFactoriesAssembly analyticsOperationFactory]];
+                          [definition injectProperty:@selector(operationScheduler)
+                                                with:[self operationScheduler]];
+  }];
 }
 
 #pragma mark - Other Services

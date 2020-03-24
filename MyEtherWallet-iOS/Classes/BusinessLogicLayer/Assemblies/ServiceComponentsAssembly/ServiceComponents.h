@@ -25,6 +25,7 @@
 @protocol MigrationService;
 @protocol SecurityService;
 @protocol WhatsNewService;
+@protocol AnalyticsService;
 
 @protocol ServiceComponents <NSObject>
 - (id <MEWConnectFacade>) MEWConnectFacade;
@@ -42,4 +43,5 @@
 - (id <MigrationService>) migrationService;
 - (id <SecurityService>) securityService;
 - (id <WhatsNewService>) whatsNewService;
+- (id <AnalyticsService>) analyticsService;
 @end

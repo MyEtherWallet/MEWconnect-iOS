@@ -9,6 +9,7 @@
 #import "HomeStretchyHeader.h"
 
 #import "CardView.h"
+#import "BannerView.h"
 #import "MEWSearchBar.h"
 #import "RotationButton.h"
 #import "InlineButton.h"
@@ -25,13 +26,20 @@ typedef NS_ENUM(NSInteger, HomeStretchyHeaderStyle) {
   HomeStretchyHeaderStyleLightContent,
 };
 
+typedef NS_ENUM(NSInteger, HomeStretchyHeaderContent) {
+  HomeStretchyHeaderContentDefault,
+  HomeStretchyHeaderContentWithBanner
+};
+
 static CGFloat const kHomeStretchyHeaderMinimumContentHeight            = 130.0;
 static CGFloat const kHomeStretchyHeaderMaximumContentHeight            = 176.0;
 static CGFloat const kHomeStretchyHeaderMaximumContentHeight40Inches    = 172.0;
+static CGFloat const kHomeStretchyHeaderBannerExtraInset                = 20.0;
 
 NSTimeInterval const kHomeStretchyHeaderFadeDuration                    = 0.2;
 
 static CGFloat const kHomeStretchyHeaderDefaultOffset                   = 16.0;
+static CGFloat const kHomeStretchyHeaderBannerInset                     = 19.0;
 static CGFloat const kHomeStretchyHeaderTopDefaultOffset                = 48.0;
 
 static CGFloat const kHomeStretchyHeaderTitleTopMinOffset               = 6.0;
@@ -59,6 +67,8 @@ static CGFloat const kHomeStretcyHeaderTitleBalanceTopMinOffset         = 0.0;
 static CGFloat const kHomeStretcyHeaderTitleBalanceTopMaxOffset         = 26.0;
 
 @interface HomeStretchyHeader ()
+@property (nonatomic, weak) BannerView *bannerView;
+
 @property (nonatomic, weak) UILabel *titleLabel;
 @property (nonatomic, weak) UIButton *networkButton;
 @property (nonatomic, strong) NSLayoutConstraint *titleLabelTopConstraint;
@@ -78,7 +88,7 @@ static CGFloat const kHomeStretcyHeaderTitleBalanceTopMaxOffset         = 26.0;
 @property (nonatomic, weak) UILabel *tokenBalancesTitleLabel;
 @property (nonatomic, weak) UILabel *tokenBalancesLabel;
 @property (nonatomic, weak) RotationButton *refreshButton;
-
+@property (nonatomic) HomeStretchyHeaderContent contentType;
 @property (nonatomic) HomeStretchyHeaderStyle contentStyle;
 @property (nonatomic) UIStatusBarStyle statusBarStyle;
 #if BETA
@@ -94,6 +104,7 @@ static CGFloat const kHomeStretcyHeaderTitleBalanceTopMaxOffset         = 26.0;
 - (instancetype)initWithFrame:(CGRect)frame delegate:(id<HomeStretchyHeaderDelegate>)delegate {
   self = [super initWithFrame:frame];
   if (self) {
+    self.contentType = HomeStretchyHeaderContentWithBanner;
     _delegate = delegate;
     [self _commonInit];
     _safeHeight = -1.0;
@@ -122,6 +133,11 @@ static CGFloat const kHomeStretcyHeaderTitleBalanceTopMaxOffset         = 26.0;
     CGFloat height = kHomeStretchyHeaderMaximumContentHeight;
     if ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40) {
       height = kHomeStretchyHeaderMaximumContentHeight40Inches;
+    }
+    if (self.contentType == HomeStretchyHeaderContentWithBanner) {
+      [self.bannerView invalidateIntrinsicContentSize];
+      [self.bannerView layoutIfNeeded];
+      height += self.bannerView.intrinsicContentSize.height + kHomeStretchyHeaderBannerExtraInset;
     }
     CGFloat newHeight = height + self.cardView.intrinsicContentSize.height + _safeHeight;
     [self setMaximumContentHeight:newHeight resetAnimated:NO];
@@ -159,6 +175,14 @@ static CGFloat const kHomeStretcyHeaderTitleBalanceTopMaxOffset         = 26.0;
   self.tokenBalancesLabel.text = [usdFormatter stringFromNumber:price];
 }
 
+- (void) playAnimation {
+  [self.bannerView playAnimation];
+}
+
+- (void) stopAnimation {
+  [self.bannerView stopAnimation];
+}
+
 #pragma mark - Private
 
 - (void) _commonInit {
@@ -177,6 +201,20 @@ static CGFloat const kHomeStretcyHeaderTitleBalanceTopMaxOffset         = 26.0;
                                                          multiplier:1.0 constant:kHomeStretchyHeaderTopDefaultOffset + _safeHeight];
     [self.contentView addConstraint:self.cardTopConstraint];
     _cardView = cardView;
+  }
+  {
+    BannerView *bannerView = [[BannerView alloc] init];
+    bannerView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.contentView addSubview:bannerView];
+    
+    NSDictionary *metrics = @{@"LOFFSET": @(kHomeStretchyHeaderDefaultOffset),
+                              @"ROFFSET": @(kHomeStretchyHeaderDefaultOffset),
+                              @"TOFFSET": @(kHomeStretchyHeaderBannerInset)};
+    NSDictionary *views = @{@"card": cardView,
+                            @"banner": bannerView};
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(LOFFSET)-[banner]-(ROFFSET)-|" options:NSLayoutFormatDirectionLeftToRight metrics:metrics views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[card]-(TOFFSET)-[banner]" options:0 metrics:metrics views:views]];
+    _bannerView = bannerView;
   }
   UIImageView *imageView = [[UIImageView alloc] init];
   {
@@ -465,6 +503,10 @@ static CGFloat const kHomeStretcyHeaderTitleBalanceTopMaxOffset         = 26.0;
   }
 }
 
+- (void)setBannerAction:(BannerViewActionBlock)action {
+  [self.bannerView setActionBlock:action];
+}
+
 #pragma mark - Override
 
 - (void) didMoveToSuperview {
@@ -476,8 +518,20 @@ static CGFloat const kHomeStretcyHeaderTitleBalanceTopMaxOffset         = 26.0;
   }
 }
 
-- (void) didChangeStretchFactor:(CGFloat)stretchFactor {
-  stretchFactor = MAX(0.0, MIN(1.0, 1.0 - stretchFactor));
+- (void) didChangeStretchFactor:(CGFloat)fullstretchFactor {
+  fullstretchFactor = MAX(0.0, MIN(1.0, 1.0 - fullstretchFactor));
+  CGFloat stretchFactor = 0.0;
+  if (self.contentType == HomeStretchyHeaderContentWithBanner) {
+    CGFloat totalHeightWithBanner = ([UIScreen mainScreen].screenSizeType == ScreenSizeTypeInches40 ? kHomeStretchyHeaderMaximumContentHeight40Inches : kHomeStretchyHeaderMaximumContentHeight) + self.bannerView.intrinsicContentSize.height + kHomeStretchyHeaderBannerExtraInset;
+    totalHeightWithBanner += _safeHeight * 3.0;
+    CGFloat edgeFactor = self.bannerView.intrinsicContentSize.height / totalHeightWithBanner;
+    CGFloat scaleFactor = 1.0 / (1.0 - edgeFactor);
+    
+    stretchFactor = MAX(fullstretchFactor - edgeFactor, 0.0) * scaleFactor;
+  } else {
+    stretchFactor = fullstretchFactor;
+  }
+  
   CGFloat searchBarContainerDif = kHomeStretchyHeaderMaxSearchBarHeight - kHomeStretchyHeaderMinSearchBarHeight;
   CGFloat searchBarContainerStretchFactor = MAX(0.0, MIN(1.0, (CGRectGetHeight(self.bounds) - self.minimumContentHeight) / searchBarContainerDif));
   
@@ -491,7 +545,12 @@ static CGFloat const kHomeStretcyHeaderTitleBalanceTopMaxOffset         = 26.0;
   CGVector cornerRadiusRange = CGVectorMake(0.5, 0.7);
   CGVector titleBarContentRange = CGVectorMake(0.8, 0.91);
   
-  CGVector searchBarBackgroundRange = CGVectorMake(0.0, 0.25);
+  CGVector searchBarBackgroundRange;
+  if (self.contentType == HomeStretchyHeaderContentWithBanner) {
+    searchBarBackgroundRange = CGVectorMake(0.0, 0.06);
+  } else {
+    searchBarBackgroundRange = CGVectorMake(0.0, 0.25);
+  }
   
   CGFloat scrollFactor = MAX(scrollRange.dx, MIN(scrollRange.dy, stretchFactor)) * (1.0 / (scrollRange.dy - scrollRange.dx));
   CGFloat alphaFactor = 1.0 - (MAX(alphaRange.dx, MIN(alphaRange.dy, stretchFactor)) - alphaRange.dx) * (1.0 / (alphaRange.dy - alphaRange.dx));
@@ -500,7 +559,7 @@ static CGFloat const kHomeStretcyHeaderTitleBalanceTopMaxOffset         = 26.0;
   CGFloat cornerRadiusFactor = (MAX(cornerRadiusRange.dx, MIN(cornerRadiusRange.dy, stretchFactor)) - cornerRadiusRange.dx) * (1.0 / (cornerRadiusRange.dy - cornerRadiusRange.dx));
   CGFloat titleBarContentStretchFactor = 1.0 - (MAX(titleBarContentRange.dx, MIN(titleBarContentRange.dy, stretchFactor)) - titleBarContentRange.dx) * (1.0 / (titleBarContentRange.dy - titleBarContentRange.dx));
   
-  CGFloat searchBarBackgroundAlphaFactor = (MAX(searchBarBackgroundRange.dx, MIN(searchBarBackgroundRange.dy, stretchFactor)) - searchBarBackgroundRange.dx) * (1.0 / (searchBarBackgroundRange.dy - searchBarBackgroundRange.dx));
+  CGFloat searchBarBackgroundAlphaFactor = (MAX(searchBarBackgroundRange.dx, MIN(searchBarBackgroundRange.dy, fullstretchFactor)) - searchBarBackgroundRange.dx) * (1.0 / (searchBarBackgroundRange.dy - searchBarBackgroundRange.dx));
   
   [self _updateStatusBarStyleWithScrollFactor:scrollFactor];
   [self _updateContentStyleWithScrollFactor:scrollFactor];

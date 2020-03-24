@@ -8,6 +8,8 @@
 
 @import GSKStretchyHeaderView;
 
+#import "BannerView.h"
+
 @class CardView;
 @class RotationButton;
 
@@ -36,6 +38,9 @@ typedef NS_ENUM(NSInteger, HomeStretchyHeaderSearchBarStyle) {
 - (void) updateTokensPrice:(NSDecimalNumber *)price;
 - (UIStatusBarStyle) preferredStatusBarStyle;
 - (instancetype) initWithFrame:(CGRect)frame delegate:(id <HomeStretchyHeaderDelegate>)delegate;
+- (void) playAnimation;
+- (void) stopAnimation;
+- (void) setBannerAction:(BannerViewActionBlock)action;
 @end
 
 @protocol HomeStretchyHeaderDelegate <NSObject>

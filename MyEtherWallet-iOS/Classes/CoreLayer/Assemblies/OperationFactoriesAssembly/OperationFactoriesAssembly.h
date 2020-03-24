@@ -21,6 +21,7 @@
 @class AccountsOperationFactory;
 @class FiatPricesOperationFactory;
 @class SimplexOperationFactory;
+@class AnalyticsOperationFactory;
 
 @interface OperationFactoriesAssembly : TyphoonAssembly <RamblerInitialAssembly>
 @property (nonatomic, strong, readonly) TyphoonAssembly <RequestConfiguratorsFactory> *requestConfiguratorsFactory;
@@ -33,5 +34,6 @@
 - (TokensOperationFactory *) tokensOperationFactory;
 - (FiatPricesOperationFactory *) fiatPricesOperationFactory;
 - (SimplexOperationFactory *) simplexOperationFactory;
+- (AnalyticsOperationFactory *) analyticsOperationFactory;
 @end
 

@@ -26,13 +26,7 @@ static NSString *const kBuyEtherAmountToBuyEtherHistorySegueIdentifier  = @"BuyE
 }
 
 - (void) openBuyEtherWebWithOrder:(SimplexOrder *)order masterToken:(MasterTokenPlainObject *)masterToken {
-  NSString *segueIdentifier;
-  if (@available(iOS 11.0, *)) {
-    segueIdentifier = kBuyEtherAmountToBuyEtherWebSegueIdentifier;
-  } else {
-    segueIdentifier = kBuyEtherAmountToBuyEther10WebSegueIdentifier;
-  }
-  [[self.transitionHandler openModuleUsingSegue:segueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<BuyEtherWebModuleInput> moduleInput) {
+  [[self.transitionHandler openModuleUsingSegue:kBuyEtherAmountToBuyEtherWebSegueIdentifier] thenChainUsingBlock:^id<RamblerViperModuleOutput>(id<BuyEtherWebModuleInput> moduleInput) {
     [moduleInput configureModuleWithOrder:order forMasterToken:masterToken];
     return nil;
   }];

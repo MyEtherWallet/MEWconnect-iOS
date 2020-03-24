@@ -21,6 +21,7 @@
 #import "FiatPricesService.h"
 #import "RateService.h"
 #import "MEWwallet.h"
+#import "AnalyticsService.h"
 
 #import "CacheRequest.h"
 #import "CacheTracker.h"
@@ -210,6 +211,21 @@ static NSTimeInterval kHomeInteractorDefaultRefreshBalancesTime = 900.0;
 
 - (void) unlockForUpdates {
   _unlockedForUpdates = YES;
+}
+
+- (void) trackBannerShown {
+  [self.analyticsService trackBannerShown];
+}
+
+- (void) trackBannerClicked {
+  [self.analyticsService trackBannerClicked];
+  NSURL *url = [NSURL URLWithString:@"mewwallet://"];
+  if ([[UIApplication sharedApplication] canOpenURL:url]) {
+    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+  } else {
+    NSURL *appstoreURL = [NSURL URLWithString:@"https://itunes.apple.com/app/id1464614025"];
+    [[UIApplication sharedApplication] openURL:appstoreURL options:@{} completionHandler:nil];
+  }
 }
 
 #pragma mark - Notifications

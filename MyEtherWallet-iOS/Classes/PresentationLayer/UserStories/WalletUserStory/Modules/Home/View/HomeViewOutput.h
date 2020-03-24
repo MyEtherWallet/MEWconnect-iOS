@@ -23,4 +23,6 @@
 - (void) networkAction;
 - (void) mainnetAction;
 - (void) ropstenAction;
+- (void) bannerDidShownEvent;
+- (void) bannerDidClickedAction;
 @end

@@ -53,12 +53,12 @@
   
   NSISO8601DateFormatter *dateFormatter = [[NSISO8601DateFormatter alloc] init];
   dateFormatter.formatOptions = NSISO8601DateFormatWithFullDate | NSISO8601DateFormatWithFullTime;
-  if (@available(iOS 11.0, *)) {
+  if (@available(iOS 11.2, *)) {
     dateFormatter.formatOptions |= NSISO8601DateFormatWithFractionalSeconds;
   }
   
   NSString *timestamp = [dateFormatter stringFromDate:[NSDate date]];
-  if (@available(iOS 11.0, *)) {
+  if (@available(iOS 11.2, *)) {
     //do nothing
   } else {
     if ([timestamp length] > 1) {

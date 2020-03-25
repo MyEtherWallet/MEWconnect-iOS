@@ -1,5 +1,5 @@
 ### Release 1.0.15
-- Bugfixes
+- Buy Ether scenario fix
 
 ### Release 1.0.14
 ANNOUNCEMENT: Full-fledged MEW wallet app is now available!

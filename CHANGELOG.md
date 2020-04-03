@@ -1,3 +1,6 @@
+### Release 1.0.15
+- Buy Ether scenario fix
+
 ### Release 1.0.14
 ANNOUNCEMENT: Full-fledged MEW wallet app is now available!
 You can now buy, hold and send Ether and tokens directly in the app, without having to connect to MEW web.

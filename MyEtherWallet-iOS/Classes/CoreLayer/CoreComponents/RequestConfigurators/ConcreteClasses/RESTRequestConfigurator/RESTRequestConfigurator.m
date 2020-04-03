@@ -25,7 +25,6 @@
   if (self) {
     _baseURL = [baseURL copy];
     _apiPath = [apiPath copy];
-    self.HTTPMethodsEncodingParametersInURI = [self.HTTPMethodsEncodingParametersInURI setByAddingObject:@"POST"];
   }
   return self;
 }
